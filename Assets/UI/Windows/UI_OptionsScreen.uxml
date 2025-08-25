@@ -1,0 +1,17 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:Template name="Widget_CloseButton" src="project://database/Assets/UI/Widgets/Widget_CloseButton.uxml?fileID=9197481963319205126&amp;guid=0ae08ca0a349c17499c551fac1d2415c&amp;type=3#Widget_CloseButton" />
+    <Style src="project://database/Assets/UI/USS/default.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3#default" />
+    <engine:VisualElement name="VisualElement" class="screenBackground">
+        <engine:VisualElement>
+            <engine:Label text="Options" name="lbl_Options" class="defaultText" style="font-size: 103px;" />
+            <engine:VisualElement>
+                <engine:Toggle label="Sound" name="tgl_Sound" data-source="project://database/Assets/ScriptableObjects/SO_GameOptions.asset?fileID=11400000&amp;guid=eca857e72d92c304db5f0431ac6b15dc&amp;type=2#SO_GameOptions" class="defaultText">
+                    <Bindings>
+                        <engine:DataBinding property="value" data-source-path="soundEnabled" binding-mode="TwoWay" />
+                    </Bindings>
+                </engine:Toggle>
+            </engine:VisualElement>
+        </engine:VisualElement>
+    </engine:VisualElement>
+    <engine:Instance template="Widget_CloseButton" name="CloseContainer" class="closeButtonPosition" />
+</engine:UXML>
