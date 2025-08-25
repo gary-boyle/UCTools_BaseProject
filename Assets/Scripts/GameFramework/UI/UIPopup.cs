@@ -8,5 +8,6 @@ namespace GameFramework.UI
     public abstract class UIPopup : UIScreen
     {
         protected UIPopup(VisualElement rootElement) : base(rootElement) { }
+        
     }
 }

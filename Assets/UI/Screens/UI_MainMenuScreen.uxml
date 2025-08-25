@@ -5,6 +5,7 @@
             <engine:Button text="New Game" name="btn_NewGame" class="defaultButton" />
             <engine:Button text="Load Game" name="btn_LoadGame" class="defaultButton" />
             <engine:Button text="Options" name="btn_Options" class="defaultButton" />
+            <engine:Button text="Credits" name="btn_Credits" class="defaultButton" />
             <engine:Button text="Quit Game" name="btn_QuitGame" parse-escape-sequences="true" class="defaultButton" />
         </engine:VisualElement>
     </engine:VisualElement>

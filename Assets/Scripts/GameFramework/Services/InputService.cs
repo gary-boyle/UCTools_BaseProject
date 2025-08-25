@@ -263,7 +263,7 @@ namespace GameFramework.Services
         private void OnScrollWheelInput(InputAction.CallbackContext context)
         {
             var scrollValue = context.ReadValue<Vector2>();
-            Debug.Log($"[InputService] UI Scroll Wheel: {scrollValue}");
+            // Debug.Log($"[InputService] UI Scroll Wheel: {scrollValue}");
             
             _eventSystem.Publish(new UIScrollWheelInputEvent(scrollValue));
         }

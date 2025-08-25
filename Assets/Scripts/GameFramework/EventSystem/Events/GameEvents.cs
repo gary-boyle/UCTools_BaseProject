@@ -22,7 +22,7 @@ namespace GameFramework.EventSystem.Events
     public class SaveGameEvent { }
     public class LoadGameEvent { }
     public class NewGameRequestedEvent { }
-    public class ContinueGameRequestedEvent { }
+    public class LoadRequestedEvent { }
     public class OptionsRequestedEvent { }
     public class CreditsRequestedEvent { }
     public class QuitRequestedEvent { }

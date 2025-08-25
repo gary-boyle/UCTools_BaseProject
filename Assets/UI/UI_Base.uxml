@@ -1,17 +1,17 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <engine:Template name="UI_DebugScreen" src="project://database/Assets/UI/Windows/UI_DebugScreen.uxml?fileID=9197481963319205126&amp;guid=4bbac5633f5ec884f85d4878cb799304&amp;type=3#UI_DebugScreen" />
-    <engine:Template name="UI_SplashWindow" src="project://database/Assets/UI/Windows/UI_SplashScreen.uxml?fileID=9197481963319205126&amp;guid=de561b374b4f8a14e9965908574c5815&amp;type=3#UI_SplashScreen" />
-    <engine:Template name="UI_MainMenuWindow" src="project://database/Assets/UI/Windows/UI_MainMenuScreen.uxml?fileID=9197481963319205126&amp;guid=a86c700715617d14fadc9c4cca658a9c&amp;type=3#UI_MainMenuScreen" />
-    <engine:Template name="UI_HUDWindow" src="project://database/Assets/UI/Windows/UI_GamePlayHUD.uxml?fileID=9197481963319205126&amp;guid=4f9971435f1a2e847971b6f46050f4e0&amp;type=3#UI_GamePlayHUD" />
-    <engine:Template name="UI_PausedWindow" src="project://database/Assets/UI/Windows/UI_PauseScreen.uxml?fileID=9197481963319205126&amp;guid=1d7897531c357074fbef681e25abe616&amp;type=3#UI_PauseScreen" />
-    <engine:Template name="UI_OptionsMenuWindow" src="project://database/Assets/UI/Windows/UI_OptionsScreen.uxml?fileID=9197481963319205126&amp;guid=dccdd7bb30db6ee438a7bd7b14e1fbf4&amp;type=3#UI_OptionsScreen" />
-    <engine:Template name="UI_LoadingScreen" src="project://database/Assets/UI/Windows/UI_LoadingScreen.uxml?fileID=9197481963319205126&amp;guid=7fd693e4a1ee13743a66ff2bc51309de&amp;type=3#UI_LoadingScreen" />
-    <engine:Template name="UI_NewGameMenuWindow" src="project://database/Assets/UI/Windows/UI_NewGameScreen.uxml?fileID=9197481963319205126&amp;guid=272df8b93caf5094791beff0b1e5534b&amp;type=3#UI_NewGameScreen" />
-    <engine:Template name="UI_CreditsScreen" src="project://database/Assets/UI/Windows/UI_CreditsScreen.uxml?fileID=9197481963319205126&amp;guid=b082f69ad612c914e8ed8a9a685d8c6a&amp;type=3#UI_CreditsScreen" />
-    <engine:Template name="UI_GameOverScreen" src="project://database/Assets/UI/Windows/UI_GameOverScreen.uxml?fileID=9197481963319205126&amp;guid=5d92d0b3b5b0d7a409b5fcb8a9db6a43&amp;type=3#UI_GameOverScreen" />
-    <engine:Template name="UI_VictoryScreen" src="project://database/Assets/UI/Windows/UI_VictoryScreen.uxml?fileID=9197481963319205126&amp;guid=b136ed5cccad5464e95bd18ed9347ce2&amp;type=3#UI_VictoryScreen" />
+    <engine:Template name="UI_SplashWindow" src="project://database/Assets/UI/Screens/UI_SplashScreen.uxml?fileID=9197481963319205126&amp;guid=de561b374b4f8a14e9965908574c5815&amp;type=3#UI_SplashScreen" />
+    <engine:Template name="UI_MainMenuWindow" src="project://database/Assets/UI/Screens/UI_MainMenuScreen.uxml?fileID=9197481963319205126&amp;guid=a86c700715617d14fadc9c4cca658a9c&amp;type=3#UI_MainMenuScreen" />
+    <engine:Template name="UI_HUDWindow" src="project://database/Assets/UI/Screens/UI_GamePlayHUD.uxml?fileID=9197481963319205126&amp;guid=4f9971435f1a2e847971b6f46050f4e0&amp;type=3#UI_GamePlayHUD" />
+    <engine:Template name="UI_PausedWindow" src="project://database/Assets/UI/Screens/UI_PauseScreen.uxml?fileID=9197481963319205126&amp;guid=1d7897531c357074fbef681e25abe616&amp;type=3#UI_PauseScreen" />
+    <engine:Template name="UI_OptionsMenuWindow" src="project://database/Assets/UI/Screens/UI_OptionsScreen.uxml?fileID=9197481963319205126&amp;guid=dccdd7bb30db6ee438a7bd7b14e1fbf4&amp;type=3#UI_OptionsScreen" />
+    <engine:Template name="UI_LoadingScreen" src="project://database/Assets/UI/Screens/UI_LoadingScreen.uxml?fileID=9197481963319205126&amp;guid=7fd693e4a1ee13743a66ff2bc51309de&amp;type=3#UI_LoadingScreen" />
+    <engine:Template name="UI_NewGameMenuWindow" src="project://database/Assets/UI/Screens/UI_NewGameScreen.uxml?fileID=9197481963319205126&amp;guid=272df8b93caf5094791beff0b1e5534b&amp;type=3#UI_NewGameScreen" />
+    <engine:Template name="UI_CreditsScreen" src="project://database/Assets/UI/Screens/UI_CreditsScreen.uxml?fileID=9197481963319205126&amp;guid=b082f69ad612c914e8ed8a9a685d8c6a&amp;type=3#UI_CreditsScreen" />
+    <engine:Template name="UI_GameOverScreen" src="project://database/Assets/UI/Screens/UI_GameOverScreen.uxml?fileID=9197481963319205126&amp;guid=5d92d0b3b5b0d7a409b5fcb8a9db6a43&amp;type=3#UI_GameOverScreen" />
+    <engine:Template name="UI_VictoryScreen" src="project://database/Assets/UI/Screens/UI_VictoryScreen.uxml?fileID=9197481963319205126&amp;guid=b136ed5cccad5464e95bd18ed9347ce2&amp;type=3#UI_VictoryScreen" />
+    <engine:Template name="UI_DebugScreen" src="project://database/Assets/UI/Screens/UI_DebugScreen.uxml?fileID=9197481963319205126&amp;guid=4bbac5633f5ec884f85d4878cb799304&amp;type=3#UI_DebugScreen" />
+    <engine:Template name="UI_OptionsPopup" src="project://database/Assets/UI/Popups/UI_OptionsPopup.uxml?fileID=9197481963319205126&amp;guid=ed64c046429a35445870f9cfed7575bd&amp;type=3#UI_OptionsPopup" />
     <Style src="project://database/Assets/UI/USS/default.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3#default" />
-    <engine:VisualElement style="position: absolute; background-color: rgba(0, 0, 0, 0.57); width: 100%; height: 100%;" />
     <engine:Instance template="UI_SplashWindow" name="UI_SplashScreen" class="baseUI" />
     <engine:Instance template="UI_MainMenuWindow" name="UI_MainMenuScreen" class="baseUI" />
     <engine:Instance template="UI_HUDWindow" name="UI_GamePlayHUD" class="baseUI" />
@@ -22,5 +22,6 @@
     <engine:Instance template="UI_CreditsScreen" name="UI_CreditScreen" class="baseUI" />
     <engine:Instance template="UI_GameOverScreen" name="UI_GameOverScreen" class="baseUI" />
     <engine:Instance template="UI_VictoryScreen" name="UI_VictoryScreen" class="baseUI" />
-    <engine:Instance template="UI_DebugScreen" name="UI_DebugScreen" class="baseUI" style="display: flex;" />
+    <engine:Instance template="UI_OptionsPopup" name="UI_OptionsPopup" class="popup" />
+    <engine:Instance template="UI_DebugScreen" name="UI_DebugScreen" picking-mode="Ignore" class="baseUI" style="overflow: hidden;" />
 </engine:UXML>

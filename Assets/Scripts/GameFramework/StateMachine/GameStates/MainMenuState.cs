@@ -5,6 +5,8 @@ using GameFramework.EventSystem.Interfaces;
 using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine.Enum;
 using GameFramework.UI.Screens;
+using GameFramework.UI.Popups;
+using UnityEngine;
 
 namespace GameFramework.StateMachine.GameStates
 {
@@ -38,7 +40,7 @@ namespace GameFramework.StateMachine.GameStates
             
             // Subscribe to menu events using injected event system
             EventSystem.Subscribe<NewGameRequestedEvent>(OnNewGameRequested);
-            EventSystem.Subscribe<ContinueGameRequestedEvent>(OnContinueGameRequested);
+            EventSystem.Subscribe<LoadRequestedEvent>(OnContinueGameRequested);
             EventSystem.Subscribe<OptionsRequestedEvent>(OnOptionsRequested);
             EventSystem.Subscribe<CreditsRequestedEvent>(OnCreditsRequested);
             EventSystem.Subscribe<QuitRequestedEvent>(OnQuitRequested);
@@ -49,7 +51,7 @@ namespace GameFramework.StateMachine.GameStates
             await TransitionToStateAsync(GameStateType.NewGame);
         }
         
-        private async void OnContinueGameRequested(ContinueGameRequestedEvent evt)
+        private async void OnContinueGameRequested(LoadRequestedEvent evt)
         {
             // Load the most recent save using context services
             await Context.SaveService.LoadMostRecentSaveAsync();
@@ -58,7 +60,9 @@ namespace GameFramework.StateMachine.GameStates
         
         private async void OnOptionsRequested(OptionsRequestedEvent evt)
         {
-            await TransitionToStateAsync(GameStateType.Options);
+            Debug.Log("OnOptionsRequested firing");
+            // Show options as popup instead of transitioning to options state
+            await UIService.ShowPopupAsync<OptionsPopup>();
         }
         
         private async void OnCreditsRequested(CreditsRequestedEvent evt)
@@ -75,10 +79,13 @@ namespace GameFramework.StateMachine.GameStates
         {
             // Unsubscribe from events using injected event system
             EventSystem.Unsubscribe<NewGameRequestedEvent>(OnNewGameRequested);
-            EventSystem.Unsubscribe<ContinueGameRequestedEvent>(OnContinueGameRequested);
+            EventSystem.Unsubscribe<LoadRequestedEvent>(OnContinueGameRequested);
             EventSystem.Unsubscribe<OptionsRequestedEvent>(OnOptionsRequested);
             EventSystem.Unsubscribe<CreditsRequestedEvent>(OnCreditsRequested);
             EventSystem.Unsubscribe<QuitRequestedEvent>(OnQuitRequested);
+            
+            // Hide any open popups
+            await UIService.HidePopupAsync<OptionsPopup>();
             
             await UIService.HideScreenAsync<MainMenuScreen>();
             await base.ExitAsync();

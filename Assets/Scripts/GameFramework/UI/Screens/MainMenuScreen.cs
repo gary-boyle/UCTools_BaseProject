@@ -1,7 +1,8 @@
 ﻿using GameFramework.Core;
 using GameFramework.EventSystem.Events;
-using GameFramework.EventSystem.Interfaces;
 using GameFramework.Services.Interfaces;
+using UCTools_Utilities.UI;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace GameFramework.UI.Screens
@@ -12,7 +13,7 @@ namespace GameFramework.UI.Screens
     public class MainMenuScreen : UIScreen
     {
         private Button _newGameButton;
-        private Button _continueButton;
+        private Button _loadButton;
         private Button _optionsButton;
         private Button _creditsButton;
         private Button _quitButton;
@@ -20,19 +21,24 @@ namespace GameFramework.UI.Screens
         public MainMenuScreen(VisualElement rootElement) : base(rootElement)
         {
             InitializeButtons();
+            
+            UIElementValidator.ValidateElementsWithNames(this, UIElementValidator.ValidationMode.ThrowExceptions);
         }
         
         private void InitializeButtons()
         {
-            _newGameButton = RootElement?.Q<Button>("NewGameButton");
-            _continueButton = RootElement?.Q<Button>("ContinueButton");
-            _optionsButton = RootElement?.Q<Button>("OptionsButton");
-            _creditsButton = RootElement?.Q<Button>("CreditsButton");
-            _quitButton = RootElement?.Q<Button>("QuitButton");
+            _newGameButton = RootElement?.Q<Button>("btn_NewGame");
+            _loadButton = RootElement?.Q<Button>("btn_LoadGame");
+            _optionsButton = RootElement?.Q<Button>("btn_Options");
+            _creditsButton = RootElement?.Q<Button>("btn_Credits");
+            _quitButton = RootElement?.Q<Button>("btn_QuitGame");
+
+            
+            // Simple validation - just pass all the elements
             
             // Subscribe to button events
             _newGameButton?.RegisterCallback<ClickEvent>(OnNewGameClicked);
-            _continueButton?.RegisterCallback<ClickEvent>(OnContinueClicked);
+            _loadButton?.RegisterCallback<ClickEvent>(OnLoadClicked);
             _optionsButton?.RegisterCallback<ClickEvent>(OnOptionsClicked);
             _creditsButton?.RegisterCallback<ClickEvent>(OnCreditsClicked);
             _quitButton?.RegisterCallback<ClickEvent>(OnQuitClicked);
@@ -40,42 +46,39 @@ namespace GameFramework.UI.Screens
         
         private void OnNewGameClicked(ClickEvent evt)
         {
+            Debug.Log("New Game Pressed");
             // Get event system from game manager and publish event
-            var eventSystem = GameManager.GetService<IEventSystem>();
-            eventSystem?.Publish(new NewGameRequestedEvent());
+            _eventSystem?.Publish(new NewGameRequestedEvent());
         }
         
-        private void OnContinueClicked(ClickEvent evt)
+        private void OnLoadClicked(ClickEvent evt)
         {
-            var eventSystem = GameManager.GetService<IEventSystem>();
-            eventSystem?.Publish(new ContinueGameRequestedEvent());
+            Debug.Log("Load Pressed");
+            _eventSystem?.Publish(new LoadRequestedEvent());
         }
         
         private void OnOptionsClicked(ClickEvent evt)
         {
-            var eventSystem = GameManager.GetService<IEventSystem>();
-            eventSystem?.Publish(new OptionsRequestedEvent());
+            _eventSystem?.Publish(new OptionsRequestedEvent());
         }
         
         private void OnCreditsClicked(ClickEvent evt)
         {
-            var eventSystem = GameManager.GetService<IEventSystem>();
-            eventSystem?.Publish(new CreditsRequestedEvent());
+            _eventSystem?.Publish(new CreditsRequestedEvent());
         }
         
         private void OnQuitClicked(ClickEvent evt)
         {
-            var eventSystem = GameManager.GetService<IEventSystem>();
-            eventSystem?.Publish(new QuitRequestedEvent());
+            _eventSystem?.Publish(new QuitRequestedEvent());
         }
         
         protected override void OnShow()
         {
             // Update continue button state
             var saveService = GameManager.GetService<ISaveService>();
-            if (_continueButton != null && saveService != null)
+            if (_loadButton != null && saveService != null)
             {
-                _continueButton.SetEnabled(saveService.HasAnySaves());
+                _loadButton.SetEnabled(saveService.HasAnySaves());
             }
         }
     }

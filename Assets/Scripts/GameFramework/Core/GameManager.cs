@@ -14,13 +14,8 @@ namespace GameFramework.Core
 {
     /// <summary>
     /// Main game manager that bootstraps the entire game framework using dependency injection.
-    /// Registers all services, initializes the DI container, and starts the game state machine.
-    /// 
-    /// Design: Bootstrap pattern with dependency injection container setup
-    /// Pros: Clean initialization, all dependencies properly registered, easy to modify service registrations
-    /// Cons: Single point of failure, requires careful initialization order
     /// </summary>
-    public class GameManager : Singleton<GameManager> 
+    public class GameManager : MonoBehaviour // Remove Singleton<GameManager> inheritance
     {
         [Header("Debug Settings")]
         [SerializeField] private bool _enableDebugConsole = true;
@@ -29,6 +24,20 @@ namespace GameFramework.Core
         [Header("Prefabs")]
         [SerializeField] private UIDocument _UIPrefab;
 
+        // Singleton implementation
+        private static GameManager _instance;
+        public static GameManager Instance 
+        { 
+            get 
+            {
+                if (_instance == null)
+                {
+                    Debug.LogError("[GameManager] Instance accessed before initialization!");
+                }
+                return _instance;
+            }
+        }
+
         // Core systems
         private DIContainer _container;
         private IGameStateMachine _stateMachine;
@@ -36,20 +45,38 @@ namespace GameFramework.Core
         private List<IFixedUpdatable> _fixedUpdatables = new();
         private List<ILateUpdatable> _lateUpdatables = new();
         
-        // Singleton pattern implementation
-        public static GameManager Instance { get; private set; }
+        // Initialization tracking
+        private bool _isInitialized = false;
+        private bool _servicesRegistered = false;
+        private TaskCompletionSource<bool> _initializationComplete = new();
         
         /// <summary>
         /// Initialize the singleton and start the dependency injection setup
         /// </summary>
-        private async void Awake() 
+        private void Awake() 
         {
-            base.Awake();
-            await InitializeFrameworkAsync();
+            // Singleton pattern implementation
+            if (_instance == null)
+            {
+                _instance = this;
+                DontDestroyOnLoad(gameObject);
+                Debug.Log("[GameManager] Singleton instance created");
+                
+                // Start initialization
+                _ = InitializeFrameworkAsync();
+            }
+            else if (_instance != this)
+            {
+                Debug.LogWarning("[GameManager] Another instance detected, destroying duplicate");
+                Destroy(gameObject);
+            }
         }
         
         private void Update() 
         {
+            // Only update if initialized
+            if (!_isInitialized) return;
+            
             // Update all systems that implement IUpdatable
             foreach (var updatable in _updatables)
             {
@@ -59,6 +86,9 @@ namespace GameFramework.Core
         
         private void FixedUpdate()
         {
+            // Only update if initialized
+            if (!_isInitialized) return;
+            
             // Update all systems that implement IFixedUpdatable
             foreach (var fixedUpdatable in _fixedUpdatables)
             {
@@ -68,6 +98,9 @@ namespace GameFramework.Core
         
         private void LateUpdate()
         {
+            // Only update if initialized
+            if (!_isInitialized) return;
+            
             // Update all systems that implement ILateUpdatable
             foreach (var lateUpdatable in _lateUpdatables)
             {
@@ -80,27 +113,81 @@ namespace GameFramework.Core
         /// </summary>
         private async Task InitializeFrameworkAsync()
         {
+            if (_isInitialized) return;
+            
             Debug.Log("[GameManager] Initializing game framework with dependency injection...");
             
-            // Initialize DI container
-            _container = DIContainer.Instance;
+            try
+            {
+                // Initialize DI container
+                _container = DIContainer.Instance;
+                Debug.Log("[GameManager] DI Container created");
+                
+                // Register all services in dependency order
+                RegisterCoreServices();
+                RegisterGameSystems();
+                RegisterGameStates();
+                
+                _servicesRegistered = true; // Mark that services are registered
+                Debug.Log("[GameManager] Services registered, container ready");
+                
+                // Initialize ConfigVar system
+                UCTools_ConfigVariables.ConfigVar.Init();
+                
+                // INITIALIZE ALL SERVICES AFTER REGISTRATION
+                await InitializeServicesAsync();
+                
+                // Create and initialize the state machine
+                _stateMachine = _container.Resolve<IGameStateMachine>();
+                await _stateMachine.InitializeAsync();
+                
+                // Collect updatable systems
+                CollectUpdatableSystems();
+                
+                _isInitialized = true;
+                _initializationComplete.SetResult(true);
+                
+                Debug.Log("[GameManager] Framework initialization complete!");
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError($"[GameManager] Framework initialization failed: {e}");
+                _initializationComplete.SetException(e);
+            }
+        }
+        
+        /// <summary>
+        /// Initialize all registered services in the correct order
+        /// </summary>
+        private async Task InitializeServicesAsync()
+        {
+            Debug.Log("[GameManager] Initializing services...");
             
-            // Register all services in dependency order
-            RegisterCoreServices();
-            RegisterGameSystems();
-            RegisterGameStates();
+            // Initialize services in dependency order
+            var eventSystem = _container.Resolve<IEventSystem>();
+            await eventSystem.InitializeAsync();
+            Debug.Log("[GameManager] EventSystem initialized");
             
-            // Initialize ConfigVar system
-            UCTools_ConfigVariables.ConfigVar.Init();
+            var audioService = _container.Resolve<IAudioService>();
+            await audioService.InitializeAsync();
             
-            // Create and initialize the state machine
-            _stateMachine = _container.Resolve<IGameStateMachine>();
-            await _stateMachine.InitializeAsync();
+            var inputService = _container.Resolve<IInputService>();
+            await inputService.InitializeAsync();
             
-            // Collect updatable systems
-            CollectUpdatableSystems();
+            var sceneService = _container.Resolve<ISceneService>();
+            await sceneService.InitializeAsync();
             
-            Debug.Log("[GameManager] Framework initialization complete!");
+            var configService = _container.Resolve<IConfigService>();
+            await configService.InitializeAsync();
+            
+            var saveService = _container.Resolve<ISaveService>();
+            await saveService.InitializeAsync();
+            
+            // Initialize UI service LAST since it depends on other services
+            var uiService = _container.Resolve<IUIService>();
+            await uiService.InitializeAsync();
+            
+            Debug.Log("[GameManager] All services initialized!");
         }
         
         /// <summary>
@@ -115,7 +202,9 @@ namespace GameFramework.Core
             _container.RegisterSingleton(_container);
             
             // Register leaf services first (no dependencies)
+            Debug.Log("[GameManager] Registering EventSystem...");
             _container.RegisterSingleton<IEventSystem, EventSystem.EventSystem>();
+            Debug.Log($"[GameManager] EventSystem registered: {_container.IsRegistered<IEventSystem>()}");
             
             // Register services with minimal dependencies
             _container.RegisterSingleton<IAudioService, AudioService>();
@@ -135,8 +224,9 @@ namespace GameFramework.Core
             
             // Register state machine (depends on GameContext)
             _container.RegisterSingleton<IGameStateMachine, StateMachine.GameStateMachine>();
+            
+            Debug.Log("[GameManager] Core services registration complete");
         }
-        
         
         /// <summary>
         /// Create UIDocument instance from prefab and register it in the DI container
@@ -177,12 +267,6 @@ namespace GameFramework.Core
         private void RegisterGameSystems()
         {
             Debug.Log("[GameManager] Registering game systems...");
-            
-            // Register any additional game-specific systems here
-            // Example:
-            // _container.RegisterSingleton<IPlayerManager, PlayerManager>();
-            // _container.RegisterSingleton<IEnemyManager, EnemyManager>();
-            // _container.RegisterSingleton<IInventorySystem, InventorySystem>();
             
             if (_enableDebugConsole)
             {
@@ -231,18 +315,37 @@ namespace GameFramework.Core
             var inputService = _container.Resolve<IInputService>();
             if (inputService is IUpdatable inputUpdatable)
                 _updatables.Add(inputUpdatable);
-                
-            // Add more systems as needed
         }
         
         /// <summary>
-        /// Get access to a service from anywhere in the game
-        /// Use sparingly - prefer constructor injection where possible
+        /// Get access to a service from anywhere in the game - with proper null checks
         /// </summary>
         public static T GetService<T>() where T : class
         {
             return Instance?._container?.Resolve<T>();
         }
+        
+        /// <summary>
+        /// Async version for waiting until services are ready
+        /// </summary>
+        public static async Task<T> GetServiceAsync<T>() where T : class
+        {
+            if (_instance == null)
+            {
+                Debug.LogError($"[GameManager] Instance is null when requesting {typeof(T).Name}");
+                return null;
+            }
+            
+            // Wait for initialization to complete
+            await _instance._initializationComplete.Task;
+            
+            return GetService<T>();
+        }
+        
+        /// <summary>
+        /// Check if the GameManager is ready
+        /// </summary>
+        public static bool IsReady => _instance != null && _instance._servicesRegistered;
         
         /// <summary>
         /// Shutdown the entire framework cleanly
@@ -260,16 +363,11 @@ namespace GameFramework.Core
             _container?.Clear();
         }
         
-        /// <summary>
-        /// Debug information for inspector
-        /// </summary>
-        private void OnDrawGizmosSelected()
+        private void OnDestroy()
         {
-            if (Application.isPlaying && _stateMachine != null)
+            if (_instance == this)
             {
-                // Draw debug info in scene view
-                var currentState = _stateMachine.CurrentStateType.ToString();
-                UnityEditor.Handles.Label(transform.position, $"Current State: {currentState}");
+                _instance = null;
             }
         }
     }

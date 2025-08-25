@@ -9,6 +9,9 @@ namespace GameFramework.ConfigVariables
     public static class DefaultConfigVariables
     {
         // Audio configuration
+        [ConfigVar(Name = "audio.enabled", DefaultValue = "1", Description = "Master control to enable or disable all audio", Flags = ConfigFlags.Save)]
+        public static ConfigVar AudioEnabled;
+        
         [ConfigVar(Name = "audio.master_volume", DefaultValue = "1.0", Description = "Master volume level (0.0 - 1.0)", Flags = ConfigFlags.Save)]
         public static ConfigVar MasterVolume;
         

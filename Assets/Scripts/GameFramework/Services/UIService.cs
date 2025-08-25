@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using GameFramework.EventSystem.Interfaces;
 using GameFramework.UI;
 using GameFramework.UI.Interfaces;
+using GameFramework.UI.Popups;
 using GameFramework.UI.Screens;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -85,7 +86,7 @@ namespace GameFramework.Services
             RegisterScreen(new MainMenuScreen(root.Q<VisualElement>("UI_MainMenuScreen")));
             RegisterScreen(new GameplayHUD(root.Q<VisualElement>("UI_GamePlayHUD")));
             RegisterScreen(new PauseScreen(root.Q<VisualElement>("UI_PauseScreen")));
-            RegisterScreen(new OptionsScreen(root.Q<VisualElement>("UI_OptionsScreen")));
+            //RegisterScreen(new OptionsScreen(root.Q<VisualElement>("UI_OptionsScreen")));
             RegisterScreen(new LoadingScreen(root.Q<VisualElement>("UI_LoadingScreen")));
             RegisterScreen(new NewGameScreen(root.Q<VisualElement>("UI_NewGameScreen")));
             RegisterScreen(new CreditsScreen(root.Q<VisualElement>("UI_CreditScreen")));
@@ -93,6 +94,7 @@ namespace GameFramework.Services
             RegisterScreen(new VictoryScreen(root.Q<VisualElement>("UI_VictoryScreen")));
             
             // Register popups TODO
+            RegisterPopup(new OptionsPopup(root.Q<VisualElement>("UI_OptionsPopup")));
             //RegisterPopup(new ConfirmationPopup(root.Q<VisualElement>("ConfirmationPopup")));
             //RegisterPopup(new ErrorPopup(root.Q<VisualElement>("ErrorPopup")));
         }
@@ -126,6 +128,7 @@ namespace GameFramework.Services
         
         public async Task ShowPopupAsync<T>() where T : UIPopup
         {
+            Debug.Log("Trying to show a popup");
             if (_popups.TryGetValue(typeof(T), out var popup))
             {
                 popup.Show();
