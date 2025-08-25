@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using GameFramework.EventSystem.Interfaces;
 using GameFramework.UI;
+using GameFramework.UI.Interfaces;
 using GameFramework.UI.Screens;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -23,7 +24,8 @@ namespace GameFramework.Services
         private readonly Dictionary<Type, UIScreen> _screens = new();
         private readonly Dictionary<Type, UIPopup> _popups = new();
         private readonly UIDocument _uiDocument;
-        
+        private readonly IUIDocumentWrapper _uiDocumentWrapper;
+
         /// <summary>
         /// Constructor injection - receives required dependencies
         /// </summary>
@@ -31,6 +33,12 @@ namespace GameFramework.Services
         {
             _eventSystem = eventSystem ?? throw new ArgumentNullException(nameof(eventSystem));
             _uiDocument = uiDocument ?? throw new ArgumentNullException(nameof(uiDocument));
+        }
+        
+        public UIService(IEventSystem eventSystem, IUIDocumentWrapper uiDocumentWrapper)
+        {
+            _eventSystem = eventSystem ?? throw new ArgumentNullException(nameof(eventSystem));
+            _uiDocumentWrapper = uiDocumentWrapper ?? throw new ArgumentNullException(nameof(uiDocumentWrapper));
         }
         
         public async Task InitializeAsync()
@@ -56,8 +64,21 @@ namespace GameFramework.Services
         
         private void InitializeScreensAndPopups()
         {
-            var root = _uiDocument.rootVisualElement;
-            
+            // Handle both constructor types
+            VisualElement root;
+            if (_uiDocument != null)
+            {
+                root = _uiDocument.rootVisualElement;
+            }
+            else if (_uiDocumentWrapper != null)
+            {
+                root = _uiDocumentWrapper.RootVisualElement;
+            }
+            else
+            {
+                throw new InvalidOperationException("No UI document or wrapper available");
+            }
+    
             // Register screens
             RegisterScreen(new DebugScreen(root.Q<VisualElement>("UI_DebugScreen")));
             RegisterScreen(new SplashScreen(root.Q<VisualElement>("UI_SplashScreen")));

@@ -1,7 +1,7 @@
-// namespace GameFramework.Tests.HelperClasses
-// {
-//     public class TestDependency : ITestDependency
-//     {
-//         public int GetNumber() => 42;
-//     }
-// }
+namespace GameFramework.Tests.HelperClasses
+{
+    public class TestDependency : ITestDependency
+    {
+        public int GetNumber() => 42;
+    }
+}

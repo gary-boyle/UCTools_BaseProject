@@ -1,4 +1,5 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:Template name="UI_DebugScreen" src="project://database/Assets/UI/Windows/UI_DebugScreen.uxml?fileID=9197481963319205126&amp;guid=4bbac5633f5ec884f85d4878cb799304&amp;type=3#UI_DebugScreen" />
     <engine:Template name="UI_SplashWindow" src="project://database/Assets/UI/Windows/UI_SplashScreen.uxml?fileID=9197481963319205126&amp;guid=de561b374b4f8a14e9965908574c5815&amp;type=3#UI_SplashScreen" />
     <engine:Template name="UI_MainMenuWindow" src="project://database/Assets/UI/Windows/UI_MainMenuScreen.uxml?fileID=9197481963319205126&amp;guid=a86c700715617d14fadc9c4cca658a9c&amp;type=3#UI_MainMenuScreen" />
     <engine:Template name="UI_HUDWindow" src="project://database/Assets/UI/Windows/UI_GamePlayHUD.uxml?fileID=9197481963319205126&amp;guid=4f9971435f1a2e847971b6f46050f4e0&amp;type=3#UI_GamePlayHUD" />
@@ -11,9 +12,6 @@
     <engine:Template name="UI_VictoryScreen" src="project://database/Assets/UI/Windows/UI_VictoryScreen.uxml?fileID=9197481963319205126&amp;guid=b136ed5cccad5464e95bd18ed9347ce2&amp;type=3#UI_VictoryScreen" />
     <Style src="project://database/Assets/UI/USS/default.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3#default" />
     <engine:VisualElement style="position: absolute; background-color: rgba(0, 0, 0, 0.57); width: 100%; height: 100%;" />
-    <engine:VisualElement name="UI_DebugScreen" style="align-items: flex-start; justify-content: flex-end; flex-grow: 1;">
-        <engine:Label name="lbl_Debug" enable-rich-text="true" text="Testing" class="defaultText" style="font-size: 100px; background-color: rgb(19, 11, 11);" />
-    </engine:VisualElement>
     <engine:Instance template="UI_SplashWindow" name="UI_SplashScreen" class="baseUI" />
     <engine:Instance template="UI_MainMenuWindow" name="UI_MainMenuScreen" class="baseUI" />
     <engine:Instance template="UI_HUDWindow" name="UI_GamePlayHUD" class="baseUI" />
@@ -24,4 +22,5 @@
     <engine:Instance template="UI_CreditsScreen" name="UI_CreditScreen" class="baseUI" />
     <engine:Instance template="UI_GameOverScreen" name="UI_GameOverScreen" class="baseUI" />
     <engine:Instance template="UI_VictoryScreen" name="UI_VictoryScreen" class="baseUI" />
+    <engine:Instance template="UI_DebugScreen" name="UI_DebugScreen" class="baseUI" style="display: flex;" />
 </engine:UXML>
