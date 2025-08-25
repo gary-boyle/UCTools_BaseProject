@@ -6,9 +6,12 @@ using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine;
 using GameFramework.StateMachine.GameStates;
 using GameFramework.StateMachine.Interfaces;
+using GrameFramework.Config;
+using UCTools_ConfigVariables; // Add this for ConfigCategory
 using UCTools_Utilities;
 using UnityEngine;
 using UnityEngine.UIElements;
+using AudioSettings = GrameFramework.Config.AudioSettings;
 
 namespace GameFramework.Core
 {
@@ -23,6 +26,13 @@ namespace GameFramework.Core
         
         [Header("Prefabs")]
         [SerializeField] private UIDocument _UIPrefab;
+        
+        [Header("Configuration Settings")]
+        [SerializeField] private AudioSettings _audioSettings;
+        [SerializeField] private GraphicsSettings _graphicsSettings;
+        [SerializeField] private GameplaySettings _gameplaySettings;
+        [SerializeField] private InputSettings _inputSettings;
+        [SerializeField] private DebugSettings _debugSettings;
 
         // Singleton implementation
         private static GameManager _instance;
@@ -131,9 +141,6 @@ namespace GameFramework.Core
                 _servicesRegistered = true; // Mark that services are registered
                 Debug.Log("[GameManager] Services registered, container ready");
                 
-                // Initialize ConfigVar system
-                UCTools_ConfigVariables.ConfigVar.Init();
-                
                 // INITIALIZE ALL SERVICES AFTER REGISTRATION
                 await InitializeServicesAsync();
                 
@@ -177,8 +184,11 @@ namespace GameFramework.Core
             var sceneService = _container.Resolve<ISceneService>();
             await sceneService.InitializeAsync();
             
-            var configService = _container.Resolve<IConfigService>();
+            // Initialize ConfigService and register config categories
+            var configService = _container.Resolve<IConfigService>() as ConfigService;
             await configService.InitializeAsync();
+            RegisterConfigCategories(configService);
+            Debug.Log("[GameManager] ConfigService initialized and categories registered");
             
             var saveService = _container.Resolve<ISaveService>();
             await saveService.InitializeAsync();
@@ -188,6 +198,37 @@ namespace GameFramework.Core
             await uiService.InitializeAsync();
             
             Debug.Log("[GameManager] All services initialized!");
+        }
+        
+        /// <summary>
+        /// Register config categories with the ConfigService
+        /// </summary>
+        private void RegisterConfigCategories(ConfigService configService)
+        {
+            if (configService == null)
+            {
+                Debug.LogError("[GameManager] ConfigService is null, cannot register config categories");
+                return;
+            }
+            
+            var categories = new List<ConfigCategory>();
+            
+            // Add non-null config categories
+            if (_audioSettings != null) categories.Add(_audioSettings);
+            if (_graphicsSettings != null) categories.Add(_graphicsSettings);
+            if (_gameplaySettings != null) categories.Add(_gameplaySettings);
+            if (_inputSettings != null) categories.Add(_inputSettings);
+            if (_debugSettings != null) categories.Add(_debugSettings);
+            
+            if (categories.Count > 0)
+            {
+                configService.RegisterConfigCategories(categories.ToArray());
+                Debug.Log($"[GameManager] Registered {categories.Count} config categories");
+            }
+            else
+            {
+                Debug.LogWarning("[GameManager] No config categories assigned! Please assign config assets in the inspector.");
+            }
         }
         
         /// <summary>

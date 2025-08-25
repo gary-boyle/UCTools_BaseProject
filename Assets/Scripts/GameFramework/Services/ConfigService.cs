@@ -5,11 +5,13 @@ using GameFramework.EventSystem.Events;
 using GameFramework.EventSystem.Interfaces;
 using UnityEngine;
 using IConfigService = GameFramework.Services.Interfaces.IConfigService;
+using GrameFramework.Config;
+using UCTools_ConfigVariables;
 
 namespace GameFramework.Services
 {
     /// <summary>
-    /// Configuration service implementation with ConfigVar integration and constructor injection
+    /// Configuration service implementation with typed ScriptableObject ConfigCategory integration
     /// </summary>
     public class ConfigService : IConfigService
     {
@@ -17,11 +19,9 @@ namespace GameFramework.Services
         
         private readonly IEventSystem _eventSystem;
         private readonly string _configFilePath;
-        private readonly Dictionary<string, UCTools_ConfigVariables.ConfigVar> _registeredConfigVars = new();
+        private readonly List<ConfigCategory> _configCategories = new();
+        private readonly Dictionary<string, ConfigVariableBase> _configVariablesByName = new();
         
-        /// <summary>
-        /// Constructor injection - receives required dependencies
-        /// </summary>
         public ConfigService(IEventSystem eventSystem)
         {
             _eventSystem = eventSystem ?? throw new ArgumentNullException(nameof(eventSystem));
@@ -34,15 +34,6 @@ namespace GameFramework.Services
             
             Debug.Log("[ConfigService] Initializing configuration system...");
             
-            // Initialize ConfigVar system
-            UCTools_ConfigVariables.ConfigVar.Init();
-            
-            // Register all ConfigVars from the global registry
-            foreach (var kvp in UCTools_ConfigVariables.ConfigVar.ConfigVars)
-            {
-                RegisterConfigVar(kvp.Value);
-            }
-            
             IsInitialized = true;
             await Task.CompletedTask;
         }
@@ -50,6 +41,58 @@ namespace GameFramework.Services
         public void Shutdown()
         {
             IsInitialized = false;
+        }
+        
+        public void RegisterConfigCategory(ConfigCategory category)
+        {
+            if (category == null)
+            {
+                Debug.LogWarning("[ConfigService] Attempted to register null ConfigCategory");
+                return;
+            }
+            
+            if (_configCategories.Contains(category))
+            {
+                Debug.LogWarning($"[ConfigService] ConfigCategory {category.name} already registered");
+                return;
+            }
+            
+            _configCategories.Add(category);
+            
+            var variables = category.GetAllVariables();
+            foreach (var variable in variables)
+            {
+                if (string.IsNullOrEmpty(variable.name))
+                {
+                    Debug.LogWarning($"[ConfigService] Found ConfigVariable with empty name in {category.name}");
+                    continue;
+                }
+                
+                var key = variable.name.ToLower();
+                if (_configVariablesByName.ContainsKey(key))
+                {
+                    Debug.LogWarning($"[ConfigService] Duplicate ConfigVariable name: {variable.name}");
+                    continue;
+                }
+                
+                if (variable.ValidateConfiguration(out string error))
+                {
+                    _configVariablesByName[key] = variable;
+                    Debug.Log($"[ConfigService] Registered ConfigVariable: {variable.name} ({variable.ValueType.Name})");
+                }
+                else
+                {
+                    Debug.LogError($"[ConfigService] Invalid ConfigVariable '{variable.name}': {error}");
+                }
+            }
+        }
+        
+        public void RegisterConfigCategories(params ConfigCategory[] categories)
+        {
+            foreach (var category in categories)
+            {
+                RegisterConfigCategory(category);
+            }
         }
         
         public async Task LoadConfigAsync()
@@ -79,20 +122,16 @@ namespace GameFramework.Services
             {
                 var lines = new List<string>();
                 
-                foreach (var cvar in _registeredConfigVars.Values)
+                foreach (var variable in _configVariablesByName.Values)
                 {
-                    if ((cvar.flags & UCTools_ConfigVariables.ConfigFlags.Save) == UCTools_ConfigVariables.ConfigFlags.Save)
+                    if ((variable.flags & ConfigFlags.Save) == ConfigFlags.Save)
                     {
-                        lines.Add($"{cvar.name} \"{cvar.Value}\"");
+                        lines.Add($"{variable.name} \"{variable.GetValueAsString()}\"");
                     }
                 }
                 
                 await System.IO.File.WriteAllLinesAsync(_configFilePath, lines);
                 
-                // Clear dirty flags
-                UCTools_ConfigVariables.ConfigVar.DirtyFlags = UCTools_ConfigVariables.ConfigFlags.None;
-                
-                // Publish options changed event using injected event system
                 _eventSystem.Publish<OptionsChangedEvent>();
                 
                 Debug.Log("[ConfigService] Configuration saved successfully");
@@ -105,16 +144,22 @@ namespace GameFramework.Services
         
         public T GetConfigValue<T>(string configName)
         {
-            if (_registeredConfigVars.TryGetValue(configName.ToLower(), out var cvar))
+            if (_configVariablesByName.TryGetValue(configName.ToLower(), out var variable))
             {
-                if (typeof(T) == typeof(string))
-                    return (T)(object)cvar.Value;
-                else if (typeof(T) == typeof(int))
-                    return (T)(object)cvar.IntValue;
-                else if (typeof(T) == typeof(float))
-                    return (T)(object)cvar.FloatValue;
-                else if (typeof(T) == typeof(bool))
-                    return (T)(object)(cvar.IntValue != 0);
+                if (variable.GetValueAsObject() is T typedValue)
+                {
+                    return typedValue;
+                }
+                
+                // Try conversion for compatible types
+                try
+                {
+                    return (T)Convert.ChangeType(variable.GetValueAsObject(), typeof(T));
+                }
+                catch
+                {
+                    Debug.LogWarning($"[ConfigService] Cannot convert {variable.ValueType.Name} to {typeof(T).Name} for '{configName}'");
+                }
             }
             
             return default(T);
@@ -122,9 +167,12 @@ namespace GameFramework.Services
         
         public void SetConfigValue<T>(string configName, T value)
         {
-            if (_registeredConfigVars.TryGetValue(configName.ToLower(), out var cvar))
+            if (_configVariablesByName.TryGetValue(configName.ToLower(), out var variable))
             {
-                cvar.Value = value.ToString();
+                if (!variable.SetValueFromObject(value))
+                {
+                    Debug.LogWarning($"[ConfigService] Failed to set value for '{configName}': type mismatch");
+                }
             }
             else
             {
@@ -134,15 +182,12 @@ namespace GameFramework.Services
         
         public void ResetToDefaults()
         {
-            UCTools_ConfigVariables.ConfigVar.ResetAllToDefault();
+            foreach (var variable in _configVariablesByName.Values)
+            {
+                variable.ResetToDefault();
+            }
             
-            // Publish options changed event using injected event system
             _eventSystem.Publish<OptionsChangedEvent>();
-        }
-        
-        public void RegisterConfigVar(UCTools_ConfigVariables.ConfigVar configVar)
-        {
-            _registeredConfigVars[configVar.name] = configVar;
         }
         
         private void ParseConfigLines(string[] lines)
@@ -153,7 +198,6 @@ namespace GameFramework.Services
                 if (string.IsNullOrEmpty(trimmed) || trimmed.StartsWith("//"))
                     continue;
                     
-                // Parse format: variablename "value"
                 var spaceIndex = trimmed.IndexOf(' ');
                 if (spaceIndex > 0)
                 {
@@ -165,9 +209,9 @@ namespace GameFramework.Services
                     {
                         var value = trimmed.Substring(valueStart + 1, valueEnd - valueStart - 1);
                         
-                        if (_registeredConfigVars.TryGetValue(varName.ToLower(), out var cvar))
+                        if (_configVariablesByName.TryGetValue(varName.ToLower(), out var variable))
                         {
-                            cvar.Value = value;
+                            variable.SetValueFromString(value);
                         }
                     }
                 }

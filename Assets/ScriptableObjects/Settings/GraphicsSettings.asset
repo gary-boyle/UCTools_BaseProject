@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07bdcb889ffa481ca0c9f175a23a1558, type: 3}
+  m_Name: GraphicsSettings
+  m_EditorClassIdentifier: GameFramework::GrameFramework.Config.GraphicsSettings
+  fullscreen:
+    name: graphics.fullscreen
+    description: Fullscreen mode (0 = windowed, 1 = fullscreen)
+    flags: 1
+    defaultValue: 1
+    currentValue: 1
+  resolution:
+    name: graphics.resolution
+    description: Screen resolution
+    flags: 1
+    defaultValue: 2
+    currentValue: 2
+  quality:
+    name: graphics.quality
+    description: Graphics quality level
+    flags: 1
+    defaultValue: 1
+    currentValue: 1
+  vsync:
+    name: graphics.vsync
+    description: Vertical sync (0 = disabled, 1 = enabled)
+    flags: 1
+    defaultValue: 1
+    currentValue: 1

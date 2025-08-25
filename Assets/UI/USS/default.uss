@@ -1,5 +1,5 @@
 .defaultText {
-    font-size: 37px;
+    font-size: 20px;
     color: rgb(94, 94, 94);
 }
 
