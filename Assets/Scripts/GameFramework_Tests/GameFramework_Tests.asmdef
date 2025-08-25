@@ -1,0 +1,16 @@
+{
+    "name": "GameFramework_Tests",
+    "rootNamespace": "",
+    "references": [
+        "GUID:44144bf0f944b9e4487daa6730c4e228"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
