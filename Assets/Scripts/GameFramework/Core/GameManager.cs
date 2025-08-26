@@ -7,8 +7,9 @@ using GameFramework.StateMachine;
 using GameFramework.StateMachine.GameStates;
 using GameFramework.StateMachine.Interfaces;
 using GrameFramework.Config;
-using UCTools_ConfigVariables; // Add this for ConfigCategory
-using UCTools_Utilities;
+using UCTools_CommandConsole;
+using UCTools_ConfigVariables;
+//using UCTools_ConfigVariables; // Add this for ConfigCategory
 using UnityEngine;
 using UnityEngine.UIElements;
 using AudioSettings = GrameFramework.Config.AudioSettings;
@@ -26,6 +27,8 @@ namespace GameFramework.Core
         
         [Header("Prefabs")]
         [SerializeField] private UIDocument _UIPrefab;
+        [SerializeField] private ConsoleGUI _consoleGUIPrefab;
+        
         
         [Header("Configuration Settings")]
         [SerializeField] private AudioSettings _audioSettings;
@@ -238,15 +241,15 @@ namespace GameFramework.Core
         private void RegisterCoreServices()
         {
             Debug.Log("[GameManager] Registering core services...");
-            
+    
             // Register the DI container itself (for cases where services need to resolve other services)
             _container.RegisterSingleton(_container);
-            
+    
             // Register leaf services first (no dependencies)
             Debug.Log("[GameManager] Registering EventSystem...");
             _container.RegisterSingleton<IEventSystem, EventSystem.EventSystem>();
             Debug.Log($"[GameManager] EventSystem registered: {_container.IsRegistered<IEventSystem>()}");
-            
+    
             // Register services with minimal dependencies
             _container.RegisterSingleton<IAudioService, AudioService>();
             _container.RegisterSingleton<IInputService, InputService>();
@@ -254,19 +257,60 @@ namespace GameFramework.Core
             
             // CREATE AND REGISTER UI DOCUMENT BEFORE UI SERVICE
             RegisterUIDocument();
+    
+            // CREATE AND REGISTER CONSOLE GUI BEFORE CONSOLE SERVICE (if debug console is enabled)
+            if (_enableDebugConsole)
+            {
+                RegisterConsoleGUI();
+                _container.RegisterSingleton<IConsoleService, ConsoleService>();
+                Debug.Log("[GameManager] ConsoleGUI and ConsoleService registered");
+            }
             
             // Register services that might depend on the above
             _container.RegisterSingleton<IUIService, UIService>();
             _container.RegisterSingleton<ISaveService, SaveService>();
             _container.RegisterSingleton<IConfigService, ConfigService>();
-            
+    
             // Register GameContext (depends on all other services)
             _container.RegisterSingleton<GameContext>();
-            
+    
             // Register state machine (depends on GameContext)
             _container.RegisterSingleton<IGameStateMachine, StateMachine.GameStateMachine>();
-            
+    
             Debug.Log("[GameManager] Core services registration complete");
+        }
+        
+        /// <summary>
+        /// Create ConsoleGUI instance from prefab and register it in the DI container
+        /// </summary>
+        private void RegisterConsoleGUI()
+        {
+            Debug.Log("[GameManager] Setting up ConsoleGUI from prefab...");
+
+            if (_consoleGUIPrefab == null)
+            {
+                Debug.LogError("[GameManager] ConsoleGUI Prefab is not assigned! Please assign it in the inspector.");
+                return;
+            }
+
+            try
+            {
+                // Instantiate the ConsoleGUI prefab
+                var consoleInstance = Instantiate(_consoleGUIPrefab);
+                consoleInstance.name = "ConsoleGUI (Runtime)";
+
+                // Make it persist across scene loads
+                DontDestroyOnLoad(consoleInstance.gameObject);
+
+                // Register the ConsoleGUI instance directly in the container
+                _container.RegisterSingleton(consoleInstance);
+
+                Debug.Log("[GameManager] ConsoleGUI registered successfully");
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError($"[GameManager] Failed to create ConsoleGUI from prefab: {e.Message}");
+            }
         }
         
         /// <summary>
@@ -344,18 +388,28 @@ namespace GameFramework.Core
         private void CollectUpdatableSystems()
         {
             Debug.Log("[GameManager] Collecting updatable systems...");
-            
+    
             // Add state machine to updatables
             if (_stateMachine is IUpdatable updatable)
                 _updatables.Add(updatable);
-                
+        
             if (_stateMachine is IFixedUpdatable fixedUpdatable)
                 _fixedUpdatables.Add(fixedUpdatable);
-            
+    
             // Add other systems that need updates
             var inputService = _container.Resolve<IInputService>();
             if (inputService is IUpdatable inputUpdatable)
                 _updatables.Add(inputUpdatable);
+    
+            // Add console service if enabled and registered
+            if (_enableDebugConsole && _container.IsRegistered<IConsoleService>())
+            {
+                var consoleService = _container.Resolve<IConsoleService>();
+                if (consoleService is IUpdatable consoleUpdatable)
+                    _updatables.Add(consoleUpdatable);
+                if (consoleService is ILateUpdatable consoleLateUpdatable)
+                    _lateUpdatables.Add(consoleLateUpdatable);
+            }
         }
         
         /// <summary>
@@ -394,13 +448,20 @@ namespace GameFramework.Core
         private void OnApplicationQuit()
         {
             Debug.Log("[GameManager] Shutting down game framework...");
-            
+    
             _stateMachine?.Shutdown();
-            
+    
+            // Shutdown console service if it exists
+            if (_enableDebugConsole && _container?.IsRegistered<IConsoleService>() == true)
+            {
+                var consoleService = _container.Resolve<IConsoleService>();
+                consoleService?.Shutdown();
+            }
+    
             // Shutdown all registered services
             var eventSystem = _container?.Resolve<IEventSystem>();
             eventSystem?.Shutdown();
-            
+    
             _container?.Clear();
         }
         
