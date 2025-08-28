@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using GameFramework.Core;
 using GameFramework.EventSystem.Events;
 using GameFramework.EventSystem.Interfaces;
+using GameFramework.Services;
 using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine.Enum;
 using UnityEngine;
@@ -26,6 +27,7 @@ namespace GameFramework.StateMachine
         protected readonly IUIService UIService;
         protected readonly IInputService InputService;
         protected readonly IConsoleService ConsoleService;
+        protected readonly IGameDataService GameDataService;
 
         /// <summary>
         /// Constructor injection - all dependencies provided by DI container
@@ -37,7 +39,8 @@ namespace GameFramework.StateMachine
             IAudioService audioService,
             IUIService uiService,
             IInputService inputService,
-            IConsoleService consoleService)
+            IConsoleService consoleService,
+            IGameDataService gameDataService)
         {
             StateType = stateType;
             StateMachine = stateMachine ?? throw new ArgumentNullException(nameof(stateMachine));
@@ -46,6 +49,7 @@ namespace GameFramework.StateMachine
             UIService = uiService ?? throw new ArgumentNullException(nameof(uiService));
             InputService = inputService ?? throw new ArgumentNullException(nameof(inputService));
             ConsoleService = consoleService ?? throw new ArgumentNullException(nameof(consoleService));
+            GameDataService = gameDataService ?? throw new ArgumentNullException(nameof(gameDataService));
         }
         
         /// <summary>

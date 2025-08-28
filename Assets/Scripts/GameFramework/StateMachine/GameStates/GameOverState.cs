@@ -20,8 +20,9 @@ namespace GameFramework.StateMachine.GameStates
             IAudioService audioService,
             IUIService uiService,
             IInputService inputService,
-            IConsoleService consoleService)  
-            : base(GameStateType.GameOver, stateMachine, eventSystem, audioService, uiService, inputService, consoleService)
+            IConsoleService consoleService,
+            IGameDataService gameDataService)  
+            : base(GameStateType.GameOver, stateMachine, eventSystem, audioService, uiService, inputService, consoleService, gameDataService)
         {
         }
     

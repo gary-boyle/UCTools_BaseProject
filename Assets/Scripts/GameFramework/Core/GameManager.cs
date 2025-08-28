@@ -270,7 +270,8 @@ namespace GameFramework.Core
             _container.RegisterSingleton<IUIService, UIService>();
             _container.RegisterSingleton<ISaveService, SaveService>();
             _container.RegisterSingleton<IConfigService, ConfigService>();
-    
+            _container.RegisterSingleton<IGameDataService, GameDataService>();
+            
             // Register GameContext (depends on all other services)
             _container.RegisterSingleton<GameContext>();
     

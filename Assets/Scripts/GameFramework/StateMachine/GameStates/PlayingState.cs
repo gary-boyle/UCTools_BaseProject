@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using GameFramework.Core;
 using GameFramework.EventSystem.Events;
 using GameFramework.EventSystem.Interfaces;
@@ -14,6 +15,8 @@ namespace GameFramework.StateMachine.GameStates
     /// </summary>
     public class PlayingState : BaseGameState
     {
+        protected readonly IGameDataService GameDataService;
+
         /// <summary>
         /// Constructor injection - all dependencies provided by DI container
         /// </summary>
@@ -23,9 +26,12 @@ namespace GameFramework.StateMachine.GameStates
             IAudioService audioService,
             IUIService uiService,
             IInputService inputService,
-            IConsoleService consoleService)  
-            : base(GameStateType.Playing, stateMachine, eventSystem, audioService, uiService, inputService, consoleService)
+            IConsoleService consoleService,
+            IGameDataService gameDataService)  
+            : base(GameStateType.Playing, stateMachine, eventSystem, audioService, uiService, inputService, consoleService, gameDataService)
         {
+            GameDataService = gameDataService ?? throw new ArgumentNullException(nameof(gameDataService));
+
         }
         
         public override async Task EnterAsync(GameContext context)

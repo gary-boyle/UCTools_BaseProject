@@ -1,4 +1,5 @@
-﻿using GameFramework.Core;
+﻿using System.Collections.Generic;
+using GameFramework.Core;
 using GameFramework.StateMachine.Enum;
 
 using UnityEngine;
@@ -21,7 +22,15 @@ namespace GameFramework.EventSystem.Events
     public class OptionsChangedEvent { }
     public class SaveGameEvent { }
     public class LoadGameEvent { }
-    public class NewGameRequestedEvent { }
+
+    public class NewGameRequestedEvent
+    {
+        public string PlayerName { get; set; }
+        public string Difficulty { get; set; } = "Normal";
+        public string StartingScene { get; set; } = "GameLevel1";
+        public Dictionary<string, object> CustomData { get; set; } = new();
+    }
+    
     public class LoadRequestedEvent { }
     public class OptionsRequestedEvent { }
     public class CreditsRequestedEvent { }
@@ -261,5 +270,21 @@ namespace GameFramework.EventSystem.Events
             Phase = phase;
         }
     }
+    #endregion
+    
+    #region Loading Events
+    public class LoadingProgressEvent
+    {
+        public float Progress { get; set; }
+        public string Message { get; set; }
+    }
+    
+    public class GameSystemsInitializedEvent
+    {
+        public LoadingType LoadingType { get; set; }
+        public Dictionary<string, object> GameData { get; set; }
+    }
+    
+    
     #endregion
 }

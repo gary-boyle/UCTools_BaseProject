@@ -23,8 +23,9 @@ namespace GameFramework.StateMachine.GameStates
             IAudioService audioService,
             IUIService uiService,
             IInputService inputService,
-            IConsoleService consoleService)  
-            : base(GameStateType.Paused, stateMachine, eventSystem, audioService, uiService, inputService, consoleService)
+            IConsoleService consoleService,
+            IGameDataService gameDataService)  
+            : base(GameStateType.Paused, stateMachine, eventSystem, audioService, uiService, inputService, consoleService, gameDataService)
         {
         }
         
