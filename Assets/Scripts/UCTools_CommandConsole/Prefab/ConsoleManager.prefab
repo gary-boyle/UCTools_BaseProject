@@ -404,9 +404,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ConsoleGUI
   panel: {fileID: 7104425095604680382}
-  input_field: {fileID: 1121283202308430771}
-  text_area: {fileID: 7437480428643453845}
-  text_area_background: {fileID: 5853870330783567132}
+  inputField: {fileID: 1121283202308430771}
+  textArea: {fileID: 7437480428643453845}
+  textAreaBackground: {fileID: 5853870330783567132}
   buildIdText: {fileID: 1328960827235382013}
 --- !u!1 &3268489193357984998
 GameObject:

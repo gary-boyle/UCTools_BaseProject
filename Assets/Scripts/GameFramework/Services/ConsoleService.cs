@@ -9,138 +9,228 @@ using UnityEngine;
 namespace GameFramework.Services
 {
     /// <summary>
-    /// Service that manages the debug console system using dependency injection
+    /// Service that orchestrates the debug console system using dependency injection.
+    /// 
+    /// Architecture:
+    /// - Manages console state (open/closed)
+    /// - Coordinates between input system and console GUI
+    /// - Handles console toggle events
+    /// - Provides public API for other systems to interact with console
+    /// 
+    /// Flow:
+    /// 1. Receives toggle input events from InputService
+    /// 2. Updates console open/closed state
+    /// 3. Notifies InputService to enable/disable console input actions
+    /// 4. Delegates UI updates to ConsoleGUI via Console static class
     /// </summary>
     public class ConsoleService : IConsoleService, IUpdatable, ILateUpdatable
     {
+        #region Dependencies
         private readonly ConsoleGUI _consoleGUI;
         private readonly IEventSystem _eventSystem;
         private readonly IInputService _inputService;
-        private bool _isInitialized = false;
+        #endregion
 
-        // Constructor injection - DI will provide the dependencies
+        #region State
+        private bool _isInitialized = false;
+        private bool _isConsoleOpen = false;
+        #endregion
+
+        #region Constants
+        private const string LOG_PREFIX = "[ConsoleService]";
+        #endregion
+
+        /// <summary>
+        /// Constructor injection - DI container provides all dependencies
+        /// </summary>
         public ConsoleService(ConsoleGUI consoleGUI, IEventSystem eventSystem, IInputService inputService)
         {
             _consoleGUI = consoleGUI ?? throw new System.ArgumentNullException(nameof(consoleGUI));
             _eventSystem = eventSystem ?? throw new System.ArgumentNullException(nameof(eventSystem));
             _inputService = inputService ?? throw new System.ArgumentNullException(nameof(inputService));
-            Debug.Log("[ConsoleService] ConsoleService created with injected dependencies");
+            
+            Debug.Log($"{LOG_PREFIX} Created with injected dependencies");
         }
 
         public bool IsInitialized => _isInitialized;
 
+        /// <summary>
+        /// Initialize the console service and set up event subscriptions
+        /// </summary>
         public async Task InitializeAsync()
         {
             if (_isInitialized)
             {
-                Debug.LogWarning("[ConsoleService] Already initialized");
+                Debug.LogWarning($"{LOG_PREFIX} Already initialized");
                 return;
             }
 
-            Debug.Log("[ConsoleService] Initializing console service...");
+            Debug.Log($"{LOG_PREFIX} Initializing console service...");
 
             try
             {
-                // Initialize the static Console class with our injected GUI
+                // Initialize the console system with our GUI
                 Console.Init(_consoleGUI);
 
-                // Register default commands
-                RegisterDefaultCommands();
+                // Register built-in commands
+                RegisterBuiltInCommands();
 
-                // Subscribe to console toggle events
-                _eventSystem.Subscribe<ConsoleToggleInputEvent>(OnConsoleToggle);
+                // Subscribe to console toggle events from input system
+                _eventSystem.Subscribe<ConsoleToggleInputEvent>(OnConsoleToggleEvent);
 
                 _isInitialized = true;
-                Debug.Log("[ConsoleService] Console service initialized successfully");
+                Debug.Log($"{LOG_PREFIX} Console service initialized successfully");
 
-                // Wait a frame to ensure everything is set up
-                await Task.Yield();
+                await Task.Yield(); // Ensure initialization completes before next frame
             }
             catch (System.Exception e)
             {
-                Debug.LogError($"[ConsoleService] Failed to initialize: {e.Message}");
+                Debug.LogError($"{LOG_PREFIX} Failed to initialize: {e.Message}");
                 throw;
             }
         }
 
+        /// <summary>
+        /// Clean shutdown of console service
+        /// </summary>
         public void Shutdown()
         {
             if (!_isInitialized) return;
 
-            Debug.Log("[ConsoleService] Shutting down console service...");
+            Debug.Log($"{LOG_PREFIX} Shutting down console service...");
             
-            _eventSystem.Unsubscribe<ConsoleToggleInputEvent>(OnConsoleToggle);
+            // Unsubscribe from events
+            _eventSystem?.Unsubscribe<ConsoleToggleInputEvent>(OnConsoleToggleEvent);
             
+            // Shutdown console system
             Console.Shutdown();
+            
+            // Reset state
             _isInitialized = false;
+            _isConsoleOpen = false;
         }
 
+        /// <summary>
+        /// Update console system - processes pending commands
+        /// </summary>
         public void Update()
         {
             if (!_isInitialized) return;
             
-            // Update the console system
+            // Update the console system (processes command queue)
             Console.ConsoleUpdate();
         }
 
+        /// <summary>
+        /// Late update for console UI (handles caret positioning after UI events)
+        /// </summary>
         public void LateUpdate()
         {
             if (!_isInitialized) return;
             
-            // Late update for console
+            // Late update for console UI
             Console.ConsoleLateUpdate();
         }
 
-        public bool IsConsoleOpen()
-        {
-            return _isInitialized && Console.IsOpen();
-        }
+        #region Public API
 
+        /// <summary>
+        /// Check if console is currently open
+        /// </summary>
+        public bool IsConsoleOpen() => _isInitialized && _isConsoleOpen;
+
+        /// <summary>
+        /// Programmatically open or close the console
+        /// </summary>
+        /// <param name="open">True to open, false to close</param>
         public void SetConsoleOpen(bool open)
         {
-            if (!_isInitialized) return;
+            if (!_isInitialized) 
+            {
+                Debug.LogWarning($"{LOG_PREFIX} Cannot set console open state - not initialized");
+                return;
+            }
             
+            if (_isConsoleOpen == open) return; // No change needed
+            
+            Debug.Log($"{LOG_PREFIX} Setting console {(open ? "open" : "closed")}");
+            
+            _isConsoleOpen = open;
+            
+            // Update the console UI
             Console.SetOpen(open);
             
-            // Enable/disable console input based on console state
+            // Enable/disable console input actions
             _inputService.SetConsoleInputEnabled(open);
         }
 
+        /// <summary>
+        /// Execute a command programmatically (bypasses input field)
+        /// </summary>
+        /// <param name="command">Command string to execute</param>
         public void ExecuteCommand(string command)
         {
-            if (!_isInitialized) return;
+            if (!_isInitialized) 
+            {
+                Debug.LogWarning($"{LOG_PREFIX} Cannot execute command - not initialized");
+                return;
+            }
+            
+            if (string.IsNullOrEmpty(command)) return;
             
             Console.EnqueueCommand(command);
         }
 
+        /// <summary>
+        /// Write a message to the console output
+        /// </summary>
+        /// <param name="message">Message to write</param>
         public void WriteLine(string message)
         {
-            if (!_isInitialized) return;
+            if (!_isInitialized) 
+            {
+                Debug.LogWarning($"{LOG_PREFIX} Cannot write to console - not initialized");
+                return;
+            }
             
-            Console.Write(message);
+            Console.Write(message ?? string.Empty);
         }
 
-        private void OnConsoleToggle(ConsoleToggleInputEvent evt)
+        #endregion
+
+        #region Event Handlers
+
+        /// <summary>
+        /// Handle console toggle input events
+        /// Only responds to 'Performed' phase to avoid double-triggering
+        /// </summary>
+        private void OnConsoleToggleEvent(ConsoleToggleInputEvent evt)
         {
-            Debug.Log($"[ConsoleService] Console toggle event received - Phase: {evt.Phase}");
-    
             if (evt.Phase == UnityEngine.InputSystem.InputActionPhase.Performed)
             {
-                var isOpen = IsConsoleOpen();
-                Debug.Log($"[ConsoleService] Console is currently {(isOpen ? "open" : "closed")}, toggling to {(!isOpen ? "open" : "closed")}");
-                SetConsoleOpen(!isOpen);
+                SetConsoleOpen(!_isConsoleOpen);
             }
         }
 
+        #endregion
+
+        #region Command Registration
+
         /// <summary>
         /// Register default console commands
+        /// These are basic utility commands available in all builds
         /// </summary>
-        private void RegisterDefaultCommands()
+        private void RegisterBuiltInCommands()
         {
-            // Add some basic commands here
-            // You can expand this based on your needs
+            // TODO: Add built-in commands like:
+            // - help: List all available commands
+            // - clear: Clear console output
+            // - quit: Quit application
+            // - version: Show application version
             
-            Debug.Log("[ConsoleService] Default commands registered");
+            Debug.Log($"{LOG_PREFIX} Built-in commands registered");
         }
+
+        #endregion
     }
 }

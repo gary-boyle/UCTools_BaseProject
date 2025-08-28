@@ -49,12 +49,7 @@ namespace GameFramework.Services
     
             // ALWAYS enable console toggle - it should work in any context
             _inputActions.Console.ToggleConsole.Enable();
-            Debug.Log("[InputService] Console toggle enabled");
-    
-            // Test if the console action is properly bound
-            Debug.Log($"[InputService] Console toggle action: {_inputActions.Console.ToggleConsole.name}");
-            Debug.Log($"[InputService] Console toggle bindings: {string.Join(", ", _inputActions.Console.ToggleConsole.bindings)}");
-    
+
             // Subscribe to game state changes to automatically manage input contexts
             _eventSystem.Subscribe<GameStateChangeEvent>(OnGameStateChanged);
     

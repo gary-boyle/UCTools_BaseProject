@@ -6,211 +6,440 @@ using GameFramework.Services.Interfaces;
 using GameFramework.Core;
 using GameFramework.EventSystem.Interfaces;
 using GameFramework.EventSystem.Events;
+using System.Text;
 
 namespace UCTools_CommandConsole
 {
+    /// <summary>
+    /// Console GUI component responsible for rendering console UI and handling user input.
+    /// 
+    /// Architecture:
+    /// - Pure UI component - only handles visual representation
+    /// - Subscribes to console-specific input events (not toggle - that's handled by ConsoleService)
+    /// - Uses events to communicate back to console system
+    /// - Optimized string building for better performance
+    /// 
+    /// Input Handling Flow:
+    /// 1. InputService detects console input (submit, tab, history) 
+    /// 2. InputService publishes console input events
+    /// 3. ConsoleGUI receives events and updates UI accordingly
+    /// 4. ConsoleGUI calls Console static methods to execute commands
+    /// </summary>
     public class ConsoleGUI : MonoBehaviour, IConsoleUI
     {
-        List<string> m_Lines = new List<string>();
-        int m_WantedCaretPosition = -1;
+        #region Constants
+        private const int MAX_LINES = 100;
+        private const float BACKGROUND_ALPHA = 0.5f;
+        private const string LOG_PREFIX = "[ConsoleGUI]";
+        #endregion
 
-        [Header("UI References")]
-        [SerializeField] Transform panel;
-        [SerializeField] TMP_InputField input_field;
-        [SerializeField] TMP_Text text_area;
-        [SerializeField] Image text_area_background;
-        [SerializeField] TMP_Text buildIdText;
-        
-        // Reference to services (injected via DI)
+        #region UI State
+        private readonly List<string> _lines = new List<string>(MAX_LINES);
+        private readonly StringBuilder _stringBuilder = new StringBuilder(1024); // Pre-allocate for efficiency
+        private int _wantedCaretPosition = -1;
+        private bool _isInitialized = false;
+        #endregion
+
+        #region UI References
+        [Header("Console UI Components")]
+        [SerializeField] private Transform panel;
+        [SerializeField] private TMP_InputField inputField;
+        [SerializeField] private TMP_Text textArea;
+        [SerializeField] private Image textAreaBackground;
+        [SerializeField] private TMP_Text buildIdText;
+        #endregion
+
+        #region Dependencies (Injected via Service Locator)
         private IInputService _inputService;
         private IEventSystem _eventSystem;
-        private bool _isInitialized = false;
-        
+        #endregion
+
+        #region Unity Lifecycle
+
         void Awake()
         {
-            input_field.onEndEdit.AddListener(OnSubmit);
+            // Set up input field callback for fallback submit handling
+            if (inputField != null)
+            {
+                inputField.onEndEdit.AddListener(OnInputFieldEndEdit);
+            }
         }
-        
+
         void Start()
         {
-            // Check for EventSystem
-            if (UnityEngine.EventSystems.EventSystem.current == null)
-            {
-                Debug.LogError("[ConsoleGUI] No EventSystem found! UGUI input won't work without it.");
-            }
-            
-            // Get services from DI container
-            _inputService = GameManager.GetService<IInputService>();
-            _eventSystem = GameManager.GetService<IEventSystem>();
-            
-            if (_eventSystem != null)
-            {
-                // Subscribe to console input events
-                _eventSystem.Subscribe<ConsoleSubmitInputEvent>(OnConsoleSubmitEvent);
-                _eventSystem.Subscribe<ConsoleTabCompleteInputEvent>(OnConsoleTabCompleteEvent);
-                _eventSystem.Subscribe<ConsoleHistoryUpInputEvent>(OnConsoleHistoryUpEvent);
-                _eventSystem.Subscribe<ConsoleHistoryDownInputEvent>(OnConsoleHistoryDownEvent);
-                
-                Debug.Log("[ConsoleGUI] Subscribed to console input events");
-            }
-            else
-            {
-                Debug.LogError("[ConsoleGUI] Could not get EventSystem from GameManager!");
-            }
+            ValidateDependencies();
+            SetupEventSubscriptions();
         }
 
         void OnDestroy()
         {
-            // Unsubscribe from events
-            if (_eventSystem != null)
-            {
-                _eventSystem.Unsubscribe<ConsoleSubmitInputEvent>(OnConsoleSubmitEvent);
-                _eventSystem.Unsubscribe<ConsoleTabCompleteInputEvent>(OnConsoleTabCompleteEvent);
-                _eventSystem.Unsubscribe<ConsoleHistoryUpInputEvent>(OnConsoleHistoryUpEvent);
-                _eventSystem.Unsubscribe<ConsoleHistoryDownInputEvent>(OnConsoleHistoryDownEvent);
-            }
+            CleanupEventSubscriptions();
         }
 
+        #endregion
+
+        #region IConsoleUI Implementation
+
+        /// <summary>
+        /// Initialize the console UI
+        /// </summary>
         public void Init()
         {
-            buildIdText.text = Application.unityVersion;
+            if (buildIdText != null)
+            {
+                buildIdText.text = $"Unity {Application.unityVersion}";
+            }
+            
             _isInitialized = true;
+            Debug.Log($"{LOG_PREFIX} Console GUI initialized");
         }
 
+        /// <summary>
+        /// Shutdown the console UI
+        /// </summary>
         public void Shutdown()
         {
+            _isInitialized = false;
+            
             if (_inputService != null)
             {
-                _inputService.EnableConsoleInput(false);
+                _inputService.SetConsoleInputEnabled(false);
             }
+            
+            Debug.Log($"{LOG_PREFIX} Console GUI shutdown");
         }
 
-        public void OutputString(string s)
+        /// <summary>
+        /// Add a line of text to the console output
+        /// Uses StringBuilder for efficient string concatenation
+        /// </summary>
+        public void OutputString(string message)
         {
-            m_Lines.Add(s);
-            var count = Mathf.Min(100, m_Lines.Count);
-            var start = m_Lines.Count - count;
-            text_area.text = string.Join("\n", m_Lines.GetRange(start, count).ToArray());
+            if (string.IsNullOrEmpty(message)) return;
+
+            _lines.Add(message);
+
+            // Limit the number of lines to prevent memory bloat
+            if (_lines.Count > MAX_LINES)
+            {
+                _lines.RemoveAt(0);
+            }
+
+            UpdateTextArea();
         }
 
+        /// <summary>
+        /// Check if console is currently visible
+        /// </summary>
         public bool IsOpen()
         {
-            return panel.gameObject.activeSelf;
+            return panel != null && panel.gameObject.activeSelf;
         }
 
+        /// <summary>
+        /// Show or hide the console
+        /// </summary>
         public void SetOpen(bool open)
         {
-            Debug.Log($"[ConsoleGUI] Setting console open: {open}");
-            panel.gameObject.SetActive(open);
-    
-            // Enable/disable console input based on console state
-            if (_inputService != null)
+            if (panel == null) 
             {
-                _inputService.EnableConsoleInput(open);
+                Debug.LogError($"{LOG_PREFIX} Panel reference is null!");
+                return;
             }
-    
+
+            panel.gameObject.SetActive(open);
+
             if (open)
             {
-                // Only activate input field when opening, then leave it alone
-                StartCoroutine(ActivateInputFieldDelayed());
+                ActivateInputField();
+            }
+            else
+            {
+                DeactivateInputField();
+            }
+
+            Debug.Log($"{LOG_PREFIX} Console {(open ? "opened" : "closed")}");
+        }
+
+        /// <summary>
+        /// Update console UI (called every frame when console is open)
+        /// </summary>
+        public void ConsoleUpdate()
+        {
+            if (!IsOpen() || !_isInitialized) return;
+
+            UpdateBackgroundAlpha();
+        }
+
+        /// <summary>
+        /// Late update for console UI (handles caret positioning after UI events)
+        /// </summary>
+        public void ConsoleLateUpdate()
+        {
+            if (_wantedCaretPosition > -1 && inputField != null)
+            {
+                inputField.caretPosition = _wantedCaretPosition;
+                _wantedCaretPosition = -1;
             }
         }
 
+        /// <summary>
+        /// Set console prompt text (not currently used but part of interface)
+        /// </summary>
+        public void SetPrompt(string prompt)
+        {
+            // Could be implemented to show different prompts
+            // e.g., ">" for commands, "?" for help mode, etc.
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        /// <summary>
+        /// Validate that all required dependencies are available
+        /// </summary>
+        private void ValidateDependencies()
+        {
+            // Check for Unity EventSystem
+            if (UnityEngine.EventSystems.EventSystem.current == null)
+            {
+                Debug.LogError($"{LOG_PREFIX} No Unity EventSystem found! UGUI input won't work.");
+            }
+
+            // Get services from DI container
+            _inputService = GameManager.GetService<IInputService>();
+            _eventSystem = GameManager.GetService<IEventSystem>();
+
+            if (_inputService == null)
+            {
+                Debug.LogError($"{LOG_PREFIX} Could not get InputService from GameManager!");
+            }
+
+            if (_eventSystem == null)
+            {
+                Debug.LogError($"{LOG_PREFIX} Could not get EventSystem from GameManager!");
+            }
+        }
+
+        /// <summary>
+        /// Subscribe to console-specific input events
+        /// Note: Does NOT subscribe to toggle events - that's handled by ConsoleService
+        /// </summary>
+        private void SetupEventSubscriptions()
+        {
+            if (_eventSystem == null) return;
+
+            _eventSystem.Subscribe<ConsoleSubmitInputEvent>(OnConsoleSubmitEvent);
+            _eventSystem.Subscribe<ConsoleTabCompleteInputEvent>(OnConsoleTabCompleteEvent);
+            _eventSystem.Subscribe<ConsoleHistoryUpInputEvent>(OnConsoleHistoryUpEvent);
+            _eventSystem.Subscribe<ConsoleHistoryDownInputEvent>(OnConsoleHistoryDownEvent);
+
+            Debug.Log($"{LOG_PREFIX} Subscribed to console input events");
+        }
+
+        /// <summary>
+        /// Unsubscribe from all events
+        /// </summary>
+        private void CleanupEventSubscriptions()
+        {
+            if (_eventSystem == null) return;
+
+            _eventSystem.Unsubscribe<ConsoleSubmitInputEvent>(OnConsoleSubmitEvent);
+            _eventSystem.Unsubscribe<ConsoleTabCompleteInputEvent>(OnConsoleTabCompleteEvent);
+            _eventSystem.Unsubscribe<ConsoleHistoryUpInputEvent>(OnConsoleHistoryUpEvent);
+            _eventSystem.Unsubscribe<ConsoleHistoryDownInputEvent>(OnConsoleHistoryDownEvent);
+        }
+
+        /// <summary>
+        /// Efficiently update the text area using StringBuilder
+        /// </summary>
+        private void UpdateTextArea()
+        {
+            if (textArea == null) return;
+
+            _stringBuilder.Clear();
+
+            for (int i = 0; i < _lines.Count; i++)
+            {
+                if (i > 0) _stringBuilder.AppendLine();
+                _stringBuilder.Append(_lines[i]);
+            }
+
+            textArea.text = _stringBuilder.ToString();
+        }
+
+        /// <summary>
+        /// Update background transparency
+        /// </summary>
+        private void UpdateBackgroundAlpha()
+        {
+            if (textAreaBackground != null)
+            {
+                var color = textAreaBackground.color;
+                color.a = BACKGROUND_ALPHA;
+                textAreaBackground.color = color;
+            }
+        }
+
+        /// <summary>
+        /// Activate input field for typing
+        /// </summary>
+        private void ActivateInputField()
+        {
+            if (inputField == null) return;
+
+            // Use a simple delayed activation to ensure UI is ready
+            StartCoroutine(ActivateInputFieldDelayed());
+        }
+
+        /// <summary>
+        /// Deactivate input field
+        /// </summary>
+        private void DeactivateInputField()
+        {
+            if (inputField != null && inputField.isFocused)
+            {
+                inputField.DeactivateInputField();
+            }
+        }
+
+        /// <summary>
+        /// Coroutine to activate input field after UI is ready
+        /// </summary>
         private System.Collections.IEnumerator ActivateInputFieldDelayed()
         {
             yield return new WaitForEndOfFrame();
-            input_field.ActivateInputField();
-            input_field.Select();
-            Debug.Log("[ConsoleGUI] Input field activated once on console open");
-        }
-
-        public void ConsoleUpdate()
-        {
-            if (!IsOpen() || !_isInitialized)
-                return;
-
-            // Just handle the background alpha
-            var c = text_area_background.color;
-            c.a = 0.5f;
-            text_area_background.color = c;
-
-            // Don't mess with input field focus during update - let UGUI handle it
-        }
-
-        public void ConsoleLateUpdate()
-        {
-            // Only manipulate caret when we specifically need to (history navigation)
-            if (m_WantedCaretPosition > -1)
+            
+            if (inputField != null)
             {
-                input_field.caretPosition = m_WantedCaretPosition;
-                m_WantedCaretPosition = -1;
+                inputField.ActivateInputField();
+                inputField.Select();
             }
         }
 
+        /// <summary>
+        /// Handle command submission
+        /// </summary>
+        private void SubmitCommand()
+        {
+            if (inputField == null) return;
+
+            string command = inputField.text?.Trim() ?? string.Empty;
+            
+            if (!string.IsNullOrEmpty(command))
+            {
+                // Queue command for execution
+                Console.EnqueueCommand(command);
+            }
+
+            // Clear input field and maintain focus
+            inputField.text = string.Empty;
+            inputField.ActivateInputField();
+        }
+
+        #endregion
+
+        #region Input Event Handlers
+        
+        /// <summary>
+        /// Handle console submit input (Enter key)
+        /// </summary>
         private void OnConsoleSubmitEvent(ConsoleSubmitInputEvent inputEvent)
         {
+            Debug.Log($"{LOG_PREFIX} Submit event received - Phase: {inputEvent.Phase}, Console open: {IsOpen()}, Input focused: {inputField?.isFocused}");
+            
             if (!IsOpen()) return;
-    
-            // Only handle submit if input field is focused AND we're not in the middle of typing
-            if (input_field.isFocused && inputEvent.Phase == UnityEngine.InputSystem.InputActionPhase.Performed)
+            
+            // Remove the strict phase check for now - some input might use different phases
+            HandleSubmit();
+        }
+
+        /// <summary>
+        /// Handle tab completion input
+        /// </summary>
+        private void OnConsoleTabCompleteEvent(ConsoleTabCompleteInputEvent inputEvent)
+        {
+            if (!IsOpen() || inputField == null || !inputField.isFocused) return;
+
+            Debug.Log($"{LOG_PREFIX} Tab complete event received");
+            
+            // Only tab complete if cursor is at end of text
+            if (inputField.caretPosition == inputField.text.Length && inputField.text.Length > 0)
+            {
+                string completed = Console.TabComplete(inputField.text);
+                inputField.text = completed;
+                inputField.caretPosition = completed.Length;
+            }
+        }
+
+        /// <summary>
+        /// Handle history up input (previous command)
+        /// </summary>
+        private void OnConsoleHistoryUpEvent(ConsoleHistoryUpInputEvent inputEvent)
+        {
+            if (!IsOpen() || inputField == null || !inputField.isFocused) return;
+
+            Debug.Log($"{LOG_PREFIX} History up event received");
+            
+            string historyCommand = Console.HistoryUp(inputField.text);
+            if (!string.IsNullOrEmpty(historyCommand))
+            {
+                inputField.text = historyCommand;
+                _wantedCaretPosition = historyCommand.Length;
+            }
+        }
+
+        /// <summary>
+        /// Handle history down input (next command)
+        /// </summary>
+        private void OnConsoleHistoryDownEvent(ConsoleHistoryDownInputEvent inputEvent)
+        {
+            if (!IsOpen() || inputField == null || !inputField.isFocused) return;
+
+            Debug.Log($"{LOG_PREFIX} History down event received");
+            
+            string historyCommand = Console.HistoryDown();
+            inputField.text = historyCommand ?? string.Empty;
+            _wantedCaretPosition = inputField.text.Length;
+        }
+
+        /// <summary>
+        /// Handle command submission (back to original working logic)
+        /// </summary>
+        private void HandleSubmit()
+        {
+            if (inputField == null) return;
+
+            string value = inputField.text;
+            Debug.Log($"{LOG_PREFIX} Submitting command: '{value}'");
+            
+            inputField.text = "";
+            inputField.ActivateInputField();
+
+            // Only enqueue if there's actually a command
+            if (!string.IsNullOrWhiteSpace(value))
+            {
+                Console.EnqueueCommand(value);
+            }
+        }
+
+        /// <summary>
+        /// Fallback handler for TMP_InputField onEndEdit event
+        /// </summary>
+        private void OnInputFieldEndEdit(string value)
+        {
+            Debug.Log($"{LOG_PREFIX} Input field end edit: '{value}', reason: {inputField.wasCanceled}");
+            
+            // This is a fallback - main submission should be handled by input events
+            // Only submit if Enter was pressed (not Tab or Escape)
+            if (!inputField.wasCanceled && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)))
             {
                 HandleSubmit();
             }
         }
 
-        private void OnConsoleTabCompleteEvent(ConsoleTabCompleteInputEvent inputEvent)
-        {
-            if (!IsOpen() || !input_field.isFocused) return;
+        #endregion
 
-            if (inputEvent.Phase == UnityEngine.InputSystem.InputActionPhase.Performed)
-            {
-                if (input_field.caretPosition == input_field.text.Length && input_field.text.Length > 0)
-                {
-                    var res = Console.TabComplete(input_field.text);
-                    input_field.text = res;
-                    input_field.caretPosition = res.Length;
-                }
-            }
-        }
-
-        private void OnConsoleHistoryUpEvent(ConsoleHistoryUpInputEvent inputEvent)
-        {
-            if (!IsOpen() || !input_field.isFocused) return;
-
-            if (inputEvent.Phase == UnityEngine.InputSystem.InputActionPhase.Performed)
-            {
-                input_field.text = Console.HistoryUp(input_field.text);
-                m_WantedCaretPosition = input_field.text.Length;
-            }
-        }
-
-        private void OnConsoleHistoryDownEvent(ConsoleHistoryDownInputEvent inputEvent)
-        {
-            if (!IsOpen() || !input_field.isFocused) return;
-
-            if (inputEvent.Phase == UnityEngine.InputSystem.InputActionPhase.Performed)
-            {
-                input_field.text = Console.HistoryDown();
-                m_WantedCaretPosition = input_field.text.Length;
-            }
-        }
-
-        private void HandleSubmit()
-        {
-            string value = input_field.text;
-            input_field.text = "";
-            input_field.ActivateInputField();
-
-            Console.EnqueueCommand(value);
-        }
-
-        void OnSubmit(string value)
-        {
-            // Fallback for TMP_InputField's onEndEdit event
-        }
-
-        public void SetPrompt(string prompt)
-        {
-        }
     }
 }
