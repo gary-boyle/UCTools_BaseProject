@@ -275,7 +275,7 @@ namespace GameFramework.Core
             _container.RegisterSingleton<GameContext>();
     
             // Register state machine (depends on GameContext)
-            _container.RegisterSingleton<IGameStateMachine, StateMachine.GameStateMachine>();
+            _container.RegisterSingleton<IGameStateMachine, GameStateMachine>();
     
             Debug.Log("[GameManager] Core services registration complete");
         }

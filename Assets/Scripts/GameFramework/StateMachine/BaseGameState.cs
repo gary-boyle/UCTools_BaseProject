@@ -25,7 +25,8 @@ namespace GameFramework.StateMachine
         protected readonly IAudioService AudioService;
         protected readonly IUIService UIService;
         protected readonly IInputService InputService;
-        
+        protected readonly IConsoleService ConsoleService;
+
         /// <summary>
         /// Constructor injection - all dependencies provided by DI container
         /// </summary>
@@ -35,7 +36,8 @@ namespace GameFramework.StateMachine
             IEventSystem eventSystem,
             IAudioService audioService,
             IUIService uiService,
-            IInputService inputService)
+            IInputService inputService,
+            IConsoleService consoleService)
         {
             StateType = stateType;
             StateMachine = stateMachine ?? throw new ArgumentNullException(nameof(stateMachine));
@@ -43,6 +45,7 @@ namespace GameFramework.StateMachine
             AudioService = audioService ?? throw new ArgumentNullException(nameof(audioService));
             UIService = uiService ?? throw new ArgumentNullException(nameof(uiService));
             InputService = inputService ?? throw new ArgumentNullException(nameof(inputService));
+            ConsoleService = consoleService ?? throw new ArgumentNullException(nameof(consoleService));
         }
         
         /// <summary>

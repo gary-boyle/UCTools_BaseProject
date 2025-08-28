@@ -1,4 +1,6 @@
 ﻿using System.Threading.Tasks;
+using GameFramework.EventSystem.Events;
+using GameFramework.EventSystem.Interfaces;
 using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine.Interfaces;
 using UCTools_CommandConsole;
@@ -12,14 +14,20 @@ namespace GameFramework.Services
     public class ConsoleService : IConsoleService, IUpdatable, ILateUpdatable
     {
         private readonly ConsoleGUI _consoleGUI;
+        private readonly IEventSystem _eventSystem;
+        private readonly IInputService _inputService;
         private bool _isInitialized = false;
 
-        // Constructor injection - DI will provide the ConsoleGUI instance
-        public ConsoleService(ConsoleGUI consoleGUI)
+        // Constructor injection - DI will provide the dependencies
+        public ConsoleService(ConsoleGUI consoleGUI, IEventSystem eventSystem, IInputService inputService)
         {
             _consoleGUI = consoleGUI ?? throw new System.ArgumentNullException(nameof(consoleGUI));
-            Debug.Log("[ConsoleService] ConsoleService created with injected ConsoleGUI");
+            _eventSystem = eventSystem ?? throw new System.ArgumentNullException(nameof(eventSystem));
+            _inputService = inputService ?? throw new System.ArgumentNullException(nameof(inputService));
+            Debug.Log("[ConsoleService] ConsoleService created with injected dependencies");
         }
+
+        public bool IsInitialized => _isInitialized;
 
         public async Task InitializeAsync()
         {
@@ -39,6 +47,9 @@ namespace GameFramework.Services
                 // Register default commands
                 RegisterDefaultCommands();
 
+                // Subscribe to console toggle events
+                _eventSystem.Subscribe<ConsoleToggleInputEvent>(OnConsoleToggle);
+
                 _isInitialized = true;
                 Debug.Log("[ConsoleService] Console service initialized successfully");
 
@@ -57,6 +68,8 @@ namespace GameFramework.Services
             if (!_isInitialized) return;
 
             Debug.Log("[ConsoleService] Shutting down console service...");
+            
+            _eventSystem.Unsubscribe<ConsoleToggleInputEvent>(OnConsoleToggle);
             
             Console.Shutdown();
             _isInitialized = false;
@@ -88,6 +101,9 @@ namespace GameFramework.Services
             if (!_isInitialized) return;
             
             Console.SetOpen(open);
+            
+            // Enable/disable console input based on console state
+            _inputService.SetConsoleInputEnabled(open);
         }
 
         public void ExecuteCommand(string command)
@@ -102,6 +118,18 @@ namespace GameFramework.Services
             if (!_isInitialized) return;
             
             Console.Write(message);
+        }
+
+        private void OnConsoleToggle(ConsoleToggleInputEvent evt)
+        {
+            Debug.Log($"[ConsoleService] Console toggle event received - Phase: {evt.Phase}");
+    
+            if (evt.Phase == UnityEngine.InputSystem.InputActionPhase.Performed)
+            {
+                var isOpen = IsConsoleOpen();
+                Debug.Log($"[ConsoleService] Console is currently {(isOpen ? "open" : "closed")}, toggling to {(!isOpen ? "open" : "closed")}");
+                SetConsoleOpen(!isOpen);
+            }
         }
 
         /// <summary>

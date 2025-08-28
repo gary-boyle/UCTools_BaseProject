@@ -82,11 +82,6 @@ namespace UCTools_CommandConsole
             s_ConsoleUI.SetOpen(open);
         }
 
-        public static void SetPrompt(string prompt)
-        {
-            s_ConsoleUI.SetPrompt(prompt);
-        }
-
         public static void ConsoleUpdate()
         {
             s_ConsoleUI.ConsoleUpdate();

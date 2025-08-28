@@ -23,8 +23,9 @@ namespace GameFramework.StateMachine.GameStates
             IAudioService audioService,
             IUIService uiService,
             IInputService inputService,
-            ISaveService saveService) 
-            : base(GameStateType.Quit, stateMachine, eventSystem, audioService, uiService, inputService)
+            ISaveService saveService,
+            IConsoleService consoleService)  
+            : base(GameStateType.Quit, stateMachine, eventSystem, audioService, uiService, inputService, consoleService)
         {
             _saveService = saveService ?? throw new ArgumentNullException(nameof(saveService));
         }

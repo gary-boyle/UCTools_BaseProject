@@ -2,7 +2,7 @@
 
 namespace GameFramework.Services.Interfaces
 {
-    public interface IConsoleService
+    public interface IConsoleService : IGameService
     {
         Task InitializeAsync();
         void Shutdown();

@@ -23,8 +23,9 @@ namespace GameFramework.StateMachine.GameStates
             IAudioService audioService,
             IUIService uiService,
             IInputService inputService,
-            IConfigService configService) 
-            : base(GameStateType.Options, stateMachine, eventSystem, audioService, uiService, inputService)
+            IConfigService configService,
+            IConsoleService consoleService)  
+            : base(GameStateType.Options, stateMachine, eventSystem, audioService, uiService, inputService, consoleService)
         {
             _configService = configService ?? throw new ArgumentNullException(nameof(configService));
         }
