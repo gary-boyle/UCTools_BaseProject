@@ -3,31 +3,26 @@ using System.Threading.Tasks;
 using GameFramework.DataStructures;
 using GameFramework.EventSystem.Events;
 using GameFramework.EventSystem.Interfaces;
+using GameFramework.Services.Interfaces;
 using UnityEngine;
-using IConfigService = GameFramework.Services.Interfaces.IConfigService;
-using ISaveService = GameFramework.Services.Interfaces.ISaveService;
 
 namespace GameFramework.Services
 {
     /// <summary>
-    /// Save service implementation with constructor injection
+    /// Simplified save service that works directly with GameSession objects
+    /// Handles file I/O operations for game sessions
     /// </summary>
     public class SaveService : ISaveService
     {
         public bool IsInitialized { get; private set; }
         
         private readonly IEventSystem _eventSystem;
-        private readonly IConfigService _configService;
         private readonly string _saveDirectory;
-        private const string SAVE_EXTENSION = ".save";
+        private const string SAVE_EXTENSION = ".gamesave";
         
-        /// <summary>
-        /// Constructor injection - receives required dependencies
-        /// </summary>
-        public SaveService(IEventSystem eventSystem, IConfigService configService)
+        public SaveService(IEventSystem eventSystem)
         {
             _eventSystem = eventSystem ?? throw new ArgumentNullException(nameof(eventSystem));
-            _configService = configService ?? throw new ArgumentNullException(nameof(configService));
             _saveDirectory = Application.persistentDataPath + "/Saves/";
         }
         
@@ -52,65 +47,66 @@ namespace GameFramework.Services
             IsInitialized = false;
         }
         
-        public async Task SaveGameAsync(string saveName = null)
+        /// <summary>
+        /// Saves a game session to file
+        /// </summary>
+        public async Task<bool> SaveGameSessionAsync(GameSession session, string saveName = null)
         {
+            if (session == null) return false;
+            
             if (string.IsNullOrEmpty(saveName))
             {
-                saveName = "AutoSave_" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
+                saveName = $"{session.playerName}_AutoSave_{DateTime.Now:yyyy-MM-dd_HH-mm-ss}";
             }
             
-            var saveData = GatherSaveData();
-            var json = JsonUtility.ToJson(saveData, true);
-            var filePath = _saveDirectory + saveName + SAVE_EXTENSION;
-            
-            await System.IO.File.WriteAllTextAsync(filePath, json);
-            
-            // Publish save event using injected event system
-            _eventSystem.Publish<SaveGameEvent>();
-            
-            Debug.Log($"[SaveService] Game saved as '{saveName}'");
+            try
+            {
+                var json = JsonUtility.ToJson(session, true);
+                var filePath = _saveDirectory + saveName + SAVE_EXTENSION;
+                
+                await System.IO.File.WriteAllTextAsync(filePath, json);
+                
+                _eventSystem.Publish(new SaveGameEvent());
+                Debug.Log($"[SaveService] Game session saved as '{saveName}'");
+                return true;
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"[SaveService] Error saving game session '{saveName}': {e}");
+                return false;
+            }
         }
         
-        public async Task<bool> LoadGameAsync(string saveName)
+        /// <summary>
+        /// Loads a game session from file
+        /// </summary>
+        public async Task<GameSession> LoadGameSessionAsync(string saveName)
         {
             var filePath = _saveDirectory + saveName + SAVE_EXTENSION;
             
             if (!System.IO.File.Exists(filePath))
             {
                 Debug.LogWarning($"[SaveService] Save file '{saveName}' not found");
-                return false;
+                return null;
             }
             
             try
             {
                 var json = await System.IO.File.ReadAllTextAsync(filePath);
-                var saveData = JsonUtility.FromJson<SaveData>(json);
+                var session = JsonUtility.FromJson<GameSession>(json);
                 
-                ApplySaveData(saveData);
-                
-                // Publish load event using injected event system
-                _eventSystem.Publish<LoadGameEvent>();
-                
-                Debug.Log($"[SaveService] Game loaded from '{saveName}'");
-                return true;
+                _eventSystem.Publish(new LoadGameEvent());
+                Debug.Log($"[SaveService] Game session loaded from '{saveName}'");
+                return session;
             }
             catch (Exception e)
             {
                 Debug.LogError($"[SaveService] Error loading save '{saveName}': {e}");
-                return false;
+                return null;
             }
         }
         
-        public async Task<bool> LoadMostRecentSaveAsync()
-        {
-            var mostRecent = GetMostRecentSaveName();
-            if (!string.IsNullOrEmpty(mostRecent))
-            {
-                return await LoadGameAsync(mostRecent);
-            }
-            return false;
-        }
-        
+        // Remaining methods stay the same but work with new file extension
         public async Task<string[]> GetSaveFilesAsync()
         {
             return await Task.Run(() =>
@@ -123,8 +119,7 @@ namespace GameFramework.Services
                 
                 for (int i = 0; i < files.Length; i++)
                 {
-                    var fileName = System.IO.Path.GetFileNameWithoutExtension(files[i]);
-                    saveNames[i] = fileName;
+                    saveNames[i] = System.IO.Path.GetFileNameWithoutExtension(files[i]);
                 }
                 
                 return saveNames;
@@ -177,23 +172,6 @@ namespace GameFramework.Services
             }
             
             return System.IO.Path.GetFileNameWithoutExtension(mostRecentFile);
-        }
-        
-        private SaveData GatherSaveData()
-        {
-            // Implement your save data gathering logic
-            return new SaveData
-            {
-                timestamp = DateTime.Now.ToString(),
-                playerData = new PlayerData(),
-                gameStateData = new GameStateData()
-            };
-        }
-        
-        private void ApplySaveData(SaveData saveData)
-        {
-            // Implement your save data application logic
-            Debug.Log($"[SaveService] Applying save data from {saveData.timestamp}");
         }
     }
 }

@@ -6,24 +6,26 @@ using GameFramework.UI;
 using GameFramework.UI.Interfaces;
 using GameFramework.UI.Popups;
 using GameFramework.UI.Screens;
+using GameFramework.Services.Interfaces;
+using GameFramework.StateMachine.Interfaces;
 using UnityEngine;
 using UnityEngine.UIElements;
-using IUIService = GameFramework.Services.Interfaces.IUIService;
 
 namespace GameFramework.Services
 {
     /// <summary>
-    /// UI service implementation with constructor injection
+    /// UI service implementation with constructor injection and centralized screen updates
+    /// Implements IUpdatable to manage frame-based updates for screens that need them
     /// </summary>
-    public class UIService : IUIService
+    public class UIService : IUIService, IUpdatable
     {
         public bool IsInitialized { get; private set; }
-
         public UIDocument UIDocument => _uiDocument;
 
         private readonly IEventSystem _eventSystem;
         private readonly Dictionary<Type, UIScreen> _screens = new();
         private readonly Dictionary<Type, UIPopup> _popups = new();
+        private readonly List<UIScreen> _updatableScreens = new();
         private readonly UIDocument _uiDocument;
         private readonly IUIDocumentWrapper _uiDocumentWrapper;
 
@@ -56,10 +58,48 @@ namespace GameFramework.Services
             await Task.CompletedTask;
         }
         
+        /// <summary>
+        /// IUpdatable implementation - called every frame by GameManager
+        /// Updates all screens that need frame-based updates and are currently visible
+        /// </summary>
+        public void Update()
+        {
+            if (!IsInitialized) return;
+            
+            float deltaTime = Time.deltaTime;
+            
+            // Update only visible screens that need frame updates
+            for (int i = _updatableScreens.Count - 1; i >= 0; i--)
+            {
+                var screen = _updatableScreens[i];
+                if (screen != null && screen.IsVisible && screen.NeedsFrameUpdates)
+                {
+                    screen.InternalUpdate(deltaTime);
+                }
+                else if (screen == null)
+                {
+                    // Remove null references
+                    _updatableScreens.RemoveAt(i);
+                }
+            }
+        }
+        
         public void Shutdown()
         {
+            // Clean up all screens
+            foreach (var screen in _screens.Values)
+            {
+                screen.Cleanup();
+            }
+            
+            foreach (var popup in _popups.Values)
+            {
+                popup.Cleanup();
+            }
+            
             _screens.Clear();
             _popups.Clear();
+            _updatableScreens.Clear();
             IsInitialized = false;
         }
         
@@ -84,22 +124,18 @@ namespace GameFramework.Services
             RegisterScreen(new DebugScreen(root.Q<VisualElement>("UI_DebugScreen")));
             RegisterScreen(new SplashScreen(root.Q<VisualElement>("UI_SplashScreen")));
             RegisterScreen(new MainMenuScreen(root.Q<VisualElement>("UI_MainMenuScreen")));
-            RegisterScreen(new GameplayHUD(root.Q<VisualElement>("UI_GamePlayHUD")));
+            RegisterScreen(new GamePlayScreen(root.Q<VisualElement>("UI_GamePlayScreen")));
             RegisterScreen(new PauseScreen(root.Q<VisualElement>("UI_PauseScreen")));
-            //RegisterScreen(new OptionsScreen(root.Q<VisualElement>("UI_OptionsScreen")));
             RegisterScreen(new LoadingScreen(root.Q<VisualElement>("UI_LoadingScreen")));
             RegisterScreen(new NewGameScreen(root.Q<VisualElement>("UI_NewGameScreen")));
             RegisterScreen(new CreditsScreen(root.Q<VisualElement>("UI_CreditScreen")));
             RegisterScreen(new GameOverScreen(root.Q<VisualElement>("UI_GameOverScreen")));
             RegisterScreen(new VictoryScreen(root.Q<VisualElement>("UI_VictoryScreen")));
             
-            // Register popups TODO
+            // Register popups
             RegisterPopup(new OptionsPopup(root.Q<VisualElement>("UI_OptionsPopup")));
-            //RegisterPopup(new ConfirmationPopup(root.Q<VisualElement>("ConfirmationPopup")));
-            //RegisterPopup(new ErrorPopup(root.Q<VisualElement>("ErrorPopup")));
         }
 
-        
         public async Task ShowScreenAsync<T>() where T : UIScreen
         {
             if (_screens.TryGetValue(typeof(T), out var screen))
@@ -156,6 +192,13 @@ namespace GameFramework.Services
         public void RegisterScreen<T>(T screen) where T : UIScreen
         {
             _screens[typeof(T)] = screen;
+            
+            // Add to updatable list if the screen needs frame updates
+            if (screen.NeedsFrameUpdates && !_updatableScreens.Contains(screen))
+            {
+                _updatableScreens.Add(screen);
+                Debug.Log($"[UIService] Registered {typeof(T).Name} for frame updates");
+            }
         }
         
         public void RegisterPopup<T>(T popup) where T : UIPopup
@@ -176,6 +219,30 @@ namespace GameFramework.Services
         public void SetDebugScreenText(string text)
         {
             GetScreen<DebugScreen>().SetText(text);
+        }
+        
+        /// <summary>
+        /// Internal method to register a screen for updates after it's created
+        /// Called by screens when they enable frame updates
+        /// </summary>
+        internal void RegisterScreenForUpdates(UIScreen screen)
+        {
+            if (screen != null && !_updatableScreens.Contains(screen))
+            {
+                _updatableScreens.Add(screen);
+            }
+        }
+        
+        /// <summary>
+        /// Internal method to unregister a screen from updates
+        /// Called by screens when they disable frame updates or are destroyed
+        /// </summary>
+        internal void UnregisterScreenFromUpdates(UIScreen screen)
+        {
+            if (screen != null)
+            {
+                _updatableScreens.Remove(screen);
+            }
         }
     }
 }

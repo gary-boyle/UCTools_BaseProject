@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using GameFramework.Core;
 using GameFramework.EventSystem.Events;
@@ -11,9 +10,12 @@ using GameFramework.UI.Screens;
 
 namespace GameFramework.StateMachine.GameStates
 {
+    /// <summary>
+    /// Updated NewGameState that properly initializes the central GameDataManager
+    /// Creates unified game session from new game parameters
+    /// </summary>
     public class NewGameState : BaseGameState
     {
-        private NewGameRequestedEvent _pendingNewGame;
         protected readonly IGameDataService GameDataService;
 
         public NewGameState(
@@ -40,21 +42,25 @@ namespace GameFramework.StateMachine.GameStates
             await UIService.ShowScreenAsync<NewGameScreen>();
         }
         
+        /// <summary>
+        /// Handles new game creation by setting up unified loading configuration
+        /// </summary>
         private async void OnNewGameRequested(NewGameRequestedEvent evt)
         {
             // Hide the new game screen
             await UIService.HideScreenAsync<NewGameScreen>();
             
-            // Create loading configuration
+            // Create loading configuration that will be used by GameDataManager
             var loadingConfig = LoadingConfiguration.NewGame(evt.StartingScene, evt.PlayerName);
             loadingConfig.GameData["difficulty"] = evt.Difficulty;
             
+            // Add all custom data from the event
             foreach (var kvp in evt.CustomData)
             {
                 loadingConfig.GameData[kvp.Key] = kvp.Value;
             }
             
-            // Set loading configuration in the data service
+            // Set loading configuration - GameDataManager will use this to create the session
             GameDataService.CurrentLoadingConfig = loadingConfig;
             
             await TransitionToStateAsync(GameStateType.Loading);
@@ -62,9 +68,7 @@ namespace GameFramework.StateMachine.GameStates
         
         public override async Task ExitAsync()
         {
-            // Unsubscribe from events
             EventSystem.Unsubscribe<NewGameRequestedEvent>(OnNewGameRequested);
-            
             await base.ExitAsync();
         }
     }

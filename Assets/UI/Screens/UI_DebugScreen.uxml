@@ -1,5 +1,5 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement name="UI_DebugScreen" picking-mode="Ignore" style="align-items: flex-start; justify-content: flex-end; flex-grow: 1;">
-        <ui:Label name="lbl_Debug" enable-rich-text="true" text="Testing" class="defaultText" style="font-size: 100px; background-color: rgb(19, 11, 11);" />
+    <ui:VisualElement name="UI_DebugScreen" picking-mode="Ignore" style="align-items: flex-start; justify-content: flex-end; flex-grow: 1; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px; color: rgb(152, 152, 152);">
+        <ui:Label name="lbl_Debug" enable-rich-text="true" text="Testing" class="defaultText" style="font-size: 35px; background-color: rgb(19, 11, 11);" />
     </ui:VisualElement>
 </ui:UXML>

@@ -1,0 +1,23 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/USS/default.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3" />
+    <engine:VisualElement style="flex-grow: 1; justify-content: center; align-self: center; width: 100%; flex-direction: row; padding-top: 50px; padding-right: 50px; padding-bottom: 50px; padding-left: 50px;">
+        <engine:VisualElement style="flex-grow: 1; flex-direction: row;">
+            <engine:VisualElement>
+                <engine:Button text="Test" name="btn_Test" class="defaultButton" />
+            </engine:VisualElement>
+            <engine:VisualElement style="flex-grow: 1;" />
+            <engine:VisualElement>
+                <engine:Button text="Pause" name="btn_Pause" class="defaultButton" />
+            </engine:VisualElement>
+        </engine:VisualElement>
+    </engine:VisualElement>
+    <engine:VisualElement class="defaultText" style="flex-grow: 0; flex-direction: row; justify-content: flex-end; padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px; color: rgb(0, 0, 0);">
+        <engine:Label text="Label" name="lbl_Debug1" />
+        <engine:Label text="|" />
+        <engine:Label text="Label" name="lbl_Debug2" />
+        <engine:Label text="|" />
+        <engine:Label text="Label" name="lbl_Debug3" />
+        <engine:Label text="|" />
+        <engine:Label text="Label" name="lbl_Debug4" />
+    </engine:VisualElement>
+</engine:UXML>

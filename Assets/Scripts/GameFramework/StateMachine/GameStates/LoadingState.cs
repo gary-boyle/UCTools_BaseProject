@@ -12,7 +12,8 @@ using UnityEngine;
 namespace GameFramework.StateMachine.GameStates
 {
     /// <summary>
-    /// Loading state that handles different loading scenarios based on configuration
+    /// Loading state that handles different loading scenarios using unified GameSession system
+    /// Creates or loads GameSession based on loading configuration
     /// </summary>
     public class LoadingState : BaseGameState
     {
@@ -21,9 +22,6 @@ namespace GameFramework.StateMachine.GameStates
         private LoadingConfiguration _currentConfig;
         private float _loadingStartTime;
         
-        /// <summary>
-        /// Constructor injection - all dependencies provided by DI container
-        /// </summary>
         public LoadingState(
             IGameStateMachine stateMachine,
             IEventSystem eventSystem,
@@ -110,11 +108,10 @@ namespace GameFramework.StateMachine.GameStates
         {
             Debug.Log("[LoadingState] Processing new game loading...");
             
-            // Update loading progress
             await UpdateLoadingProgress("Initializing new game...", 0.1f);
             
-            // Initialize player data
-            await InitializeNewGameData();
+            // Create new game session from loading configuration
+            GameDataService.CreateNewGameSession(_currentConfig);
             await UpdateLoadingProgress("Setting up player...", 0.3f);
             
             // Load the scene
@@ -134,8 +131,9 @@ namespace GameFramework.StateMachine.GameStates
             
             await UpdateLoadingProgress("Loading save data...", 0.1f);
             
-            // Apply saved data to game systems
-            await ApplySaveData();
+            // Create GameSession from save data in loading configuration
+            var session = CreateSessionFromSaveData(_currentConfig);
+            GameDataService.LoadGameSession(session);
             await UpdateLoadingProgress("Restoring game state...", 0.4f);
             
             // Load the appropriate scene
@@ -155,12 +153,22 @@ namespace GameFramework.StateMachine.GameStates
             
             await UpdateLoadingProgress("Transitioning...", 0.2f);
             
+            // Update current session's scene
+            if (GameDataService.HasActiveSession())
+            {
+                GameDataService.CurrentSession.currentScene = _currentConfig.SceneName;
+                
+                // Apply any transition data to current session
+                foreach (var kvp in _currentConfig.GameData)
+                {
+                    GameDataService.SetCustomData(kvp.Key, kvp.Value);
+                }
+            }
+            
             // Load new scene
             await LoadScene(_currentConfig.SceneName);
             await UpdateLoadingProgress("Loading scene...", 0.8f);
             
-            // Apply any transition data
-            await ApplyTransitionData();
             await UpdateLoadingProgress("Complete", 1.0f);
             
             Debug.Log("[LoadingState] Scene transition complete");
@@ -172,9 +180,12 @@ namespace GameFramework.StateMachine.GameStates
             
             await UpdateLoadingProgress("Restarting...", 0.1f);
             
-            // Clear any existing game state
-            await ClearGameState();
+            // Clear current session and create new one
+            GameDataService.ClearSession();
             await UpdateLoadingProgress("Resetting...", 0.4f);
+            
+            // Create fresh session from current config
+            GameDataService.CreateNewGameSession(_currentConfig);
             
             // Reload the scene
             await LoadScene(_currentConfig.SceneName);
@@ -204,59 +215,54 @@ namespace GameFramework.StateMachine.GameStates
             Debug.Log($"[LoadingState] Scene {sceneName} loaded successfully");
         }
         
-        private async Task InitializeNewGameData()
+        /// <summary>
+        /// Creates a GameSession from save data stored in loading configuration
+        /// </summary>
+        private GameFramework.DataStructures.GameSession CreateSessionFromSaveData(LoadingConfiguration config)
         {
-            var config = GameDataService.CurrentLoadingConfig;
-            
-            // Set up player data from configuration
-            GameDataService.PlayerName = config.PlayerName;
-            //GameDataService.IsNewGame = config.GetLoadingData("isNewGame", true);
-            //GameDataService.PlayerLevel = config.GetLoadingData("playerLevel", 1);
-            
-            // Set other values
-            //GameDataService.SetValue("spawnPoint", config.GetLoadingData("startingPosition", "DefaultSpawn"));
-            //GameDataService.SetValue("difficulty", config.GetLoadingData("difficulty", "Normal"));
-            
-            // Set session start time
-            GameDataService.SessionStartTime = DateTime.Now;
-        }
-        
-        private async Task ApplySaveData()
-        {
-            var config = GameDataService.CurrentLoadingConfig;
-            
-            // Apply saved game data
-            GameDataService.SetValues(config.GameData);
-            GameDataService.IsNewGame = false;
-        }
-        
-        private async Task ApplyTransitionData()
-        {
-            // Apply any scene transition data
-            if (_currentConfig.GameData?.Count > 0)
+            // Extract saved session data from loading configuration
+            var session = new GameFramework.DataStructures.GameSession
             {
-                foreach (var kvp in _currentConfig.GameData)
-                {
-                    GameDataService.SetValue(kvp.Key, kvp.Value);
-                }
-            }
+                playerName = config.PlayerName,
+                difficulty = config.GameData.ContainsKey("difficulty") ? config.GameData["difficulty"].ToString() : "Normal",
+                currentScene = config.SceneName,
+                sessionStartTime = config.GameData.ContainsKey("sessionStartTime") ? 
+                    DateTime.Parse(config.GameData["sessionStartTime"].ToString()) : DateTime.Now,
+                totalPlayTimeSeconds = config.GameData.ContainsKey("totalPlayTime") ? 
+                    Convert.ToSingle(config.GameData["totalPlayTime"]) : 0f,
+                customData = new System.Collections.Generic.Dictionary<string, object>(config.GameData)
+            };
             
-            await Task.CompletedTask;
-        }
-        
-        private async Task ClearGameState()
-        {
-            // Clear any persistent game state for restart
-            GameDataService.ClearTransientData();
-            await Task.CompletedTask;
+            // Restore player state from save data
+            session.player = new GameFramework.DataStructures.PlayerState
+            {
+                level = config.GameData.ContainsKey("playerLevel") ? Convert.ToInt32(config.GameData["playerLevel"]) : 1,
+                health = config.GameData.ContainsKey("playerHealth") ? Convert.ToInt32(config.GameData["playerHealth"]) : 100,
+                maxHealth = config.GameData.ContainsKey("playerMaxHealth") ? Convert.ToInt32(config.GameData["playerMaxHealth"]) : 100,
+                experience = config.GameData.ContainsKey("playerExperience") ? Convert.ToSingle(config.GameData["playerExperience"]) : 0f,
+                position = config.GameData.ContainsKey("playerPosition") ? 
+                    (UnityEngine.Vector3)config.GameData["playerPosition"] : UnityEngine.Vector3.zero
+            };
+            
+            // Restore progress state from save data
+            session.progress = new GameFramework.DataStructures.GameProgress
+            {
+                score = config.GameData.ContainsKey("score") ? Convert.ToInt32(config.GameData["score"]) : 0
+            };
+            
+            return session;
         }
         
         private async Task InitializeGameSystems()
         {
             Debug.Log("[LoadingState] Initializing game systems...");
             
-            // Initialize or refresh game systems based on loaded data
-            // This is where you'd set up player controllers, world state, etc.
+            // Initialize or refresh game systems based on current session
+            var session = GameDataService.CurrentSession;
+            if (session != null)
+            {
+                Debug.Log($"[LoadingState] Initializing for player '{session.playerName}' at level {session.player.level}");
+            }
             
             // Publish initialization events
             EventSystem.Publish(new GameSystemsInitializedEvent

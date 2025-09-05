@@ -30,7 +30,11 @@ namespace GameFramework.EventSystem.Events
         public string StartingScene { get; set; } = "GameLevel1";
         public Dictionary<string, object> CustomData { get; set; } = new();
     }
-    
+
+    public class SceneLoadedEvent
+    {
+        public string SceneName { get; set; }
+    }
     public class LoadRequestedEvent { }
     public class OptionsRequestedEvent { }
     public class CreditsRequestedEvent { }
@@ -42,7 +46,7 @@ namespace GameFramework.EventSystem.Events
     public class VictoryEvent { }
     public class UICancelInputEvent { }
 
-     #region Player Input Events
+    #region Player Input Events
     
     public class PlayerMoveInputEvent
     {
@@ -138,7 +142,7 @@ namespace GameFramework.EventSystem.Events
     
     #endregion
     
-     #region UI Input Events
+    #region UI Input Events
     
     public class UINavigateInputEvent
     {

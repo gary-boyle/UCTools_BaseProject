@@ -3,15 +3,16 @@
     <Style src="project://database/Assets/UI/USS/default.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3#default" />
     <engine:VisualElement name="VisualElement" class="screenBackground">
         <engine:Label text="New Game" name="lbl_Options" class="defaultText" style="font-size: 103px;" />
-        <engine:VisualElement style="justify-content: center;">
+        <engine:VisualElement class="defaultText" style="justify-content: center;">
             <engine:VisualElement style="flex-direction: row; align-items: center;">
-                <engine:Label text="Name" name="lbl_Name" class="defaultText" />
+                <engine:Label text="Name" name="lbl_Name" />
                 <engine:TextField placeholder-text="Player Name" name="txt_PlayerName">
                     <Bindings>
                         <engine:DataBinding property="value" data-source-path="_playerName" binding-mode="TwoWay" />
                     </Bindings>
                 </engine:TextField>
             </engine:VisualElement>
+            <engine:DropdownField label="Difficulty" name="dd_Difficulty" />
             <engine:Button text="Confirm" name="btn_Confirm" class="defaultButton" style="margin-top: 10px;" />
         </engine:VisualElement>
     </engine:VisualElement>

@@ -1,15 +1,20 @@
 ﻿using System.Threading.Tasks;
+using GameFramework.DataStructures;
 
 namespace GameFramework.Services.Interfaces
 {
     /// <summary>
-    /// Interface for save/load management service
+    /// Updated save service interface to work with GameSession objects
     /// </summary>
     public interface ISaveService : IGameService
     {
-        Task SaveGameAsync(string saveName = null);
-        Task<bool> LoadGameAsync(string saveName);
-        Task<bool> LoadMostRecentSaveAsync();
+        bool IsInitialized { get; }
+        
+        Task InitializeAsync();
+        void Shutdown();
+        
+        Task<bool> SaveGameSessionAsync(GameSession session, string saveName = null);
+        Task<GameSession> LoadGameSessionAsync(string saveName);
         Task<string[]> GetSaveFilesAsync();
         Task<bool> DeleteSaveAsync(string saveName);
         bool HasAnySaves();

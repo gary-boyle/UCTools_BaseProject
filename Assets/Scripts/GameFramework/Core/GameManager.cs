@@ -11,8 +11,8 @@ using UCTools_CommandConsole;
 using UCTools_ConfigVariables;
 //using UCTools_ConfigVariables; // Add this for ConfigCategory
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UIElements;
-using AudioSettings = GrameFramework.Config.AudioSettings;
 
 namespace GameFramework.Core
 {
@@ -30,12 +30,13 @@ namespace GameFramework.Core
         [SerializeField] private ConsoleGUI _consoleGUIPrefab;
         
         
+        [FormerlySerializedAs("_audioSettings")]
         [Header("Configuration Settings")]
-        [SerializeField] private AudioSettings _audioSettings;
-        [SerializeField] private GraphicsSettings _graphicsSettings;
-        [SerializeField] private GameplaySettings _gameplaySettings;
-        [SerializeField] private InputSettings _inputSettings;
-        [SerializeField] private DebugSettings _debugSettings;
+        [SerializeField] private AudioSettings_SO audioSettingsSo;
+        [FormerlySerializedAs("_graphicsSettings")] [SerializeField] private GraphicsSettings_SO graphicsSettingsSo;
+        [FormerlySerializedAs("_gameplaySettings")] [SerializeField] private GameplaySettings_SO gameplaySettingsSo;
+        [FormerlySerializedAs("_inputSettings")] [SerializeField] private InputSettings_SO inputSettingsSo;
+        [FormerlySerializedAs("_debugSettings")] [SerializeField] private DebugSettings_SO debugSettingsSo;
 
         // Singleton implementation
         private static GameManager _instance;
@@ -217,11 +218,11 @@ namespace GameFramework.Core
             var categories = new List<ConfigCategory>();
             
             // Add non-null config categories
-            if (_audioSettings != null) categories.Add(_audioSettings);
-            if (_graphicsSettings != null) categories.Add(_graphicsSettings);
-            if (_gameplaySettings != null) categories.Add(_gameplaySettings);
-            if (_inputSettings != null) categories.Add(_inputSettings);
-            if (_debugSettings != null) categories.Add(_debugSettings);
+            if (audioSettingsSo != null) categories.Add(audioSettingsSo);
+            if (graphicsSettingsSo != null) categories.Add(graphicsSettingsSo);
+            if (gameplaySettingsSo != null) categories.Add(gameplaySettingsSo);
+            if (inputSettingsSo != null) categories.Add(inputSettingsSo);
+            if (debugSettingsSo != null) categories.Add(debugSettingsSo);
             
             if (categories.Count > 0)
             {
@@ -389,19 +390,32 @@ namespace GameFramework.Core
         private void CollectUpdatableSystems()
         {
             Debug.Log("[GameManager] Collecting updatable systems...");
-    
+
             // Add state machine to updatables
             if (_stateMachine is IUpdatable updatable)
                 _updatables.Add(updatable);
-        
+    
             if (_stateMachine is IFixedUpdatable fixedUpdatable)
                 _fixedUpdatables.Add(fixedUpdatable);
-    
+
+            // Add other systems that need updates
+            var gameDataService = _container.Resolve<IGameDataService>();
+            if (gameDataService is IUpdatable gameDataServiceUpdatable)
+                _updatables.Add(gameDataServiceUpdatable);
+
+            
             // Add other systems that need updates
             var inputService = _container.Resolve<IInputService>();
             if (inputService is IUpdatable inputUpdatable)
                 _updatables.Add(inputUpdatable);
-    
+
+            // Add UI service for screen updates
+            var uiService = _container.Resolve<IUIService>();
+            if (uiService is IUpdatable uiUpdatable)
+            {
+                _updatables.Add(uiUpdatable);
+            }
+
             // Add console service if enabled and registered
             if (_enableDebugConsole && _container.IsRegistered<IConsoleService>())
             {
@@ -411,6 +425,8 @@ namespace GameFramework.Core
                 if (consoleService is ILateUpdatable consoleLateUpdatable)
                     _lateUpdatables.Add(consoleLateUpdatable);
             }
+    
+            Debug.Log($"[GameManager] Collected {_updatables.Count} updatable systems, {_fixedUpdatables.Count} fixed updatable systems, {_lateUpdatables.Count} late updatable systems");
         }
         
         /// <summary>

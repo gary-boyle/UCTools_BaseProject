@@ -34,7 +34,7 @@ namespace GameFramework.Tests.UI
             var screenNames = new[]
             {
                 "UI_DebugScreen", "UI_SplashScreen", "UI_MainMenuScreen", 
-                "UI_GamePlayHUD", "UI_PauseScreen", "UI_OptionsScreen",
+                "UI_GamePlayScreen", "UI_PauseScreen", "UI_OptionsScreen",
                 "UI_LoadingScreen", "UI_NewGameScreen", "UI_CreditScreen",
                 "UI_GameOverScreen", "UI_VictoryScreen"
             };
@@ -98,12 +98,12 @@ namespace GameFramework.Tests.UI
 
             // Act - Show multiple screens
             await _uiService.ShowScreenAsync<DebugScreen>();
-            await _uiService.ShowScreenAsync<GameplayHUD>();
+            await _uiService.ShowScreenAsync<GamePlayScreen>();
             await _uiService.ShowScreenAsync<LoadingScreen>();
 
             // Assert
             Assert.IsTrue(_uiService.GetScreen<DebugScreen>().IsVisible);
-            Assert.IsTrue(_uiService.GetScreen<GameplayHUD>().IsVisible);
+            Assert.IsTrue(_uiService.GetScreen<GamePlayScreen>().IsVisible);
             Assert.IsTrue(_uiService.GetScreen<LoadingScreen>().IsVisible);
         }
 

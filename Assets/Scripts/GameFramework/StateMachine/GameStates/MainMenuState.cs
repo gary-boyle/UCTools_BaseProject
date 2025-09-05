@@ -4,6 +4,7 @@ using GameFramework.Core;
 using GameFramework.EventSystem.Events;
 using GameFramework.EventSystem.Interfaces;
 using GameFramework.Services.Interfaces;
+using GameFramework.StateMachine.Data;
 using GameFramework.StateMachine.Enum;
 using GameFramework.UI.Screens;
 using GameFramework.UI.Popups;
@@ -12,15 +13,13 @@ using UnityEngine;
 namespace GameFramework.StateMachine.GameStates
 {
     /// <summary>
-    /// Main menu state with constructor injection for all dependencies
+    /// Main menu state using unified GameSession system for save/load operations
     /// </summary>
     public class MainMenuState : BaseGameState
     {
         protected readonly IGameDataService GameDataService;
+        protected readonly ISaveService SaveService;
 
-        /// <summary>
-        /// Constructor injection - all dependencies provided by DI container
-        /// </summary>
         public MainMenuState(
             IGameStateMachine stateMachine,
             IEventSystem eventSystem,
@@ -28,15 +27,20 @@ namespace GameFramework.StateMachine.GameStates
             IUIService uiService,
             IInputService inputService,
             IConsoleService consoleService,
-            IGameDataService gameDataService)  
+            IGameDataService gameDataService,
+            ISaveService saveService)  
             : base(GameStateType.MainMenu, stateMachine, eventSystem, audioService, uiService, inputService, consoleService, gameDataService)
         {
             GameDataService = gameDataService ?? throw new ArgumentNullException(nameof(gameDataService));
+            SaveService = saveService ?? throw new ArgumentNullException(nameof(saveService));
         }
         
         public override async Task EnterAsync(GameContext context)
         {
             await base.EnterAsync(context);
+            
+            // Clear any existing session when returning to main menu
+            GameDataService.ClearSession();
             
             // Show main menu UI using injected service
             await UIService.ShowScreenAsync<MainMenuScreen>();
@@ -59,9 +63,32 @@ namespace GameFramework.StateMachine.GameStates
         
         private async void OnContinueGameRequested(LoadRequestedEvent evt)
         {
-            // Load the most recent save using context services
-            await Context.SaveService.LoadMostRecentSaveAsync();
-            await TransitionToStateAsync(GameStateType.Loading);
+            // Load the most recent save using the new session-based system
+            var mostRecentSave = SaveService.GetMostRecentSaveName();
+            
+            if (string.IsNullOrEmpty(mostRecentSave))
+            {
+                Debug.LogWarning("[MainMenuState] No save files found to continue");
+                // Optionally show a message to the user
+                return;
+            }
+            
+            // Load the session using GameDataService
+            var loadSuccess = await GameDataService.LoadSessionAsync(mostRecentSave);
+            
+            if (loadSuccess)
+            {
+                // Create loading configuration from the loaded session
+                var loadingConfig = GameDataService.CurrentSession.ToLoadingConfiguration();
+                GameDataService.CurrentLoadingConfig = loadingConfig;
+                
+                await TransitionToStateAsync(GameStateType.Loading);
+            }
+            else
+            {
+                Debug.LogError("[MainMenuState] Failed to load most recent save");
+                // Optionally show error message to user
+            }
         }
         
         private async void OnOptionsRequested(OptionsRequestedEvent evt)

@@ -1,40 +1,44 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
+using GameFramework.DataStructures;
 using GameFramework.StateMachine.Data;
 
 namespace GameFramework.Services.Interfaces
 {
+    /// <summary>
+    /// Clean IGameDataService interface for unified GameSession management
+    /// </summary>
     public interface IGameDataService
     {
-        // Player Data
-        string PlayerName { get; set; }
-        int PlayerLevel { get; set; }
-        float PlayerHealth { get; set; }
-        
-        // Game Session Data
-        string CurrentScene { get; set; }
-        bool IsNewGame { get; set; }
-        DateTime SessionStartTime { get; set; }
-        
-        // Loading Configuration
+        bool IsInitialized { get; }
+        GameSession CurrentSession { get; }
         LoadingConfiguration CurrentLoadingConfig { get; set; }
         
-        // Generic data storage for flexibility
-        T GetValue<T>(string key, T defaultValue = default);
-        void SetValue<T>(string key, T value);
-        bool HasValue(string key);
-        void RemoveValue(string key);
-        
-        // Bulk operations
-        void SetValues(Dictionary<string, object> values);
-        Dictionary<string, object> GetAllValues();
-        void ClearTransientData();
-        
-        // Events
-        event Action<string, object> ValueChanged;
-        
+        // Service Lifecycle
         Task InitializeAsync();
         void Shutdown();
+        
+        // Session Management
+        void CreateNewGameSession(LoadingConfiguration config);
+        void LoadGameSession(GameSession session);
+        void ClearSession();
+        void UpdateSession();
+        bool HasActiveSession();
+        
+        // Save/Load Operations
+        Task<bool> SaveCurrentSessionAsync(string saveName = null);
+        Task<bool> LoadSessionAsync(string saveName);
+        
+        // Data Access
+        PlayerState GetPlayerState();
+        GameProgress GetGameProgress();
+        T GetCustomData<T>(string key, T defaultValue = default);
+        void SetCustomData<T>(string key, T value);
+        T GetLoadingData<T>(string key, T defaultValue = default);
+        
+        // Events
+        event Action<GameSession> OnSessionCreated;
+        event Action<GameSession> OnSessionLoaded;
+        event Action OnSessionCleared;
     }
 }

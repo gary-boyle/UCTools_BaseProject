@@ -47,7 +47,7 @@ namespace GameFramework.Tests.UI
             var screens = new[]
             {
                 "UI_DebugScreen", "UI_SplashScreen", "UI_MainMenuScreen", 
-                "UI_GamePlayHUD", "UI_PauseScreen", "UI_OptionsScreen",
+                "UI_GamePlayScreen", "UI_PauseScreen", "UI_OptionsScreen",
                 "UI_LoadingScreen", "UI_NewGameScreen", "UI_CreditScreen",
                 "UI_GameOverScreen", "UI_VictoryScreen"
             };
@@ -184,7 +184,7 @@ namespace GameFramework.Tests.UI
             Assert.IsNotNull(_uiService.GetScreen<DebugScreen>());
             Assert.IsNotNull(_uiService.GetScreen<SplashScreen>());
             Assert.IsNotNull(_uiService.GetScreen<MainMenuScreen>());
-            Assert.IsNotNull(_uiService.GetScreen<GameplayHUD>());
+            Assert.IsNotNull(_uiService.GetScreen<GamePlayScreen>());
             Assert.IsNotNull(_uiService.GetScreen<PauseScreen>());
             Assert.IsNotNull(_uiService.GetScreen<OptionsScreen>());
             Assert.IsNotNull(_uiService.GetScreen<LoadingScreen>());

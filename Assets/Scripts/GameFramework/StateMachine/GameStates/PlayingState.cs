@@ -39,7 +39,7 @@ namespace GameFramework.StateMachine.GameStates
             await base.EnterAsync(context);
             
             // Show game HUD using injected UI service
-            await UIService.ShowScreenAsync<GameplayHUD>();
+            await UIService.ShowScreenAsync<GamePlayScreen>();
             
             // Start gameplay music using injected audio service
             AudioService.PlayMusic("gameplay");
@@ -214,7 +214,7 @@ namespace GameFramework.StateMachine.GameStates
             EventSystem.Unsubscribe<PlayerSprintInputEvent>(OnSprintInput);
             EventSystem.Unsubscribe<PlayerCrouchInputEvent>(OnCrouchInput);
             
-            await UIService.HideScreenAsync<GameplayHUD>();
+            await UIService.HideScreenAsync<GamePlayScreen>();
             
             // Publish game ended event using injected event system
             EventSystem.Publish<GameEndedEvent>();
