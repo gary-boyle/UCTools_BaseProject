@@ -22,6 +22,7 @@ namespace GameFramework.UI.Popups
     {
         #region UI Elements
         private Button _loadButton;
+        private Button _saveButton;
         private Button _optionsButton;
         private Button _mainMenuButton;
         private Button _quitButton;
@@ -55,6 +56,7 @@ namespace GameFramework.UI.Popups
         private void CacheUIElements()
         {
             _loadButton = RootElement?.Q<Button>("btn_Load");
+            _saveButton = RootElement?.Q<Button>("btn_Save");
             _optionsButton = RootElement?.Q<Button>("btn_Options");
             _mainMenuButton = RootElement?.Q<Button>("btn_MainMenu");
             _quitButton = RootElement?.Q<Button>("btn_Quit");
@@ -99,6 +101,7 @@ namespace GameFramework.UI.Popups
         private void RegisterEventHandlers()
         {
             _loadButton?.RegisterCallback<ClickEvent>(OnLoadButtonClicked);
+            _saveButton?.RegisterCallback<ClickEvent>(OnSaveButtonClicked);
             _optionsButton?.RegisterCallback<ClickEvent>(OnOptionsButtonClicked);
             _mainMenuButton?.RegisterCallback<ClickEvent>(OnMainMenuButtonClicked);
             _quitButton?.RegisterCallback<ClickEvent>(OnQuitButtonClicked);
@@ -108,6 +111,7 @@ namespace GameFramework.UI.Popups
         private void UnregisterEventHandlers()
         {
             _loadButton?.UnregisterCallback<ClickEvent>(OnLoadButtonClicked);
+            _saveButton?.UnregisterCallback<ClickEvent>(OnSaveButtonClicked);
             _optionsButton?.UnregisterCallback<ClickEvent>(OnOptionsButtonClicked);
             _mainMenuButton?.UnregisterCallback<ClickEvent>(OnMainMenuButtonClicked);
             _quitButton?.UnregisterCallback<ClickEvent>(OnQuitButtonClicked);
@@ -148,6 +152,12 @@ namespace GameFramework.UI.Popups
             await ShowLoadGamePopup();
         }
 
+        private async void OnSaveButtonClicked(ClickEvent evt)
+        {
+            Debug.Log("[PausePopup] Load button clicked");
+            await ShowSaveGamePopup();
+        }
+        
         private void OnOptionsButtonClicked(ClickEvent evt)
         {
             Debug.Log("[PausePopup] Options button clicked");
@@ -194,6 +204,22 @@ namespace GameFramework.UI.Popups
             }
         }
 
+        /// <summary>
+        /// Shows the Save Game popup on top of pause popup
+        /// </summary>
+        private async Task ShowSaveGamePopup()
+        {
+            try
+            {
+                Debug.Log("[PausePopup] Opening Save Game popup");
+                await _uiService.ShowPopupAsync<SaveGamePopup>();
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"[PausePopup] Error showing Save Game popup: {ex}");
+            }
+        }
+        
         /// <summary>
         /// Shows the Options popup on top of pause popup
         /// </summary>

@@ -316,5 +316,20 @@ namespace GameFramework.EventSystem.Events
             SaveFileInfo = saveFileInfo ?? throw new ArgumentNullException(nameof(saveFileInfo));
         }
     }
+    
+    /// <summary>
+    /// Event triggered when the player requests to save the game
+    /// </summary>
+    public class SaveGameRequestedEvent
+    {
+        public string SaveName { get; set; }
+        public bool OverwriteExisting { get; set; }
+    
+        public SaveGameRequestedEvent(string saveName, bool overwriteExisting = false)
+        {
+            SaveName = saveName;
+            OverwriteExisting = overwriteExisting;
+        }
+    }
     #endregion
 }

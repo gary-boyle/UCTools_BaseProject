@@ -1,13 +1,20 @@
-<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+﻿<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <engine:Template name="Widget_CloseButton" src="project://database/Assets/UI/Widgets/Widget_CloseButton.uxml?fileID=9197481963319205126&amp;guid=0ae08ca0a349c17499c551fac1d2415c&amp;type=3#Widget_CloseButton" />
     <Style src="project://database/Assets/UI/USS/default.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3#default" />
     <engine:VisualElement name="VisualElement" class="screenBackground">
-        <engine:Label text="Load Game" name="lbl_Title" class="defaultText" style="font-size: 103px;" />
+        <engine:Label text="Save Game" name="lbl_Title" class="defaultText" style="font-size: 103px;" />
         <engine:VisualElement class="defaultText" style="justify-content: center; flex-grow: 1; width: 100%;">
 
-            <!-- Save files list -->
+            <!-- Save name input section -->
+            <engine:VisualElement style="margin-bottom: 20px;">
+                <engine:Label text="Save Name:" class="defaultText" style="margin-bottom: 5px;" />
+                <engine:TextField name="txt_SaveName" placeholder-text="Enter save name..." class="defaultText" />
+                <engine:Label name="lbl_OverwriteWarning" class="defaultText warning-text" style="display: none; margin-top: 5px;" />
+            </engine:VisualElement>
+
+            <!-- Existing saves list -->
             <engine:VisualElement style="flex-grow: 1;">
-                <engine:Label text="Select a save file to load (double-click to load):" class="defaultText" style="margin-bottom: 10px;" />
+                <engine:Label text="Existing Saves (double-click to overwrite):" class="defaultText" style="margin-bottom: 10px;" />
                 <engine:ListView name="list_SaveFiles" item-template="project://database/Assets/UI/Widgets/Widget_SaveFileInfo.uxml?fileID=9197481963319205126&amp;guid=e2383e1d2eca413d8739f479bd18f7ac&amp;type=3#Widget_SaveFileInfo" virtualization-method="DynamicHeight" show-add-remove-footer="false" show-border="true" style="flex-grow: 1; min-height: 200px;" />
             </engine:VisualElement>
 
@@ -16,7 +23,7 @@
                 <engine:Label name="lbl_Status" class="defaultText" />
                 <engine:VisualElement style="flex-direction: row; justify-content: space-between; margin-top: 10px;">
                     <engine:Button text="Delete Selected" name="btn_DeleteSelected" />
-                    <engine:Button text="Load Game" name="btn_Load" class="primary-button" />
+                    <engine:Button text="Save Game" name="btn_Save" class="primary-button" />
                 </engine:VisualElement>
             </engine:VisualElement>
 

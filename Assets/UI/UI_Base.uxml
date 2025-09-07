@@ -2,14 +2,15 @@
     <engine:Template name="UI_SplashWindow" src="project://database/Assets/UI/Screens/UI_SplashScreen.uxml?fileID=9197481963319205126&amp;guid=de561b374b4f8a14e9965908574c5815&amp;type=3#UI_SplashScreen" />
     <engine:Template name="UI_MainMenuWindow" src="project://database/Assets/UI/Screens/UI_MainMenuScreen.uxml?fileID=9197481963319205126&amp;guid=a86c700715617d14fadc9c4cca658a9c&amp;type=3#UI_MainMenuScreen" />
     <engine:Template name="UI_HUDWindow" src="project://database/Assets/UI/Screens/UI_GamePlayScreen.uxml?fileID=9197481963319205126&amp;guid=4f9971435f1a2e847971b6f46050f4e0&amp;type=3#UI_GamePlayScreen" />
-    <engine:Template name="UI_PausedWindow" src="project://database/Assets/UI/Popups/UI_PausePopup.uxml?fileID=9197481963319205126&amp;guid=1d7897531c357074fbef681e25abe616&amp;type=3#UI_PausePopup" />
     <engine:Template name="UI_LoadingScreen" src="project://database/Assets/UI/Screens/UI_LoadingScreen.uxml?fileID=9197481963319205126&amp;guid=7fd693e4a1ee13743a66ff2bc51309de&amp;type=3#UI_LoadingScreen" />
     <engine:Template name="UI_NewGameMenuWindow" src="project://database/Assets/UI/Screens/UI_NewGameScreen.uxml?fileID=9197481963319205126&amp;guid=272df8b93caf5094791beff0b1e5534b&amp;type=3#UI_NewGameScreen" />
     <engine:Template name="UI_CreditsScreen" src="project://database/Assets/UI/Screens/UI_CreditsScreen.uxml?fileID=9197481963319205126&amp;guid=b082f69ad612c914e8ed8a9a685d8c6a&amp;type=3#UI_CreditsScreen" />
     <engine:Template name="UI_GameOverScreen" src="project://database/Assets/UI/Screens/UI_GameOverScreen.uxml?fileID=9197481963319205126&amp;guid=5d92d0b3b5b0d7a409b5fcb8a9db6a43&amp;type=3#UI_GameOverScreen" />
+    <engine:Template name="UI_PausedWindow" src="project://database/Assets/UI/Popups/UI_PausePopup.uxml?fileID=9197481963319205126&amp;guid=1d7897531c357074fbef681e25abe616&amp;type=3#UI_PausePopup" />
     <engine:Template name="UI_VictoryScreen" src="project://database/Assets/UI/Screens/UI_VictoryScreen.uxml?fileID=9197481963319205126&amp;guid=b136ed5cccad5464e95bd18ed9347ce2&amp;type=3#UI_VictoryScreen" />
     <engine:Template name="UI_OptionsPopup" src="project://database/Assets/UI/Popups/UI_OptionsPopup.uxml?fileID=9197481963319205126&amp;guid=ed64c046429a35445870f9cfed7575bd&amp;type=3#UI_OptionsPopup" />
     <engine:Template name="UI_LoadGamePopup" src="project://database/Assets/UI/Popups/UI_LoadGamePopup.uxml?fileID=9197481963319205126&amp;guid=88f93125b1d94e44da85938f48a00506&amp;type=3#UI_LoadGamePopup" />
+    <engine:Template name="UI_SaveGamePopup" src="project://database/Assets/UI/Popups/UI_SaveGamePopup.uxml?fileID=9197481963319205126&amp;guid=5209e60cba5646739065907a84275511&amp;type=3#UI_SaveGamePopup" />
     <engine:Template name="UI_DebugScreen" src="project://database/Assets/UI/Screens/UI_DebugScreen.uxml?fileID=9197481963319205126&amp;guid=4bbac5633f5ec884f85d4878cb799304&amp;type=3#UI_DebugScreen" />
     <Style src="project://database/Assets/UI/USS/default.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3" />
     <engine:Instance template="UI_SplashWindow" name="UI_SplashScreen" class="baseUI" />
@@ -23,5 +24,6 @@
     <engine:Instance template="UI_VictoryScreen" name="UI_VictoryScreen" class="baseUI" />
     <engine:Instance template="UI_OptionsPopup" name="UI_OptionsPopup" class="popup" />
     <engine:Instance template="UI_LoadGamePopup" name="UI_LoadGamePopup" class="popup" />
+    <engine:Instance template="UI_SaveGamePopup" name="UI_SaveGamePopup" class="popup" />
     <engine:Instance template="UI_DebugScreen" name="UI_DebugScreen" picking-mode="Ignore" class="baseUI" style="overflow: hidden;" />
 </engine:UXML>

@@ -148,7 +148,8 @@ namespace GameFramework.Services
             
             // Register popups
             RegisterPopup(new OptionsPopup(root.Q<VisualElement>("UI_OptionsPopup")));
-            RegisterPopup(new LoadGamePopup(root.Q<VisualElement>("UI_LoadGamePopup")));            
+            RegisterPopup(new LoadGamePopup(root.Q<VisualElement>("UI_LoadGamePopup"))); 
+            RegisterPopup(new SaveGamePopup(root.Q<VisualElement>("UI_SaveGamePopup")));
             RegisterPopup(new PausePopup(root.Q<VisualElement>("UI_PausePopup")));
         }
 
