@@ -43,6 +43,11 @@ namespace GameFramework.UI.Screens
         
         protected override void OnShow()
         {
+            // Subscribe to button events
+            _testButton?.RegisterCallback<ClickEvent>(OnTestButtonClicked);
+            _pauseButton?.RegisterCallback<ClickEvent>(OnPauseButtonClicked);
+            _saveButton?.RegisterCallback<ClickEvent>(OnSaveButtonClicked);
+
         }
         
         protected override void OnHide()
@@ -66,10 +71,6 @@ namespace GameFramework.UI.Screens
             _debugLabel3 ??= RootElement?.Q<Label>("lbl_Debug3");  
             _debugLabel4 ??= RootElement?.Q<Label>("lbl_Debug4");
             
-            // Subscribe to button events
-            _testButton?.RegisterCallback<ClickEvent>(OnTestButtonClicked);
-            _pauseButton?.RegisterCallback<ClickEvent>(OnPauseButtonClicked);
-            _saveButton?.RegisterCallback<ClickEvent>(OnSaveButtonClicked);
 
             // Set initial button states
             SetupButtonStates();

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using GameFramework.Core;
+using GameFramework.DataStructures;
 using GameFramework.EventSystem.Events;
 using GameFramework.EventSystem.Interfaces;
 using GameFramework.Services.Interfaces;
@@ -131,16 +132,32 @@ namespace GameFramework.StateMachine.GameStates
             
             await UpdateLoadingProgress("Loading save data...", 0.1f);
             
-            // Create GameSession from save data in loading configuration
-            var session = CreateSessionFromSaveData(_currentConfig);
+            // ✅ FIX: Get the GameSession directly from loading config instead of recreating
+            GameSession session = null;
+            if (_currentConfig.GameData.ContainsKey("gameSession"))
+            {
+                session = (GameSession)_currentConfig.GameData["gameSession"];
+            }
+            else
+            {
+                // Fallback: create from data if session not directly stored
+                session = CreateSessionFromSaveData(_currentConfig);
+            }
+            
+            if (session == null)
+            {
+                throw new InvalidOperationException("Could not load game session from save data");
+            }
+            
+            // ✅ Load the session into GameDataService
             GameDataService.LoadGameSession(session);
             await UpdateLoadingProgress("Restoring game state...", 0.4f);
             
-            // Load the appropriate scene
+            // ✅ Load the appropriate scene
             await LoadScene(_currentConfig.SceneName);
             await UpdateLoadingProgress("Loading world...", 0.7f);
             
-            // Initialize game systems with saved data
+            // ✅ Initialize game systems with loaded data
             await InitializeGameSystems();
             await UpdateLoadingProgress("Finalizing...", 1.0f);
             
@@ -198,19 +215,21 @@ namespace GameFramework.StateMachine.GameStates
             Debug.Log("[LoadingState] Game restart complete");
         }
         
+        /// <summary>
+        /// ✅ IMPROVED: Better scene loading simulation (replace with actual scene loading)
+        /// </summary>
         private async Task LoadScene(string sceneName)
         {
             Debug.Log($"[LoadingState] Loading scene: {sceneName}");
             
-            // Use the scene service to load the scene
-            //await AudioService.PlaySFXAsync("scene_transition");
+            // ✅ TODO: Replace with actual scene loading
+            // await SceneManager.LoadSceneAsync(sceneName);
             
-            // Assuming your SceneService has an async load method
-            // You'll need to implement this in your SceneService
-            // await SceneService.LoadSceneAsync(sceneName);
+            // Simulate scene loading for now
+            await Task.Delay(500);
             
-            // For now, simulate scene loading
-            await Task.Delay(1000); // Simulate scene load time
+            // ✅ Publish scene loaded event
+            EventSystem.Publish(new SceneLoadedEvent { SceneName = sceneName });
             
             Debug.Log($"[LoadingState] Scene {sceneName} loaded successfully");
         }

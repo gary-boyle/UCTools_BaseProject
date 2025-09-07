@@ -194,8 +194,11 @@ namespace GameFramework.Core
             RegisterConfigCategories(configService);
             Debug.Log("[GameManager] ConfigService initialized and categories registered");
             
+            var loadService = _container.Resolve<ILoadService>();
+            await loadService.InitializeAsync();
+            
             var saveService = _container.Resolve<ISaveService>();
-            await saveService.InitializeAsync();
+            await saveService.InitializeAsync(); 
             
             // Initialize UI service LAST since it depends on other services
             var uiService = _container.Resolve<IUIService>();

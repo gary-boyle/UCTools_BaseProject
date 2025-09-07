@@ -8,6 +8,8 @@ using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine;
 using GameFramework.StateMachine.Data;
 using GameFramework.StateMachine.Enum;
+using GameFramework.UI.Popups;
+using GameFramework.UI.Screens;
 using UnityEngine;
 
 namespace GameFramework.Services
@@ -57,12 +59,15 @@ namespace GameFramework.Services
             _eventSystem.Subscribe<LoadSaveFileEvent>(OnLoadSaveFileRequested);
             
             IsInitialized = true;
+            Debug.Log("[LoadService] Load service initialized and subscribed to events");
             await Task.CompletedTask;
         }
         
         public void Shutdown()
         {
             if (!IsInitialized) return;
+            
+            Debug.Log("[LoadService] Shutting down load service...");
             
             // Unsubscribe from events
             _eventSystem.Unsubscribe<LoadGameRequestedEvent>(OnLoadGameRequested);
@@ -82,7 +87,42 @@ namespace GameFramework.Services
         private async void OnLoadSaveFileRequested(LoadSaveFileEvent evt)
         {
             Debug.Log($"[LoadService] Load save file requested: {evt.SaveFileInfo.fileName}");
+            
+            // ✅ Close any open popups first
+            await CloseAllPopupsBeforeLoading();
+            
+            // ✅ Load the game session
             await LoadGameAsync(evt.SaveFileInfo);
+        }
+        #endregion
+        
+        #region Popup Management
+        /// <summary>
+        /// ✅ NEW: Closes all popups before starting load process
+        /// </summary>
+        private async Task CloseAllPopupsBeforeLoading()
+        {
+            try
+            {
+                var uiService = GameManager.GetService<IUIService>();
+                if (uiService != null)
+                {
+                    Debug.Log("[LoadService] Closing all popups before loading...");
+                    
+                    // Close all popups that might be open
+                    await uiService.HidePopupAsync<LoadGamePopup>();
+                    await uiService.HidePopupAsync<PausePopup>();
+                    await uiService.HidePopupAsync<OptionsPopup>();
+                    await uiService.HidePopupAsync<SaveGamePopup>();
+                    
+                    Debug.Log("[LoadService] All popups closed before loading");
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.LogWarning($"[LoadService] Error closing popups (continuing anyway): {ex.Message}");
+                // Don't fail loading because of popup issues
+            }
         }
         #endregion
         
@@ -138,6 +178,7 @@ namespace GameFramework.Services
             try
             {
                 IsLoading = true;
+                Debug.Log($"[LoadService] Starting load for: {saveFileInfo.fileName}");
                 return await ExecuteLoadingWorkflow(saveFileInfo);
             }
             catch (Exception e)
@@ -200,9 +241,9 @@ namespace GameFramework.Services
                 return false;
             }
             
-            // Step 3: Create loading configuration
+            // Step 3: Create loading configuration for LoadSave
             NotifyProgress("Preparing game world...", 0.5f);
-            var loadingConfig = CreateLoadingConfiguration(gameSession);
+            var loadingConfig = CreateLoadSaveConfiguration(gameSession); // ✅ NEW method
             
             // Step 4: Set up game data service
             NotifyProgress("Initializing game systems...", 0.7f);
@@ -263,27 +304,51 @@ namespace GameFramework.Services
             }
         }
         
-        private LoadingConfiguration CreateLoadingConfiguration(GameSession gameSession)
+        /// <summary>
+        /// ✅ NEW: Creates loading configuration specifically for LoadSave type
+        /// </summary>
+        private LoadingConfiguration CreateLoadSaveConfiguration(GameSession gameSession)
         {
-            Debug.Log($"[LoadService] Creating loading configuration for scene: {gameSession.currentScene}");
+            Debug.Log($"[LoadService] Creating LoadSave configuration for scene: {gameSession.currentScene}");
             
-            var loadingConfig = LoadingConfiguration.LoadSave(
-                gameSession.currentScene, 
-                gameSession.customData
-            );
+            // ✅ Create proper LoadSave loading configuration
+            var loadingConfig = new LoadingConfiguration
+            {
+                Type = LoadingType.LoadSave,
+                SceneName = gameSession.currentScene,
+                PlayerName = gameSession.playerName,
+                ShowLoadingScreen = true,
+                MinimumLoadingTime = 2f,
+                GameData = new System.Collections.Generic.Dictionary<string, object>()
+            };
             
-            // Enrich loading configuration with session data
-            loadingConfig.PlayerName = gameSession.playerName;
+            // ✅ Store the complete game session for LoadingState
+            loadingConfig.GameData["gameSession"] = gameSession;
+            
+            // ✅ Also store individual values for easy access
             loadingConfig.GameData["difficulty"] = gameSession.difficulty;
             loadingConfig.GameData["playerLevel"] = gameSession.player.level;
             loadingConfig.GameData["playerHealth"] = gameSession.player.health;
             loadingConfig.GameData["playerMaxHealth"] = gameSession.player.maxHealth;
             loadingConfig.GameData["playerExperience"] = gameSession.player.experience;
             loadingConfig.GameData["playerPosition"] = gameSession.player.position;
+            loadingConfig.GameData["playerRotation"] = gameSession.player.rotation;
             loadingConfig.GameData["totalPlayTime"] = gameSession.totalPlayTimeSeconds;
             loadingConfig.GameData["score"] = gameSession.progress.score;
             loadingConfig.GameData["sessionStartTime"] = gameSession.sessionStartTime.ToString();
+            loadingConfig.GameData["lastSaveTime"] = gameSession.lastSaveTime.ToString();
             
+            // ✅ Copy all custom data from session
+            foreach (var kvp in gameSession.customData)
+            {
+                // Avoid overwriting system keys
+                if (!loadingConfig.GameData.ContainsKey(kvp.Key))
+                {
+                    loadingConfig.GameData[kvp.Key] = kvp.Value;
+                }
+            }
+            
+            Debug.Log($"[LoadService] LoadSave configuration created with {loadingConfig.GameData.Count} data entries");
             return loadingConfig;
         }
         
@@ -291,13 +356,11 @@ namespace GameFramework.Services
         {
             Debug.Log("[LoadService] Setting up game data service with loaded session");
             
-            // Set the loaded session as current
-            _gameDataService.LoadGameSession(gameSession);
-            
-            // Set the loading configuration
+            // ✅ Don't load the session here - let LoadingState handle it
+            // We just set up the loading configuration for LoadingState to use
             _gameDataService.CurrentLoadingConfig = loadingConfig;
             
-            Debug.Log($"[LoadService] Game data service configured for: {gameSession.playerName}");
+            Debug.Log($"[LoadService] Loading configuration set for: {gameSession.playerName}");
         }
         
         private async Task InitiateGameLoading()
@@ -307,7 +370,7 @@ namespace GameFramework.Services
             try
             {
                 await _stateMachine.ChangeStateAsync(GameStateType.Loading);
-                Debug.Log("[LoadService] State transition to loading initiated");
+                Debug.Log("[LoadService] State transition to loading initiated successfully");
             }
             catch (Exception e)
             {
@@ -364,7 +427,14 @@ namespace GameFramework.Services
             {
                 // Try to load the actual game session to validate it
                 var gameSession = await _saveService.LoadGameSessionByInfoAsync(saveFileInfo);
-                return gameSession != null && IsValidGameSession(gameSession);
+                var isValid = IsValidGameSession(gameSession);
+                
+                if (!isValid)
+                {
+                    Debug.LogWarning($"[LoadService] Save file '{saveFileInfo.fileName}' failed validation");
+                }
+                
+                return isValid;
             }
             catch (Exception e)
             {
@@ -376,11 +446,38 @@ namespace GameFramework.Services
         private bool IsValidGameSession(GameSession gameSession)
         {
             // Basic validation of game session
-            return gameSession != null &&
-                   !string.IsNullOrEmpty(gameSession.playerName) &&
-                   !string.IsNullOrEmpty(gameSession.currentScene) &&
-                   gameSession.player != null &&
-                   gameSession.progress != null;
+            if (gameSession == null)
+            {
+                Debug.LogWarning("[LoadService] GameSession is null");
+                return false;
+            }
+            
+            if (string.IsNullOrEmpty(gameSession.playerName))
+            {
+                Debug.LogWarning("[LoadService] GameSession has invalid player name");
+                return false;
+            }
+            
+            if (string.IsNullOrEmpty(gameSession.currentScene))
+            {
+                Debug.LogWarning("[LoadService] GameSession has invalid scene name");
+                return false;
+            }
+            
+            if (gameSession.player == null)
+            {
+                Debug.LogWarning("[LoadService] GameSession has null player state");
+                return false;
+            }
+            
+            if (gameSession.progress == null)
+            {
+                Debug.LogWarning("[LoadService] GameSession has null progress data");
+                return false;
+            }
+            
+            Debug.Log($"[LoadService] GameSession validation passed for {gameSession.playerName}");
+            return true;
         }
         #endregion
         
