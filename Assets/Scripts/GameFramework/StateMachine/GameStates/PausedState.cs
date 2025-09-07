@@ -4,6 +4,7 @@ using GameFramework.EventSystem.Events;
 using GameFramework.EventSystem.Interfaces;
 using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine.Enum;
+using GameFramework.UI.Popups;
 using GameFramework.UI.Screens;
 using UnityEngine;
 
@@ -85,7 +86,7 @@ namespace GameFramework.StateMachine.GameStates
         
         private async void OnOptionsRequested(OptionsRequestedEvent evt)
         {
-            await TransitionToStateAsync(GameStateType.Options);
+            await UIService.ShowPopupAsync<OptionsPopup>();
         }
         
         private async void OnPauseInput(GamePausedEvent evt)

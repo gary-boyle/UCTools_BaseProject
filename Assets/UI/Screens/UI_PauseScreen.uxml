@@ -6,7 +6,8 @@
             <engine:Label text="Paused!" class="defaultText" style="font-size: 79px;" />
             <engine:Button text="Options" name="btn_Options" class="defaultButton" />
             <engine:Button text="Save" name="btn_Save" class="defaultButton" />
-            <engine:Button text="Load" name="btn_Load" class="defaultButton" />
+            <engine:Button text="Load" name="btn_Load" class="defaultButton" style="height: 50px;" />
+            <engine:Button text="Main Menu&#x9;" name="btn_MainMenu" class="defaultButton" />
             <engine:Button text="Quit" name="btn_Quit" class="defaultButton" />
         </engine:VisualElement>
     </engine:VisualElement>

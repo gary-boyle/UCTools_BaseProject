@@ -497,10 +497,7 @@ namespace GameFramework.UI.Screens
 
         private async Task ClosePopup()
         {
-            if (_uiService != null)
-            {
-                await _uiService.HidePopupAsync<LoadGamePopup>();
-            }
+            await _uiService?.HidePopupAsync<LoadGamePopup>();
         }
     }
     
