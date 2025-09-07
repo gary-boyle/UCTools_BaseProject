@@ -54,7 +54,7 @@ namespace GameFramework.UI.Screens
         private void OnLoadClicked(ClickEvent evt)
         {
             Debug.Log("Load Pressed");
-            _eventSystem?.Publish(new LoadRequestedEvent());
+            _eventSystem?.Publish(new LoadWindowRequestedEvent());
         }
         
         private void OnOptionsClicked(ClickEvent evt)

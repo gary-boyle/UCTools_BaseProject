@@ -1,0 +1,17 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="save-file-container" class="save-file-item">
+        <ui:VisualElement style="flex-grow: 1; flex-direction: column;">
+            <ui:VisualElement name="header-container" class="save-file-header" style="flex-direction: row;">
+                <ui:Label name="lbl_PlayerName" text="Player Name" class="save-file-player" />
+                <ui:Label name="lbl_Difficulty" text="Normal" class="save-file-difficulty" />
+                <ui:Label name="lbl_Scene" text="Scene Name" class="save-file-scene" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="info-container" class="save-file-info" style="flex-direction: column;">
+            <ui:VisualElement name="time-info-container" class="save-file-time-container" style="flex-direction: row;">
+                <ui:Label name="lbl_SaveDate" text="Saved: 2024-01-01 12:00" class="save-file-date" />
+                <ui:Label name="lbl_PlayTime" text="Play Time: 00:00:00" class="save-file-time" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

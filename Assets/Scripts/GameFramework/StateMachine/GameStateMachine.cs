@@ -39,7 +39,7 @@ namespace GameFramework.StateMachine
             GameStateType.NewGame,
             GameStateType.Playing,
             GameStateType.Paused,
-            GameStateType.Options,
+            //GameStateType.Options,
             GameStateType.Credits,
             GameStateType.GameOver,
             GameStateType.Victory,
@@ -189,7 +189,7 @@ namespace GameFramework.StateMachine
                 RegisterState(_container.Resolve<NewGameState>());
                 RegisterState(_container.Resolve<PlayingState>());
                 RegisterState(_container.Resolve<PausedState>());
-                RegisterState(_container.Resolve<OptionsState>());
+                //RegisterState(_container.Resolve<OptionsState>());
                 RegisterState(_container.Resolve<CreditsState>());
                 RegisterState(_container.Resolve<GameOverState>());
                 RegisterState(_container.Resolve<VictoryState>());

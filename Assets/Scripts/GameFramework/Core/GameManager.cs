@@ -377,7 +377,7 @@ namespace GameFramework.Core
             _container.RegisterTransient<NewGameState, NewGameState>();
             _container.RegisterTransient<PlayingState, PlayingState>();
             _container.RegisterTransient<PausedState, PausedState>();
-            _container.RegisterTransient<OptionsState, OptionsState>();
+            //_container.RegisterTransient<OptionsState, OptionsState>();
             _container.RegisterTransient<CreditsState, CreditsState>();
             _container.RegisterTransient<GameOverState, GameOverState>();
             _container.RegisterTransient<VictoryState, VictoryState>();

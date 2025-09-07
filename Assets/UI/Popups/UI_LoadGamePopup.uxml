@@ -1,0 +1,13 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:Template name="Widget_CloseButton" src="project://database/Assets/UI/Widgets/Widget_CloseButton.uxml?fileID=9197481963319205126&amp;guid=0ae08ca0a349c17499c551fac1d2415c&amp;type=3#Widget_CloseButton" />
+    <Style src="project://database/Assets/UI/USS/default.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3#default" />
+    <engine:VisualElement name="VisualElement" class="screenBackground">
+        <engine:Label text="Load Game" name="lbl_Options" class="defaultText" style="font-size: 103px;" />
+        <engine:VisualElement class="defaultText" style="justify-content: center; flex-grow: 1; width: 100%;">
+            <engine:ListView name="list_LoadFiles" item-template="project://database/Assets/UI/Widgets/Widget_SaveFileInfo.uxml?fileID=9197481963319205126&amp;guid=e2383e1d2eca413d8739f479bd18f7ac&amp;type=3#Widget_SaveFileInfo" virtualization-method="DynamicHeight" show-add-remove-footer="false" show-border="true" style="flex-grow: 1;" />
+            <engine:Button text="Load" name="btn_Load" />
+            <engine:Label name="lbl_Loading" />
+        </engine:VisualElement>
+    </engine:VisualElement>
+    <engine:Instance template="Widget_CloseButton" name="CloseContainer" class="closeButtonPosition" />
+</engine:UXML>

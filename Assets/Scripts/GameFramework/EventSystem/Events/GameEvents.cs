@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using GameFramework.Core;
+using GameFramework.DataStructures;
 using GameFramework.StateMachine.Enum;
 
 using UnityEngine;
@@ -35,7 +37,7 @@ namespace GameFramework.EventSystem.Events
     {
         public string SceneName { get; set; }
     }
-    public class LoadRequestedEvent { }
+    public class LoadWindowRequestedEvent { }
     public class OptionsRequestedEvent { }
     public class CreditsRequestedEvent { }
     public class QuitRequestedEvent { }
@@ -289,6 +291,30 @@ namespace GameFramework.EventSystem.Events
         public Dictionary<string, object> GameData { get; set; }
     }
     
+    /// <summary>
+    /// Event triggered when the player requests to load a saved game
+    /// </summary>
+    public class LoadGameRequestedEvent
+    {
+        public string SaveFileName { get; set; }
+        public SaveFileInfo SaveFileInfo { get; set; }
+        
+        public LoadGameRequestedEvent(string saveFileName, SaveFileInfo saveFileInfo)
+        {
+            SaveFileName = saveFileName;
+            SaveFileInfo = saveFileInfo;
+        }
+    }
     
+    public class LoadSaveFileEvent
+    {
+        public SaveFileInfo SaveFileInfo { get; }
+        public string SaveFileName => SaveFileInfo.fileName;
+
+        public LoadSaveFileEvent(SaveFileInfo saveFileInfo)
+        {
+            SaveFileInfo = saveFileInfo ?? throw new ArgumentNullException(nameof(saveFileInfo));
+        }
+    }
     #endregion
 }

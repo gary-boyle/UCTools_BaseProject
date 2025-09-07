@@ -50,8 +50,9 @@ namespace GameFramework.StateMachine.GameStates
             
             // Subscribe to menu events using injected event system
             EventSystem.Subscribe<NewGameRequestedEvent>(OnNewGameRequested);
-            EventSystem.Subscribe<LoadRequestedEvent>(OnContinueGameRequested);
+            //EventSystem.Subscribe<LoadWindowLoadRequestedEvent>(OnContinueGameRequested);
             EventSystem.Subscribe<OptionsRequestedEvent>(OnOptionsRequested);
+            EventSystem.Subscribe<LoadWindowRequestedEvent>(OnLoadWindowRequested);
             EventSystem.Subscribe<CreditsRequestedEvent>(OnCreditsRequested);
             EventSystem.Subscribe<QuitRequestedEvent>(OnQuitRequested);
         }
@@ -61,7 +62,7 @@ namespace GameFramework.StateMachine.GameStates
             await TransitionToStateAsync(GameStateType.NewGame);
         }
         
-        private async void OnContinueGameRequested(LoadRequestedEvent evt)
+        private async void OnContinueGameRequested(LoadWindowRequestedEvent evt)
         {
             // Load the most recent save using the new session-based system
             var mostRecentSave = SaveService.GetMostRecentSaveName();
@@ -98,6 +99,13 @@ namespace GameFramework.StateMachine.GameStates
             await UIService.ShowPopupAsync<OptionsPopup>();
         }
         
+        private async void OnLoadWindowRequested(LoadWindowRequestedEvent evt)
+        {
+            Debug.Log("OnOptionsRequested firing");
+            // Show options as popup instead of transitioning to options state
+            await UIService.ShowPopupAsync<LoadGamePopup>();
+        }
+        
         private async void OnCreditsRequested(CreditsRequestedEvent evt)
         {
             await TransitionToStateAsync(GameStateType.Credits);
@@ -112,8 +120,9 @@ namespace GameFramework.StateMachine.GameStates
         {
             // Unsubscribe from events using injected event system
             EventSystem.Unsubscribe<NewGameRequestedEvent>(OnNewGameRequested);
-            EventSystem.Unsubscribe<LoadRequestedEvent>(OnContinueGameRequested);
+            //EventSystem.Unsubscribe<LoadWindowRequestedEvent>(OnContinueGameRequested);
             EventSystem.Unsubscribe<OptionsRequestedEvent>(OnOptionsRequested);
+            EventSystem.Unsubscribe<LoadWindowRequestedEvent>(OnLoadWindowRequested);
             EventSystem.Unsubscribe<CreditsRequestedEvent>(OnCreditsRequested);
             EventSystem.Unsubscribe<QuitRequestedEvent>(OnQuitRequested);
             

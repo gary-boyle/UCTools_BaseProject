@@ -17,7 +17,8 @@ namespace GameFramework.UI.Screens
         // UI Elements
         private Button _testButton;
         private Button _pauseButton;
-        
+        private Button _saveButton;
+
         // Debug Labels
         private Label _debugLabel1; // First label (no name in UXML)
         private Label _debugLabel2; // lbl_Debug2
@@ -49,6 +50,8 @@ namespace GameFramework.UI.Screens
             // Clean up event subscriptions
             _testButton?.UnregisterCallback<ClickEvent>(OnTestButtonClicked);
             _pauseButton?.UnregisterCallback<ClickEvent>(OnPauseButtonClicked);
+            _saveButton?.UnregisterCallback<ClickEvent>(OnSaveButtonClicked);
+
         }
         
         private void InitializeUI()
@@ -56,7 +59,8 @@ namespace GameFramework.UI.Screens
             // Get button references
             _testButton = RootElement?.Q<Button>("btn_Test");
             _pauseButton = RootElement?.Q<Button>("btn_Pause");
-            
+            _saveButton = RootElement?.Q<Button>("btn_Save");
+
             _debugLabel1 ??= RootElement?.Q<Label>("lbl_Debug1");
             _debugLabel2 ??= RootElement?.Q<Label>("lbl_Debug2");
             _debugLabel3 ??= RootElement?.Q<Label>("lbl_Debug3");  
@@ -65,23 +69,14 @@ namespace GameFramework.UI.Screens
             // Subscribe to button events
             _testButton?.RegisterCallback<ClickEvent>(OnTestButtonClicked);
             _pauseButton?.RegisterCallback<ClickEvent>(OnPauseButtonClicked);
-            
+            _saveButton?.RegisterCallback<ClickEvent>(OnSaveButtonClicked);
+
             // Set initial button states
             SetupButtonStates();
         }
         
         private void SetupButtonStates()
         {
-            // Configure button appearance or initial states if needed
-            if (_testButton != null)
-            {
-                _testButton.SetEnabled(true);
-            }
-            
-            if (_pauseButton != null)
-            {
-                _pauseButton.SetEnabled(true);
-            }
         }
         
         #region Button Event Handlers
@@ -102,6 +97,14 @@ namespace GameFramework.UI.Screens
             _eventSystem?.Publish(new PauseRequestedEvent());
         }
         
+        private void OnSaveButtonClicked(ClickEvent evt)
+        {
+            Debug.Log("[GamePlayScreen] Save button clicked");
+            
+            // Publish pause event
+            //_eventSystem?.Publish(new SaveGameEvent());
+            _gameDataService.SaveCurrentSessionAsync("TestSave");
+        }
         #endregion
         
         #region Debug Label Updates

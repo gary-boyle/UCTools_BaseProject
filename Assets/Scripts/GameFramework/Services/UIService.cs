@@ -134,6 +134,8 @@ namespace GameFramework.Services
             
             // Register popups
             RegisterPopup(new OptionsPopup(root.Q<VisualElement>("UI_OptionsPopup")));
+            RegisterPopup(new LoadGamePopup(root.Q<VisualElement>("UI_LoadGamePopup")));
+
         }
 
         public async Task ShowScreenAsync<T>() where T : UIScreen
