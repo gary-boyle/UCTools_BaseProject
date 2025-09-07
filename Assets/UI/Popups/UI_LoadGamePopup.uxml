@@ -7,6 +7,7 @@
             <engine:ListView name="list_LoadFiles" item-template="project://database/Assets/UI/Widgets/Widget_SaveFileInfo.uxml?fileID=9197481963319205126&amp;guid=e2383e1d2eca413d8739f479bd18f7ac&amp;type=3#Widget_SaveFileInfo" virtualization-method="DynamicHeight" show-add-remove-footer="false" show-border="true" style="flex-grow: 1;" />
             <engine:Button text="Load" name="btn_Load" />
             <engine:Label name="lbl_Loading" />
+            <engine:Button text="Delete Selected" name="btn_DeleteSelected" />
         </engine:VisualElement>
     </engine:VisualElement>
     <engine:Instance template="Widget_CloseButton" name="CloseContainer" class="closeButtonPosition" />

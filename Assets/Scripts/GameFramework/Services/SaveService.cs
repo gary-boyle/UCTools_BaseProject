@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using GameFramework.DataStructures;
 using GameFramework.EventSystem.Events;
@@ -9,8 +10,8 @@ using UnityEngine;
 namespace GameFramework.Services
 {
     /// <summary>
-    /// Simplified save service that works directly with GameSession objects
-    /// Handles file I/O operations for game sessions
+    /// Enhanced save service that handles both file operations and UI support
+    /// Provides clean separation between low-level file I/O and high-level UI operations
     /// </summary>
     public class SaveService : ISaveService
     {
@@ -26,6 +27,7 @@ namespace GameFramework.Services
             _saveDirectory = Application.persistentDataPath + "/Saves/";
         }
         
+        #region Initialization
         public async Task InitializeAsync()
         {
             if (IsInitialized) return;
@@ -46,23 +48,26 @@ namespace GameFramework.Services
         {
             IsInitialized = false;
         }
+        #endregion
         
-        /// <summary>
-        /// Saves a game session to file
-        /// </summary>
+        #region Core Save/Load Operations
         public async Task<bool> SaveGameSessionAsync(GameSession session, string saveName = null)
         {
             if (session == null) return false;
             
             if (string.IsNullOrEmpty(saveName))
             {
-                saveName = $"{session.playerName}_AutoSave_{DateTime.Now:yyyy-MM-dd_HH-mm-ss}";
+                saveName = GenerateAutoSaveName(session);
             }
             
             try
             {
+                // Update session timestamp before saving
+                session.lastSaveTime = DateTime.Now;
+                session.UpdatePlayTime();
+                
                 var json = JsonUtility.ToJson(session, true);
-                var filePath = _saveDirectory + saveName + SAVE_EXTENSION;
+                var filePath = GetSaveFilePath(saveName);
                 
                 await System.IO.File.WriteAllTextAsync(filePath, json);
                 
@@ -77,12 +82,9 @@ namespace GameFramework.Services
             }
         }
         
-        /// <summary>
-        /// Loads a game session from file
-        /// </summary>
         public async Task<GameSession> LoadGameSessionAsync(string saveName)
         {
-            var filePath = _saveDirectory + saveName + SAVE_EXTENSION;
+            var filePath = GetSaveFilePath(saveName);
             
             if (!System.IO.File.Exists(filePath))
             {
@@ -106,7 +108,6 @@ namespace GameFramework.Services
             }
         }
         
-        // Remaining methods stay the same but work with new file extension
         public async Task<string[]> GetSaveFilesAsync()
         {
             return await Task.Run(() =>
@@ -128,7 +129,7 @@ namespace GameFramework.Services
         
         public async Task<bool> DeleteSaveAsync(string saveName)
         {
-            var filePath = _saveDirectory + saveName + SAVE_EXTENSION;
+            var filePath = GetSaveFilePath(saveName);
             
             if (System.IO.File.Exists(filePath))
             {
@@ -173,5 +174,89 @@ namespace GameFramework.Services
             
             return System.IO.Path.GetFileNameWithoutExtension(mostRecentFile);
         }
+        #endregion
+        
+        #region UI Support Operations
+        /// <summary>
+        /// Gets formatted save file information for UI display, sorted by most recent first
+        /// </summary>
+        public async Task<SaveFileInfo[]> GetSaveFileInfosAsync()
+        {
+            try
+            {
+                var saveFileNames = await GetSaveFilesAsync();
+                
+                // Load save file info in parallel for better performance
+                var loadTasks = saveFileNames.Select(CreateSaveFileInfoAsync);
+                var results = await Task.WhenAll(loadTasks);
+                
+                // Filter out nulls and sort by most recent first
+                return results
+                    .Where(info => info != null)
+                    .OrderByDescending(info => info.lastSaveTime)
+                    .ToArray();
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"[SaveService] Error loading save file infos: {e}");
+                return new SaveFileInfo[0];
+            }
+        }
+        
+        /// <summary>
+        /// Gets formatted save file information for a specific save file
+        /// </summary>
+        public async Task<SaveFileInfo> GetSaveFileInfoAsync(string saveName)
+        {
+            return await CreateSaveFileInfoAsync(saveName);
+        }
+        
+        /// <summary>
+        /// Deletes a save file using SaveFileInfo
+        /// </summary>
+        public async Task<bool> DeleteSaveFileByInfoAsync(SaveFileInfo saveFileInfo)
+        {
+            if (saveFileInfo == null) return false;
+            return await DeleteSaveAsync(saveFileInfo.fileName);
+        }
+        
+        /// <summary>
+        /// Loads a game session using SaveFileInfo
+        /// </summary>
+        public async Task<GameSession> LoadGameSessionByInfoAsync(SaveFileInfo saveFileInfo)
+        {
+            if (saveFileInfo == null) return null;
+            return await LoadGameSessionAsync(saveFileInfo.fileName);
+        }
+        #endregion
+        
+        #region Private Helper Methods
+        private string GetSaveFilePath(string saveName)
+        {
+            return _saveDirectory + saveName + SAVE_EXTENSION;
+        }
+        
+        private string GenerateAutoSaveName(GameSession session)
+        {
+            return $"{session.playerName}_AutoSave_{DateTime.Now:yyyy-MM-dd_HH-mm-ss}";
+        }
+        
+        /// <summary>
+        /// Creates SaveFileInfo from a save file name, handling errors gracefully
+        /// </summary>
+        private async Task<SaveFileInfo> CreateSaveFileInfoAsync(string fileName)
+        {
+            try
+            {
+                var gameSession = await LoadGameSessionAsync(fileName);
+                return gameSession != null ? new SaveFileInfo(fileName, gameSession) : null;
+            }
+            catch (Exception ex)
+            {
+                Debug.LogWarning($"[SaveService] Failed to create SaveFileInfo for '{fileName}': {ex.Message}");
+                return null;
+            }
+        }
+        #endregion
     }
 }

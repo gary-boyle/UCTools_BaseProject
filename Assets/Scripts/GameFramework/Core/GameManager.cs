@@ -269,6 +269,7 @@ namespace GameFramework.Core
             
             // Register services that might depend on the above
             _container.RegisterSingleton<IUIService, UIService>();
+            _container.RegisterSingleton<ILoadService, LoadService>();
             _container.RegisterSingleton<ISaveService, SaveService>();
             _container.RegisterSingleton<IConfigService, ConfigService>();
             _container.RegisterSingleton<IGameDataService, GameDataService>();
