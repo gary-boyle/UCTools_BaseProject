@@ -1,21 +1,38 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using GameFramework.UI;
+using GameFramework.UI.Screens;
+using GameFramework.UI.Popups;
 
 namespace GameFramework.Services.Interfaces
 {
     /// <summary>
-    /// Interface for UI management service
+    /// Minimal UI Service interface with essential popup management
     /// </summary>
     public interface IUIService : IGameService
     {
+        bool IsInitialized { get; }
+        
+        Task InitializeAsync();
+        void Shutdown();
+        void Update();
+        
+        // Screen Management
         Task ShowScreenAsync<T>() where T : UIScreen;
         Task HideScreenAsync<T>() where T : UIScreen;
+        T GetScreen<T>() where T : UIScreen;
+        
+        // Essential Popup Management
         Task ShowPopupAsync<T>() where T : UIPopup;
         Task HidePopupAsync<T>() where T : UIPopup;
-        void RegisterScreen<T>(T screen) where T : UIScreen;
-        void RegisterPopup<T>(T popup) where T : UIPopup;
-        T GetScreen<T>() where T : UIScreen;
-        T GetPopup<T>() where T : UIPopup;
-        public void SetDebugScreenText(string text);
+        Task CloseAllPopupsAsync();
+        
+        // Popup State Queries
+        bool IsCurrentPopup<T>() where T : UIPopup;
+        Type GetCurrentPopupType();
+        int GetOpenPopupCount();
+        
+        // Debug
+        void SetDebugScreenText(string text);
     }
 }

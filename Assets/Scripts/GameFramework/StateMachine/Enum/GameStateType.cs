@@ -11,8 +11,8 @@
         Loading,     // Loading screens between transitions  
         NewGame,     // New game setup and character creation
         Playing,     // Active gameplay
-        Paused,      // Game paused overlay
-        Options,     // Settings and configuration
+        //Paused,      // Game paused overlay
+        //Options,     // Settings and configuration
         Credits,     // Credits roll
         GameOver,    // Game over screen
         Victory,     // Victory/completion screen

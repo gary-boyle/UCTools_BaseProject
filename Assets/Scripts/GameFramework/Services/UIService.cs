@@ -29,6 +29,10 @@ namespace GameFramework.Services
         private readonly UIDocument _uiDocument;
         private readonly IUIDocumentWrapper _uiDocumentWrapper;
 
+        // Popup management fields
+        private UIPopup _currentPopup;
+        private readonly Stack<UIPopup> _popupStack = new Stack<UIPopup>();
+
         /// <summary>
         /// Constructor injection - receives required dependencies
         /// </summary>
@@ -82,6 +86,12 @@ namespace GameFramework.Services
                     _updatableScreens.RemoveAt(i);
                 }
             }
+
+            // Update current popup if it needs updates
+            if (_currentPopup != null && _currentPopup.IsVisible && _currentPopup.NeedsFrameUpdates)
+            {
+                _currentPopup.InternalUpdate(deltaTime);
+            }
         }
         
         public void Shutdown()
@@ -100,6 +110,11 @@ namespace GameFramework.Services
             _screens.Clear();
             _popups.Clear();
             _updatableScreens.Clear();
+            
+            // Clear popup management
+            _currentPopup = null;
+            _popupStack.Clear();
+            
             IsInitialized = false;
         }
         
@@ -125,7 +140,6 @@ namespace GameFramework.Services
             RegisterScreen(new SplashScreen(root.Q<VisualElement>("UI_SplashScreen")));
             RegisterScreen(new MainMenuScreen(root.Q<VisualElement>("UI_MainMenuScreen")));
             RegisterScreen(new GamePlayScreen(root.Q<VisualElement>("UI_GamePlayScreen")));
-            RegisterScreen(new PauseScreen(root.Q<VisualElement>("UI_PauseScreen")));
             RegisterScreen(new LoadingScreen(root.Q<VisualElement>("UI_LoadingScreen")));
             RegisterScreen(new NewGameScreen(root.Q<VisualElement>("UI_NewGameScreen")));
             RegisterScreen(new CreditsScreen(root.Q<VisualElement>("UI_CreditScreen")));
@@ -134,8 +148,8 @@ namespace GameFramework.Services
             
             // Register popups
             RegisterPopup(new OptionsPopup(root.Q<VisualElement>("UI_OptionsPopup")));
-            RegisterPopup(new LoadGamePopup(root.Q<VisualElement>("UI_LoadGamePopup")));
-
+            RegisterPopup(new LoadGamePopup(root.Q<VisualElement>("UI_LoadGamePopup")));            
+            RegisterPopup(new PausePopup(root.Q<VisualElement>("UI_PausePopup")));
         }
 
         public async Task ShowScreenAsync<T>() where T : UIScreen
@@ -169,7 +183,18 @@ namespace GameFramework.Services
             Debug.Log("Trying to show a popup");
             if (_popups.TryGetValue(typeof(T), out var popup))
             {
+                // Push current popup to stack if exists
+                if (_currentPopup != null)
+                {
+                    _popupStack.Push(_currentPopup);
+                    Debug.Log($"[UIService] Pushed {_currentPopup.GetType().Name} to popup stack");
+                }
+
+                // Show new popup
+                _currentPopup = popup;
                 popup.Show();
+                
+                Debug.Log($"[UIService] Showing popup: {typeof(T).Name} (Stack depth: {_popupStack.Count})");
                 await Task.CompletedTask;
             }
             else
@@ -182,7 +207,25 @@ namespace GameFramework.Services
         {
             if (_popups.TryGetValue(typeof(T), out var popup))
             {
-                popup.Hide();
+                if (_currentPopup == popup)
+                {
+                    popup.Hide();
+
+                    // Restore previous popup if any
+                    if (_popupStack.Count > 0)
+                    {
+                        _currentPopup = _popupStack.Pop();
+                        _currentPopup.Show();
+                        Debug.Log($"[UIService] Restored popup: {_currentPopup.GetType().Name} (Stack depth: {_popupStack.Count})");
+                    }
+                    else
+                    {
+                        _currentPopup = null;
+                        Debug.Log($"[UIService] No more popups in stack");
+                    }
+
+                    Debug.Log($"[UIService] Hidden popup: {typeof(T).Name}");
+                }
                 await Task.CompletedTask;
             }
             else
@@ -246,5 +289,134 @@ namespace GameFramework.Services
                 _updatableScreens.Remove(screen);
             }
         }
+        
+        #region NEW POPUP MANAGEMENT METHODS
+        
+        /// <summary>
+        /// Gets the currently visible popup (null if none)
+        /// </summary>
+        public UIPopup GetCurrentPopup()
+        {
+            return _currentPopup;
+        }
+
+        /// <summary>
+        /// Gets the type of the currently visible popup (null if none)
+        /// </summary>
+        public Type GetCurrentPopupType()
+        {
+            return _currentPopup?.GetType();
+        }
+
+        /// <summary>
+        /// Checks if a specific popup type is currently the active popup
+        /// </summary>
+        public bool IsCurrentPopup<T>() where T : UIPopup
+        {
+            return _currentPopup != null && _currentPopup.GetType() == typeof(T);
+        }
+
+        /// <summary>
+        /// Check if a specific popup is currently open (either current or in stack)
+        /// </summary>
+        public bool IsPopupOpen<T>() where T : UIPopup
+        {
+            if (!_popups.TryGetValue(typeof(T), out var popup))
+                return false;
+
+            return _currentPopup == popup || _popupStack.Contains(popup);
+        }
+
+        /// <summary>
+        /// Get the position of a popup in the stack (0 = current, 1 = top of stack, etc.)
+        /// Returns -1 if popup is not open
+        /// </summary>
+        public int GetPopupStackPosition<T>() where T : UIPopup
+        {
+            if (!_popups.TryGetValue(typeof(T), out var popup))
+                return -1;
+
+            if (_currentPopup == popup)
+                return 0;
+
+            var stackArray = _popupStack.ToArray();
+            for (int i = 0; i < stackArray.Length; i++)
+            {
+                if (stackArray[i] == popup)
+                    return i + 1;
+            }
+
+            return -1;
+        }
+        
+        /// <summary>
+        /// Closes all currently open popups and clears the popup stack
+        /// </summary>
+        public async Task CloseAllPopupsAsync()
+        {
+            Debug.Log($"[UIService] Closing all popups... (Current: {_currentPopup?.GetType().Name}, Stack: {_popupStack.Count})");
+            
+            // Hide current popup if any
+            if (_currentPopup != null)
+            {
+                _currentPopup.Hide();
+                Debug.Log($"[UIService] Closed current popup: {_currentPopup.GetType().Name}");
+                _currentPopup = null;
+            }
+            
+            // Hide all popups in the stack
+            while (_popupStack.Count > 0)
+            {
+                var popup = _popupStack.Pop();
+                popup.Hide();
+                Debug.Log($"[UIService] Closed stacked popup: {popup.GetType().Name}");
+            }
+            
+            Debug.Log("[UIService] All popups closed, stack cleared");
+            await Task.CompletedTask;
+        }
+
+        /// <summary>
+        /// Checks if any popups are currently open
+        /// </summary>
+        public bool HasOpenPopups()
+        {
+            return _currentPopup != null || _popupStack.Count > 0;
+        }
+
+        /// <summary>
+        /// Gets the number of open popups (current + stacked)
+        /// </summary>
+        public int GetOpenPopupCount()
+        {
+            int count = _currentPopup != null ? 1 : 0;
+            count += _popupStack.Count;
+            return count;
+        }
+
+        /// <summary>
+        /// Gets all popups in the current stack (excluding current popup)
+        /// </summary>
+        public UIPopup[] GetPopupStack()
+        {
+            return _popupStack.ToArray();
+        }
+
+        /// <summary>
+        /// Enhanced hide popup method that can optionally close all popups
+        /// </summary>
+        public async Task HidePopupAsync<T>(bool closeAll = false) where T : UIPopup
+        {
+            if (closeAll)
+            {
+                await CloseAllPopupsAsync();
+                return;
+            }
+            
+            // Use the existing HidePopupAsync method
+            await HidePopupAsync<T>();
+        }
+        
+        #endregion
     }
 }

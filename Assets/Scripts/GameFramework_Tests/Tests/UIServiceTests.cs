@@ -185,8 +185,6 @@ namespace GameFramework.Tests.UI
             Assert.IsNotNull(_uiService.GetScreen<SplashScreen>());
             Assert.IsNotNull(_uiService.GetScreen<MainMenuScreen>());
             Assert.IsNotNull(_uiService.GetScreen<GamePlayScreen>());
-            Assert.IsNotNull(_uiService.GetScreen<PauseScreen>());
-            Assert.IsNotNull(_uiService.GetScreen<OptionsScreen>());
             Assert.IsNotNull(_uiService.GetScreen<LoadingScreen>());
             Assert.IsNotNull(_uiService.GetScreen<NewGameScreen>());
             Assert.IsNotNull(_uiService.GetScreen<CreditsScreen>());

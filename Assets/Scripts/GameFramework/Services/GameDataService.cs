@@ -20,6 +20,9 @@ namespace GameFramework.Services
         public GameSession CurrentSession { get; private set; }
         public LoadingConfiguration CurrentLoadingConfig { get; set; }
         
+        // Global pause state - accessible by all systems
+        public bool IsPaused { get; private set; }
+        
         private readonly IEventSystem _eventSystem;
         private readonly ISaveService _saveService;
         
@@ -27,6 +30,7 @@ namespace GameFramework.Services
         public event Action<GameSession> OnSessionCreated;
         public event Action<GameSession> OnSessionLoaded;
         public event Action OnSessionCleared;
+        public event Action<bool> OnPauseStateChanged;
 
         public GameDataService(IEventSystem eventSystem, ISaveService saveService)
         {
@@ -43,6 +47,10 @@ namespace GameFramework.Services
             // Subscribe to scene events to keep session updated
             _eventSystem.Subscribe<SceneLoadedEvent>(OnSceneLoaded);
             
+            // Subscribe to pause events to track global pause state
+            _eventSystem.Subscribe<GamePausedEvent>(OnGamePaused);
+            _eventSystem.Subscribe<GameResumedEvent>(OnGameResumed);
+            
             IsInitialized = true;
             await Task.CompletedTask;
         }
@@ -50,15 +58,49 @@ namespace GameFramework.Services
         public void Shutdown()
         {
             _eventSystem?.Unsubscribe<SceneLoadedEvent>(OnSceneLoaded);
+            _eventSystem?.Unsubscribe<GamePausedEvent>(OnGamePaused);
+            _eventSystem?.Unsubscribe<GameResumedEvent>(OnGameResumed);
+            
             ClearSession();
             CurrentLoadingConfig = null;
+            IsPaused = false;
             IsInitialized = false;
         }
 
         public void Update()
         {
-            UpdateSession();
+            // Only update session if game is not paused
+            if (!IsPaused)
+            {
+                UpdateSession();
+            }
         }
+        
+        #region Pause State Management
+        
+        /// <summary>
+        /// Sets the global pause state
+        /// </summary>
+        public void SetPauseState(bool isPaused)
+        {
+            if (IsPaused != isPaused)
+            {
+                IsPaused = isPaused;
+                OnPauseStateChanged?.Invoke(IsPaused);
+                
+                Debug.Log($"[GameDataService] Global pause state changed to: {IsPaused}");
+            }
+        }
+        
+        /// <summary>
+        /// Checks if any game systems should pause their logic
+        /// </summary>
+        public bool ShouldPauseGameLogic()
+        {
+            return IsPaused;
+        }
+        
+        #endregion
         
         #region GameSession Management
         
@@ -105,6 +147,7 @@ namespace GameFramework.Services
         
         /// <summary>
         /// Updates current session with play time and handles auto-save
+        /// Only called when not paused
         /// </summary>
         public void UpdateSession()
         {
@@ -232,8 +275,22 @@ namespace GameFramework.Services
             }
         }
         
+        /// <summary>
+        /// Handles global pause events
+        /// </summary>
+        private void OnGamePaused(GamePausedEvent evt)
+        {
+            SetPauseState(true);
+        }
+        
+        /// <summary>
+        /// Handles global resume events
+        /// </summary>
+        private void OnGameResumed(GameResumedEvent evt)
+        {
+            SetPauseState(false);
+        }
+        
         #endregion
-
-
     }
 }

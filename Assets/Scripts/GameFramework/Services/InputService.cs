@@ -164,12 +164,10 @@ namespace GameFramework.Services
                 GameStateType.MainMenu => InputContext.UI,
                 GameStateType.Loading => InputContext.UI,     // Allow UI input to cancel loading
                 GameStateType.NewGame => InputContext.UI,
-                GameStateType.Options => InputContext.UI,
                 GameStateType.Credits => InputContext.UI,
                 GameStateType.GameOver => InputContext.UI,
                 GameStateType.Victory => InputContext.UI,
                 GameStateType.Playing => InputContext.Player,
-                GameStateType.Paused => InputContext.Mixed,   // Need both UI for menus and some player input
                 GameStateType.Quit => InputContext.None,
                 _ => InputContext.UI
             };

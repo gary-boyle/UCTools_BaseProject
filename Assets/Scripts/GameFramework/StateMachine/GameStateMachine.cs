@@ -38,7 +38,7 @@ namespace GameFramework.StateMachine
             GameStateType.Loading,
             GameStateType.NewGame,
             GameStateType.Playing,
-            GameStateType.Paused,
+            //GameStateType.Paused,
             //GameStateType.Options,
             GameStateType.Credits,
             GameStateType.GameOver,
@@ -188,7 +188,7 @@ namespace GameFramework.StateMachine
                 RegisterState(_container.Resolve<LoadingState>());
                 RegisterState(_container.Resolve<NewGameState>());
                 RegisterState(_container.Resolve<PlayingState>());
-                RegisterState(_container.Resolve<PausedState>());
+                //RegisterState(_container.Resolve<PausedState>());
                 //RegisterState(_container.Resolve<OptionsState>());
                 RegisterState(_container.Resolve<CreditsState>());
                 RegisterState(_container.Resolve<GameOverState>());
@@ -223,40 +223,25 @@ namespace GameFramework.StateMachine
             // Main Menu transitions
             _validTransitions.Add((GameStateType.MainMenu, GameStateType.NewGame));
             _validTransitions.Add((GameStateType.MainMenu, GameStateType.Loading));
-            _validTransitions.Add((GameStateType.MainMenu, GameStateType.Options));
             _validTransitions.Add((GameStateType.MainMenu, GameStateType.Credits));
             _validTransitions.Add((GameStateType.MainMenu, GameStateType.Quit));
             
             // Loading screen transitions
             _validTransitions.Add((GameStateType.Loading, GameStateType.Playing));
             _validTransitions.Add((GameStateType.Loading, GameStateType.MainMenu));
-            _validTransitions.Add((GameStateType.Loading, GameStateType.GameOver)); // In case loading fails
+            _validTransitions.Add((GameStateType.Loading, GameStateType.GameOver));
             
             // New Game setup transitions
             _validTransitions.Add((GameStateType.NewGame, GameStateType.Loading));
             _validTransitions.Add((GameStateType.NewGame, GameStateType.MainMenu));
-            _validTransitions.Add((GameStateType.NewGame, GameStateType.Playing)); // Direct to game if no loading needed
+            _validTransitions.Add((GameStateType.NewGame, GameStateType.Playing));
             
-            // Playing game state transitions
-            _validTransitions.Add((GameStateType.Playing, GameStateType.Paused));
-            _validTransitions.Add((GameStateType.Playing, GameStateType.Options));
+            // Playing game state transitions - NO MORE PAUSED STATE
             _validTransitions.Add((GameStateType.Playing, GameStateType.GameOver));
             _validTransitions.Add((GameStateType.Playing, GameStateType.Victory));
             _validTransitions.Add((GameStateType.Playing, GameStateType.MainMenu));
-            _validTransitions.Add((GameStateType.Playing, GameStateType.Loading)); // For level transitions
-            
-            // Paused state transitions
-            _validTransitions.Add((GameStateType.Paused, GameStateType.Playing));
-            _validTransitions.Add((GameStateType.Paused, GameStateType.Options));
-            _validTransitions.Add((GameStateType.Paused, GameStateType.MainMenu));
-            _validTransitions.Add((GameStateType.Paused, GameStateType.Quit));
-            
-            // Options menu transitions (can be accessed from multiple states)
-            _validTransitions.Add((GameStateType.Options, GameStateType.MainMenu));
-            _validTransitions.Add((GameStateType.Options, GameStateType.Playing));
-            _validTransitions.Add((GameStateType.Options, GameStateType.Paused));
-            _validTransitions.Add((GameStateType.Options, GameStateType.NewGame));
-            
+            _validTransitions.Add((GameStateType.Playing, GameStateType.Loading));
+
             // Credits transitions
             _validTransitions.Add((GameStateType.Credits, GameStateType.MainMenu));
             _validTransitions.Add((GameStateType.Credits, GameStateType.Quit));
@@ -264,17 +249,14 @@ namespace GameFramework.StateMachine
             // Game Over transitions
             _validTransitions.Add((GameStateType.GameOver, GameStateType.MainMenu));
             _validTransitions.Add((GameStateType.GameOver, GameStateType.NewGame));
-            _validTransitions.Add((GameStateType.GameOver, GameStateType.Loading)); // For restart
+            _validTransitions.Add((GameStateType.GameOver, GameStateType.Loading));
             _validTransitions.Add((GameStateType.GameOver, GameStateType.Quit));
             
             // Victory transitions
             _validTransitions.Add((GameStateType.Victory, GameStateType.MainMenu));
             _validTransitions.Add((GameStateType.Victory, GameStateType.Credits));
-            _validTransitions.Add((GameStateType.Victory, GameStateType.NewGame)); // New Game+
+            _validTransitions.Add((GameStateType.Victory, GameStateType.NewGame));
             _validTransitions.Add((GameStateType.Victory, GameStateType.Quit));
-            
-            // Quit state is terminal - no outgoing transitions
-            // This ensures that once quit is initiated, the game will shut down
             
             Debug.Log($"[GameStateMachine] Defined {_validTransitions.Count} valid state transitions");
         }

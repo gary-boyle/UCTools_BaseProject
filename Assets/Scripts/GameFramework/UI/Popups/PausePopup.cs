@@ -11,13 +11,14 @@ using UCTools_Utilities.UI;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace GameFramework.UI.Screens
+namespace GameFramework.UI.Popups
 {
     /// <summary>
-    /// Pause screen UI that handles pause menu interactions
+    /// Pause popup UI that handles pause menu interactions as an overlay
     /// Provides options to resume, load game, access options, or return to main menu
+    /// Works within PlayingState rather than as a separate state
     /// </summary>
-    public class PauseScreen : UIScreen
+    public class PausePopup : UIPopup
     {
         #region UI Elements
         private Button _loadButton;
@@ -25,7 +26,6 @@ namespace GameFramework.UI.Screens
         private Button _mainMenuButton;
         private Button _quitButton;
         private Button _closeButton;
-
         #endregion
 
         #region Services
@@ -34,7 +34,7 @@ namespace GameFramework.UI.Screens
         private readonly IGameDataService _gameDataService;
         #endregion
 
-        public PauseScreen(VisualElement rootElement) : base(rootElement)
+        public PausePopup(VisualElement rootElement) : base(rootElement)
         {
             // Initialize services via dependency injection
             _uiService = GameManager.GetService<IUIService>() ?? throw new ArgumentNullException(nameof(_uiService));
@@ -59,7 +59,6 @@ namespace GameFramework.UI.Screens
             _mainMenuButton = RootElement?.Q<Button>("btn_MainMenu");
             _quitButton = RootElement?.Q<Button>("btn_Quit");
             _closeButton = RootElement?.Q<Button>("btn_Close");
-
         }
 
         private void ConfigureInitialStates()
@@ -70,10 +69,9 @@ namespace GameFramework.UI.Screens
         private void UpdateButtonStates()
         {
             // Enable/disable load button based on whether save files exist
-            // You might want to check this asynchronously in a more complete implementation
             if (_loadButton != null)
             {
-                _loadButton.SetEnabled(true); // Always enabled for now, LoadGamePopup will handle empty state
+                _loadButton.SetEnabled(true); // LoadGamePopup will handle empty state
             }
 
             // Other buttons are generally always available in pause state
@@ -89,13 +87,13 @@ namespace GameFramework.UI.Screens
             RegisterEventHandlers();
             UpdateButtonStates();
             
-            // Pause the game when showing pause screen
-            PublishPauseEvent();
+            Debug.Log("[PausePopup] Pause popup shown - game should already be paused by PlayingState");
         }
 
         protected override void OnHide()
         {
             UnregisterEventHandlers();
+            Debug.Log("[PausePopup] Pause popup hidden");
         }
 
         private void RegisterEventHandlers()
@@ -115,79 +113,109 @@ namespace GameFramework.UI.Screens
             _quitButton?.UnregisterCallback<ClickEvent>(OnQuitButtonClicked);
             _closeButton?.UnregisterCallback<ClickEvent>(OnCloseButtonClicked);
         }
+        
+
+        private bool CanResumeCurrently()
+        {
+            // Check if PausePopup is the current active popup
+            var isPausePopupCurrent = _uiService?.IsCurrentPopup<PausePopup>() ?? false;
+    
+            if (!isPausePopupCurrent)
+            {
+                var currentPopupType = _uiService?.GetCurrentPopupType()?.Name ?? "None";
+                Debug.Log($"[PausePopup] Cannot resume - another popup is active: {currentPopupType}");
+                return false;
+            }
+    
+            return true;
+        }    
 
         private async void OnCloseButtonClicked(ClickEvent evt)
         {
-            await ClosePopup();
+            if (!CanResumeCurrently())
+            {
+                Debug.Log("[PausePopup] Resume blocked - close other popups first");
+                return;
+            }
+    
+            Debug.Log("[PausePopup] Resume button clicked");
+            RequestResume();
         }
-
+        
         private async void OnLoadButtonClicked(ClickEvent evt)
         {
-            Debug.Log("[PauseScreen] Load button clicked");
+            Debug.Log("[PausePopup] Load button clicked");
             await ShowLoadGamePopup();
         }
 
         private void OnOptionsButtonClicked(ClickEvent evt)
         {
-            Debug.Log("[PauseScreen] Options button clicked");
+            Debug.Log("[PausePopup] Options button clicked");
             RequestShowOptions();
         }
 
         private void OnMainMenuButtonClicked(ClickEvent evt)
         {
-            Debug.Log("[PauseScreen] Main Menu button clicked");
+            Debug.Log("[PausePopup] Main Menu button clicked");
             RequestReturnToMainMenu();
         }
 
         private void OnQuitButtonClicked(ClickEvent evt)
         {
-            Debug.Log("[PauseScreen] Quit button clicked");
+            Debug.Log("[PausePopup] Quit button clicked");
             RequestQuitGame();
         }
         #endregion
 
         #region Action Handlers
-        private async Task ClosePopup()
+        
+        /// <summary>
+        /// Requests to resume the game
+        /// </summary>
+        private void RequestResume()
         {
-            await _uiService?.HidePopupAsync<LoadGamePopup>();
-            await _uiService?.HidePopupAsync<OptionsPopup>();
-
+            Debug.Log("[PausePopup] Requesting resume");
+            _eventSystem?.Publish(new ResumeRequestedEvent());
         }
 
         /// <summary>
-        /// Shows the Load Game popup
+        /// Shows the Load Game popup on top of pause popup
         /// </summary>
         private async Task ShowLoadGamePopup()
         {
             try
             {
-                Debug.Log("[PauseScreen] Opening Load Game popup");
+                Debug.Log("[PausePopup] Opening Load Game popup");
                 await _uiService.ShowPopupAsync<LoadGamePopup>();
             }
             catch (Exception ex)
             {
-                Debug.LogError($"[PauseScreen] Error showing Load Game popup: {ex}");
+                Debug.LogError($"[PausePopup] Error showing Load Game popup: {ex}");
             }
         }
 
         /// <summary>
-        /// Requests to show options screen
+        /// Shows the Options popup on top of pause popup
         /// </summary>
-        private void RequestShowOptions()
+        private async void RequestShowOptions()
         {
-            Debug.Log("[PauseScreen] Requesting options screen");
-            _eventSystem?.Publish(new OptionsRequestedEvent());
-            
+            try
+            {
+                Debug.Log("[PausePopup] Opening Options popup");
+                await _uiService.ShowPopupAsync<OptionsPopup>();
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"[PausePopup] Error showing Options popup: {ex}");
+            }
         }
 
-
-        
         /// <summary>
         /// Requests to return to main menu
         /// </summary>
         private void RequestReturnToMainMenu()
         {
-            Debug.Log("[PauseScreen] Requesting return to main menu");
+            Debug.Log("[PausePopup] Requesting return to main menu");
             _eventSystem.Publish(new MainMenuRequestedEvent());
         }
 
@@ -196,19 +224,10 @@ namespace GameFramework.UI.Screens
         /// </summary>
         private void RequestQuitGame()
         {
-            Debug.Log("[PauseScreen] Requesting quit game");
+            Debug.Log("[PausePopup] Requesting quit game");
             _eventSystem.Publish(new QuitRequestedEvent());
         }
-
-        /// <summary>
-        /// Publishes pause event when screen is shown
-        /// </summary>
-        private void PublishPauseEvent()
-        {
-            Debug.Log("[PauseScreen] Publishing pause event");
-            _eventSystem.Publish(new PauseRequestedEvent());
-        }
-        #endregion
         
+        #endregion
     }
 }

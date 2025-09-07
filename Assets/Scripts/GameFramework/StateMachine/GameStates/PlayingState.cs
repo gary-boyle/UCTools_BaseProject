@@ -6,16 +6,20 @@ using GameFramework.EventSystem.Interfaces;
 using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine.Enum;
 using GameFramework.UI.Screens;
+using GameFramework.UI.Popups;
 using UnityEngine;
 
 namespace GameFramework.StateMachine.GameStates
 {
     /// <summary>
-    /// Playing state with constructor injection and event-driven input handling
+    /// Playing state with internal pause handling via popup overlay
+    /// Pause is no longer a separate state - it's a mode within this state
     /// </summary>
     public class PlayingState : BaseGameState
     {
-        protected readonly IGameDataService GameDataService;
+        private bool _isPaused = false;
+        private float _prePauseTimeScale = 1f;
+        private float _prePauseAudioVolume = 1f;
 
         /// <summary>
         /// Constructor injection - all dependencies provided by DI container
@@ -30,8 +34,6 @@ namespace GameFramework.StateMachine.GameStates
             IGameDataService gameDataService)  
             : base(GameStateType.Playing, stateMachine, eventSystem, audioService, uiService, inputService, consoleService, gameDataService)
         {
-            GameDataService = gameDataService ?? throw new ArgumentNullException(nameof(gameDataService));
-
         }
         
         public override async Task EnterAsync(GameContext context)
@@ -44,21 +46,21 @@ namespace GameFramework.StateMachine.GameStates
             // Start gameplay music using injected audio service
             AudioService.PlayMusic("gameplay");
             
-            // Resume time if it was paused
+            // Ensure time is running (in case we came from another state that modified it)
             Time.timeScale = 1f;
+            _isPaused = false;
             
-            // Subscribe to game events using injected event system
+            // Subscribe to pause/resume events
             EventSystem.Subscribe<PauseRequestedEvent>(OnPauseRequested);
+            EventSystem.Subscribe<ResumeRequestedEvent>(OnResumeRequested);
+            
+            // Subscribe to game events
             EventSystem.Subscribe<GameOverEvent>(OnGameOver);
             EventSystem.Subscribe<VictoryEvent>(OnVictory);
+            EventSystem.Subscribe<MainMenuRequestedEvent>(OnMainMenuRequested);
             
-            // Subscribe to input events for pause functionality
+            // Subscribe to input events
             EventSystem.Subscribe<UICancelInputEvent>(OnCancelInput);
-            
-            // If you add a dedicated Pause action, subscribe to it here:
-            // EventSystem.Subscribe<PlayerPauseInputEvent>(OnPauseInput);
-            
-            // Subscribe to other gameplay input events as needed
             EventSystem.Subscribe<PlayerAttackInputEvent>(OnAttackInput);
             EventSystem.Subscribe<PlayerJumpInputEvent>(OnJumpInput);
             EventSystem.Subscribe<PlayerInteractInputEvent>(OnInteractInput);
@@ -67,145 +69,247 @@ namespace GameFramework.StateMachine.GameStates
             EventSystem.Subscribe<PlayerSprintInputEvent>(OnSprintInput);
             EventSystem.Subscribe<PlayerCrouchInputEvent>(OnCrouchInput);
             
-            // Publish game started event using injected event system
+            // Publish game started event
             EventSystem.Publish<GameStartedEvent>();
+            
+            Debug.Log("[PlayingState] Entered playing state with pause handling");
         }
         
-        public override void Update()
-        {
-            // No longer needed! Input is handled via events
-            // The event-driven InputService will automatically handle input and publish events
-        }
-        
-        #region Input Event Handlers
+        #region Pause Management
         
         /// <summary>
-        /// Handle cancel/escape input for pausing
+        /// Pauses the game and shows pause popup
+        /// </summary>
+        private async Task PauseGame()
+        {
+            if (_isPaused) return;
+            
+            Debug.Log("[PlayingState] Pausing game");
+            
+            _isPaused = true;
+            
+            // Store current state
+            _prePauseTimeScale = Time.timeScale;
+            _prePauseAudioVolume = AudioService.GetMasterVolume();
+            
+            // Apply pause effects
+            Time.timeScale = 0f;
+            AudioService.SetMasterVolume(0.3f);
+            
+            // Show pause popup
+            await UIService.ShowPopupAsync<PausePopup>();
+            
+            // Publish pause event for global systems
+            EventSystem.Publish<GamePausedEvent>();
+        }
+        
+        /// <summary>
+        /// Resumes the game and hides pause popup
+        /// </summary>
+        private async Task ResumeGame()
+        {
+            if (!_isPaused) return;
+            
+            Debug.Log("[PlayingState] Resuming game");
+            
+            _isPaused = false;
+            
+            // Restore previous state
+            Time.timeScale = _prePauseTimeScale;
+            AudioService.SetMasterVolume(_prePauseAudioVolume);
+            
+            // Hide pause popup
+            await UIService.HidePopupAsync<PausePopup>();
+            
+            // Publish resume event for global systems
+            EventSystem.Publish<GameResumedEvent>();
+        }
+        
+        /// <summary>
+        /// Checks if the game is currently paused
+        /// </summary>
+        public bool IsGamePaused() => _isPaused;
+        
+        #endregion
+        
+        #region Event Handlers - Pause/Resume
+        
+        private async void OnPauseRequested(PauseRequestedEvent evt)
+        {
+            if (!_isPaused)
+            {
+                await PauseGame();
+            }
+        }
+        
+        private async void OnResumeRequested(ResumeRequestedEvent evt)
+        {
+            if (_isPaused)
+            {
+                await ResumeGame();
+            }
+        }
+        
+        /// <summary>
+        /// Handle cancel/escape input for pause/resume toggle
         /// </summary>
         private async void OnCancelInput(UICancelInputEvent evt)
         {
-            EventSystem.Publish(new PauseRequestedEvent());
-        }
-        
-        /// <summary>
-        /// Handle dedicated pause input (if you add a Pause action)
-        /// </summary>
-        // private async void OnPauseInput(PlayerPauseInputEvent evt)
-        // {
-        //     if (evt.Phase == InputActionPhase.Performed)
-        //     {
-        //         EventSystem.Publish(new PauseRequestedEvent());
-        //     }
-        // }
-        
-        /// <summary>
-        /// Handle player attack input
-        /// </summary>
-        private void OnAttackInput(PlayerAttackInputEvent evt)
-        {
-            // Handle attack logic here or publish more specific events
-            Debug.Log($"[PlayingState] Player attack input: {evt.Phase}");
-            
-            // Example: Publish attack command to game systems
-            // EventSystem.Publish(new PlayerAttackCommandEvent());
-        }
-        
-        /// <summary>
-        /// Handle player jump input
-        /// </summary>
-        private void OnJumpInput(PlayerJumpInputEvent evt)
-        {
-            Debug.Log("[PlayingState] Player jump input");
-            
-            // Example: Publish jump command to player controller
-            // EventSystem.Publish(new PlayerJumpCommandEvent());
-        }
-        
-        /// <summary>
-        /// Handle player interact input
-        /// </summary>
-        private void OnInteractInput(PlayerInteractInputEvent evt)
-        {
-            Debug.Log($"[PlayingState] Player interact input: {evt.Phase}");
-            
-            // Example: Check for nearby interactables and interact
-            // EventSystem.Publish(new PlayerInteractCommandEvent());
-        }
-        
-        /// <summary>
-        /// Handle player movement input
-        /// </summary>
-        private void OnMoveInput(PlayerMoveInputEvent evt)
-        {
-            // Handle movement (this will be called frequently)
-            // Example: Update player controller with movement vector
-            // EventSystem.Publish(new PlayerMoveCommandEvent(evt.MovementVector));
-        }
-        
-        /// <summary>
-        /// Handle player look input
-        /// </summary>
-        private void OnLookInput(PlayerLookInputEvent evt)
-        {
-            // Handle camera/look input (this will be called frequently)
-            // Example: Update camera controller with look delta
-            // EventSystem.Publish(new PlayerLookCommandEvent(evt.LookDelta));
-        }
-        
-        /// <summary>
-        /// Handle player sprint input
-        /// </summary>
-        private void OnSprintInput(PlayerSprintInputEvent evt)
-        {
-            Debug.Log($"[PlayingState] Player sprint input: {evt.Phase}");
-            
-            // Example: Toggle sprint mode
-            // EventSystem.Publish(new PlayerSprintCommandEvent(evt.Phase == InputActionPhase.Started));
-        }
-        
-        /// <summary>
-        /// Handle player crouch input
-        /// </summary>
-        private void OnCrouchInput(PlayerCrouchInputEvent evt)
-        {
-            Debug.Log($"[PlayingState] Player crouch input: {evt.Phase}");
-            
-            // Example: Toggle crouch mode
-            // EventSystem.Publish(new PlayerCrouchCommandEvent(evt.Phase == InputActionPhase.Started));
+            if (_isPaused)
+            {
+                await ResumeGame();
+            }
+            else
+            {
+                await PauseGame();
+            }
         }
         
         #endregion
         
-        #region Game Event Handlers
+        #region Event Handlers - Game State Changes
         
-        private async void OnPauseRequested(PauseRequestedEvent evt)
+        /// <summary>
+        /// Handle main menu request while paused
+        /// </summary>
+        private async void OnMainMenuRequested(MainMenuRequestedEvent evt)
         {
-            await TransitionToStateAsync(GameStateType.Paused);
+            // Save game before leaving if paused
+            if (_isPaused)
+            {
+                await GameDataService.SaveCurrentSessionAsync("BeforeMainMenu");
+            }
+            
+            await TransitionToStateAsync(GameStateType.MainMenu);
         }
         
         private async void OnGameOver(GameOverEvent evt)
         {
+            // Ensure we're not paused before transitioning
+            if (_isPaused)
+            {
+                await ResumeGame();
+            }
+            
             await TransitionToStateAsync(GameStateType.GameOver);
         }
         
         private async void OnVictory(VictoryEvent evt)
         {
+            // Ensure we're not paused before transitioning
+            if (_isPaused)
+            {
+                await ResumeGame();
+            }
+            
             await TransitionToStateAsync(GameStateType.Victory);
         }
         
         #endregion
         
+        #region Input Event Handlers (Only processed when not paused)
+        
+        /// <summary>
+        /// Handle player attack input - only when not paused
+        /// </summary>
+        private void OnAttackInput(PlayerAttackInputEvent evt)
+        {
+            if (_isPaused) return;
+            
+            Debug.Log($"[PlayingState] Player attack input: {evt.Phase}");
+            // Handle attack logic or publish attack commands
+        }
+        
+        /// <summary>
+        /// Handle player jump input - only when not paused
+        /// </summary>
+        private void OnJumpInput(PlayerJumpInputEvent evt)
+        {
+            if (_isPaused) return;
+            
+            Debug.Log("[PlayingState] Player jump input");
+            // Handle jump logic or publish jump commands
+        }
+        
+        /// <summary>
+        /// Handle player interact input - only when not paused
+        /// </summary>
+        private void OnInteractInput(PlayerInteractInputEvent evt)
+        {
+            if (_isPaused) return;
+            
+            Debug.Log($"[PlayingState] Player interact input: {evt.Phase}");
+            // Handle interact logic or publish interact commands
+        }
+        
+        /// <summary>
+        /// Handle player movement input - only when not paused
+        /// </summary>
+        private void OnMoveInput(PlayerMoveInputEvent evt)
+        {
+            if (_isPaused) return;
+            
+            // Handle movement (called frequently)
+            // Forward to player controller or publish movement commands
+        }
+        
+        /// <summary>
+        /// Handle player look input - only when not paused
+        /// </summary>
+        private void OnLookInput(PlayerLookInputEvent evt)
+        {
+            if (_isPaused) return;
+            
+            // Handle camera/look input (called frequently)
+            // Forward to camera controller or publish look commands
+        }
+        
+        /// <summary>
+        /// Handle player sprint input - only when not paused
+        /// </summary>
+        private void OnSprintInput(PlayerSprintInputEvent evt)
+        {
+            if (_isPaused) return;
+            
+            Debug.Log($"[PlayingState] Player sprint input: {evt.Phase}");
+            // Handle sprint logic or publish sprint commands
+        }
+        
+        /// <summary>
+        /// Handle player crouch input - only when not paused
+        /// </summary>
+        private void OnCrouchInput(PlayerCrouchInputEvent evt)
+        {
+            if (_isPaused) return;
+            
+            Debug.Log($"[PlayingState] Player crouch input: {evt.Phase}");
+            // Handle crouch logic or publish crouch commands
+        }
+        
+        #endregion
+        
+        public override void Update()
+        {
+            // Game logic updates are automatically paused via Time.timeScale = 0
+            // But you can add custom pause-aware logic here if needed
+        }
+        
         public override async Task ExitAsync()
         {
-            // Unsubscribe from game events using injected event system
+            // Ensure we clean up pause state before leaving
+            if (_isPaused)
+            {
+                await ResumeGame();
+            }
+            
+            // Unsubscribe from all events
             EventSystem.Unsubscribe<PauseRequestedEvent>(OnPauseRequested);
+            EventSystem.Unsubscribe<ResumeRequestedEvent>(OnResumeRequested);
             EventSystem.Unsubscribe<GameOverEvent>(OnGameOver);
             EventSystem.Unsubscribe<VictoryEvent>(OnVictory);
+            EventSystem.Unsubscribe<MainMenuRequestedEvent>(OnMainMenuRequested);
             
-            // Unsubscribe from input events
             EventSystem.Unsubscribe<UICancelInputEvent>(OnCancelInput);
-            // EventSystem.Unsubscribe<PlayerPauseInputEvent>(OnPauseInput);
-            
             EventSystem.Unsubscribe<PlayerAttackInputEvent>(OnAttackInput);
             EventSystem.Unsubscribe<PlayerJumpInputEvent>(OnJumpInput);
             EventSystem.Unsubscribe<PlayerInteractInputEvent>(OnInteractInput);
@@ -216,7 +320,7 @@ namespace GameFramework.StateMachine.GameStates
             
             await UIService.HideScreenAsync<GamePlayScreen>();
             
-            // Publish game ended event using injected event system
+            // Publish game ended event
             EventSystem.Publish<GameEndedEvent>();
             
             await base.ExitAsync();
