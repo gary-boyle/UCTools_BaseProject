@@ -13,6 +13,7 @@ namespace GameFramework.Services
     /// <summary>
     /// Clean GameDataService that manages unified GameSession data
     /// Single source of truth for all game state information
+    /// Delegates all save/load operations to SaveService
     /// </summary>
     public class GameDataService : IGameDataService, IUpdatable
     {
@@ -25,6 +26,10 @@ namespace GameFramework.Services
         
         private readonly IEventSystem _eventSystem;
         private readonly ISaveService _saveService;
+        
+        // Auto-save timing
+        private DateTime _lastAutoSaveCheck = DateTime.MinValue;
+        private const int AUTO_SAVE_INTERVAL_MINUTES = 5;
         
         // Events
         public event Action<GameSession> OnSessionCreated;
@@ -121,6 +126,9 @@ namespace GameFramework.Services
                 CurrentSession.customData[kvp.Key] = kvp.Value;
             }
             
+            // Reset auto-save timer for new session
+            _lastAutoSaveCheck = DateTime.Now;
+            
             Debug.Log($"[GameDataService] Created new game session for player '{CurrentSession.playerName}'");
             OnSessionCreated?.Invoke(CurrentSession);
         }
@@ -132,6 +140,9 @@ namespace GameFramework.Services
         {
             CurrentSession = session ?? throw new ArgumentNullException(nameof(session));
             
+            // Reset auto-save timer for loaded session
+            _lastAutoSaveCheck = DateTime.Now;
+            
             Debug.Log($"[GameDataService] Loaded game session for player '{CurrentSession.playerName}'");
             OnSessionLoaded?.Invoke(CurrentSession);
         }
@@ -142,50 +153,93 @@ namespace GameFramework.Services
         public void ClearSession()
         {
             CurrentSession = null;
+            _lastAutoSaveCheck = DateTime.MinValue;
             OnSessionCleared?.Invoke();
         }
         
         /// <summary>
-        /// Updates current session with play time and handles auto-save
-        /// Only called when not paused
+        /// Updates current session with play time and handles auto-save timing
+        /// Only called when not paused - delegates actual saving to SaveService
         /// </summary>
         public void UpdateSession()
         {
             if (CurrentSession == null) return;
             
+            // Update play time
             CurrentSession.UpdatePlayTime();
             
-            // Auto-save check (every 5 minutes)
-            var timeSinceLastSave = DateTime.Now - CurrentSession.lastSaveTime;
-            if (timeSinceLastSave.TotalMinutes >= 5)
+            // Check if it's time for an auto-save
+            var timeSinceLastCheck = DateTime.Now - _lastAutoSaveCheck;
+            if (timeSinceLastCheck.TotalMinutes >= AUTO_SAVE_INTERVAL_MINUTES)
             {
-                _ = SaveCurrentSessionAsync("AutoSave");
+                _lastAutoSaveCheck = DateTime.Now;
+                
+                // Delegate to SaveService's auto-save logic
+                _ = PerformAutoSaveAsync();
             }
         }
         
         /// <summary>
-        /// Saves the current session
+        /// Performs a regular save using SaveService - returns save name for UI feedback
         /// </summary>
-        public async Task<bool> SaveCurrentSessionAsync(string saveName = null)
+        public async Task<(bool success, string saveName)> SaveCurrentSessionAsync()
         {
-            if (CurrentSession == null)
+            if (!_saveService.CanSaveGame())
             {
-                Debug.LogWarning("[GameDataService] No active session to save");
-                return false;
+                Debug.LogWarning("[GameDataService] Cannot save game - no active session or save service unavailable");
+                return (false, null);
             }
             
-            CurrentSession.lastSaveTime = DateTime.Now;
-            CurrentSession.UpdatePlayTime();
-            
-            return await _saveService.SaveGameSessionAsync(CurrentSession, saveName);
+            return await _saveService.PerformRegularSaveAsync();
         }
         
         /// <summary>
-        /// Loads a session from save file
+        /// Performs an auto-save using SaveService
+        /// </summary>
+        public async Task<(bool success, string saveName)> PerformAutoSaveAsync()
+        {
+            if (!_saveService.CanSaveGame())
+            {
+                Debug.LogWarning("[GameDataService] Cannot auto-save - no active session or save service unavailable");
+                return (false, null);
+            }
+            
+            var result = await _saveService.PerformAutoSaveAsync();
+            
+            if (result.success)
+            {
+                Debug.Log($"[GameDataService] Auto-save completed: {result.saveName}");
+            }
+            else
+            {
+                Debug.LogWarning("[GameDataService] Auto-save failed");
+            }
+            
+            return result;
+        }
+        
+        /// <summary>
+        /// Loads a session from save file using SaveService
         /// </summary>
         public async Task<bool> LoadSessionAsync(string saveName)
         {
             var session = await _saveService.LoadGameSessionAsync(saveName);
+            if (session != null)
+            {
+                LoadGameSession(session);
+                return true;
+            }
+            return false;
+        }
+        
+        /// <summary>
+        /// Loads a session using SaveFileInfo from SaveService
+        /// </summary>
+        public async Task<bool> LoadSessionAsync(SaveFileInfo saveFileInfo)
+        {
+            if (saveFileInfo == null) return false;
+            
+            var session = await _saveService.LoadGameSessionByInfoAsync(saveFileInfo);
             if (session != null)
             {
                 LoadGameSession(session);

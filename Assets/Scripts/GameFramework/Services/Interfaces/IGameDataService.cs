@@ -26,7 +26,6 @@ namespace GameFramework.Services.Interfaces
         bool HasActiveSession();
         
         // Save/Load Operations
-        Task<bool> SaveCurrentSessionAsync(string saveName = null);
         Task<bool> LoadSessionAsync(string saveName);
         
         // Data Access

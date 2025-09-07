@@ -27,7 +27,8 @@ namespace GameFramework.UI.Screens
         
         // Services
         private IGameDataService _gameDataService;
-        
+        private ISaveService _saveService;
+
         // Update tracking
         private float _lastDebugUpdate = 0f;
         private const float DEBUG_UPDATE_INTERVAL = 0.5f; // Update debug info twice per second
@@ -36,6 +37,7 @@ namespace GameFramework.UI.Screens
         {
             // Get services from DI container
             _gameDataService = GameManager.GetService<IGameDataService>();
+            _saveService = GameManager.GetService<ISaveService>();
             EnableFrameUpdates();
             InitializeUI();
             UIElementValidator.ValidateElementsWithNames(this, UIElementValidator.ValidationMode.ThrowExceptions);
@@ -87,6 +89,8 @@ namespace GameFramework.UI.Screens
             Debug.Log("[GamePlayScreen] Test button clicked");
             
             // Publish test event for other systems
+            _saveService.PerformAutoSaveAsync();
+
             //_eventSystem?.Publish(new GameplayTestEvent());
         }
         
@@ -104,7 +108,7 @@ namespace GameFramework.UI.Screens
             
             // Publish pause event
             //_eventSystem?.Publish(new SaveGameEvent());
-            _gameDataService.SaveCurrentSessionAsync("TestSave");
+            _saveService.PerformRegularSaveAsync();
         }
         #endregion
         

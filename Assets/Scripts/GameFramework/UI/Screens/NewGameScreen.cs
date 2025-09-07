@@ -7,13 +7,25 @@ using UnityEngine.UIElements;
 
 namespace GameFramework.UI.Screens
 {
+    /// <summary>
+    /// New Game Screen that allows players to configure and start a new game
+    /// Handles UI event registration/unregistration properly in OnShow/OnHide
+    /// </summary>
     public class NewGameScreen : UIScreen
     {
+        #region UI Elements
+        
         private Button _confirmButton;
         private TextField _playerNameTextField;
         private DropdownField _difficultyDropdown;
+        
+        #endregion
 
-        private IEventSystem _eventSystem;
+        #region Services
+        
+        private readonly IEventSystem _eventSystem;
+        
+        #endregion
 
         public NewGameScreen(VisualElement rootElement) : base(rootElement)
         {
@@ -24,65 +36,157 @@ namespace GameFramework.UI.Screens
             UIElementValidator.ValidateElementsWithNames(this, UIElementValidator.ValidationMode.ThrowExceptions);
         }
         
+        #region Screen Lifecycle
+        
         protected override void OnShow()
         {
-            // Focus on player name field and set default value if empty
-            _playerNameTextField?.Focus();
-            if (string.IsNullOrEmpty(_playerNameTextField?.value))
-            {
-                _playerNameTextField?.SetValueWithoutNotify("Player");
-            }
+            base.OnShow();
+            
+            // Register UI event handlers when screen becomes visible
+            RegisterUIEventHandlers();
+            
+            // Set initial focus and default values
+            SetInitialUIState();
         }
+        
+        protected override void OnHide()
+        {
+            // Unregister UI event handlers when screen becomes hidden
+            UnregisterUIEventHandlers();
+            
+            base.OnHide();
+        }
+        
+        #endregion
+        
+        #region UI Initialization
         
         private void InitializeUI()
         {
+            // Cache UI elements
             _confirmButton = RootElement?.Q<Button>("btn_Confirm");
             _playerNameTextField = RootElement?.Q<TextField>("txt_PlayerName");
             _difficultyDropdown = RootElement?.Q<DropdownField>("dd_Difficulty");
 
-            // Set up difficulty options
-            _difficultyDropdown?.choices.AddRange(new[] { "Easy", "Normal", "Hard", "Expert" });
-            _difficultyDropdown?.SetValueWithoutNotify("Normal");
-
-            
-            // Subscribe to button events
-            _confirmButton?.RegisterCallback<ClickEvent>(OnNewGameClicked);
-            
-            // Optional: Handle Enter key in text field
-            _playerNameTextField?.RegisterCallback<KeyDownEvent>(OnTextFieldKeyDown);
+            // Configure UI elements (but don't register events yet)
+            SetupUIElements();
         }
         
-        // Then in OnNewGameClicked, use these values:
+        private void SetupUIElements()
+        {
+            // Set up difficulty dropdown options
+            if (_difficultyDropdown != null)
+            {
+                _difficultyDropdown.choices.Clear();
+                _difficultyDropdown.choices.AddRange(new[] { "Easy", "Normal", "Hard", "Expert" });
+                _difficultyDropdown.SetValueWithoutNotify("Normal");
+            }
+        }
+        
+        private void SetInitialUIState()
+        {
+            // Focus on player name field and set default value if empty
+            if (_playerNameTextField != null)
+            {
+                _playerNameTextField.Focus();
+                
+                if (string.IsNullOrEmpty(_playerNameTextField.value))
+                {
+                    _playerNameTextField.SetValueWithoutNotify("Player");
+                }
+            }
+        }
+        
+        #endregion
+        
+        #region Event Handler Registration
+        
+        /// <summary>
+        /// Registers all UI event handlers when the screen is shown
+        /// </summary>
+        private void RegisterUIEventHandlers()
+        {
+            // Register button click events
+            if (_confirmButton != null)
+            {
+                _confirmButton.RegisterCallback<ClickEvent>(OnNewGameClicked);
+            }
+            
+            // Register text field key events
+            if (_playerNameTextField != null)
+            {
+                _playerNameTextField.RegisterCallback<KeyDownEvent>(OnTextFieldKeyDown);
+            }
+        }
+        
+        /// <summary>
+        /// Unregisters all UI event handlers when the screen is hidden
+        /// </summary>
+        private void UnregisterUIEventHandlers()
+        {
+            // Unregister button click events
+            if (_confirmButton != null)
+            {
+                _confirmButton.UnregisterCallback<ClickEvent>(OnNewGameClicked);
+            }
+            
+            // Unregister text field key events
+            if (_playerNameTextField != null)
+            {
+                _playerNameTextField.UnregisterCallback<KeyDownEvent>(OnTextFieldKeyDown);
+            }
+        }
+        
+        #endregion
+        
+        #region UI Event Handlers
+        
+        /// <summary>
+        /// Handles the confirm button click to start a new game
+        /// </summary>
         private async void OnNewGameClicked(ClickEvent evt)
         {
+            // Validate input
+            var playerName = _playerNameTextField?.value?.Trim();
+            if (string.IsNullOrEmpty(playerName))
+            {
+                playerName = "Player"; // Fallback to default
+            }
+            
+            var difficulty = _difficultyDropdown?.value ?? "Normal";
+            
+            // Create new game event with player configuration
             var newGameEvent = new NewGameRequestedEvent
             {
-                PlayerName = _playerNameTextField?.value?.Trim() ?? "Player",
-                Difficulty = _difficultyDropdown?.value ?? "Normal",
+                PlayerName = playerName,
+                Difficulty = difficulty,
                 StartingScene = "GameLevel1",
                 CustomData = new Dictionary<string, object>
                 {
-                    ["creationTime"] = System.DateTime.Now.ToString()
+                    ["creationTime"] = System.DateTime.Now.ToString(),
+                    ["screenSource"] = nameof(NewGameScreen)
                 }
             };
     
+            // Publish the event to start the new game
             _eventSystem?.Publish(newGameEvent);
         }
         
+        /// <summary>
+        /// Handles key down events in the player name text field
+        /// Allows Enter key to confirm new game creation
+        /// </summary>
         private void OnTextFieldKeyDown(KeyDownEvent evt)
         {
             // Allow Enter key to confirm new game
             if (evt.keyCode == UnityEngine.KeyCode.Return || evt.keyCode == UnityEngine.KeyCode.KeypadEnter)
             {
+                // Trigger the same logic as clicking the confirm button
                 OnNewGameClicked(null);
+                evt.StopPropagation(); // Prevent further processing of the key event
             }
         }
         
-        protected override void OnHide()
-        {
-            // Clean up event subscriptions if needed
-            _confirmButton?.UnregisterCallback<ClickEvent>(OnNewGameClicked);
-            _playerNameTextField?.UnregisterCallback<KeyDownEvent>(OnTextFieldKeyDown);
-        }
+        #endregion
     }
 }

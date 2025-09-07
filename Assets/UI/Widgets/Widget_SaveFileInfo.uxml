@@ -2,7 +2,10 @@
     <ui:VisualElement name="save-file-container" class="save-file-item">
         <ui:VisualElement style="flex-grow: 1; flex-direction: column;">
             <ui:VisualElement name="header-container" class="save-file-header" style="flex-direction: row;">
-                <ui:Label name="lbl_PlayerName" text="Player Name" class="save-file-player" />
+                <ui:VisualElement name="name-container" style="flex-direction: row; align-items: center;">
+                    <ui:Label name="lbl_PlayerName" text="Player Name" class="save-file-player" />
+                    <ui:Label name="lbl_AutoSaveIndicator" text="[AUTOSAVE]" class="save-file-autosave-indicator" style="display: none;" />
+                </ui:VisualElement>
                 <ui:Label name="lbl_Difficulty" text="Normal" class="save-file-difficulty" />
                 <ui:Label name="lbl_Scene" text="Scene Name" class="save-file-scene" />
             </ui:VisualElement>

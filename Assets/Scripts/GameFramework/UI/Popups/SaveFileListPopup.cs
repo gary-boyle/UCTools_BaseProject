@@ -172,7 +172,21 @@ namespace GameFramework.UI.Screens
                     label.text = text;
                 }
             }
+    
+            // Handle autosave indicator visibility
+            var autoSaveIndicator = element.Q<Label>("lbl_AutoSaveIndicator");
+            if (autoSaveIndicator != null)
+            {
+                autoSaveIndicator.style.display = saveFileInfo.isAutoSave ? DisplayStyle.Flex : DisplayStyle.None;
+        
+                // Add CSS class for styling if needed
+                autoSaveIndicator.EnableInClassList("autosave-active", saveFileInfo.isAutoSave);
+            }
+    
+            // Add autosave class to the entire container for additional styling
+            element.EnableInClassList("is-autosave", saveFileInfo.isAutoSave);
         }
+
 
         private void UpdateSelectionVisuals(VisualElement element, SaveFileInfo saveFileInfo)
         {

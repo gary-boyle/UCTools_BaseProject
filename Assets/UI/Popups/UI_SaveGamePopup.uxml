@@ -5,16 +5,14 @@
         <engine:Label text="Save Game" name="lbl_Title" class="defaultText" style="font-size: 103px;" />
         <engine:VisualElement class="defaultText" style="justify-content: center; flex-grow: 1; width: 100%;">
 
-            <!-- Save name input section -->
+            <!-- Save info section -->
             <engine:VisualElement style="margin-bottom: 20px;">
-                <engine:Label text="Save Name:" class="defaultText" style="margin-bottom: 5px;" />
-                <engine:TextField name="txt_SaveName" placeholder-text="Enter save name..." class="defaultText" />
-                <engine:Label name="lbl_OverwriteWarning" class="defaultText warning-text" style="display: none; margin-top: 5px;" />
+                <engine:Label text="Save files are automatically named with timestamps" class="defaultText" style="margin-bottom: 10px; font-size: 14px; opacity: 0.8;" />
             </engine:VisualElement>
 
             <!-- Existing saves list -->
             <engine:VisualElement style="flex-grow: 1;">
-                <engine:Label text="Existing Saves (double-click to overwrite):" class="defaultText" style="margin-bottom: 10px;" />
+                <engine:Label text="Existing Saves:" class="defaultText" style="margin-bottom: 10px;" />
                 <engine:ListView name="list_SaveFiles" item-template="project://database/Assets/UI/Widgets/Widget_SaveFileInfo.uxml?fileID=9197481963319205126&amp;guid=e2383e1d2eca413d8739f479bd18f7ac&amp;type=3#Widget_SaveFileInfo" virtualization-method="DynamicHeight" show-add-remove-footer="false" show-border="true" style="flex-grow: 1; min-height: 200px;" />
             </engine:VisualElement>
 
@@ -23,7 +21,10 @@
                 <engine:Label name="lbl_Status" class="defaultText" />
                 <engine:VisualElement style="flex-direction: row; justify-content: space-between; margin-top: 10px;">
                     <engine:Button text="Delete Selected" name="btn_DeleteSelected" />
-                    <engine:Button text="Save Game" name="btn_Save" class="primary-button" />
+                    <engine:VisualElement style="flex-direction: row;">
+                        <engine:Button text="Auto Save" name="btn_AutoSave" style="margin-right: 10px;" />
+                        <engine:Button text="Save Game" name="btn_Save" class="primary-button" />
+                    </engine:VisualElement>
                 </engine:VisualElement>
             </engine:VisualElement>
 

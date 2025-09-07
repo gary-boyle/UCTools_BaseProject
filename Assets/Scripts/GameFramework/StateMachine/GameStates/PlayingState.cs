@@ -4,6 +4,7 @@ using GameFramework.Core;
 using GameFramework.DataStructures;
 using GameFramework.EventSystem.Events;
 using GameFramework.EventSystem.Interfaces;
+using GameFramework.Services;
 using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine.Data;
 using GameFramework.StateMachine.Enum;
@@ -489,20 +490,20 @@ namespace GameFramework.StateMachine.GameStates
             
             Debug.Log("[PlayingState] Main menu requested");
             
-            // Save game before leaving if we have an active session
-            if (GameDataService.HasActiveSession())
-            {
-                try
-                {
-                    Debug.Log("[PlayingState] Auto-saving before returning to main menu...");
-                    await GameDataService.SaveCurrentSessionAsync("BeforeMainMenu");
-                }
-                catch (Exception ex)
-                {
-                    Debug.LogWarning($"[PlayingState] Failed to auto-save before main menu: {ex}");
-                    // Don't block transition if save fails
-                }
-            }
+            // // Save game before leaving if we have an active session
+            // if (GameDataService.HasActiveSession())
+            // {
+            //     try
+            //     {
+            //         Debug.Log("[PlayingState] Auto-saving before returning to main menu...");
+            //         await SaveService.SaveCurrentSessionAsync("BeforeMainMenu");
+            //     }
+            //     catch (Exception ex)
+            //     {
+            //         Debug.LogWarning($"[PlayingState] Failed to auto-save before main menu: {ex}");
+            //         // Don't block transition if save fails
+            //     }
+            // }
             
             await TransitionToStateAsync(GameStateType.MainMenu);
         }
