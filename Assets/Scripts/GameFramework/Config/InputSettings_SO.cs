@@ -30,6 +30,32 @@ namespace GrameFramework.Config
                 invertYAxis
             };
         }
-        
+
+        /// <summary>
+        /// Apply mouse sensitivity setting
+        /// </summary>
+        public void SetMouseSensitivity(float sensitivity)
+        {
+            sensitivity = Mathf.Clamp(sensitivity, 0.1f, 10f);
+            mouseSensitivity.Value = sensitivity;
+            
+            // Apply to input system or camera controller
+            // Example: CameraController.Instance.SetMouseSensitivity(sensitivity);
+            
+            Debug.Log($"[InputSettings] Mouse sensitivity: {sensitivity:F2}");
+        }
+
+        /// <summary>
+        /// Apply Y-axis inversion setting
+        /// </summary>
+        public void SetInvertYAxis(bool invert)
+        {
+            invertYAxis.Value = invert;
+            
+            // Apply to input system or camera controller
+            // Example: CameraController.Instance.SetInvertYAxis(invert);
+            
+            Debug.Log($"[InputSettings] Invert Y axis: {invert}");
+        }
     }
 }

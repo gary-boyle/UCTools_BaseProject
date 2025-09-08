@@ -28,8 +28,10 @@ namespace GrameFramework.Config
             "Auto-save interval in seconds", 
             300, 
             ConfigFlags.Save,
-            minValue: 30,     // Minimum 30 seconds
-            maxValue: 3600);  // Maximum 1 hour
+            minValue: 30,
+            maxValue: 3600);
+        
+        private readonly string[] _difficultyNames = { "Easy", "Normal", "Hard" };
         
         public override List<ConfigVariableBase> GetAllVariables()
         {
@@ -39,6 +41,77 @@ namespace GrameFramework.Config
                 autoSave,
                 autoSaveInterval
             };
+        }
+
+        /// <summary>
+        /// Apply difficulty setting with game logic
+        /// </summary>
+        public void SetDifficulty(int difficultyLevel)
+        {
+            difficultyLevel = Mathf.Clamp(difficultyLevel, 0, 2);
+            difficulty.Value = difficultyLevel;
+            
+            // Apply difficulty-specific game logic here
+            ApplyDifficultySettings(difficultyLevel);
+            
+            Debug.Log($"[GameplaySettings] Difficulty: {_difficultyNames[difficultyLevel]}");
+        }
+
+        /// <summary>
+        /// Apply auto-save setting
+        /// </summary>
+        public void SetAutoSave(bool enabled)
+        {
+            autoSave.Value = enabled;
+            
+            // Enable/disable auto-save system
+            // Example: AutoSaveManager.Instance.SetEnabled(enabled);
+            
+            Debug.Log($"[GameplaySettings] Auto-save: {enabled}");
+        }
+
+        /// <summary>
+        /// Apply auto-save interval setting
+        /// </summary>
+        public void SetAutoSaveInterval(int intervalSeconds)
+        {
+            intervalSeconds = Mathf.Clamp(intervalSeconds, 30, 3600);
+            autoSaveInterval.Value = intervalSeconds;
+            
+            // Update auto-save timer
+            // Example: AutoSaveManager.Instance.SetInterval(intervalSeconds);
+            
+            Debug.Log($"[GameplaySettings] Auto-save interval: {intervalSeconds}s");
+        }
+
+        /// <summary>
+        /// Get difficulty choices for UI display
+        /// </summary>
+        public string[] GetDifficultyChoices()
+        {
+            return _difficultyNames;
+        }
+
+        /// <summary>
+        /// Apply difficulty-specific settings to game systems
+        /// </summary>
+        private void ApplyDifficultySettings(int difficultyLevel)
+        {
+            switch (difficultyLevel)
+            {
+                case 0: // Easy
+                    // Example: EnemyManager.SetDamageMultiplier(0.7f);
+                    // Example: PlayerManager.SetHealthMultiplier(1.5f);
+                    break;
+                case 1: // Normal
+                    // Example: EnemyManager.SetDamageMultiplier(1.0f);
+                    // Example: PlayerManager.SetHealthMultiplier(1.0f);
+                    break;
+                case 2: // Hard
+                    // Example: EnemyManager.SetDamageMultiplier(1.5f);
+                    // Example: PlayerManager.SetHealthMultiplier(0.7f);
+                    break;
+            }
         }
     }
 }

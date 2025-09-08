@@ -33,12 +33,6 @@ namespace GrameFramework.Config
             true, 
             ConfigFlags.Save);
         
-        // Helper properties
-        public int ResolutionWidth => resolution.Width;
-        public int ResolutionHeight => resolution.Height;
-        public int QualityLevel => quality.QualityLevel;
-        public string QualityDisplayName => quality.DisplayName;
-        
         public override List<ConfigVariableBase> GetAllVariables()
         {
             return new List<ConfigVariableBase>
@@ -49,16 +43,69 @@ namespace GrameFramework.Config
                 vsync
             };
         }
-        
+
         /// <summary>
-        /// Reset all graphics settings to their default values
+        /// Apply fullscreen setting with immediate effect
         /// </summary>
-        public void ResetToDefaults()
+        public void SetFullscreen(bool isFullscreen)
         {
-            foreach (var variable in GetAllVariables())
-            {
-                variable.ResetToDefault();
-            }
+            fullscreen.Value = isFullscreen;
+            
+            var (width, height) = resolution.Value.GetResolution();
+            Screen.SetResolution(width, height, isFullscreen);
+            
+            Debug.Log($"[GraphicsSettings] Fullscreen: {isFullscreen}");
+        }
+
+        /// <summary>
+        /// Apply VSync setting with immediate effect
+        /// </summary>
+        public void SetVSync(bool enableVSync)
+        {
+            vsync.Value = enableVSync;
+            QualitySettings.vSyncCount = enableVSync ? 1 : 0;
+            
+            Debug.Log($"[GraphicsSettings] VSync: {enableVSync}");
+        }
+
+        /// <summary>
+        /// Apply quality setting with immediate effect
+        /// </summary>
+        public void SetQuality(QualityOption qualityOption)
+        {
+            quality.Value = qualityOption;
+            QualitySettings.SetQualityLevel(quality.QualityLevel);
+            
+            Debug.Log($"[GraphicsSettings] Quality: {quality.DisplayName}");
+        }
+
+        /// <summary>
+        /// Apply resolution setting with immediate effect
+        /// </summary>
+        public void SetResolution(ResolutionOption resolutionOption)
+        {
+            resolution.Value = resolutionOption;
+            
+            var (width, height) = resolutionOption.GetResolution();
+            Screen.SetResolution(width, height, fullscreen.Value);
+            
+            Debug.Log($"[GraphicsSettings] Resolution: {width}x{height}");
+        }
+
+        /// <summary>
+        /// Get available quality options for UI display
+        /// </summary>
+        public string[] GetQualityChoices()
+        {
+            return QualityOptionExtensions.GetAllDisplayNames();
+        }
+
+        /// <summary>
+        /// Get available resolution options for UI display
+        /// </summary>
+        public string[] GetResolutionChoices()
+        {
+            return ResolutionOptionExtensions.GetAllDisplayNames();
         }
     }
 }

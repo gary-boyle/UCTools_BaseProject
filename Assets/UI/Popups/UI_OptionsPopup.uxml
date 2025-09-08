@@ -1,51 +1,69 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <engine:Template name="Widget_CloseButton" src="project://database/Assets/UI/Widgets/Widget_CloseButton.uxml?fileID=9197481963319205126&amp;guid=0ae08ca0a349c17499c551fac1d2415c&amp;type=3#Widget_CloseButton" />
     <Style src="project://database/Assets/UI/USS/default.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3" />
+
     <engine:VisualElement name="VisualElement" class="screenBackground defaultText">
-        <engine:VisualElement>
-            <engine:Label text="Options" name="lbl_Options" class="defaultText" style="font-size: 103px;" />
-            <engine:Foldout text="Audio">
-                <engine:VisualElement name="AudioOptions" data-source="project://database/Assets/ScriptableObjects/Settings/AudioSettings.asset?fileID=11400000&amp;guid=d1a18cfd6a8679c4bb132ef39c829b82&amp;type=2#AudioSettings">
-                    <engine:Toggle label="Audio" name="tgl_EnableAudio" data-source="project://database/Assets/ScriptableObjects/SO_GameOptions.asset?fileID=11400000&amp;guid=eca857e72d92c304db5f0431ac6b15dc&amp;type=2#SO_GameOptions">
-                        <Bindings>
-                            <engine:DataBinding property="value" data-source-path="audioEnabled.currentValue" binding-mode="TwoWay" />
-                        </Bindings>
-                    </engine:Toggle>
-                    <engine:SliderInt label="Master Volume&#x9;" value="42" high-value="100" name="slider_MasterVolume" fill="true">
-                        <Bindings>
-                            <engine:DataBinding property="value" data-source-path="masterVolume.currentValue" binding-mode="TwoWay" />
-                        </Bindings>
-                    </engine:SliderInt>
-                    <engine:SliderInt label="Music Volume" value="42" high-value="100" fill="true" name="slider_MusicVolume">
-                        <Bindings>
-                            <engine:DataBinding property="value" data-source-path="musicVolume.currentValue" binding-mode="TwoWay" />
-                        </Bindings>
-                    </engine:SliderInt>
-                    <engine:SliderInt label="SFX Volume" value="42" high-value="100" name="slider_SFXVolume" fill="true">
-                        <Bindings>
-                            <engine:DataBinding property="value" data-source-path="sfxVolume.currentValue" binding-mode="TwoWay" />
-                        </Bindings>
-                    </engine:SliderInt>
-                </engine:VisualElement>
-            </engine:Foldout>
-            <engine:Foldout text="Graphics">
-                <engine:VisualElement name="GraphicsOptions" data-source="project://database/Assets/ScriptableObjects/Settings/GraphicsSettings.asset?fileID=11400000&amp;guid=9ddf5a5ff559bd844afda9a95710ac6f&amp;type=2#GraphicsSettings" style="flex-grow: 1;">
-                    <engine:Toggle label="Fullscreen" name="tgl_FullScreen">
-                        <Bindings>
-                            <engine:DataBinding property="value" data-source-path="fullscreen.currentValue" binding-mode="TwoWay" />
-                        </Bindings>
-                    </engine:Toggle>
-                    <engine:Toggle label="Vsync" name="tgl_Vsync">
-                        <Bindings>
-                            <engine:DataBinding property="value" data-source-path="vsync.currentValue" binding-mode="TwoWay" />
-                        </Bindings>
-                    </engine:Toggle>
-                    <engine:DropdownField label="Dropdown" name="dd_Quality" />
-                    <engine:DropdownField label="Resolution" name="dd_Resolution" />
-                </engine:VisualElement>
-            </engine:Foldout>
-            <engine:Button text="Reset to Defaults" name="btn_Reset" />
+        <engine:VisualElement style="flex-grow: 1; padding: 20px;">
+            <engine:Label text="Options" name="lbl_Options" class="defaultText" style="font-size: 103px; -unity-text-align: upper-center; margin-bottom: 20px;" />
+
+            <!-- Tab View with explicit styling for better visibility -->
+            <engine:TabView name="OptionsTabView" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.3); border-radius: 10px; padding: 10px;">
+
+                <!-- Audio Tab -->
+                <engine:Tab label="Audio" name="AudioTab" style="min-height: 40px; padding: 10px; margin: 2px;">
+                    <engine:VisualElement name="AudioOptions" style="padding: 20px; background-color: rgba(255, 255, 255, 0.05); border-radius: 5px;">
+                        <engine:Toggle label="Audio Enabled" name="tgl_EnableAudio" style="margin-bottom: 10px;" />
+                        <engine:SliderInt label="Master Volume" value="100" high-value="100" name="slider_MasterVolume" fill="true" style="margin-bottom: 10px;" />
+                        <engine:SliderInt label="Music Volume" value="80" high-value="100" fill="true" name="slider_MusicVolume" style="margin-bottom: 10px;" />
+                        <engine:SliderInt label="SFX Volume" value="90" high-value="100" name="slider_SFXVolume" fill="true" style="margin-bottom: 10px;" />
+                    </engine:VisualElement>
+                </engine:Tab>
+
+                <!-- Graphics Tab -->
+                <engine:Tab label="Graphics" name="GraphicsTab" style="min-height: 40px; padding: 10px; margin: 2px;">
+                    <engine:VisualElement name="GraphicsOptions" style="padding: 20px; background-color: rgba(255, 255, 255, 0.05); border-radius: 5px;">
+                        <engine:Toggle label="Fullscreen" name="tgl_FullScreen" style="margin-bottom: 10px;" />
+                        <engine:Toggle label="VSync" name="tgl_Vsync" style="margin-bottom: 10px;" />
+                        <engine:DropdownField label="Quality" name="dd_Quality" style="margin-bottom: 10px;" />
+                        <engine:DropdownField label="Resolution" name="dd_Resolution" style="margin-bottom: 10px;" />
+                    </engine:VisualElement>
+                </engine:Tab>
+
+                <!-- Gameplay Tab -->
+                <engine:Tab label="Gameplay" name="GameplayTab" style="min-height: 40px; padding: 10px; margin: 2px;">
+                    <engine:VisualElement name="GameplayOptions" style="padding: 20px; background-color: rgba(255, 255, 255, 0.05); border-radius: 5px;">
+                        <engine:DropdownField label="Difficulty" name="dd_Difficulty" style="margin-bottom: 10px;" />
+                        <engine:Toggle label="Auto Save" name="tgl_AutoSave" style="margin-bottom: 10px;" />
+                        <engine:SliderInt label="Auto Save Interval (seconds)" value="300" low-value="30" high-value="3600" name="slider_AutoSaveInterval" fill="true" style="margin-bottom: 10px;" />
+                    </engine:VisualElement>
+                </engine:Tab>
+
+                <!-- Input Tab -->
+                <engine:Tab label="Input" name="InputTab" style="min-height: 40px; padding: 10px; margin: 2px;">
+                    <engine:VisualElement name="InputOptions" style="padding: 20px; background-color: rgba(255, 255, 255, 0.05); border-radius: 5px;">
+                        <engine:Slider label="Mouse Sensitivity" value="1.0" low-value="0.1" high-value="10.0" name="slider_MouseSensitivity" fill="true" style="margin-bottom: 10px;" />
+                        <engine:Toggle label="Invert Y Axis" name="tgl_InvertYAxis" style="margin-bottom: 10px;" />
+                    </engine:VisualElement>
+                </engine:Tab>
+
+                <!-- Debug Tab -->
+                <engine:Tab label="Debug" name="DebugTab" style="min-height: 40px; padding: 10px; margin: 2px;">
+                    <engine:VisualElement name="DebugOptions" style="padding: 20px; background-color: rgba(255, 255, 255, 0.05); border-radius: 5px;">
+                        <engine:Toggle label="Show FPS" name="tgl_ShowFPS" style="margin-bottom: 10px;" />
+                        <engine:Toggle label="Verbose Logging" name="tgl_VerboseLogging" style="margin-bottom: 10px;" />
+                        <engine:Toggle label="Console Enabled" name="tgl_ConsoleEnabled" style="margin-bottom: 10px;" />
+                    </engine:VisualElement>
+                </engine:Tab>
+
+            </engine:TabView>
+
+            <!-- Action Buttons -->
+            <engine:VisualElement style="flex-direction: row; justify-content: center; padding: 20px; margin-top: 10px;">
+                <engine:Button text="Reset to Defaults" name="btn_Reset" style="margin-right: 10px; min-width: 150px; height: 40px;" />
+                <engine:Button text="Apply Settings" name="btn_Apply" style="margin-left: 10px; min-width: 150px; height: 40px;" />
+            </engine:VisualElement>
         </engine:VisualElement>
     </engine:VisualElement>
+
     <engine:Instance template="Widget_CloseButton" name="CloseContainer" class="closeButtonPosition" />
 </engine:UXML>
