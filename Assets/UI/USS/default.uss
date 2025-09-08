@@ -14,15 +14,20 @@
 }
 
 .ui-popup {
-    position: absolute;
-    align-self: center;
     background-color: rgb(20, 20, 20);
     border-radius: 24px;
     padding: 32px;
     border-width: 2px;
     border-color: rgb(68, 68, 68);
-    min-width: 600px;
-    max-width: 80%;
+    position: absolute;
+    top: auto;
+    left: auto;
+    width: 75%;
+    height: 90%;
+    right: auto;
+    bottom: auto;
+    align-self: center;
+    justify-content: center;
 }
 
 .ui-container {
