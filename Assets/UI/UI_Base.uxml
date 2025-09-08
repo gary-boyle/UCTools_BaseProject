@@ -12,18 +12,18 @@
     <engine:Template name="UI_LoadGamePopup" src="project://database/Assets/UI/Popups/UI_LoadGamePopup.uxml?fileID=9197481963319205126&amp;guid=88f93125b1d94e44da85938f48a00506&amp;type=3#UI_LoadGamePopup" />
     <engine:Template name="UI_SaveGamePopup" src="project://database/Assets/UI/Popups/UI_SaveGamePopup.uxml?fileID=9197481963319205126&amp;guid=5209e60cba5646739065907a84275511&amp;type=3#UI_SaveGamePopup" />
     <engine:Template name="UI_DebugScreen" src="project://database/Assets/UI/Screens/UI_DebugScreen.uxml?fileID=9197481963319205126&amp;guid=4bbac5633f5ec884f85d4878cb799304&amp;type=3#UI_DebugScreen" />
-    <Style src="project://database/Assets/UI/USS/default.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3" />
-    <engine:Instance template="UI_SplashWindow" name="UI_SplashScreen" class="baseUI" />
-    <engine:Instance template="UI_MainMenuWindow" name="UI_MainMenuScreen" class="baseUI" />
-    <engine:Instance template="UI_HUDWindow" name="UI_GamePlayScreen" class="baseUI" />
-    <engine:Instance template="UI_LoadingScreen" name="UI_LoadingScreen" class="baseUI" />
-    <engine:Instance template="UI_NewGameMenuWindow" name="UI_NewGameScreen" class="baseUI" />
-    <engine:Instance template="UI_CreditsScreen" name="UI_CreditScreen" class="baseUI" />
-    <engine:Instance template="UI_GameOverScreen" name="UI_GameOverScreen" class="baseUI" />
-    <engine:Instance template="UI_PausedWindow" name="UI_PausePopup" class="baseUI" />
-    <engine:Instance template="UI_VictoryScreen" name="UI_VictoryScreen" class="baseUI" />
-    <engine:Instance template="UI_OptionsPopup" name="UI_OptionsPopup" class="popup" />
-    <engine:Instance template="UI_LoadGamePopup" name="UI_LoadGamePopup" class="popup" />
-    <engine:Instance template="UI_SaveGamePopup" name="UI_SaveGamePopup" class="popup" />
-    <engine:Instance template="UI_DebugScreen" name="UI_DebugScreen" picking-mode="Ignore" class="baseUI" style="overflow: hidden;" />
+    <Style src="project://database/Assets/UI/USS/default.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3#default" />
+    <engine:Instance template="UI_SplashWindow" name="UI_SplashScreen" class="ui-screen" />
+    <engine:Instance template="UI_MainMenuWindow" name="UI_MainMenuScreen" class="ui-screen" />
+    <engine:Instance template="UI_HUDWindow" name="UI_GamePlayScreen" class="ui-screen" />
+    <engine:Instance template="UI_LoadingScreen" name="UI_LoadingScreen" class="ui-screen" />
+    <engine:Instance template="UI_NewGameMenuWindow" name="UI_NewGameScreen" class="ui-screen" />
+    <engine:Instance template="UI_CreditsScreen" name="UI_CreditScreen" class="ui-screen" />
+    <engine:Instance template="UI_GameOverScreen" name="UI_GameOverScreen" class="ui-screen" />
+    <engine:Instance template="UI_PausedWindow" name="UI_PausePopup" style="flex-grow: 1; justify-content: center; display: none;" />
+    <engine:Instance template="UI_VictoryScreen" name="UI_VictoryScreen" class="ui-screen" />
+    <engine:Instance template="UI_OptionsPopup" name="UI_OptionsPopup" style="flex-grow: 1; justify-content: center; display: none;" />
+    <engine:Instance template="UI_LoadGamePopup" name="UI_LoadGamePopup" style="flex-grow: 1; justify-content: center; display: none;" />
+    <engine:Instance template="UI_SaveGamePopup" name="UI_SaveGamePopup" style="flex-grow: 1; display: none;" />
+    <engine:Instance template="UI_DebugScreen" name="UI_DebugScreen" picking-mode="Ignore" class="debug-overlay" />
 </engine:UXML>

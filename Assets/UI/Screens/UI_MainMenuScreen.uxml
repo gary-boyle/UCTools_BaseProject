@@ -1,12 +1,16 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/USS/default.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3#default" />
-    <engine:VisualElement class="screenBackground">
-        <engine:VisualElement>
-            <engine:Button text="New Game" name="btn_NewGame" class="defaultButton" />
-            <engine:Button text="Load Game" name="btn_LoadGame" class="defaultButton" />
-            <engine:Button text="Options" name="btn_Options" class="defaultButton" />
-            <engine:Button text="Credits" name="btn_Credits" class="defaultButton" />
-            <engine:Button text="Quit Game" name="btn_QuitGame" parse-escape-sequences="true" class="defaultButton" />
+    <engine:VisualElement class="ui-screen layout-center" style="display: flex;">
+        <engine:VisualElement class="layout-column layout-center">
+            <engine:Label text="My Awesome Game" class="text--hero mb-xxl" />
+            <engine:VisualElement class="ui-container layout-column layout-center p-xl">
+                <engine:Button text="New Game" name="btn_NewGame" class="btn btn--primary btn--large mb-md scale-on-hover" />
+                <engine:Button text="Load Game" name="btn_LoadGame" class="btn btn--secondary btn--large mb-md scale-on-hover" />
+                <engine:Button text="Options" name="btn_Options" class="btn btn--secondary btn--large mb-md scale-on-hover" />
+                <engine:Button text="Credits" name="btn_Credits" class="btn btn--secondary btn--large mb-md scale-on-hover" />
+                <engine:Button text="Quit Game" name="btn_QuitGame" class="btn btn--danger btn--large scale-on-hover" />
+            </engine:VisualElement>
+            <engine:Label text="Version 1.0.0" class="text--tertiary text--sm mt-xl" />
         </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>

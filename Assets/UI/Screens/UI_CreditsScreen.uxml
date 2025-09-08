@@ -1,6 +1,16 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/USS/default.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3#default" />
-    <engine:VisualElement name="UI_SplashWindow" class="defaultText screenBackground">
-        <engine:Label text="Credits : Made by Gary" />
+    <engine:VisualElement name="UI_SplashWindow" class="ui-screen layout-center" style="display: flex;">
+        <engine:VisualElement class="layout-column layout-center">
+            <engine:Label text="Credits" class="text--hero mb-xl" />
+            <engine:VisualElement class="ui-container layout-column layout-center p-xl">
+                <engine:Label text="Game Development" class="text--display mb-lg" />
+                <engine:Label text="Made by Gary" class="text--xl text--center mb-xl" />
+                <engine:Label text="Special Thanks" class="text--lg text--secondary mb-md" />
+                <engine:Label text="Unity Technologies" class="text text--center mb-sm" />
+                <engine:Label text="The Gaming Community" class="text text--center mb-xl" />
+                <engine:Button text="Back to Main Menu" name="btn_BackToMenu" class="btn btn--primary btn--large mt-xl" />
+            </engine:VisualElement>
+        </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>
