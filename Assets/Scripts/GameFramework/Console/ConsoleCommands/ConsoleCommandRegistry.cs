@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using UCTools_CommandConsole.Enums;
+using GameFramework.ConsoleTool.Enums;
 using UnityEngine;
 
-namespace UCTools_CommandConsole
+namespace GameFramework.ConsoleTool.Commands
 {
     /// <summary>
     /// Registry system for console commands with automatic discovery and registration

@@ -1,7 +1,7 @@
 ﻿using System.Linq;
-using UCTools_CommandConsole.Enums;
+using GameFramework.ConsoleTool.Enums;
 
-namespace UCTools_CommandConsole
+namespace GameFramework.ConsoleTool.Commands
 {
     /// <summary>
     /// Help command that displays available commands and their descriptions

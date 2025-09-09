@@ -1,8 +1,8 @@
-﻿using UCTools_CommandConsole.Enums;
-using UCTools_CommandConsole.Utilities;
+﻿using GameFramework.ConsoleTool.Enums;
+using GameFramework.ConsoleTool.Utilities;
 using UnityEngine;
 
-namespace UCTools_CommandConsole
+namespace GameFramework.ConsoleTool.Commands
 { 
     /// <summary>
     /// Example console command that demonstrates how to create custom commands

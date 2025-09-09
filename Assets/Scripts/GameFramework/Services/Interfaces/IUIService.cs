@@ -33,6 +33,9 @@ namespace GameFramework.Services.Interfaces
         bool IsCurrentPopup<T>() where T : UIPopup;
         Type GetCurrentPopupType();
         int GetOpenPopupCount();
+        bool IsPopupOpen<T>() where T : UIPopup;
+
+        int GetPopupStackPosition<T>() where T : UIPopup;
         
         // Debug
         void SetDebugPopupText(string text);

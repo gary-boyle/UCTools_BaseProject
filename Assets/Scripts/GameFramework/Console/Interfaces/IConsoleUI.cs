@@ -1,4 +1,4 @@
-﻿namespace UCTools_CommandConsole
+﻿namespace GameFramework.ConsoleTool
 {
     public interface IConsoleUI
     {

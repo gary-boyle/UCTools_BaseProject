@@ -1,4 +1,4 @@
-﻿namespace UCTools_CommandConsole.Enums
+﻿namespace GameFramework.ConsoleTool.Enums
 {
     public enum CategoryEnum
     {

@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System;
+using GameFramework.ConsoleTool.Commands;
 
-namespace UCTools_CommandConsole
+namespace GameFramework.ConsoleTool
 {
     /// <summary>
     /// Core console system that manages command execution, history, and output.

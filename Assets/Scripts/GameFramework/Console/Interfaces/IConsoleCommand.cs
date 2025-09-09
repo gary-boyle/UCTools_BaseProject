@@ -1,6 +1,6 @@
-﻿using UCTools_CommandConsole.Enums;
+﻿using GameFramework.ConsoleTool.Enums;
 
-namespace UCTools_CommandConsole
+namespace GameFramework.ConsoleTool
 {
     /// <summary>
     /// Interface for console commands that can be executed from the command line

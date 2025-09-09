@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using GameFramework.Core;
 using GameFramework.EventSystem.Interfaces;
@@ -213,9 +214,9 @@ namespace GameFramework.Services
             {
                 if (_currentPopup == popup)
                 {
+                    // Current popup - hide and restore from stack
                     popup.Hide();
 
-                    // Restore previous popup if any
                     if (_popupStack.Count > 0)
                     {
                         _currentPopup = _popupStack.Pop();
@@ -228,8 +229,33 @@ namespace GameFramework.Services
                         Debug.Log($"[UIService] No more popups in stack");
                     }
 
-                    Debug.Log($"[UIService] Hidden popup: {typeof(T).Name}");
+                    Debug.Log($"[UIService] Hidden current popup: {typeof(T).Name}");
                 }
+                else if (_popupStack.Contains(popup))
+                {
+                    // ✅ NEW: Handle popup in stack
+                    Debug.Log($"[UIService] Hiding stacked popup: {typeof(T).Name}");
+            
+                    // Remove from stack and hide
+                    var stackList = _popupStack.ToList();
+                    stackList.Remove(popup);
+                    _popupStack.Clear();
+            
+                    // Rebuild stack without the removed popup
+                    foreach (var stackedPopup in stackList.AsEnumerable().Reverse())
+                    {
+                        _popupStack.Push(stackedPopup);
+                    }
+            
+                    popup.Hide();
+                    Debug.Log($"[UIService] Removed {typeof(T).Name} from popup stack (New stack depth: {_popupStack.Count})");
+                }
+                else
+                {
+                    // ✅ NEW: Popup exists but not open
+                    Debug.LogWarning($"[UIService] Popup {typeof(T).Name} is not currently open");
+                }
+
                 await Task.CompletedTask;
             }
             else
@@ -237,6 +263,7 @@ namespace GameFramework.Services
                 Debug.LogError($"[UIService] Popup of type {typeof(T).Name} not registered");
             }
         }
+
         
         public void RegisterScreen<T>(T screen) where T : UIScreen
         {

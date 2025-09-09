@@ -1,4 +1,4 @@
-﻿namespace UCTools_CommandConsole
+﻿namespace GameFramework.ConsoleTool
 {
     /// <summary>
     /// Context interface providing access to console functionality

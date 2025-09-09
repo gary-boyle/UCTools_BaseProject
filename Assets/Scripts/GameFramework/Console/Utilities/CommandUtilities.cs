@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace UCTools_CommandConsole.Utilities
+namespace GameFramework.ConsoleTool.Utilities
 {
     public static class CommandUtilities
     {

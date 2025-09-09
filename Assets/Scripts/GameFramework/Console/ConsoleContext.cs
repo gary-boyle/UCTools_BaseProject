@@ -1,4 +1,6 @@
-﻿namespace UCTools_CommandConsole
+﻿using GameFramework.ConsoleTool.Commands;
+
+namespace GameFramework.ConsoleTool
 {
     /// <summary>
     /// Implementation of console context that provides safe access to console functionality

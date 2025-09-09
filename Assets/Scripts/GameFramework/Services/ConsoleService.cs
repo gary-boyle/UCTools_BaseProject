@@ -3,7 +3,7 @@ using GameFramework.EventSystem.Events;
 using GameFramework.EventSystem.Interfaces;
 using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine.Interfaces;
-using UCTools_CommandConsole;
+using GameFramework.ConsoleTool;
 using UnityEngine;
 
 namespace GameFramework.Services
@@ -42,7 +42,6 @@ namespace GameFramework.Services
         #region Constants
         private const string LOG_PREFIX = "[ConsoleService]";
         private const string CONSOLE_ENABLED_CONFIG_KEY = "debug.console_enabled";
-        private const string SHOW_DEBUG_INFO_CONFIG_KEY = "debug.show_debug_info";
         #endregion
 
         /// <summary>
@@ -77,7 +76,7 @@ namespace GameFramework.Services
             {
                 // Initialize the console system with our GUI
                 Console.Init(_consoleGUI);
-
+                
                 // Register built-in commands
                 RegisterBuiltInCommands();
 
@@ -158,9 +157,8 @@ namespace GameFramework.Services
             
             // Check both console_enabled and show_debug_info settings
             var consoleEnabled = _configService.GetConfigValue<bool>(CONSOLE_ENABLED_CONFIG_KEY);
-            var debugInfoEnabled = _configService.GetConfigValue<bool>(SHOW_DEBUG_INFO_CONFIG_KEY);
             
-            return consoleEnabled && debugInfoEnabled;
+            return consoleEnabled;
         }
 
         /// <summary>
@@ -279,7 +277,9 @@ namespace GameFramework.Services
             // - clear: Clear console output
             // - quit: Quit application
             // - version: Show application version
-            
+            // var debugCommand = new DebugCommand();
+            // Console.RegisterCommand(debugCommand);
+
             Debug.Log($"{LOG_PREFIX} Built-in commands registered");
         }
 

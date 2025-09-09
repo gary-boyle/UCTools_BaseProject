@@ -8,7 +8,7 @@ using GameFramework.EventSystem.Interfaces;
 using GameFramework.EventSystem.Events;
 using System.Text;
 
-namespace UCTools_CommandConsole
+namespace GameFramework.ConsoleTool
 {
     /// <summary>
     /// Console GUI component responsible for rendering console UI and handling user input.

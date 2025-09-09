@@ -1,6 +1,6 @@
-﻿using UCTools_CommandConsole.Enums;
+﻿using GameFramework.ConsoleTool.Enums;
 
-namespace UCTools_CommandConsole
+namespace GameFramework.ConsoleTool.Commands
 {
     /// <summary>
     /// Base class for console commands providing common functionality

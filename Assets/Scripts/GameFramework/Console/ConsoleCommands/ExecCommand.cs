@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
-using UCTools_CommandConsole.Enums;
+using GameFramework.ConsoleTool.Enums;
 
-namespace UCTools_CommandConsole
+namespace GameFramework.ConsoleTool.Commands
 {
     /// <summary>
     /// Execute command that runs console commands from a text file

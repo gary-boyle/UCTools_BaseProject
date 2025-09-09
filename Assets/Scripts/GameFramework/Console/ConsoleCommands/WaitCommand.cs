@@ -1,6 +1,6 @@
-﻿using UCTools_CommandConsole.Enums;
+﻿using GameFramework.ConsoleTool.Enums;
 
-namespace UCTools_CommandConsole
+namespace GameFramework.ConsoleTool.Commands
 {
     /// <summary>
     /// Wait command that pauses command execution for specified number of frames

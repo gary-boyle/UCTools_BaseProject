@@ -7,7 +7,7 @@ using GameFramework.StateMachine;
 using GameFramework.StateMachine.GameStates;
 using GameFramework.StateMachine.Interfaces;
 using GrameFramework.Config;
-using UCTools_CommandConsole;
+using GameFramework.ConsoleTool;
 using UCTools_ConfigVariables;
 //using UCTools_ConfigVariables; // Add this for ConfigCategory
 using UnityEngine;
