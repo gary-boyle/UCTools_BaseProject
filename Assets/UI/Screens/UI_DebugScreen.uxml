@@ -2,9 +2,18 @@
     <Style src="project://database/Assets/UI/USS/default.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3#default" />
     <ui:VisualElement name="UI_DebugScreen" picking-mode="Ignore" class="debug-overlay">
         <ui:VisualElement picking-mode="Ignore" class="layout-column layout-space-between layout-grow">
-            <ui:VisualElement picking-mode="Ignore" class="layout-row layout-space-between">
-                <ui:Label name="lbl_FPS" text="FPS: 60" picking-mode="Ignore" class="debug-text" />
-                <ui:Label name="lbl_Memory" text="Memory: 256MB" picking-mode="Ignore" class="debug-text" />
+            <ui:VisualElement picking-mode="Ignore" class="layout-column">
+                <ui:VisualElement picking-mode="Ignore" class="layout-row layout-space-between" style="margin-bottom: 10px; flex-direction: column; align-items: flex-start;">
+                    <ui:Label name="lbl_FPS" text="FPS: 60" picking-mode="Ignore" class="debug-text" />
+                    <ui:VisualElement name="container_FPSGraph" picking-mode="Ignore" style="flex-direction: column; align-items: center;">
+                        <ui:VisualElement name="graph_FPS" picking-mode="Ignore" style="width: 180px; height: 50px;" />
+                    </ui:VisualElement>
+                    <ui:Label name="lbl_Memory" text="Memory: 256MB" picking-mode="Ignore" class="debug-text" />
+                    <ui:VisualElement name="container_MemoryGraph" picking-mode="Ignore" style="flex-direction: column; align-items: center;">
+                        <ui:VisualElement name="graph_Memory" picking-mode="Ignore" style="width: 180px; height: 50px;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement picking-mode="Ignore" class="layout-row layout-space-between" style="margin-bottom: 20px;" />
             </ui:VisualElement>
             <ui:VisualElement picking-mode="Ignore" class="layout-center" />
             <ui:VisualElement picking-mode="Ignore" class="layout-row layout-space-between">
