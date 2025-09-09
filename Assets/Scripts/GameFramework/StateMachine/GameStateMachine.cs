@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GameFramework.Core;
+using GameFramework.EventSystem.Events;
 using GameFramework.EventSystem.Interfaces;
 using GameFramework.StateMachine.Enum;
 using GameFramework.StateMachine.GameStates;
@@ -12,6 +13,14 @@ using IUpdatable = GameFramework.StateMachine.Interfaces.IUpdatable;
 
 namespace GameFramework.StateMachine
 {
+    /// <summary>
+    /// Game State Machine manages game state transitions with proper event publishing
+    /// Ensures TimeService and other systems receive correct state change notifications
+    /// 
+    /// Design: Uses dependency injection and factory pattern for state creation
+    /// Pros: Clean separation of concerns, proper event handling, extensible state creation
+    /// Cons: Requires all states to be registered in factory
+    /// </summary>
     public class GameStateMachine : IGameStateMachine, IUpdatable, IFixedUpdatable
     {
         public GameStateType CurrentStateType => CurrentState?.StateType ?? GameStateType.Bootstrap;
@@ -83,14 +92,12 @@ namespace GameFramework.StateMachine
             IsInitialized = false;
         }
         
+        /// <summary>
+        /// Changes game state and publishes GameStateChangeEvent for TimeService and other systems
+        /// This is the KEY method that was missing the event publication
+        /// </summary>
         public async Task ChangeStateAsync(GameStateType newStateType)
         {
-            // if (_isTransitioning)
-            // {
-            //     Debug.LogError($"[GameStateMachine] Already transitioning, ignoring request to change to {newStateType}");
-            //     return;
-            // }
-            
             if (!CanTransitionTo(newStateType))
             {
                 Debug.LogError($"[GameStateMachine] Invalid transition from {CurrentStateType} to {newStateType}");
@@ -99,41 +106,52 @@ namespace GameFramework.StateMachine
             
             _isTransitioning = true;
             
-            var previousStateType = CurrentStateType;
+            // Store the previous state for the event
+            var previousStateType = CurrentState?.StateType ?? GameStateType.Bootstrap;
             
-            // try
-            // {
+            try
+            {
                 // Exit current state
-                Debug.Log("Exiting current state");
+                Debug.Log($"[GameStateMachine] Exiting current state: {previousStateType}");
                 if (CurrentState != null)
                 {
                     await CurrentState.ExitAsync();
-                    if (previousStateType != null)
-                    {
-                        _stateHistory.Push(previousStateType);
-                    }
+                    _stateHistory.Push(previousStateType);
                 }
                 
+                // **CRITICAL FIX: Publish the state change event BEFORE entering new state**
+                // This ensures TimeService gets notified of the state change
+                Debug.Log($"[GameStateMachine] Publishing state change event: {previousStateType} -> {newStateType}");
+                _eventSystem.Publish(new GameStateChangeEvent 
+                { 
+                    PreviousState = previousStateType,
+                    NewState = newStateType, 
+                    Context = _context 
+                });
+                
                 // Enter new state
-                Debug.Log("Entering new state");
+                Debug.Log($"[GameStateMachine] Entering new state: {newStateType}");
                 if (_states.TryGetValue(newStateType, out var newState))
                 {
                     CurrentState = newState;
                     await CurrentState.EnterAsync(_context);
+                    
+                    Debug.Log($"[GameStateMachine] State transition completed: {previousStateType} -> {newStateType}");
                 }
                 else
                 {
                     Debug.LogError($"[GameStateMachine] State {newStateType} not registered!");
                 }
-            // }
-            // catch (Exception e)
-            // {
-            //     Debug.LogError($"[GameStateMachine] Error during state transition: {e}");
-            // }
-            // finally
-            // {
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"[GameStateMachine] Error during state transition from {previousStateType} to {newStateType}: {e}");
+                throw;
+            }
+            finally
+            {
                 _isTransitioning = false;
-            // }
+            }
         }
         
         public async Task ChangeStateAsync<T>() where T : BaseGameState
@@ -158,6 +176,7 @@ namespace GameFramework.StateMachine
         public void RegisterState(BaseGameState state)
         {
             _states[state.StateType] = state;
+            Debug.Log($"[GameStateMachine] Registered state: {state.StateType}");
         }
         
         public void Update()
@@ -186,8 +205,6 @@ namespace GameFramework.StateMachine
                 RegisterState(_container.Resolve<LoadingState>());
                 RegisterState(_container.Resolve<NewGameState>());
                 RegisterState(_container.Resolve<PlayingState>());
-                //RegisterState(_container.Resolve<PausedState>());
-                //RegisterState(_container.Resolve<OptionsState>());
                 RegisterState(_container.Resolve<CreditsState>());
                 RegisterState(_container.Resolve<GameOverState>());
                 RegisterState(_container.Resolve<VictoryState>());

@@ -41,20 +41,26 @@ namespace GameFramework.StateMachine.GameStates
         public override async Task EnterAsync(GameContext context)
         {
             await base.EnterAsync(context);
-            
+    
             // Simply declare that we need player input
             InputManager.SetInputContext(InputContext.Player);
-            
+    
+            // **FIX: Auto-resume if game is paused when entering PlayingState**
+            // This handles the case where user loaded a game from a paused state
+            if (_pauseService.IsPaused)
+            {
+                Debug.Log("[PlayingState] Auto-resuming game after entering PlayingState (likely from loading)");
+                _pauseService.ResumeGame();
+            }
+    
             // Subscribe only to high-level game events, not input events
             _eventSystem.Subscribe<PauseRequestedEvent>(OnPauseRequested);
             _eventSystem.Subscribe<ResumeRequestedEvent>(OnResumeRequested);
             _eventSystem.Subscribe<GameOverEvent>(OnGameOver);
-            
-            
+    
             await UIService.ShowScreenAsync<GamePlayScreen>();
             AudioService.PlayMusic("gameplay");
-        }
-        
+        }        
         public override async Task ExitAsync()
         {
             _eventSystem.Unsubscribe<PauseRequestedEvent>(OnPauseRequested);

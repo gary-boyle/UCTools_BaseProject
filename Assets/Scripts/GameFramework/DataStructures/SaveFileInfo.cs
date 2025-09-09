@@ -6,6 +6,7 @@ namespace GameFramework.DataStructures
     /// Represents information about a save file for display in the UI
     /// Handles display formatting for timestamp-based saves and autosaves
     /// Properly detects autosave files from both filename and session data
+    /// Uses TimeService-based playtime information for accurate display
     /// </summary>
     [Serializable]
     public class SaveFileInfo
@@ -17,13 +18,16 @@ namespace GameFramework.DataStructures
         public string currentScene;
         public DateTime lastSaveTime;
         public float totalPlayTimeSeconds;
+        public float sessionTimeSeconds;
         public string formattedPlayTime;
+        public string formattedSessionTime;
         public string formattedDate;
         public bool isAutoSave;
         
         // Additional info for richer display
         public int playerLevel;
         public int score;
+        public PlayTimeInfo playTimeInfo;
 
         public SaveFileInfo(string fileName, GameSession session)
         {
@@ -32,9 +36,15 @@ namespace GameFramework.DataStructures
             this.difficulty = session.difficulty;
             this.currentScene = session.currentScene;
             this.lastSaveTime = session.lastSaveTime;
-            this.totalPlayTimeSeconds = session.totalPlayTimeSeconds;
             this.playerLevel = session.player.level;
             this.score = session.progress.score;
+            
+            // Use TimeService-based playtime information
+            this.totalPlayTimeSeconds = session.TotalPlayTimeSeconds;
+            this.sessionTimeSeconds = session.SessionTimeSeconds;
+            this.formattedPlayTime = session.FormattedPlayTime;
+            this.formattedSessionTime = session.FormattedSessionTime;
+            this.playTimeInfo = session.GetPlayTimeInfo();
             
             // Check if this is an autosave from both filename and session data
             this.isAutoSave = DetermineIfAutoSave(fileName, session);
@@ -43,8 +53,6 @@ namespace GameFramework.DataStructures
             this.displayName = GenerateDisplayName();
             
             // Format display strings
-            var playTime = TimeSpan.FromSeconds(totalPlayTimeSeconds);
-            formattedPlayTime = $"{playTime.Hours:D2}:{playTime.Minutes:D2}:{playTime.Seconds:D2}";
             formattedDate = lastSaveTime.ToString("yyyy-MM-dd HH:mm");
         }
 
@@ -105,6 +113,40 @@ namespace GameFramework.DataStructures
         public string GetSaveTypeIndicator()
         {
             return isAutoSave ? "[AUTO]" : "[SAVE]";
+        }
+        
+        /// <summary>
+        /// Gets detailed playtime information for display
+        /// </summary>
+        public string GetDetailedPlayTimeInfo()
+        {
+            if (sessionTimeSeconds > totalPlayTimeSeconds)
+            {
+                return $"Playtime: {formattedPlayTime} (Session: {formattedSessionTime})";
+            }
+            return $"Playtime: {formattedPlayTime}";
+        }
+        
+        /// <summary>
+        /// Gets a comprehensive save file summary for tooltips or detailed views
+        /// </summary>
+        public string GetSaveFileSummary()
+        {
+            return $"{GetSaveTypeDescription()}\n" +
+                   $"Player: {playerName} (Level {playerLevel})\n" +
+                   $"Difficulty: {difficulty}\n" +
+                   $"Scene: {currentScene}\n" +
+                   $"Playtime: {formattedPlayTime}\n" +
+                   $"Score: {score:N0}\n" +
+                   $"Saved: {formattedDate}";
+        }
+        
+        /// <summary>
+        /// Gets time tracking status for debugging
+        /// </summary>
+        public string GetTimeTrackingStatus()
+        {
+            return $"Tracking: {playTimeInfo.IsTracking}, Game: {playTimeInfo.FormattedGameTime}, Session: {playTimeInfo.FormattedSessionTime}";
         }
     }
 }

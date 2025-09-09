@@ -12,6 +12,7 @@ namespace GameFramework.UI.Screens
     /// <summary>
     /// Main gameplay screen with HUD elements and debug information display
     /// Provides access to game state information and gameplay controls
+    /// Uses TimeService for accurate playtime display with proper pause handling
     /// </summary>
     public class GamePlayScreen : UIScreen
     {
@@ -30,10 +31,7 @@ namespace GameFramework.UI.Screens
         private IGameDataService _gameDataService;
         private ISaveService _saveService;
         private IPauseService _pauseService;
-
-        // Update tracking
-        private float _lastDebugUpdate = 0f;
-        private const float DEBUG_UPDATE_INTERVAL = 0.5f; // Update debug info twice per second
+        private ITimeService _timeService;
 
         public GamePlayScreen(VisualElement rootElement) : base(rootElement)
         {
@@ -41,6 +39,7 @@ namespace GameFramework.UI.Screens
             _gameDataService = GameManager.GetService<IGameDataService>();
             _saveService = GameManager.GetService<ISaveService>();
             _pauseService = GameManager.GetService<IPauseService>();
+            _timeService = GameManager.GetService<ITimeService>();
 
             EnableFrameUpdates();
             InitializeUI();
@@ -53,7 +52,6 @@ namespace GameFramework.UI.Screens
             _testButton?.RegisterCallback<ClickEvent>(OnTestButtonClicked);
             _pauseButton?.RegisterCallback<ClickEvent>(OnPauseButtonClicked);
             _saveButton?.RegisterCallback<ClickEvent>(OnSaveButtonClicked);
-
         }
         
         protected override void OnHide()
@@ -62,7 +60,6 @@ namespace GameFramework.UI.Screens
             _testButton?.UnregisterCallback<ClickEvent>(OnTestButtonClicked);
             _pauseButton?.UnregisterCallback<ClickEvent>(OnPauseButtonClicked);
             _saveButton?.UnregisterCallback<ClickEvent>(OnSaveButtonClicked);
-
         }
         
         private void InitializeUI()
@@ -76,7 +73,6 @@ namespace GameFramework.UI.Screens
             _debugLabel2 ??= RootElement?.Q<Label>("lbl_Debug2");
             _debugLabel3 ??= RootElement?.Q<Label>("lbl_Debug3");  
             _debugLabel4 ??= RootElement?.Q<Label>("lbl_Debug4");
-            
 
             // Set initial button states
             SetupButtonStates();
@@ -94,8 +90,6 @@ namespace GameFramework.UI.Screens
             
             // Publish test event for other systems
             _saveService.PerformAutoSaveAsync();
-
-            //_eventSystem?.Publish(new GameplayTestEvent());
         }
         
         private void OnPauseButtonClicked(ClickEvent evt)
@@ -110,33 +104,28 @@ namespace GameFramework.UI.Screens
         {
             Debug.Log("[GamePlayScreen] Save button clicked");
             
-            // Publish pause event
-            //_eventSystem?.Publish(new SaveGameEvent());
+            // Perform regular save
             _saveService.PerformRegularSaveAsync();
         }
         #endregion
         
         #region Debug Label Updates
         
-
         /// <summary>
         /// Updates all debug labels with current game state information
-        /// Now respects global pause state - playtime will stop incrementing when paused
+        /// Uses TimeService for accurate playtime display that automatically pauses
         /// </summary>
         protected override void OnUpdate(float deltaTime)
         {
-            // Respect global pause state - this stops the playtime counter!
-            if (_pauseService.IsPaused)
-            {
-                return; // Don't update UI when paused - this stops the time counter
-            }
-    
+            // TimeService automatically handles pause state - no need to check here
+            // The playtime will pause automatically when game is paused
+            
             if (!_gameDataService.HasActiveSession())
             {
                 SetDebugLabelsNoSession();
                 return;
             }
-    
+            
             try
             {
                 var session = _gameDataService.CurrentSession;
@@ -147,7 +136,7 @@ namespace GameFramework.UI.Screens
                 UpdateDebugLabel1(session, playerState);
                 UpdateDebugLabel2(playerState);
                 UpdateDebugLabel3(progress);
-                UpdateDebugLabel4(session); // This will now pause when game is paused
+                UpdateDebugLabel4WithTimeService(); // Now uses TimeService directly
             }
             catch (Exception e)
             {
@@ -177,17 +166,36 @@ namespace GameFramework.UI.Screens
         }
         
         /// <summary>
-        /// Updates debug label 4 with scene and playtime information
-        /// Playtime is now updated every frame for smooth display
+        /// Updates debug label 4 with scene and playtime from TimeService
+        /// TimeService automatically handles pause state - no manual checking needed
         /// </summary>
-        private void UpdateDebugLabel4(DataStructures.GameSession session)
+        private void UpdateDebugLabel4WithTimeService()
         {
-            // Get real-time playtime (this will now increment smoothly)
-            var currentPlayTime = session.GetCurrentPlayTime();
-            var playTime = TimeSpan.FromSeconds(currentPlayTime);
-            var formattedTime = $"{playTime.Hours:D2}:{playTime.Minutes:D2}:{playTime.Seconds:D2}";
-            var text = $"Scene: {session.currentScene} | Time: {formattedTime}";
-            SetDebugLabel(_debugLabel4, text);
+            var session = _gameDataService.CurrentSession;
+            
+            if (_timeService != null && session != null)
+            {
+                // Get real-time playtime from TimeService (automatically pauses when game is paused)
+                var formattedGameTime = _timeService.GetFormattedGameTime();
+                var formattedSessionTime = _timeService.GetFormattedSessionTime();
+                var isTracking = _timeService.IsTrackingGameTime;
+                
+                // Show both game time and session time, with tracking indicator
+                var trackingIndicator = isTracking ? "⏱️" : "⏸️";
+                var text = $"Scene: {session.currentScene} | Game: {formattedGameTime} | Session: {formattedSessionTime} {trackingIndicator}";
+                
+                SetDebugLabel(_debugLabel4, text);
+            }
+            else
+            {
+                // Fallback to session-based time if TimeService unavailable
+                var currentPlayTime = session?.TotalPlayTimeSeconds ?? 0f;
+                var playTime = TimeSpan.FromSeconds(currentPlayTime);
+                var formattedTime = $"{playTime.Hours:D2}:{playTime.Minutes:D2}:{playTime.Seconds:D2}";
+                var text = $"Scene: {session?.currentScene ?? "Unknown"} | Time: {formattedTime} (Fallback)";
+                
+                SetDebugLabel(_debugLabel4, text);
+            }
         }
         
         private void SetDebugLabelsNoSession()
@@ -195,7 +203,17 @@ namespace GameFramework.UI.Screens
             SetDebugLabel(_debugLabel1, "No Active Session");
             SetDebugLabel(_debugLabel2, "---");
             SetDebugLabel(_debugLabel3, "---");
-            SetDebugLabel(_debugLabel4, "---");
+            
+            // Show TimeService status even without session
+            if (_timeService != null)
+            {
+                var sessionTime = _timeService.GetFormattedSessionTime();
+                SetDebugLabel(_debugLabel4, $"Session Time: {sessionTime} (No Game Session)");
+            }
+            else
+            {
+                SetDebugLabel(_debugLabel4, "TimeService Unavailable");
+            }
         }
         
         private void SetDebugLabelsError()
@@ -203,7 +221,17 @@ namespace GameFramework.UI.Screens
             SetDebugLabel(_debugLabel1, "Error Loading Data");
             SetDebugLabel(_debugLabel2, "Check Console");
             SetDebugLabel(_debugLabel3, "---");
-            SetDebugLabel(_debugLabel4, "---");
+            
+            // Show TimeService status on error
+            if (_timeService != null)
+            {
+                var timeStats = _timeService.GetTimeStatistics();
+                SetDebugLabel(_debugLabel4, $"TimeService: {timeStats.IsTrackingGameTime} | {_timeService.GetFormattedGameTime()}");
+            }
+            else
+            {
+                SetDebugLabel(_debugLabel4, "TimeService Error");
+            }
         }
         
         private void SetDebugLabel(Label label, string text)
@@ -213,18 +241,6 @@ namespace GameFramework.UI.Screens
                 label.text = text;
             }
         }
-        
-        #endregion
-        
-        #region Public API for External Updates
-        
-        /// <summary>
-        /// Manually set debug label text (useful for custom debug info)
-        /// </summary>
-        public void SetDebugLabel1(string text) => SetDebugLabel(_debugLabel1, text);
-        public void SetDebugLabel2(string text) => SetDebugLabel(_debugLabel2, text);
-        public void SetDebugLabel3(string text) => SetDebugLabel(_debugLabel3, text);
-        public void SetDebugLabel4(string text) => SetDebugLabel(_debugLabel4, text);
         
         #endregion
     }

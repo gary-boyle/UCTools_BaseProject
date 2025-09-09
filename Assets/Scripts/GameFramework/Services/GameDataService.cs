@@ -14,7 +14,7 @@ namespace GameFramework.Services
     /// Clean GameDataService that manages unified GameSession data
     /// Single source of truth for all game state information
     /// Delegates all save/load operations to SaveService
-    /// NO LONGER HANDLES PAUSE STATE - use PauseService instead
+    /// Uses TimeService for all playtime tracking - no manual time management
     /// </summary>
     public class GameDataService : IGameDataService, IUpdatable
     {
@@ -44,7 +44,7 @@ namespace GameFramework.Services
         {
             if (IsInitialized) return;
             
-            Debug.Log("[GameDataService] Initializing game data service...");
+            Debug.Log("[GameDataService] Initializing game data service with TimeService integration...");
             
             // Subscribe to scene events to keep session updated
             _eventSystem.Subscribe<SceneLoadedEvent>(OnSceneLoaded);
@@ -64,7 +64,7 @@ namespace GameFramework.Services
 
         public void Update()
         {
-            // Always update session - PauseService will handle pause logic elsewhere
+            // Only handle auto-save timing - TimeService handles all playtime tracking
             UpdateSession();
         }
         
@@ -72,6 +72,7 @@ namespace GameFramework.Services
         
         /// <summary>
         /// Creates a new game session from loading configuration
+        /// TimeService will handle playtime tracking automatically
         /// </summary>
         public void CreateNewGameSession(LoadingConfiguration config)
         {
@@ -84,30 +85,32 @@ namespace GameFramework.Services
             // Apply any custom data from loading config
             foreach (var kvp in config.GameData)
             {
-                CurrentSession.customData[kvp.Key] = kvp.Value;
+                CurrentSession.SetCustomData(kvp.Key, kvp.Value);
             }
             
             // Reset auto-save timer for new session
             _lastAutoSaveCheck = DateTime.Now;
             
-            Debug.Log($"[GameDataService] Created new game session for player '{CurrentSession.playerName}'");
+            Debug.Log($"[GameDataService] Created new game session for player '{CurrentSession.playerName}' - " +
+                     $"TimeService will track playtime");
             OnSessionCreated?.Invoke(CurrentSession);
         }
         
         /// <summary>
-        /// Loads existing game session and adjusts session timing for continued playtime tracking
+        /// Loads existing game session - TimeService handles playtime restoration
         /// </summary>
         public void LoadGameSession(GameSession session)
         {
             CurrentSession = session ?? throw new ArgumentNullException(nameof(session));
     
-            // **CRITICAL FIX:** Adjust session start time to account for already accumulated playtime
-            CurrentSession.AdjustSessionStartTimeForLoad();
+            // No manual time adjustment needed - TimeService handles all playtime tracking
+            // TimeService will load playtime from the session's custom data automatically
     
             // Reset auto-save timer for loaded session
             _lastAutoSaveCheck = DateTime.Now;
     
-            Debug.Log($"[GameDataService] Loaded game session for player '{CurrentSession.playerName}' with {CurrentSession.totalPlayTimeSeconds:F1}s playtime");
+            Debug.Log($"[GameDataService] Loaded game session for player '{CurrentSession.playerName}' - " +
+                     $"TimeService managing playtime: {CurrentSession.FormattedPlayTime}");
             OnSessionLoaded?.Invoke(CurrentSession);
         }
         
@@ -116,23 +119,26 @@ namespace GameFramework.Services
         /// </summary>
         public void ClearSession()
         {
+            if (CurrentSession != null)
+            {
+                Debug.Log($"[GameDataService] Clearing session for player '{CurrentSession.playerName}'");
+            }
+            
             CurrentSession = null;
             _lastAutoSaveCheck = DateTime.MinValue;
             OnSessionCleared?.Invoke();
         }
         
         /// <summary>
-        /// Updates current session with play time and handles auto-save timing
-        /// Always updates - pause logic is handled by individual systems using PauseService
-        /// Delegates actual saving to SaveService
+        /// Updates session and handles auto-save timing
+        /// TimeService handles all playtime tracking - we just manage auto-saves
         /// </summary>
         public void UpdateSession()
         {
             if (CurrentSession == null) return;
     
-            // Always update play time - PauseService will handle pause logic elsewhere
-            CurrentSession.UpdatePlayTime();
-    
+            // No manual playtime updates needed - TimeService handles everything
+            
             // Check if it's time for an auto-save
             var timeSinceLastCheck = DateTime.Now - _lastAutoSaveCheck;
             if (timeSinceLastCheck.TotalMinutes >= AUTO_SAVE_INTERVAL_MINUTES)
@@ -155,7 +161,15 @@ namespace GameFramework.Services
                 return (false, null);
             }
             
-            return await _saveService.PerformRegularSaveAsync();
+            var result = await _saveService.PerformRegularSaveAsync();
+            
+            if (result.success)
+            {
+                Debug.Log($"[GameDataService] Manual save completed: {result.saveName} - " +
+                         $"Playtime: {CurrentSession?.FormattedPlayTime ?? "N/A"}");
+            }
+            
+            return result;
         }
         
         /// <summary>
@@ -173,7 +187,8 @@ namespace GameFramework.Services
             
             if (result.success)
             {
-                Debug.Log($"[GameDataService] Auto-save completed: {result.saveName}");
+                Debug.Log($"[GameDataService] Auto-save completed: {result.saveName} - " +
+                         $"Playtime: {CurrentSession?.FormattedPlayTime ?? "N/A"}");
             }
             else
             {
@@ -242,12 +257,7 @@ namespace GameFramework.Services
         /// </summary>
         public T GetCustomData<T>(string key, T defaultValue = default) 
         {
-            if (CurrentSession?.customData.ContainsKey(key) == true)
-            {
-                try { return (T)CurrentSession.customData[key]; }
-                catch { return defaultValue; }
-            }
-            return defaultValue;
+            return CurrentSession.GetCustomData<T>(key, defaultValue) ?? defaultValue;
         }
         
         /// <summary>
@@ -255,10 +265,7 @@ namespace GameFramework.Services
         /// </summary>
         public void SetCustomData<T>(string key, T value)
         {
-            if (CurrentSession != null)
-            {
-                CurrentSession.customData[key] = value;
-            }
+            CurrentSession?.SetCustomData<T>(key, value);
         }
         
         /// <summary>
@@ -288,10 +295,7 @@ namespace GameFramework.Services
         /// </summary>
         private void OnSceneLoaded(SceneLoadedEvent evt)
         {
-            if (CurrentSession != null)
-            {
-                CurrentSession.currentScene = evt.SceneName;
-            }
+            CurrentSession?.SetCurrentScene(evt.SceneName);
         }
         
         #endregion

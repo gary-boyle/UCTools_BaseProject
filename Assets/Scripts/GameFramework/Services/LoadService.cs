@@ -17,6 +17,7 @@ namespace GameFramework.Services
     /// <summary>
     /// Service that orchestrates all game loading operations
     /// Handles loading workflow: validation -> file loading -> session creation -> state transition
+    /// Integrates with TimeService for proper playtime handling
     /// </summary>
     public class LoadService : ILoadService
     {
@@ -88,17 +89,17 @@ namespace GameFramework.Services
         {
             Debug.Log($"[LoadService] Load save file requested: {evt.SaveFileInfo.fileName}");
             
-            // ✅ Close any open popups first
+            // Close any open popups first
             await CloseAllPopupsBeforeLoading();
             
-            // ✅ Load the game session
+            // Load the game session
             await LoadGameAsync(evt.SaveFileInfo);
         }
         #endregion
         
         #region Popup Management
         /// <summary>
-        /// ✅ NEW: Closes all popups before starting load process
+        /// Closes all popups before starting load process
         /// </summary>
         private async Task CloseAllPopupsBeforeLoading()
         {
@@ -160,6 +161,7 @@ namespace GameFramework.Services
         
         /// <summary>
         /// Loads a game using SaveFileInfo (main loading method)
+        /// TimeService will handle playtime restoration automatically
         /// </summary>
         public async Task<bool> LoadGameAsync(SaveFileInfo saveFileInfo)
         {
@@ -178,7 +180,8 @@ namespace GameFramework.Services
             try
             {
                 IsLoading = true;
-                Debug.Log($"[LoadService] Starting load for: {saveFileInfo.fileName}");
+                Debug.Log($"[LoadService] Starting load for: {saveFileInfo.fileName} - " +
+                         $"Playtime: {saveFileInfo.formattedPlayTime}");
                 return await ExecuteLoadingWorkflow(saveFileInfo);
             }
             catch (Exception e)
@@ -221,6 +224,7 @@ namespace GameFramework.Services
         #region Loading Workflow
         /// <summary>
         /// Executes the complete loading workflow
+        /// TimeService integration ensures proper playtime handling
         /// </summary>
         private async Task<bool> ExecuteLoadingWorkflow(SaveFileInfo saveFileInfo)
         {
@@ -243,7 +247,7 @@ namespace GameFramework.Services
             
             // Step 3: Create loading configuration for LoadSave
             NotifyProgress("Preparing game world...", 0.5f);
-            var loadingConfig = CreateLoadSaveConfiguration(gameSession); // ✅ NEW method
+            var loadingConfig = CreateLoadSaveConfiguration(gameSession);
             
             // Step 4: Set up game data service
             NotifyProgress("Initializing game systems...", 0.7f);
@@ -257,7 +261,8 @@ namespace GameFramework.Services
             NotifyProgress("Loading complete!", 1.0f);
             LoadingCompleted?.Invoke(gameSession);
             
-            Debug.Log($"[LoadService] Successfully loaded game: {saveFileInfo.fileName}");
+            Debug.Log($"[LoadService] Successfully loaded game: {saveFileInfo.fileName} - " +
+                     $"TimeService will manage playtime from here");
             return true;
         }
         
@@ -294,7 +299,8 @@ namespace GameFramework.Services
                     return null;
                 }
                 
-                Debug.Log($"[LoadService] Game session loaded: Player={gameSession.playerName}, Scene={gameSession.currentScene}");
+                Debug.Log($"[LoadService] Game session loaded: Player={gameSession.playerName}, " +
+                         $"Scene={gameSession.currentScene}, Playtime will be handled by TimeService");
                 return gameSession;
             }
             catch (Exception e)
@@ -305,13 +311,14 @@ namespace GameFramework.Services
         }
         
         /// <summary>
-        /// ✅ NEW: Creates loading configuration specifically for LoadSave type
+        /// Creates loading configuration specifically for LoadSave type
+        /// Includes TimeService integration metadata
         /// </summary>
         private LoadingConfiguration CreateLoadSaveConfiguration(GameSession gameSession)
         {
             Debug.Log($"[LoadService] Creating LoadSave configuration for scene: {gameSession.currentScene}");
             
-            // ✅ Create proper LoadSave loading configuration
+            // Create proper LoadSave loading configuration
             var loadingConfig = new LoadingConfiguration
             {
                 Type = LoadingType.LoadSave,
@@ -322,10 +329,10 @@ namespace GameFramework.Services
                 GameData = new System.Collections.Generic.Dictionary<string, object>()
             };
             
-            // ✅ Store the complete game session for LoadingState
+            // Store the complete game session for LoadingState
             loadingConfig.GameData["gameSession"] = gameSession;
             
-            // ✅ Also store individual values for easy access
+            // Store individual values for easy access
             loadingConfig.GameData["difficulty"] = gameSession.difficulty;
             loadingConfig.GameData["playerLevel"] = gameSession.player.level;
             loadingConfig.GameData["playerHealth"] = gameSession.player.health;
@@ -333,12 +340,15 @@ namespace GameFramework.Services
             loadingConfig.GameData["playerExperience"] = gameSession.player.experience;
             loadingConfig.GameData["playerPosition"] = gameSession.player.position;
             loadingConfig.GameData["playerRotation"] = gameSession.player.rotation;
-            loadingConfig.GameData["totalPlayTime"] = gameSession.totalPlayTimeSeconds;
             loadingConfig.GameData["score"] = gameSession.progress.score;
             loadingConfig.GameData["sessionStartTime"] = gameSession.sessionStartTime.ToString();
             loadingConfig.GameData["lastSaveTime"] = gameSession.lastSaveTime.ToString();
             
-            // ✅ Copy all custom data from session
+            // TimeService will handle playtime - just store for reference
+            loadingConfig.GameData["savedPlayTime"] = gameSession.TotalPlayTimeSeconds;
+            loadingConfig.GameData["timeServiceManaged"] = true;
+            
+            // Copy all custom data from session
             foreach (var kvp in gameSession.customData)
             {
                 // Avoid overwriting system keys
@@ -356,11 +366,12 @@ namespace GameFramework.Services
         {
             Debug.Log("[LoadService] Setting up game data service with loaded session");
             
-            // ✅ Don't load the session here - let LoadingState handle it
-            // We just set up the loading configuration for LoadingState to use
+            // Set up the loading configuration for LoadingState to use
+            // TimeService will handle playtime restoration automatically
             _gameDataService.CurrentLoadingConfig = loadingConfig;
             
-            Debug.Log($"[LoadService] Loading configuration set for: {gameSession.playerName}");
+            Debug.Log($"[LoadService] Loading configuration set for: {gameSession.playerName} - " +
+                     $"TimeService will restore playtime tracking");
         }
         
         private async Task InitiateGameLoading()

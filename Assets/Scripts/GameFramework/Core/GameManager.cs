@@ -187,6 +187,9 @@ namespace GameFramework.Core
             
             // var inputService = _container.Resolve<IInputService>();
             // await inputService.InitializeAsync();
+
+            var timeService = _container.Resolve<ITimeService>();
+            await timeService.InitializeAsync();
             
             var inputManager = _container.Resolve<IInputManager>();
             await inputManager.InitializeAsync();
@@ -264,6 +267,7 @@ namespace GameFramework.Core
             Debug.Log($"[GameManager] EventSystem registered: {_container.IsRegistered<IEventSystem>()}");
     
             // Register services with minimal dependencies
+            _container.RegisterSingleton<ITimeService, TimeService>();
             _container.RegisterSingleton<IAudioService, AudioService>();
             _container.RegisterSingleton<ISceneService, SceneService>();
             _container.RegisterSingleton<IPauseService, PauseService>();
@@ -425,6 +429,9 @@ namespace GameFramework.Core
             if (gameDataService is IUpdatable gameDataServiceUpdatable)
                 _updatables.Add(gameDataServiceUpdatable);
 
+            var timeService = _container.Resolve<ITimeService>();
+            if (timeService is IUpdatable timeUpdatable)
+                _updatables.Add(timeUpdatable);
             
             // // Add other systems that need updates
             // var inputService = _container.Resolve<IInputService>();

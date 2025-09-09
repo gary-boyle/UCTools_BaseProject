@@ -16,6 +16,7 @@ namespace GameFramework.Services
     /// Uses timestamp-based naming for all save files with special autosave handling
     /// Autosaves always overwrite existing autosave files to prevent save directory bloat
     /// Works with GameDataService as the single source of session data
+    /// Integrates with TimeService for accurate playtime tracking
     /// </summary>
     public class SaveService : ISaveService
     {
@@ -156,17 +157,23 @@ namespace GameFramework.Services
         
         /// <summary>
         /// Internal method that performs the actual save operation
+        /// TimeService handles playtime tracking automatically - no manual updates needed
         /// </summary>
         private async Task<bool> SaveGameSessionInternalAsync(GameSession session, string saveName, bool isAutoSave)
         {
             try
             {
                 // Update session timestamp before saving
-                session.lastSaveTime = DateTime.Now;
-                session.UpdatePlayTime();
+                session.UpdateLastSaveTime();
                 
                 // Store whether this was an autosave in the session
-                session.customData["isAutoSave"] = isAutoSave.ToString();
+                session.SetCustomData("isAutoSave", isAutoSave.ToString());
+                
+                // Store current playtime info from TimeService for save file metadata
+                var playTimeInfo = session.GetPlayTimeInfo();
+                session.SetCustomData("playTimeAtSave", playTimeInfo.GameTime);
+                session.SetCustomData("sessionTimeAtSave", playTimeInfo.SessionTime);
+                session.SetCustomData("timeTrackingActive", playTimeInfo.IsTracking);
                 
                 var json = JsonUtility.ToJson(session, true);
                 var filePath = GetSaveFilePath(saveName);
@@ -174,7 +181,10 @@ namespace GameFramework.Services
                 await System.IO.File.WriteAllTextAsync(filePath, json);
                 
                 _eventSystem.Publish(new SaveGameEvent());
-                Debug.Log($"[SaveService] Game session saved as '{saveName}' (AutoSave: {isAutoSave})");
+                
+                Debug.Log($"[SaveService] Game session saved as '{saveName}' (AutoSave: {isAutoSave}) - " +
+                         $"Playtime: {playTimeInfo.FormattedGameTime}, Session: {playTimeInfo.FormattedSessionTime}");
+                
                 return true;
             }
             catch (Exception e)
@@ -187,20 +197,26 @@ namespace GameFramework.Services
         public async Task<GameSession> LoadGameSessionAsync(string saveName)
         {
             var filePath = GetSaveFilePath(saveName);
-            
+    
             if (!System.IO.File.Exists(filePath))
             {
                 Debug.LogWarning($"[SaveService] Save file '{saveName}' not found");
                 return null;
             }
-            
+    
             try
             {
                 var json = await System.IO.File.ReadAllTextAsync(filePath);
                 var session = JsonUtility.FromJson<GameSession>(json);
-                
+        
+                // Restore time data to services for proper integration
+                session.RestoreTimeDataToService();
+        
                 _eventSystem.Publish(new LoadGameEvent());
-                Debug.Log($"[SaveService] Game session loaded from '{saveName}'");
+        
+                Debug.Log($"[SaveService] Game session loaded from '{saveName}' - " +
+                          $"Playtime: {session.FormattedPlayTime}");
+        
                 return session;
             }
             catch (Exception e)
@@ -281,6 +297,7 @@ namespace GameFramework.Services
         #region UI Support Operations
         /// <summary>
         /// Gets formatted save file information for UI display, sorted by most recent first
+        /// Uses TimeService integration for accurate playtime display
         /// </summary>
         public async Task<SaveFileInfo[]> GetSaveFileInfosAsync()
         {
@@ -293,10 +310,13 @@ namespace GameFramework.Services
                 var results = await Task.WhenAll(loadTasks);
                 
                 // Filter out nulls and sort by most recent first
-                return results
+                var validResults = results
                     .Where(info => info != null)
                     .OrderByDescending(info => info.lastSaveTime)
                     .ToArray();
+                
+                Debug.Log($"[SaveService] Loaded {validResults.Length} save file infos with TimeService integration");
+                return validResults;
             }
             catch (Exception e)
             {
@@ -358,13 +378,21 @@ namespace GameFramework.Services
         
         /// <summary>
         /// Creates SaveFileInfo from a save file name, handling errors gracefully
+        /// Now uses TimeService-integrated GameSession for accurate playtime
         /// </summary>
         private async Task<SaveFileInfo> CreateSaveFileInfoAsync(string fileName)
         {
             try
             {
                 var gameSession = await LoadGameSessionAsync(fileName);
-                return gameSession != null ? new SaveFileInfo(fileName, gameSession) : null;
+                if (gameSession != null)
+                {
+                    var saveInfo = new SaveFileInfo(fileName, gameSession);
+                    Debug.Log($"[SaveService] Created SaveFileInfo for '{fileName}' - " +
+                             $"Game time: {saveInfo.formattedPlayTime}, Session time: {saveInfo.formattedSessionTime}");
+                    return saveInfo;
+                }
+                return null;
             }
             catch (Exception ex)
             {
