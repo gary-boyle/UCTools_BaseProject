@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using GameFramework.Core;
 using GameFramework.EventSystem.Interfaces;
+using GameFramework.Input;
 using GameFramework.Input.Interfaces;
 using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine.Enum;
@@ -32,6 +33,8 @@ namespace GameFramework.StateMachine.GameStates
             await base.EnterAsync(context);
             // Implement victory celebration with stats and progression
             // All services available via constructor injection
+            InputManager.SetInputContext(InputContext.UI);
+
         }
     }
 }

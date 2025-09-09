@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using GameFramework.Core;
 using GameFramework.EventSystem.Events;
 using GameFramework.EventSystem.Interfaces;
+using GameFramework.Input;
 using GameFramework.Input.Interfaces;
 using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine.Data;
@@ -35,7 +36,8 @@ namespace GameFramework.StateMachine.GameStates
         public override async Task EnterAsync(GameContext context)
         {
             await base.EnterAsync(context);
-            
+            InputManager.SetInputContext(InputContext.UI);
+
             // Subscribe to new game requests
             EventSystem.Subscribe<NewGameRequestedEvent>(OnNewGameRequested);
             

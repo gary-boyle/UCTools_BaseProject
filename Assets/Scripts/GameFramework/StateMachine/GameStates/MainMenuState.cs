@@ -41,7 +41,7 @@ namespace GameFramework.StateMachine.GameStates
             await base.EnterAsync(context);
             
             // Declare that we need UI input
-            _inputManager.SetInputContext(InputContext.UI);
+            InputManager.SetInputContext(InputContext.UI);
             
             // Subscribe to menu events using injected event system
             EventSystem.Subscribe<NewGameRequestedEvent>(OnNewGameRequested);

@@ -4,6 +4,7 @@ using GameFramework.Core;
 using GameFramework.DataStructures;
 using GameFramework.EventSystem.Events;
 using GameFramework.EventSystem.Interfaces;
+using GameFramework.Input;
 using GameFramework.Input.Interfaces;
 using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine.Data;
@@ -40,7 +41,8 @@ namespace GameFramework.StateMachine.GameStates
         public override async Task EnterAsync(GameContext context)
         {
             await base.EnterAsync(context);
-            
+            InputManager.SetInputContext(InputContext.UI);
+
             _currentConfig = GameDataService.CurrentLoadingConfig;
             _loadingStartTime = Time.time;
             

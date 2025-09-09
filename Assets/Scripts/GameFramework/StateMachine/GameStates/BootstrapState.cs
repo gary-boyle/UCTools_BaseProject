@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using GameFramework.Core;
 using GameFramework.EventSystem.Interfaces;
+using GameFramework.Input;
 using GameFramework.Input.Interfaces;
 using GameFramework.Services;
 using GameFramework.Services.Interfaces;
@@ -73,6 +74,9 @@ namespace GameFramework.StateMachine.GameStates
                 if (!service.IsInitialized)
                     await service.InitializeAsync();
             }
+            
+            InputManager.SetInputContext(InputContext.UI);
+
         }
     }
 

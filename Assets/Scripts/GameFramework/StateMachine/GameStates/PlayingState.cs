@@ -43,7 +43,7 @@ namespace GameFramework.StateMachine.GameStates
             await base.EnterAsync(context);
             
             // Simply declare that we need player input
-            _inputManager.SetInputContext(InputContext.Player);
+            InputManager.SetInputContext(InputContext.Player);
             
             // Subscribe only to high-level game events, not input events
             _eventSystem.Subscribe<PauseRequestedEvent>(OnPauseRequested);
