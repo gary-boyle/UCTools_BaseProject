@@ -29,6 +29,7 @@ namespace GameFramework.UI.Screens
         // Services
         private IGameDataService _gameDataService;
         private ISaveService _saveService;
+        private IPauseService _pauseService;
 
         // Update tracking
         private float _lastDebugUpdate = 0f;
@@ -39,6 +40,8 @@ namespace GameFramework.UI.Screens
             // Get services from DI container
             _gameDataService = GameManager.GetService<IGameDataService>();
             _saveService = GameManager.GetService<ISaveService>();
+            _pauseService = GameManager.GetService<IPauseService>();
+
             EnableFrameUpdates();
             InitializeUI();
             UIElementValidator.ValidateElementsWithNames(this, UIElementValidator.ValidationMode.ThrowExceptions);
@@ -123,7 +126,7 @@ namespace GameFramework.UI.Screens
         protected override void OnUpdate(float deltaTime)
         {
             // Respect global pause state - this stops the playtime counter!
-            if (_gameDataService.IsGamePaused())
+            if (_pauseService.IsPaused)
             {
                 return; // Don't update UI when paused - this stops the time counter
             }

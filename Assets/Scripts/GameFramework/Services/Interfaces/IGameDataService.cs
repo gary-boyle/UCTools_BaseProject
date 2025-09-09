@@ -25,9 +25,6 @@ namespace GameFramework.Services.Interfaces
         void UpdateSession();
         bool HasActiveSession();
 
-        // Pause stuff
-        bool IsGamePaused();
-        void SetPauseState(bool isPaused);
         
         // Save/Load Operations
         Task<bool> LoadSessionAsync(string saveName);

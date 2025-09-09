@@ -188,6 +188,9 @@ namespace GameFramework.Core
             var sceneService = _container.Resolve<ISceneService>();
             await sceneService.InitializeAsync();
             
+            var pauseService = _container.Resolve<IPauseService>();
+            await pauseService.InitializeAsync();
+
             // Initialize ConfigService and register config categories
             var configService = _container.Resolve<IConfigService>() as ConfigService;
             await configService.InitializeAsync();
@@ -258,7 +261,8 @@ namespace GameFramework.Core
             _container.RegisterSingleton<IAudioService, AudioService>();
             _container.RegisterSingleton<IInputService, InputService>();
             _container.RegisterSingleton<ISceneService, SceneService>();
-            
+            _container.RegisterSingleton<IPauseService, PauseService>();
+
             // CREATE AND REGISTER UI DOCUMENT BEFORE UI SERVICE
             RegisterUIDocument();
     
@@ -413,6 +417,10 @@ namespace GameFramework.Core
             if (inputService is IUpdatable inputUpdatable)
                 _updatables.Add(inputUpdatable);
 
+            var pauseService = _container.Resolve<IPauseService>();
+            if (pauseService is IUpdatable pauseUpdatable)
+                _updatables.Add(pauseUpdatable);
+            
             // Add UI service for screen updates
             var uiService = _container.Resolve<IUIService>();
             if (uiService is IUpdatable uiUpdatable)

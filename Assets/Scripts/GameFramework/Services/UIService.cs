@@ -35,15 +35,15 @@ namespace GameFramework.Services
         private UIPopup _currentPopup;
         private readonly Stack<UIPopup> _popupStack = new Stack<UIPopup>();
 
-        private IGameDataService _gameDataService;
+        private IPauseService _pauseService;
         /// <summary>
         /// Constructor injection - receives required dependencies
         /// </summary>
-        public UIService(IEventSystem eventSystem, UIDocument uiDocument, IGameDataService gameDataService)
+        public UIService(IEventSystem eventSystem, UIDocument uiDocument, IPauseService pauseService)
         {
             _eventSystem = eventSystem ?? throw new ArgumentNullException(nameof(eventSystem));
             _uiDocument = uiDocument ?? throw new ArgumentNullException(nameof(uiDocument));
-            _gameDataService = gameDataService ?? throw new ArgumentNullException(nameof(gameDataService));
+            _pauseService = pauseService ?? throw new ArgumentNullException(nameof(pauseService));
         }
         
         public UIService(IEventSystem eventSystem, IUIDocumentWrapper uiDocumentWrapper)
@@ -70,24 +70,23 @@ namespace GameFramework.Services
         /// <summary>
         /// IUpdatable implementation - called every frame by GameManager
         /// Updates all screens that need frame-based updates and are currently visible
-        /// Now respects global pause state
+        /// Now respects global pause state from PauseService
         /// </summary>
         public void Update()
         {
             if (!IsInitialized) return;
-    
-            // **NEW:** Respect global pause state for screen updates
-            bool isPaused = _gameDataService.IsGamePaused();
-    
+
+            bool isPaused = _pauseService?.IsPaused ?? false;
+
             float deltaTime = Time.deltaTime;
-    
+
             // Update only visible screens that need frame updates
             for (int i = _updatableScreens.Count - 1; i >= 0; i--)
             {
                 var screen = _updatableScreens[i];
                 if (screen != null && screen.IsVisible && screen.NeedsFrameUpdates)
                 {
-                    // **NEW:** Only update screen if not paused (unless it's a special pause-immune screen)
+                    // **UPDATED:** Only update screen if not paused (unless it's a special pause-immune screen)
                     if (!isPaused || screen.ShouldUpdateWhenPaused())
                     {
                         screen.InternalUpdate(deltaTime);

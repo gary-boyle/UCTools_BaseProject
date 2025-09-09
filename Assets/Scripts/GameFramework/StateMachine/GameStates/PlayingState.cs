@@ -16,15 +16,13 @@ namespace GameFramework.StateMachine.GameStates
 {
     /// <summary>
     /// Playing state with internal pause handling via popup overlay
-    /// Pause is no longer a separate state - it's a mode within this state
-    /// Uses GameDataService as single source of truth for pause state
+    /// Uses PauseService as single source of truth for pause state
     /// </summary>
     public class PlayingState : BaseGameState
     {
         #region Private Fields
-        private float _prePauseTimeScale = 1f;
-        private float _prePauseAudioVolume = 1f;
         private bool _isTransitioning = false;
+        private readonly IPauseService _pauseService;
         #endregion
 
         #region Constructor
@@ -38,9 +36,11 @@ namespace GameFramework.StateMachine.GameStates
             IUIService uiService,
             IInputService inputService,
             IConsoleService consoleService,
-            IGameDataService gameDataService)  
+            IGameDataService gameDataService,
+            IPauseService pauseService)  // NEW: Added PauseService dependency
             : base(GameStateType.Playing, stateMachine, eventSystem, audioService, uiService, inputService, consoleService, gameDataService)
         {
+            _pauseService = pauseService ?? throw new ArgumentNullException(nameof(pauseService));
         }
         #endregion
         
@@ -53,12 +53,9 @@ namespace GameFramework.StateMachine.GameStates
             
             // ✅ SIMPLIFIED: Reset state flags when entering
             _isTransitioning = false;
-            _prePauseTimeScale = 1f;
-            _prePauseAudioVolume = 1f;
             
-            // ✅ Ensure game is not paused and time scale is correct
-            GameDataService.SetPauseState(false);  // This is our single source of truth
-            Time.timeScale = 1f;
+            // ✅ Ensure game is not paused using PauseService
+            _pauseService.ResumeGame();
             
             // ✅ Ensure all popups are closed first
             await CloseAllPopups();
@@ -95,12 +92,11 @@ namespace GameFramework.StateMachine.GameStates
             // CRITICAL: Always unsubscribe on exit
             UnsubscribeFromEvents();
             
-            // Clean up pause state using GameDataService
-            if (GameDataService.IsGamePaused() )
+            // Clean up pause state using PauseService
+            if (_pauseService.IsPaused)
             {
                 Debug.Log("[PlayingState] Cleaning up pause state before exit");
-                Time.timeScale = 1f; // Don't leave the game paused
-                GameDataService.SetPauseState(false); // Single source of truth
+                _pauseService.ResumeGame(); // This will restore time scale and audio
             }
             
             // Hide UI
@@ -118,10 +114,10 @@ namespace GameFramework.StateMachine.GameStates
         public override void Update()
         {
             // Only update session if game is not paused and not transitioning
-            if (!GameDataService.IsGamePaused()  && !_isTransitioning && GameDataService.HasActiveSession())
+            if (!_pauseService.IsPaused && !_isTransitioning && GameDataService.HasActiveSession())
             {
-                // Let GameDataService handle session updates (it checks pause state internally)
-                // GameDataService.Update() is called by the framework
+                // GameDataService.Update() is called by the framework automatically
+                // Individual game systems should check _pauseService.IsPaused for their own logic
             }
         }
         #endregion
@@ -212,26 +208,19 @@ namespace GameFramework.StateMachine.GameStates
         }
         #endregion
         
-        #region Pause Management - SIMPLIFIED!
+        #region Pause Management - SIMPLIFIED WITH PAUSESERVICE!
         /// <summary>
         /// Pauses the game and shows pause popup
-        /// Uses GameDataService as single source of truth for pause state
+        /// Uses PauseService for all pause logic
         /// </summary>
         private async Task PauseGame()
         {
-            if (GameDataService.IsGamePaused()  || _isTransitioning) return;
+            if (_pauseService.IsPaused || _isTransitioning) return;
             
             Debug.Log("[PlayingState] Pausing game");
             
-            // Store current state before pausing
-            _prePauseTimeScale = Time.timeScale;
-            _prePauseAudioVolume = AudioService.GetMasterVolume();
-            
-            GameDataService.SetPauseState(true);
-            
-            // Apply pause effects
-            Time.timeScale = 0f;
-            //AudioService.SetMasterVolume(_prePauseAudioVolume * 0.3f); // Reduce volume, don't mute completely
+            // Use PauseService to handle all pause logic (time scale, audio, events)
+            _pauseService.PauseGame("Player paused via PlayingState");
             
             try
             {
@@ -242,22 +231,18 @@ namespace GameFramework.StateMachine.GameStates
             catch (Exception ex)
             {
                 Debug.LogError($"[PlayingState] Error showing pause popup: {ex}");
-                // If popup fails, still publish pause event
             }
-            
-            // Publish pause event for global systems
-            EventSystem.Publish(new GamePausedEvent());
             
             Debug.Log("[PlayingState] Game successfully paused");
         }
         
         /// <summary>
         /// Resumes the game and hides pause popup
-        /// Uses GameDataService as single source of truth for pause state
+        /// Uses PauseService for all pause logic
         /// </summary>
         private async Task ResumeGame()
         {
-            if (!GameDataService.IsGamePaused()  || _isTransitioning) return;
+            if (!_pauseService.IsPaused || _isTransitioning) return;
             
             Debug.Log("[PlayingState] Resuming game");
             
@@ -270,16 +255,10 @@ namespace GameFramework.StateMachine.GameStates
             catch (Exception ex)
             {
                 Debug.LogWarning($"[PlayingState] Error hiding pause popup: {ex}");
-                // Continue with resume anyway
             }
             
-            GameDataService.SetPauseState(false);
-
-            // Restore previous state
-            Time.timeScale = _prePauseTimeScale;
-            
-            // Publish resume event for global systems
-            EventSystem.Publish(new GameResumedEvent());
+            // Use PauseService to handle all resume logic (time scale, audio, events)
+            _pauseService.ResumeGame();
             
             Debug.Log("[PlayingState] Game successfully resumed");
         }
@@ -332,29 +311,29 @@ namespace GameFramework.StateMachine.GameStates
         #region Event Handlers - Pause/Resume - SIMPLIFIED!
         private async void OnPauseRequested(PauseRequestedEvent evt)
         {
-            Debug.Log($"[PlayingState] OnPauseRequested - Current state: Paused={GameDataService.IsGamePaused() }, Transitioning={_isTransitioning}");
+            Debug.Log($"[PlayingState] OnPauseRequested - Current state: Paused={_pauseService.IsPaused}, Transitioning={_isTransitioning}");
             
-            if (!GameDataService.IsGamePaused()  && !_isTransitioning)
+            if (!_pauseService.IsPaused && !_isTransitioning)
             {
                 await PauseGame();
             }
             else
             {
-                Debug.LogWarning($"[PlayingState] Pause request ignored - Paused={GameDataService.IsGamePaused() }, Transitioning={_isTransitioning}");
+                Debug.LogWarning($"[PlayingState] Pause request ignored - Paused={_pauseService.IsPaused}, Transitioning={_isTransitioning}");
             }
         }
         
         private async void OnResumeRequested(ResumeRequestedEvent evt)
         {
-            Debug.Log($"[PlayingState] OnResumeRequested - Current state: Paused={GameDataService.IsGamePaused() }, Transitioning={_isTransitioning}");
+            Debug.Log($"[PlayingState] OnResumeRequested - Current state: Paused={_pauseService.IsPaused}, Transitioning={_isTransitioning}");
             
-            if (GameDataService.IsGamePaused()  && !_isTransitioning)
+            if (_pauseService.IsPaused && !_isTransitioning)
             {
                 await ResumeGame();
             }
             else
             {
-                Debug.LogWarning($"[PlayingState] Resume request ignored - Paused={GameDataService.IsGamePaused() }, Transitioning={_isTransitioning}");
+                Debug.LogWarning($"[PlayingState] Resume request ignored - Paused={_pauseService.IsPaused}, Transitioning={_isTransitioning}");
             }
         }
         
@@ -363,11 +342,11 @@ namespace GameFramework.StateMachine.GameStates
         /// </summary>
         private async void OnCancelInput(UICancelInputEvent evt)
         {
-            Debug.Log($"[PlayingState] OnCancelInput - Current state: Paused={GameDataService.IsGamePaused() }, Transitioning={_isTransitioning}");
+            Debug.Log($"[PlayingState] OnCancelInput - Current state: Paused={_pauseService.IsPaused}, Transitioning={_isTransitioning}");
             
             if (_isTransitioning) return;
             
-            if (GameDataService.IsGamePaused() )
+            if (_pauseService.IsPaused)
             {
                 await ResumeGame();
             }
@@ -382,11 +361,11 @@ namespace GameFramework.StateMachine.GameStates
         /// </summary>
         private async void OnPlayerPauseInput(PlayerPauseInputEvent evt)
         {
-            Debug.Log($"[PlayingState] OnPlayerPauseInput - Current state: Paused={GameDataService.IsGamePaused() }, Transitioning={_isTransitioning}");
+            Debug.Log($"[PlayingState] OnPlayerPauseInput - Current state: Paused={_pauseService.IsPaused}, Transitioning={_isTransitioning}");
             
             if (_isTransitioning) return;
             
-            if (GameDataService.IsGamePaused() )
+            if (_pauseService.IsPaused)
             {
                 await ResumeGame();
             }
@@ -412,7 +391,7 @@ namespace GameFramework.StateMachine.GameStates
             
             Debug.Log("[PlayingState] Game over event received");
             
-            if (GameDataService.IsGamePaused() )
+            if (_pauseService.IsPaused)
             {
                 await ResumeGame();
             }
@@ -426,7 +405,7 @@ namespace GameFramework.StateMachine.GameStates
             
             Debug.Log("[PlayingState] Victory event received");
             
-            if (GameDataService.IsGamePaused() )
+            if (_pauseService.IsPaused)
             {
                 await ResumeGame();
             }
@@ -438,7 +417,7 @@ namespace GameFramework.StateMachine.GameStates
         #region Input Event Handlers - SIMPLIFIED!
         private void OnAttackInput(PlayerAttackInputEvent evt)
         {
-            if (GameDataService.IsGamePaused()  || _isTransitioning) return;
+            if (_pauseService.IsPaused || _isTransitioning) return;
             
             Debug.Log($"[PlayingState] Player attack input: {evt.Phase}");
             // Forward to game systems...
@@ -446,7 +425,7 @@ namespace GameFramework.StateMachine.GameStates
         
         private void OnJumpInput(PlayerJumpInputEvent evt)
         {
-            if (GameDataService.IsGamePaused()  || _isTransitioning) return;
+            if (_pauseService.IsPaused || _isTransitioning) return;
             
             Debug.Log("[PlayingState] Player jump input");
             // Forward to game systems...
@@ -454,7 +433,7 @@ namespace GameFramework.StateMachine.GameStates
         
         private void OnInteractInput(PlayerInteractInputEvent evt)
         {
-            if (GameDataService.IsGamePaused()  || _isTransitioning) return;
+            if (_pauseService.IsPaused || _isTransitioning) return;
             
             Debug.Log($"[PlayingState] Player interact input: {evt.Phase}");
             // Forward to game systems...
@@ -462,21 +441,21 @@ namespace GameFramework.StateMachine.GameStates
         
         private void OnMoveInput(PlayerMoveInputEvent evt)
         {
-            if (GameDataService.IsGamePaused()  || _isTransitioning) return;
+            if (_pauseService.IsPaused || _isTransitioning) return;
             
             // Handle movement (no debug log - called frequently)
         }
         
         private void OnLookInput(PlayerLookInputEvent evt)
         {
-            if (GameDataService.IsGamePaused()  || _isTransitioning) return;
+            if (_pauseService.IsPaused || _isTransitioning) return;
             
             // Handle camera/look input (no debug log - called frequently)
         }
         
         private void OnSprintInput(PlayerSprintInputEvent evt)
         {
-            if (GameDataService.IsGamePaused()  || _isTransitioning) return;
+            if (_pauseService.IsPaused || _isTransitioning) return;
             
             Debug.Log($"[PlayingState] Player sprint input: {evt.Phase}");
             // Forward to game systems...
@@ -484,7 +463,7 @@ namespace GameFramework.StateMachine.GameStates
         
         private void OnCrouchInput(PlayerCrouchInputEvent evt)
         {
-            if (GameDataService.IsGamePaused()  || _isTransitioning) return;
+            if (_pauseService.IsPaused || _isTransitioning) return;
             
             Debug.Log($"[PlayingState] Player crouch input: {evt.Phase}");
             // Forward to game systems...
@@ -492,7 +471,7 @@ namespace GameFramework.StateMachine.GameStates
 
         private void OnNextInput(PlayerNextInputEvent evt)
         {
-            if (GameDataService.IsGamePaused()  || _isTransitioning) return;
+            if (_pauseService.IsPaused || _isTransitioning) return;
             
             Debug.Log("[PlayingState] Player next input");
             // Forward to game systems...
@@ -500,12 +479,11 @@ namespace GameFramework.StateMachine.GameStates
 
         private void OnPreviousInput(PlayerPreviousInputEvent evt)
         {
-            if (GameDataService.IsGamePaused() || _isTransitioning) return;
+            if (_pauseService.IsPaused || _isTransitioning) return;
             
             Debug.Log("[PlayingState] Player previous input");
             // Forward to game systems...
         }
         #endregion
-        
     }
 }

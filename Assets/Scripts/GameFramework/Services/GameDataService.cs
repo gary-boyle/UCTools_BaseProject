@@ -14,15 +14,13 @@ namespace GameFramework.Services
     /// Clean GameDataService that manages unified GameSession data
     /// Single source of truth for all game state information
     /// Delegates all save/load operations to SaveService
+    /// NO LONGER HANDLES PAUSE STATE - use PauseService instead
     /// </summary>
     public class GameDataService : IGameDataService, IUpdatable
     {
         public bool IsInitialized { get; private set; }
         public GameSession CurrentSession { get; private set; }
         public LoadingConfiguration CurrentLoadingConfig { get; set; }
-        
-        // Global pause state - accessible by all systems
-        public bool IsPaused { get; private set; }
         
         private readonly IEventSystem _eventSystem;
         private readonly ISaveService _saveService;
@@ -35,7 +33,6 @@ namespace GameFramework.Services
         public event Action<GameSession> OnSessionCreated;
         public event Action<GameSession> OnSessionLoaded;
         public event Action OnSessionCleared;
-        public event Action<bool> OnPauseStateChanged;
 
         public GameDataService(IEventSystem eventSystem, ISaveService saveService)
         {
@@ -52,64 +49,24 @@ namespace GameFramework.Services
             // Subscribe to scene events to keep session updated
             _eventSystem.Subscribe<SceneLoadedEvent>(OnSceneLoaded);
             
-            // Subscribe to pause events to track global pause state
-            _eventSystem.Subscribe<GamePausedEvent>(OnGamePaused);
-            _eventSystem.Subscribe<GameResumedEvent>(OnGameResumed);
-            
             IsInitialized = true;
             await Task.CompletedTask;
         }
 
-        public bool IsGamePaused()
-        {
-            return IsPaused;
-        }
         public void Shutdown()
         {
             _eventSystem?.Unsubscribe<SceneLoadedEvent>(OnSceneLoaded);
-            _eventSystem?.Unsubscribe<GamePausedEvent>(OnGamePaused);
-            _eventSystem?.Unsubscribe<GameResumedEvent>(OnGameResumed);
             
             ClearSession();
             CurrentLoadingConfig = null;
-            IsPaused = false;
             IsInitialized = false;
         }
 
         public void Update()
         {
-            // Only update session if game is not paused
-            if (!IsPaused)
-            {
-                UpdateSession();
-            }
+            // Always update session - PauseService will handle pause logic elsewhere
+            UpdateSession();
         }
-        
-        #region Pause State Management
-        
-        /// <summary>
-        /// Sets the global pause state
-        /// </summary>
-        public void SetPauseState(bool isPaused)
-        {
-            if (IsPaused != isPaused)
-            {
-                IsPaused = isPaused;
-                OnPauseStateChanged?.Invoke(IsPaused);
-                
-                Debug.Log($"[GameDataService] Global pause state changed to: {IsPaused}");
-            }
-        }
-        
-        /// <summary>
-        /// Checks if any game systems should pause their logic
-        /// </summary>
-        public bool ShouldPauseGameLogic()
-        {
-            return IsPaused;
-        }
-        
-        #endregion
         
         #region GameSession Management
         
@@ -137,7 +94,6 @@ namespace GameFramework.Services
             OnSessionCreated?.Invoke(CurrentSession);
         }
         
-// Add this method to GameDataService.cs
         /// <summary>
         /// Loads existing game session and adjusts session timing for continued playtime tracking
         /// </summary>
@@ -167,13 +123,14 @@ namespace GameFramework.Services
         
         /// <summary>
         /// Updates current session with play time and handles auto-save timing
-        /// Only called when not paused - delegates actual saving to SaveService
+        /// Always updates - pause logic is handled by individual systems using PauseService
+        /// Delegates actual saving to SaveService
         /// </summary>
         public void UpdateSession()
         {
             if (CurrentSession == null) return;
     
-            // Update play time continuously
+            // Always update play time - PauseService will handle pause logic elsewhere
             CurrentSession.UpdatePlayTime();
     
             // Check if it's time for an auto-save
@@ -335,23 +292,6 @@ namespace GameFramework.Services
             {
                 CurrentSession.currentScene = evt.SceneName;
             }
-        }
-        
-        
-        /// <summary>
-        /// Handles global pause events
-        /// </summary>
-        private void OnGamePaused(GamePausedEvent evt)
-        {
-            SetPauseState(true);
-        }
-        
-        /// <summary>
-        /// Handles global resume events
-        /// </summary>
-        private void OnGameResumed(GameResumedEvent evt)
-        {
-            SetPauseState(false);
         }
         
         #endregion
