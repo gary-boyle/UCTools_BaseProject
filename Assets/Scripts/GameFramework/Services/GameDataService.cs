@@ -60,6 +60,10 @@ namespace GameFramework.Services
             await Task.CompletedTask;
         }
 
+        public bool IsGamePaused()
+        {
+            return IsPaused;
+        }
         public void Shutdown()
         {
             _eventSystem?.Unsubscribe<SceneLoadedEvent>(OnSceneLoaded);
@@ -133,17 +137,21 @@ namespace GameFramework.Services
             OnSessionCreated?.Invoke(CurrentSession);
         }
         
+// Add this method to GameDataService.cs
         /// <summary>
-        /// Loads existing game session
+        /// Loads existing game session and adjusts session timing for continued playtime tracking
         /// </summary>
         public void LoadGameSession(GameSession session)
         {
             CurrentSession = session ?? throw new ArgumentNullException(nameof(session));
-            
+    
+            // **CRITICAL FIX:** Adjust session start time to account for already accumulated playtime
+            CurrentSession.AdjustSessionStartTimeForLoad();
+    
             // Reset auto-save timer for loaded session
             _lastAutoSaveCheck = DateTime.Now;
-            
-            Debug.Log($"[GameDataService] Loaded game session for player '{CurrentSession.playerName}'");
+    
+            Debug.Log($"[GameDataService] Loaded game session for player '{CurrentSession.playerName}' with {CurrentSession.totalPlayTimeSeconds:F1}s playtime");
             OnSessionLoaded?.Invoke(CurrentSession);
         }
         
@@ -164,16 +172,16 @@ namespace GameFramework.Services
         public void UpdateSession()
         {
             if (CurrentSession == null) return;
-            
-            // Update play time
+    
+            // Update play time continuously
             CurrentSession.UpdatePlayTime();
-            
+    
             // Check if it's time for an auto-save
             var timeSinceLastCheck = DateTime.Now - _lastAutoSaveCheck;
             if (timeSinceLastCheck.TotalMinutes >= AUTO_SAVE_INTERVAL_MINUTES)
             {
                 _lastAutoSaveCheck = DateTime.Now;
-                
+        
                 // Delegate to SaveService's auto-save logic
                 _ = PerformAutoSaveAsync();
             }
@@ -328,6 +336,7 @@ namespace GameFramework.Services
                 CurrentSession.currentScene = evt.SceneName;
             }
         }
+        
         
         /// <summary>
         /// Handles global pause events

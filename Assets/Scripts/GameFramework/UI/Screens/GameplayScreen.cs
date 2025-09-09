@@ -1,6 +1,7 @@
 ﻿using System;
 using GameFramework.Core;
 using GameFramework.EventSystem.Events;
+using GameFramework.Services;
 using GameFramework.Services.Interfaces;
 using UCTools_Utilities.UI;
 using UnityEngine;
@@ -117,27 +118,33 @@ namespace GameFramework.UI.Screens
 
         /// <summary>
         /// Updates all debug labels with current game state information
-        /// Call this method to refresh the debug display
+        /// Now respects global pause state - playtime will stop incrementing when paused
         /// </summary>
         protected override void OnUpdate(float deltaTime)
         {
+            // Respect global pause state - this stops the playtime counter!
+            if (_gameDataService.IsGamePaused())
+            {
+                return; // Don't update UI when paused - this stops the time counter
+            }
+    
             if (!_gameDataService.HasActiveSession())
             {
                 SetDebugLabelsNoSession();
                 return;
             }
-            
+    
             try
             {
                 var session = _gameDataService.CurrentSession;
                 var playerState = _gameDataService.GetPlayerState();
                 var progress = _gameDataService.GetGameProgress();
-                
+        
                 // Update each label with different information
                 UpdateDebugLabel1(session, playerState);
                 UpdateDebugLabel2(playerState);
                 UpdateDebugLabel3(progress);
-                UpdateDebugLabel4(session);
+                UpdateDebugLabel4(session); // This will now pause when game is paused
             }
             catch (Exception e)
             {
@@ -166,9 +173,15 @@ namespace GameFramework.UI.Screens
             SetDebugLabel(_debugLabel3, text);
         }
         
+        /// <summary>
+        /// Updates debug label 4 with scene and playtime information
+        /// Playtime is now updated every frame for smooth display
+        /// </summary>
         private void UpdateDebugLabel4(DataStructures.GameSession session)
         {
-            var playTime = TimeSpan.FromSeconds(session.totalPlayTimeSeconds);
+            // Get real-time playtime (this will now increment smoothly)
+            var currentPlayTime = session.GetCurrentPlayTime();
+            var playTime = TimeSpan.FromSeconds(currentPlayTime);
             var formattedTime = $"{playTime.Hours:D2}:{playTime.Minutes:D2}:{playTime.Seconds:D2}";
             var text = $"Scene: {session.currentScene} | Time: {formattedTime}";
             SetDebugLabel(_debugLabel4, text);

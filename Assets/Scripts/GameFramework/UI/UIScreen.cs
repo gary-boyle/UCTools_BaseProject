@@ -102,5 +102,14 @@ namespace GameFramework.UI
                 uiService?.UnregisterScreenFromUpdates(this);
             }
         }
+        
+        /// <summary>
+        /// Override this to specify if this screen should update even when the game is paused
+        /// Most screens should not update when paused, but some (like pause menus) might need to
+        /// </summary>
+        public virtual bool ShouldUpdateWhenPaused()
+        {
+            return false; // Default: don't update when paused
+        }
     }
 }

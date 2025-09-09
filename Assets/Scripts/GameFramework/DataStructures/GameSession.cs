@@ -62,6 +62,26 @@ namespace GameFramework.DataStructures
         }
         
         /// <summary>
+        /// Adjusts the session start time based on already accumulated playtime
+        /// Call this after loading a save to ensure correct playtime calculation
+        /// </summary>
+        public void AdjustSessionStartTimeForLoad()
+        {
+            // Set session start time to: current time - already accumulated playtime
+            sessionStartTime = DateTime.Now.AddSeconds(-totalPlayTimeSeconds);
+            Debug.Log($"[GameSession] Adjusted session start time for loaded save. Total playtime: {totalPlayTimeSeconds:F1}s");
+        }
+        
+        /// <summary>
+        /// Gets the current playtime without modifying the session
+        /// Useful for display purposes
+        /// </summary>
+        public float GetCurrentPlayTime()
+        {
+            return (float)(DateTime.Now - sessionStartTime).TotalSeconds;
+        }
+        
+        /// <summary>
         /// Converts session to loading configuration for state transitions
         /// </summary>
         public LoadingConfiguration ToLoadingConfiguration()
@@ -74,6 +94,4 @@ namespace GameFramework.DataStructures
             return config;
         }
     }
-    
-
 }

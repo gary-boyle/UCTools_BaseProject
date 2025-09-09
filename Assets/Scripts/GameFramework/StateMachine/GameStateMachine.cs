@@ -38,8 +38,6 @@ namespace GameFramework.StateMachine
             GameStateType.Loading,
             GameStateType.NewGame,
             GameStateType.Playing,
-            //GameStateType.Paused,
-            //GameStateType.Options,
             GameStateType.Credits,
             GameStateType.GameOver,
             GameStateType.Victory,
