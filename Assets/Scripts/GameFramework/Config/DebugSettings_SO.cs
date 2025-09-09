@@ -8,9 +8,9 @@ namespace GrameFramework.Config
     public class DebugSettings_SO : ConfigCategory
     {
         [Header("Debug Display")]
-        public BoolConfigVariable showFPS = new BoolConfigVariable(
-            "debug.show_fps", 
-            "Show FPS counter", 
+        public BoolConfigVariable showDebugInfo = new BoolConfigVariable(
+            "debug.show_debug_info", 
+            "Show debug information popup", 
             false, 
             ConfigFlags.Save);
             
@@ -30,23 +30,19 @@ namespace GrameFramework.Config
         {
             return new List<ConfigVariableBase>
             {
-                showFPS,
+                showDebugInfo,
                 verboseLogging,
                 consoleEnabled
             };
         }
 
         /// <summary>
-        /// Apply FPS display setting
+        /// Apply debug info display setting
         /// </summary>
-        public void SetShowFPS(bool show)
+        public void SetShowDebugInfo(bool show)
         {
-            showFPS.Value = show;
-            
-            // Enable/disable FPS counter
-            // Example: FPSCounter.Instance.SetVisible(show);
-            
-            Debug.Log($"[DebugSettings] Show FPS: {show}");
+            showDebugInfo.Value = show;
+            Debug.Log($"[DebugSettings] Show debug info: {show}");
         }
 
         /// <summary>

@@ -22,6 +22,8 @@ namespace GameFramework.Services.Interfaces
         Task HideScreenAsync<T>() where T : UIScreen;
         T GetScreen<T>() where T : UIScreen;
         
+        T GetPopup<T>() where T : UIPopup;
+
         // Essential Popup Management
         Task ShowPopupAsync<T>() where T : UIPopup;
         Task HidePopupAsync<T>() where T : UIPopup;
@@ -33,6 +35,6 @@ namespace GameFramework.Services.Interfaces
         int GetOpenPopupCount();
         
         // Debug
-        void SetDebugScreenText(string text);
+        void SetDebugPopupText(string text);
     }
 }

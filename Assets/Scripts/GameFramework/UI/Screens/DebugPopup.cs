@@ -3,10 +3,10 @@ using UnityEngine.UIElements;
 using UnityEngine.Profiling;
 using GameFramework.UI.Utilities;
 
-namespace GameFramework.UI.Screens
+namespace GameFramework.UI.Popups
 {
     /// <summary>
-    /// Enhanced debug screen with real-time performance graphs
+    /// Enhanced debug popup with real-time performance graphs
     /// Displays FPS, memory consumption, and historical graphs of both metrics
     /// 
     /// Design:
@@ -21,13 +21,14 @@ namespace GameFramework.UI.Screens
     /// - Memory efficient circular buffers for data storage
     /// - Configurable graph appearance and scaling
     /// - Clean separation between text metrics and visual graphs
+    /// - Can be toggled on/off as overlay popup
     /// 
     /// Cons:
     /// - Increased memory usage for graph data storage
     /// - Additional rendering overhead for custom graph elements
     /// - More complex initialization and cleanup
     /// </summary>
-    public class DebugScreen : UIScreen
+    public class DebugPopup : UIPopup
     {
         private VisualElement _root;
         private Label _debugLabel;
@@ -57,7 +58,7 @@ namespace GameFramework.UI.Screens
         private float _graphUpdateTimer = 0f;
         private float _graphUpdateInterval = 2f; // Update graphs every 2 seconds
         
-        public DebugScreen(VisualElement rootElement) : base(rootElement)
+        public DebugPopup(VisualElement rootElement) : base(rootElement)
         {
             _root = rootElement;
             
@@ -126,10 +127,15 @@ namespace GameFramework.UI.Screens
 
         protected override void OnShow()
         {
-            Debug.Log("[DebugScreen] Showing Debug screen with performance graphs");
+            Debug.Log("[DebugPopup] Showing Debug popup with performance graphs");
             
-            // Reset all counters when screen becomes visible
+            // Reset all counters when popup becomes visible
             ResetCounters();
+        }
+        
+        protected override void OnHide()
+        {
+            Debug.Log("[DebugPopup] Hiding Debug popup");
         }
         
         private void ResetCounters()

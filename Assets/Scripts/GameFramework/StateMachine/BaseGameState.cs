@@ -62,7 +62,7 @@ namespace GameFramework.StateMachine
 
             if (StateType != GameStateType.Bootstrap)
             {
-                UIService.SetDebugScreenText(StateType.ToString());
+                UIService.SetDebugPopupText(StateType.ToString());
             }
             
             // Publish state change event using injected event system

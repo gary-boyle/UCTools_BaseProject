@@ -1,6 +1,6 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/USS/default.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3#default" />
-    <ui:VisualElement name="UI_DebugScreen" picking-mode="Ignore" class="debug-overlay">
+    <ui:VisualElement name="UI_DebugPopup" picking-mode="Ignore" class="debug-overlay">
         <ui:VisualElement picking-mode="Ignore" class="layout-column layout-space-between layout-grow">
             <ui:VisualElement picking-mode="Ignore" class="layout-column">
                 <ui:VisualElement picking-mode="Ignore" class="layout-row layout-space-between" style="margin-bottom: 10px; flex-direction: column; align-items: flex-start;">

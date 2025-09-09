@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using GameFramework.Core;
 using GameFramework.EventSystem.Interfaces;
 using GameFramework.UI;
 using GameFramework.UI.Interfaces;
@@ -57,7 +58,8 @@ namespace GameFramework.Services
             // Initialize all screens and popups
             InitializeScreensAndPopups();
 
-            await ShowScreenAsync<DebugScreen>();
+            await ApplyInitialConfigState();
+
             IsInitialized = true;
             await Task.CompletedTask;
         }
@@ -136,7 +138,6 @@ namespace GameFramework.Services
             }
     
             // Register screens
-            RegisterScreen(new DebugScreen(root.Q<VisualElement>("UI_DebugScreen")));
             RegisterScreen(new SplashScreen(root.Q<VisualElement>("UI_SplashScreen")));
             RegisterScreen(new MainMenuScreen(root.Q<VisualElement>("UI_MainMenuScreen")));
             RegisterScreen(new GamePlayScreen(root.Q<VisualElement>("UI_GamePlayScreen")));
@@ -151,6 +152,8 @@ namespace GameFramework.Services
             RegisterPopup(new LoadGamePopup(root.Q<VisualElement>("UI_LoadGamePopup"))); 
             RegisterPopup(new SaveGamePopup(root.Q<VisualElement>("UI_SaveGamePopup")));
             RegisterPopup(new PausePopup(root.Q<VisualElement>("UI_PausePopup")));
+            RegisterPopup(new DebugPopup(root.Q<VisualElement>("UI_DebugPopup"))); 
+
         }
 
         public async Task ShowScreenAsync<T>() where T : UIScreen
@@ -262,9 +265,9 @@ namespace GameFramework.Services
             return _popups.TryGetValue(typeof(T), out var popup) ? (T)popup : null;
         }
         
-        public void SetDebugScreenText(string text)
+        public void SetDebugPopupText(string text)
         {
-            GetScreen<DebugScreen>().SetText(text);
+            GetPopup<DebugPopup>().SetText(text);
         }
         
         /// <summary>
@@ -416,6 +419,33 @@ namespace GameFramework.Services
             
             // Use the existing HidePopupAsync method
             await HidePopupAsync<T>();
+        }
+        
+        /// <summary>
+        /// Apply initial UI state based on current configuration values
+        /// </summary>
+        private async Task ApplyInitialConfigState()
+        {
+            var configService = GameManager.GetService<IConfigService>();
+            if (configService == null) return;
+    
+            try
+            {
+                // Check debug popup state
+                bool showDebugInfo = configService.GetConfigValue<bool>("debug.show_debug_info");
+                if (showDebugInfo)
+                {
+                    Debug.Log("[UIService] Showing debug popup on startup due to config setting");
+                    await ShowPopupAsync<DebugPopup>();
+                }
+        
+                // You can add other initial UI state checks here in the future
+                // For example, showing certain screens based on game state, etc.
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"[UIService] Error applying initial config state: {ex.Message}");
+            }
         }
         
         #endregion

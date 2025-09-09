@@ -36,7 +36,7 @@
                 </engine:Tab>
                 <engine:Tab label="Debug" name="DebugTab" class="tab-header">
                     <engine:VisualElement name="DebugOptions" class="tab-content">
-                        <engine:Toggle label="Show FPS" name="tgl_ShowFPS" class="toggle mb-md" />
+                        <engine:Toggle label="Show Debug Info" name="tgl_ShowDebugInfo" value="true" class="toggle mb-md" />
                         <engine:Toggle label="Verbose Logging" name="tgl_VerboseLogging" class="toggle mb-md" />
                         <engine:Toggle label="Console Enabled" name="tgl_ConsoleEnabled" class="toggle mb-md" />
                     </engine:VisualElement>
