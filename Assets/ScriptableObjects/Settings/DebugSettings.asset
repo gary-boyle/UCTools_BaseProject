@@ -12,33 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e64b02dd4704497ead5aa9d5a9b523cf, type: 3}
   m_Name: DebugSettings
   m_EditorClassIdentifier: GameFramework::GrameFramework.Config.DebugSettings
-  showFPS:
-    name: debug.show_fps
-    description: Show FPS counter (0 = hidden, 1 = visible)
-    defaultValue: 0
+  showDebugInfo:
+    name: debug.show_debug_info
+    description: Show debug information popup
     flags: 1
-    hasMinValue: 0
-    minValue: 0
-    hasMaxValue: 0
-    maxValue: 100
-    currentValue: 
+    defaultValue: 1
+    currentValue: 1
   verboseLogging:
     name: debug.verbose_logging
     description: Enable verbose logging (0 = disabled, 1 = enabled)
-    defaultValue: 0
     flags: 1
-    hasMinValue: 0
-    minValue: 0
-    hasMaxValue: 0
-    maxValue: 100
-    currentValue: 
+    defaultValue: 0
+    currentValue: 0
   consoleEnabled:
     name: debug.console_enabled
     description: Enable debug console (0 = disabled, 1 = enabled)
-    defaultValue: 1
     flags: 1
-    hasMinValue: 0
-    minValue: 0
-    hasMaxValue: 0
-    maxValue: 100
-    currentValue: 
+    defaultValue: 1
+    currentValue: 1

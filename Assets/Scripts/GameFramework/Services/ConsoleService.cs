@@ -16,12 +16,14 @@ namespace GameFramework.Services
     /// - Coordinates between input system and console GUI
     /// - Handles console toggle events
     /// - Provides public API for other systems to interact with console
+    /// - Respects debug settings from configuration
     /// 
     /// Flow:
     /// 1. Receives toggle input events from InputService
-    /// 2. Updates console open/closed state
-    /// 3. Notifies InputService to enable/disable console input actions
-    /// 4. Delegates UI updates to ConsoleGUI via Console static class
+    /// 2. Checks if console is enabled in debug settings
+    /// 3. Updates console open/closed state only if enabled
+    /// 4. Notifies InputService to enable/disable console input actions
+    /// 5. Delegates UI updates to ConsoleGUI via Console static class
     /// </summary>
     public class ConsoleService : IConsoleService, IUpdatable, ILateUpdatable
     {
@@ -29,6 +31,7 @@ namespace GameFramework.Services
         private readonly ConsoleGUI _consoleGUI;
         private readonly IEventSystem _eventSystem;
         private readonly IInputService _inputService;
+        private readonly IConfigService _configService; // Added config service dependency
         #endregion
 
         #region State
@@ -38,16 +41,19 @@ namespace GameFramework.Services
 
         #region Constants
         private const string LOG_PREFIX = "[ConsoleService]";
+        private const string CONSOLE_ENABLED_CONFIG_KEY = "debug.console_enabled";
+        private const string SHOW_DEBUG_INFO_CONFIG_KEY = "debug.show_debug_info";
         #endregion
 
         /// <summary>
         /// Constructor injection - DI container provides all dependencies
         /// </summary>
-        public ConsoleService(ConsoleGUI consoleGUI, IEventSystem eventSystem, IInputService inputService)
+        public ConsoleService(ConsoleGUI consoleGUI, IEventSystem eventSystem, IInputService inputService, IConfigService configService)
         {
             _consoleGUI = consoleGUI ?? throw new System.ArgumentNullException(nameof(consoleGUI));
             _eventSystem = eventSystem ?? throw new System.ArgumentNullException(nameof(eventSystem));
             _inputService = inputService ?? throw new System.ArgumentNullException(nameof(inputService));
+            _configService = configService ?? throw new System.ArgumentNullException(nameof(configService));
             
             Debug.Log($"{LOG_PREFIX} Created with injected dependencies");
         }
@@ -78,6 +84,9 @@ namespace GameFramework.Services
                 // Subscribe to console toggle events from input system
                 _eventSystem.Subscribe<ConsoleToggleInputEvent>(OnConsoleToggleEvent);
 
+                // Subscribe to configuration changes to react to debug setting changes
+                _eventSystem.Subscribe<OptionsChangedEvent>(OnOptionsChanged);
+
                 _isInitialized = true;
                 Debug.Log($"{LOG_PREFIX} Console service initialized successfully");
 
@@ -101,6 +110,7 @@ namespace GameFramework.Services
             
             // Unsubscribe from events
             _eventSystem?.Unsubscribe<ConsoleToggleInputEvent>(OnConsoleToggleEvent);
+            _eventSystem?.Unsubscribe<OptionsChangedEvent>(OnOptionsChanged);
             
             // Shutdown console system
             Console.Shutdown();
@@ -140,6 +150,20 @@ namespace GameFramework.Services
         public bool IsConsoleOpen() => _isInitialized && _isConsoleOpen;
 
         /// <summary>
+        /// Check if console is enabled in configuration
+        /// </summary>
+        public bool IsConsoleEnabled()
+        {
+            if (!_isInitialized) return false;
+            
+            // Check both console_enabled and show_debug_info settings
+            var consoleEnabled = _configService.GetConfigValue<bool>(CONSOLE_ENABLED_CONFIG_KEY);
+            var debugInfoEnabled = _configService.GetConfigValue<bool>(SHOW_DEBUG_INFO_CONFIG_KEY);
+            
+            return consoleEnabled && debugInfoEnabled;
+        }
+
+        /// <summary>
         /// Programmatically open or close the console
         /// </summary>
         /// <param name="open">True to open, false to close</param>
@@ -148,6 +172,13 @@ namespace GameFramework.Services
             if (!_isInitialized) 
             {
                 Debug.LogWarning($"{LOG_PREFIX} Cannot set console open state - not initialized");
+                return;
+            }
+            
+            // Check if console is enabled before opening
+            if (open && !IsConsoleEnabled())
+            {
+                Debug.Log($"{LOG_PREFIX} Console toggle ignored - console disabled in settings");
                 return;
             }
             
@@ -202,13 +233,34 @@ namespace GameFramework.Services
 
         /// <summary>
         /// Handle console toggle input events
-        /// Only responds to 'Performed' phase to avoid double-triggering
+        /// Only responds to 'Performed' phase and only if console is enabled in settings
         /// </summary>
         private void OnConsoleToggleEvent(ConsoleToggleInputEvent evt)
         {
             if (evt.Phase == UnityEngine.InputSystem.InputActionPhase.Performed)
             {
+                Debug.Log($"{LOG_PREFIX} Console toggle event received - checking if console is enabled...");
+                
+                if (!IsConsoleEnabled())
+                {
+                    Debug.Log($"{LOG_PREFIX} Console toggle ignored - console disabled in debug settings");
+                    return;
+                }
+                
                 SetConsoleOpen(!_isConsoleOpen);
+            }
+        }
+
+        /// <summary>
+        /// Handle configuration changes - close console if it gets disabled
+        /// </summary>
+        private void OnOptionsChanged(OptionsChangedEvent evt)
+        {
+            // If console is currently open but gets disabled, close it
+            if (_isConsoleOpen && !IsConsoleEnabled())
+            {
+                Debug.Log($"{LOG_PREFIX} Console disabled in settings - closing console");
+                SetConsoleOpen(false);
             }
         }
 
