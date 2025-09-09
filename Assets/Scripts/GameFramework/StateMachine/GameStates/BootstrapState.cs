@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using GameFramework.Core;
 using GameFramework.EventSystem.Interfaces;
+using GameFramework.Input.Interfaces;
 using GameFramework.Services;
 using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine.Enum;
@@ -25,11 +26,11 @@ namespace GameFramework.StateMachine.GameStates
             IEventSystem eventSystem,
             IAudioService audioService,
             IUIService uiService,
-            IInputService inputService,
+            IInputManager inputManager,
             IConfigService configService,
             IConsoleService consoleService,
             IGameDataService gameDataService) 
-            : base(GameStateType.Bootstrap, stateMachine, eventSystem, audioService, uiService, inputService, consoleService, gameDataService)
+            : base(GameStateType.Bootstrap, stateMachine, eventSystem, audioService, uiService, inputManager, consoleService, gameDataService)
         {
             _configService = configService ?? throw new ArgumentNullException(nameof(configService));
         }
@@ -59,7 +60,7 @@ namespace GameFramework.StateMachine.GameStates
             {
                 EventSystem,
                 AudioService,
-                InputService,
+                InputManager,
                 UIService,
                 ConsoleService, 
                 Context.SaveService,

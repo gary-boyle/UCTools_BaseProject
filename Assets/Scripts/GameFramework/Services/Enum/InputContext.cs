@@ -1,13 +1,28 @@
-﻿namespace GameFramework.Services
+﻿namespace GameFramework.Input
 {
     /// <summary>
-    /// Input context types for managing which input maps are active
+    /// Defines the different input contexts for the game
     /// </summary>
     public enum InputContext
     {
-        None,
-        UI,        // For menus, UI navigation
-        Player,    // For gameplay
-        Mixed      // For states that need both UI and Player input
+        /// <summary>
+        /// No input handling (except console)
+        /// </summary>
+        None = 0,
+        
+        /// <summary>
+        /// UI input only (menus, popups, etc.)
+        /// </summary>
+        UI = 1,
+        
+        /// <summary>
+        /// Player input only (gameplay)
+        /// </summary>
+        Player = 2,
+        
+        /// <summary>
+        /// Both UI and Player input active (pause menu during gameplay, inventory, etc.)
+        /// </summary>
+        Mixed = 3
     }
 }

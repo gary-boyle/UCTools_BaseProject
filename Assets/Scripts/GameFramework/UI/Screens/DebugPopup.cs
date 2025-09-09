@@ -303,5 +303,11 @@ namespace GameFramework.UI.Popups
             DisableFrameUpdates();
             base.Cleanup();
         }
+        
+        /// <summary>
+        /// Debug popup doesn't block game operations
+        /// </summary>
+        public override bool CountsAsGameBlockingPopup => false;
+
     }
 }

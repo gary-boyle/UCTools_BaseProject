@@ -2,8 +2,8 @@
 using GameFramework.EventSystem.Events;
 using GameFramework.EventSystem.Interfaces;
 using GameFramework.Services.Interfaces;
-using GameFramework.StateMachine.Interfaces;
 using GameFramework.ConsoleTool;
+using GameFramework.StateMachine.Interfaces;
 using UnityEngine;
 
 namespace GameFramework.Services
@@ -13,16 +13,15 @@ namespace GameFramework.Services
     /// 
     /// Architecture:
     /// - Manages console state (open/closed)
-    /// - Coordinates between input system and console GUI
-    /// - Handles console toggle events
     /// - Provides public API for other systems to interact with console
     /// - Respects debug settings from configuration
+    /// - Input conflict management is handled by ConsoleInputHandler
     /// 
     /// Flow:
-    /// 1. Receives toggle input events from InputService
+    /// 1. Receives toggle input events from InputManager
     /// 2. Checks if console is enabled in debug settings
     /// 3. Updates console open/closed state only if enabled
-    /// 4. Notifies InputService to enable/disable console input actions
+    /// 4. ConsoleInputHandler automatically manages input conflicts by checking IsConsoleOpen()
     /// 5. Delegates UI updates to ConsoleGUI via Console static class
     /// </summary>
     public class ConsoleService : IConsoleService, IUpdatable, ILateUpdatable
@@ -30,8 +29,8 @@ namespace GameFramework.Services
         #region Dependencies
         private readonly ConsoleGUI _consoleGUI;
         private readonly IEventSystem _eventSystem;
-        private readonly IInputService _inputService;
-        private readonly IConfigService _configService; // Added config service dependency
+        private readonly IConfigService _configService;
+        // ✅ REMOVED: IInputManager dependency - not needed!
         #endregion
 
         #region State
@@ -47,11 +46,10 @@ namespace GameFramework.Services
         /// <summary>
         /// Constructor injection - DI container provides all dependencies
         /// </summary>
-        public ConsoleService(ConsoleGUI consoleGUI, IEventSystem eventSystem, IInputService inputService, IConfigService configService)
+        public ConsoleService(ConsoleGUI consoleGUI, IEventSystem eventSystem, IConfigService configService)
         {
             _consoleGUI = consoleGUI ?? throw new System.ArgumentNullException(nameof(consoleGUI));
             _eventSystem = eventSystem ?? throw new System.ArgumentNullException(nameof(eventSystem));
-            _inputService = inputService ?? throw new System.ArgumentNullException(nameof(inputService));
             _configService = configService ?? throw new System.ArgumentNullException(nameof(configService));
             
             Debug.Log($"{LOG_PREFIX} Created with injected dependencies");
@@ -155,7 +153,7 @@ namespace GameFramework.Services
         {
             if (!_isInitialized) return false;
             
-            // Check both console_enabled and show_debug_info settings
+            // Check console enabled setting
             var consoleEnabled = _configService.GetConfigValue<bool>(CONSOLE_ENABLED_CONFIG_KEY);
             
             return consoleEnabled;
@@ -189,8 +187,11 @@ namespace GameFramework.Services
             // Update the console UI
             Console.SetOpen(open);
             
-            // Enable/disable console input actions
-            _inputService.SetConsoleInputEnabled(open);
+            // ✅ NO INPUT MANAGER CALLS NEEDED!
+            // The ConsoleInputHandler automatically detects console state changes
+            // via IsConsoleOpen() and manages input conflicts accordingly
+            
+            Debug.Log($"{LOG_PREFIX} Console state updated. ConsoleInputHandler will handle input conflicts automatically.");
         }
 
         /// <summary>

@@ -1,5 +1,6 @@
 ﻿using System;
 using GameFramework.EventSystem.Interfaces;
+using GameFramework.Input.Interfaces;
 using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine.Data;
 
@@ -15,7 +16,7 @@ namespace GameFramework.Core
         public IEventSystem EventSystem { get; }
         public ISceneService SceneService { get; }
         public IAudioService AudioService { get; }
-        public IInputService InputService { get; }
+        public IInputManager InputManager { get; }
         public IUIService UIService { get; }
         public ISaveService SaveService { get; }
         public IConfigService ConfigService { get; }
@@ -25,7 +26,7 @@ namespace GameFramework.Core
             IEventSystem eventSystem,
             ISceneService sceneService, 
             IAudioService audioService,
-            IInputService inputService,
+            IInputManager inputManager,
             IUIService uiService,
             ISaveService saveService,
             IConfigService configService,
@@ -34,7 +35,7 @@ namespace GameFramework.Core
             EventSystem = eventSystem ?? throw new ArgumentNullException(nameof(eventSystem));
             SceneService = sceneService ?? throw new ArgumentNullException(nameof(sceneService));
             AudioService = audioService ?? throw new ArgumentNullException(nameof(audioService));
-            InputService = inputService ?? throw new ArgumentNullException(nameof(inputService));
+            InputManager = inputManager ?? throw new ArgumentNullException(nameof(inputManager));
             UIService = uiService ?? throw new ArgumentNullException(nameof(uiService));
             SaveService = saveService ?? throw new ArgumentNullException(nameof(saveService));
             ConfigService = configService ?? throw new ArgumentNullException(nameof(configService));

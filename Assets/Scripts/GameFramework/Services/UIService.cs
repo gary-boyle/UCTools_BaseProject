@@ -422,16 +422,26 @@ namespace GameFramework.Services
         /// </summary>
         public bool HasOpenPopups()
         {
-            return _currentPopup != null || _popupStack.Count > 0;
+            // Check current popup
+            if (_currentPopup != null && _currentPopup.CountsAsGameBlockingPopup)
+                return true;
+    
+            // Check stacked popups
+            return _popupStack.Any(popup => popup.CountsAsGameBlockingPopup);
         }
+
 
         /// <summary>
         /// Gets the number of open popups (current + stacked)
         /// </summary>
         public int GetOpenPopupCount()
         {
-            int count = _currentPopup != null ? 1 : 0;
-            count += _popupStack.Count;
+            int count = 0;
+    
+            if (_currentPopup != null && _currentPopup.CountsAsGameBlockingPopup)
+                count++;
+    
+            count += _popupStack.Count(popup => popup.CountsAsGameBlockingPopup);
             return count;
         }
 
@@ -486,5 +496,47 @@ namespace GameFramework.Services
         }
         
         #endregion
+        
+        /// <summary>
+        /// Force close a specific popup type regardless of stack position
+        /// Use this for cleanup when transitions get stuck
+        /// </summary>
+        public async Task ForceClosePopupAsync<T>() where T : UIPopup
+        {
+            if (_popups.TryGetValue(typeof(T), out var popup))
+            {
+                // Remove from current if it's current
+                if (_currentPopup == popup)
+                {
+                    _currentPopup = null;
+                }
+        
+                // Remove from stack if it exists there
+                if (_popupStack.Contains(popup))
+                {
+                    var stackList = _popupStack.ToList();
+                    stackList.Remove(popup);
+                    _popupStack.Clear();
+                    foreach (var stackedPopup in stackList.AsEnumerable().Reverse())
+                    {
+                        _popupStack.Push(stackedPopup);
+                    }
+                }
+        
+                // Force hide
+                popup.Hide();
+        
+                // If no current popup and stack has items, restore top of stack
+                if (_currentPopup == null && _popupStack.Count > 0)
+                {
+                    _currentPopup = _popupStack.Pop();
+                    _currentPopup.Show();
+                }
+        
+                Debug.Log($"[UIService] Force closed popup: {typeof(T).Name}");
+                await Task.CompletedTask;
+            }
+        }
+
     }
 }

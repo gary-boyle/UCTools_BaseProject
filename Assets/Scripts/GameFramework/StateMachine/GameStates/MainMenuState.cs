@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using GameFramework.Core;
 using GameFramework.EventSystem.Events;
 using GameFramework.EventSystem.Interfaces;
+using GameFramework.Input;
+using GameFramework.Input.Interfaces;
 using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine.Data;
 using GameFramework.StateMachine.Enum;
@@ -19,34 +21,27 @@ namespace GameFramework.StateMachine.GameStates
     {
         protected readonly IGameDataService GameDataService;
         protected readonly ISaveService SaveService;
+        private readonly IInputManager _inputManager;
 
         public MainMenuState(
             IGameStateMachine stateMachine,
             IEventSystem eventSystem,
             IAudioService audioService,
             IUIService uiService,
-            IInputService inputService,
+            IInputManager inputManager,
             IConsoleService consoleService,
-            IGameDataService gameDataService,
-            ISaveService saveService)  
-            : base(GameStateType.MainMenu, stateMachine, eventSystem, audioService, uiService, inputService, consoleService, gameDataService)
+            IGameDataService gameDataService)
+            : base(GameStateType.MainMenu, stateMachine, eventSystem, audioService, uiService, inputManager, consoleService, gameDataService)
         {
-            GameDataService = gameDataService ?? throw new ArgumentNullException(nameof(gameDataService));
-            SaveService = saveService ?? throw new ArgumentNullException(nameof(saveService));
+            _inputManager = inputManager;
         }
         
         public override async Task EnterAsync(GameContext context)
         {
             await base.EnterAsync(context);
             
-            // Clear any existing session when returning to main menu
-            GameDataService.ClearSession();
-            
-            // Show main menu UI using injected service
-            await UIService.ShowScreenAsync<MainMenuScreen>();
-            
-            // Play main menu music using injected service
-            AudioService.PlayMusic("main_menu");
+            // Declare that we need UI input
+            _inputManager.SetInputContext(InputContext.UI);
             
             // Subscribe to menu events using injected event system
             EventSystem.Subscribe<NewGameRequestedEvent>(OnNewGameRequested);
@@ -55,6 +50,9 @@ namespace GameFramework.StateMachine.GameStates
             EventSystem.Subscribe<LoadWindowRequestedEvent>(OnLoadWindowRequested);
             EventSystem.Subscribe<CreditsRequestedEvent>(OnCreditsRequested);
             EventSystem.Subscribe<QuitRequestedEvent>(OnQuitRequested);
+            
+            await UIService.ShowScreenAsync<MainMenuScreen>();
+            AudioService.PlayMusic("main_menu");
         }
         
         private async void OnNewGameRequested(NewGameRequestedEvent evt)

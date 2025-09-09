@@ -7,6 +7,7 @@ using GameFramework.Core;
 using GameFramework.EventSystem.Interfaces;
 using GameFramework.EventSystem.Events;
 using System.Text;
+using GameFramework.Input.Interfaces; // Updated import
 
 namespace GameFramework.ConsoleTool
 {
@@ -20,8 +21,8 @@ namespace GameFramework.ConsoleTool
     /// - Optimized string building for better performance
     /// 
     /// Input Handling Flow:
-    /// 1. InputService detects console input (submit, tab, history) 
-    /// 2. InputService publishes console input events
+    /// 1. InputManager detects console input (submit, tab, history) 
+    /// 2. InputManager publishes console input events
     /// 3. ConsoleGUI receives events and updates UI accordingly
     /// 4. ConsoleGUI calls Console static methods to execute commands
     /// </summary>
@@ -50,7 +51,7 @@ namespace GameFramework.ConsoleTool
         #endregion
 
         #region Dependencies (Injected via Service Locator)
-        private IInputService _inputService;
+        private IInputManager _inputManager; // Changed from IInputService
         private IEventSystem _eventSystem;
         #endregion
 
@@ -58,11 +59,11 @@ namespace GameFramework.ConsoleTool
 
         void Awake()
         {
-            // Set up input field callback for fallback submit handling
-            if (inputField != null)
-            {
-                inputField.onEndEdit.AddListener(OnInputFieldEndEdit);
-            }
+            // // Set up input field callback for fallback submit handling
+            // if (inputField != null)
+            // {
+            //     inputField.onEndEdit.AddListener(OnInputFieldEndEdit);
+            // }
         }
 
         void Start()
@@ -101,10 +102,8 @@ namespace GameFramework.ConsoleTool
         {
             _isInitialized = false;
             
-            if (_inputService != null)
-            {
-                _inputService.SetConsoleInputEnabled(false);
-            }
+            // ✅ REMOVED: No longer need to manually disable console input
+            // The ConsoleInputHandler manages this automatically based on console state
             
             Debug.Log($"{LOG_PREFIX} Console GUI shutdown");
         }
@@ -207,13 +206,13 @@ namespace GameFramework.ConsoleTool
                 Debug.LogError($"{LOG_PREFIX} No Unity EventSystem found! UGUI input won't work.");
             }
 
-            // Get services from DI container
-            _inputService = GameManager.GetService<IInputService>();
+            // ✅ UPDATED: Get services from DI container with correct interface
+            _inputManager = GameManager.GetService<IInputManager>(); // Changed from IInputService
             _eventSystem = GameManager.GetService<IEventSystem>();
 
-            if (_inputService == null)
+            if (_inputManager == null)
             {
-                Debug.LogError($"{LOG_PREFIX} Could not get InputService from GameManager!");
+                Debug.LogError($"{LOG_PREFIX} Could not get InputManager from GameManager!");
             }
 
             if (_eventSystem == null)
@@ -423,23 +422,19 @@ namespace GameFramework.ConsoleTool
                 Console.EnqueueCommand(value);
             }
         }
-
-        /// <summary>
-        /// Fallback handler for TMP_InputField onEndEdit event
-        /// </summary>
-        private void OnInputFieldEndEdit(string value)
-        {
-            Debug.Log($"{LOG_PREFIX} Input field end edit: '{value}', reason: {inputField.wasCanceled}");
-            
-            // This is a fallback - main submission should be handled by input events
-            // Only submit if Enter was pressed (not Tab or Escape)
-            if (!inputField.wasCanceled && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)))
-            {
-                HandleSubmit();
-            }
-        }
-
         #endregion
-
+        // /// <summary>
+        // /// Fallback handler for TMP_InputField onEndEdit event
+        // /// </summary>
+        // private void OnInputFieldEndEdit(string value)
+        // {
+        //     Debug.Log($"{LOG_PREFIX} Input field end edit: '{value}', reason: {inputField.wasCanceled}");
+        //     
+        //     // This is a fallback - main submission should be handled by input events
+        //     // Only submit if Enter was pressed (not Tab or Escape)
+        //     if (!inputField.wasCanceled && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)))
+        //     {
+        //         HandleSubmit();
+        //     }
     }
 }

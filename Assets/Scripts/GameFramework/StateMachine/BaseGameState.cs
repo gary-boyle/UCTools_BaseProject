@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using GameFramework.Core;
 using GameFramework.EventSystem.Events;
 using GameFramework.EventSystem.Interfaces;
+using GameFramework.Input.Interfaces;
 using GameFramework.Services;
 using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine.Enum;
@@ -25,7 +26,7 @@ namespace GameFramework.StateMachine
         protected readonly IEventSystem EventSystem;
         protected readonly IAudioService AudioService;
         protected readonly IUIService UIService;
-        protected readonly IInputService InputService;
+        protected readonly IInputManager InputManager;
         protected readonly IConsoleService ConsoleService;
         protected readonly IGameDataService GameDataService;
 
@@ -38,7 +39,7 @@ namespace GameFramework.StateMachine
             IEventSystem eventSystem,
             IAudioService audioService,
             IUIService uiService,
-            IInputService inputService,
+            IInputManager inputService,
             IConsoleService consoleService,
             IGameDataService gameDataService)
         {
@@ -47,7 +48,7 @@ namespace GameFramework.StateMachine
             EventSystem = eventSystem ?? throw new ArgumentNullException(nameof(eventSystem));
             AudioService = audioService ?? throw new ArgumentNullException(nameof(audioService));
             UIService = uiService ?? throw new ArgumentNullException(nameof(uiService));
-            InputService = inputService ?? throw new ArgumentNullException(nameof(inputService));
+            InputManager = inputService ?? throw new ArgumentNullException(nameof(inputService));
             ConsoleService = consoleService ?? throw new ArgumentNullException(nameof(consoleService));
             GameDataService = gameDataService ?? throw new ArgumentNullException(nameof(gameDataService));
         }

@@ -28,6 +28,8 @@ namespace GameFramework.Services.Interfaces
         Task ShowPopupAsync<T>() where T : UIPopup;
         Task HidePopupAsync<T>() where T : UIPopup;
         Task CloseAllPopupsAsync();
+        bool HasOpenPopups();
+        UIPopup GetCurrentPopup();
         
         // Popup State Queries
         bool IsCurrentPopup<T>() where T : UIPopup;

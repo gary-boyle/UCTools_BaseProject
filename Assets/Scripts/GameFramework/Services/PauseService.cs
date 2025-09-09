@@ -132,6 +132,8 @@ namespace GameFramework.Services
         
         public void ResumeGame()
         {
+            Debug.Log($"!!! {IsPaused}");
+
             if (!IsPaused) return; // Already resumed
             
             Debug.Log("[PauseService] Resuming game...");

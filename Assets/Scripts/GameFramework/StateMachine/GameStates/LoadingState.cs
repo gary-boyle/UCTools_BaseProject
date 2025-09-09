@@ -4,6 +4,7 @@ using GameFramework.Core;
 using GameFramework.DataStructures;
 using GameFramework.EventSystem.Events;
 using GameFramework.EventSystem.Interfaces;
+using GameFramework.Input.Interfaces;
 using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine.Data;
 using GameFramework.StateMachine.Enum;
@@ -28,10 +29,10 @@ namespace GameFramework.StateMachine.GameStates
             IEventSystem eventSystem,
             IAudioService audioService,
             IUIService uiService,
-            IInputService inputService,
+            IInputManager inputManager,
             IConsoleService consoleService,
             IGameDataService gameDataService)  
-            : base(GameStateType.Loading, stateMachine, eventSystem, audioService, uiService, inputService, consoleService, gameDataService)
+            : base(GameStateType.Loading, stateMachine, eventSystem, audioService, uiService, inputManager, consoleService, gameDataService)
         {
             GameDataService = gameDataService ?? throw new ArgumentNullException(nameof(gameDataService));
         }

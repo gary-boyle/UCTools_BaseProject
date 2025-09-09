@@ -8,6 +8,9 @@ using GameFramework.StateMachine.GameStates;
 using GameFramework.StateMachine.Interfaces;
 using GrameFramework.Config;
 using GameFramework.ConsoleTool;
+using GameFramework.Input;
+using GameFramework.Input.Handlers;
+using GameFramework.Input.Interfaces;
 using UCTools_ConfigVariables;
 //using UCTools_ConfigVariables; // Add this for ConfigCategory
 using UnityEngine;
@@ -182,8 +185,11 @@ namespace GameFramework.Core
             var audioService = _container.Resolve<IAudioService>();
             await audioService.InitializeAsync();
             
-            var inputService = _container.Resolve<IInputService>();
-            await inputService.InitializeAsync();
+            // var inputService = _container.Resolve<IInputService>();
+            // await inputService.InitializeAsync();
+            
+            var inputManager = _container.Resolve<IInputManager>();
+            await inputManager.InitializeAsync();
             
             var sceneService = _container.Resolve<ISceneService>();
             await sceneService.InitializeAsync();
@@ -259,10 +265,18 @@ namespace GameFramework.Core
     
             // Register services with minimal dependencies
             _container.RegisterSingleton<IAudioService, AudioService>();
-            _container.RegisterSingleton<IInputService, InputService>();
             _container.RegisterSingleton<ISceneService, SceneService>();
             _container.RegisterSingleton<IPauseService, PauseService>();
 
+            // Register input handlers
+            _container.RegisterSingleton<ConsoleInputHandler>();
+            _container.RegisterSingleton<UIInputHandler>();
+            _container.RegisterSingleton<PlayerInputHandler>();
+    
+            // Register input manager with interface
+            _container.RegisterSingleton<IInputManager, InputManager>();
+
+            
             // CREATE AND REGISTER UI DOCUMENT BEFORE UI SERVICE
             RegisterUIDocument();
     
@@ -412,11 +426,17 @@ namespace GameFramework.Core
                 _updatables.Add(gameDataServiceUpdatable);
 
             
-            // Add other systems that need updates
-            var inputService = _container.Resolve<IInputService>();
-            if (inputService is IUpdatable inputUpdatable)
-                _updatables.Add(inputUpdatable);
+            // // Add other systems that need updates
+            // var inputService = _container.Resolve<IInputService>();
+            // if (inputService is IUpdatable inputUpdatable)
+            //     _updatables.Add(inputUpdatable);
 
+            // Add InputManager for updates
+            var inputManager = _container.Resolve<IInputManager>();
+            if (inputManager is IUpdatable inputManagerUpdatable)
+                _updatables.Add(inputManagerUpdatable);
+
+            
             var pauseService = _container.Resolve<IPauseService>();
             if (pauseService is IUpdatable pauseUpdatable)
                 _updatables.Add(pauseUpdatable);

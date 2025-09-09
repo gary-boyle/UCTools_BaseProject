@@ -2,6 +2,7 @@
 using GameFramework.Core;
 using GameFramework.EventSystem.Events;
 using GameFramework.EventSystem.Interfaces;
+using GameFramework.Input.Interfaces;
 using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine.Enum;
 using GameFramework.UI.Screens;
@@ -26,10 +27,10 @@ namespace GameFramework.StateMachine.GameStates
             IEventSystem eventSystem,
             IAudioService audioService,
             IUIService uiService,
-            IInputService inputService,
+            IInputManager inputManager,
             IConsoleService consoleService,
             IGameDataService gameDataService)  
-            : base(GameStateType.Splash, stateMachine, eventSystem, audioService, uiService, inputService, consoleService, gameDataService)
+            : base(GameStateType.Splash, stateMachine, eventSystem, audioService, uiService, inputManager, consoleService, gameDataService)
         {
         }
     
