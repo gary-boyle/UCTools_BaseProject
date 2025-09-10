@@ -111,3 +111,6 @@ Thumbs.db
 # Backup files
 *.bak
 *.backup
+/Assets/Scripts/GameFramework/Config/obj/xdoc
+/Assets/Scripts/GameFramework/Config/obj/xdoc
+/Assets/Scripts/GameFramework/Config/obj/xdoc

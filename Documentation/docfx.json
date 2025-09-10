@@ -8,7 +8,12 @@
         }
       ],
       "dest": "api",
-      "allowCompilationErrors": true
+      "allowCompilationErrors": true,
+      "references": [
+        "https://www.nuget.org/packages/Microsoft.NETCore.App/",
+        "../Library/ScriptAssemblies/UnityEngine.dll",
+        "../Library/ScriptAssemblies/UnityEditor.dll"
+      ]
     }
   ],
   "build": {
@@ -67,6 +72,9 @@
     },
     "dest": "_site",
      "fileMetadata": {
+      "_displayExceptions": {
+        "api/*.yml": true
+              },
       "_disableContribution": {
         "api/**": true
       }
