@@ -1,0 +1,22 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.ConsoleTool.Utilities
+  commentId: N:GameFramework.ConsoleTool.Utilities
+  id: GameFramework.ConsoleTool.Utilities
+  children:
+  - GameFramework.ConsoleTool.Utilities.CommandUtilities
+  langs:
+  - csharp
+  - vb
+  name: GameFramework.ConsoleTool.Utilities
+  nameWithType: GameFramework.ConsoleTool.Utilities
+  fullName: GameFramework.ConsoleTool.Utilities
+  type: Namespace
+  assemblies:
+  - cs.temp.dll
+references:
+- uid: GameFramework.ConsoleTool.Utilities.CommandUtilities
+  commentId: T:GameFramework.ConsoleTool.Utilities.CommandUtilities
+  name: CommandUtilities
+  nameWithType: CommandUtilities
+  fullName: GameFramework.ConsoleTool.Utilities.CommandUtilities

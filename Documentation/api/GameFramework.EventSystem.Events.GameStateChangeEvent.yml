@@ -1,0 +1,459 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.EventSystem.Events.GameStateChangeEvent
+  commentId: T:GameFramework.EventSystem.Events.GameStateChangeEvent
+  id: GameStateChangeEvent
+  parent: GameFramework.EventSystem.Events
+  children:
+  - GameFramework.EventSystem.Events.GameStateChangeEvent.Context
+  - GameFramework.EventSystem.Events.GameStateChangeEvent.NewState
+  - GameFramework.EventSystem.Events.GameStateChangeEvent.PreviousState
+  langs:
+  - csharp
+  - vb
+  name: GameStateChangeEvent
+  nameWithType: GameStateChangeEvent
+  fullName: GameFramework.EventSystem.Events.GameStateChangeEvent
+  type: Class
+  source:
+    id: GameStateChangeEvent
+    path: ''
+    startLine: 4256
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.EventSystem.Events
+  syntax:
+    content: public class GameStateChangeEvent
+    content.vb: Public Class GameStateChangeEvent
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: GameFramework.EventSystem.Events.GameStateChangeEvent.PreviousState
+  commentId: P:GameFramework.EventSystem.Events.GameStateChangeEvent.PreviousState
+  id: PreviousState
+  parent: GameFramework.EventSystem.Events.GameStateChangeEvent
+  langs:
+  - csharp
+  - vb
+  name: PreviousState
+  nameWithType: GameStateChangeEvent.PreviousState
+  fullName: GameFramework.EventSystem.Events.GameStateChangeEvent.PreviousState
+  type: Property
+  source:
+    id: PreviousState
+    path: ''
+    startLine: 4258
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.EventSystem.Events
+  syntax:
+    content: public GameStateType PreviousState { get; set; }
+    parameters: []
+    return:
+      type: GameStateType
+    content.vb: Public Property PreviousState As GameStateType
+  overload: GameFramework.EventSystem.Events.GameStateChangeEvent.PreviousState*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: GameFramework.EventSystem.Events.GameStateChangeEvent.NewState
+  commentId: P:GameFramework.EventSystem.Events.GameStateChangeEvent.NewState
+  id: NewState
+  parent: GameFramework.EventSystem.Events.GameStateChangeEvent
+  langs:
+  - csharp
+  - vb
+  name: NewState
+  nameWithType: GameStateChangeEvent.NewState
+  fullName: GameFramework.EventSystem.Events.GameStateChangeEvent.NewState
+  type: Property
+  source:
+    id: NewState
+    path: ''
+    startLine: 4259
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.EventSystem.Events
+  syntax:
+    content: public GameStateType NewState { get; set; }
+    parameters: []
+    return:
+      type: GameStateType
+    content.vb: Public Property NewState As GameStateType
+  overload: GameFramework.EventSystem.Events.GameStateChangeEvent.NewState*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: GameFramework.EventSystem.Events.GameStateChangeEvent.Context
+  commentId: P:GameFramework.EventSystem.Events.GameStateChangeEvent.Context
+  id: Context
+  parent: GameFramework.EventSystem.Events.GameStateChangeEvent
+  langs:
+  - csharp
+  - vb
+  name: Context
+  nameWithType: GameStateChangeEvent.Context
+  fullName: GameFramework.EventSystem.Events.GameStateChangeEvent.Context
+  type: Property
+  source:
+    id: Context
+    path: ''
+    startLine: 4260
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.EventSystem.Events
+  syntax:
+    content: public GameContext Context { get; set; }
+    parameters: []
+    return:
+      type: GameContext
+    content.vb: Public Property Context As GameContext
+  overload: GameFramework.EventSystem.Events.GameStateChangeEvent.Context*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+references:
+- uid: GameFramework.EventSystem.Events
+  commentId: N:GameFramework.EventSystem.Events
+  name: GameFramework.EventSystem.Events
+  nameWithType: GameFramework.EventSystem.Events
+  fullName: GameFramework.EventSystem.Events
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: GameFramework.EventSystem.Events.GameStateChangeEvent.PreviousState*
+  commentId: Overload:GameFramework.EventSystem.Events.GameStateChangeEvent.PreviousState
+  name: PreviousState
+  nameWithType: GameStateChangeEvent.PreviousState
+  fullName: GameFramework.EventSystem.Events.GameStateChangeEvent.PreviousState
+- uid: GameStateType
+  isExternal: true
+  name: GameStateType
+  nameWithType: GameStateType
+  fullName: GameStateType
+- uid: GameFramework.EventSystem.Events.GameStateChangeEvent.NewState*
+  commentId: Overload:GameFramework.EventSystem.Events.GameStateChangeEvent.NewState
+  name: NewState
+  nameWithType: GameStateChangeEvent.NewState
+  fullName: GameFramework.EventSystem.Events.GameStateChangeEvent.NewState
+- uid: GameFramework.EventSystem.Events.GameStateChangeEvent.Context*
+  commentId: Overload:GameFramework.EventSystem.Events.GameStateChangeEvent.Context
+  name: Context
+  nameWithType: GameStateChangeEvent.Context
+  fullName: GameFramework.EventSystem.Events.GameStateChangeEvent.Context
+- uid: GameContext
+  isExternal: true
+  name: GameContext
+  nameWithType: GameContext
+  fullName: GameContext

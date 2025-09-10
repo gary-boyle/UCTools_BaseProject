@@ -1,0 +1,436 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.Services.Interfaces.IAudioService
+  commentId: T:GameFramework.Services.Interfaces.IAudioService
+  id: IAudioService
+  parent: GameFramework.Services.Interfaces
+  children:
+  - GameFramework.Services.Interfaces.IAudioService.GetMasterVolume
+  - GameFramework.Services.Interfaces.IAudioService.GetMusicVolume
+  - GameFramework.Services.Interfaces.IAudioService.GetSFXVolume
+  - GameFramework.Services.Interfaces.IAudioService.PlayMusic(System.String)
+  - GameFramework.Services.Interfaces.IAudioService.PlaySound(System.String)
+  - GameFramework.Services.Interfaces.IAudioService.SetMasterVolume(System.Single)
+  - GameFramework.Services.Interfaces.IAudioService.SetMusicVolume(System.Single)
+  - GameFramework.Services.Interfaces.IAudioService.SetSFXVolume(System.Single)
+  - GameFramework.Services.Interfaces.IAudioService.StopMusic
+  - GameFramework.Services.Interfaces.IAudioService.StopSound(System.String)
+  langs:
+  - csharp
+  - vb
+  name: IAudioService
+  nameWithType: IAudioService
+  fullName: GameFramework.Services.Interfaces.IAudioService
+  type: Interface
+  source:
+    id: IAudioService
+    path: ''
+    startLine: 10903
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  summary: "\nInterface for audio management service\n"
+  example: []
+  syntax:
+    content: 'public interface IAudioService : IGameService'
+    content.vb: >-
+      Public Interface IAudioService
+          Inherits IGameService
+  inheritedMembers:
+  - GameFramework.Services.Interfaces.IGameService.IsInitialized
+  - GameFramework.Services.Interfaces.IGameService.InitializeAsync
+  - GameFramework.Services.Interfaces.IGameService.Shutdown
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: GameFramework.Services.Interfaces.IAudioService.PlayMusic(System.String)
+  commentId: M:GameFramework.Services.Interfaces.IAudioService.PlayMusic(System.String)
+  id: PlayMusic(System.String)
+  parent: GameFramework.Services.Interfaces.IAudioService
+  langs:
+  - csharp
+  - vb
+  name: PlayMusic(String)
+  nameWithType: IAudioService.PlayMusic(String)
+  fullName: GameFramework.Services.Interfaces.IAudioService.PlayMusic(System.String)
+  type: Method
+  source:
+    id: PlayMusic
+    path: ''
+    startLine: 10905
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: void PlayMusic(string musicName)
+    parameters:
+    - id: musicName
+      type: System.String
+    content.vb: Sub PlayMusic(musicName As String)
+  overload: GameFramework.Services.Interfaces.IAudioService.PlayMusic*
+- uid: GameFramework.Services.Interfaces.IAudioService.PlaySound(System.String)
+  commentId: M:GameFramework.Services.Interfaces.IAudioService.PlaySound(System.String)
+  id: PlaySound(System.String)
+  parent: GameFramework.Services.Interfaces.IAudioService
+  langs:
+  - csharp
+  - vb
+  name: PlaySound(String)
+  nameWithType: IAudioService.PlaySound(String)
+  fullName: GameFramework.Services.Interfaces.IAudioService.PlaySound(System.String)
+  type: Method
+  source:
+    id: PlaySound
+    path: ''
+    startLine: 10906
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: void PlaySound(string soundName)
+    parameters:
+    - id: soundName
+      type: System.String
+    content.vb: Sub PlaySound(soundName As String)
+  overload: GameFramework.Services.Interfaces.IAudioService.PlaySound*
+- uid: GameFramework.Services.Interfaces.IAudioService.StopMusic
+  commentId: M:GameFramework.Services.Interfaces.IAudioService.StopMusic
+  id: StopMusic
+  parent: GameFramework.Services.Interfaces.IAudioService
+  langs:
+  - csharp
+  - vb
+  name: StopMusic()
+  nameWithType: IAudioService.StopMusic()
+  fullName: GameFramework.Services.Interfaces.IAudioService.StopMusic()
+  type: Method
+  source:
+    id: StopMusic
+    path: ''
+    startLine: 10907
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: void StopMusic()
+    content.vb: Sub StopMusic
+  overload: GameFramework.Services.Interfaces.IAudioService.StopMusic*
+- uid: GameFramework.Services.Interfaces.IAudioService.StopSound(System.String)
+  commentId: M:GameFramework.Services.Interfaces.IAudioService.StopSound(System.String)
+  id: StopSound(System.String)
+  parent: GameFramework.Services.Interfaces.IAudioService
+  langs:
+  - csharp
+  - vb
+  name: StopSound(String)
+  nameWithType: IAudioService.StopSound(String)
+  fullName: GameFramework.Services.Interfaces.IAudioService.StopSound(System.String)
+  type: Method
+  source:
+    id: StopSound
+    path: ''
+    startLine: 10908
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: void StopSound(string soundName)
+    parameters:
+    - id: soundName
+      type: System.String
+    content.vb: Sub StopSound(soundName As String)
+  overload: GameFramework.Services.Interfaces.IAudioService.StopSound*
+- uid: GameFramework.Services.Interfaces.IAudioService.SetMasterVolume(System.Single)
+  commentId: M:GameFramework.Services.Interfaces.IAudioService.SetMasterVolume(System.Single)
+  id: SetMasterVolume(System.Single)
+  parent: GameFramework.Services.Interfaces.IAudioService
+  langs:
+  - csharp
+  - vb
+  name: SetMasterVolume(Single)
+  nameWithType: IAudioService.SetMasterVolume(Single)
+  fullName: GameFramework.Services.Interfaces.IAudioService.SetMasterVolume(System.Single)
+  type: Method
+  source:
+    id: SetMasterVolume
+    path: ''
+    startLine: 10909
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: void SetMasterVolume(float volume)
+    parameters:
+    - id: volume
+      type: System.Single
+    content.vb: Sub SetMasterVolume(volume As Single)
+  overload: GameFramework.Services.Interfaces.IAudioService.SetMasterVolume*
+- uid: GameFramework.Services.Interfaces.IAudioService.SetMusicVolume(System.Single)
+  commentId: M:GameFramework.Services.Interfaces.IAudioService.SetMusicVolume(System.Single)
+  id: SetMusicVolume(System.Single)
+  parent: GameFramework.Services.Interfaces.IAudioService
+  langs:
+  - csharp
+  - vb
+  name: SetMusicVolume(Single)
+  nameWithType: IAudioService.SetMusicVolume(Single)
+  fullName: GameFramework.Services.Interfaces.IAudioService.SetMusicVolume(System.Single)
+  type: Method
+  source:
+    id: SetMusicVolume
+    path: ''
+    startLine: 10910
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: void SetMusicVolume(float volume)
+    parameters:
+    - id: volume
+      type: System.Single
+    content.vb: Sub SetMusicVolume(volume As Single)
+  overload: GameFramework.Services.Interfaces.IAudioService.SetMusicVolume*
+- uid: GameFramework.Services.Interfaces.IAudioService.SetSFXVolume(System.Single)
+  commentId: M:GameFramework.Services.Interfaces.IAudioService.SetSFXVolume(System.Single)
+  id: SetSFXVolume(System.Single)
+  parent: GameFramework.Services.Interfaces.IAudioService
+  langs:
+  - csharp
+  - vb
+  name: SetSFXVolume(Single)
+  nameWithType: IAudioService.SetSFXVolume(Single)
+  fullName: GameFramework.Services.Interfaces.IAudioService.SetSFXVolume(System.Single)
+  type: Method
+  source:
+    id: SetSFXVolume
+    path: ''
+    startLine: 10911
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: void SetSFXVolume(float volume)
+    parameters:
+    - id: volume
+      type: System.Single
+    content.vb: Sub SetSFXVolume(volume As Single)
+  overload: GameFramework.Services.Interfaces.IAudioService.SetSFXVolume*
+- uid: GameFramework.Services.Interfaces.IAudioService.GetMasterVolume
+  commentId: M:GameFramework.Services.Interfaces.IAudioService.GetMasterVolume
+  id: GetMasterVolume
+  parent: GameFramework.Services.Interfaces.IAudioService
+  langs:
+  - csharp
+  - vb
+  name: GetMasterVolume()
+  nameWithType: IAudioService.GetMasterVolume()
+  fullName: GameFramework.Services.Interfaces.IAudioService.GetMasterVolume()
+  type: Method
+  source:
+    id: GetMasterVolume
+    path: ''
+    startLine: 10912
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: float GetMasterVolume()
+    return:
+      type: System.Single
+    content.vb: Function GetMasterVolume As Single
+  overload: GameFramework.Services.Interfaces.IAudioService.GetMasterVolume*
+- uid: GameFramework.Services.Interfaces.IAudioService.GetMusicVolume
+  commentId: M:GameFramework.Services.Interfaces.IAudioService.GetMusicVolume
+  id: GetMusicVolume
+  parent: GameFramework.Services.Interfaces.IAudioService
+  langs:
+  - csharp
+  - vb
+  name: GetMusicVolume()
+  nameWithType: IAudioService.GetMusicVolume()
+  fullName: GameFramework.Services.Interfaces.IAudioService.GetMusicVolume()
+  type: Method
+  source:
+    id: GetMusicVolume
+    path: ''
+    startLine: 10913
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: float GetMusicVolume()
+    return:
+      type: System.Single
+    content.vb: Function GetMusicVolume As Single
+  overload: GameFramework.Services.Interfaces.IAudioService.GetMusicVolume*
+- uid: GameFramework.Services.Interfaces.IAudioService.GetSFXVolume
+  commentId: M:GameFramework.Services.Interfaces.IAudioService.GetSFXVolume
+  id: GetSFXVolume
+  parent: GameFramework.Services.Interfaces.IAudioService
+  langs:
+  - csharp
+  - vb
+  name: GetSFXVolume()
+  nameWithType: IAudioService.GetSFXVolume()
+  fullName: GameFramework.Services.Interfaces.IAudioService.GetSFXVolume()
+  type: Method
+  source:
+    id: GetSFXVolume
+    path: ''
+    startLine: 10914
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: float GetSFXVolume()
+    return:
+      type: System.Single
+    content.vb: Function GetSFXVolume As Single
+  overload: GameFramework.Services.Interfaces.IAudioService.GetSFXVolume*
+references:
+- uid: GameFramework.Services.Interfaces
+  commentId: N:GameFramework.Services.Interfaces
+  name: GameFramework.Services.Interfaces
+  nameWithType: GameFramework.Services.Interfaces
+  fullName: GameFramework.Services.Interfaces
+- uid: GameFramework.Services.Interfaces.IGameService.IsInitialized
+  commentId: P:GameFramework.Services.Interfaces.IGameService.IsInitialized
+  parent: GameFramework.Services.Interfaces.IGameService
+  name: IsInitialized
+  nameWithType: IGameService.IsInitialized
+  fullName: GameFramework.Services.Interfaces.IGameService.IsInitialized
+- uid: GameFramework.Services.Interfaces.IGameService.InitializeAsync
+  commentId: M:GameFramework.Services.Interfaces.IGameService.InitializeAsync
+  parent: GameFramework.Services.Interfaces.IGameService
+  name: InitializeAsync()
+  nameWithType: IGameService.InitializeAsync()
+  fullName: GameFramework.Services.Interfaces.IGameService.InitializeAsync()
+  spec.csharp:
+  - uid: GameFramework.Services.Interfaces.IGameService.InitializeAsync
+    name: InitializeAsync
+    nameWithType: IGameService.InitializeAsync
+    fullName: GameFramework.Services.Interfaces.IGameService.InitializeAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.Services.Interfaces.IGameService.InitializeAsync
+    name: InitializeAsync
+    nameWithType: IGameService.InitializeAsync
+    fullName: GameFramework.Services.Interfaces.IGameService.InitializeAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.Services.Interfaces.IGameService.Shutdown
+  commentId: M:GameFramework.Services.Interfaces.IGameService.Shutdown
+  parent: GameFramework.Services.Interfaces.IGameService
+  name: Shutdown()
+  nameWithType: IGameService.Shutdown()
+  fullName: GameFramework.Services.Interfaces.IGameService.Shutdown()
+  spec.csharp:
+  - uid: GameFramework.Services.Interfaces.IGameService.Shutdown
+    name: Shutdown
+    nameWithType: IGameService.Shutdown
+    fullName: GameFramework.Services.Interfaces.IGameService.Shutdown
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.Services.Interfaces.IGameService.Shutdown
+    name: Shutdown
+    nameWithType: IGameService.Shutdown
+    fullName: GameFramework.Services.Interfaces.IGameService.Shutdown
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.Services.Interfaces.IGameService
+  commentId: T:GameFramework.Services.Interfaces.IGameService
+  parent: GameFramework.Services.Interfaces
+  name: IGameService
+  nameWithType: IGameService
+  fullName: GameFramework.Services.Interfaces.IGameService
+- uid: GameFramework.Services.Interfaces.IAudioService.PlayMusic*
+  commentId: Overload:GameFramework.Services.Interfaces.IAudioService.PlayMusic
+  name: PlayMusic
+  nameWithType: IAudioService.PlayMusic
+  fullName: GameFramework.Services.Interfaces.IAudioService.PlayMusic
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: GameFramework.Services.Interfaces.IAudioService.PlaySound*
+  commentId: Overload:GameFramework.Services.Interfaces.IAudioService.PlaySound
+  name: PlaySound
+  nameWithType: IAudioService.PlaySound
+  fullName: GameFramework.Services.Interfaces.IAudioService.PlaySound
+- uid: GameFramework.Services.Interfaces.IAudioService.StopMusic*
+  commentId: Overload:GameFramework.Services.Interfaces.IAudioService.StopMusic
+  name: StopMusic
+  nameWithType: IAudioService.StopMusic
+  fullName: GameFramework.Services.Interfaces.IAudioService.StopMusic
+- uid: GameFramework.Services.Interfaces.IAudioService.StopSound*
+  commentId: Overload:GameFramework.Services.Interfaces.IAudioService.StopSound
+  name: StopSound
+  nameWithType: IAudioService.StopSound
+  fullName: GameFramework.Services.Interfaces.IAudioService.StopSound
+- uid: GameFramework.Services.Interfaces.IAudioService.SetMasterVolume*
+  commentId: Overload:GameFramework.Services.Interfaces.IAudioService.SetMasterVolume
+  name: SetMasterVolume
+  nameWithType: IAudioService.SetMasterVolume
+  fullName: GameFramework.Services.Interfaces.IAudioService.SetMasterVolume
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  name: Single
+  nameWithType: Single
+  fullName: System.Single
+- uid: GameFramework.Services.Interfaces.IAudioService.SetMusicVolume*
+  commentId: Overload:GameFramework.Services.Interfaces.IAudioService.SetMusicVolume
+  name: SetMusicVolume
+  nameWithType: IAudioService.SetMusicVolume
+  fullName: GameFramework.Services.Interfaces.IAudioService.SetMusicVolume
+- uid: GameFramework.Services.Interfaces.IAudioService.SetSFXVolume*
+  commentId: Overload:GameFramework.Services.Interfaces.IAudioService.SetSFXVolume
+  name: SetSFXVolume
+  nameWithType: IAudioService.SetSFXVolume
+  fullName: GameFramework.Services.Interfaces.IAudioService.SetSFXVolume
+- uid: GameFramework.Services.Interfaces.IAudioService.GetMasterVolume*
+  commentId: Overload:GameFramework.Services.Interfaces.IAudioService.GetMasterVolume
+  name: GetMasterVolume
+  nameWithType: IAudioService.GetMasterVolume
+  fullName: GameFramework.Services.Interfaces.IAudioService.GetMasterVolume
+- uid: GameFramework.Services.Interfaces.IAudioService.GetMusicVolume*
+  commentId: Overload:GameFramework.Services.Interfaces.IAudioService.GetMusicVolume
+  name: GetMusicVolume
+  nameWithType: IAudioService.GetMusicVolume
+  fullName: GameFramework.Services.Interfaces.IAudioService.GetMusicVolume
+- uid: GameFramework.Services.Interfaces.IAudioService.GetSFXVolume*
+  commentId: Overload:GameFramework.Services.Interfaces.IAudioService.GetSFXVolume
+  name: GetSFXVolume
+  nameWithType: IAudioService.GetSFXVolume
+  fullName: GameFramework.Services.Interfaces.IAudioService.GetSFXVolume

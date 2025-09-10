@@ -1,0 +1,405 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.Services.SceneService
+  commentId: T:GameFramework.Services.SceneService
+  id: SceneService
+  parent: GameFramework.Services
+  children:
+  - GameFramework.Services.SceneService.#ctor(IEventSystem)
+  - GameFramework.Services.SceneService.GetCurrentSceneName
+  - GameFramework.Services.SceneService.InitializeAsync
+  - GameFramework.Services.SceneService.IsInitialized
+  - GameFramework.Services.SceneService.IsSceneLoaded(System.String)
+  - GameFramework.Services.SceneService.LoadSceneAdditiveAsync(System.String)
+  - GameFramework.Services.SceneService.LoadSceneAsync(System.String)
+  - GameFramework.Services.SceneService.Shutdown
+  - GameFramework.Services.SceneService.UnloadSceneAsync(System.String)
+  langs:
+  - csharp
+  - vb
+  name: SceneService
+  nameWithType: SceneService
+  fullName: GameFramework.Services.SceneService
+  type: Class
+  source:
+    id: SceneService
+    path: ''
+    startLine: 9883
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services
+  summary: "\nScene service implementation with constructor injection\n"
+  example: []
+  syntax:
+    content: 'public class SceneService : ISceneService'
+    content.vb: >-
+      Public Class SceneService
+          Inherits ISceneService
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: GameFramework.Services.SceneService.IsInitialized
+  commentId: P:GameFramework.Services.SceneService.IsInitialized
+  id: IsInitialized
+  parent: GameFramework.Services.SceneService
+  langs:
+  - csharp
+  - vb
+  name: IsInitialized
+  nameWithType: SceneService.IsInitialized
+  fullName: GameFramework.Services.SceneService.IsInitialized
+  type: Property
+  source:
+    id: IsInitialized
+    path: ''
+    startLine: 9885
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services
+  syntax:
+    content: public bool IsInitialized { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsInitialized As Boolean
+  overload: GameFramework.Services.SceneService.IsInitialized*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: GameFramework.Services.SceneService.#ctor(IEventSystem)
+  commentId: M:GameFramework.Services.SceneService.#ctor(IEventSystem)
+  id: '#ctor(IEventSystem)'
+  parent: GameFramework.Services.SceneService
+  langs:
+  - csharp
+  - vb
+  name: SceneService(IEventSystem)
+  nameWithType: SceneService.SceneService(IEventSystem)
+  fullName: GameFramework.Services.SceneService.SceneService(IEventSystem)
+  type: Constructor
+  source:
+    id: .ctor
+    path: ''
+    startLine: 9892
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services
+  summary: "\nConstructor injection - receives required dependencies\n"
+  example: []
+  syntax:
+    content: public SceneService(IEventSystem eventSystem)
+    parameters:
+    - id: eventSystem
+      type: IEventSystem
+    content.vb: Public Sub New(eventSystem As IEventSystem)
+  overload: GameFramework.Services.SceneService.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.Services.SceneService.InitializeAsync
+  commentId: M:GameFramework.Services.SceneService.InitializeAsync
+  id: InitializeAsync
+  parent: GameFramework.Services.SceneService
+  langs:
+  - csharp
+  - vb
+  name: InitializeAsync()
+  nameWithType: SceneService.InitializeAsync()
+  fullName: GameFramework.Services.SceneService.InitializeAsync()
+  type: Method
+  source:
+    id: InitializeAsync
+    path: ''
+    startLine: 9897
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services
+  syntax:
+    content: public async Task InitializeAsync()
+    return:
+      type: Task
+    content.vb: Public Function InitializeAsync As Task
+  overload: GameFramework.Services.SceneService.InitializeAsync*
+  modifiers.csharp:
+  - public
+  - async
+  modifiers.vb:
+  - Public
+- uid: GameFramework.Services.SceneService.Shutdown
+  commentId: M:GameFramework.Services.SceneService.Shutdown
+  id: Shutdown
+  parent: GameFramework.Services.SceneService
+  langs:
+  - csharp
+  - vb
+  name: Shutdown()
+  nameWithType: SceneService.Shutdown()
+  fullName: GameFramework.Services.SceneService.Shutdown()
+  type: Method
+  source:
+    id: Shutdown
+    path: ''
+    startLine: 9906
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services
+  syntax:
+    content: public void Shutdown()
+    content.vb: Public Sub Shutdown
+  overload: GameFramework.Services.SceneService.Shutdown*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.Services.SceneService.LoadSceneAsync(System.String)
+  commentId: M:GameFramework.Services.SceneService.LoadSceneAsync(System.String)
+  id: LoadSceneAsync(System.String)
+  parent: GameFramework.Services.SceneService
+  langs:
+  - csharp
+  - vb
+  name: LoadSceneAsync(String)
+  nameWithType: SceneService.LoadSceneAsync(String)
+  fullName: GameFramework.Services.SceneService.LoadSceneAsync(System.String)
+  type: Method
+  source:
+    id: LoadSceneAsync
+    path: ''
+    startLine: 9911
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services
+  syntax:
+    content: public async Task LoadSceneAsync(string sceneName)
+    parameters:
+    - id: sceneName
+      type: System.String
+    return:
+      type: Task
+    content.vb: Public Function LoadSceneAsync(sceneName As String) As Task
+  overload: GameFramework.Services.SceneService.LoadSceneAsync*
+  modifiers.csharp:
+  - public
+  - async
+  modifiers.vb:
+  - Public
+- uid: GameFramework.Services.SceneService.LoadSceneAdditiveAsync(System.String)
+  commentId: M:GameFramework.Services.SceneService.LoadSceneAdditiveAsync(System.String)
+  id: LoadSceneAdditiveAsync(System.String)
+  parent: GameFramework.Services.SceneService
+  langs:
+  - csharp
+  - vb
+  name: LoadSceneAdditiveAsync(String)
+  nameWithType: SceneService.LoadSceneAdditiveAsync(String)
+  fullName: GameFramework.Services.SceneService.LoadSceneAdditiveAsync(System.String)
+  type: Method
+  source:
+    id: LoadSceneAdditiveAsync
+    path: ''
+    startLine: 9923
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services
+  syntax:
+    content: public async Task LoadSceneAdditiveAsync(string sceneName)
+    parameters:
+    - id: sceneName
+      type: System.String
+    return:
+      type: Task
+    content.vb: Public Function LoadSceneAdditiveAsync(sceneName As String) As Task
+  overload: GameFramework.Services.SceneService.LoadSceneAdditiveAsync*
+  modifiers.csharp:
+  - public
+  - async
+  modifiers.vb:
+  - Public
+- uid: GameFramework.Services.SceneService.UnloadSceneAsync(System.String)
+  commentId: M:GameFramework.Services.SceneService.UnloadSceneAsync(System.String)
+  id: UnloadSceneAsync(System.String)
+  parent: GameFramework.Services.SceneService
+  langs:
+  - csharp
+  - vb
+  name: UnloadSceneAsync(String)
+  nameWithType: SceneService.UnloadSceneAsync(String)
+  fullName: GameFramework.Services.SceneService.UnloadSceneAsync(System.String)
+  type: Method
+  source:
+    id: UnloadSceneAsync
+    path: ''
+    startLine: 9935
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services
+  syntax:
+    content: public async Task UnloadSceneAsync(string sceneName)
+    parameters:
+    - id: sceneName
+      type: System.String
+    return:
+      type: Task
+    content.vb: Public Function UnloadSceneAsync(sceneName As String) As Task
+  overload: GameFramework.Services.SceneService.UnloadSceneAsync*
+  modifiers.csharp:
+  - public
+  - async
+  modifiers.vb:
+  - Public
+- uid: GameFramework.Services.SceneService.GetCurrentSceneName
+  commentId: M:GameFramework.Services.SceneService.GetCurrentSceneName
+  id: GetCurrentSceneName
+  parent: GameFramework.Services.SceneService
+  langs:
+  - csharp
+  - vb
+  name: GetCurrentSceneName()
+  nameWithType: SceneService.GetCurrentSceneName()
+  fullName: GameFramework.Services.SceneService.GetCurrentSceneName()
+  type: Method
+  source:
+    id: GetCurrentSceneName
+    path: ''
+    startLine: 9947
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services
+  syntax:
+    content: public string GetCurrentSceneName()
+    return:
+      type: System.String
+    content.vb: Public Function GetCurrentSceneName As String
+  overload: GameFramework.Services.SceneService.GetCurrentSceneName*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.Services.SceneService.IsSceneLoaded(System.String)
+  commentId: M:GameFramework.Services.SceneService.IsSceneLoaded(System.String)
+  id: IsSceneLoaded(System.String)
+  parent: GameFramework.Services.SceneService
+  langs:
+  - csharp
+  - vb
+  name: IsSceneLoaded(String)
+  nameWithType: SceneService.IsSceneLoaded(String)
+  fullName: GameFramework.Services.SceneService.IsSceneLoaded(System.String)
+  type: Method
+  source:
+    id: IsSceneLoaded
+    path: ''
+    startLine: 9952
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services
+  syntax:
+    content: public bool IsSceneLoaded(string sceneName)
+    parameters:
+    - id: sceneName
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Function IsSceneLoaded(sceneName As String) As Boolean
+  overload: GameFramework.Services.SceneService.IsSceneLoaded*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: GameFramework.Services
+  commentId: N:GameFramework.Services
+  name: GameFramework.Services
+  nameWithType: GameFramework.Services
+  fullName: GameFramework.Services
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: GameFramework.Services.SceneService.IsInitialized*
+  commentId: Overload:GameFramework.Services.SceneService.IsInitialized
+  name: IsInitialized
+  nameWithType: SceneService.IsInitialized
+  fullName: GameFramework.Services.SceneService.IsInitialized
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: GameFramework.Services.SceneService.#ctor*
+  commentId: Overload:GameFramework.Services.SceneService.#ctor
+  name: SceneService
+  nameWithType: SceneService.SceneService
+  fullName: GameFramework.Services.SceneService.SceneService
+- uid: IEventSystem
+  isExternal: true
+  name: IEventSystem
+  nameWithType: IEventSystem
+  fullName: IEventSystem
+- uid: GameFramework.Services.SceneService.InitializeAsync*
+  commentId: Overload:GameFramework.Services.SceneService.InitializeAsync
+  name: InitializeAsync
+  nameWithType: SceneService.InitializeAsync
+  fullName: GameFramework.Services.SceneService.InitializeAsync
+- uid: Task
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: Task
+- uid: GameFramework.Services.SceneService.Shutdown*
+  commentId: Overload:GameFramework.Services.SceneService.Shutdown
+  name: Shutdown
+  nameWithType: SceneService.Shutdown
+  fullName: GameFramework.Services.SceneService.Shutdown
+- uid: GameFramework.Services.SceneService.LoadSceneAsync*
+  commentId: Overload:GameFramework.Services.SceneService.LoadSceneAsync
+  name: LoadSceneAsync
+  nameWithType: SceneService.LoadSceneAsync
+  fullName: GameFramework.Services.SceneService.LoadSceneAsync
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: GameFramework.Services.SceneService.LoadSceneAdditiveAsync*
+  commentId: Overload:GameFramework.Services.SceneService.LoadSceneAdditiveAsync
+  name: LoadSceneAdditiveAsync
+  nameWithType: SceneService.LoadSceneAdditiveAsync
+  fullName: GameFramework.Services.SceneService.LoadSceneAdditiveAsync
+- uid: GameFramework.Services.SceneService.UnloadSceneAsync*
+  commentId: Overload:GameFramework.Services.SceneService.UnloadSceneAsync
+  name: UnloadSceneAsync
+  nameWithType: SceneService.UnloadSceneAsync
+  fullName: GameFramework.Services.SceneService.UnloadSceneAsync
+- uid: GameFramework.Services.SceneService.GetCurrentSceneName*
+  commentId: Overload:GameFramework.Services.SceneService.GetCurrentSceneName
+  name: GetCurrentSceneName
+  nameWithType: SceneService.GetCurrentSceneName
+  fullName: GameFramework.Services.SceneService.GetCurrentSceneName
+- uid: GameFramework.Services.SceneService.IsSceneLoaded*
+  commentId: Overload:GameFramework.Services.SceneService.IsSceneLoaded
+  name: IsSceneLoaded
+  nameWithType: SceneService.IsSceneLoaded
+  fullName: GameFramework.Services.SceneService.IsSceneLoaded

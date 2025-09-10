@@ -1,0 +1,817 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.Services.Interfaces.ITimeService
+  commentId: T:GameFramework.Services.Interfaces.ITimeService
+  id: ITimeService
+  parent: GameFramework.Services.Interfaces
+  children:
+  - GameFramework.Services.Interfaces.ITimeService.GameTime
+  - GameFramework.Services.Interfaces.ITimeService.GameTimeSpan
+  - GameFramework.Services.Interfaces.ITimeService.GetFormattedGameTime
+  - GameFramework.Services.Interfaces.ITimeService.GetFormattedLevelTime
+  - GameFramework.Services.Interfaces.ITimeService.GetFormattedSessionTime
+  - GameFramework.Services.Interfaces.ITimeService.GetTimeStatistics
+  - GameFramework.Services.Interfaces.ITimeService.InitializeAsync
+  - GameFramework.Services.Interfaces.ITimeService.IsInitialized
+  - GameFramework.Services.Interfaces.ITimeService.IsTrackingGameTime
+  - GameFramework.Services.Interfaces.ITimeService.IsTrackingSessionTime
+  - GameFramework.Services.Interfaces.ITimeService.LevelTime
+  - GameFramework.Services.Interfaces.ITimeService.LevelTimeSpan
+  - GameFramework.Services.Interfaces.ITimeService.OnGameTimeChanged
+  - GameFramework.Services.Interfaces.ITimeService.OnLevelTimeChanged
+  - GameFramework.Services.Interfaces.ITimeService.OnSessionTimeChanged
+  - GameFramework.Services.Interfaces.ITimeService.OnTimersReset
+  - GameFramework.Services.Interfaces.ITimeService.ResetAllTimers
+  - GameFramework.Services.Interfaces.ITimeService.ResetLevelTimer
+  - GameFramework.Services.Interfaces.ITimeService.SessionTime
+  - GameFramework.Services.Interfaces.ITimeService.SessionTimeSpan
+  - GameFramework.Services.Interfaces.ITimeService.Shutdown
+  langs:
+  - csharp
+  - vb
+  name: ITimeService
+  nameWithType: ITimeService
+  fullName: GameFramework.Services.Interfaces.ITimeService
+  type: Interface
+  source:
+    id: ITimeService
+    path: ''
+    startLine: 11300
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  summary: "\nInterface for time tracking service that manages game time, session time, and level time\nwith proper pause handling and state awareness\n"
+  example: []
+  syntax:
+    content: public interface ITimeService
+    content.vb: Public Interface ITimeService
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: GameFramework.Services.Interfaces.ITimeService.IsInitialized
+  commentId: P:GameFramework.Services.Interfaces.ITimeService.IsInitialized
+  id: IsInitialized
+  parent: GameFramework.Services.Interfaces.ITimeService
+  langs:
+  - csharp
+  - vb
+  name: IsInitialized
+  nameWithType: ITimeService.IsInitialized
+  fullName: GameFramework.Services.Interfaces.ITimeService.IsInitialized
+  type: Property
+  source:
+    id: IsInitialized
+    path: ''
+    startLine: 11302
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: bool IsInitialized { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property IsInitialized As Boolean
+  overload: GameFramework.Services.Interfaces.ITimeService.IsInitialized*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: GameFramework.Services.Interfaces.ITimeService.GameTime
+  commentId: P:GameFramework.Services.Interfaces.ITimeService.GameTime
+  id: GameTime
+  parent: GameFramework.Services.Interfaces.ITimeService
+  langs:
+  - csharp
+  - vb
+  name: GameTime
+  nameWithType: ITimeService.GameTime
+  fullName: GameFramework.Services.Interfaces.ITimeService.GameTime
+  type: Property
+  source:
+    id: GameTime
+    path: ''
+    startLine: 11305
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: float GameTime { get; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: ReadOnly Property GameTime As Single
+  overload: GameFramework.Services.Interfaces.ITimeService.GameTime*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: GameFramework.Services.Interfaces.ITimeService.SessionTime
+  commentId: P:GameFramework.Services.Interfaces.ITimeService.SessionTime
+  id: SessionTime
+  parent: GameFramework.Services.Interfaces.ITimeService
+  langs:
+  - csharp
+  - vb
+  name: SessionTime
+  nameWithType: ITimeService.SessionTime
+  fullName: GameFramework.Services.Interfaces.ITimeService.SessionTime
+  type: Property
+  source:
+    id: SessionTime
+    path: ''
+    startLine: 11306
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: float SessionTime { get; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: ReadOnly Property SessionTime As Single
+  overload: GameFramework.Services.Interfaces.ITimeService.SessionTime*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: GameFramework.Services.Interfaces.ITimeService.LevelTime
+  commentId: P:GameFramework.Services.Interfaces.ITimeService.LevelTime
+  id: LevelTime
+  parent: GameFramework.Services.Interfaces.ITimeService
+  langs:
+  - csharp
+  - vb
+  name: LevelTime
+  nameWithType: ITimeService.LevelTime
+  fullName: GameFramework.Services.Interfaces.ITimeService.LevelTime
+  type: Property
+  source:
+    id: LevelTime
+    path: ''
+    startLine: 11307
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: float LevelTime { get; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: ReadOnly Property LevelTime As Single
+  overload: GameFramework.Services.Interfaces.ITimeService.LevelTime*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: GameFramework.Services.Interfaces.ITimeService.GameTimeSpan
+  commentId: P:GameFramework.Services.Interfaces.ITimeService.GameTimeSpan
+  id: GameTimeSpan
+  parent: GameFramework.Services.Interfaces.ITimeService
+  langs:
+  - csharp
+  - vb
+  name: GameTimeSpan
+  nameWithType: ITimeService.GameTimeSpan
+  fullName: GameFramework.Services.Interfaces.ITimeService.GameTimeSpan
+  type: Property
+  source:
+    id: GameTimeSpan
+    path: ''
+    startLine: 11309
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: TimeSpan GameTimeSpan { get; }
+    parameters: []
+    return:
+      type: TimeSpan
+    content.vb: ReadOnly Property GameTimeSpan As TimeSpan
+  overload: GameFramework.Services.Interfaces.ITimeService.GameTimeSpan*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: GameFramework.Services.Interfaces.ITimeService.SessionTimeSpan
+  commentId: P:GameFramework.Services.Interfaces.ITimeService.SessionTimeSpan
+  id: SessionTimeSpan
+  parent: GameFramework.Services.Interfaces.ITimeService
+  langs:
+  - csharp
+  - vb
+  name: SessionTimeSpan
+  nameWithType: ITimeService.SessionTimeSpan
+  fullName: GameFramework.Services.Interfaces.ITimeService.SessionTimeSpan
+  type: Property
+  source:
+    id: SessionTimeSpan
+    path: ''
+    startLine: 11310
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: TimeSpan SessionTimeSpan { get; }
+    parameters: []
+    return:
+      type: TimeSpan
+    content.vb: ReadOnly Property SessionTimeSpan As TimeSpan
+  overload: GameFramework.Services.Interfaces.ITimeService.SessionTimeSpan*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: GameFramework.Services.Interfaces.ITimeService.LevelTimeSpan
+  commentId: P:GameFramework.Services.Interfaces.ITimeService.LevelTimeSpan
+  id: LevelTimeSpan
+  parent: GameFramework.Services.Interfaces.ITimeService
+  langs:
+  - csharp
+  - vb
+  name: LevelTimeSpan
+  nameWithType: ITimeService.LevelTimeSpan
+  fullName: GameFramework.Services.Interfaces.ITimeService.LevelTimeSpan
+  type: Property
+  source:
+    id: LevelTimeSpan
+    path: ''
+    startLine: 11311
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: TimeSpan LevelTimeSpan { get; }
+    parameters: []
+    return:
+      type: TimeSpan
+    content.vb: ReadOnly Property LevelTimeSpan As TimeSpan
+  overload: GameFramework.Services.Interfaces.ITimeService.LevelTimeSpan*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: GameFramework.Services.Interfaces.ITimeService.IsTrackingGameTime
+  commentId: P:GameFramework.Services.Interfaces.ITimeService.IsTrackingGameTime
+  id: IsTrackingGameTime
+  parent: GameFramework.Services.Interfaces.ITimeService
+  langs:
+  - csharp
+  - vb
+  name: IsTrackingGameTime
+  nameWithType: ITimeService.IsTrackingGameTime
+  fullName: GameFramework.Services.Interfaces.ITimeService.IsTrackingGameTime
+  type: Property
+  source:
+    id: IsTrackingGameTime
+    path: ''
+    startLine: 11314
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: bool IsTrackingGameTime { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property IsTrackingGameTime As Boolean
+  overload: GameFramework.Services.Interfaces.ITimeService.IsTrackingGameTime*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: GameFramework.Services.Interfaces.ITimeService.IsTrackingSessionTime
+  commentId: P:GameFramework.Services.Interfaces.ITimeService.IsTrackingSessionTime
+  id: IsTrackingSessionTime
+  parent: GameFramework.Services.Interfaces.ITimeService
+  langs:
+  - csharp
+  - vb
+  name: IsTrackingSessionTime
+  nameWithType: ITimeService.IsTrackingSessionTime
+  fullName: GameFramework.Services.Interfaces.ITimeService.IsTrackingSessionTime
+  type: Property
+  source:
+    id: IsTrackingSessionTime
+    path: ''
+    startLine: 11315
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: bool IsTrackingSessionTime { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property IsTrackingSessionTime As Boolean
+  overload: GameFramework.Services.Interfaces.ITimeService.IsTrackingSessionTime*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: GameFramework.Services.Interfaces.ITimeService.InitializeAsync
+  commentId: M:GameFramework.Services.Interfaces.ITimeService.InitializeAsync
+  id: InitializeAsync
+  parent: GameFramework.Services.Interfaces.ITimeService
+  langs:
+  - csharp
+  - vb
+  name: InitializeAsync()
+  nameWithType: ITimeService.InitializeAsync()
+  fullName: GameFramework.Services.Interfaces.ITimeService.InitializeAsync()
+  type: Method
+  source:
+    id: InitializeAsync
+    path: ''
+    startLine: 11318
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: Task InitializeAsync()
+    return:
+      type: Task
+    content.vb: Function InitializeAsync As Task
+  overload: GameFramework.Services.Interfaces.ITimeService.InitializeAsync*
+- uid: GameFramework.Services.Interfaces.ITimeService.Shutdown
+  commentId: M:GameFramework.Services.Interfaces.ITimeService.Shutdown
+  id: Shutdown
+  parent: GameFramework.Services.Interfaces.ITimeService
+  langs:
+  - csharp
+  - vb
+  name: Shutdown()
+  nameWithType: ITimeService.Shutdown()
+  fullName: GameFramework.Services.Interfaces.ITimeService.Shutdown()
+  type: Method
+  source:
+    id: Shutdown
+    path: ''
+    startLine: 11319
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: void Shutdown()
+    content.vb: Sub Shutdown
+  overload: GameFramework.Services.Interfaces.ITimeService.Shutdown*
+- uid: GameFramework.Services.Interfaces.ITimeService.GetFormattedGameTime
+  commentId: M:GameFramework.Services.Interfaces.ITimeService.GetFormattedGameTime
+  id: GetFormattedGameTime
+  parent: GameFramework.Services.Interfaces.ITimeService
+  langs:
+  - csharp
+  - vb
+  name: GetFormattedGameTime()
+  nameWithType: ITimeService.GetFormattedGameTime()
+  fullName: GameFramework.Services.Interfaces.ITimeService.GetFormattedGameTime()
+  type: Method
+  source:
+    id: GetFormattedGameTime
+    path: ''
+    startLine: 11322
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: string GetFormattedGameTime()
+    return:
+      type: System.String
+    content.vb: Function GetFormattedGameTime As String
+  overload: GameFramework.Services.Interfaces.ITimeService.GetFormattedGameTime*
+- uid: GameFramework.Services.Interfaces.ITimeService.GetFormattedSessionTime
+  commentId: M:GameFramework.Services.Interfaces.ITimeService.GetFormattedSessionTime
+  id: GetFormattedSessionTime
+  parent: GameFramework.Services.Interfaces.ITimeService
+  langs:
+  - csharp
+  - vb
+  name: GetFormattedSessionTime()
+  nameWithType: ITimeService.GetFormattedSessionTime()
+  fullName: GameFramework.Services.Interfaces.ITimeService.GetFormattedSessionTime()
+  type: Method
+  source:
+    id: GetFormattedSessionTime
+    path: ''
+    startLine: 11323
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: string GetFormattedSessionTime()
+    return:
+      type: System.String
+    content.vb: Function GetFormattedSessionTime As String
+  overload: GameFramework.Services.Interfaces.ITimeService.GetFormattedSessionTime*
+- uid: GameFramework.Services.Interfaces.ITimeService.GetFormattedLevelTime
+  commentId: M:GameFramework.Services.Interfaces.ITimeService.GetFormattedLevelTime
+  id: GetFormattedLevelTime
+  parent: GameFramework.Services.Interfaces.ITimeService
+  langs:
+  - csharp
+  - vb
+  name: GetFormattedLevelTime()
+  nameWithType: ITimeService.GetFormattedLevelTime()
+  fullName: GameFramework.Services.Interfaces.ITimeService.GetFormattedLevelTime()
+  type: Method
+  source:
+    id: GetFormattedLevelTime
+    path: ''
+    startLine: 11324
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: string GetFormattedLevelTime()
+    return:
+      type: System.String
+    content.vb: Function GetFormattedLevelTime As String
+  overload: GameFramework.Services.Interfaces.ITimeService.GetFormattedLevelTime*
+- uid: GameFramework.Services.Interfaces.ITimeService.ResetAllTimers
+  commentId: M:GameFramework.Services.Interfaces.ITimeService.ResetAllTimers
+  id: ResetAllTimers
+  parent: GameFramework.Services.Interfaces.ITimeService
+  langs:
+  - csharp
+  - vb
+  name: ResetAllTimers()
+  nameWithType: ITimeService.ResetAllTimers()
+  fullName: GameFramework.Services.Interfaces.ITimeService.ResetAllTimers()
+  type: Method
+  source:
+    id: ResetAllTimers
+    path: ''
+    startLine: 11325
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: void ResetAllTimers()
+    content.vb: Sub ResetAllTimers
+  overload: GameFramework.Services.Interfaces.ITimeService.ResetAllTimers*
+- uid: GameFramework.Services.Interfaces.ITimeService.ResetLevelTimer
+  commentId: M:GameFramework.Services.Interfaces.ITimeService.ResetLevelTimer
+  id: ResetLevelTimer
+  parent: GameFramework.Services.Interfaces.ITimeService
+  langs:
+  - csharp
+  - vb
+  name: ResetLevelTimer()
+  nameWithType: ITimeService.ResetLevelTimer()
+  fullName: GameFramework.Services.Interfaces.ITimeService.ResetLevelTimer()
+  type: Method
+  source:
+    id: ResetLevelTimer
+    path: ''
+    startLine: 11326
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: void ResetLevelTimer()
+    content.vb: Sub ResetLevelTimer
+  overload: GameFramework.Services.Interfaces.ITimeService.ResetLevelTimer*
+- uid: GameFramework.Services.Interfaces.ITimeService.GetTimeStatistics
+  commentId: M:GameFramework.Services.Interfaces.ITimeService.GetTimeStatistics
+  id: GetTimeStatistics
+  parent: GameFramework.Services.Interfaces.ITimeService
+  langs:
+  - csharp
+  - vb
+  name: GetTimeStatistics()
+  nameWithType: ITimeService.GetTimeStatistics()
+  fullName: GameFramework.Services.Interfaces.ITimeService.GetTimeStatistics()
+  type: Method
+  source:
+    id: GetTimeStatistics
+    path: ''
+    startLine: 11327
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: TimeStatistics GetTimeStatistics()
+    return:
+      type: GameFramework.Services.TimeStatistics
+    content.vb: Function GetTimeStatistics As TimeStatistics
+  overload: GameFramework.Services.Interfaces.ITimeService.GetTimeStatistics*
+- uid: GameFramework.Services.Interfaces.ITimeService.OnGameTimeChanged
+  commentId: E:GameFramework.Services.Interfaces.ITimeService.OnGameTimeChanged
+  id: OnGameTimeChanged
+  parent: GameFramework.Services.Interfaces.ITimeService
+  langs:
+  - csharp
+  - vb
+  name: OnGameTimeChanged
+  nameWithType: ITimeService.OnGameTimeChanged
+  fullName: GameFramework.Services.Interfaces.ITimeService.OnGameTimeChanged
+  type: Event
+  source:
+    id: OnGameTimeChanged
+    path: ''
+    startLine: 11330
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: event Action<float> OnGameTimeChanged
+    return:
+      type: Action{System.Single}
+    content.vb: Event OnGameTimeChanged As Action(Of Single)
+- uid: GameFramework.Services.Interfaces.ITimeService.OnSessionTimeChanged
+  commentId: E:GameFramework.Services.Interfaces.ITimeService.OnSessionTimeChanged
+  id: OnSessionTimeChanged
+  parent: GameFramework.Services.Interfaces.ITimeService
+  langs:
+  - csharp
+  - vb
+  name: OnSessionTimeChanged
+  nameWithType: ITimeService.OnSessionTimeChanged
+  fullName: GameFramework.Services.Interfaces.ITimeService.OnSessionTimeChanged
+  type: Event
+  source:
+    id: OnSessionTimeChanged
+    path: ''
+    startLine: 11331
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: event Action<float> OnSessionTimeChanged
+    return:
+      type: Action{System.Single}
+    content.vb: Event OnSessionTimeChanged As Action(Of Single)
+- uid: GameFramework.Services.Interfaces.ITimeService.OnLevelTimeChanged
+  commentId: E:GameFramework.Services.Interfaces.ITimeService.OnLevelTimeChanged
+  id: OnLevelTimeChanged
+  parent: GameFramework.Services.Interfaces.ITimeService
+  langs:
+  - csharp
+  - vb
+  name: OnLevelTimeChanged
+  nameWithType: ITimeService.OnLevelTimeChanged
+  fullName: GameFramework.Services.Interfaces.ITimeService.OnLevelTimeChanged
+  type: Event
+  source:
+    id: OnLevelTimeChanged
+    path: ''
+    startLine: 11332
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: event Action<float> OnLevelTimeChanged
+    return:
+      type: Action{System.Single}
+    content.vb: Event OnLevelTimeChanged As Action(Of Single)
+- uid: GameFramework.Services.Interfaces.ITimeService.OnTimersReset
+  commentId: E:GameFramework.Services.Interfaces.ITimeService.OnTimersReset
+  id: OnTimersReset
+  parent: GameFramework.Services.Interfaces.ITimeService
+  langs:
+  - csharp
+  - vb
+  name: OnTimersReset
+  nameWithType: ITimeService.OnTimersReset
+  fullName: GameFramework.Services.Interfaces.ITimeService.OnTimersReset
+  type: Event
+  source:
+    id: OnTimersReset
+    path: ''
+    startLine: 11333
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: event Action OnTimersReset
+    return:
+      type: Action
+    content.vb: Event OnTimersReset As Action
+references:
+- uid: GameFramework.Services.Interfaces
+  commentId: N:GameFramework.Services.Interfaces
+  name: GameFramework.Services.Interfaces
+  nameWithType: GameFramework.Services.Interfaces
+  fullName: GameFramework.Services.Interfaces
+- uid: GameFramework.Services.Interfaces.ITimeService.IsInitialized*
+  commentId: Overload:GameFramework.Services.Interfaces.ITimeService.IsInitialized
+  name: IsInitialized
+  nameWithType: ITimeService.IsInitialized
+  fullName: GameFramework.Services.Interfaces.ITimeService.IsInitialized
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: GameFramework.Services.Interfaces.ITimeService.GameTime*
+  commentId: Overload:GameFramework.Services.Interfaces.ITimeService.GameTime
+  name: GameTime
+  nameWithType: ITimeService.GameTime
+  fullName: GameFramework.Services.Interfaces.ITimeService.GameTime
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  name: Single
+  nameWithType: Single
+  fullName: System.Single
+- uid: GameFramework.Services.Interfaces.ITimeService.SessionTime*
+  commentId: Overload:GameFramework.Services.Interfaces.ITimeService.SessionTime
+  name: SessionTime
+  nameWithType: ITimeService.SessionTime
+  fullName: GameFramework.Services.Interfaces.ITimeService.SessionTime
+- uid: GameFramework.Services.Interfaces.ITimeService.LevelTime*
+  commentId: Overload:GameFramework.Services.Interfaces.ITimeService.LevelTime
+  name: LevelTime
+  nameWithType: ITimeService.LevelTime
+  fullName: GameFramework.Services.Interfaces.ITimeService.LevelTime
+- uid: GameFramework.Services.Interfaces.ITimeService.GameTimeSpan*
+  commentId: Overload:GameFramework.Services.Interfaces.ITimeService.GameTimeSpan
+  name: GameTimeSpan
+  nameWithType: ITimeService.GameTimeSpan
+  fullName: GameFramework.Services.Interfaces.ITimeService.GameTimeSpan
+- uid: TimeSpan
+  isExternal: true
+  name: TimeSpan
+  nameWithType: TimeSpan
+  fullName: TimeSpan
+- uid: GameFramework.Services.Interfaces.ITimeService.SessionTimeSpan*
+  commentId: Overload:GameFramework.Services.Interfaces.ITimeService.SessionTimeSpan
+  name: SessionTimeSpan
+  nameWithType: ITimeService.SessionTimeSpan
+  fullName: GameFramework.Services.Interfaces.ITimeService.SessionTimeSpan
+- uid: GameFramework.Services.Interfaces.ITimeService.LevelTimeSpan*
+  commentId: Overload:GameFramework.Services.Interfaces.ITimeService.LevelTimeSpan
+  name: LevelTimeSpan
+  nameWithType: ITimeService.LevelTimeSpan
+  fullName: GameFramework.Services.Interfaces.ITimeService.LevelTimeSpan
+- uid: GameFramework.Services.Interfaces.ITimeService.IsTrackingGameTime*
+  commentId: Overload:GameFramework.Services.Interfaces.ITimeService.IsTrackingGameTime
+  name: IsTrackingGameTime
+  nameWithType: ITimeService.IsTrackingGameTime
+  fullName: GameFramework.Services.Interfaces.ITimeService.IsTrackingGameTime
+- uid: GameFramework.Services.Interfaces.ITimeService.IsTrackingSessionTime*
+  commentId: Overload:GameFramework.Services.Interfaces.ITimeService.IsTrackingSessionTime
+  name: IsTrackingSessionTime
+  nameWithType: ITimeService.IsTrackingSessionTime
+  fullName: GameFramework.Services.Interfaces.ITimeService.IsTrackingSessionTime
+- uid: GameFramework.Services.Interfaces.ITimeService.InitializeAsync*
+  commentId: Overload:GameFramework.Services.Interfaces.ITimeService.InitializeAsync
+  name: InitializeAsync
+  nameWithType: ITimeService.InitializeAsync
+  fullName: GameFramework.Services.Interfaces.ITimeService.InitializeAsync
+- uid: Task
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: Task
+- uid: GameFramework.Services.Interfaces.ITimeService.Shutdown*
+  commentId: Overload:GameFramework.Services.Interfaces.ITimeService.Shutdown
+  name: Shutdown
+  nameWithType: ITimeService.Shutdown
+  fullName: GameFramework.Services.Interfaces.ITimeService.Shutdown
+- uid: GameFramework.Services.Interfaces.ITimeService.GetFormattedGameTime*
+  commentId: Overload:GameFramework.Services.Interfaces.ITimeService.GetFormattedGameTime
+  name: GetFormattedGameTime
+  nameWithType: ITimeService.GetFormattedGameTime
+  fullName: GameFramework.Services.Interfaces.ITimeService.GetFormattedGameTime
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: GameFramework.Services.Interfaces.ITimeService.GetFormattedSessionTime*
+  commentId: Overload:GameFramework.Services.Interfaces.ITimeService.GetFormattedSessionTime
+  name: GetFormattedSessionTime
+  nameWithType: ITimeService.GetFormattedSessionTime
+  fullName: GameFramework.Services.Interfaces.ITimeService.GetFormattedSessionTime
+- uid: GameFramework.Services.Interfaces.ITimeService.GetFormattedLevelTime*
+  commentId: Overload:GameFramework.Services.Interfaces.ITimeService.GetFormattedLevelTime
+  name: GetFormattedLevelTime
+  nameWithType: ITimeService.GetFormattedLevelTime
+  fullName: GameFramework.Services.Interfaces.ITimeService.GetFormattedLevelTime
+- uid: GameFramework.Services.Interfaces.ITimeService.ResetAllTimers*
+  commentId: Overload:GameFramework.Services.Interfaces.ITimeService.ResetAllTimers
+  name: ResetAllTimers
+  nameWithType: ITimeService.ResetAllTimers
+  fullName: GameFramework.Services.Interfaces.ITimeService.ResetAllTimers
+- uid: GameFramework.Services.Interfaces.ITimeService.ResetLevelTimer*
+  commentId: Overload:GameFramework.Services.Interfaces.ITimeService.ResetLevelTimer
+  name: ResetLevelTimer
+  nameWithType: ITimeService.ResetLevelTimer
+  fullName: GameFramework.Services.Interfaces.ITimeService.ResetLevelTimer
+- uid: GameFramework.Services.Interfaces.ITimeService.GetTimeStatistics*
+  commentId: Overload:GameFramework.Services.Interfaces.ITimeService.GetTimeStatistics
+  name: GetTimeStatistics
+  nameWithType: ITimeService.GetTimeStatistics
+  fullName: GameFramework.Services.Interfaces.ITimeService.GetTimeStatistics
+- uid: GameFramework.Services.TimeStatistics
+  commentId: T:GameFramework.Services.TimeStatistics
+  parent: GameFramework.Services
+  name: TimeStatistics
+  nameWithType: TimeStatistics
+  fullName: GameFramework.Services.TimeStatistics
+- uid: GameFramework.Services
+  commentId: N:GameFramework.Services
+  name: GameFramework.Services
+  nameWithType: GameFramework.Services
+  fullName: GameFramework.Services
+- uid: Action{System.Single}
+  commentId: '!:Action{System.Single}'
+  definition: Action`1
+  name: Action<Single>
+  nameWithType: Action<Single>
+  fullName: Action<System.Single>
+  nameWithType.vb: Action(Of Single)
+  fullName.vb: Action(Of System.Single)
+  name.vb: Action(Of Single)
+  spec.csharp:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Action`1
+  isExternal: true
+  name: Action<>
+  nameWithType: Action<>
+  fullName: Action<>
+  nameWithType.vb: Action(Of )
+  fullName.vb: Action(Of )
+  name.vb: Action(Of )
+  spec.csharp:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Action
+  isExternal: true
+  name: Action
+  nameWithType: Action
+  fullName: Action

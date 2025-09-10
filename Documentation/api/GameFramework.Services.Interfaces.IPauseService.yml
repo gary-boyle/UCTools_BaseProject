@@ -1,0 +1,465 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.Services.Interfaces.IPauseService
+  commentId: T:GameFramework.Services.Interfaces.IPauseService
+  id: IPauseService
+  parent: GameFramework.Services.Interfaces
+  children:
+  - GameFramework.Services.Interfaces.IPauseService.IsPaused
+  - GameFramework.Services.Interfaces.IPauseService.OnGamePaused
+  - GameFramework.Services.Interfaces.IPauseService.OnGameResumed
+  - GameFramework.Services.Interfaces.IPauseService.OnPauseStateChanged
+  - GameFramework.Services.Interfaces.IPauseService.PauseGame(System.String)
+  - GameFramework.Services.Interfaces.IPauseService.ResumeGame
+  - GameFramework.Services.Interfaces.IPauseService.TogglePause
+  langs:
+  - csharp
+  - vb
+  name: IPauseService
+  nameWithType: IPauseService
+  fullName: GameFramework.Services.Interfaces.IPauseService
+  type: Interface
+  source:
+    id: IPauseService
+    path: ''
+    startLine: 11143
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  summary: "\nSimple centralized pause service interface\nSingle source of truth for game pause state\n"
+  example: []
+  syntax:
+    content: 'public interface IPauseService : IGameService'
+    content.vb: >-
+      Public Interface IPauseService
+          Inherits IGameService, IUpdatable
+  inheritedMembers:
+  - GameFramework.Services.Interfaces.IGameService.IsInitialized
+  - GameFramework.Services.Interfaces.IGameService.InitializeAsync
+  - GameFramework.Services.Interfaces.IGameService.Shutdown
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: GameFramework.Services.Interfaces.IPauseService.IsPaused
+  commentId: P:GameFramework.Services.Interfaces.IPauseService.IsPaused
+  id: IsPaused
+  parent: GameFramework.Services.Interfaces.IPauseService
+  langs:
+  - csharp
+  - vb
+  name: IsPaused
+  nameWithType: IPauseService.IsPaused
+  fullName: GameFramework.Services.Interfaces.IPauseService.IsPaused
+  type: Property
+  source:
+    id: IsPaused
+    path: ''
+    startLine: 11148
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  summary: "\nIs the game currently paused?\n"
+  example: []
+  syntax:
+    content: bool IsPaused { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property IsPaused As Boolean
+  overload: GameFramework.Services.Interfaces.IPauseService.IsPaused*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: GameFramework.Services.Interfaces.IPauseService.PauseGame(System.String)
+  commentId: M:GameFramework.Services.Interfaces.IPauseService.PauseGame(System.String)
+  id: PauseGame(System.String)
+  parent: GameFramework.Services.Interfaces.IPauseService
+  langs:
+  - csharp
+  - vb
+  name: PauseGame(String)
+  nameWithType: IPauseService.PauseGame(String)
+  fullName: GameFramework.Services.Interfaces.IPauseService.PauseGame(System.String)
+  type: Method
+  source:
+    id: PauseGame
+    path: ''
+    startLine: 11153
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  summary: "\nPause the game\n"
+  example: []
+  syntax:
+    content: void PauseGame(string reason = null)
+    parameters:
+    - id: reason
+      type: System.String
+    content.vb: Sub PauseGame(reason As String = Nothing)
+  overload: GameFramework.Services.Interfaces.IPauseService.PauseGame*
+- uid: GameFramework.Services.Interfaces.IPauseService.ResumeGame
+  commentId: M:GameFramework.Services.Interfaces.IPauseService.ResumeGame
+  id: ResumeGame
+  parent: GameFramework.Services.Interfaces.IPauseService
+  langs:
+  - csharp
+  - vb
+  name: ResumeGame()
+  nameWithType: IPauseService.ResumeGame()
+  fullName: GameFramework.Services.Interfaces.IPauseService.ResumeGame()
+  type: Method
+  source:
+    id: ResumeGame
+    path: ''
+    startLine: 11158
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  summary: "\nResume the game\n"
+  example: []
+  syntax:
+    content: void ResumeGame()
+    content.vb: Sub ResumeGame
+  overload: GameFramework.Services.Interfaces.IPauseService.ResumeGame*
+- uid: GameFramework.Services.Interfaces.IPauseService.TogglePause
+  commentId: M:GameFramework.Services.Interfaces.IPauseService.TogglePause
+  id: TogglePause
+  parent: GameFramework.Services.Interfaces.IPauseService
+  langs:
+  - csharp
+  - vb
+  name: TogglePause()
+  nameWithType: IPauseService.TogglePause()
+  fullName: GameFramework.Services.Interfaces.IPauseService.TogglePause()
+  type: Method
+  source:
+    id: TogglePause
+    path: ''
+    startLine: 11163
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  summary: "\nToggle pause state\n"
+  example: []
+  syntax:
+    content: void TogglePause()
+    content.vb: Sub TogglePause
+  overload: GameFramework.Services.Interfaces.IPauseService.TogglePause*
+- uid: GameFramework.Services.Interfaces.IPauseService.OnPauseStateChanged
+  commentId: E:GameFramework.Services.Interfaces.IPauseService.OnPauseStateChanged
+  id: OnPauseStateChanged
+  parent: GameFramework.Services.Interfaces.IPauseService
+  langs:
+  - csharp
+  - vb
+  name: OnPauseStateChanged
+  nameWithType: IPauseService.OnPauseStateChanged
+  fullName: GameFramework.Services.Interfaces.IPauseService.OnPauseStateChanged
+  type: Event
+  source:
+    id: OnPauseStateChanged
+    path: ''
+    startLine: 11168
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  summary: "\nEvents for pause state changes\n"
+  example: []
+  syntax:
+    content: event Action<bool> OnPauseStateChanged
+    return:
+      type: Action{System.Boolean}
+    content.vb: Event OnPauseStateChanged As Action(Of Boolean)
+- uid: GameFramework.Services.Interfaces.IPauseService.OnGamePaused
+  commentId: E:GameFramework.Services.Interfaces.IPauseService.OnGamePaused
+  id: OnGamePaused
+  parent: GameFramework.Services.Interfaces.IPauseService
+  langs:
+  - csharp
+  - vb
+  name: OnGamePaused
+  nameWithType: IPauseService.OnGamePaused
+  fullName: GameFramework.Services.Interfaces.IPauseService.OnGamePaused
+  type: Event
+  source:
+    id: OnGamePaused
+    path: ''
+    startLine: 11169
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: event Action<string> OnGamePaused
+    return:
+      type: Action{System.String}
+    content.vb: Event OnGamePaused As Action(Of String)
+- uid: GameFramework.Services.Interfaces.IPauseService.OnGameResumed
+  commentId: E:GameFramework.Services.Interfaces.IPauseService.OnGameResumed
+  id: OnGameResumed
+  parent: GameFramework.Services.Interfaces.IPauseService
+  langs:
+  - csharp
+  - vb
+  name: OnGameResumed
+  nameWithType: IPauseService.OnGameResumed
+  fullName: GameFramework.Services.Interfaces.IPauseService.OnGameResumed
+  type: Event
+  source:
+    id: OnGameResumed
+    path: ''
+    startLine: 11170
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: event Action OnGameResumed
+    return:
+      type: Action
+    content.vb: Event OnGameResumed As Action
+references:
+- uid: GameFramework.Services.Interfaces
+  commentId: N:GameFramework.Services.Interfaces
+  name: GameFramework.Services.Interfaces
+  nameWithType: GameFramework.Services.Interfaces
+  fullName: GameFramework.Services.Interfaces
+- uid: GameFramework.Services.Interfaces.IGameService.IsInitialized
+  commentId: P:GameFramework.Services.Interfaces.IGameService.IsInitialized
+  parent: GameFramework.Services.Interfaces.IGameService
+  name: IsInitialized
+  nameWithType: IGameService.IsInitialized
+  fullName: GameFramework.Services.Interfaces.IGameService.IsInitialized
+- uid: GameFramework.Services.Interfaces.IGameService.InitializeAsync
+  commentId: M:GameFramework.Services.Interfaces.IGameService.InitializeAsync
+  parent: GameFramework.Services.Interfaces.IGameService
+  name: InitializeAsync()
+  nameWithType: IGameService.InitializeAsync()
+  fullName: GameFramework.Services.Interfaces.IGameService.InitializeAsync()
+  spec.csharp:
+  - uid: GameFramework.Services.Interfaces.IGameService.InitializeAsync
+    name: InitializeAsync
+    nameWithType: IGameService.InitializeAsync
+    fullName: GameFramework.Services.Interfaces.IGameService.InitializeAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.Services.Interfaces.IGameService.InitializeAsync
+    name: InitializeAsync
+    nameWithType: IGameService.InitializeAsync
+    fullName: GameFramework.Services.Interfaces.IGameService.InitializeAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.Services.Interfaces.IGameService.Shutdown
+  commentId: M:GameFramework.Services.Interfaces.IGameService.Shutdown
+  parent: GameFramework.Services.Interfaces.IGameService
+  name: Shutdown()
+  nameWithType: IGameService.Shutdown()
+  fullName: GameFramework.Services.Interfaces.IGameService.Shutdown()
+  spec.csharp:
+  - uid: GameFramework.Services.Interfaces.IGameService.Shutdown
+    name: Shutdown
+    nameWithType: IGameService.Shutdown
+    fullName: GameFramework.Services.Interfaces.IGameService.Shutdown
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.Services.Interfaces.IGameService.Shutdown
+    name: Shutdown
+    nameWithType: IGameService.Shutdown
+    fullName: GameFramework.Services.Interfaces.IGameService.Shutdown
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.Services.Interfaces.IGameService
+  commentId: T:GameFramework.Services.Interfaces.IGameService
+  parent: GameFramework.Services.Interfaces
+  name: IGameService
+  nameWithType: IGameService
+  fullName: GameFramework.Services.Interfaces.IGameService
+- uid: GameFramework.Services.Interfaces.IPauseService.IsPaused*
+  commentId: Overload:GameFramework.Services.Interfaces.IPauseService.IsPaused
+  name: IsPaused
+  nameWithType: IPauseService.IsPaused
+  fullName: GameFramework.Services.Interfaces.IPauseService.IsPaused
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: GameFramework.Services.Interfaces.IPauseService.PauseGame*
+  commentId: Overload:GameFramework.Services.Interfaces.IPauseService.PauseGame
+  name: PauseGame
+  nameWithType: IPauseService.PauseGame
+  fullName: GameFramework.Services.Interfaces.IPauseService.PauseGame
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: GameFramework.Services.Interfaces.IPauseService.ResumeGame*
+  commentId: Overload:GameFramework.Services.Interfaces.IPauseService.ResumeGame
+  name: ResumeGame
+  nameWithType: IPauseService.ResumeGame
+  fullName: GameFramework.Services.Interfaces.IPauseService.ResumeGame
+- uid: GameFramework.Services.Interfaces.IPauseService.TogglePause*
+  commentId: Overload:GameFramework.Services.Interfaces.IPauseService.TogglePause
+  name: TogglePause
+  nameWithType: IPauseService.TogglePause
+  fullName: GameFramework.Services.Interfaces.IPauseService.TogglePause
+- uid: Action{System.Boolean}
+  commentId: '!:Action{System.Boolean}'
+  definition: Action`1
+  name: Action<Boolean>
+  nameWithType: Action<Boolean>
+  fullName: Action<System.Boolean>
+  nameWithType.vb: Action(Of Boolean)
+  fullName.vb: Action(Of System.Boolean)
+  name.vb: Action(Of Boolean)
+  spec.csharp:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Action`1
+  isExternal: true
+  name: Action<>
+  nameWithType: Action<>
+  fullName: Action<>
+  nameWithType.vb: Action(Of )
+  fullName.vb: Action(Of )
+  name.vb: Action(Of )
+  spec.csharp:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Action{System.String}
+  commentId: '!:Action{System.String}'
+  definition: Action`1
+  name: Action<String>
+  nameWithType: Action<String>
+  fullName: Action<System.String>
+  nameWithType.vb: Action(Of String)
+  fullName.vb: Action(Of System.String)
+  name.vb: Action(Of String)
+  spec.csharp:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Action
+  isExternal: true
+  name: Action
+  nameWithType: Action
+  fullName: Action

@@ -1,0 +1,610 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.EventSystem.Events.NewGameRequestedEvent
+  commentId: T:GameFramework.EventSystem.Events.NewGameRequestedEvent
+  id: NewGameRequestedEvent
+  parent: GameFramework.EventSystem.Events
+  children:
+  - GameFramework.EventSystem.Events.NewGameRequestedEvent.CustomData
+  - GameFramework.EventSystem.Events.NewGameRequestedEvent.Difficulty
+  - GameFramework.EventSystem.Events.NewGameRequestedEvent.PlayerName
+  - GameFramework.EventSystem.Events.NewGameRequestedEvent.StartingScene
+  langs:
+  - csharp
+  - vb
+  name: NewGameRequestedEvent
+  nameWithType: NewGameRequestedEvent
+  fullName: GameFramework.EventSystem.Events.NewGameRequestedEvent
+  type: Class
+  source:
+    id: NewGameRequestedEvent
+    path: ''
+    startLine: 4271
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.EventSystem.Events
+  syntax:
+    content: public class NewGameRequestedEvent
+    content.vb: Public Class NewGameRequestedEvent
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: GameFramework.EventSystem.Events.NewGameRequestedEvent.PlayerName
+  commentId: P:GameFramework.EventSystem.Events.NewGameRequestedEvent.PlayerName
+  id: PlayerName
+  parent: GameFramework.EventSystem.Events.NewGameRequestedEvent
+  langs:
+  - csharp
+  - vb
+  name: PlayerName
+  nameWithType: NewGameRequestedEvent.PlayerName
+  fullName: GameFramework.EventSystem.Events.NewGameRequestedEvent.PlayerName
+  type: Property
+  source:
+    id: PlayerName
+    path: ''
+    startLine: 4273
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.EventSystem.Events
+  syntax:
+    content: public string PlayerName { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property PlayerName As String
+  overload: GameFramework.EventSystem.Events.NewGameRequestedEvent.PlayerName*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: GameFramework.EventSystem.Events.NewGameRequestedEvent.Difficulty
+  commentId: P:GameFramework.EventSystem.Events.NewGameRequestedEvent.Difficulty
+  id: Difficulty
+  parent: GameFramework.EventSystem.Events.NewGameRequestedEvent
+  langs:
+  - csharp
+  - vb
+  name: Difficulty
+  nameWithType: NewGameRequestedEvent.Difficulty
+  fullName: GameFramework.EventSystem.Events.NewGameRequestedEvent.Difficulty
+  type: Property
+  source:
+    id: Difficulty
+    path: ''
+    startLine: 4274
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.EventSystem.Events
+  syntax:
+    content: public string Difficulty { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Difficulty As String
+  overload: GameFramework.EventSystem.Events.NewGameRequestedEvent.Difficulty*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: GameFramework.EventSystem.Events.NewGameRequestedEvent.StartingScene
+  commentId: P:GameFramework.EventSystem.Events.NewGameRequestedEvent.StartingScene
+  id: StartingScene
+  parent: GameFramework.EventSystem.Events.NewGameRequestedEvent
+  langs:
+  - csharp
+  - vb
+  name: StartingScene
+  nameWithType: NewGameRequestedEvent.StartingScene
+  fullName: GameFramework.EventSystem.Events.NewGameRequestedEvent.StartingScene
+  type: Property
+  source:
+    id: StartingScene
+    path: ''
+    startLine: 4275
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.EventSystem.Events
+  syntax:
+    content: public string StartingScene { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property StartingScene As String
+  overload: GameFramework.EventSystem.Events.NewGameRequestedEvent.StartingScene*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: GameFramework.EventSystem.Events.NewGameRequestedEvent.CustomData
+  commentId: P:GameFramework.EventSystem.Events.NewGameRequestedEvent.CustomData
+  id: CustomData
+  parent: GameFramework.EventSystem.Events.NewGameRequestedEvent
+  langs:
+  - csharp
+  - vb
+  name: CustomData
+  nameWithType: NewGameRequestedEvent.CustomData
+  fullName: GameFramework.EventSystem.Events.NewGameRequestedEvent.CustomData
+  type: Property
+  source:
+    id: CustomData
+    path: ''
+    startLine: 4276
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.EventSystem.Events
+  syntax:
+    content: public Dictionary<string, object> CustomData { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}
+    content.vb: Public Property CustomData As Dictionary(Of String, Object)
+  overload: GameFramework.EventSystem.Events.NewGameRequestedEvent.CustomData*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+references:
+- uid: GameFramework.EventSystem.Events
+  commentId: N:GameFramework.EventSystem.Events
+  name: GameFramework.EventSystem.Events
+  nameWithType: GameFramework.EventSystem.Events
+  fullName: GameFramework.EventSystem.Events
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: GameFramework.EventSystem.Events.NewGameRequestedEvent.PlayerName*
+  commentId: Overload:GameFramework.EventSystem.Events.NewGameRequestedEvent.PlayerName
+  name: PlayerName
+  nameWithType: NewGameRequestedEvent.PlayerName
+  fullName: GameFramework.EventSystem.Events.NewGameRequestedEvent.PlayerName
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: GameFramework.EventSystem.Events.NewGameRequestedEvent.Difficulty*
+  commentId: Overload:GameFramework.EventSystem.Events.NewGameRequestedEvent.Difficulty
+  name: Difficulty
+  nameWithType: NewGameRequestedEvent.Difficulty
+  fullName: GameFramework.EventSystem.Events.NewGameRequestedEvent.Difficulty
+- uid: GameFramework.EventSystem.Events.NewGameRequestedEvent.StartingScene*
+  commentId: Overload:GameFramework.EventSystem.Events.NewGameRequestedEvent.StartingScene
+  name: StartingScene
+  nameWithType: NewGameRequestedEvent.StartingScene
+  fullName: GameFramework.EventSystem.Events.NewGameRequestedEvent.StartingScene
+- uid: GameFramework.EventSystem.Events.NewGameRequestedEvent.CustomData*
+  commentId: Overload:GameFramework.EventSystem.Events.NewGameRequestedEvent.CustomData
+  name: CustomData
+  nameWithType: NewGameRequestedEvent.CustomData
+  fullName: GameFramework.EventSystem.Events.NewGameRequestedEvent.CustomData
+- uid: System.Collections.Generic.Dictionary{System.String,System.Object}
+  commentId: T:System.Collections.Generic.Dictionary{System.String,System.Object}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  name: Dictionary<String, Object>
+  nameWithType: Dictionary<String, Object>
+  fullName: System.Collections.Generic.Dictionary<System.String, System.Object>
+  nameWithType.vb: Dictionary(Of String, Object)
+  fullName.vb: System.Collections.Generic.Dictionary(Of System.String, System.Object)
+  name.vb: Dictionary(Of String, Object)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.Dictionary`2
+  commentId: T:System.Collections.Generic.Dictionary`2
+  isExternal: true
+  name: Dictionary<TKey, TValue>
+  nameWithType: Dictionary<TKey, TValue>
+  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
+  nameWithType.vb: Dictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
+  name.vb: Dictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic

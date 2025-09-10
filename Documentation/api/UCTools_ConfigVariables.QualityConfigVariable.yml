@@ -1,0 +1,1183 @@
+### YamlMime:ManagedReference
+items:
+- uid: UCTools_ConfigVariables.QualityConfigVariable
+  commentId: T:UCTools_ConfigVariables.QualityConfigVariable
+  id: QualityConfigVariable
+  parent: UCTools_ConfigVariables
+  children:
+  - UCTools_ConfigVariables.QualityConfigVariable.#ctor
+  - UCTools_ConfigVariables.QualityConfigVariable.#ctor(System.String,System.String,UCTools_ConfigVariables.QualityOption,UCTools_ConfigVariables.ConfigFlags)
+  - UCTools_ConfigVariables.QualityConfigVariable.DisplayName
+  - UCTools_ConfigVariables.QualityConfigVariable.QualityLevel
+  langs:
+  - csharp
+  - vb
+  name: QualityConfigVariable
+  nameWithType: QualityConfigVariable
+  fullName: UCTools_ConfigVariables.QualityConfigVariable
+  type: Class
+  source:
+    id: QualityConfigVariable
+    path: ''
+    startLine: 18758
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_ConfigVariables
+  summary: "\nSpecific quality config variable for cleaner usage\n"
+  example: []
+  syntax:
+    content: >-
+      [Serializable]
+
+      public class QualityConfigVariable : EnumConfigVariable<QualityOption>
+    content.vb: >-
+      <Serializable>
+
+      Public Class QualityConfigVariable
+          Inherits EnumConfigVariable(Of QualityOption)
+  inheritance:
+  - System.Object
+  - UCTools_ConfigVariables.ConfigVariableBase
+  - UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}
+  inheritedMembers:
+  - UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}.ValueType
+  - UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}.Value
+  - UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}.IntValue
+  - UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}.DefaultValue
+  - UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}.ResetToDefault
+  - UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}.ValidateConfiguration(System.String@)
+  - UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}.GetValueAsObject
+  - UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}.SetValueFromObject(System.Object)
+  - UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}.GetValueAsString
+  - UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}.SetValueFromString(System.String)
+  - UCTools_ConfigVariables.ConfigVariableBase.name
+  - UCTools_ConfigVariables.ConfigVariableBase.description
+  - UCTools_ConfigVariables.ConfigVariableBase.flags
+  - UCTools_ConfigVariables.ConfigVariableBase.ChangeCheck
+  - UCTools_ConfigVariables.ConfigVariableBase.MarkChanged
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  attributes:
+  - type: System.SerializableAttribute
+    ctor: System.SerializableAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: UCTools_ConfigVariables.QualityConfigVariable.QualityLevel
+  commentId: P:UCTools_ConfigVariables.QualityConfigVariable.QualityLevel
+  id: QualityLevel
+  parent: UCTools_ConfigVariables.QualityConfigVariable
+  langs:
+  - csharp
+  - vb
+  name: QualityLevel
+  nameWithType: QualityConfigVariable.QualityLevel
+  fullName: UCTools_ConfigVariables.QualityConfigVariable.QualityLevel
+  type: Property
+  source:
+    id: QualityLevel
+    path: ''
+    startLine: 18762
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_ConfigVariables
+  summary: Get current Unity quality level
+  example: []
+  syntax:
+    content: public int QualityLevel { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property QualityLevel As Integer
+  overload: UCTools_ConfigVariables.QualityConfigVariable.QualityLevel*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: UCTools_ConfigVariables.QualityConfigVariable.DisplayName
+  commentId: P:UCTools_ConfigVariables.QualityConfigVariable.DisplayName
+  id: DisplayName
+  parent: UCTools_ConfigVariables.QualityConfigVariable
+  langs:
+  - csharp
+  - vb
+  name: DisplayName
+  nameWithType: QualityConfigVariable.DisplayName
+  fullName: UCTools_ConfigVariables.QualityConfigVariable.DisplayName
+  type: Property
+  source:
+    id: DisplayName
+    path: ''
+    startLine: 18765
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_ConfigVariables
+  summary: Get current display name
+  example: []
+  syntax:
+    content: public string DisplayName { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property DisplayName As String
+  overload: UCTools_ConfigVariables.QualityConfigVariable.DisplayName*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: UCTools_ConfigVariables.QualityConfigVariable.#ctor(System.String,System.String,UCTools_ConfigVariables.QualityOption,UCTools_ConfigVariables.ConfigFlags)
+  commentId: M:UCTools_ConfigVariables.QualityConfigVariable.#ctor(System.String,System.String,UCTools_ConfigVariables.QualityOption,UCTools_ConfigVariables.ConfigFlags)
+  id: '#ctor(System.String,System.String,UCTools_ConfigVariables.QualityOption,UCTools_ConfigVariables.ConfigFlags)'
+  parent: UCTools_ConfigVariables.QualityConfigVariable
+  langs:
+  - csharp
+  - vb
+  name: QualityConfigVariable(String, String, QualityOption, ConfigFlags)
+  nameWithType: QualityConfigVariable.QualityConfigVariable(String, String, QualityOption, ConfigFlags)
+  fullName: UCTools_ConfigVariables.QualityConfigVariable.QualityConfigVariable(System.String, System.String, UCTools_ConfigVariables.QualityOption, UCTools_ConfigVariables.ConfigFlags)
+  type: Constructor
+  source:
+    id: .ctor
+    path: ''
+    startLine: 18767
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_ConfigVariables
+  syntax:
+    content: public QualityConfigVariable(string name, string description, QualityOption defaultValue, ConfigFlags flags = ConfigFlags.Save)
+    parameters:
+    - id: name
+      type: System.String
+    - id: description
+      type: System.String
+    - id: defaultValue
+      type: UCTools_ConfigVariables.QualityOption
+    - id: flags
+      type: UCTools_ConfigVariables.ConfigFlags
+    content.vb: Public Sub New(name As String, description As String, defaultValue As QualityOption, flags As ConfigFlags = ConfigFlags.Save)
+  overload: UCTools_ConfigVariables.QualityConfigVariable.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: UCTools_ConfigVariables.QualityConfigVariable.#ctor
+  commentId: M:UCTools_ConfigVariables.QualityConfigVariable.#ctor
+  id: '#ctor'
+  parent: UCTools_ConfigVariables.QualityConfigVariable
+  langs:
+  - csharp
+  - vb
+  name: QualityConfigVariable()
+  nameWithType: QualityConfigVariable.QualityConfigVariable()
+  fullName: UCTools_ConfigVariables.QualityConfigVariable.QualityConfigVariable()
+  type: Constructor
+  source:
+    id: .ctor
+    path: ''
+    startLine: 18772
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_ConfigVariables
+  syntax:
+    content: public QualityConfigVariable()
+    content.vb: Public Sub New
+  overload: UCTools_ConfigVariables.QualityConfigVariable.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: UCTools_ConfigVariables
+  commentId: N:UCTools_ConfigVariables
+  name: UCTools_ConfigVariables
+  nameWithType: UCTools_ConfigVariables
+  fullName: UCTools_ConfigVariables
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: UCTools_ConfigVariables.ConfigVariableBase
+  commentId: T:UCTools_ConfigVariables.ConfigVariableBase
+  parent: UCTools_ConfigVariables
+  name: ConfigVariableBase
+  nameWithType: ConfigVariableBase
+  fullName: UCTools_ConfigVariables.ConfigVariableBase
+- uid: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}
+  commentId: T:UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}
+  parent: UCTools_ConfigVariables
+  definition: UCTools_ConfigVariables.EnumConfigVariable`1
+  name: EnumConfigVariable<QualityOption>
+  nameWithType: EnumConfigVariable<QualityOption>
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<UCTools_ConfigVariables.QualityOption>
+  nameWithType.vb: EnumConfigVariable(Of QualityOption)
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of UCTools_ConfigVariables.QualityOption)
+  name.vb: EnumConfigVariable(Of QualityOption)
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1
+    name: EnumConfigVariable
+    nameWithType: EnumConfigVariable
+    fullName: UCTools_ConfigVariables.EnumConfigVariable
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: UCTools_ConfigVariables.QualityOption
+    name: QualityOption
+    nameWithType: QualityOption
+    fullName: UCTools_ConfigVariables.QualityOption
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1
+    name: EnumConfigVariable
+    nameWithType: EnumConfigVariable
+    fullName: UCTools_ConfigVariables.EnumConfigVariable
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: UCTools_ConfigVariables.QualityOption
+    name: QualityOption
+    nameWithType: QualityOption
+    fullName: UCTools_ConfigVariables.QualityOption
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}.ValueType
+  commentId: P:UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}.ValueType
+  parent: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}
+  definition: UCTools_ConfigVariables.EnumConfigVariable`1.ValueType
+  name: ValueType
+  nameWithType: EnumConfigVariable<QualityOption>.ValueType
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<UCTools_ConfigVariables.QualityOption>.ValueType
+  nameWithType.vb: EnumConfigVariable(Of QualityOption).ValueType
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of UCTools_ConfigVariables.QualityOption).ValueType
+- uid: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}.Value
+  commentId: P:UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}.Value
+  parent: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}
+  definition: UCTools_ConfigVariables.EnumConfigVariable`1.Value
+  name: Value
+  nameWithType: EnumConfigVariable<QualityOption>.Value
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<UCTools_ConfigVariables.QualityOption>.Value
+  nameWithType.vb: EnumConfigVariable(Of QualityOption).Value
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of UCTools_ConfigVariables.QualityOption).Value
+- uid: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}.IntValue
+  commentId: P:UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}.IntValue
+  parent: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}
+  definition: UCTools_ConfigVariables.EnumConfigVariable`1.IntValue
+  name: IntValue
+  nameWithType: EnumConfigVariable<QualityOption>.IntValue
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<UCTools_ConfigVariables.QualityOption>.IntValue
+  nameWithType.vb: EnumConfigVariable(Of QualityOption).IntValue
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of UCTools_ConfigVariables.QualityOption).IntValue
+- uid: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}.DefaultValue
+  commentId: P:UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}.DefaultValue
+  parent: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}
+  definition: UCTools_ConfigVariables.EnumConfigVariable`1.DefaultValue
+  name: DefaultValue
+  nameWithType: EnumConfigVariable<QualityOption>.DefaultValue
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<UCTools_ConfigVariables.QualityOption>.DefaultValue
+  nameWithType.vb: EnumConfigVariable(Of QualityOption).DefaultValue
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of UCTools_ConfigVariables.QualityOption).DefaultValue
+- uid: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}.ResetToDefault
+  commentId: M:UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}.ResetToDefault
+  parent: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}
+  definition: UCTools_ConfigVariables.EnumConfigVariable`1.ResetToDefault
+  name: ResetToDefault()
+  nameWithType: EnumConfigVariable<QualityOption>.ResetToDefault()
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<UCTools_ConfigVariables.QualityOption>.ResetToDefault()
+  nameWithType.vb: EnumConfigVariable(Of QualityOption).ResetToDefault()
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of UCTools_ConfigVariables.QualityOption).ResetToDefault()
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.ResetToDefault
+    name: ResetToDefault
+    nameWithType: EnumConfigVariable<QualityOption>.ResetToDefault
+    fullName: UCTools_ConfigVariables.EnumConfigVariable<UCTools_ConfigVariables.QualityOption>.ResetToDefault
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.ResetToDefault
+    name: ResetToDefault
+    nameWithType: EnumConfigVariable(Of QualityOption).ResetToDefault
+    fullName: UCTools_ConfigVariables.EnumConfigVariable(Of UCTools_ConfigVariables.QualityOption).ResetToDefault
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}.ValidateConfiguration(System.String@)
+  commentId: M:UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}.ValidateConfiguration(System.String@)
+  parent: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}
+  definition: UCTools_ConfigVariables.EnumConfigVariable`1.ValidateConfiguration(System.String@)
+  name: ValidateConfiguration(String)
+  nameWithType: EnumConfigVariable<QualityOption>.ValidateConfiguration(String)
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<UCTools_ConfigVariables.QualityOption>.ValidateConfiguration(System.String)
+  nameWithType.vb: EnumConfigVariable(Of QualityOption).ValidateConfiguration(String)
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of UCTools_ConfigVariables.QualityOption).ValidateConfiguration(System.String)
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.ValidateConfiguration(System.String@)
+    name: ValidateConfiguration
+    nameWithType: EnumConfigVariable<QualityOption>.ValidateConfiguration
+    fullName: UCTools_ConfigVariables.EnumConfigVariable<UCTools_ConfigVariables.QualityOption>.ValidateConfiguration
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.ValidateConfiguration(System.String@)
+    name: ValidateConfiguration
+    nameWithType: EnumConfigVariable(Of QualityOption).ValidateConfiguration
+    fullName: UCTools_ConfigVariables.EnumConfigVariable(Of UCTools_ConfigVariables.QualityOption).ValidateConfiguration
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}.GetValueAsObject
+  commentId: M:UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}.GetValueAsObject
+  parent: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}
+  definition: UCTools_ConfigVariables.EnumConfigVariable`1.GetValueAsObject
+  name: GetValueAsObject()
+  nameWithType: EnumConfigVariable<QualityOption>.GetValueAsObject()
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<UCTools_ConfigVariables.QualityOption>.GetValueAsObject()
+  nameWithType.vb: EnumConfigVariable(Of QualityOption).GetValueAsObject()
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of UCTools_ConfigVariables.QualityOption).GetValueAsObject()
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.GetValueAsObject
+    name: GetValueAsObject
+    nameWithType: EnumConfigVariable<QualityOption>.GetValueAsObject
+    fullName: UCTools_ConfigVariables.EnumConfigVariable<UCTools_ConfigVariables.QualityOption>.GetValueAsObject
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.GetValueAsObject
+    name: GetValueAsObject
+    nameWithType: EnumConfigVariable(Of QualityOption).GetValueAsObject
+    fullName: UCTools_ConfigVariables.EnumConfigVariable(Of UCTools_ConfigVariables.QualityOption).GetValueAsObject
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}.SetValueFromObject(System.Object)
+  commentId: M:UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}.SetValueFromObject(System.Object)
+  parent: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}
+  definition: UCTools_ConfigVariables.EnumConfigVariable`1.SetValueFromObject(System.Object)
+  name: SetValueFromObject(Object)
+  nameWithType: EnumConfigVariable<QualityOption>.SetValueFromObject(Object)
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<UCTools_ConfigVariables.QualityOption>.SetValueFromObject(System.Object)
+  nameWithType.vb: EnumConfigVariable(Of QualityOption).SetValueFromObject(Object)
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of UCTools_ConfigVariables.QualityOption).SetValueFromObject(System.Object)
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.SetValueFromObject(System.Object)
+    name: SetValueFromObject
+    nameWithType: EnumConfigVariable<QualityOption>.SetValueFromObject
+    fullName: UCTools_ConfigVariables.EnumConfigVariable<UCTools_ConfigVariables.QualityOption>.SetValueFromObject
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.SetValueFromObject(System.Object)
+    name: SetValueFromObject
+    nameWithType: EnumConfigVariable(Of QualityOption).SetValueFromObject
+    fullName: UCTools_ConfigVariables.EnumConfigVariable(Of UCTools_ConfigVariables.QualityOption).SetValueFromObject
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}.GetValueAsString
+  commentId: M:UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}.GetValueAsString
+  parent: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}
+  definition: UCTools_ConfigVariables.EnumConfigVariable`1.GetValueAsString
+  name: GetValueAsString()
+  nameWithType: EnumConfigVariable<QualityOption>.GetValueAsString()
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<UCTools_ConfigVariables.QualityOption>.GetValueAsString()
+  nameWithType.vb: EnumConfigVariable(Of QualityOption).GetValueAsString()
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of UCTools_ConfigVariables.QualityOption).GetValueAsString()
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.GetValueAsString
+    name: GetValueAsString
+    nameWithType: EnumConfigVariable<QualityOption>.GetValueAsString
+    fullName: UCTools_ConfigVariables.EnumConfigVariable<UCTools_ConfigVariables.QualityOption>.GetValueAsString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.GetValueAsString
+    name: GetValueAsString
+    nameWithType: EnumConfigVariable(Of QualityOption).GetValueAsString
+    fullName: UCTools_ConfigVariables.EnumConfigVariable(Of UCTools_ConfigVariables.QualityOption).GetValueAsString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}.SetValueFromString(System.String)
+  commentId: M:UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}.SetValueFromString(System.String)
+  parent: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.QualityOption}
+  definition: UCTools_ConfigVariables.EnumConfigVariable`1.SetValueFromString(System.String)
+  name: SetValueFromString(String)
+  nameWithType: EnumConfigVariable<QualityOption>.SetValueFromString(String)
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<UCTools_ConfigVariables.QualityOption>.SetValueFromString(System.String)
+  nameWithType.vb: EnumConfigVariable(Of QualityOption).SetValueFromString(String)
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of UCTools_ConfigVariables.QualityOption).SetValueFromString(System.String)
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.SetValueFromString(System.String)
+    name: SetValueFromString
+    nameWithType: EnumConfigVariable<QualityOption>.SetValueFromString
+    fullName: UCTools_ConfigVariables.EnumConfigVariable<UCTools_ConfigVariables.QualityOption>.SetValueFromString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.SetValueFromString(System.String)
+    name: SetValueFromString
+    nameWithType: EnumConfigVariable(Of QualityOption).SetValueFromString
+    fullName: UCTools_ConfigVariables.EnumConfigVariable(Of UCTools_ConfigVariables.QualityOption).SetValueFromString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: UCTools_ConfigVariables.ConfigVariableBase.name
+  commentId: F:UCTools_ConfigVariables.ConfigVariableBase.name
+  parent: UCTools_ConfigVariables.ConfigVariableBase
+  name: name
+  nameWithType: ConfigVariableBase.name
+  fullName: UCTools_ConfigVariables.ConfigVariableBase.name
+- uid: UCTools_ConfigVariables.ConfigVariableBase.description
+  commentId: F:UCTools_ConfigVariables.ConfigVariableBase.description
+  parent: UCTools_ConfigVariables.ConfigVariableBase
+  name: description
+  nameWithType: ConfigVariableBase.description
+  fullName: UCTools_ConfigVariables.ConfigVariableBase.description
+- uid: UCTools_ConfigVariables.ConfigVariableBase.flags
+  commentId: F:UCTools_ConfigVariables.ConfigVariableBase.flags
+  parent: UCTools_ConfigVariables.ConfigVariableBase
+  name: flags
+  nameWithType: ConfigVariableBase.flags
+  fullName: UCTools_ConfigVariables.ConfigVariableBase.flags
+- uid: UCTools_ConfigVariables.ConfigVariableBase.ChangeCheck
+  commentId: M:UCTools_ConfigVariables.ConfigVariableBase.ChangeCheck
+  parent: UCTools_ConfigVariables.ConfigVariableBase
+  name: ChangeCheck()
+  nameWithType: ConfigVariableBase.ChangeCheck()
+  fullName: UCTools_ConfigVariables.ConfigVariableBase.ChangeCheck()
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.ConfigVariableBase.ChangeCheck
+    name: ChangeCheck
+    nameWithType: ConfigVariableBase.ChangeCheck
+    fullName: UCTools_ConfigVariables.ConfigVariableBase.ChangeCheck
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: UCTools_ConfigVariables.ConfigVariableBase.ChangeCheck
+    name: ChangeCheck
+    nameWithType: ConfigVariableBase.ChangeCheck
+    fullName: UCTools_ConfigVariables.ConfigVariableBase.ChangeCheck
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: UCTools_ConfigVariables.ConfigVariableBase.MarkChanged
+  commentId: M:UCTools_ConfigVariables.ConfigVariableBase.MarkChanged
+  parent: UCTools_ConfigVariables.ConfigVariableBase
+  name: MarkChanged()
+  nameWithType: ConfigVariableBase.MarkChanged()
+  fullName: UCTools_ConfigVariables.ConfigVariableBase.MarkChanged()
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.ConfigVariableBase.MarkChanged
+    name: MarkChanged
+    nameWithType: ConfigVariableBase.MarkChanged
+    fullName: UCTools_ConfigVariables.ConfigVariableBase.MarkChanged
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: UCTools_ConfigVariables.ConfigVariableBase.MarkChanged
+    name: MarkChanged
+    nameWithType: ConfigVariableBase.MarkChanged
+    fullName: UCTools_ConfigVariables.ConfigVariableBase.MarkChanged
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: UCTools_ConfigVariables.EnumConfigVariable`1
+  commentId: T:UCTools_ConfigVariables.EnumConfigVariable`1
+  name: EnumConfigVariable<T>
+  nameWithType: EnumConfigVariable<T>
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<T>
+  nameWithType.vb: EnumConfigVariable(Of T)
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of T)
+  name.vb: EnumConfigVariable(Of T)
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1
+    name: EnumConfigVariable
+    nameWithType: EnumConfigVariable
+    fullName: UCTools_ConfigVariables.EnumConfigVariable
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1
+    name: EnumConfigVariable
+    nameWithType: EnumConfigVariable
+    fullName: UCTools_ConfigVariables.EnumConfigVariable
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: UCTools_ConfigVariables.EnumConfigVariable`1.ValueType
+  commentId: P:UCTools_ConfigVariables.EnumConfigVariable`1.ValueType
+  name: ValueType
+  nameWithType: EnumConfigVariable<T>.ValueType
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<T>.ValueType
+  nameWithType.vb: EnumConfigVariable(Of T).ValueType
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of T).ValueType
+- uid: UCTools_ConfigVariables.EnumConfigVariable`1.Value
+  commentId: P:UCTools_ConfigVariables.EnumConfigVariable`1.Value
+  name: Value
+  nameWithType: EnumConfigVariable<T>.Value
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<T>.Value
+  nameWithType.vb: EnumConfigVariable(Of T).Value
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of T).Value
+- uid: UCTools_ConfigVariables.EnumConfigVariable`1.IntValue
+  commentId: P:UCTools_ConfigVariables.EnumConfigVariable`1.IntValue
+  name: IntValue
+  nameWithType: EnumConfigVariable<T>.IntValue
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<T>.IntValue
+  nameWithType.vb: EnumConfigVariable(Of T).IntValue
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of T).IntValue
+- uid: UCTools_ConfigVariables.EnumConfigVariable`1.DefaultValue
+  commentId: P:UCTools_ConfigVariables.EnumConfigVariable`1.DefaultValue
+  name: DefaultValue
+  nameWithType: EnumConfigVariable<T>.DefaultValue
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<T>.DefaultValue
+  nameWithType.vb: EnumConfigVariable(Of T).DefaultValue
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of T).DefaultValue
+- uid: UCTools_ConfigVariables.EnumConfigVariable`1.ResetToDefault
+  commentId: M:UCTools_ConfigVariables.EnumConfigVariable`1.ResetToDefault
+  name: ResetToDefault()
+  nameWithType: EnumConfigVariable<T>.ResetToDefault()
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<T>.ResetToDefault()
+  nameWithType.vb: EnumConfigVariable(Of T).ResetToDefault()
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of T).ResetToDefault()
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.ResetToDefault
+    name: ResetToDefault
+    nameWithType: EnumConfigVariable<T>.ResetToDefault
+    fullName: UCTools_ConfigVariables.EnumConfigVariable<T>.ResetToDefault
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.ResetToDefault
+    name: ResetToDefault
+    nameWithType: EnumConfigVariable(Of T).ResetToDefault
+    fullName: UCTools_ConfigVariables.EnumConfigVariable(Of T).ResetToDefault
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: UCTools_ConfigVariables.EnumConfigVariable`1.ValidateConfiguration(System.String@)
+  commentId: M:UCTools_ConfigVariables.EnumConfigVariable`1.ValidateConfiguration(System.String@)
+  isExternal: true
+  name: ValidateConfiguration(String)
+  nameWithType: EnumConfigVariable<T>.ValidateConfiguration(String)
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<T>.ValidateConfiguration(System.String)
+  nameWithType.vb: EnumConfigVariable(Of T).ValidateConfiguration(String)
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of T).ValidateConfiguration(System.String)
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.ValidateConfiguration(System.String@)
+    name: ValidateConfiguration
+    nameWithType: EnumConfigVariable<T>.ValidateConfiguration
+    fullName: UCTools_ConfigVariables.EnumConfigVariable<T>.ValidateConfiguration
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.ValidateConfiguration(System.String@)
+    name: ValidateConfiguration
+    nameWithType: EnumConfigVariable(Of T).ValidateConfiguration
+    fullName: UCTools_ConfigVariables.EnumConfigVariable(Of T).ValidateConfiguration
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: UCTools_ConfigVariables.EnumConfigVariable`1.GetValueAsObject
+  commentId: M:UCTools_ConfigVariables.EnumConfigVariable`1.GetValueAsObject
+  name: GetValueAsObject()
+  nameWithType: EnumConfigVariable<T>.GetValueAsObject()
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<T>.GetValueAsObject()
+  nameWithType.vb: EnumConfigVariable(Of T).GetValueAsObject()
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of T).GetValueAsObject()
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.GetValueAsObject
+    name: GetValueAsObject
+    nameWithType: EnumConfigVariable<T>.GetValueAsObject
+    fullName: UCTools_ConfigVariables.EnumConfigVariable<T>.GetValueAsObject
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.GetValueAsObject
+    name: GetValueAsObject
+    nameWithType: EnumConfigVariable(Of T).GetValueAsObject
+    fullName: UCTools_ConfigVariables.EnumConfigVariable(Of T).GetValueAsObject
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: UCTools_ConfigVariables.EnumConfigVariable`1.SetValueFromObject(System.Object)
+  commentId: M:UCTools_ConfigVariables.EnumConfigVariable`1.SetValueFromObject(System.Object)
+  isExternal: true
+  name: SetValueFromObject(Object)
+  nameWithType: EnumConfigVariable<T>.SetValueFromObject(Object)
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<T>.SetValueFromObject(System.Object)
+  nameWithType.vb: EnumConfigVariable(Of T).SetValueFromObject(Object)
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of T).SetValueFromObject(System.Object)
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.SetValueFromObject(System.Object)
+    name: SetValueFromObject
+    nameWithType: EnumConfigVariable<T>.SetValueFromObject
+    fullName: UCTools_ConfigVariables.EnumConfigVariable<T>.SetValueFromObject
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.SetValueFromObject(System.Object)
+    name: SetValueFromObject
+    nameWithType: EnumConfigVariable(Of T).SetValueFromObject
+    fullName: UCTools_ConfigVariables.EnumConfigVariable(Of T).SetValueFromObject
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: UCTools_ConfigVariables.EnumConfigVariable`1.GetValueAsString
+  commentId: M:UCTools_ConfigVariables.EnumConfigVariable`1.GetValueAsString
+  name: GetValueAsString()
+  nameWithType: EnumConfigVariable<T>.GetValueAsString()
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<T>.GetValueAsString()
+  nameWithType.vb: EnumConfigVariable(Of T).GetValueAsString()
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of T).GetValueAsString()
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.GetValueAsString
+    name: GetValueAsString
+    nameWithType: EnumConfigVariable<T>.GetValueAsString
+    fullName: UCTools_ConfigVariables.EnumConfigVariable<T>.GetValueAsString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.GetValueAsString
+    name: GetValueAsString
+    nameWithType: EnumConfigVariable(Of T).GetValueAsString
+    fullName: UCTools_ConfigVariables.EnumConfigVariable(Of T).GetValueAsString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: UCTools_ConfigVariables.EnumConfigVariable`1.SetValueFromString(System.String)
+  commentId: M:UCTools_ConfigVariables.EnumConfigVariable`1.SetValueFromString(System.String)
+  isExternal: true
+  name: SetValueFromString(String)
+  nameWithType: EnumConfigVariable<T>.SetValueFromString(String)
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<T>.SetValueFromString(System.String)
+  nameWithType.vb: EnumConfigVariable(Of T).SetValueFromString(String)
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of T).SetValueFromString(System.String)
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.SetValueFromString(System.String)
+    name: SetValueFromString
+    nameWithType: EnumConfigVariable<T>.SetValueFromString
+    fullName: UCTools_ConfigVariables.EnumConfigVariable<T>.SetValueFromString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.SetValueFromString(System.String)
+    name: SetValueFromString
+    nameWithType: EnumConfigVariable(Of T).SetValueFromString
+    fullName: UCTools_ConfigVariables.EnumConfigVariable(Of T).SetValueFromString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: UCTools_ConfigVariables.QualityConfigVariable.QualityLevel*
+  commentId: Overload:UCTools_ConfigVariables.QualityConfigVariable.QualityLevel
+  name: QualityLevel
+  nameWithType: QualityConfigVariable.QualityLevel
+  fullName: UCTools_ConfigVariables.QualityConfigVariable.QualityLevel
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: UCTools_ConfigVariables.QualityConfigVariable.DisplayName*
+  commentId: Overload:UCTools_ConfigVariables.QualityConfigVariable.DisplayName
+  name: DisplayName
+  nameWithType: QualityConfigVariable.DisplayName
+  fullName: UCTools_ConfigVariables.QualityConfigVariable.DisplayName
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: UCTools_ConfigVariables.QualityConfigVariable.#ctor*
+  commentId: Overload:UCTools_ConfigVariables.QualityConfigVariable.#ctor
+  name: QualityConfigVariable
+  nameWithType: QualityConfigVariable.QualityConfigVariable
+  fullName: UCTools_ConfigVariables.QualityConfigVariable.QualityConfigVariable
+- uid: UCTools_ConfigVariables.QualityOption
+  commentId: T:UCTools_ConfigVariables.QualityOption
+  parent: UCTools_ConfigVariables
+  name: QualityOption
+  nameWithType: QualityOption
+  fullName: UCTools_ConfigVariables.QualityOption
+- uid: UCTools_ConfigVariables.ConfigFlags
+  commentId: T:UCTools_ConfigVariables.ConfigFlags
+  parent: UCTools_ConfigVariables
+  name: ConfigFlags
+  nameWithType: ConfigFlags
+  fullName: UCTools_ConfigVariables.ConfigFlags

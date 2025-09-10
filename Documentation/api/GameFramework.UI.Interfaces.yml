@@ -1,0 +1,22 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.UI.Interfaces
+  commentId: N:GameFramework.UI.Interfaces
+  id: GameFramework.UI.Interfaces
+  children:
+  - GameFramework.UI.Interfaces.IUIDocumentWrapper
+  langs:
+  - csharp
+  - vb
+  name: GameFramework.UI.Interfaces
+  nameWithType: GameFramework.UI.Interfaces
+  fullName: GameFramework.UI.Interfaces
+  type: Namespace
+  assemblies:
+  - cs.temp.dll
+references:
+- uid: GameFramework.UI.Interfaces.IUIDocumentWrapper
+  commentId: T:GameFramework.UI.Interfaces.IUIDocumentWrapper
+  name: IUIDocumentWrapper
+  nameWithType: IUIDocumentWrapper
+  fullName: GameFramework.UI.Interfaces.IUIDocumentWrapper

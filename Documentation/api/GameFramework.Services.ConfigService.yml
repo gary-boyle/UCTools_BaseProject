@@ -1,0 +1,927 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.Services.ConfigService
+  commentId: T:GameFramework.Services.ConfigService
+  id: ConfigService
+  parent: GameFramework.Services
+  children:
+  - GameFramework.Services.ConfigService.#ctor(IEventSystem)
+  - GameFramework.Services.ConfigService.GetAllConfigCategories
+  - GameFramework.Services.ConfigService.GetConfigCategoriesOfType``1
+  - GameFramework.Services.ConfigService.GetConfigCategory(Type)
+  - GameFramework.Services.ConfigService.GetConfigCategory``1
+  - GameFramework.Services.ConfigService.GetConfigValue``1(System.String)
+  - GameFramework.Services.ConfigService.GetDebugInfo
+  - GameFramework.Services.ConfigService.HasConfigCategory(Type)
+  - GameFramework.Services.ConfigService.HasConfigCategory``1
+  - GameFramework.Services.ConfigService.InitializeAsync
+  - GameFramework.Services.ConfigService.IsInitialized
+  - GameFramework.Services.ConfigService.LoadConfigAsync
+  - GameFramework.Services.ConfigService.RegisterConfigCategories(UCTools_ConfigVariables.ConfigCategory[])
+  - GameFramework.Services.ConfigService.RegisterConfigCategory(UCTools_ConfigVariables.ConfigCategory)
+  - GameFramework.Services.ConfigService.ResetToDefaults
+  - GameFramework.Services.ConfigService.SaveConfigAsync
+  - GameFramework.Services.ConfigService.SetConfigValue``1(System.String,``0)
+  - GameFramework.Services.ConfigService.Shutdown
+  langs:
+  - csharp
+  - vb
+  name: ConfigService
+  nameWithType: ConfigService
+  fullName: GameFramework.Services.ConfigService
+  type: Class
+  source:
+    id: ConfigService
+    path: ''
+    startLine: 7388
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services
+  summary: "\nConfiguration service implementation with typed ScriptableObject ConfigCategory integration and query support\n\nIntent: Centralized configuration management with ScriptableObject registry and query capabilities\nDesign: Service locator pattern with type-based lookup for ScriptableObjects\nPros: \n- Centralized ScriptableObject management\n- Type-safe querying\n- Clean separation of concerns\n- Easy testing and mocking\nCons:\n- Additional complexity for ScriptableObject management\n- Memory overhead for type dictionaries\n"
+  example: []
+  syntax:
+    content: 'public class ConfigService : IConfigService'
+    content.vb: >-
+      Public Class ConfigService
+          Inherits IConfigService
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: GameFramework.Services.ConfigService.IsInitialized
+  commentId: P:GameFramework.Services.ConfigService.IsInitialized
+  id: IsInitialized
+  parent: GameFramework.Services.ConfigService
+  langs:
+  - csharp
+  - vb
+  name: IsInitialized
+  nameWithType: ConfigService.IsInitialized
+  fullName: GameFramework.Services.ConfigService.IsInitialized
+  type: Property
+  source:
+    id: IsInitialized
+    path: ''
+    startLine: 7390
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services
+  syntax:
+    content: public bool IsInitialized { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsInitialized As Boolean
+  overload: GameFramework.Services.ConfigService.IsInitialized*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: GameFramework.Services.ConfigService.#ctor(IEventSystem)
+  commentId: M:GameFramework.Services.ConfigService.#ctor(IEventSystem)
+  id: '#ctor(IEventSystem)'
+  parent: GameFramework.Services.ConfigService
+  langs:
+  - csharp
+  - vb
+  name: ConfigService(IEventSystem)
+  nameWithType: ConfigService.ConfigService(IEventSystem)
+  fullName: GameFramework.Services.ConfigService.ConfigService(IEventSystem)
+  type: Constructor
+  source:
+    id: .ctor
+    path: ''
+    startLine: 7398
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services
+  syntax:
+    content: public ConfigService(IEventSystem eventSystem)
+    parameters:
+    - id: eventSystem
+      type: IEventSystem
+    content.vb: Public Sub New(eventSystem As IEventSystem)
+  overload: GameFramework.Services.ConfigService.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.Services.ConfigService.InitializeAsync
+  commentId: M:GameFramework.Services.ConfigService.InitializeAsync
+  id: InitializeAsync
+  parent: GameFramework.Services.ConfigService
+  langs:
+  - csharp
+  - vb
+  name: InitializeAsync()
+  nameWithType: ConfigService.InitializeAsync()
+  fullName: GameFramework.Services.ConfigService.InitializeAsync()
+  type: Method
+  source:
+    id: InitializeAsync
+    path: ''
+    startLine: 7404
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services
+  syntax:
+    content: public async Task InitializeAsync()
+    return:
+      type: Task
+    content.vb: Public Function InitializeAsync As Task
+  overload: GameFramework.Services.ConfigService.InitializeAsync*
+  modifiers.csharp:
+  - public
+  - async
+  modifiers.vb:
+  - Public
+- uid: GameFramework.Services.ConfigService.Shutdown
+  commentId: M:GameFramework.Services.ConfigService.Shutdown
+  id: Shutdown
+  parent: GameFramework.Services.ConfigService
+  langs:
+  - csharp
+  - vb
+  name: Shutdown()
+  nameWithType: ConfigService.Shutdown()
+  fullName: GameFramework.Services.ConfigService.Shutdown()
+  type: Method
+  source:
+    id: Shutdown
+    path: ''
+    startLine: 7417
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services
+  syntax:
+    content: public void Shutdown()
+    content.vb: Public Sub Shutdown
+  overload: GameFramework.Services.ConfigService.Shutdown*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.Services.ConfigService.RegisterConfigCategory(UCTools_ConfigVariables.ConfigCategory)
+  commentId: M:GameFramework.Services.ConfigService.RegisterConfigCategory(UCTools_ConfigVariables.ConfigCategory)
+  id: RegisterConfigCategory(UCTools_ConfigVariables.ConfigCategory)
+  parent: GameFramework.Services.ConfigService
+  langs:
+  - csharp
+  - vb
+  name: RegisterConfigCategory(ConfigCategory)
+  nameWithType: ConfigService.RegisterConfigCategory(ConfigCategory)
+  fullName: GameFramework.Services.ConfigService.RegisterConfigCategory(UCTools_ConfigVariables.ConfigCategory)
+  type: Method
+  source:
+    id: RegisterConfigCategory
+    path: ''
+    startLine: 7428
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services
+  summary: "\nRegister a configuration category ScriptableObject\n"
+  example: []
+  syntax:
+    content: public void RegisterConfigCategory(ConfigCategory category)
+    parameters:
+    - id: category
+      type: UCTools_ConfigVariables.ConfigCategory
+    content.vb: Public Sub RegisterConfigCategory(category As ConfigCategory)
+  overload: GameFramework.Services.ConfigService.RegisterConfigCategory*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.Services.ConfigService.RegisterConfigCategories(UCTools_ConfigVariables.ConfigCategory[])
+  commentId: M:GameFramework.Services.ConfigService.RegisterConfigCategories(UCTools_ConfigVariables.ConfigCategory[])
+  id: RegisterConfigCategories(UCTools_ConfigVariables.ConfigCategory[])
+  parent: GameFramework.Services.ConfigService
+  langs:
+  - csharp
+  - vb
+  name: RegisterConfigCategories(ConfigCategory[])
+  nameWithType: ConfigService.RegisterConfigCategories(ConfigCategory[])
+  fullName: GameFramework.Services.ConfigService.RegisterConfigCategories(UCTools_ConfigVariables.ConfigCategory[])
+  type: Method
+  source:
+    id: RegisterConfigCategories
+    path: ''
+    startLine: 7463
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services
+  summary: "\nRegister multiple configuration categories\n"
+  example: []
+  syntax:
+    content: public void RegisterConfigCategories(params ConfigCategory[] categories)
+    parameters:
+    - id: categories
+      type: UCTools_ConfigVariables.ConfigCategory[]
+    content.vb: Public Sub RegisterConfigCategories(ParamArray categories As ConfigCategory())
+  overload: GameFramework.Services.ConfigService.RegisterConfigCategories*
+  nameWithType.vb: ConfigService.RegisterConfigCategories(ConfigCategory())
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: GameFramework.Services.ConfigService.RegisterConfigCategories(UCTools_ConfigVariables.ConfigCategory())
+  name.vb: RegisterConfigCategories(ConfigCategory())
+- uid: GameFramework.Services.ConfigService.GetConfigCategory``1
+  commentId: M:GameFramework.Services.ConfigService.GetConfigCategory``1
+  id: GetConfigCategory``1
+  parent: GameFramework.Services.ConfigService
+  langs:
+  - csharp
+  - vb
+  name: GetConfigCategory<T>()
+  nameWithType: ConfigService.GetConfigCategory<T>()
+  fullName: GameFramework.Services.ConfigService.GetConfigCategory<T>()
+  type: Method
+  source:
+    id: GetConfigCategory
+    path: ''
+    startLine: 7476
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services
+  summary: "\nGet a configuration category by type\n"
+  example: []
+  syntax:
+    content: >-
+      public T GetConfigCategory<T>()
+          where T : ConfigCategory
+    typeParameters:
+    - id: T
+    return:
+      type: '{T}'
+    content.vb: Public Function GetConfigCategory(Of T As ConfigCategory) As T
+  overload: GameFramework.Services.ConfigService.GetConfigCategory*
+  nameWithType.vb: ConfigService.GetConfigCategory(Of T)()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: GameFramework.Services.ConfigService.GetConfigCategory(Of T)()
+  name.vb: GetConfigCategory(Of T)()
+- uid: GameFramework.Services.ConfigService.GetConfigCategory(Type)
+  commentId: M:GameFramework.Services.ConfigService.GetConfigCategory(Type)
+  id: GetConfigCategory(Type)
+  parent: GameFramework.Services.ConfigService
+  langs:
+  - csharp
+  - vb
+  name: GetConfigCategory(Type)
+  nameWithType: ConfigService.GetConfigCategory(Type)
+  fullName: GameFramework.Services.ConfigService.GetConfigCategory(Type)
+  type: Method
+  source:
+    id: GetConfigCategory
+    path: ''
+    startLine: 7484
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services
+  summary: "\nGet a configuration category by type\n"
+  example: []
+  syntax:
+    content: public ConfigCategory GetConfigCategory(Type categoryType)
+    parameters:
+    - id: categoryType
+      type: Type
+    return:
+      type: UCTools_ConfigVariables.ConfigCategory
+    content.vb: Public Function GetConfigCategory(categoryType As Type) As ConfigCategory
+  overload: GameFramework.Services.ConfigService.GetConfigCategory*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.Services.ConfigService.GetAllConfigCategories
+  commentId: M:GameFramework.Services.ConfigService.GetAllConfigCategories
+  id: GetAllConfigCategories
+  parent: GameFramework.Services.ConfigService
+  langs:
+  - csharp
+  - vb
+  name: GetAllConfigCategories()
+  nameWithType: ConfigService.GetAllConfigCategories()
+  fullName: GameFramework.Services.ConfigService.GetAllConfigCategories()
+  type: Method
+  source:
+    id: GetAllConfigCategories
+    path: ''
+    startLine: 7510
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services
+  summary: "\nGet all registered configuration categories\n"
+  example: []
+  syntax:
+    content: public IReadOnlyList<ConfigCategory> GetAllConfigCategories()
+    return:
+      type: System.Collections.Generic.IReadOnlyList{UCTools_ConfigVariables.ConfigCategory}
+    content.vb: Public Function GetAllConfigCategories As IReadOnlyList(Of ConfigCategory)
+  overload: GameFramework.Services.ConfigService.GetAllConfigCategories*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.Services.ConfigService.GetConfigCategoriesOfType``1
+  commentId: M:GameFramework.Services.ConfigService.GetConfigCategoriesOfType``1
+  id: GetConfigCategoriesOfType``1
+  parent: GameFramework.Services.ConfigService
+  langs:
+  - csharp
+  - vb
+  name: GetConfigCategoriesOfType<T>()
+  nameWithType: ConfigService.GetConfigCategoriesOfType<T>()
+  fullName: GameFramework.Services.ConfigService.GetConfigCategoriesOfType<T>()
+  type: Method
+  source:
+    id: GetConfigCategoriesOfType
+    path: ''
+    startLine: 7518
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services
+  summary: "\nGet all configuration categories of a specific type (useful for inheritance scenarios)\n"
+  example: []
+  syntax:
+    content: >-
+      public IReadOnlyList<T> GetConfigCategoriesOfType<T>()
+          where T : ConfigCategory
+    typeParameters:
+    - id: T
+    return:
+      type: System.Collections.Generic.IReadOnlyList{{T}}
+    content.vb: Public Function GetConfigCategoriesOfType(Of T As ConfigCategory) As IReadOnlyList(Of T)
+  overload: GameFramework.Services.ConfigService.GetConfigCategoriesOfType*
+  nameWithType.vb: ConfigService.GetConfigCategoriesOfType(Of T)()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: GameFramework.Services.ConfigService.GetConfigCategoriesOfType(Of T)()
+  name.vb: GetConfigCategoriesOfType(Of T)()
+- uid: GameFramework.Services.ConfigService.HasConfigCategory``1
+  commentId: M:GameFramework.Services.ConfigService.HasConfigCategory``1
+  id: HasConfigCategory``1
+  parent: GameFramework.Services.ConfigService
+  langs:
+  - csharp
+  - vb
+  name: HasConfigCategory<T>()
+  nameWithType: ConfigService.HasConfigCategory<T>()
+  fullName: GameFramework.Services.ConfigService.HasConfigCategory<T>()
+  type: Method
+  source:
+    id: HasConfigCategory
+    path: ''
+    startLine: 7526
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services
+  summary: "\nCheck if a configuration category of the specified type is registered\n"
+  example: []
+  syntax:
+    content: >-
+      public bool HasConfigCategory<T>()
+          where T : ConfigCategory
+    typeParameters:
+    - id: T
+    return:
+      type: System.Boolean
+    content.vb: Public Function HasConfigCategory(Of T As ConfigCategory) As Boolean
+  overload: GameFramework.Services.ConfigService.HasConfigCategory*
+  nameWithType.vb: ConfigService.HasConfigCategory(Of T)()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: GameFramework.Services.ConfigService.HasConfigCategory(Of T)()
+  name.vb: HasConfigCategory(Of T)()
+- uid: GameFramework.Services.ConfigService.HasConfigCategory(Type)
+  commentId: M:GameFramework.Services.ConfigService.HasConfigCategory(Type)
+  id: HasConfigCategory(Type)
+  parent: GameFramework.Services.ConfigService
+  langs:
+  - csharp
+  - vb
+  name: HasConfigCategory(Type)
+  nameWithType: ConfigService.HasConfigCategory(Type)
+  fullName: GameFramework.Services.ConfigService.HasConfigCategory(Type)
+  type: Method
+  source:
+    id: HasConfigCategory
+    path: ''
+    startLine: 7534
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services
+  summary: "\nCheck if a configuration category of the specified type is registered\n"
+  example: []
+  syntax:
+    content: public bool HasConfigCategory(Type categoryType)
+    parameters:
+    - id: categoryType
+      type: Type
+    return:
+      type: System.Boolean
+    content.vb: Public Function HasConfigCategory(categoryType As Type) As Boolean
+  overload: GameFramework.Services.ConfigService.HasConfigCategory*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.Services.ConfigService.LoadConfigAsync
+  commentId: M:GameFramework.Services.ConfigService.LoadConfigAsync
+  id: LoadConfigAsync
+  parent: GameFramework.Services.ConfigService
+  langs:
+  - csharp
+  - vb
+  name: LoadConfigAsync()
+  nameWithType: ConfigService.LoadConfigAsync()
+  fullName: GameFramework.Services.ConfigService.LoadConfigAsync()
+  type: Method
+  source:
+    id: LoadConfigAsync
+    path: ''
+    startLine: 7543
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services
+  syntax:
+    content: public async Task LoadConfigAsync()
+    return:
+      type: Task
+    content.vb: Public Function LoadConfigAsync As Task
+  overload: GameFramework.Services.ConfigService.LoadConfigAsync*
+  modifiers.csharp:
+  - public
+  - async
+  modifiers.vb:
+  - Public
+- uid: GameFramework.Services.ConfigService.SaveConfigAsync
+  commentId: M:GameFramework.Services.ConfigService.SaveConfigAsync
+  id: SaveConfigAsync
+  parent: GameFramework.Services.ConfigService
+  langs:
+  - csharp
+  - vb
+  name: SaveConfigAsync()
+  nameWithType: ConfigService.SaveConfigAsync()
+  fullName: GameFramework.Services.ConfigService.SaveConfigAsync()
+  type: Method
+  source:
+    id: SaveConfigAsync
+    path: ''
+    startLine: 7564
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services
+  syntax:
+    content: public async Task SaveConfigAsync()
+    return:
+      type: Task
+    content.vb: Public Function SaveConfigAsync As Task
+  overload: GameFramework.Services.ConfigService.SaveConfigAsync*
+  modifiers.csharp:
+  - public
+  - async
+  modifiers.vb:
+  - Public
+- uid: GameFramework.Services.ConfigService.GetConfigValue``1(System.String)
+  commentId: M:GameFramework.Services.ConfigService.GetConfigValue``1(System.String)
+  id: GetConfigValue``1(System.String)
+  parent: GameFramework.Services.ConfigService
+  langs:
+  - csharp
+  - vb
+  name: GetConfigValue<T>(String)
+  nameWithType: ConfigService.GetConfigValue<T>(String)
+  fullName: GameFramework.Services.ConfigService.GetConfigValue<T>(System.String)
+  type: Method
+  source:
+    id: GetConfigValue
+    path: ''
+    startLine: 7594
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services
+  syntax:
+    content: public T GetConfigValue<T>(string configName)
+    parameters:
+    - id: configName
+      type: System.String
+    typeParameters:
+    - id: T
+    return:
+      type: '{T}'
+    content.vb: Public Function GetConfigValue(Of T)(configName As String) As T
+  overload: GameFramework.Services.ConfigService.GetConfigValue*
+  nameWithType.vb: ConfigService.GetConfigValue(Of T)(String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: GameFramework.Services.ConfigService.GetConfigValue(Of T)(System.String)
+  name.vb: GetConfigValue(Of T)(String)
+- uid: GameFramework.Services.ConfigService.SetConfigValue``1(System.String,``0)
+  commentId: M:GameFramework.Services.ConfigService.SetConfigValue``1(System.String,``0)
+  id: SetConfigValue``1(System.String,``0)
+  parent: GameFramework.Services.ConfigService
+  langs:
+  - csharp
+  - vb
+  name: SetConfigValue<T>(String, T)
+  nameWithType: ConfigService.SetConfigValue<T>(String, T)
+  fullName: GameFramework.Services.ConfigService.SetConfigValue<T>(System.String, T)
+  type: Method
+  source:
+    id: SetConfigValue
+    path: ''
+    startLine: 7617
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services
+  syntax:
+    content: public void SetConfigValue<T>(string configName, T value)
+    parameters:
+    - id: configName
+      type: System.String
+    - id: value
+      type: '{T}'
+    typeParameters:
+    - id: T
+    content.vb: Public Sub SetConfigValue(Of T)(configName As String, value As T)
+  overload: GameFramework.Services.ConfigService.SetConfigValue*
+  nameWithType.vb: ConfigService.SetConfigValue(Of T)(String, T)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: GameFramework.Services.ConfigService.SetConfigValue(Of T)(System.String, T)
+  name.vb: SetConfigValue(Of T)(String, T)
+- uid: GameFramework.Services.ConfigService.ResetToDefaults
+  commentId: M:GameFramework.Services.ConfigService.ResetToDefaults
+  id: ResetToDefaults
+  parent: GameFramework.Services.ConfigService
+  langs:
+  - csharp
+  - vb
+  name: ResetToDefaults()
+  nameWithType: ConfigService.ResetToDefaults()
+  fullName: GameFramework.Services.ConfigService.ResetToDefaults()
+  type: Method
+  source:
+    id: ResetToDefaults
+    path: ''
+    startLine: 7632
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services
+  syntax:
+    content: public void ResetToDefaults()
+    content.vb: Public Sub ResetToDefaults
+  overload: GameFramework.Services.ConfigService.ResetToDefaults*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.Services.ConfigService.GetDebugInfo
+  commentId: M:GameFramework.Services.ConfigService.GetDebugInfo
+  id: GetDebugInfo
+  parent: GameFramework.Services.ConfigService
+  langs:
+  - csharp
+  - vb
+  name: GetDebugInfo()
+  nameWithType: ConfigService.GetDebugInfo()
+  fullName: GameFramework.Services.ConfigService.GetDebugInfo()
+  type: Method
+  source:
+    id: GetDebugInfo
+    path: ''
+    startLine: 7749
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services
+  summary: "\nGet debug information about registered categories and variables\n"
+  example: []
+  syntax:
+    content: public string GetDebugInfo()
+    return:
+      type: System.String
+    content.vb: Public Function GetDebugInfo As String
+  overload: GameFramework.Services.ConfigService.GetDebugInfo*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: GameFramework.Services
+  commentId: N:GameFramework.Services
+  name: GameFramework.Services
+  nameWithType: GameFramework.Services
+  fullName: GameFramework.Services
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: GameFramework.Services.ConfigService.IsInitialized*
+  commentId: Overload:GameFramework.Services.ConfigService.IsInitialized
+  name: IsInitialized
+  nameWithType: ConfigService.IsInitialized
+  fullName: GameFramework.Services.ConfigService.IsInitialized
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: GameFramework.Services.ConfigService.#ctor*
+  commentId: Overload:GameFramework.Services.ConfigService.#ctor
+  name: ConfigService
+  nameWithType: ConfigService.ConfigService
+  fullName: GameFramework.Services.ConfigService.ConfigService
+- uid: IEventSystem
+  isExternal: true
+  name: IEventSystem
+  nameWithType: IEventSystem
+  fullName: IEventSystem
+- uid: GameFramework.Services.ConfigService.InitializeAsync*
+  commentId: Overload:GameFramework.Services.ConfigService.InitializeAsync
+  name: InitializeAsync
+  nameWithType: ConfigService.InitializeAsync
+  fullName: GameFramework.Services.ConfigService.InitializeAsync
+- uid: Task
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: Task
+- uid: GameFramework.Services.ConfigService.Shutdown*
+  commentId: Overload:GameFramework.Services.ConfigService.Shutdown
+  name: Shutdown
+  nameWithType: ConfigService.Shutdown
+  fullName: GameFramework.Services.ConfigService.Shutdown
+- uid: GameFramework.Services.ConfigService.RegisterConfigCategory*
+  commentId: Overload:GameFramework.Services.ConfigService.RegisterConfigCategory
+  name: RegisterConfigCategory
+  nameWithType: ConfigService.RegisterConfigCategory
+  fullName: GameFramework.Services.ConfigService.RegisterConfigCategory
+- uid: UCTools_ConfigVariables.ConfigCategory
+  commentId: T:UCTools_ConfigVariables.ConfigCategory
+  parent: UCTools_ConfigVariables
+  name: ConfigCategory
+  nameWithType: ConfigCategory
+  fullName: UCTools_ConfigVariables.ConfigCategory
+- uid: UCTools_ConfigVariables
+  commentId: N:UCTools_ConfigVariables
+  name: UCTools_ConfigVariables
+  nameWithType: UCTools_ConfigVariables
+  fullName: UCTools_ConfigVariables
+- uid: GameFramework.Services.ConfigService.RegisterConfigCategories*
+  commentId: Overload:GameFramework.Services.ConfigService.RegisterConfigCategories
+  name: RegisterConfigCategories
+  nameWithType: ConfigService.RegisterConfigCategories
+  fullName: GameFramework.Services.ConfigService.RegisterConfigCategories
+- uid: UCTools_ConfigVariables.ConfigCategory[]
+  isExternal: true
+  name: ConfigCategory[]
+  nameWithType: ConfigCategory[]
+  fullName: UCTools_ConfigVariables.ConfigCategory[]
+  nameWithType.vb: ConfigCategory()
+  fullName.vb: UCTools_ConfigVariables.ConfigCategory()
+  name.vb: ConfigCategory()
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.ConfigCategory
+    name: ConfigCategory
+    nameWithType: ConfigCategory
+    fullName: UCTools_ConfigVariables.ConfigCategory
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: UCTools_ConfigVariables.ConfigCategory
+    name: ConfigCategory
+    nameWithType: ConfigCategory
+    fullName: UCTools_ConfigVariables.ConfigCategory
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: GameFramework.Services.ConfigService.GetConfigCategory*
+  commentId: Overload:GameFramework.Services.ConfigService.GetConfigCategory
+  name: GetConfigCategory
+  nameWithType: ConfigService.GetConfigCategory
+  fullName: GameFramework.Services.ConfigService.GetConfigCategory
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: Type
+  isExternal: true
+  name: Type
+  nameWithType: Type
+  fullName: Type
+- uid: GameFramework.Services.ConfigService.GetAllConfigCategories*
+  commentId: Overload:GameFramework.Services.ConfigService.GetAllConfigCategories
+  name: GetAllConfigCategories
+  nameWithType: ConfigService.GetAllConfigCategories
+  fullName: GameFramework.Services.ConfigService.GetAllConfigCategories
+- uid: System.Collections.Generic.IReadOnlyList{UCTools_ConfigVariables.ConfigCategory}
+  commentId: T:System.Collections.Generic.IReadOnlyList{UCTools_ConfigVariables.ConfigCategory}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  name: IReadOnlyList<ConfigCategory>
+  nameWithType: IReadOnlyList<ConfigCategory>
+  fullName: System.Collections.Generic.IReadOnlyList<UCTools_ConfigVariables.ConfigCategory>
+  nameWithType.vb: IReadOnlyList(Of ConfigCategory)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of UCTools_ConfigVariables.ConfigCategory)
+  name.vb: IReadOnlyList(Of ConfigCategory)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    nameWithType: IReadOnlyList
+    fullName: System.Collections.Generic.IReadOnlyList
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: UCTools_ConfigVariables.ConfigCategory
+    name: ConfigCategory
+    nameWithType: ConfigCategory
+    fullName: UCTools_ConfigVariables.ConfigCategory
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    nameWithType: IReadOnlyList
+    fullName: System.Collections.Generic.IReadOnlyList
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: UCTools_ConfigVariables.ConfigCategory
+    name: ConfigCategory
+    nameWithType: ConfigCategory
+    fullName: UCTools_ConfigVariables.ConfigCategory
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    nameWithType: IReadOnlyList
+    fullName: System.Collections.Generic.IReadOnlyList
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    nameWithType: IReadOnlyList
+    fullName: System.Collections.Generic.IReadOnlyList
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: GameFramework.Services.ConfigService.GetConfigCategoriesOfType*
+  commentId: Overload:GameFramework.Services.ConfigService.GetConfigCategoriesOfType
+  name: GetConfigCategoriesOfType
+  nameWithType: ConfigService.GetConfigCategoriesOfType
+  fullName: GameFramework.Services.ConfigService.GetConfigCategoriesOfType
+- uid: System.Collections.Generic.IReadOnlyList{{T}}
+  commentId: T:System.Collections.Generic.IReadOnlyList{``0}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    nameWithType: IReadOnlyList
+    fullName: System.Collections.Generic.IReadOnlyList
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    nameWithType: IReadOnlyList
+    fullName: System.Collections.Generic.IReadOnlyList
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.Services.ConfigService.HasConfigCategory*
+  commentId: Overload:GameFramework.Services.ConfigService.HasConfigCategory
+  name: HasConfigCategory
+  nameWithType: ConfigService.HasConfigCategory
+  fullName: GameFramework.Services.ConfigService.HasConfigCategory
+- uid: GameFramework.Services.ConfigService.LoadConfigAsync*
+  commentId: Overload:GameFramework.Services.ConfigService.LoadConfigAsync
+  name: LoadConfigAsync
+  nameWithType: ConfigService.LoadConfigAsync
+  fullName: GameFramework.Services.ConfigService.LoadConfigAsync
+- uid: GameFramework.Services.ConfigService.SaveConfigAsync*
+  commentId: Overload:GameFramework.Services.ConfigService.SaveConfigAsync
+  name: SaveConfigAsync
+  nameWithType: ConfigService.SaveConfigAsync
+  fullName: GameFramework.Services.ConfigService.SaveConfigAsync
+- uid: GameFramework.Services.ConfigService.GetConfigValue*
+  commentId: Overload:GameFramework.Services.ConfigService.GetConfigValue
+  name: GetConfigValue
+  nameWithType: ConfigService.GetConfigValue
+  fullName: GameFramework.Services.ConfigService.GetConfigValue
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: GameFramework.Services.ConfigService.SetConfigValue*
+  commentId: Overload:GameFramework.Services.ConfigService.SetConfigValue
+  name: SetConfigValue
+  nameWithType: ConfigService.SetConfigValue
+  fullName: GameFramework.Services.ConfigService.SetConfigValue
+- uid: GameFramework.Services.ConfigService.ResetToDefaults*
+  commentId: Overload:GameFramework.Services.ConfigService.ResetToDefaults
+  name: ResetToDefaults
+  nameWithType: ConfigService.ResetToDefaults
+  fullName: GameFramework.Services.ConfigService.ResetToDefaults
+- uid: GameFramework.Services.ConfigService.GetDebugInfo*
+  commentId: Overload:GameFramework.Services.ConfigService.GetDebugInfo
+  name: GetDebugInfo
+  nameWithType: ConfigService.GetDebugInfo
+  fullName: GameFramework.Services.ConfigService.GetDebugInfo

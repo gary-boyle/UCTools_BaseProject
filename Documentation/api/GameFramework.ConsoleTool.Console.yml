@@ -1,0 +1,937 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.ConsoleTool.Console
+  commentId: T:GameFramework.ConsoleTool.Console
+  id: Console
+  parent: GameFramework.ConsoleTool
+  children:
+  - GameFramework.ConsoleTool.Console.ConsoleLateUpdate
+  - GameFramework.ConsoleTool.Console.ConsoleUpdate
+  - GameFramework.ConsoleTool.Console.EnqueueCommand(System.String)
+  - GameFramework.ConsoleTool.Console.EnqueueCommandNoHistory(System.String)
+  - GameFramework.ConsoleTool.Console.HistoryDown
+  - GameFramework.ConsoleTool.Console.HistoryUp(System.String)
+  - GameFramework.ConsoleTool.Console.Init(GameFramework.ConsoleTool.IConsoleUI)
+  - GameFramework.ConsoleTool.Console.IsOpen
+  - GameFramework.ConsoleTool.Console.s_PendingCommandsWaitForFrames
+  - GameFramework.ConsoleTool.Console.s_PendingCommandsWaitForLoad
+  - GameFramework.ConsoleTool.Console.SetOpen(System.Boolean)
+  - GameFramework.ConsoleTool.Console.SetPrompt(System.String)
+  - GameFramework.ConsoleTool.Console.Shutdown
+  - GameFramework.ConsoleTool.Console.TabComplete(System.String)
+  - GameFramework.ConsoleTool.Console.Write(System.String)
+  langs:
+  - csharp
+  - vb
+  name: Console
+  nameWithType: Console
+  fullName: GameFramework.ConsoleTool.Console
+  type: Class
+  source:
+    id: Console
+    path: ''
+    startLine: 494
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  summary: "\nCore console system that manages command execution, history, and output.\n\nArchitecture:\n- Static class for global access (consider making non-static in future for better testability)\n- Manages command queue, history, and execution\n- Delegates UI operations to registered IConsoleUI implementation\n- Thread-safe command queuing for commands from other threads\n\nCommand Execution Flow:\n1. Commands are queued via EnqueueCommand()\n2. ConsoleUpdate() processes the queue each frame\n3. Commands are tokenized and looked up in registry\n4. Command execution results are output to console\n"
+  example: []
+  syntax:
+    content: public static class Console
+    content.vb: Public Module Console
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: GameFramework.ConsoleTool.Console.s_PendingCommandsWaitForFrames
+  commentId: F:GameFramework.ConsoleTool.Console.s_PendingCommandsWaitForFrames
+  id: s_PendingCommandsWaitForFrames
+  parent: GameFramework.ConsoleTool.Console
+  langs:
+  - csharp
+  - vb
+  name: s_PendingCommandsWaitForFrames
+  nameWithType: Console.s_PendingCommandsWaitForFrames
+  fullName: GameFramework.ConsoleTool.Console.s_PendingCommandsWaitForFrames
+  type: Field
+  source:
+    id: s_PendingCommandsWaitForFrames
+    path: ''
+    startLine: 512
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  syntax:
+    content: public static int s_PendingCommandsWaitForFrames
+    return:
+      type: System.Int32
+    content.vb: Public Shared s_PendingCommandsWaitForFrames As Integer
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: GameFramework.ConsoleTool.Console.s_PendingCommandsWaitForLoad
+  commentId: F:GameFramework.ConsoleTool.Console.s_PendingCommandsWaitForLoad
+  id: s_PendingCommandsWaitForLoad
+  parent: GameFramework.ConsoleTool.Console
+  langs:
+  - csharp
+  - vb
+  name: s_PendingCommandsWaitForLoad
+  nameWithType: Console.s_PendingCommandsWaitForLoad
+  fullName: GameFramework.ConsoleTool.Console.s_PendingCommandsWaitForLoad
+  type: Field
+  source:
+    id: s_PendingCommandsWaitForLoad
+    path: ''
+    startLine: 513
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  syntax:
+    content: public static bool s_PendingCommandsWaitForLoad
+    return:
+      type: System.Boolean
+    content.vb: Public Shared s_PendingCommandsWaitForLoad As Boolean
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: GameFramework.ConsoleTool.Console.Init(GameFramework.ConsoleTool.IConsoleUI)
+  commentId: M:GameFramework.ConsoleTool.Console.Init(GameFramework.ConsoleTool.IConsoleUI)
+  id: Init(GameFramework.ConsoleTool.IConsoleUI)
+  parent: GameFramework.ConsoleTool.Console
+  langs:
+  - csharp
+  - vb
+  name: Init(IConsoleUI)
+  nameWithType: Console.Init(IConsoleUI)
+  fullName: GameFramework.ConsoleTool.Console.Init(GameFramework.ConsoleTool.IConsoleUI)
+  type: Method
+  source:
+    id: Init
+    path: ''
+    startLine: 541
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  summary: "\nInitialize the console system with a UI implementation\n"
+  example: []
+  syntax:
+    content: public static void Init(IConsoleUI consoleUI)
+    parameters:
+    - id: consoleUI
+      type: GameFramework.ConsoleTool.IConsoleUI
+      description: UI implementation to use for console display
+    content.vb: Public Shared Sub Init(consoleUI As IConsoleUI)
+  overload: GameFramework.ConsoleTool.Console.Init*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: GameFramework.ConsoleTool.Console.Shutdown
+  commentId: M:GameFramework.ConsoleTool.Console.Shutdown
+  id: Shutdown
+  parent: GameFramework.ConsoleTool.Console
+  langs:
+  - csharp
+  - vb
+  name: Shutdown()
+  nameWithType: Console.Shutdown()
+  fullName: GameFramework.ConsoleTool.Console.Shutdown()
+  type: Method
+  source:
+    id: Shutdown
+    path: ''
+    startLine: 559
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  summary: "\nShutdown the console system\n"
+  example: []
+  syntax:
+    content: public static void Shutdown()
+    content.vb: Public Shared Sub Shutdown
+  overload: GameFramework.ConsoleTool.Console.Shutdown*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: GameFramework.ConsoleTool.Console.Write(System.String)
+  commentId: M:GameFramework.ConsoleTool.Console.Write(System.String)
+  id: Write(System.String)
+  parent: GameFramework.ConsoleTool.Console
+  langs:
+  - csharp
+  - vb
+  name: Write(String)
+  nameWithType: Console.Write(String)
+  fullName: GameFramework.ConsoleTool.Console.Write(System.String)
+  type: Method
+  source:
+    id: Write
+    path: ''
+    startLine: 579
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  summary: "\nWrite a message to the console output\n"
+  example: []
+  syntax:
+    content: public static void Write(string message)
+    parameters:
+    - id: message
+      type: System.String
+      description: Message to display
+    content.vb: Public Shared Sub Write(message As String)
+  overload: GameFramework.ConsoleTool.Console.Write*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: GameFramework.ConsoleTool.Console.IsOpen
+  commentId: M:GameFramework.ConsoleTool.Console.IsOpen
+  id: IsOpen
+  parent: GameFramework.ConsoleTool.Console
+  langs:
+  - csharp
+  - vb
+  name: IsOpen()
+  nameWithType: Console.IsOpen()
+  fullName: GameFramework.ConsoleTool.Console.IsOpen()
+  type: Method
+  source:
+    id: IsOpen
+    path: ''
+    startLine: 589
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  summary: "\nCheck if console is currently open/visible\n"
+  example: []
+  syntax:
+    content: public static bool IsOpen()
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function IsOpen As Boolean
+  overload: GameFramework.ConsoleTool.Console.IsOpen*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: GameFramework.ConsoleTool.Console.SetOpen(System.Boolean)
+  commentId: M:GameFramework.ConsoleTool.Console.SetOpen(System.Boolean)
+  id: SetOpen(System.Boolean)
+  parent: GameFramework.ConsoleTool.Console
+  langs:
+  - csharp
+  - vb
+  name: SetOpen(Boolean)
+  nameWithType: Console.SetOpen(Boolean)
+  fullName: GameFramework.ConsoleTool.Console.SetOpen(System.Boolean)
+  type: Method
+  source:
+    id: SetOpen
+    path: ''
+    startLine: 597
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  summary: "\nSet console open/closed state\n"
+  example: []
+  syntax:
+    content: public static void SetOpen(bool open)
+    parameters:
+    - id: open
+      type: System.Boolean
+    content.vb: Public Shared Sub SetOpen(open As Boolean)
+  overload: GameFramework.ConsoleTool.Console.SetOpen*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: GameFramework.ConsoleTool.Console.SetPrompt(System.String)
+  commentId: M:GameFramework.ConsoleTool.Console.SetPrompt(System.String)
+  id: SetPrompt(System.String)
+  parent: GameFramework.ConsoleTool.Console
+  langs:
+  - csharp
+  - vb
+  name: SetPrompt(String)
+  nameWithType: Console.SetPrompt(String)
+  fullName: GameFramework.ConsoleTool.Console.SetPrompt(System.String)
+  type: Method
+  source:
+    id: SetPrompt
+    path: ''
+    startLine: 605
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  summary: "\nSet the console prompt text\n"
+  example: []
+  syntax:
+    content: public static void SetPrompt(string prompt)
+    parameters:
+    - id: prompt
+      type: System.String
+    content.vb: Public Shared Sub SetPrompt(prompt As String)
+  overload: GameFramework.ConsoleTool.Console.SetPrompt*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: GameFramework.ConsoleTool.Console.EnqueueCommand(System.String)
+  commentId: M:GameFramework.ConsoleTool.Console.EnqueueCommand(System.String)
+  id: EnqueueCommand(System.String)
+  parent: GameFramework.ConsoleTool.Console
+  langs:
+  - csharp
+  - vb
+  name: EnqueueCommand(String)
+  nameWithType: Console.EnqueueCommand(String)
+  fullName: GameFramework.ConsoleTool.Console.EnqueueCommand(System.String)
+  type: Method
+  source:
+    id: EnqueueCommand
+    path: ''
+    startLine: 619
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  summary: "\nAdd a command to the execution queue with history tracking\nThread-safe for commands from other threads\n"
+  example: []
+  syntax:
+    content: public static void EnqueueCommand(string command)
+    parameters:
+    - id: command
+      type: System.String
+      description: Command string to execute
+    content.vb: Public Shared Sub EnqueueCommand(command As String)
+  overload: GameFramework.ConsoleTool.Console.EnqueueCommand*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: GameFramework.ConsoleTool.Console.EnqueueCommandNoHistory(System.String)
+  commentId: M:GameFramework.ConsoleTool.Console.EnqueueCommandNoHistory(System.String)
+  id: EnqueueCommandNoHistory(System.String)
+  parent: GameFramework.ConsoleTool.Console
+  langs:
+  - csharp
+  - vb
+  name: EnqueueCommandNoHistory(String)
+  nameWithType: Console.EnqueueCommandNoHistory(String)
+  fullName: GameFramework.ConsoleTool.Console.EnqueueCommandNoHistory(System.String)
+  type: Method
+  source:
+    id: EnqueueCommandNoHistory
+    path: ''
+    startLine: 640
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  summary: "\nAdd a command to execution queue without adding to history\nUseful for programmatic commands that shouldn&apos;t appear in user history\n"
+  example: []
+  syntax:
+    content: public static void EnqueueCommandNoHistory(string command)
+    parameters:
+    - id: command
+      type: System.String
+      description: Command string to execute
+    content.vb: Public Shared Sub EnqueueCommandNoHistory(command As String)
+  overload: GameFramework.ConsoleTool.Console.EnqueueCommandNoHistory*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: GameFramework.ConsoleTool.Console.ConsoleUpdate
+  commentId: M:GameFramework.ConsoleTool.Console.ConsoleUpdate
+  id: ConsoleUpdate
+  parent: GameFramework.ConsoleTool.Console
+  langs:
+  - csharp
+  - vb
+  name: ConsoleUpdate()
+  nameWithType: Console.ConsoleUpdate()
+  fullName: GameFramework.ConsoleTool.Console.ConsoleUpdate()
+  type: Method
+  source:
+    id: ConsoleUpdate
+    path: ''
+    startLine: 658
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  summary: "\nProcess pending commands and update console UI\nShould be called every frame by ConsoleService\n"
+  example: []
+  syntax:
+    content: public static void ConsoleUpdate()
+    content.vb: Public Shared Sub ConsoleUpdate
+  overload: GameFramework.ConsoleTool.Console.ConsoleUpdate*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: GameFramework.ConsoleTool.Console.ConsoleLateUpdate
+  commentId: M:GameFramework.ConsoleTool.Console.ConsoleLateUpdate
+  id: ConsoleLateUpdate
+  parent: GameFramework.ConsoleTool.Console
+  langs:
+  - csharp
+  - vb
+  name: ConsoleLateUpdate()
+  nameWithType: Console.ConsoleLateUpdate()
+  fullName: GameFramework.ConsoleTool.Console.ConsoleLateUpdate()
+  type: Method
+  source:
+    id: ConsoleLateUpdate
+    path: ''
+    startLine: 671
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  summary: "\nLate update for console UI\nShould be called every frame by ConsoleService\n"
+  example: []
+  syntax:
+    content: public static void ConsoleLateUpdate()
+    content.vb: Public Shared Sub ConsoleLateUpdate
+  overload: GameFramework.ConsoleTool.Console.ConsoleLateUpdate*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: GameFramework.ConsoleTool.Console.HistoryUp(System.String)
+  commentId: M:GameFramework.ConsoleTool.Console.HistoryUp(System.String)
+  id: HistoryUp(System.String)
+  parent: GameFramework.ConsoleTool.Console
+  langs:
+  - csharp
+  - vb
+  name: HistoryUp(String)
+  nameWithType: Console.HistoryUp(String)
+  fullName: GameFramework.ConsoleTool.Console.HistoryUp(System.String)
+  type: Method
+  source:
+    id: HistoryUp
+    path: ''
+    startLine: 873
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  summary: "\nGet previous command from history\n"
+  example: []
+  syntax:
+    content: public static string HistoryUp(string current)
+    parameters:
+    - id: current
+      type: System.String
+      description: Current input text (stored if at end of history)
+    return:
+      type: System.String
+      description: Previous command or empty string if at beginning
+    content.vb: Public Shared Function HistoryUp(current As String) As String
+  overload: GameFramework.ConsoleTool.Console.HistoryUp*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: GameFramework.ConsoleTool.Console.HistoryDown
+  commentId: M:GameFramework.ConsoleTool.Console.HistoryDown
+  id: HistoryDown
+  parent: GameFramework.ConsoleTool.Console
+  langs:
+  - csharp
+  - vb
+  name: HistoryDown()
+  nameWithType: Console.HistoryDown()
+  fullName: GameFramework.ConsoleTool.Console.HistoryDown()
+  type: Method
+  source:
+    id: HistoryDown
+    path: ''
+    startLine: 892
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  summary: "\nGet next command from history\n"
+  example: []
+  syntax:
+    content: public static string HistoryDown()
+    return:
+      type: System.String
+      description: Next command or empty string if at end
+    content.vb: Public Shared Function HistoryDown As String
+  overload: GameFramework.ConsoleTool.Console.HistoryDown*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: GameFramework.ConsoleTool.Console.TabComplete(System.String)
+  commentId: M:GameFramework.ConsoleTool.Console.TabComplete(System.String)
+  id: TabComplete(System.String)
+  parent: GameFramework.ConsoleTool.Console
+  langs:
+  - csharp
+  - vb
+  name: TabComplete(String)
+  nameWithType: Console.TabComplete(String)
+  fullName: GameFramework.ConsoleTool.Console.TabComplete(System.String)
+  type: Method
+  source:
+    id: TabComplete
+    path: ''
+    startLine: 910
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  summary: "\nPerform tab completion on a partial command\n"
+  example: []
+  syntax:
+    content: public static string TabComplete(string prefix)
+    parameters:
+    - id: prefix
+      type: System.String
+      description: Partial command to complete
+    return:
+      type: System.String
+      description: Completed command or original if no matches
+    content.vb: Public Shared Function TabComplete(prefix As String) As String
+  overload: GameFramework.ConsoleTool.Console.TabComplete*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: GameFramework.ConsoleTool
+  commentId: N:GameFramework.ConsoleTool
+  name: GameFramework.ConsoleTool
+  nameWithType: GameFramework.ConsoleTool
+  fullName: GameFramework.ConsoleTool
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: GameFramework.ConsoleTool.Console.Init*
+  commentId: Overload:GameFramework.ConsoleTool.Console.Init
+  name: Init
+  nameWithType: Console.Init
+  fullName: GameFramework.ConsoleTool.Console.Init
+- uid: GameFramework.ConsoleTool.IConsoleUI
+  commentId: T:GameFramework.ConsoleTool.IConsoleUI
+  parent: GameFramework.ConsoleTool
+  name: IConsoleUI
+  nameWithType: IConsoleUI
+  fullName: GameFramework.ConsoleTool.IConsoleUI
+- uid: GameFramework.ConsoleTool.Console.Shutdown*
+  commentId: Overload:GameFramework.ConsoleTool.Console.Shutdown
+  name: Shutdown
+  nameWithType: Console.Shutdown
+  fullName: GameFramework.ConsoleTool.Console.Shutdown
+- uid: GameFramework.ConsoleTool.Console.Write*
+  commentId: Overload:GameFramework.ConsoleTool.Console.Write
+  name: Write
+  nameWithType: Console.Write
+  fullName: GameFramework.ConsoleTool.Console.Write
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: GameFramework.ConsoleTool.Console.IsOpen*
+  commentId: Overload:GameFramework.ConsoleTool.Console.IsOpen
+  name: IsOpen
+  nameWithType: Console.IsOpen
+  fullName: GameFramework.ConsoleTool.Console.IsOpen
+- uid: GameFramework.ConsoleTool.Console.SetOpen*
+  commentId: Overload:GameFramework.ConsoleTool.Console.SetOpen
+  name: SetOpen
+  nameWithType: Console.SetOpen
+  fullName: GameFramework.ConsoleTool.Console.SetOpen
+- uid: GameFramework.ConsoleTool.Console.SetPrompt*
+  commentId: Overload:GameFramework.ConsoleTool.Console.SetPrompt
+  name: SetPrompt
+  nameWithType: Console.SetPrompt
+  fullName: GameFramework.ConsoleTool.Console.SetPrompt
+- uid: GameFramework.ConsoleTool.Console.EnqueueCommand*
+  commentId: Overload:GameFramework.ConsoleTool.Console.EnqueueCommand
+  name: EnqueueCommand
+  nameWithType: Console.EnqueueCommand
+  fullName: GameFramework.ConsoleTool.Console.EnqueueCommand
+- uid: GameFramework.ConsoleTool.Console.EnqueueCommandNoHistory*
+  commentId: Overload:GameFramework.ConsoleTool.Console.EnqueueCommandNoHistory
+  name: EnqueueCommandNoHistory
+  nameWithType: Console.EnqueueCommandNoHistory
+  fullName: GameFramework.ConsoleTool.Console.EnqueueCommandNoHistory
+- uid: GameFramework.ConsoleTool.Console.ConsoleUpdate*
+  commentId: Overload:GameFramework.ConsoleTool.Console.ConsoleUpdate
+  name: ConsoleUpdate
+  nameWithType: Console.ConsoleUpdate
+  fullName: GameFramework.ConsoleTool.Console.ConsoleUpdate
+- uid: GameFramework.ConsoleTool.Console.ConsoleLateUpdate*
+  commentId: Overload:GameFramework.ConsoleTool.Console.ConsoleLateUpdate
+  name: ConsoleLateUpdate
+  nameWithType: Console.ConsoleLateUpdate
+  fullName: GameFramework.ConsoleTool.Console.ConsoleLateUpdate
+- uid: GameFramework.ConsoleTool.Console.HistoryUp*
+  commentId: Overload:GameFramework.ConsoleTool.Console.HistoryUp
+  name: HistoryUp
+  nameWithType: Console.HistoryUp
+  fullName: GameFramework.ConsoleTool.Console.HistoryUp
+- uid: GameFramework.ConsoleTool.Console.HistoryDown*
+  commentId: Overload:GameFramework.ConsoleTool.Console.HistoryDown
+  name: HistoryDown
+  nameWithType: Console.HistoryDown
+  fullName: GameFramework.ConsoleTool.Console.HistoryDown
+- uid: GameFramework.ConsoleTool.Console.TabComplete*
+  commentId: Overload:GameFramework.ConsoleTool.Console.TabComplete
+  name: TabComplete
+  nameWithType: Console.TabComplete
+  fullName: GameFramework.ConsoleTool.Console.TabComplete

@@ -1,0 +1,48 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.DataStructures
+  commentId: N:GameFramework.DataStructures
+  id: GameFramework.DataStructures
+  children:
+  - GameFramework.DataStructures.GameProgress
+  - GameFramework.DataStructures.GameSession
+  - GameFramework.DataStructures.PlayerState
+  - GameFramework.DataStructures.SaveFileInfo
+  langs:
+  - csharp
+  - vb
+  name: GameFramework.DataStructures
+  nameWithType: GameFramework.DataStructures
+  fullName: GameFramework.DataStructures
+  type: Namespace
+  assemblies:
+  - cs.temp.dll
+references:
+- uid: GameFramework.DataStructures.GameProgress
+  commentId: T:GameFramework.DataStructures.GameProgress
+  parent: GameFramework.DataStructures
+  name: GameProgress
+  nameWithType: GameProgress
+  fullName: GameFramework.DataStructures.GameProgress
+- uid: GameFramework.DataStructures.GameSession
+  commentId: T:GameFramework.DataStructures.GameSession
+  parent: GameFramework.DataStructures
+  name: GameSession
+  nameWithType: GameSession
+  fullName: GameFramework.DataStructures.GameSession
+- uid: GameFramework.DataStructures.PlayerState
+  commentId: T:GameFramework.DataStructures.PlayerState
+  parent: GameFramework.DataStructures
+  name: PlayerState
+  nameWithType: PlayerState
+  fullName: GameFramework.DataStructures.PlayerState
+- uid: GameFramework.DataStructures.SaveFileInfo
+  commentId: T:GameFramework.DataStructures.SaveFileInfo
+  name: SaveFileInfo
+  nameWithType: SaveFileInfo
+  fullName: GameFramework.DataStructures.SaveFileInfo
+- uid: GameFramework.DataStructures
+  commentId: N:GameFramework.DataStructures
+  name: GameFramework.DataStructures
+  nameWithType: GameFramework.DataStructures
+  fullName: GameFramework.DataStructures

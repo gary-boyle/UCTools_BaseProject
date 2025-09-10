@@ -1,0 +1,555 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.EventSystem.EventSystem
+  commentId: T:GameFramework.EventSystem.EventSystem
+  id: EventSystem
+  parent: GameFramework.EventSystem
+  children:
+  - GameFramework.EventSystem.EventSystem.#ctor
+  - GameFramework.EventSystem.EventSystem.Clear
+  - GameFramework.EventSystem.EventSystem.InitializeAsync
+  - GameFramework.EventSystem.EventSystem.IsInitialized
+  - GameFramework.EventSystem.EventSystem.Publish``1
+  - GameFramework.EventSystem.EventSystem.Publish``1(``0)
+  - GameFramework.EventSystem.EventSystem.Shutdown
+  - GameFramework.EventSystem.EventSystem.Subscribe``1(Action)
+  - GameFramework.EventSystem.EventSystem.Subscribe``1(Action{``0})
+  - GameFramework.EventSystem.EventSystem.Unsubscribe``1(Action)
+  - GameFramework.EventSystem.EventSystem.Unsubscribe``1(Action{``0})
+  langs:
+  - csharp
+  - vb
+  name: EventSystem
+  nameWithType: EventSystem
+  fullName: GameFramework.EventSystem.EventSystem
+  type: Class
+  source:
+    id: EventSystem
+    path: ''
+    startLine: 4129
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.EventSystem
+  syntax:
+    content: 'public class EventSystem : IEventSystem'
+    content.vb: >-
+      Public Class EventSystem
+          Inherits IEventSystem
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: GameFramework.EventSystem.EventSystem.IsInitialized
+  commentId: P:GameFramework.EventSystem.EventSystem.IsInitialized
+  id: IsInitialized
+  parent: GameFramework.EventSystem.EventSystem
+  langs:
+  - csharp
+  - vb
+  name: IsInitialized
+  nameWithType: EventSystem.IsInitialized
+  fullName: GameFramework.EventSystem.EventSystem.IsInitialized
+  type: Property
+  source:
+    id: IsInitialized
+    path: ''
+    startLine: 4132
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.EventSystem
+  syntax:
+    content: public bool IsInitialized { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsInitialized As Boolean
+  overload: GameFramework.EventSystem.EventSystem.IsInitialized*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: GameFramework.EventSystem.EventSystem.#ctor
+  commentId: M:GameFramework.EventSystem.EventSystem.#ctor
+  id: '#ctor'
+  parent: GameFramework.EventSystem.EventSystem
+  langs:
+  - csharp
+  - vb
+  name: EventSystem()
+  nameWithType: EventSystem.EventSystem()
+  fullName: GameFramework.EventSystem.EventSystem.EventSystem()
+  type: Constructor
+  source:
+    id: .ctor
+    path: ''
+    startLine: 4137
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.EventSystem
+  summary: "\nConstructor injection - EventSystem has no dependencies\n"
+  example: []
+  syntax:
+    content: public EventSystem()
+    content.vb: Public Sub New
+  overload: GameFramework.EventSystem.EventSystem.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.EventSystem.EventSystem.InitializeAsync
+  commentId: M:GameFramework.EventSystem.EventSystem.InitializeAsync
+  id: InitializeAsync
+  parent: GameFramework.EventSystem.EventSystem
+  langs:
+  - csharp
+  - vb
+  name: InitializeAsync()
+  nameWithType: EventSystem.InitializeAsync()
+  fullName: GameFramework.EventSystem.EventSystem.InitializeAsync()
+  type: Method
+  source:
+    id: InitializeAsync
+    path: ''
+    startLine: 4142
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.EventSystem
+  syntax:
+    content: public async Task InitializeAsync()
+    return:
+      type: Task
+    content.vb: Public Function InitializeAsync As Task
+  overload: GameFramework.EventSystem.EventSystem.InitializeAsync*
+  modifiers.csharp:
+  - public
+  - async
+  modifiers.vb:
+  - Public
+- uid: GameFramework.EventSystem.EventSystem.Shutdown
+  commentId: M:GameFramework.EventSystem.EventSystem.Shutdown
+  id: Shutdown
+  parent: GameFramework.EventSystem.EventSystem
+  langs:
+  - csharp
+  - vb
+  name: Shutdown()
+  nameWithType: EventSystem.Shutdown()
+  fullName: GameFramework.EventSystem.EventSystem.Shutdown()
+  type: Method
+  source:
+    id: Shutdown
+    path: ''
+    startLine: 4151
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.EventSystem
+  syntax:
+    content: public void Shutdown()
+    content.vb: Public Sub Shutdown
+  overload: GameFramework.EventSystem.EventSystem.Shutdown*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.EventSystem.EventSystem.Subscribe``1(Action{``0})
+  commentId: M:GameFramework.EventSystem.EventSystem.Subscribe``1(Action{``0})
+  id: Subscribe``1(Action{``0})
+  parent: GameFramework.EventSystem.EventSystem
+  langs:
+  - csharp
+  - vb
+  name: Subscribe<T>(Action<T>)
+  nameWithType: EventSystem.Subscribe<T>(Action<T>)
+  fullName: GameFramework.EventSystem.EventSystem.Subscribe<T>(Action<T>)
+  type: Method
+  source:
+    id: Subscribe
+    path: ''
+    startLine: 4157
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.EventSystem
+  syntax:
+    content: >-
+      public void Subscribe<T>(Action<T> handler)
+          where T : class
+    parameters:
+    - id: handler
+      type: Action{{T}}
+    typeParameters:
+    - id: T
+    content.vb: Public Sub Subscribe(Of T As Class)(handler As Action(Of T))
+  overload: GameFramework.EventSystem.EventSystem.Subscribe*
+  nameWithType.vb: EventSystem.Subscribe(Of T)(Action(Of T))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: GameFramework.EventSystem.EventSystem.Subscribe(Of T)(Action(Of T))
+  name.vb: Subscribe(Of T)(Action(Of T))
+- uid: GameFramework.EventSystem.EventSystem.Subscribe``1(Action)
+  commentId: M:GameFramework.EventSystem.EventSystem.Subscribe``1(Action)
+  id: Subscribe``1(Action)
+  parent: GameFramework.EventSystem.EventSystem
+  langs:
+  - csharp
+  - vb
+  name: Subscribe<T>(Action)
+  nameWithType: EventSystem.Subscribe<T>(Action)
+  fullName: GameFramework.EventSystem.EventSystem.Subscribe<T>(Action)
+  type: Method
+  source:
+    id: Subscribe
+    path: ''
+    startLine: 4166
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.EventSystem
+  syntax:
+    content: public void Subscribe<T>(Action handler)
+    parameters:
+    - id: handler
+      type: Action
+    typeParameters:
+    - id: T
+    content.vb: Public Sub Subscribe(Of T)(handler As Action)
+  overload: GameFramework.EventSystem.EventSystem.Subscribe*
+  nameWithType.vb: EventSystem.Subscribe(Of T)(Action)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: GameFramework.EventSystem.EventSystem.Subscribe(Of T)(Action)
+  name.vb: Subscribe(Of T)(Action)
+- uid: GameFramework.EventSystem.EventSystem.Unsubscribe``1(Action{``0})
+  commentId: M:GameFramework.EventSystem.EventSystem.Unsubscribe``1(Action{``0})
+  id: Unsubscribe``1(Action{``0})
+  parent: GameFramework.EventSystem.EventSystem
+  langs:
+  - csharp
+  - vb
+  name: Unsubscribe<T>(Action<T>)
+  nameWithType: EventSystem.Unsubscribe<T>(Action<T>)
+  fullName: GameFramework.EventSystem.EventSystem.Unsubscribe<T>(Action<T>)
+  type: Method
+  source:
+    id: Unsubscribe
+    path: ''
+    startLine: 4175
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.EventSystem
+  syntax:
+    content: >-
+      public void Unsubscribe<T>(Action<T> handler)
+          where T : class
+    parameters:
+    - id: handler
+      type: Action{{T}}
+    typeParameters:
+    - id: T
+    content.vb: Public Sub Unsubscribe(Of T As Class)(handler As Action(Of T))
+  overload: GameFramework.EventSystem.EventSystem.Unsubscribe*
+  nameWithType.vb: EventSystem.Unsubscribe(Of T)(Action(Of T))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: GameFramework.EventSystem.EventSystem.Unsubscribe(Of T)(Action(Of T))
+  name.vb: Unsubscribe(Of T)(Action(Of T))
+- uid: GameFramework.EventSystem.EventSystem.Unsubscribe``1(Action)
+  commentId: M:GameFramework.EventSystem.EventSystem.Unsubscribe``1(Action)
+  id: Unsubscribe``1(Action)
+  parent: GameFramework.EventSystem.EventSystem
+  langs:
+  - csharp
+  - vb
+  name: Unsubscribe<T>(Action)
+  nameWithType: EventSystem.Unsubscribe<T>(Action)
+  fullName: GameFramework.EventSystem.EventSystem.Unsubscribe<T>(Action)
+  type: Method
+  source:
+    id: Unsubscribe
+    path: ''
+    startLine: 4186
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.EventSystem
+  syntax:
+    content: public void Unsubscribe<T>(Action handler)
+    parameters:
+    - id: handler
+      type: Action
+    typeParameters:
+    - id: T
+    content.vb: Public Sub Unsubscribe(Of T)(handler As Action)
+  overload: GameFramework.EventSystem.EventSystem.Unsubscribe*
+  nameWithType.vb: EventSystem.Unsubscribe(Of T)(Action)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: GameFramework.EventSystem.EventSystem.Unsubscribe(Of T)(Action)
+  name.vb: Unsubscribe(Of T)(Action)
+- uid: GameFramework.EventSystem.EventSystem.Publish``1(``0)
+  commentId: M:GameFramework.EventSystem.EventSystem.Publish``1(``0)
+  id: Publish``1(``0)
+  parent: GameFramework.EventSystem.EventSystem
+  langs:
+  - csharp
+  - vb
+  name: Publish<T>(T)
+  nameWithType: EventSystem.Publish<T>(T)
+  fullName: GameFramework.EventSystem.EventSystem.Publish<T>(T)
+  type: Method
+  source:
+    id: Publish
+    path: ''
+    startLine: 4197
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.EventSystem
+  syntax:
+    content: >-
+      public void Publish<T>(T eventData)
+          where T : class
+    parameters:
+    - id: eventData
+      type: '{T}'
+    typeParameters:
+    - id: T
+    content.vb: Public Sub Publish(Of T As Class)(eventData As T)
+  overload: GameFramework.EventSystem.EventSystem.Publish*
+  nameWithType.vb: EventSystem.Publish(Of T)(T)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: GameFramework.EventSystem.EventSystem.Publish(Of T)(T)
+  name.vb: Publish(Of T)(T)
+- uid: GameFramework.EventSystem.EventSystem.Publish``1
+  commentId: M:GameFramework.EventSystem.EventSystem.Publish``1
+  id: Publish``1
+  parent: GameFramework.EventSystem.EventSystem
+  langs:
+  - csharp
+  - vb
+  name: Publish<T>()
+  nameWithType: EventSystem.Publish<T>()
+  fullName: GameFramework.EventSystem.EventSystem.Publish<T>()
+  type: Method
+  source:
+    id: Publish
+    path: ''
+    startLine: 4217
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.EventSystem
+  syntax:
+    content: public void Publish<T>()
+    typeParameters:
+    - id: T
+    content.vb: Public Sub Publish(Of T)
+  overload: GameFramework.EventSystem.EventSystem.Publish*
+  nameWithType.vb: EventSystem.Publish(Of T)()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: GameFramework.EventSystem.EventSystem.Publish(Of T)()
+  name.vb: Publish(Of T)()
+- uid: GameFramework.EventSystem.EventSystem.Clear
+  commentId: M:GameFramework.EventSystem.EventSystem.Clear
+  id: Clear
+  parent: GameFramework.EventSystem.EventSystem
+  langs:
+  - csharp
+  - vb
+  name: Clear()
+  nameWithType: EventSystem.Clear()
+  fullName: GameFramework.EventSystem.EventSystem.Clear()
+  type: Method
+  source:
+    id: Clear
+    path: ''
+    startLine: 4237
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.EventSystem
+  syntax:
+    content: public void Clear()
+    content.vb: Public Sub Clear
+  overload: GameFramework.EventSystem.EventSystem.Clear*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: GameFramework.EventSystem
+  commentId: N:GameFramework.EventSystem
+  name: GameFramework.EventSystem
+  nameWithType: GameFramework.EventSystem
+  fullName: GameFramework.EventSystem
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: GameFramework.EventSystem.EventSystem.IsInitialized*
+  commentId: Overload:GameFramework.EventSystem.EventSystem.IsInitialized
+  name: IsInitialized
+  nameWithType: EventSystem.IsInitialized
+  fullName: GameFramework.EventSystem.EventSystem.IsInitialized
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: GameFramework.EventSystem.EventSystem.#ctor*
+  commentId: Overload:GameFramework.EventSystem.EventSystem.#ctor
+  name: EventSystem
+  nameWithType: EventSystem.EventSystem
+  fullName: GameFramework.EventSystem.EventSystem.EventSystem
+- uid: GameFramework.EventSystem.EventSystem.InitializeAsync*
+  commentId: Overload:GameFramework.EventSystem.EventSystem.InitializeAsync
+  name: InitializeAsync
+  nameWithType: EventSystem.InitializeAsync
+  fullName: GameFramework.EventSystem.EventSystem.InitializeAsync
+- uid: Task
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: Task
+- uid: GameFramework.EventSystem.EventSystem.Shutdown*
+  commentId: Overload:GameFramework.EventSystem.EventSystem.Shutdown
+  name: Shutdown
+  nameWithType: EventSystem.Shutdown
+  fullName: GameFramework.EventSystem.EventSystem.Shutdown
+- uid: GameFramework.EventSystem.EventSystem.Subscribe*
+  commentId: Overload:GameFramework.EventSystem.EventSystem.Subscribe
+  name: Subscribe
+  nameWithType: EventSystem.Subscribe
+  fullName: GameFramework.EventSystem.EventSystem.Subscribe
+- uid: Action{{T}}
+  commentId: '!:Action{``0}'
+  definition: Action`1
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: Action<T>
+  nameWithType.vb: Action(Of T)
+  fullName.vb: Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Action`1
+  isExternal: true
+  name: Action<>
+  nameWithType: Action<>
+  fullName: Action<>
+  nameWithType.vb: Action(Of )
+  fullName.vb: Action(Of )
+  name.vb: Action(Of )
+  spec.csharp:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Action
+  isExternal: true
+  name: Action
+  nameWithType: Action
+  fullName: Action
+- uid: GameFramework.EventSystem.EventSystem.Unsubscribe*
+  commentId: Overload:GameFramework.EventSystem.EventSystem.Unsubscribe
+  name: Unsubscribe
+  nameWithType: EventSystem.Unsubscribe
+  fullName: GameFramework.EventSystem.EventSystem.Unsubscribe
+- uid: GameFramework.EventSystem.EventSystem.Publish*
+  commentId: Overload:GameFramework.EventSystem.EventSystem.Publish
+  name: Publish
+  nameWithType: EventSystem.Publish
+  fullName: GameFramework.EventSystem.EventSystem.Publish
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: GameFramework.EventSystem.EventSystem.Clear*
+  commentId: Overload:GameFramework.EventSystem.EventSystem.Clear
+  name: Clear
+  nameWithType: EventSystem.Clear
+  fullName: GameFramework.EventSystem.EventSystem.Clear

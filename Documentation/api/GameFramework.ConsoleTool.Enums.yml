@@ -1,0 +1,28 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.ConsoleTool.Enums
+  commentId: N:GameFramework.ConsoleTool.Enums
+  id: GameFramework.ConsoleTool.Enums
+  children:
+  - GameFramework.ConsoleTool.Enums.CategoryEnum
+  langs:
+  - csharp
+  - vb
+  name: GameFramework.ConsoleTool.Enums
+  nameWithType: GameFramework.ConsoleTool.Enums
+  fullName: GameFramework.ConsoleTool.Enums
+  type: Namespace
+  assemblies:
+  - cs.temp.dll
+references:
+- uid: GameFramework.ConsoleTool.Enums.CategoryEnum
+  commentId: T:GameFramework.ConsoleTool.Enums.CategoryEnum
+  parent: GameFramework.ConsoleTool.Enums
+  name: CategoryEnum
+  nameWithType: CategoryEnum
+  fullName: GameFramework.ConsoleTool.Enums.CategoryEnum
+- uid: GameFramework.ConsoleTool.Enums
+  commentId: N:GameFramework.ConsoleTool.Enums
+  name: GameFramework.ConsoleTool.Enums
+  nameWithType: GameFramework.ConsoleTool.Enums
+  fullName: GameFramework.ConsoleTool.Enums

@@ -1,0 +1,514 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.Tests.HelperClasses.TestService
+  commentId: T:GameFramework.Tests.HelperClasses.TestService
+  id: TestService
+  parent: GameFramework.Tests.HelperClasses
+  children:
+  - GameFramework.Tests.HelperClasses.TestService.#ctor(GameFramework.Tests.HelperClasses.ITestDependency)
+  - GameFramework.Tests.HelperClasses.TestService.GetValue
+  - GameFramework.Tests.HelperClasses.TestService.IsInitialized
+  langs:
+  - csharp
+  - vb
+  name: TestService
+  nameWithType: TestService
+  fullName: GameFramework.Tests.HelperClasses.TestService
+  type: Class
+  source:
+    id: TestService
+    path: ''
+    startLine: 16164
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Tests.HelperClasses
+  summary: "\nTest service with optional dependency injection\nModified to have clearer constructor behavior for testing\n"
+  example: []
+  syntax:
+    content: 'public class TestService : ITestService'
+    content.vb: >-
+      Public Class TestService
+          Implements ITestService
+  inheritance:
+  - System.Object
+  implements:
+  - GameFramework.Tests.HelperClasses.ITestService
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: GameFramework.Tests.HelperClasses.TestService.#ctor(GameFramework.Tests.HelperClasses.ITestDependency)
+  commentId: M:GameFramework.Tests.HelperClasses.TestService.#ctor(GameFramework.Tests.HelperClasses.ITestDependency)
+  id: '#ctor(GameFramework.Tests.HelperClasses.ITestDependency)'
+  parent: GameFramework.Tests.HelperClasses.TestService
+  langs:
+  - csharp
+  - vb
+  name: TestService(ITestDependency)
+  nameWithType: TestService.TestService(ITestDependency)
+  fullName: GameFramework.Tests.HelperClasses.TestService.TestService(GameFramework.Tests.HelperClasses.ITestDependency)
+  type: Constructor
+  source:
+    id: .ctor
+    path: ''
+    startLine: 16168
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Tests.HelperClasses
+  syntax:
+    content: public TestService(ITestDependency dependency)
+    parameters:
+    - id: dependency
+      type: GameFramework.Tests.HelperClasses.ITestDependency
+    content.vb: Public Sub New(dependency As ITestDependency)
+  overload: GameFramework.Tests.HelperClasses.TestService.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.Tests.HelperClasses.TestService.GetValue
+  commentId: M:GameFramework.Tests.HelperClasses.TestService.GetValue
+  id: GetValue
+  parent: GameFramework.Tests.HelperClasses.TestService
+  langs:
+  - csharp
+  - vb
+  name: GetValue()
+  nameWithType: TestService.GetValue()
+  fullName: GameFramework.Tests.HelperClasses.TestService.GetValue()
+  type: Method
+  source:
+    id: GetValue
+    path: ''
+    startLine: 16174
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Tests.HelperClasses
+  syntax:
+    content: public string GetValue()
+    return:
+      type: System.String
+    content.vb: Public Function GetValue As String
+  overload: GameFramework.Tests.HelperClasses.TestService.GetValue*
+  implements:
+  - GameFramework.Tests.HelperClasses.ITestService.GetValue
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.Tests.HelperClasses.TestService.IsInitialized
+  commentId: P:GameFramework.Tests.HelperClasses.TestService.IsInitialized
+  id: IsInitialized
+  parent: GameFramework.Tests.HelperClasses.TestService
+  langs:
+  - csharp
+  - vb
+  name: IsInitialized
+  nameWithType: TestService.IsInitialized
+  fullName: GameFramework.Tests.HelperClasses.TestService.IsInitialized
+  type: Property
+  source:
+    id: IsInitialized
+    path: ''
+    startLine: 16175
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Tests.HelperClasses
+  syntax:
+    content: public bool IsInitialized { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsInitialized As Boolean
+  overload: GameFramework.Tests.HelperClasses.TestService.IsInitialized*
+  implements:
+  - GameFramework.Tests.HelperClasses.ITestService.IsInitialized
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+references:
+- uid: GameFramework.Tests.HelperClasses
+  commentId: N:GameFramework.Tests.HelperClasses
+  name: GameFramework.Tests.HelperClasses
+  nameWithType: GameFramework.Tests.HelperClasses
+  fullName: GameFramework.Tests.HelperClasses
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: GameFramework.Tests.HelperClasses.ITestService
+  commentId: T:GameFramework.Tests.HelperClasses.ITestService
+  parent: GameFramework.Tests.HelperClasses
+  name: ITestService
+  nameWithType: ITestService
+  fullName: GameFramework.Tests.HelperClasses.ITestService
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: GameFramework.Tests.HelperClasses.TestService.#ctor*
+  commentId: Overload:GameFramework.Tests.HelperClasses.TestService.#ctor
+  name: TestService
+  nameWithType: TestService.TestService
+  fullName: GameFramework.Tests.HelperClasses.TestService.TestService
+- uid: GameFramework.Tests.HelperClasses.ITestDependency
+  commentId: T:GameFramework.Tests.HelperClasses.ITestDependency
+  parent: GameFramework.Tests.HelperClasses
+  name: ITestDependency
+  nameWithType: ITestDependency
+  fullName: GameFramework.Tests.HelperClasses.ITestDependency
+- uid: GameFramework.Tests.HelperClasses.TestService.GetValue*
+  commentId: Overload:GameFramework.Tests.HelperClasses.TestService.GetValue
+  name: GetValue
+  nameWithType: TestService.GetValue
+  fullName: GameFramework.Tests.HelperClasses.TestService.GetValue
+- uid: GameFramework.Tests.HelperClasses.ITestService.GetValue
+  commentId: M:GameFramework.Tests.HelperClasses.ITestService.GetValue
+  parent: GameFramework.Tests.HelperClasses.ITestService
+  name: GetValue()
+  nameWithType: ITestService.GetValue()
+  fullName: GameFramework.Tests.HelperClasses.ITestService.GetValue()
+  spec.csharp:
+  - uid: GameFramework.Tests.HelperClasses.ITestService.GetValue
+    name: GetValue
+    nameWithType: ITestService.GetValue
+    fullName: GameFramework.Tests.HelperClasses.ITestService.GetValue
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.Tests.HelperClasses.ITestService.GetValue
+    name: GetValue
+    nameWithType: ITestService.GetValue
+    fullName: GameFramework.Tests.HelperClasses.ITestService.GetValue
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: GameFramework.Tests.HelperClasses.TestService.IsInitialized*
+  commentId: Overload:GameFramework.Tests.HelperClasses.TestService.IsInitialized
+  name: IsInitialized
+  nameWithType: TestService.IsInitialized
+  fullName: GameFramework.Tests.HelperClasses.TestService.IsInitialized
+- uid: GameFramework.Tests.HelperClasses.ITestService.IsInitialized
+  commentId: P:GameFramework.Tests.HelperClasses.ITestService.IsInitialized
+  parent: GameFramework.Tests.HelperClasses.ITestService
+  name: IsInitialized
+  nameWithType: ITestService.IsInitialized
+  fullName: GameFramework.Tests.HelperClasses.ITestService.IsInitialized
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean

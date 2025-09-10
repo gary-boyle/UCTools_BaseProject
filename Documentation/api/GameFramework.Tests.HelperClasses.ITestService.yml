@@ -1,0 +1,121 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.Tests.HelperClasses.ITestService
+  commentId: T:GameFramework.Tests.HelperClasses.ITestService
+  id: ITestService
+  parent: GameFramework.Tests.HelperClasses
+  children:
+  - GameFramework.Tests.HelperClasses.ITestService.GetValue
+  - GameFramework.Tests.HelperClasses.ITestService.IsInitialized
+  langs:
+  - csharp
+  - vb
+  name: ITestService
+  nameWithType: ITestService
+  fullName: GameFramework.Tests.HelperClasses.ITestService
+  type: Interface
+  source:
+    id: ITestService
+    path: ''
+    startLine: 16066
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Tests.HelperClasses
+  syntax:
+    content: public interface ITestService
+    content.vb: Public Interface ITestService
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: GameFramework.Tests.HelperClasses.ITestService.GetValue
+  commentId: M:GameFramework.Tests.HelperClasses.ITestService.GetValue
+  id: GetValue
+  parent: GameFramework.Tests.HelperClasses.ITestService
+  langs:
+  - csharp
+  - vb
+  name: GetValue()
+  nameWithType: ITestService.GetValue()
+  fullName: GameFramework.Tests.HelperClasses.ITestService.GetValue()
+  type: Method
+  source:
+    id: GetValue
+    path: ''
+    startLine: 16068
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Tests.HelperClasses
+  syntax:
+    content: string GetValue()
+    return:
+      type: System.String
+    content.vb: Function GetValue As String
+  overload: GameFramework.Tests.HelperClasses.ITestService.GetValue*
+- uid: GameFramework.Tests.HelperClasses.ITestService.IsInitialized
+  commentId: P:GameFramework.Tests.HelperClasses.ITestService.IsInitialized
+  id: IsInitialized
+  parent: GameFramework.Tests.HelperClasses.ITestService
+  langs:
+  - csharp
+  - vb
+  name: IsInitialized
+  nameWithType: ITestService.IsInitialized
+  fullName: GameFramework.Tests.HelperClasses.ITestService.IsInitialized
+  type: Property
+  source:
+    id: IsInitialized
+    path: ''
+    startLine: 16069
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Tests.HelperClasses
+  syntax:
+    content: bool IsInitialized { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property IsInitialized As Boolean
+  overload: GameFramework.Tests.HelperClasses.ITestService.IsInitialized*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+references:
+- uid: GameFramework.Tests.HelperClasses
+  commentId: N:GameFramework.Tests.HelperClasses
+  name: GameFramework.Tests.HelperClasses
+  nameWithType: GameFramework.Tests.HelperClasses
+  fullName: GameFramework.Tests.HelperClasses
+- uid: GameFramework.Tests.HelperClasses.ITestService.GetValue*
+  commentId: Overload:GameFramework.Tests.HelperClasses.ITestService.GetValue
+  name: GetValue
+  nameWithType: ITestService.GetValue
+  fullName: GameFramework.Tests.HelperClasses.ITestService.GetValue
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: GameFramework.Tests.HelperClasses.ITestService.IsInitialized*
+  commentId: Overload:GameFramework.Tests.HelperClasses.ITestService.IsInitialized
+  name: IsInitialized
+  nameWithType: ITestService.IsInitialized
+  fullName: GameFramework.Tests.HelperClasses.ITestService.IsInitialized
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean

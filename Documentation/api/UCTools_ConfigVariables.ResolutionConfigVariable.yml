@@ -1,0 +1,1222 @@
+### YamlMime:ManagedReference
+items:
+- uid: UCTools_ConfigVariables.ResolutionConfigVariable
+  commentId: T:UCTools_ConfigVariables.ResolutionConfigVariable
+  id: ResolutionConfigVariable
+  parent: UCTools_ConfigVariables
+  children:
+  - UCTools_ConfigVariables.ResolutionConfigVariable.#ctor
+  - UCTools_ConfigVariables.ResolutionConfigVariable.#ctor(System.String,System.String,UCTools_ConfigVariables.ResolutionOption,UCTools_ConfigVariables.ConfigFlags)
+  - UCTools_ConfigVariables.ResolutionConfigVariable.DisplayName
+  - UCTools_ConfigVariables.ResolutionConfigVariable.Height
+  - UCTools_ConfigVariables.ResolutionConfigVariable.Width
+  langs:
+  - csharp
+  - vb
+  name: ResolutionConfigVariable
+  nameWithType: ResolutionConfigVariable
+  fullName: UCTools_ConfigVariables.ResolutionConfigVariable
+  type: Class
+  source:
+    id: ResolutionConfigVariable
+    path: ''
+    startLine: 18786
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_ConfigVariables
+  summary: "\nSpecific resolution config variable for cleaner usage\n"
+  example: []
+  syntax:
+    content: >-
+      [Serializable]
+
+      public class ResolutionConfigVariable : EnumConfigVariable<ResolutionOption>
+    content.vb: >-
+      <Serializable>
+
+      Public Class ResolutionConfigVariable
+          Inherits EnumConfigVariable(Of ResolutionOption)
+  inheritance:
+  - System.Object
+  - UCTools_ConfigVariables.ConfigVariableBase
+  - UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}
+  inheritedMembers:
+  - UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}.ValueType
+  - UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}.Value
+  - UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}.IntValue
+  - UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}.DefaultValue
+  - UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}.ResetToDefault
+  - UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}.ValidateConfiguration(System.String@)
+  - UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}.GetValueAsObject
+  - UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}.SetValueFromObject(System.Object)
+  - UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}.GetValueAsString
+  - UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}.SetValueFromString(System.String)
+  - UCTools_ConfigVariables.ConfigVariableBase.name
+  - UCTools_ConfigVariables.ConfigVariableBase.description
+  - UCTools_ConfigVariables.ConfigVariableBase.flags
+  - UCTools_ConfigVariables.ConfigVariableBase.ChangeCheck
+  - UCTools_ConfigVariables.ConfigVariableBase.MarkChanged
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  attributes:
+  - type: System.SerializableAttribute
+    ctor: System.SerializableAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: UCTools_ConfigVariables.ResolutionConfigVariable.Width
+  commentId: P:UCTools_ConfigVariables.ResolutionConfigVariable.Width
+  id: Width
+  parent: UCTools_ConfigVariables.ResolutionConfigVariable
+  langs:
+  - csharp
+  - vb
+  name: Width
+  nameWithType: ResolutionConfigVariable.Width
+  fullName: UCTools_ConfigVariables.ResolutionConfigVariable.Width
+  type: Property
+  source:
+    id: Width
+    path: ''
+    startLine: 18790
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_ConfigVariables
+  summary: Get current resolution width
+  example: []
+  syntax:
+    content: public int Width { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property Width As Integer
+  overload: UCTools_ConfigVariables.ResolutionConfigVariable.Width*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: UCTools_ConfigVariables.ResolutionConfigVariable.Height
+  commentId: P:UCTools_ConfigVariables.ResolutionConfigVariable.Height
+  id: Height
+  parent: UCTools_ConfigVariables.ResolutionConfigVariable
+  langs:
+  - csharp
+  - vb
+  name: Height
+  nameWithType: ResolutionConfigVariable.Height
+  fullName: UCTools_ConfigVariables.ResolutionConfigVariable.Height
+  type: Property
+  source:
+    id: Height
+    path: ''
+    startLine: 18793
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_ConfigVariables
+  summary: Get current resolution height
+  example: []
+  syntax:
+    content: public int Height { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property Height As Integer
+  overload: UCTools_ConfigVariables.ResolutionConfigVariable.Height*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: UCTools_ConfigVariables.ResolutionConfigVariable.DisplayName
+  commentId: P:UCTools_ConfigVariables.ResolutionConfigVariable.DisplayName
+  id: DisplayName
+  parent: UCTools_ConfigVariables.ResolutionConfigVariable
+  langs:
+  - csharp
+  - vb
+  name: DisplayName
+  nameWithType: ResolutionConfigVariable.DisplayName
+  fullName: UCTools_ConfigVariables.ResolutionConfigVariable.DisplayName
+  type: Property
+  source:
+    id: DisplayName
+    path: ''
+    startLine: 18796
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_ConfigVariables
+  summary: Get current display name
+  example: []
+  syntax:
+    content: public string DisplayName { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property DisplayName As String
+  overload: UCTools_ConfigVariables.ResolutionConfigVariable.DisplayName*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: UCTools_ConfigVariables.ResolutionConfigVariable.#ctor(System.String,System.String,UCTools_ConfigVariables.ResolutionOption,UCTools_ConfigVariables.ConfigFlags)
+  commentId: M:UCTools_ConfigVariables.ResolutionConfigVariable.#ctor(System.String,System.String,UCTools_ConfigVariables.ResolutionOption,UCTools_ConfigVariables.ConfigFlags)
+  id: '#ctor(System.String,System.String,UCTools_ConfigVariables.ResolutionOption,UCTools_ConfigVariables.ConfigFlags)'
+  parent: UCTools_ConfigVariables.ResolutionConfigVariable
+  langs:
+  - csharp
+  - vb
+  name: ResolutionConfigVariable(String, String, ResolutionOption, ConfigFlags)
+  nameWithType: ResolutionConfigVariable.ResolutionConfigVariable(String, String, ResolutionOption, ConfigFlags)
+  fullName: UCTools_ConfigVariables.ResolutionConfigVariable.ResolutionConfigVariable(System.String, System.String, UCTools_ConfigVariables.ResolutionOption, UCTools_ConfigVariables.ConfigFlags)
+  type: Constructor
+  source:
+    id: .ctor
+    path: ''
+    startLine: 18798
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_ConfigVariables
+  syntax:
+    content: public ResolutionConfigVariable(string name, string description, ResolutionOption defaultValue, ConfigFlags flags = ConfigFlags.Save)
+    parameters:
+    - id: name
+      type: System.String
+    - id: description
+      type: System.String
+    - id: defaultValue
+      type: UCTools_ConfigVariables.ResolutionOption
+    - id: flags
+      type: UCTools_ConfigVariables.ConfigFlags
+    content.vb: Public Sub New(name As String, description As String, defaultValue As ResolutionOption, flags As ConfigFlags = ConfigFlags.Save)
+  overload: UCTools_ConfigVariables.ResolutionConfigVariable.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: UCTools_ConfigVariables.ResolutionConfigVariable.#ctor
+  commentId: M:UCTools_ConfigVariables.ResolutionConfigVariable.#ctor
+  id: '#ctor'
+  parent: UCTools_ConfigVariables.ResolutionConfigVariable
+  langs:
+  - csharp
+  - vb
+  name: ResolutionConfigVariable()
+  nameWithType: ResolutionConfigVariable.ResolutionConfigVariable()
+  fullName: UCTools_ConfigVariables.ResolutionConfigVariable.ResolutionConfigVariable()
+  type: Constructor
+  source:
+    id: .ctor
+    path: ''
+    startLine: 18803
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_ConfigVariables
+  syntax:
+    content: public ResolutionConfigVariable()
+    content.vb: Public Sub New
+  overload: UCTools_ConfigVariables.ResolutionConfigVariable.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: UCTools_ConfigVariables
+  commentId: N:UCTools_ConfigVariables
+  name: UCTools_ConfigVariables
+  nameWithType: UCTools_ConfigVariables
+  fullName: UCTools_ConfigVariables
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: UCTools_ConfigVariables.ConfigVariableBase
+  commentId: T:UCTools_ConfigVariables.ConfigVariableBase
+  parent: UCTools_ConfigVariables
+  name: ConfigVariableBase
+  nameWithType: ConfigVariableBase
+  fullName: UCTools_ConfigVariables.ConfigVariableBase
+- uid: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}
+  commentId: T:UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}
+  parent: UCTools_ConfigVariables
+  definition: UCTools_ConfigVariables.EnumConfigVariable`1
+  name: EnumConfigVariable<ResolutionOption>
+  nameWithType: EnumConfigVariable<ResolutionOption>
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<UCTools_ConfigVariables.ResolutionOption>
+  nameWithType.vb: EnumConfigVariable(Of ResolutionOption)
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of UCTools_ConfigVariables.ResolutionOption)
+  name.vb: EnumConfigVariable(Of ResolutionOption)
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1
+    name: EnumConfigVariable
+    nameWithType: EnumConfigVariable
+    fullName: UCTools_ConfigVariables.EnumConfigVariable
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: UCTools_ConfigVariables.ResolutionOption
+    name: ResolutionOption
+    nameWithType: ResolutionOption
+    fullName: UCTools_ConfigVariables.ResolutionOption
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1
+    name: EnumConfigVariable
+    nameWithType: EnumConfigVariable
+    fullName: UCTools_ConfigVariables.EnumConfigVariable
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: UCTools_ConfigVariables.ResolutionOption
+    name: ResolutionOption
+    nameWithType: ResolutionOption
+    fullName: UCTools_ConfigVariables.ResolutionOption
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}.ValueType
+  commentId: P:UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}.ValueType
+  parent: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}
+  definition: UCTools_ConfigVariables.EnumConfigVariable`1.ValueType
+  name: ValueType
+  nameWithType: EnumConfigVariable<ResolutionOption>.ValueType
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<UCTools_ConfigVariables.ResolutionOption>.ValueType
+  nameWithType.vb: EnumConfigVariable(Of ResolutionOption).ValueType
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of UCTools_ConfigVariables.ResolutionOption).ValueType
+- uid: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}.Value
+  commentId: P:UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}.Value
+  parent: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}
+  definition: UCTools_ConfigVariables.EnumConfigVariable`1.Value
+  name: Value
+  nameWithType: EnumConfigVariable<ResolutionOption>.Value
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<UCTools_ConfigVariables.ResolutionOption>.Value
+  nameWithType.vb: EnumConfigVariable(Of ResolutionOption).Value
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of UCTools_ConfigVariables.ResolutionOption).Value
+- uid: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}.IntValue
+  commentId: P:UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}.IntValue
+  parent: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}
+  definition: UCTools_ConfigVariables.EnumConfigVariable`1.IntValue
+  name: IntValue
+  nameWithType: EnumConfigVariable<ResolutionOption>.IntValue
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<UCTools_ConfigVariables.ResolutionOption>.IntValue
+  nameWithType.vb: EnumConfigVariable(Of ResolutionOption).IntValue
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of UCTools_ConfigVariables.ResolutionOption).IntValue
+- uid: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}.DefaultValue
+  commentId: P:UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}.DefaultValue
+  parent: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}
+  definition: UCTools_ConfigVariables.EnumConfigVariable`1.DefaultValue
+  name: DefaultValue
+  nameWithType: EnumConfigVariable<ResolutionOption>.DefaultValue
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<UCTools_ConfigVariables.ResolutionOption>.DefaultValue
+  nameWithType.vb: EnumConfigVariable(Of ResolutionOption).DefaultValue
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of UCTools_ConfigVariables.ResolutionOption).DefaultValue
+- uid: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}.ResetToDefault
+  commentId: M:UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}.ResetToDefault
+  parent: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}
+  definition: UCTools_ConfigVariables.EnumConfigVariable`1.ResetToDefault
+  name: ResetToDefault()
+  nameWithType: EnumConfigVariable<ResolutionOption>.ResetToDefault()
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<UCTools_ConfigVariables.ResolutionOption>.ResetToDefault()
+  nameWithType.vb: EnumConfigVariable(Of ResolutionOption).ResetToDefault()
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of UCTools_ConfigVariables.ResolutionOption).ResetToDefault()
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.ResetToDefault
+    name: ResetToDefault
+    nameWithType: EnumConfigVariable<ResolutionOption>.ResetToDefault
+    fullName: UCTools_ConfigVariables.EnumConfigVariable<UCTools_ConfigVariables.ResolutionOption>.ResetToDefault
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.ResetToDefault
+    name: ResetToDefault
+    nameWithType: EnumConfigVariable(Of ResolutionOption).ResetToDefault
+    fullName: UCTools_ConfigVariables.EnumConfigVariable(Of UCTools_ConfigVariables.ResolutionOption).ResetToDefault
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}.ValidateConfiguration(System.String@)
+  commentId: M:UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}.ValidateConfiguration(System.String@)
+  parent: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}
+  definition: UCTools_ConfigVariables.EnumConfigVariable`1.ValidateConfiguration(System.String@)
+  name: ValidateConfiguration(String)
+  nameWithType: EnumConfigVariable<ResolutionOption>.ValidateConfiguration(String)
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<UCTools_ConfigVariables.ResolutionOption>.ValidateConfiguration(System.String)
+  nameWithType.vb: EnumConfigVariable(Of ResolutionOption).ValidateConfiguration(String)
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of UCTools_ConfigVariables.ResolutionOption).ValidateConfiguration(System.String)
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.ValidateConfiguration(System.String@)
+    name: ValidateConfiguration
+    nameWithType: EnumConfigVariable<ResolutionOption>.ValidateConfiguration
+    fullName: UCTools_ConfigVariables.EnumConfigVariable<UCTools_ConfigVariables.ResolutionOption>.ValidateConfiguration
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.ValidateConfiguration(System.String@)
+    name: ValidateConfiguration
+    nameWithType: EnumConfigVariable(Of ResolutionOption).ValidateConfiguration
+    fullName: UCTools_ConfigVariables.EnumConfigVariable(Of UCTools_ConfigVariables.ResolutionOption).ValidateConfiguration
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}.GetValueAsObject
+  commentId: M:UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}.GetValueAsObject
+  parent: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}
+  definition: UCTools_ConfigVariables.EnumConfigVariable`1.GetValueAsObject
+  name: GetValueAsObject()
+  nameWithType: EnumConfigVariable<ResolutionOption>.GetValueAsObject()
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<UCTools_ConfigVariables.ResolutionOption>.GetValueAsObject()
+  nameWithType.vb: EnumConfigVariable(Of ResolutionOption).GetValueAsObject()
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of UCTools_ConfigVariables.ResolutionOption).GetValueAsObject()
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.GetValueAsObject
+    name: GetValueAsObject
+    nameWithType: EnumConfigVariable<ResolutionOption>.GetValueAsObject
+    fullName: UCTools_ConfigVariables.EnumConfigVariable<UCTools_ConfigVariables.ResolutionOption>.GetValueAsObject
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.GetValueAsObject
+    name: GetValueAsObject
+    nameWithType: EnumConfigVariable(Of ResolutionOption).GetValueAsObject
+    fullName: UCTools_ConfigVariables.EnumConfigVariable(Of UCTools_ConfigVariables.ResolutionOption).GetValueAsObject
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}.SetValueFromObject(System.Object)
+  commentId: M:UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}.SetValueFromObject(System.Object)
+  parent: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}
+  definition: UCTools_ConfigVariables.EnumConfigVariable`1.SetValueFromObject(System.Object)
+  name: SetValueFromObject(Object)
+  nameWithType: EnumConfigVariable<ResolutionOption>.SetValueFromObject(Object)
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<UCTools_ConfigVariables.ResolutionOption>.SetValueFromObject(System.Object)
+  nameWithType.vb: EnumConfigVariable(Of ResolutionOption).SetValueFromObject(Object)
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of UCTools_ConfigVariables.ResolutionOption).SetValueFromObject(System.Object)
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.SetValueFromObject(System.Object)
+    name: SetValueFromObject
+    nameWithType: EnumConfigVariable<ResolutionOption>.SetValueFromObject
+    fullName: UCTools_ConfigVariables.EnumConfigVariable<UCTools_ConfigVariables.ResolutionOption>.SetValueFromObject
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.SetValueFromObject(System.Object)
+    name: SetValueFromObject
+    nameWithType: EnumConfigVariable(Of ResolutionOption).SetValueFromObject
+    fullName: UCTools_ConfigVariables.EnumConfigVariable(Of UCTools_ConfigVariables.ResolutionOption).SetValueFromObject
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}.GetValueAsString
+  commentId: M:UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}.GetValueAsString
+  parent: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}
+  definition: UCTools_ConfigVariables.EnumConfigVariable`1.GetValueAsString
+  name: GetValueAsString()
+  nameWithType: EnumConfigVariable<ResolutionOption>.GetValueAsString()
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<UCTools_ConfigVariables.ResolutionOption>.GetValueAsString()
+  nameWithType.vb: EnumConfigVariable(Of ResolutionOption).GetValueAsString()
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of UCTools_ConfigVariables.ResolutionOption).GetValueAsString()
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.GetValueAsString
+    name: GetValueAsString
+    nameWithType: EnumConfigVariable<ResolutionOption>.GetValueAsString
+    fullName: UCTools_ConfigVariables.EnumConfigVariable<UCTools_ConfigVariables.ResolutionOption>.GetValueAsString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.GetValueAsString
+    name: GetValueAsString
+    nameWithType: EnumConfigVariable(Of ResolutionOption).GetValueAsString
+    fullName: UCTools_ConfigVariables.EnumConfigVariable(Of UCTools_ConfigVariables.ResolutionOption).GetValueAsString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}.SetValueFromString(System.String)
+  commentId: M:UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}.SetValueFromString(System.String)
+  parent: UCTools_ConfigVariables.EnumConfigVariable{UCTools_ConfigVariables.ResolutionOption}
+  definition: UCTools_ConfigVariables.EnumConfigVariable`1.SetValueFromString(System.String)
+  name: SetValueFromString(String)
+  nameWithType: EnumConfigVariable<ResolutionOption>.SetValueFromString(String)
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<UCTools_ConfigVariables.ResolutionOption>.SetValueFromString(System.String)
+  nameWithType.vb: EnumConfigVariable(Of ResolutionOption).SetValueFromString(String)
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of UCTools_ConfigVariables.ResolutionOption).SetValueFromString(System.String)
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.SetValueFromString(System.String)
+    name: SetValueFromString
+    nameWithType: EnumConfigVariable<ResolutionOption>.SetValueFromString
+    fullName: UCTools_ConfigVariables.EnumConfigVariable<UCTools_ConfigVariables.ResolutionOption>.SetValueFromString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.SetValueFromString(System.String)
+    name: SetValueFromString
+    nameWithType: EnumConfigVariable(Of ResolutionOption).SetValueFromString
+    fullName: UCTools_ConfigVariables.EnumConfigVariable(Of UCTools_ConfigVariables.ResolutionOption).SetValueFromString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: UCTools_ConfigVariables.ConfigVariableBase.name
+  commentId: F:UCTools_ConfigVariables.ConfigVariableBase.name
+  parent: UCTools_ConfigVariables.ConfigVariableBase
+  name: name
+  nameWithType: ConfigVariableBase.name
+  fullName: UCTools_ConfigVariables.ConfigVariableBase.name
+- uid: UCTools_ConfigVariables.ConfigVariableBase.description
+  commentId: F:UCTools_ConfigVariables.ConfigVariableBase.description
+  parent: UCTools_ConfigVariables.ConfigVariableBase
+  name: description
+  nameWithType: ConfigVariableBase.description
+  fullName: UCTools_ConfigVariables.ConfigVariableBase.description
+- uid: UCTools_ConfigVariables.ConfigVariableBase.flags
+  commentId: F:UCTools_ConfigVariables.ConfigVariableBase.flags
+  parent: UCTools_ConfigVariables.ConfigVariableBase
+  name: flags
+  nameWithType: ConfigVariableBase.flags
+  fullName: UCTools_ConfigVariables.ConfigVariableBase.flags
+- uid: UCTools_ConfigVariables.ConfigVariableBase.ChangeCheck
+  commentId: M:UCTools_ConfigVariables.ConfigVariableBase.ChangeCheck
+  parent: UCTools_ConfigVariables.ConfigVariableBase
+  name: ChangeCheck()
+  nameWithType: ConfigVariableBase.ChangeCheck()
+  fullName: UCTools_ConfigVariables.ConfigVariableBase.ChangeCheck()
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.ConfigVariableBase.ChangeCheck
+    name: ChangeCheck
+    nameWithType: ConfigVariableBase.ChangeCheck
+    fullName: UCTools_ConfigVariables.ConfigVariableBase.ChangeCheck
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: UCTools_ConfigVariables.ConfigVariableBase.ChangeCheck
+    name: ChangeCheck
+    nameWithType: ConfigVariableBase.ChangeCheck
+    fullName: UCTools_ConfigVariables.ConfigVariableBase.ChangeCheck
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: UCTools_ConfigVariables.ConfigVariableBase.MarkChanged
+  commentId: M:UCTools_ConfigVariables.ConfigVariableBase.MarkChanged
+  parent: UCTools_ConfigVariables.ConfigVariableBase
+  name: MarkChanged()
+  nameWithType: ConfigVariableBase.MarkChanged()
+  fullName: UCTools_ConfigVariables.ConfigVariableBase.MarkChanged()
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.ConfigVariableBase.MarkChanged
+    name: MarkChanged
+    nameWithType: ConfigVariableBase.MarkChanged
+    fullName: UCTools_ConfigVariables.ConfigVariableBase.MarkChanged
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: UCTools_ConfigVariables.ConfigVariableBase.MarkChanged
+    name: MarkChanged
+    nameWithType: ConfigVariableBase.MarkChanged
+    fullName: UCTools_ConfigVariables.ConfigVariableBase.MarkChanged
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: UCTools_ConfigVariables.EnumConfigVariable`1
+  commentId: T:UCTools_ConfigVariables.EnumConfigVariable`1
+  name: EnumConfigVariable<T>
+  nameWithType: EnumConfigVariable<T>
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<T>
+  nameWithType.vb: EnumConfigVariable(Of T)
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of T)
+  name.vb: EnumConfigVariable(Of T)
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1
+    name: EnumConfigVariable
+    nameWithType: EnumConfigVariable
+    fullName: UCTools_ConfigVariables.EnumConfigVariable
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1
+    name: EnumConfigVariable
+    nameWithType: EnumConfigVariable
+    fullName: UCTools_ConfigVariables.EnumConfigVariable
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: UCTools_ConfigVariables.EnumConfigVariable`1.ValueType
+  commentId: P:UCTools_ConfigVariables.EnumConfigVariable`1.ValueType
+  name: ValueType
+  nameWithType: EnumConfigVariable<T>.ValueType
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<T>.ValueType
+  nameWithType.vb: EnumConfigVariable(Of T).ValueType
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of T).ValueType
+- uid: UCTools_ConfigVariables.EnumConfigVariable`1.Value
+  commentId: P:UCTools_ConfigVariables.EnumConfigVariable`1.Value
+  name: Value
+  nameWithType: EnumConfigVariable<T>.Value
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<T>.Value
+  nameWithType.vb: EnumConfigVariable(Of T).Value
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of T).Value
+- uid: UCTools_ConfigVariables.EnumConfigVariable`1.IntValue
+  commentId: P:UCTools_ConfigVariables.EnumConfigVariable`1.IntValue
+  name: IntValue
+  nameWithType: EnumConfigVariable<T>.IntValue
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<T>.IntValue
+  nameWithType.vb: EnumConfigVariable(Of T).IntValue
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of T).IntValue
+- uid: UCTools_ConfigVariables.EnumConfigVariable`1.DefaultValue
+  commentId: P:UCTools_ConfigVariables.EnumConfigVariable`1.DefaultValue
+  name: DefaultValue
+  nameWithType: EnumConfigVariable<T>.DefaultValue
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<T>.DefaultValue
+  nameWithType.vb: EnumConfigVariable(Of T).DefaultValue
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of T).DefaultValue
+- uid: UCTools_ConfigVariables.EnumConfigVariable`1.ResetToDefault
+  commentId: M:UCTools_ConfigVariables.EnumConfigVariable`1.ResetToDefault
+  name: ResetToDefault()
+  nameWithType: EnumConfigVariable<T>.ResetToDefault()
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<T>.ResetToDefault()
+  nameWithType.vb: EnumConfigVariable(Of T).ResetToDefault()
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of T).ResetToDefault()
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.ResetToDefault
+    name: ResetToDefault
+    nameWithType: EnumConfigVariable<T>.ResetToDefault
+    fullName: UCTools_ConfigVariables.EnumConfigVariable<T>.ResetToDefault
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.ResetToDefault
+    name: ResetToDefault
+    nameWithType: EnumConfigVariable(Of T).ResetToDefault
+    fullName: UCTools_ConfigVariables.EnumConfigVariable(Of T).ResetToDefault
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: UCTools_ConfigVariables.EnumConfigVariable`1.ValidateConfiguration(System.String@)
+  commentId: M:UCTools_ConfigVariables.EnumConfigVariable`1.ValidateConfiguration(System.String@)
+  isExternal: true
+  name: ValidateConfiguration(String)
+  nameWithType: EnumConfigVariable<T>.ValidateConfiguration(String)
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<T>.ValidateConfiguration(System.String)
+  nameWithType.vb: EnumConfigVariable(Of T).ValidateConfiguration(String)
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of T).ValidateConfiguration(System.String)
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.ValidateConfiguration(System.String@)
+    name: ValidateConfiguration
+    nameWithType: EnumConfigVariable<T>.ValidateConfiguration
+    fullName: UCTools_ConfigVariables.EnumConfigVariable<T>.ValidateConfiguration
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.ValidateConfiguration(System.String@)
+    name: ValidateConfiguration
+    nameWithType: EnumConfigVariable(Of T).ValidateConfiguration
+    fullName: UCTools_ConfigVariables.EnumConfigVariable(Of T).ValidateConfiguration
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: UCTools_ConfigVariables.EnumConfigVariable`1.GetValueAsObject
+  commentId: M:UCTools_ConfigVariables.EnumConfigVariable`1.GetValueAsObject
+  name: GetValueAsObject()
+  nameWithType: EnumConfigVariable<T>.GetValueAsObject()
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<T>.GetValueAsObject()
+  nameWithType.vb: EnumConfigVariable(Of T).GetValueAsObject()
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of T).GetValueAsObject()
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.GetValueAsObject
+    name: GetValueAsObject
+    nameWithType: EnumConfigVariable<T>.GetValueAsObject
+    fullName: UCTools_ConfigVariables.EnumConfigVariable<T>.GetValueAsObject
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.GetValueAsObject
+    name: GetValueAsObject
+    nameWithType: EnumConfigVariable(Of T).GetValueAsObject
+    fullName: UCTools_ConfigVariables.EnumConfigVariable(Of T).GetValueAsObject
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: UCTools_ConfigVariables.EnumConfigVariable`1.SetValueFromObject(System.Object)
+  commentId: M:UCTools_ConfigVariables.EnumConfigVariable`1.SetValueFromObject(System.Object)
+  isExternal: true
+  name: SetValueFromObject(Object)
+  nameWithType: EnumConfigVariable<T>.SetValueFromObject(Object)
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<T>.SetValueFromObject(System.Object)
+  nameWithType.vb: EnumConfigVariable(Of T).SetValueFromObject(Object)
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of T).SetValueFromObject(System.Object)
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.SetValueFromObject(System.Object)
+    name: SetValueFromObject
+    nameWithType: EnumConfigVariable<T>.SetValueFromObject
+    fullName: UCTools_ConfigVariables.EnumConfigVariable<T>.SetValueFromObject
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.SetValueFromObject(System.Object)
+    name: SetValueFromObject
+    nameWithType: EnumConfigVariable(Of T).SetValueFromObject
+    fullName: UCTools_ConfigVariables.EnumConfigVariable(Of T).SetValueFromObject
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: UCTools_ConfigVariables.EnumConfigVariable`1.GetValueAsString
+  commentId: M:UCTools_ConfigVariables.EnumConfigVariable`1.GetValueAsString
+  name: GetValueAsString()
+  nameWithType: EnumConfigVariable<T>.GetValueAsString()
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<T>.GetValueAsString()
+  nameWithType.vb: EnumConfigVariable(Of T).GetValueAsString()
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of T).GetValueAsString()
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.GetValueAsString
+    name: GetValueAsString
+    nameWithType: EnumConfigVariable<T>.GetValueAsString
+    fullName: UCTools_ConfigVariables.EnumConfigVariable<T>.GetValueAsString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.GetValueAsString
+    name: GetValueAsString
+    nameWithType: EnumConfigVariable(Of T).GetValueAsString
+    fullName: UCTools_ConfigVariables.EnumConfigVariable(Of T).GetValueAsString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: UCTools_ConfigVariables.EnumConfigVariable`1.SetValueFromString(System.String)
+  commentId: M:UCTools_ConfigVariables.EnumConfigVariable`1.SetValueFromString(System.String)
+  isExternal: true
+  name: SetValueFromString(String)
+  nameWithType: EnumConfigVariable<T>.SetValueFromString(String)
+  fullName: UCTools_ConfigVariables.EnumConfigVariable<T>.SetValueFromString(System.String)
+  nameWithType.vb: EnumConfigVariable(Of T).SetValueFromString(String)
+  fullName.vb: UCTools_ConfigVariables.EnumConfigVariable(Of T).SetValueFromString(System.String)
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.SetValueFromString(System.String)
+    name: SetValueFromString
+    nameWithType: EnumConfigVariable<T>.SetValueFromString
+    fullName: UCTools_ConfigVariables.EnumConfigVariable<T>.SetValueFromString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1.SetValueFromString(System.String)
+    name: SetValueFromString
+    nameWithType: EnumConfigVariable(Of T).SetValueFromString
+    fullName: UCTools_ConfigVariables.EnumConfigVariable(Of T).SetValueFromString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: UCTools_ConfigVariables.ResolutionConfigVariable.Width*
+  commentId: Overload:UCTools_ConfigVariables.ResolutionConfigVariable.Width
+  name: Width
+  nameWithType: ResolutionConfigVariable.Width
+  fullName: UCTools_ConfigVariables.ResolutionConfigVariable.Width
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: UCTools_ConfigVariables.ResolutionConfigVariable.Height*
+  commentId: Overload:UCTools_ConfigVariables.ResolutionConfigVariable.Height
+  name: Height
+  nameWithType: ResolutionConfigVariable.Height
+  fullName: UCTools_ConfigVariables.ResolutionConfigVariable.Height
+- uid: UCTools_ConfigVariables.ResolutionConfigVariable.DisplayName*
+  commentId: Overload:UCTools_ConfigVariables.ResolutionConfigVariable.DisplayName
+  name: DisplayName
+  nameWithType: ResolutionConfigVariable.DisplayName
+  fullName: UCTools_ConfigVariables.ResolutionConfigVariable.DisplayName
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: UCTools_ConfigVariables.ResolutionConfigVariable.#ctor*
+  commentId: Overload:UCTools_ConfigVariables.ResolutionConfigVariable.#ctor
+  name: ResolutionConfigVariable
+  nameWithType: ResolutionConfigVariable.ResolutionConfigVariable
+  fullName: UCTools_ConfigVariables.ResolutionConfigVariable.ResolutionConfigVariable
+- uid: UCTools_ConfigVariables.ResolutionOption
+  commentId: T:UCTools_ConfigVariables.ResolutionOption
+  parent: UCTools_ConfigVariables
+  name: ResolutionOption
+  nameWithType: ResolutionOption
+  fullName: UCTools_ConfigVariables.ResolutionOption
+- uid: UCTools_ConfigVariables.ConfigFlags
+  commentId: T:UCTools_ConfigVariables.ConfigFlags
+  parent: UCTools_ConfigVariables
+  name: ConfigFlags
+  nameWithType: ConfigFlags
+  fullName: UCTools_ConfigVariables.ConfigFlags

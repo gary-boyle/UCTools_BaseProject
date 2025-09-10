@@ -1,0 +1,306 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.ConsoleTool.IConsoleContext
+  commentId: T:GameFramework.ConsoleTool.IConsoleContext
+  id: IConsoleContext
+  parent: GameFramework.ConsoleTool
+  children:
+  - GameFramework.ConsoleTool.IConsoleContext.EnqueueCommand(System.String)
+  - GameFramework.ConsoleTool.IConsoleContext.IsCommandRegistered(System.String)
+  - GameFramework.ConsoleTool.IConsoleContext.SetWaitForLoad(System.Boolean)
+  - GameFramework.ConsoleTool.IConsoleContext.SetWaitFrames(System.Int32)
+  - GameFramework.ConsoleTool.IConsoleContext.WriteError(System.String)
+  - GameFramework.ConsoleTool.IConsoleContext.WriteLine(System.String)
+  - GameFramework.ConsoleTool.IConsoleContext.WriteWarning(System.String)
+  langs:
+  - csharp
+  - vb
+  name: IConsoleContext
+  nameWithType: IConsoleContext
+  fullName: GameFramework.ConsoleTool.IConsoleContext
+  type: Interface
+  source:
+    id: IConsoleContext
+    path: ''
+    startLine: 2553
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  summary: "\nContext interface providing access to console functionality\nAllows commands to interact with the console system safely without direct access to internal state\nActs as a controlled facade that prevents commands from breaking console integrity\n"
+  example: []
+  syntax:
+    content: public interface IConsoleContext
+    content.vb: Public Interface IConsoleContext
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: GameFramework.ConsoleTool.IConsoleContext.WriteLine(System.String)
+  commentId: M:GameFramework.ConsoleTool.IConsoleContext.WriteLine(System.String)
+  id: WriteLine(System.String)
+  parent: GameFramework.ConsoleTool.IConsoleContext
+  langs:
+  - csharp
+  - vb
+  name: WriteLine(String)
+  nameWithType: IConsoleContext.WriteLine(String)
+  fullName: GameFramework.ConsoleTool.IConsoleContext.WriteLine(System.String)
+  type: Method
+  source:
+    id: WriteLine
+    path: ''
+    startLine: 2560
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  summary: "\nWrites a standard message to the console output\nMessage will be displayed in the console UI and logged to Unity&apos;s console\n"
+  example: []
+  syntax:
+    content: void WriteLine(string message)
+    parameters:
+    - id: message
+      type: System.String
+      description: The message text to display
+    content.vb: Sub WriteLine(message As String)
+  overload: GameFramework.ConsoleTool.IConsoleContext.WriteLine*
+- uid: GameFramework.ConsoleTool.IConsoleContext.WriteError(System.String)
+  commentId: M:GameFramework.ConsoleTool.IConsoleContext.WriteError(System.String)
+  id: WriteError(System.String)
+  parent: GameFramework.ConsoleTool.IConsoleContext
+  langs:
+  - csharp
+  - vb
+  name: WriteError(String)
+  nameWithType: IConsoleContext.WriteError(String)
+  fullName: GameFramework.ConsoleTool.IConsoleContext.WriteError(System.String)
+  type: Method
+  source:
+    id: WriteError
+    path: ''
+    startLine: 2567
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  summary: "\nWrites an error message to the console output with error formatting\nTypically displayed in red or with error prefix to indicate failure\n"
+  example: []
+  syntax:
+    content: void WriteError(string message)
+    parameters:
+    - id: message
+      type: System.String
+      description: The error message to display
+    content.vb: Sub WriteError(message As String)
+  overload: GameFramework.ConsoleTool.IConsoleContext.WriteError*
+- uid: GameFramework.ConsoleTool.IConsoleContext.WriteWarning(System.String)
+  commentId: M:GameFramework.ConsoleTool.IConsoleContext.WriteWarning(System.String)
+  id: WriteWarning(System.String)
+  parent: GameFramework.ConsoleTool.IConsoleContext
+  langs:
+  - csharp
+  - vb
+  name: WriteWarning(String)
+  nameWithType: IConsoleContext.WriteWarning(String)
+  fullName: GameFramework.ConsoleTool.IConsoleContext.WriteWarning(System.String)
+  type: Method
+  source:
+    id: WriteWarning
+    path: ''
+    startLine: 2574
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  summary: "\nWrites a warning message to the console output with warning formatting\nTypically displayed in yellow or with warning prefix to indicate caution\n"
+  example: []
+  syntax:
+    content: void WriteWarning(string message)
+    parameters:
+    - id: message
+      type: System.String
+      description: The warning message to display
+    content.vb: Sub WriteWarning(message As String)
+  overload: GameFramework.ConsoleTool.IConsoleContext.WriteWarning*
+- uid: GameFramework.ConsoleTool.IConsoleContext.EnqueueCommand(System.String)
+  commentId: M:GameFramework.ConsoleTool.IConsoleContext.EnqueueCommand(System.String)
+  id: EnqueueCommand(System.String)
+  parent: GameFramework.ConsoleTool.IConsoleContext
+  langs:
+  - csharp
+  - vb
+  name: EnqueueCommand(String)
+  nameWithType: IConsoleContext.EnqueueCommand(String)
+  fullName: GameFramework.ConsoleTool.IConsoleContext.EnqueueCommand(System.String)
+  type: Method
+  source:
+    id: EnqueueCommand
+    path: ''
+    startLine: 2582
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  summary: "\nAdds a command to the execution queue without adding it to command history\nUseful for batch operations, scripting, and command chaining\nCommands are executed in FIFO order during the next console update\n"
+  example: []
+  syntax:
+    content: void EnqueueCommand(string command)
+    parameters:
+    - id: command
+      type: System.String
+      description: The command string to queue (including arguments)
+    content.vb: Sub EnqueueCommand(command As String)
+  overload: GameFramework.ConsoleTool.IConsoleContext.EnqueueCommand*
+- uid: GameFramework.ConsoleTool.IConsoleContext.SetWaitFrames(System.Int32)
+  commentId: M:GameFramework.ConsoleTool.IConsoleContext.SetWaitFrames(System.Int32)
+  id: SetWaitFrames(System.Int32)
+  parent: GameFramework.ConsoleTool.IConsoleContext
+  langs:
+  - csharp
+  - vb
+  name: SetWaitFrames(Int32)
+  nameWithType: IConsoleContext.SetWaitFrames(Int32)
+  fullName: GameFramework.ConsoleTool.IConsoleContext.SetWaitFrames(System.Int32)
+  type: Method
+  source:
+    id: SetWaitFrames
+    path: ''
+    startLine: 2590
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  summary: "\nSets the number of frames to wait before processing the next queued command\nUseful for timing-sensitive operations and ensuring proper frame sequencing\nCommand execution will pause until the specified number of frames have passed\n"
+  example: []
+  syntax:
+    content: void SetWaitFrames(int frames)
+    parameters:
+    - id: frames
+      type: System.Int32
+      description: Number of frames to wait (must be >= 0)
+    content.vb: Sub SetWaitFrames(frames As Integer)
+  overload: GameFramework.ConsoleTool.IConsoleContext.SetWaitFrames*
+- uid: GameFramework.ConsoleTool.IConsoleContext.SetWaitForLoad(System.Boolean)
+  commentId: M:GameFramework.ConsoleTool.IConsoleContext.SetWaitForLoad(System.Boolean)
+  id: SetWaitForLoad(System.Boolean)
+  parent: GameFramework.ConsoleTool.IConsoleContext
+  langs:
+  - csharp
+  - vb
+  name: SetWaitForLoad(Boolean)
+  nameWithType: IConsoleContext.SetWaitForLoad(Boolean)
+  fullName: GameFramework.ConsoleTool.IConsoleContext.SetWaitForLoad(System.Boolean)
+  type: Method
+  source:
+    id: SetWaitForLoad
+    path: ''
+    startLine: 2598
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  summary: "\nSets a flag to wait for level/scene loading to complete before processing next command\nEssential for commands that depend on scene state or need to execute after scene transitions\nCommand execution will pause until the current level finishes loading\n"
+  example: []
+  syntax:
+    content: void SetWaitForLoad(bool wait)
+    parameters:
+    - id: wait
+      type: System.Boolean
+      description: True to wait for level load completion, false to continue normally
+    content.vb: Sub SetWaitForLoad(wait As Boolean)
+  overload: GameFramework.ConsoleTool.IConsoleContext.SetWaitForLoad*
+- uid: GameFramework.ConsoleTool.IConsoleContext.IsCommandRegistered(System.String)
+  commentId: M:GameFramework.ConsoleTool.IConsoleContext.IsCommandRegistered(System.String)
+  id: IsCommandRegistered(System.String)
+  parent: GameFramework.ConsoleTool.IConsoleContext
+  langs:
+  - csharp
+  - vb
+  name: IsCommandRegistered(String)
+  nameWithType: IConsoleContext.IsCommandRegistered(String)
+  fullName: GameFramework.ConsoleTool.IConsoleContext.IsCommandRegistered(System.String)
+  type: Method
+  source:
+    id: IsCommandRegistered
+    path: ''
+    startLine: 2607
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  summary: "\nChecks if a command with the specified name is currently registered in the system\nUseful for conditional command execution and validation in complex command scripts\nCommand names are case-insensitive\n"
+  example: []
+  syntax:
+    content: bool IsCommandRegistered(string commandName)
+    parameters:
+    - id: commandName
+      type: System.String
+      description: The name of the command to check
+    return:
+      type: System.Boolean
+      description: True if the command is registered and available for execution
+    content.vb: Function IsCommandRegistered(commandName As String) As Boolean
+  overload: GameFramework.ConsoleTool.IConsoleContext.IsCommandRegistered*
+references:
+- uid: GameFramework.ConsoleTool
+  commentId: N:GameFramework.ConsoleTool
+  name: GameFramework.ConsoleTool
+  nameWithType: GameFramework.ConsoleTool
+  fullName: GameFramework.ConsoleTool
+- uid: GameFramework.ConsoleTool.IConsoleContext.WriteLine*
+  commentId: Overload:GameFramework.ConsoleTool.IConsoleContext.WriteLine
+  name: WriteLine
+  nameWithType: IConsoleContext.WriteLine
+  fullName: GameFramework.ConsoleTool.IConsoleContext.WriteLine
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: GameFramework.ConsoleTool.IConsoleContext.WriteError*
+  commentId: Overload:GameFramework.ConsoleTool.IConsoleContext.WriteError
+  name: WriteError
+  nameWithType: IConsoleContext.WriteError
+  fullName: GameFramework.ConsoleTool.IConsoleContext.WriteError
+- uid: GameFramework.ConsoleTool.IConsoleContext.WriteWarning*
+  commentId: Overload:GameFramework.ConsoleTool.IConsoleContext.WriteWarning
+  name: WriteWarning
+  nameWithType: IConsoleContext.WriteWarning
+  fullName: GameFramework.ConsoleTool.IConsoleContext.WriteWarning
+- uid: GameFramework.ConsoleTool.IConsoleContext.EnqueueCommand*
+  commentId: Overload:GameFramework.ConsoleTool.IConsoleContext.EnqueueCommand
+  name: EnqueueCommand
+  nameWithType: IConsoleContext.EnqueueCommand
+  fullName: GameFramework.ConsoleTool.IConsoleContext.EnqueueCommand
+- uid: GameFramework.ConsoleTool.IConsoleContext.SetWaitFrames*
+  commentId: Overload:GameFramework.ConsoleTool.IConsoleContext.SetWaitFrames
+  name: SetWaitFrames
+  nameWithType: IConsoleContext.SetWaitFrames
+  fullName: GameFramework.ConsoleTool.IConsoleContext.SetWaitFrames
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: GameFramework.ConsoleTool.IConsoleContext.SetWaitForLoad*
+  commentId: Overload:GameFramework.ConsoleTool.IConsoleContext.SetWaitForLoad
+  name: SetWaitForLoad
+  nameWithType: IConsoleContext.SetWaitForLoad
+  fullName: GameFramework.ConsoleTool.IConsoleContext.SetWaitForLoad
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: GameFramework.ConsoleTool.IConsoleContext.IsCommandRegistered*
+  commentId: Overload:GameFramework.ConsoleTool.IConsoleContext.IsCommandRegistered
+  name: IsCommandRegistered
+  nameWithType: IConsoleContext.IsCommandRegistered
+  fullName: GameFramework.ConsoleTool.IConsoleContext.IsCommandRegistered

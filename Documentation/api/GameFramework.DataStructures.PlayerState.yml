@@ -1,0 +1,835 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.DataStructures.PlayerState
+  commentId: T:GameFramework.DataStructures.PlayerState
+  id: PlayerState
+  parent: GameFramework.DataStructures
+  children:
+  - GameFramework.DataStructures.PlayerState.CreateDefault(System.String)
+  - GameFramework.DataStructures.PlayerState.experience
+  - GameFramework.DataStructures.PlayerState.health
+  - GameFramework.DataStructures.PlayerState.inventory
+  - GameFramework.DataStructures.PlayerState.level
+  - GameFramework.DataStructures.PlayerState.maxHealth
+  - GameFramework.DataStructures.PlayerState.position
+  - GameFramework.DataStructures.PlayerState.rotation
+  - GameFramework.DataStructures.PlayerState.unlockedAbilities
+  langs:
+  - csharp
+  - vb
+  name: PlayerState
+  nameWithType: PlayerState
+  fullName: GameFramework.DataStructures.PlayerState
+  type: Class
+  source:
+    id: PlayerState
+    path: ''
+    startLine: 3865
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.DataStructures
+  summary: "\nPlayer-specific state data\n"
+  example: []
+  syntax:
+    content: public class PlayerState
+    content.vb: Public Class PlayerState
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: GameFramework.DataStructures.PlayerState.level
+  commentId: F:GameFramework.DataStructures.PlayerState.level
+  id: level
+  parent: GameFramework.DataStructures.PlayerState
+  langs:
+  - csharp
+  - vb
+  name: level
+  nameWithType: PlayerState.level
+  fullName: GameFramework.DataStructures.PlayerState.level
+  type: Field
+  source:
+    id: level
+    path: ''
+    startLine: 3868
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.DataStructures
+  syntax:
+    content: public int level
+    return:
+      type: System.Int32
+    content.vb: Public level As Integer
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.DataStructures.PlayerState.experience
+  commentId: F:GameFramework.DataStructures.PlayerState.experience
+  id: experience
+  parent: GameFramework.DataStructures.PlayerState
+  langs:
+  - csharp
+  - vb
+  name: experience
+  nameWithType: PlayerState.experience
+  fullName: GameFramework.DataStructures.PlayerState.experience
+  type: Field
+  source:
+    id: experience
+    path: ''
+    startLine: 3869
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.DataStructures
+  syntax:
+    content: public float experience
+    return:
+      type: System.Single
+    content.vb: Public experience As Single
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.DataStructures.PlayerState.health
+  commentId: F:GameFramework.DataStructures.PlayerState.health
+  id: health
+  parent: GameFramework.DataStructures.PlayerState
+  langs:
+  - csharp
+  - vb
+  name: health
+  nameWithType: PlayerState.health
+  fullName: GameFramework.DataStructures.PlayerState.health
+  type: Field
+  source:
+    id: health
+    path: ''
+    startLine: 3870
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.DataStructures
+  syntax:
+    content: public int health
+    return:
+      type: System.Int32
+    content.vb: Public health As Integer
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.DataStructures.PlayerState.maxHealth
+  commentId: F:GameFramework.DataStructures.PlayerState.maxHealth
+  id: maxHealth
+  parent: GameFramework.DataStructures.PlayerState
+  langs:
+  - csharp
+  - vb
+  name: maxHealth
+  nameWithType: PlayerState.maxHealth
+  fullName: GameFramework.DataStructures.PlayerState.maxHealth
+  type: Field
+  source:
+    id: maxHealth
+    path: ''
+    startLine: 3871
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.DataStructures
+  syntax:
+    content: public int maxHealth
+    return:
+      type: System.Int32
+    content.vb: Public maxHealth As Integer
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.DataStructures.PlayerState.position
+  commentId: F:GameFramework.DataStructures.PlayerState.position
+  id: position
+  parent: GameFramework.DataStructures.PlayerState
+  langs:
+  - csharp
+  - vb
+  name: position
+  nameWithType: PlayerState.position
+  fullName: GameFramework.DataStructures.PlayerState.position
+  type: Field
+  source:
+    id: position
+    path: ''
+    startLine: 3872
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.DataStructures
+  syntax:
+    content: public Vector3 position
+    return:
+      type: Vector3
+    content.vb: Public position As Vector3
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.DataStructures.PlayerState.rotation
+  commentId: F:GameFramework.DataStructures.PlayerState.rotation
+  id: rotation
+  parent: GameFramework.DataStructures.PlayerState
+  langs:
+  - csharp
+  - vb
+  name: rotation
+  nameWithType: PlayerState.rotation
+  fullName: GameFramework.DataStructures.PlayerState.rotation
+  type: Field
+  source:
+    id: rotation
+    path: ''
+    startLine: 3873
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.DataStructures
+  syntax:
+    content: public Vector3 rotation
+    return:
+      type: Vector3
+    content.vb: Public rotation As Vector3
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.DataStructures.PlayerState.inventory
+  commentId: F:GameFramework.DataStructures.PlayerState.inventory
+  id: inventory
+  parent: GameFramework.DataStructures.PlayerState
+  langs:
+  - csharp
+  - vb
+  name: inventory
+  nameWithType: PlayerState.inventory
+  fullName: GameFramework.DataStructures.PlayerState.inventory
+  type: Field
+  source:
+    id: inventory
+    path: ''
+    startLine: 3874
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.DataStructures
+  syntax:
+    content: public Dictionary<string, int> inventory
+    return:
+      type: System.Collections.Generic.Dictionary{System.String,System.Int32}
+    content.vb: Public inventory As Dictionary(Of String, Integer)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.DataStructures.PlayerState.unlockedAbilities
+  commentId: F:GameFramework.DataStructures.PlayerState.unlockedAbilities
+  id: unlockedAbilities
+  parent: GameFramework.DataStructures.PlayerState
+  langs:
+  - csharp
+  - vb
+  name: unlockedAbilities
+  nameWithType: PlayerState.unlockedAbilities
+  fullName: GameFramework.DataStructures.PlayerState.unlockedAbilities
+  type: Field
+  source:
+    id: unlockedAbilities
+    path: ''
+    startLine: 3875
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.DataStructures
+  syntax:
+    content: public List<string> unlockedAbilities
+    return:
+      type: System.Collections.Generic.List{System.String}
+    content.vb: Public unlockedAbilities As List(Of String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.DataStructures.PlayerState.CreateDefault(System.String)
+  commentId: M:GameFramework.DataStructures.PlayerState.CreateDefault(System.String)
+  id: CreateDefault(System.String)
+  parent: GameFramework.DataStructures.PlayerState
+  langs:
+  - csharp
+  - vb
+  name: CreateDefault(String)
+  nameWithType: PlayerState.CreateDefault(String)
+  fullName: GameFramework.DataStructures.PlayerState.CreateDefault(System.String)
+  type: Method
+  source:
+    id: CreateDefault
+    path: ''
+    startLine: 3877
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.DataStructures
+  syntax:
+    content: public static PlayerState CreateDefault(string difficulty)
+    parameters:
+    - id: difficulty
+      type: System.String
+    return:
+      type: GameFramework.DataStructures.PlayerState
+    content.vb: Public Shared Function CreateDefault(difficulty As String) As PlayerState
+  overload: GameFramework.DataStructures.PlayerState.CreateDefault*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: GameFramework.DataStructures
+  commentId: N:GameFramework.DataStructures
+  name: GameFramework.DataStructures
+  nameWithType: GameFramework.DataStructures
+  fullName: GameFramework.DataStructures
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  name: Single
+  nameWithType: Single
+  fullName: System.Single
+- uid: Vector3
+  isExternal: true
+  name: Vector3
+  nameWithType: Vector3
+  fullName: Vector3
+- uid: System.Collections.Generic.Dictionary{System.String,System.Int32}
+  commentId: T:System.Collections.Generic.Dictionary{System.String,System.Int32}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  name: Dictionary<String, Int32>
+  nameWithType: Dictionary<String, Int32>
+  fullName: System.Collections.Generic.Dictionary<System.String, System.Int32>
+  nameWithType.vb: Dictionary(Of String, Int32)
+  fullName.vb: System.Collections.Generic.Dictionary(Of System.String, System.Int32)
+  name.vb: Dictionary(Of String, Int32)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.Dictionary`2
+  commentId: T:System.Collections.Generic.Dictionary`2
+  isExternal: true
+  name: Dictionary<TKey, TValue>
+  nameWithType: Dictionary<TKey, TValue>
+  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
+  nameWithType.vb: Dictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
+  name.vb: Dictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: System.Collections.Generic.List{System.String}
+  commentId: T:System.Collections.Generic.List{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  name: List<String>
+  nameWithType: List<String>
+  fullName: System.Collections.Generic.List<System.String>
+  nameWithType.vb: List(Of String)
+  fullName.vb: System.Collections.Generic.List(Of System.String)
+  name.vb: List(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.DataStructures.PlayerState.CreateDefault*
+  commentId: Overload:GameFramework.DataStructures.PlayerState.CreateDefault
+  name: CreateDefault
+  nameWithType: PlayerState.CreateDefault
+  fullName: GameFramework.DataStructures.PlayerState.CreateDefault
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: GameFramework.DataStructures.PlayerState
+  commentId: T:GameFramework.DataStructures.PlayerState
+  parent: GameFramework.DataStructures
+  name: PlayerState
+  nameWithType: PlayerState
+  fullName: GameFramework.DataStructures.PlayerState

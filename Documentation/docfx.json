@@ -1,0 +1,53 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "files": ["**/*.cs"],
+          "src": "../Assets/Scripts"
+        }
+      ],
+      "dest": "api",
+      "allowCompilationErrors": true
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [
+          "api/*.yml",
+          "api/index.md"
+        ],
+        "dest": "api"
+      },
+      {
+        "files": [
+          "articles/**.md"
+        ],
+        "dest": "articles"
+      },
+      {
+        "files": [
+          "*.md"
+        ],
+        "dest": "."
+      }
+    ],
+    "resource": [
+      {
+        "files": [
+          "images/**"
+        ],
+        "dest": "images"
+      }
+    ],
+    "output": "_site",
+    "template": ["default", "templates/unity"],
+    "globalMetadata": {
+      "_appTitle": "UCTools Base Project Documentation",
+      "_appFooter": "UCTools Base Project Documentation",
+      "_enableSearch": true
+    },
+    "dest": "_site"
+  }
+}

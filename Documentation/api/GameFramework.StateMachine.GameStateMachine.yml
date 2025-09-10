@@ -1,0 +1,1481 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.StateMachine.GameStateMachine
+  commentId: T:GameFramework.StateMachine.GameStateMachine
+  id: GameStateMachine
+  parent: GameFramework.StateMachine
+  children:
+  - GameFramework.StateMachine.GameStateMachine.#ctor(GameContext,IEventSystem,DIContainer)
+  - GameFramework.StateMachine.GameStateMachine.CanTransitionTo(GameStateType)
+  - GameFramework.StateMachine.GameStateMachine.ChangeStateAsync(GameStateType)
+  - GameFramework.StateMachine.GameStateMachine.ChangeStateAsync``1
+  - GameFramework.StateMachine.GameStateMachine.ClearStateHistory
+  - GameFramework.StateMachine.GameStateMachine.CurrentState
+  - GameFramework.StateMachine.GameStateMachine.CurrentStateType
+  - GameFramework.StateMachine.GameStateMachine.FixedUpdate
+  - GameFramework.StateMachine.GameStateMachine.GetPreviousState
+  - GameFramework.StateMachine.GameStateMachine.GetState``1
+  - GameFramework.StateMachine.GameStateMachine.GetStateByStateType(GameStateType)
+  - GameFramework.StateMachine.GameStateMachine.GetStateByType(Type)
+  - GameFramework.StateMachine.GameStateMachine.GetValidTransitionsFromCurrentState
+  - GameFramework.StateMachine.GameStateMachine.GoBackToPreviousStateAsync
+  - GameFramework.StateMachine.GameStateMachine.HasState``1
+  - GameFramework.StateMachine.GameStateMachine.InitializeAsync
+  - GameFramework.StateMachine.GameStateMachine.IsInitialized
+  - GameFramework.StateMachine.GameStateMachine.IsTransitionValid(GameStateType,GameStateType)
+  - GameFramework.StateMachine.GameStateMachine.RegisterState(BaseGameState)
+  - GameFramework.StateMachine.GameStateMachine.Shutdown
+  - GameFramework.StateMachine.GameStateMachine.Update
+  langs:
+  - csharp
+  - vb
+  name: GameStateMachine
+  nameWithType: GameStateMachine
+  fullName: GameFramework.StateMachine.GameStateMachine
+  type: Class
+  source:
+    id: GameStateMachine
+    path: ''
+    startLine: 11506
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.StateMachine
+  summary: "\nGame State Machine manages game state transitions with proper event publishing\nEnsures TimeService and other systems receive correct state change notifications\n\nDesign: Uses dependency injection and factory pattern for state creation\nPros: Clean separation of concerns, proper event handling, extensible state creation\nCons: Requires all states to be registered in factory\n"
+  example: []
+  syntax:
+    content: 'public class GameStateMachine : IGameStateMachine'
+    content.vb: >-
+      Public Class GameStateMachine
+          Implements IGameStateMachine
+  inheritance:
+  - System.Object
+  implements:
+  - GameFramework.StateMachine.IGameStateMachine
+  - IGameService
+  - IUpdatable
+  - IFixedUpdatable
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: GameFramework.StateMachine.GameStateMachine.CurrentStateType
+  commentId: P:GameFramework.StateMachine.GameStateMachine.CurrentStateType
+  id: CurrentStateType
+  parent: GameFramework.StateMachine.GameStateMachine
+  langs:
+  - csharp
+  - vb
+  name: CurrentStateType
+  nameWithType: GameStateMachine.CurrentStateType
+  fullName: GameFramework.StateMachine.GameStateMachine.CurrentStateType
+  type: Property
+  source:
+    id: CurrentStateType
+    path: ''
+    startLine: 11508
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.StateMachine
+  syntax:
+    content: public GameStateType CurrentStateType { get; }
+    parameters: []
+    return:
+      type: GameStateType
+    content.vb: Public ReadOnly Property CurrentStateType As GameStateType
+  overload: GameFramework.StateMachine.GameStateMachine.CurrentStateType*
+  implements:
+  - GameFramework.StateMachine.IGameStateMachine.CurrentStateType
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: GameFramework.StateMachine.GameStateMachine.CurrentState
+  commentId: P:GameFramework.StateMachine.GameStateMachine.CurrentState
+  id: CurrentState
+  parent: GameFramework.StateMachine.GameStateMachine
+  langs:
+  - csharp
+  - vb
+  name: CurrentState
+  nameWithType: GameStateMachine.CurrentState
+  fullName: GameFramework.StateMachine.GameStateMachine.CurrentState
+  type: Property
+  source:
+    id: CurrentState
+    path: ''
+    startLine: 11509
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.StateMachine
+  syntax:
+    content: public BaseGameState CurrentState { get; }
+    parameters: []
+    return:
+      type: BaseGameState
+    content.vb: Public ReadOnly Property CurrentState As BaseGameState
+  overload: GameFramework.StateMachine.GameStateMachine.CurrentState*
+  implements:
+  - GameFramework.StateMachine.IGameStateMachine.CurrentState
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: GameFramework.StateMachine.GameStateMachine.IsInitialized
+  commentId: P:GameFramework.StateMachine.GameStateMachine.IsInitialized
+  id: IsInitialized
+  parent: GameFramework.StateMachine.GameStateMachine
+  langs:
+  - csharp
+  - vb
+  name: IsInitialized
+  nameWithType: GameStateMachine.IsInitialized
+  fullName: GameFramework.StateMachine.GameStateMachine.IsInitialized
+  type: Property
+  source:
+    id: IsInitialized
+    path: ''
+    startLine: 11510
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.StateMachine
+  syntax:
+    content: public bool IsInitialized { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsInitialized As Boolean
+  overload: GameFramework.StateMachine.GameStateMachine.IsInitialized*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: GameFramework.StateMachine.GameStateMachine.#ctor(GameContext,IEventSystem,DIContainer)
+  commentId: M:GameFramework.StateMachine.GameStateMachine.#ctor(GameContext,IEventSystem,DIContainer)
+  id: '#ctor(GameContext,IEventSystem,DIContainer)'
+  parent: GameFramework.StateMachine.GameStateMachine
+  langs:
+  - csharp
+  - vb
+  name: GameStateMachine(GameContext, IEventSystem, DIContainer)
+  nameWithType: GameStateMachine.GameStateMachine(GameContext, IEventSystem, DIContainer)
+  fullName: GameFramework.StateMachine.GameStateMachine.GameStateMachine(GameContext, IEventSystem, DIContainer)
+  type: Constructor
+  source:
+    id: .ctor
+    path: ''
+    startLine: 11541
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.StateMachine
+  summary: "\nConstructor injection - all dependencies provided by DI container\n"
+  example: []
+  syntax:
+    content: public GameStateMachine(GameContext context, IEventSystem eventSystem, DIContainer container)
+    parameters:
+    - id: context
+      type: GameContext
+    - id: eventSystem
+      type: IEventSystem
+    - id: container
+      type: DIContainer
+    content.vb: Public Sub New(context As GameContext, eventSystem As IEventSystem, container As DIContainer)
+  overload: GameFramework.StateMachine.GameStateMachine.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.StateMachine.GameStateMachine.InitializeAsync
+  commentId: M:GameFramework.StateMachine.GameStateMachine.InitializeAsync
+  id: InitializeAsync
+  parent: GameFramework.StateMachine.GameStateMachine
+  langs:
+  - csharp
+  - vb
+  name: InitializeAsync()
+  nameWithType: GameStateMachine.InitializeAsync()
+  fullName: GameFramework.StateMachine.GameStateMachine.InitializeAsync()
+  type: Method
+  source:
+    id: InitializeAsync
+    path: ''
+    startLine: 11548
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.StateMachine
+  syntax:
+    content: public async Task InitializeAsync()
+    return:
+      type: Task
+    content.vb: Public Function InitializeAsync As Task
+  overload: GameFramework.StateMachine.GameStateMachine.InitializeAsync*
+  modifiers.csharp:
+  - public
+  - async
+  modifiers.vb:
+  - Public
+- uid: GameFramework.StateMachine.GameStateMachine.Shutdown
+  commentId: M:GameFramework.StateMachine.GameStateMachine.Shutdown
+  id: Shutdown
+  parent: GameFramework.StateMachine.GameStateMachine
+  langs:
+  - csharp
+  - vb
+  name: Shutdown()
+  nameWithType: GameStateMachine.Shutdown()
+  fullName: GameFramework.StateMachine.GameStateMachine.Shutdown()
+  type: Method
+  source:
+    id: Shutdown
+    path: ''
+    startLine: 11566
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.StateMachine
+  syntax:
+    content: public void Shutdown()
+    content.vb: Public Sub Shutdown
+  overload: GameFramework.StateMachine.GameStateMachine.Shutdown*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.StateMachine.GameStateMachine.ChangeStateAsync(GameStateType)
+  commentId: M:GameFramework.StateMachine.GameStateMachine.ChangeStateAsync(GameStateType)
+  id: ChangeStateAsync(GameStateType)
+  parent: GameFramework.StateMachine.GameStateMachine
+  langs:
+  - csharp
+  - vb
+  name: ChangeStateAsync(GameStateType)
+  nameWithType: GameStateMachine.ChangeStateAsync(GameStateType)
+  fullName: GameFramework.StateMachine.GameStateMachine.ChangeStateAsync(GameStateType)
+  type: Method
+  source:
+    id: ChangeStateAsync
+    path: ''
+    startLine: 11581
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.StateMachine
+  summary: "\nChanges game state and publishes GameStateChangeEvent for TimeService and other systems\nThis is the KEY method that was missing the event publication\n"
+  example: []
+  syntax:
+    content: public async Task ChangeStateAsync(GameStateType newStateType)
+    parameters:
+    - id: newStateType
+      type: GameStateType
+    return:
+      type: Task
+    content.vb: Public Function ChangeStateAsync(newStateType As GameStateType) As Task
+  overload: GameFramework.StateMachine.GameStateMachine.ChangeStateAsync*
+  implements:
+  - GameFramework.StateMachine.IGameStateMachine.ChangeStateAsync(GameStateType)
+  modifiers.csharp:
+  - public
+  - async
+  modifiers.vb:
+  - Public
+- uid: GameFramework.StateMachine.GameStateMachine.ChangeStateAsync``1
+  commentId: M:GameFramework.StateMachine.GameStateMachine.ChangeStateAsync``1
+  id: ChangeStateAsync``1
+  parent: GameFramework.StateMachine.GameStateMachine
+  langs:
+  - csharp
+  - vb
+  name: ChangeStateAsync<T>()
+  nameWithType: GameStateMachine.ChangeStateAsync<T>()
+  fullName: GameFramework.StateMachine.GameStateMachine.ChangeStateAsync<T>()
+  type: Method
+  source:
+    id: ChangeStateAsync
+    path: ''
+    startLine: 11639
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.StateMachine
+  syntax:
+    content: >-
+      public async Task ChangeStateAsync<T>()
+          where T : BaseGameState
+    typeParameters:
+    - id: T
+    return:
+      type: Task
+    content.vb: Public Function ChangeStateAsync(Of T As BaseGameState) As Task
+  overload: GameFramework.StateMachine.GameStateMachine.ChangeStateAsync*
+  implements:
+  - GameFramework.StateMachine.IGameStateMachine.ChangeStateAsync``1
+  nameWithType.vb: GameStateMachine.ChangeStateAsync(Of T)()
+  modifiers.csharp:
+  - public
+  - async
+  modifiers.vb:
+  - Public
+  fullName.vb: GameFramework.StateMachine.GameStateMachine.ChangeStateAsync(Of T)()
+  name.vb: ChangeStateAsync(Of T)()
+- uid: GameFramework.StateMachine.GameStateMachine.CanTransitionTo(GameStateType)
+  commentId: M:GameFramework.StateMachine.GameStateMachine.CanTransitionTo(GameStateType)
+  id: CanTransitionTo(GameStateType)
+  parent: GameFramework.StateMachine.GameStateMachine
+  langs:
+  - csharp
+  - vb
+  name: CanTransitionTo(GameStateType)
+  nameWithType: GameStateMachine.CanTransitionTo(GameStateType)
+  fullName: GameFramework.StateMachine.GameStateMachine.CanTransitionTo(GameStateType)
+  type: Method
+  source:
+    id: CanTransitionTo
+    path: ''
+    startLine: 11652
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.StateMachine
+  syntax:
+    content: public bool CanTransitionTo(GameStateType stateType)
+    parameters:
+    - id: stateType
+      type: GameStateType
+    return:
+      type: System.Boolean
+    content.vb: Public Function CanTransitionTo(stateType As GameStateType) As Boolean
+  overload: GameFramework.StateMachine.GameStateMachine.CanTransitionTo*
+  implements:
+  - GameFramework.StateMachine.IGameStateMachine.CanTransitionTo(GameStateType)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.StateMachine.GameStateMachine.RegisterState(BaseGameState)
+  commentId: M:GameFramework.StateMachine.GameStateMachine.RegisterState(BaseGameState)
+  id: RegisterState(BaseGameState)
+  parent: GameFramework.StateMachine.GameStateMachine
+  langs:
+  - csharp
+  - vb
+  name: RegisterState(BaseGameState)
+  nameWithType: GameStateMachine.RegisterState(BaseGameState)
+  fullName: GameFramework.StateMachine.GameStateMachine.RegisterState(BaseGameState)
+  type: Method
+  source:
+    id: RegisterState
+    path: ''
+    startLine: 11658
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.StateMachine
+  syntax:
+    content: public void RegisterState(BaseGameState state)
+    parameters:
+    - id: state
+      type: BaseGameState
+    content.vb: Public Sub RegisterState(state As BaseGameState)
+  overload: GameFramework.StateMachine.GameStateMachine.RegisterState*
+  implements:
+  - GameFramework.StateMachine.IGameStateMachine.RegisterState(BaseGameState)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.StateMachine.GameStateMachine.Update
+  commentId: M:GameFramework.StateMachine.GameStateMachine.Update
+  id: Update
+  parent: GameFramework.StateMachine.GameStateMachine
+  langs:
+  - csharp
+  - vb
+  name: Update()
+  nameWithType: GameStateMachine.Update()
+  fullName: GameFramework.StateMachine.GameStateMachine.Update()
+  type: Method
+  source:
+    id: Update
+    path: ''
+    startLine: 11664
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.StateMachine
+  syntax:
+    content: public void Update()
+    content.vb: Public Sub Update
+  overload: GameFramework.StateMachine.GameStateMachine.Update*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.StateMachine.GameStateMachine.FixedUpdate
+  commentId: M:GameFramework.StateMachine.GameStateMachine.FixedUpdate
+  id: FixedUpdate
+  parent: GameFramework.StateMachine.GameStateMachine
+  langs:
+  - csharp
+  - vb
+  name: FixedUpdate()
+  nameWithType: GameStateMachine.FixedUpdate()
+  fullName: GameFramework.StateMachine.GameStateMachine.FixedUpdate()
+  type: Method
+  source:
+    id: FixedUpdate
+    path: ''
+    startLine: 11669
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.StateMachine
+  syntax:
+    content: public void FixedUpdate()
+    content.vb: Public Sub FixedUpdate
+  overload: GameFramework.StateMachine.GameStateMachine.FixedUpdate*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.StateMachine.GameStateMachine.GetValidTransitionsFromCurrentState
+  commentId: M:GameFramework.StateMachine.GameStateMachine.GetValidTransitionsFromCurrentState
+  id: GetValidTransitionsFromCurrentState
+  parent: GameFramework.StateMachine.GameStateMachine
+  langs:
+  - csharp
+  - vb
+  name: GetValidTransitionsFromCurrentState()
+  nameWithType: GameStateMachine.GetValidTransitionsFromCurrentState()
+  fullName: GameFramework.StateMachine.GameStateMachine.GetValidTransitionsFromCurrentState()
+  type: Method
+  source:
+    id: GetValidTransitionsFromCurrentState
+    path: ''
+    startLine: 11765
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.StateMachine
+  summary: "\nDebug method to get all valid transitions from current state\nUseful for debugging state machine issues\n"
+  example: []
+  syntax:
+    content: public GameStateType[] GetValidTransitionsFromCurrentState()
+    return:
+      type: GameStateType[]
+    content.vb: Public Function GetValidTransitionsFromCurrentState As GameStateType()
+  overload: GameFramework.StateMachine.GameStateMachine.GetValidTransitionsFromCurrentState*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.StateMachine.GameStateMachine.IsTransitionValid(GameStateType,GameStateType)
+  commentId: M:GameFramework.StateMachine.GameStateMachine.IsTransitionValid(GameStateType,GameStateType)
+  id: IsTransitionValid(GameStateType,GameStateType)
+  parent: GameFramework.StateMachine.GameStateMachine
+  langs:
+  - csharp
+  - vb
+  name: IsTransitionValid(GameStateType, GameStateType)
+  nameWithType: GameStateMachine.IsTransitionValid(GameStateType, GameStateType)
+  fullName: GameFramework.StateMachine.GameStateMachine.IsTransitionValid(GameStateType, GameStateType)
+  type: Method
+  source:
+    id: IsTransitionValid
+    path: ''
+    startLine: 11783
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.StateMachine
+  summary: "\nDebug method to check if a specific transition is valid\n"
+  example: []
+  syntax:
+    content: public bool IsTransitionValid(GameStateType from, GameStateType to)
+    parameters:
+    - id: from
+      type: GameStateType
+    - id: to
+      type: GameStateType
+    return:
+      type: System.Boolean
+    content.vb: Public Function IsTransitionValid(from As GameStateType, to As GameStateType) As Boolean
+  overload: GameFramework.StateMachine.GameStateMachine.IsTransitionValid*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.StateMachine.GameStateMachine.GetPreviousState
+  commentId: M:GameFramework.StateMachine.GameStateMachine.GetPreviousState
+  id: GetPreviousState
+  parent: GameFramework.StateMachine.GameStateMachine
+  langs:
+  - csharp
+  - vb
+  name: GetPreviousState()
+  nameWithType: GameStateMachine.GetPreviousState()
+  fullName: GameFramework.StateMachine.GameStateMachine.GetPreviousState()
+  type: Method
+  source:
+    id: GetPreviousState
+    path: ''
+    startLine: 11791
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.StateMachine
+  summary: "\nGet the previous state from history (for back navigation)\n"
+  example: []
+  syntax:
+    content: public GameStateType? GetPreviousState()
+    return:
+      type: System.Nullable{GameStateType}
+    content.vb: Public Function GetPreviousState As GameStateType?
+  overload: GameFramework.StateMachine.GameStateMachine.GetPreviousState*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.StateMachine.GameStateMachine.GoBackToPreviousStateAsync
+  commentId: M:GameFramework.StateMachine.GameStateMachine.GoBackToPreviousStateAsync
+  id: GoBackToPreviousStateAsync
+  parent: GameFramework.StateMachine.GameStateMachine
+  langs:
+  - csharp
+  - vb
+  name: GoBackToPreviousStateAsync()
+  nameWithType: GameStateMachine.GoBackToPreviousStateAsync()
+  fullName: GameFramework.StateMachine.GameStateMachine.GoBackToPreviousStateAsync()
+  type: Method
+  source:
+    id: GoBackToPreviousStateAsync
+    path: ''
+    startLine: 11799
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.StateMachine
+  summary: "\nGo back to the previous state if possible\n"
+  example: []
+  syntax:
+    content: public async Task GoBackToPreviousStateAsync()
+    return:
+      type: Task
+    content.vb: Public Function GoBackToPreviousStateAsync As Task
+  overload: GameFramework.StateMachine.GameStateMachine.GoBackToPreviousStateAsync*
+  modifiers.csharp:
+  - public
+  - async
+  modifiers.vb:
+  - Public
+- uid: GameFramework.StateMachine.GameStateMachine.ClearStateHistory
+  commentId: M:GameFramework.StateMachine.GameStateMachine.ClearStateHistory
+  id: ClearStateHistory
+  parent: GameFramework.StateMachine.GameStateMachine
+  langs:
+  - csharp
+  - vb
+  name: ClearStateHistory()
+  nameWithType: GameStateMachine.ClearStateHistory()
+  fullName: GameFramework.StateMachine.GameStateMachine.ClearStateHistory()
+  type: Method
+  source:
+    id: ClearStateHistory
+    path: ''
+    startLine: 11824
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.StateMachine
+  summary: "\nClear the state history (useful when starting a new game)\n"
+  example: []
+  syntax:
+    content: public void ClearStateHistory()
+    content.vb: Public Sub ClearStateHistory
+  overload: GameFramework.StateMachine.GameStateMachine.ClearStateHistory*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.StateMachine.GameStateMachine.GetState``1
+  commentId: M:GameFramework.StateMachine.GameStateMachine.GetState``1
+  id: GetState``1
+  parent: GameFramework.StateMachine.GameStateMachine
+  langs:
+  - csharp
+  - vb
+  name: GetState<T>()
+  nameWithType: GameStateMachine.GetState<T>()
+  fullName: GameFramework.StateMachine.GameStateMachine.GetState<T>()
+  type: Method
+  source:
+    id: GetState
+    path: ''
+    startLine: 11833
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.StateMachine
+  summary: "\nGet a state by its type\n"
+  example: []
+  syntax:
+    content: >-
+      public T GetState<T>()
+          where T : BaseGameState
+    typeParameters:
+    - id: T
+    return:
+      type: '{T}'
+    content.vb: Public Function GetState(Of T As BaseGameState) As T
+  overload: GameFramework.StateMachine.GameStateMachine.GetState*
+  nameWithType.vb: GameStateMachine.GetState(Of T)()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: GameFramework.StateMachine.GameStateMachine.GetState(Of T)()
+  name.vb: GetState(Of T)()
+- uid: GameFramework.StateMachine.GameStateMachine.GetStateByType(Type)
+  commentId: M:GameFramework.StateMachine.GameStateMachine.GetStateByType(Type)
+  id: GetStateByType(Type)
+  parent: GameFramework.StateMachine.GameStateMachine
+  langs:
+  - csharp
+  - vb
+  name: GetStateByType(Type)
+  nameWithType: GameStateMachine.GetStateByType(Type)
+  fullName: GameFramework.StateMachine.GameStateMachine.GetStateByType(Type)
+  type: Method
+  source:
+    id: GetStateByType
+    path: ''
+    startLine: 11841
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.StateMachine
+  summary: "\nGet a state by its concrete type\n"
+  example: []
+  syntax:
+    content: public BaseGameState GetStateByType(Type stateType)
+    parameters:
+    - id: stateType
+      type: Type
+    return:
+      type: BaseGameState
+    content.vb: Public Function GetStateByType(stateType As Type) As BaseGameState
+  overload: GameFramework.StateMachine.GameStateMachine.GetStateByType*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.StateMachine.GameStateMachine.HasState``1
+  commentId: M:GameFramework.StateMachine.GameStateMachine.HasState``1
+  id: HasState``1
+  parent: GameFramework.StateMachine.GameStateMachine
+  langs:
+  - csharp
+  - vb
+  name: HasState<T>()
+  nameWithType: GameStateMachine.HasState<T>()
+  fullName: GameFramework.StateMachine.GameStateMachine.HasState<T>()
+  type: Method
+  source:
+    id: HasState
+    path: ''
+    startLine: 11849
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.StateMachine
+  summary: "\nCheck if a state of specific type exists\n"
+  example: []
+  syntax:
+    content: >-
+      public bool HasState<T>()
+          where T : BaseGameState
+    typeParameters:
+    - id: T
+    return:
+      type: System.Boolean
+    content.vb: Public Function HasState(Of T As BaseGameState) As Boolean
+  overload: GameFramework.StateMachine.GameStateMachine.HasState*
+  nameWithType.vb: GameStateMachine.HasState(Of T)()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: GameFramework.StateMachine.GameStateMachine.HasState(Of T)()
+  name.vb: HasState(Of T)()
+- uid: GameFramework.StateMachine.GameStateMachine.GetStateByStateType(GameStateType)
+  commentId: M:GameFramework.StateMachine.GameStateMachine.GetStateByStateType(GameStateType)
+  id: GetStateByStateType(GameStateType)
+  parent: GameFramework.StateMachine.GameStateMachine
+  langs:
+  - csharp
+  - vb
+  name: GetStateByStateType(GameStateType)
+  nameWithType: GameStateMachine.GetStateByStateType(GameStateType)
+  fullName: GameFramework.StateMachine.GameStateMachine.GetStateByStateType(GameStateType)
+  type: Method
+  source:
+    id: GetStateByStateType
+    path: ''
+    startLine: 11857
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.StateMachine
+  summary: "\nGet state by GameStateType (you already have this via dictionary access)\n"
+  example: []
+  syntax:
+    content: public BaseGameState GetStateByStateType(GameStateType stateType)
+    parameters:
+    - id: stateType
+      type: GameStateType
+    return:
+      type: BaseGameState
+    content.vb: Public Function GetStateByStateType(stateType As GameStateType) As BaseGameState
+  overload: GameFramework.StateMachine.GameStateMachine.GetStateByStateType*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: GameFramework.StateMachine
+  commentId: N:GameFramework.StateMachine
+  name: GameFramework.StateMachine
+  nameWithType: GameFramework.StateMachine
+  fullName: GameFramework.StateMachine
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: GameFramework.StateMachine.IGameStateMachine
+  commentId: T:GameFramework.StateMachine.IGameStateMachine
+  parent: GameFramework.StateMachine
+  name: IGameStateMachine
+  nameWithType: IGameStateMachine
+  fullName: GameFramework.StateMachine.IGameStateMachine
+- uid: IGameService
+  commentId: '!:IGameService'
+  isExternal: true
+  name: IGameService
+  nameWithType: IGameService
+  fullName: IGameService
+- uid: IUpdatable
+  isExternal: true
+  name: IUpdatable
+  nameWithType: IUpdatable
+  fullName: IUpdatable
+- uid: IFixedUpdatable
+  commentId: '!:IFixedUpdatable'
+  isExternal: true
+  name: IFixedUpdatable
+  nameWithType: IFixedUpdatable
+  fullName: IFixedUpdatable
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: GameFramework.StateMachine.GameStateMachine.CurrentStateType*
+  commentId: Overload:GameFramework.StateMachine.GameStateMachine.CurrentStateType
+  name: CurrentStateType
+  nameWithType: GameStateMachine.CurrentStateType
+  fullName: GameFramework.StateMachine.GameStateMachine.CurrentStateType
+- uid: GameFramework.StateMachine.IGameStateMachine.CurrentStateType
+  commentId: P:GameFramework.StateMachine.IGameStateMachine.CurrentStateType
+  parent: GameFramework.StateMachine.IGameStateMachine
+  name: CurrentStateType
+  nameWithType: IGameStateMachine.CurrentStateType
+  fullName: GameFramework.StateMachine.IGameStateMachine.CurrentStateType
+- uid: GameStateType
+  isExternal: true
+  name: GameStateType
+  nameWithType: GameStateType
+  fullName: GameStateType
+- uid: GameFramework.StateMachine.GameStateMachine.CurrentState*
+  commentId: Overload:GameFramework.StateMachine.GameStateMachine.CurrentState
+  name: CurrentState
+  nameWithType: GameStateMachine.CurrentState
+  fullName: GameFramework.StateMachine.GameStateMachine.CurrentState
+- uid: GameFramework.StateMachine.IGameStateMachine.CurrentState
+  commentId: P:GameFramework.StateMachine.IGameStateMachine.CurrentState
+  parent: GameFramework.StateMachine.IGameStateMachine
+  name: CurrentState
+  nameWithType: IGameStateMachine.CurrentState
+  fullName: GameFramework.StateMachine.IGameStateMachine.CurrentState
+- uid: BaseGameState
+  commentId: T:BaseGameState
+  name: BaseGameState
+  nameWithType: BaseGameState
+  fullName: BaseGameState
+- uid: GameFramework.StateMachine.GameStateMachine.IsInitialized*
+  commentId: Overload:GameFramework.StateMachine.GameStateMachine.IsInitialized
+  name: IsInitialized
+  nameWithType: GameStateMachine.IsInitialized
+  fullName: GameFramework.StateMachine.GameStateMachine.IsInitialized
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: GameFramework.StateMachine.GameStateMachine.#ctor*
+  commentId: Overload:GameFramework.StateMachine.GameStateMachine.#ctor
+  name: GameStateMachine
+  nameWithType: GameStateMachine.GameStateMachine
+  fullName: GameFramework.StateMachine.GameStateMachine.GameStateMachine
+- uid: GameContext
+  isExternal: true
+  name: GameContext
+  nameWithType: GameContext
+  fullName: GameContext
+- uid: IEventSystem
+  isExternal: true
+  name: IEventSystem
+  nameWithType: IEventSystem
+  fullName: IEventSystem
+- uid: DIContainer
+  commentId: '!:DIContainer'
+  isExternal: true
+  name: DIContainer
+  nameWithType: DIContainer
+  fullName: DIContainer
+- uid: GameFramework.StateMachine.GameStateMachine.InitializeAsync*
+  commentId: Overload:GameFramework.StateMachine.GameStateMachine.InitializeAsync
+  name: InitializeAsync
+  nameWithType: GameStateMachine.InitializeAsync
+  fullName: GameFramework.StateMachine.GameStateMachine.InitializeAsync
+- uid: Task
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: Task
+- uid: GameFramework.StateMachine.GameStateMachine.Shutdown*
+  commentId: Overload:GameFramework.StateMachine.GameStateMachine.Shutdown
+  name: Shutdown
+  nameWithType: GameStateMachine.Shutdown
+  fullName: GameFramework.StateMachine.GameStateMachine.Shutdown
+- uid: GameFramework.StateMachine.GameStateMachine.ChangeStateAsync*
+  commentId: Overload:GameFramework.StateMachine.GameStateMachine.ChangeStateAsync
+  name: ChangeStateAsync
+  nameWithType: GameStateMachine.ChangeStateAsync
+  fullName: GameFramework.StateMachine.GameStateMachine.ChangeStateAsync
+- uid: GameFramework.StateMachine.IGameStateMachine.ChangeStateAsync(GameStateType)
+  commentId: M:GameFramework.StateMachine.IGameStateMachine.ChangeStateAsync(GameStateType)
+  parent: GameFramework.StateMachine.IGameStateMachine
+  isExternal: true
+  name: ChangeStateAsync(GameStateType)
+  nameWithType: IGameStateMachine.ChangeStateAsync(GameStateType)
+  fullName: GameFramework.StateMachine.IGameStateMachine.ChangeStateAsync(GameStateType)
+  spec.csharp:
+  - uid: GameFramework.StateMachine.IGameStateMachine.ChangeStateAsync(GameStateType)
+    name: ChangeStateAsync
+    nameWithType: IGameStateMachine.ChangeStateAsync
+    fullName: GameFramework.StateMachine.IGameStateMachine.ChangeStateAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GameStateType
+    name: GameStateType
+    nameWithType: GameStateType
+    fullName: GameStateType
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.StateMachine.IGameStateMachine.ChangeStateAsync(GameStateType)
+    name: ChangeStateAsync
+    nameWithType: IGameStateMachine.ChangeStateAsync
+    fullName: GameFramework.StateMachine.IGameStateMachine.ChangeStateAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GameStateType
+    name: GameStateType
+    nameWithType: GameStateType
+    fullName: GameStateType
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.StateMachine.IGameStateMachine.ChangeStateAsync``1
+  commentId: M:GameFramework.StateMachine.IGameStateMachine.ChangeStateAsync``1
+  parent: GameFramework.StateMachine.IGameStateMachine
+  name: ChangeStateAsync<T>()
+  nameWithType: IGameStateMachine.ChangeStateAsync<T>()
+  fullName: GameFramework.StateMachine.IGameStateMachine.ChangeStateAsync<T>()
+  nameWithType.vb: IGameStateMachine.ChangeStateAsync(Of T)()
+  fullName.vb: GameFramework.StateMachine.IGameStateMachine.ChangeStateAsync(Of T)()
+  name.vb: ChangeStateAsync(Of T)()
+  spec.csharp:
+  - uid: GameFramework.StateMachine.IGameStateMachine.ChangeStateAsync``1
+    name: ChangeStateAsync<T>
+    nameWithType: IGameStateMachine.ChangeStateAsync<T>
+    fullName: GameFramework.StateMachine.IGameStateMachine.ChangeStateAsync<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.StateMachine.IGameStateMachine.ChangeStateAsync``1
+    name: ChangeStateAsync(Of T)
+    nameWithType: IGameStateMachine.ChangeStateAsync(Of T)
+    fullName: GameFramework.StateMachine.IGameStateMachine.ChangeStateAsync(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.StateMachine.GameStateMachine.CanTransitionTo*
+  commentId: Overload:GameFramework.StateMachine.GameStateMachine.CanTransitionTo
+  name: CanTransitionTo
+  nameWithType: GameStateMachine.CanTransitionTo
+  fullName: GameFramework.StateMachine.GameStateMachine.CanTransitionTo
+- uid: GameFramework.StateMachine.IGameStateMachine.CanTransitionTo(GameStateType)
+  commentId: M:GameFramework.StateMachine.IGameStateMachine.CanTransitionTo(GameStateType)
+  parent: GameFramework.StateMachine.IGameStateMachine
+  isExternal: true
+  name: CanTransitionTo(GameStateType)
+  nameWithType: IGameStateMachine.CanTransitionTo(GameStateType)
+  fullName: GameFramework.StateMachine.IGameStateMachine.CanTransitionTo(GameStateType)
+  spec.csharp:
+  - uid: GameFramework.StateMachine.IGameStateMachine.CanTransitionTo(GameStateType)
+    name: CanTransitionTo
+    nameWithType: IGameStateMachine.CanTransitionTo
+    fullName: GameFramework.StateMachine.IGameStateMachine.CanTransitionTo
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GameStateType
+    name: GameStateType
+    nameWithType: GameStateType
+    fullName: GameStateType
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.StateMachine.IGameStateMachine.CanTransitionTo(GameStateType)
+    name: CanTransitionTo
+    nameWithType: IGameStateMachine.CanTransitionTo
+    fullName: GameFramework.StateMachine.IGameStateMachine.CanTransitionTo
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GameStateType
+    name: GameStateType
+    nameWithType: GameStateType
+    fullName: GameStateType
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.StateMachine.GameStateMachine.RegisterState*
+  commentId: Overload:GameFramework.StateMachine.GameStateMachine.RegisterState
+  name: RegisterState
+  nameWithType: GameStateMachine.RegisterState
+  fullName: GameFramework.StateMachine.GameStateMachine.RegisterState
+- uid: GameFramework.StateMachine.IGameStateMachine.RegisterState(BaseGameState)
+  commentId: M:GameFramework.StateMachine.IGameStateMachine.RegisterState(BaseGameState)
+  parent: GameFramework.StateMachine.IGameStateMachine
+  name: RegisterState(BaseGameState)
+  nameWithType: IGameStateMachine.RegisterState(BaseGameState)
+  fullName: GameFramework.StateMachine.IGameStateMachine.RegisterState(BaseGameState)
+  spec.csharp:
+  - uid: GameFramework.StateMachine.IGameStateMachine.RegisterState(BaseGameState)
+    name: RegisterState
+    nameWithType: IGameStateMachine.RegisterState
+    fullName: GameFramework.StateMachine.IGameStateMachine.RegisterState
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BaseGameState
+    name: BaseGameState
+    nameWithType: BaseGameState
+    fullName: BaseGameState
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.StateMachine.IGameStateMachine.RegisterState(BaseGameState)
+    name: RegisterState
+    nameWithType: IGameStateMachine.RegisterState
+    fullName: GameFramework.StateMachine.IGameStateMachine.RegisterState
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: BaseGameState
+    name: BaseGameState
+    nameWithType: BaseGameState
+    fullName: BaseGameState
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.StateMachine.GameStateMachine.Update*
+  commentId: Overload:GameFramework.StateMachine.GameStateMachine.Update
+  name: Update
+  nameWithType: GameStateMachine.Update
+  fullName: GameFramework.StateMachine.GameStateMachine.Update
+- uid: GameFramework.StateMachine.GameStateMachine.FixedUpdate*
+  commentId: Overload:GameFramework.StateMachine.GameStateMachine.FixedUpdate
+  name: FixedUpdate
+  nameWithType: GameStateMachine.FixedUpdate
+  fullName: GameFramework.StateMachine.GameStateMachine.FixedUpdate
+- uid: GameFramework.StateMachine.GameStateMachine.GetValidTransitionsFromCurrentState*
+  commentId: Overload:GameFramework.StateMachine.GameStateMachine.GetValidTransitionsFromCurrentState
+  name: GetValidTransitionsFromCurrentState
+  nameWithType: GameStateMachine.GetValidTransitionsFromCurrentState
+  fullName: GameFramework.StateMachine.GameStateMachine.GetValidTransitionsFromCurrentState
+- uid: GameStateType[]
+  isExternal: true
+  name: GameStateType[]
+  nameWithType: GameStateType[]
+  fullName: GameStateType[]
+  nameWithType.vb: GameStateType()
+  fullName.vb: GameStateType()
+  name.vb: GameStateType()
+  spec.csharp:
+  - uid: GameStateType
+    name: GameStateType
+    nameWithType: GameStateType
+    fullName: GameStateType
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: GameStateType
+    name: GameStateType
+    nameWithType: GameStateType
+    fullName: GameStateType
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: GameFramework.StateMachine.GameStateMachine.IsTransitionValid*
+  commentId: Overload:GameFramework.StateMachine.GameStateMachine.IsTransitionValid
+  name: IsTransitionValid
+  nameWithType: GameStateMachine.IsTransitionValid
+  fullName: GameFramework.StateMachine.GameStateMachine.IsTransitionValid
+- uid: GameFramework.StateMachine.GameStateMachine.GetPreviousState*
+  commentId: Overload:GameFramework.StateMachine.GameStateMachine.GetPreviousState
+  name: GetPreviousState
+  nameWithType: GameStateMachine.GetPreviousState
+  fullName: GameFramework.StateMachine.GameStateMachine.GetPreviousState
+- uid: System.Nullable{GameStateType}
+  commentId: T:System.Nullable{GameStateType}
+  parent: System
+  definition: System.Nullable`1
+  name: Nullable<GameStateType>
+  nameWithType: Nullable<GameStateType>
+  fullName: System.Nullable<GameStateType>
+  nameWithType.vb: Nullable(Of GameStateType)
+  fullName.vb: System.Nullable(Of GameStateType)
+  name.vb: Nullable(Of GameStateType)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: GameStateType
+    name: GameStateType
+    nameWithType: GameStateType
+    fullName: GameStateType
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: GameStateType
+    name: GameStateType
+    nameWithType: GameStateType
+    fullName: GameStateType
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.StateMachine.GameStateMachine.GoBackToPreviousStateAsync*
+  commentId: Overload:GameFramework.StateMachine.GameStateMachine.GoBackToPreviousStateAsync
+  name: GoBackToPreviousStateAsync
+  nameWithType: GameStateMachine.GoBackToPreviousStateAsync
+  fullName: GameFramework.StateMachine.GameStateMachine.GoBackToPreviousStateAsync
+- uid: GameFramework.StateMachine.GameStateMachine.ClearStateHistory*
+  commentId: Overload:GameFramework.StateMachine.GameStateMachine.ClearStateHistory
+  name: ClearStateHistory
+  nameWithType: GameStateMachine.ClearStateHistory
+  fullName: GameFramework.StateMachine.GameStateMachine.ClearStateHistory
+- uid: GameFramework.StateMachine.GameStateMachine.GetState*
+  commentId: Overload:GameFramework.StateMachine.GameStateMachine.GetState
+  name: GetState
+  nameWithType: GameStateMachine.GetState
+  fullName: GameFramework.StateMachine.GameStateMachine.GetState
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: GameFramework.StateMachine.GameStateMachine.GetStateByType*
+  commentId: Overload:GameFramework.StateMachine.GameStateMachine.GetStateByType
+  name: GetStateByType
+  nameWithType: GameStateMachine.GetStateByType
+  fullName: GameFramework.StateMachine.GameStateMachine.GetStateByType
+- uid: Type
+  isExternal: true
+  name: Type
+  nameWithType: Type
+  fullName: Type
+- uid: GameFramework.StateMachine.GameStateMachine.HasState*
+  commentId: Overload:GameFramework.StateMachine.GameStateMachine.HasState
+  name: HasState
+  nameWithType: GameStateMachine.HasState
+  fullName: GameFramework.StateMachine.GameStateMachine.HasState
+- uid: GameFramework.StateMachine.GameStateMachine.GetStateByStateType*
+  commentId: Overload:GameFramework.StateMachine.GameStateMachine.GetStateByStateType
+  name: GetStateByStateType
+  nameWithType: GameStateMachine.GetStateByStateType
+  fullName: GameFramework.StateMachine.GameStateMachine.GetStateByStateType

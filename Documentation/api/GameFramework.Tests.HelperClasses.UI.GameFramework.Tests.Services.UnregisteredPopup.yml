@@ -1,0 +1,93 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.Tests.HelperClasses.UI.GameFramework.Tests.Services.UnregisteredPopup
+  commentId: T:GameFramework.Tests.HelperClasses.UI.GameFramework.Tests.Services.UnregisteredPopup
+  id: UnregisteredPopup
+  parent: GameFramework.Tests.HelperClasses.UI.GameFramework.Tests.Services
+  children:
+  - GameFramework.Tests.HelperClasses.UI.GameFramework.Tests.Services.UnregisteredPopup.#ctor(VisualElement)
+  langs:
+  - csharp
+  - vb
+  name: UnregisteredPopup
+  nameWithType: UnregisteredPopup
+  fullName: GameFramework.Tests.HelperClasses.UI.GameFramework.Tests.Services.UnregisteredPopup
+  type: Class
+  source:
+    id: UnregisteredPopup
+    path: ''
+    startLine: 16225
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Tests.HelperClasses.UI.GameFramework.Tests.Services
+  syntax:
+    content: 'public class UnregisteredPopup : UIPopup'
+    content.vb: >-
+      Public Class UnregisteredPopup
+          Inherits UIPopup
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: GameFramework.Tests.HelperClasses.UI.GameFramework.Tests.Services.UnregisteredPopup.#ctor(VisualElement)
+  commentId: M:GameFramework.Tests.HelperClasses.UI.GameFramework.Tests.Services.UnregisteredPopup.#ctor(VisualElement)
+  id: '#ctor(VisualElement)'
+  parent: GameFramework.Tests.HelperClasses.UI.GameFramework.Tests.Services.UnregisteredPopup
+  langs:
+  - csharp
+  - vb
+  name: UnregisteredPopup(VisualElement)
+  nameWithType: UnregisteredPopup.UnregisteredPopup(VisualElement)
+  fullName: GameFramework.Tests.HelperClasses.UI.GameFramework.Tests.Services.UnregisteredPopup.UnregisteredPopup(VisualElement)
+  type: Constructor
+  source:
+    id: .ctor
+    path: ''
+    startLine: 16227
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Tests.HelperClasses.UI.GameFramework.Tests.Services
+  syntax:
+    content: public UnregisteredPopup(VisualElement rootElement)
+    parameters:
+    - id: rootElement
+      type: VisualElement
+    content.vb: Public Sub New(rootElement As VisualElement)
+  overload: GameFramework.Tests.HelperClasses.UI.GameFramework.Tests.Services.UnregisteredPopup.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: GameFramework.Tests.HelperClasses.UI.GameFramework.Tests.Services
+  commentId: N:GameFramework.Tests.HelperClasses.UI.GameFramework.Tests.Services
+  name: GameFramework.Tests.HelperClasses.UI.GameFramework.Tests.Services
+  nameWithType: GameFramework.Tests.HelperClasses.UI.GameFramework.Tests.Services
+  fullName: GameFramework.Tests.HelperClasses.UI.GameFramework.Tests.Services
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: GameFramework.Tests.HelperClasses.UI.GameFramework.Tests.Services.UnregisteredPopup.#ctor*
+  commentId: Overload:GameFramework.Tests.HelperClasses.UI.GameFramework.Tests.Services.UnregisteredPopup.#ctor
+  name: UnregisteredPopup
+  nameWithType: UnregisteredPopup.UnregisteredPopup
+  fullName: GameFramework.Tests.HelperClasses.UI.GameFramework.Tests.Services.UnregisteredPopup.UnregisteredPopup
+- uid: VisualElement
+  isExternal: true
+  name: VisualElement
+  nameWithType: VisualElement
+  fullName: VisualElement

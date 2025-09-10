@@ -1,0 +1,299 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.Services.Interfaces.ISceneService
+  commentId: T:GameFramework.Services.Interfaces.ISceneService
+  id: ISceneService
+  parent: GameFramework.Services.Interfaces
+  children:
+  - GameFramework.Services.Interfaces.ISceneService.GetCurrentSceneName
+  - GameFramework.Services.Interfaces.ISceneService.IsSceneLoaded(System.String)
+  - GameFramework.Services.Interfaces.ISceneService.LoadSceneAdditiveAsync(System.String)
+  - GameFramework.Services.Interfaces.ISceneService.LoadSceneAsync(System.String)
+  - GameFramework.Services.Interfaces.ISceneService.UnloadSceneAsync(System.String)
+  langs:
+  - csharp
+  - vb
+  name: ISceneService
+  nameWithType: ISceneService
+  fullName: GameFramework.Services.Interfaces.ISceneService
+  type: Interface
+  source:
+    id: ISceneService
+    path: ''
+    startLine: 11282
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  summary: "\nInterface for scene management service\n"
+  example: []
+  syntax:
+    content: 'public interface ISceneService : IGameService'
+    content.vb: >-
+      Public Interface ISceneService
+          Inherits IGameService
+  inheritedMembers:
+  - GameFramework.Services.Interfaces.IGameService.IsInitialized
+  - GameFramework.Services.Interfaces.IGameService.InitializeAsync
+  - GameFramework.Services.Interfaces.IGameService.Shutdown
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: GameFramework.Services.Interfaces.ISceneService.LoadSceneAsync(System.String)
+  commentId: M:GameFramework.Services.Interfaces.ISceneService.LoadSceneAsync(System.String)
+  id: LoadSceneAsync(System.String)
+  parent: GameFramework.Services.Interfaces.ISceneService
+  langs:
+  - csharp
+  - vb
+  name: LoadSceneAsync(String)
+  nameWithType: ISceneService.LoadSceneAsync(String)
+  fullName: GameFramework.Services.Interfaces.ISceneService.LoadSceneAsync(System.String)
+  type: Method
+  source:
+    id: LoadSceneAsync
+    path: ''
+    startLine: 11284
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: Task LoadSceneAsync(string sceneName)
+    parameters:
+    - id: sceneName
+      type: System.String
+    return:
+      type: Task
+    content.vb: Function LoadSceneAsync(sceneName As String) As Task
+  overload: GameFramework.Services.Interfaces.ISceneService.LoadSceneAsync*
+- uid: GameFramework.Services.Interfaces.ISceneService.LoadSceneAdditiveAsync(System.String)
+  commentId: M:GameFramework.Services.Interfaces.ISceneService.LoadSceneAdditiveAsync(System.String)
+  id: LoadSceneAdditiveAsync(System.String)
+  parent: GameFramework.Services.Interfaces.ISceneService
+  langs:
+  - csharp
+  - vb
+  name: LoadSceneAdditiveAsync(String)
+  nameWithType: ISceneService.LoadSceneAdditiveAsync(String)
+  fullName: GameFramework.Services.Interfaces.ISceneService.LoadSceneAdditiveAsync(System.String)
+  type: Method
+  source:
+    id: LoadSceneAdditiveAsync
+    path: ''
+    startLine: 11285
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: Task LoadSceneAdditiveAsync(string sceneName)
+    parameters:
+    - id: sceneName
+      type: System.String
+    return:
+      type: Task
+    content.vb: Function LoadSceneAdditiveAsync(sceneName As String) As Task
+  overload: GameFramework.Services.Interfaces.ISceneService.LoadSceneAdditiveAsync*
+- uid: GameFramework.Services.Interfaces.ISceneService.UnloadSceneAsync(System.String)
+  commentId: M:GameFramework.Services.Interfaces.ISceneService.UnloadSceneAsync(System.String)
+  id: UnloadSceneAsync(System.String)
+  parent: GameFramework.Services.Interfaces.ISceneService
+  langs:
+  - csharp
+  - vb
+  name: UnloadSceneAsync(String)
+  nameWithType: ISceneService.UnloadSceneAsync(String)
+  fullName: GameFramework.Services.Interfaces.ISceneService.UnloadSceneAsync(System.String)
+  type: Method
+  source:
+    id: UnloadSceneAsync
+    path: ''
+    startLine: 11286
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: Task UnloadSceneAsync(string sceneName)
+    parameters:
+    - id: sceneName
+      type: System.String
+    return:
+      type: Task
+    content.vb: Function UnloadSceneAsync(sceneName As String) As Task
+  overload: GameFramework.Services.Interfaces.ISceneService.UnloadSceneAsync*
+- uid: GameFramework.Services.Interfaces.ISceneService.GetCurrentSceneName
+  commentId: M:GameFramework.Services.Interfaces.ISceneService.GetCurrentSceneName
+  id: GetCurrentSceneName
+  parent: GameFramework.Services.Interfaces.ISceneService
+  langs:
+  - csharp
+  - vb
+  name: GetCurrentSceneName()
+  nameWithType: ISceneService.GetCurrentSceneName()
+  fullName: GameFramework.Services.Interfaces.ISceneService.GetCurrentSceneName()
+  type: Method
+  source:
+    id: GetCurrentSceneName
+    path: ''
+    startLine: 11287
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: string GetCurrentSceneName()
+    return:
+      type: System.String
+    content.vb: Function GetCurrentSceneName As String
+  overload: GameFramework.Services.Interfaces.ISceneService.GetCurrentSceneName*
+- uid: GameFramework.Services.Interfaces.ISceneService.IsSceneLoaded(System.String)
+  commentId: M:GameFramework.Services.Interfaces.ISceneService.IsSceneLoaded(System.String)
+  id: IsSceneLoaded(System.String)
+  parent: GameFramework.Services.Interfaces.ISceneService
+  langs:
+  - csharp
+  - vb
+  name: IsSceneLoaded(String)
+  nameWithType: ISceneService.IsSceneLoaded(String)
+  fullName: GameFramework.Services.Interfaces.ISceneService.IsSceneLoaded(System.String)
+  type: Method
+  source:
+    id: IsSceneLoaded
+    path: ''
+    startLine: 11288
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: bool IsSceneLoaded(string sceneName)
+    parameters:
+    - id: sceneName
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Function IsSceneLoaded(sceneName As String) As Boolean
+  overload: GameFramework.Services.Interfaces.ISceneService.IsSceneLoaded*
+references:
+- uid: GameFramework.Services.Interfaces
+  commentId: N:GameFramework.Services.Interfaces
+  name: GameFramework.Services.Interfaces
+  nameWithType: GameFramework.Services.Interfaces
+  fullName: GameFramework.Services.Interfaces
+- uid: GameFramework.Services.Interfaces.IGameService.IsInitialized
+  commentId: P:GameFramework.Services.Interfaces.IGameService.IsInitialized
+  parent: GameFramework.Services.Interfaces.IGameService
+  name: IsInitialized
+  nameWithType: IGameService.IsInitialized
+  fullName: GameFramework.Services.Interfaces.IGameService.IsInitialized
+- uid: GameFramework.Services.Interfaces.IGameService.InitializeAsync
+  commentId: M:GameFramework.Services.Interfaces.IGameService.InitializeAsync
+  parent: GameFramework.Services.Interfaces.IGameService
+  name: InitializeAsync()
+  nameWithType: IGameService.InitializeAsync()
+  fullName: GameFramework.Services.Interfaces.IGameService.InitializeAsync()
+  spec.csharp:
+  - uid: GameFramework.Services.Interfaces.IGameService.InitializeAsync
+    name: InitializeAsync
+    nameWithType: IGameService.InitializeAsync
+    fullName: GameFramework.Services.Interfaces.IGameService.InitializeAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.Services.Interfaces.IGameService.InitializeAsync
+    name: InitializeAsync
+    nameWithType: IGameService.InitializeAsync
+    fullName: GameFramework.Services.Interfaces.IGameService.InitializeAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.Services.Interfaces.IGameService.Shutdown
+  commentId: M:GameFramework.Services.Interfaces.IGameService.Shutdown
+  parent: GameFramework.Services.Interfaces.IGameService
+  name: Shutdown()
+  nameWithType: IGameService.Shutdown()
+  fullName: GameFramework.Services.Interfaces.IGameService.Shutdown()
+  spec.csharp:
+  - uid: GameFramework.Services.Interfaces.IGameService.Shutdown
+    name: Shutdown
+    nameWithType: IGameService.Shutdown
+    fullName: GameFramework.Services.Interfaces.IGameService.Shutdown
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.Services.Interfaces.IGameService.Shutdown
+    name: Shutdown
+    nameWithType: IGameService.Shutdown
+    fullName: GameFramework.Services.Interfaces.IGameService.Shutdown
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.Services.Interfaces.IGameService
+  commentId: T:GameFramework.Services.Interfaces.IGameService
+  parent: GameFramework.Services.Interfaces
+  name: IGameService
+  nameWithType: IGameService
+  fullName: GameFramework.Services.Interfaces.IGameService
+- uid: GameFramework.Services.Interfaces.ISceneService.LoadSceneAsync*
+  commentId: Overload:GameFramework.Services.Interfaces.ISceneService.LoadSceneAsync
+  name: LoadSceneAsync
+  nameWithType: ISceneService.LoadSceneAsync
+  fullName: GameFramework.Services.Interfaces.ISceneService.LoadSceneAsync
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Task
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: Task
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: GameFramework.Services.Interfaces.ISceneService.LoadSceneAdditiveAsync*
+  commentId: Overload:GameFramework.Services.Interfaces.ISceneService.LoadSceneAdditiveAsync
+  name: LoadSceneAdditiveAsync
+  nameWithType: ISceneService.LoadSceneAdditiveAsync
+  fullName: GameFramework.Services.Interfaces.ISceneService.LoadSceneAdditiveAsync
+- uid: GameFramework.Services.Interfaces.ISceneService.UnloadSceneAsync*
+  commentId: Overload:GameFramework.Services.Interfaces.ISceneService.UnloadSceneAsync
+  name: UnloadSceneAsync
+  nameWithType: ISceneService.UnloadSceneAsync
+  fullName: GameFramework.Services.Interfaces.ISceneService.UnloadSceneAsync
+- uid: GameFramework.Services.Interfaces.ISceneService.GetCurrentSceneName*
+  commentId: Overload:GameFramework.Services.Interfaces.ISceneService.GetCurrentSceneName
+  name: GetCurrentSceneName
+  nameWithType: ISceneService.GetCurrentSceneName
+  fullName: GameFramework.Services.Interfaces.ISceneService.GetCurrentSceneName
+- uid: GameFramework.Services.Interfaces.ISceneService.IsSceneLoaded*
+  commentId: Overload:GameFramework.Services.Interfaces.ISceneService.IsSceneLoaded
+  name: IsSceneLoaded
+  nameWithType: ISceneService.IsSceneLoaded
+  fullName: GameFramework.Services.Interfaces.ISceneService.IsSceneLoaded
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean

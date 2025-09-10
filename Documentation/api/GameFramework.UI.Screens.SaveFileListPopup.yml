@@ -1,0 +1,1892 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.UI.Screens.SaveFileListPopup
+  commentId: T:GameFramework.UI.Screens.SaveFileListPopup
+  id: SaveFileListPopup
+  parent: GameFramework.UI.Screens
+  children:
+  - GameFramework.UI.Screens.SaveFileListPopup.#ctor(VisualElement)
+  - GameFramework.UI.Screens.SaveFileListPopup._closeButton
+  - GameFramework.UI.Screens.SaveFileListPopup._deleteButton
+  - GameFramework.UI.Screens.SaveFileListPopup._eventSystem
+  - GameFramework.UI.Screens.SaveFileListPopup._isDeletingFile
+  - GameFramework.UI.Screens.SaveFileListPopup._isLoadingData
+  - GameFramework.UI.Screens.SaveFileListPopup._loadService
+  - GameFramework.UI.Screens.SaveFileListPopup._saveFileList
+  - GameFramework.UI.Screens.SaveFileListPopup._saveFiles
+  - GameFramework.UI.Screens.SaveFileListPopup._saveService
+  - GameFramework.UI.Screens.SaveFileListPopup._selectedSaveFile
+  - GameFramework.UI.Screens.SaveFileListPopup._statusLabel
+  - GameFramework.UI.Screens.SaveFileListPopup._uiService
+  - GameFramework.UI.Screens.SaveFileListPopup.CacheSpecificUIElements
+  - GameFramework.UI.Screens.SaveFileListPopup.CanDeleteSelectedFile
+  - GameFramework.UI.Screens.SaveFileListPopup.ClosePopup
+  - GameFramework.UI.Screens.SaveFileListPopup.DELETING_SAVE_FILE_MESSAGE
+  - GameFramework.UI.Screens.SaveFileListPopup.ERROR_DELETING_MESSAGE
+  - GameFramework.UI.Screens.SaveFileListPopup.ERROR_LOADING_MESSAGE
+  - GameFramework.UI.Screens.SaveFileListPopup.InitializeBaseUI
+  - GameFramework.UI.Screens.SaveFileListPopup.LOADING_SAVE_FILES_MESSAGE
+  - GameFramework.UI.Screens.SaveFileListPopup.NO_SAVE_FILES_MESSAGE
+  - GameFramework.UI.Screens.SaveFileListPopup.OnHide
+  - GameFramework.UI.Screens.SaveFileListPopup.OnShow
+  - GameFramework.UI.Screens.SaveFileListPopup.RefreshSaveFilesList
+  - GameFramework.UI.Screens.SaveFileListPopup.RegisterSpecificEventHandlers
+  - GameFramework.UI.Screens.SaveFileListPopup.ResetUIState
+  - GameFramework.UI.Screens.SaveFileListPopup.SetDataLoadingState(System.Boolean)
+  - GameFramework.UI.Screens.SaveFileListPopup.SetDeletingState(System.Boolean)
+  - GameFramework.UI.Screens.SaveFileListPopup.SetStatusMessage(System.String,System.Boolean)
+  - GameFramework.UI.Screens.SaveFileListPopup.SetupSpecificFunctionality
+  - GameFramework.UI.Screens.SaveFileListPopup.UnregisterSpecificEventHandlers
+  - GameFramework.UI.Screens.SaveFileListPopup.UpdateButtonStates
+  - GameFramework.UI.Screens.SaveFileListPopup.UpdateSelection(SaveFileInfo)
+  - GameFramework.UI.Screens.SaveFileListPopup.UpdateSpecificButtonStates
+  langs:
+  - csharp
+  - vb
+  name: SaveFileListPopup
+  nameWithType: SaveFileListPopup
+  fullName: GameFramework.UI.Screens.SaveFileListPopup
+  type: Class
+  source:
+    id: SaveFileListPopup
+    path: ''
+    startLine: 14081
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Screens
+  summary: "\nBase class for popups that display and manage save file lists\nProvides common functionality for save file display, selection, and deletion\nDerived classes implement specific load/save behaviors\n"
+  example: []
+  syntax:
+    content: 'public abstract class SaveFileListPopup : UIPopup'
+    content.vb: >-
+      Public MustInherit Class SaveFileListPopup
+          Inherits UIPopup
+  inheritance:
+  - System.Object
+  - GameFramework.UI.UIScreen
+  - GameFramework.UI.UIPopup
+  derivedClasses:
+  - GameFramework.UI.Screens.LoadGamePopup
+  - GameFramework.UI.Screens.SaveGamePopup
+  inheritedMembers:
+  - GameFramework.UI.UIPopup.CountsAsGameBlockingPopup
+  - GameFramework.UI.UIScreen.RootElement
+  - GameFramework.UI.UIScreen.IsVisible
+  - GameFramework.UI.UIScreen.NeedsFrameUpdates
+  - GameFramework.UI.UIScreen.Show
+  - GameFramework.UI.UIScreen.Hide
+  - GameFramework.UI.UIScreen.EnableFrameUpdates
+  - GameFramework.UI.UIScreen.DisableFrameUpdates
+  - GameFramework.UI.UIScreen.OnUpdate(System.Single)
+  - GameFramework.UI.UIScreen.Cleanup
+  - GameFramework.UI.UIScreen.ShouldUpdateWhenPaused
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - abstract
+  - class
+  modifiers.vb:
+  - Public
+  - MustInherit
+  - Class
+- uid: GameFramework.UI.Screens.SaveFileListPopup._saveFileList
+  commentId: F:GameFramework.UI.Screens.SaveFileListPopup._saveFileList
+  id: _saveFileList
+  parent: GameFramework.UI.Screens.SaveFileListPopup
+  langs:
+  - csharp
+  - vb
+  name: _saveFileList
+  nameWithType: SaveFileListPopup._saveFileList
+  fullName: GameFramework.UI.Screens.SaveFileListPopup._saveFileList
+  type: Field
+  source:
+    id: _saveFileList
+    path: ''
+    startLine: 14085
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Screens
+  syntax:
+    content: protected ListView _saveFileList
+    return:
+      type: ListView
+    content.vb: Protected _saveFileList As ListView
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: GameFramework.UI.Screens.SaveFileListPopup._deleteButton
+  commentId: F:GameFramework.UI.Screens.SaveFileListPopup._deleteButton
+  id: _deleteButton
+  parent: GameFramework.UI.Screens.SaveFileListPopup
+  langs:
+  - csharp
+  - vb
+  name: _deleteButton
+  nameWithType: SaveFileListPopup._deleteButton
+  fullName: GameFramework.UI.Screens.SaveFileListPopup._deleteButton
+  type: Field
+  source:
+    id: _deleteButton
+    path: ''
+    startLine: 14086
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Screens
+  syntax:
+    content: protected Button _deleteButton
+    return:
+      type: Button
+    content.vb: Protected _deleteButton As Button
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: GameFramework.UI.Screens.SaveFileListPopup._closeButton
+  commentId: F:GameFramework.UI.Screens.SaveFileListPopup._closeButton
+  id: _closeButton
+  parent: GameFramework.UI.Screens.SaveFileListPopup
+  langs:
+  - csharp
+  - vb
+  name: _closeButton
+  nameWithType: SaveFileListPopup._closeButton
+  fullName: GameFramework.UI.Screens.SaveFileListPopup._closeButton
+  type: Field
+  source:
+    id: _closeButton
+    path: ''
+    startLine: 14087
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Screens
+  syntax:
+    content: protected Button _closeButton
+    return:
+      type: Button
+    content.vb: Protected _closeButton As Button
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: GameFramework.UI.Screens.SaveFileListPopup._statusLabel
+  commentId: F:GameFramework.UI.Screens.SaveFileListPopup._statusLabel
+  id: _statusLabel
+  parent: GameFramework.UI.Screens.SaveFileListPopup
+  langs:
+  - csharp
+  - vb
+  name: _statusLabel
+  nameWithType: SaveFileListPopup._statusLabel
+  fullName: GameFramework.UI.Screens.SaveFileListPopup._statusLabel
+  type: Field
+  source:
+    id: _statusLabel
+    path: ''
+    startLine: 14088
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Screens
+  syntax:
+    content: protected Label _statusLabel
+    return:
+      type: Label
+    content.vb: Protected _statusLabel As Label
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: GameFramework.UI.Screens.SaveFileListPopup._uiService
+  commentId: F:GameFramework.UI.Screens.SaveFileListPopup._uiService
+  id: _uiService
+  parent: GameFramework.UI.Screens.SaveFileListPopup
+  langs:
+  - csharp
+  - vb
+  name: _uiService
+  nameWithType: SaveFileListPopup._uiService
+  fullName: GameFramework.UI.Screens.SaveFileListPopup._uiService
+  type: Field
+  source:
+    id: _uiService
+    path: ''
+    startLine: 14094
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Screens
+  syntax:
+    content: protected readonly IUIService _uiService
+    return:
+      type: IUIService
+    content.vb: Protected ReadOnly _uiService As IUIService
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: GameFramework.UI.Screens.SaveFileListPopup._loadService
+  commentId: F:GameFramework.UI.Screens.SaveFileListPopup._loadService
+  id: _loadService
+  parent: GameFramework.UI.Screens.SaveFileListPopup
+  langs:
+  - csharp
+  - vb
+  name: _loadService
+  nameWithType: SaveFileListPopup._loadService
+  fullName: GameFramework.UI.Screens.SaveFileListPopup._loadService
+  type: Field
+  source:
+    id: _loadService
+    path: ''
+    startLine: 14095
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Screens
+  syntax:
+    content: protected readonly ILoadService _loadService
+    return:
+      type: ILoadService
+    content.vb: Protected ReadOnly _loadService As ILoadService
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: GameFramework.UI.Screens.SaveFileListPopup._saveService
+  commentId: F:GameFramework.UI.Screens.SaveFileListPopup._saveService
+  id: _saveService
+  parent: GameFramework.UI.Screens.SaveFileListPopup
+  langs:
+  - csharp
+  - vb
+  name: _saveService
+  nameWithType: SaveFileListPopup._saveService
+  fullName: GameFramework.UI.Screens.SaveFileListPopup._saveService
+  type: Field
+  source:
+    id: _saveService
+    path: ''
+    startLine: 14096
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Screens
+  syntax:
+    content: protected readonly ISaveService _saveService
+    return:
+      type: ISaveService
+    content.vb: Protected ReadOnly _saveService As ISaveService
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: GameFramework.UI.Screens.SaveFileListPopup._eventSystem
+  commentId: F:GameFramework.UI.Screens.SaveFileListPopup._eventSystem
+  id: _eventSystem
+  parent: GameFramework.UI.Screens.SaveFileListPopup
+  langs:
+  - csharp
+  - vb
+  name: _eventSystem
+  nameWithType: SaveFileListPopup._eventSystem
+  fullName: GameFramework.UI.Screens.SaveFileListPopup._eventSystem
+  type: Field
+  source:
+    id: _eventSystem
+    path: ''
+    startLine: 14097
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Screens
+  syntax:
+    content: protected readonly IEventSystem _eventSystem
+    return:
+      type: IEventSystem
+    content.vb: Protected ReadOnly _eventSystem As IEventSystem
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: GameFramework.UI.Screens.SaveFileListPopup._saveFiles
+  commentId: F:GameFramework.UI.Screens.SaveFileListPopup._saveFiles
+  id: _saveFiles
+  parent: GameFramework.UI.Screens.SaveFileListPopup
+  langs:
+  - csharp
+  - vb
+  name: _saveFiles
+  nameWithType: SaveFileListPopup._saveFiles
+  fullName: GameFramework.UI.Screens.SaveFileListPopup._saveFiles
+  type: Field
+  source:
+    id: _saveFiles
+    path: ''
+    startLine: 14103
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Screens
+  syntax:
+    content: protected SaveFileInfo[] _saveFiles
+    return:
+      type: SaveFileInfo[]
+    content.vb: Protected _saveFiles As SaveFileInfo()
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: GameFramework.UI.Screens.SaveFileListPopup._selectedSaveFile
+  commentId: F:GameFramework.UI.Screens.SaveFileListPopup._selectedSaveFile
+  id: _selectedSaveFile
+  parent: GameFramework.UI.Screens.SaveFileListPopup
+  langs:
+  - csharp
+  - vb
+  name: _selectedSaveFile
+  nameWithType: SaveFileListPopup._selectedSaveFile
+  fullName: GameFramework.UI.Screens.SaveFileListPopup._selectedSaveFile
+  type: Field
+  source:
+    id: _selectedSaveFile
+    path: ''
+    startLine: 14104
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Screens
+  syntax:
+    content: protected SaveFileInfo _selectedSaveFile
+    return:
+      type: SaveFileInfo
+    content.vb: Protected _selectedSaveFile As SaveFileInfo
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: GameFramework.UI.Screens.SaveFileListPopup._isLoadingData
+  commentId: F:GameFramework.UI.Screens.SaveFileListPopup._isLoadingData
+  id: _isLoadingData
+  parent: GameFramework.UI.Screens.SaveFileListPopup
+  langs:
+  - csharp
+  - vb
+  name: _isLoadingData
+  nameWithType: SaveFileListPopup._isLoadingData
+  fullName: GameFramework.UI.Screens.SaveFileListPopup._isLoadingData
+  type: Field
+  source:
+    id: _isLoadingData
+    path: ''
+    startLine: 14105
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Screens
+  syntax:
+    content: protected bool _isLoadingData
+    return:
+      type: System.Boolean
+    content.vb: Protected _isLoadingData As Boolean
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: GameFramework.UI.Screens.SaveFileListPopup._isDeletingFile
+  commentId: F:GameFramework.UI.Screens.SaveFileListPopup._isDeletingFile
+  id: _isDeletingFile
+  parent: GameFramework.UI.Screens.SaveFileListPopup
+  langs:
+  - csharp
+  - vb
+  name: _isDeletingFile
+  nameWithType: SaveFileListPopup._isDeletingFile
+  fullName: GameFramework.UI.Screens.SaveFileListPopup._isDeletingFile
+  type: Field
+  source:
+    id: _isDeletingFile
+    path: ''
+    startLine: 14106
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Screens
+  syntax:
+    content: protected bool _isDeletingFile
+    return:
+      type: System.Boolean
+    content.vb: Protected _isDeletingFile As Boolean
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: GameFramework.UI.Screens.SaveFileListPopup.NO_SAVE_FILES_MESSAGE
+  commentId: F:GameFramework.UI.Screens.SaveFileListPopup.NO_SAVE_FILES_MESSAGE
+  id: NO_SAVE_FILES_MESSAGE
+  parent: GameFramework.UI.Screens.SaveFileListPopup
+  langs:
+  - csharp
+  - vb
+  name: NO_SAVE_FILES_MESSAGE
+  nameWithType: SaveFileListPopup.NO_SAVE_FILES_MESSAGE
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.NO_SAVE_FILES_MESSAGE
+  type: Field
+  source:
+    id: NO_SAVE_FILES_MESSAGE
+    path: ''
+    startLine: 14112
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Screens
+  syntax:
+    content: protected const string NO_SAVE_FILES_MESSAGE = "No save files found"
+    return:
+      type: System.String
+    content.vb: Protected Const NO_SAVE_FILES_MESSAGE As String = "No save files found"
+  modifiers.csharp:
+  - protected
+  - const
+  modifiers.vb:
+  - Protected
+  - Const
+- uid: GameFramework.UI.Screens.SaveFileListPopup.LOADING_SAVE_FILES_MESSAGE
+  commentId: F:GameFramework.UI.Screens.SaveFileListPopup.LOADING_SAVE_FILES_MESSAGE
+  id: LOADING_SAVE_FILES_MESSAGE
+  parent: GameFramework.UI.Screens.SaveFileListPopup
+  langs:
+  - csharp
+  - vb
+  name: LOADING_SAVE_FILES_MESSAGE
+  nameWithType: SaveFileListPopup.LOADING_SAVE_FILES_MESSAGE
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.LOADING_SAVE_FILES_MESSAGE
+  type: Field
+  source:
+    id: LOADING_SAVE_FILES_MESSAGE
+    path: ''
+    startLine: 14113
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Screens
+  syntax:
+    content: protected const string LOADING_SAVE_FILES_MESSAGE = "Loading save files..."
+    return:
+      type: System.String
+    content.vb: Protected Const LOADING_SAVE_FILES_MESSAGE As String = "Loading save files..."
+  modifiers.csharp:
+  - protected
+  - const
+  modifiers.vb:
+  - Protected
+  - Const
+- uid: GameFramework.UI.Screens.SaveFileListPopup.DELETING_SAVE_FILE_MESSAGE
+  commentId: F:GameFramework.UI.Screens.SaveFileListPopup.DELETING_SAVE_FILE_MESSAGE
+  id: DELETING_SAVE_FILE_MESSAGE
+  parent: GameFramework.UI.Screens.SaveFileListPopup
+  langs:
+  - csharp
+  - vb
+  name: DELETING_SAVE_FILE_MESSAGE
+  nameWithType: SaveFileListPopup.DELETING_SAVE_FILE_MESSAGE
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.DELETING_SAVE_FILE_MESSAGE
+  type: Field
+  source:
+    id: DELETING_SAVE_FILE_MESSAGE
+    path: ''
+    startLine: 14114
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Screens
+  syntax:
+    content: protected const string DELETING_SAVE_FILE_MESSAGE = "Deleting save file..."
+    return:
+      type: System.String
+    content.vb: Protected Const DELETING_SAVE_FILE_MESSAGE As String = "Deleting save file..."
+  modifiers.csharp:
+  - protected
+  - const
+  modifiers.vb:
+  - Protected
+  - Const
+- uid: GameFramework.UI.Screens.SaveFileListPopup.ERROR_LOADING_MESSAGE
+  commentId: F:GameFramework.UI.Screens.SaveFileListPopup.ERROR_LOADING_MESSAGE
+  id: ERROR_LOADING_MESSAGE
+  parent: GameFramework.UI.Screens.SaveFileListPopup
+  langs:
+  - csharp
+  - vb
+  name: ERROR_LOADING_MESSAGE
+  nameWithType: SaveFileListPopup.ERROR_LOADING_MESSAGE
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.ERROR_LOADING_MESSAGE
+  type: Field
+  source:
+    id: ERROR_LOADING_MESSAGE
+    path: ''
+    startLine: 14115
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Screens
+  syntax:
+    content: protected const string ERROR_LOADING_MESSAGE = "Error loading save files"
+    return:
+      type: System.String
+    content.vb: Protected Const ERROR_LOADING_MESSAGE As String = "Error loading save files"
+  modifiers.csharp:
+  - protected
+  - const
+  modifiers.vb:
+  - Protected
+  - Const
+- uid: GameFramework.UI.Screens.SaveFileListPopup.ERROR_DELETING_MESSAGE
+  commentId: F:GameFramework.UI.Screens.SaveFileListPopup.ERROR_DELETING_MESSAGE
+  id: ERROR_DELETING_MESSAGE
+  parent: GameFramework.UI.Screens.SaveFileListPopup
+  langs:
+  - csharp
+  - vb
+  name: ERROR_DELETING_MESSAGE
+  nameWithType: SaveFileListPopup.ERROR_DELETING_MESSAGE
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.ERROR_DELETING_MESSAGE
+  type: Field
+  source:
+    id: ERROR_DELETING_MESSAGE
+    path: ''
+    startLine: 14116
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Screens
+  syntax:
+    content: protected const string ERROR_DELETING_MESSAGE = "Error deleting save file"
+    return:
+      type: System.String
+    content.vb: Protected Const ERROR_DELETING_MESSAGE As String = "Error deleting save file"
+  modifiers.csharp:
+  - protected
+  - const
+  modifiers.vb:
+  - Protected
+  - Const
+- uid: GameFramework.UI.Screens.SaveFileListPopup.#ctor(VisualElement)
+  commentId: M:GameFramework.UI.Screens.SaveFileListPopup.#ctor(VisualElement)
+  id: '#ctor(VisualElement)'
+  parent: GameFramework.UI.Screens.SaveFileListPopup
+  langs:
+  - csharp
+  - vb
+  name: SaveFileListPopup(VisualElement)
+  nameWithType: SaveFileListPopup.SaveFileListPopup(VisualElement)
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.SaveFileListPopup(VisualElement)
+  type: Constructor
+  source:
+    id: .ctor
+    path: ''
+    startLine: 14120
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Screens
+  syntax:
+    content: protected SaveFileListPopup(VisualElement rootElement)
+    parameters:
+    - id: rootElement
+      type: VisualElement
+    content.vb: Protected Sub New(rootElement As VisualElement)
+  overload: GameFramework.UI.Screens.SaveFileListPopup.#ctor*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: GameFramework.UI.Screens.SaveFileListPopup.CacheSpecificUIElements
+  commentId: M:GameFramework.UI.Screens.SaveFileListPopup.CacheSpecificUIElements
+  id: CacheSpecificUIElements
+  parent: GameFramework.UI.Screens.SaveFileListPopup
+  langs:
+  - csharp
+  - vb
+  name: CacheSpecificUIElements()
+  nameWithType: SaveFileListPopup.CacheSpecificUIElements()
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.CacheSpecificUIElements()
+  type: Method
+  source:
+    id: CacheSpecificUIElements
+    path: ''
+    startLine: 14133
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Screens
+  summary: "\nCache UI elements specific to the derived popup\n"
+  example: []
+  syntax:
+    content: protected abstract void CacheSpecificUIElements()
+    content.vb: Protected MustOverride Sub CacheSpecificUIElements
+  overload: GameFramework.UI.Screens.SaveFileListPopup.CacheSpecificUIElements*
+  modifiers.csharp:
+  - protected
+  - abstract
+  modifiers.vb:
+  - Protected
+  - MustOverride
+- uid: GameFramework.UI.Screens.SaveFileListPopup.SetupSpecificFunctionality
+  commentId: M:GameFramework.UI.Screens.SaveFileListPopup.SetupSpecificFunctionality
+  id: SetupSpecificFunctionality
+  parent: GameFramework.UI.Screens.SaveFileListPopup
+  langs:
+  - csharp
+  - vb
+  name: SetupSpecificFunctionality()
+  nameWithType: SaveFileListPopup.SetupSpecificFunctionality()
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.SetupSpecificFunctionality()
+  type: Method
+  source:
+    id: SetupSpecificFunctionality
+    path: ''
+    startLine: 14138
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Screens
+  summary: "\nSetup derived class specific functionality\n"
+  example: []
+  syntax:
+    content: protected abstract void SetupSpecificFunctionality()
+    content.vb: Protected MustOverride Sub SetupSpecificFunctionality
+  overload: GameFramework.UI.Screens.SaveFileListPopup.SetupSpecificFunctionality*
+  modifiers.csharp:
+  - protected
+  - abstract
+  modifiers.vb:
+  - Protected
+  - MustOverride
+- uid: GameFramework.UI.Screens.SaveFileListPopup.RegisterSpecificEventHandlers
+  commentId: M:GameFramework.UI.Screens.SaveFileListPopup.RegisterSpecificEventHandlers
+  id: RegisterSpecificEventHandlers
+  parent: GameFramework.UI.Screens.SaveFileListPopup
+  langs:
+  - csharp
+  - vb
+  name: RegisterSpecificEventHandlers()
+  nameWithType: SaveFileListPopup.RegisterSpecificEventHandlers()
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.RegisterSpecificEventHandlers()
+  type: Method
+  source:
+    id: RegisterSpecificEventHandlers
+    path: ''
+    startLine: 14143
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Screens
+  summary: "\nRegister event handlers specific to derived class\n"
+  example: []
+  syntax:
+    content: protected abstract void RegisterSpecificEventHandlers()
+    content.vb: Protected MustOverride Sub RegisterSpecificEventHandlers
+  overload: GameFramework.UI.Screens.SaveFileListPopup.RegisterSpecificEventHandlers*
+  modifiers.csharp:
+  - protected
+  - abstract
+  modifiers.vb:
+  - Protected
+  - MustOverride
+- uid: GameFramework.UI.Screens.SaveFileListPopup.UnregisterSpecificEventHandlers
+  commentId: M:GameFramework.UI.Screens.SaveFileListPopup.UnregisterSpecificEventHandlers
+  id: UnregisterSpecificEventHandlers
+  parent: GameFramework.UI.Screens.SaveFileListPopup
+  langs:
+  - csharp
+  - vb
+  name: UnregisterSpecificEventHandlers()
+  nameWithType: SaveFileListPopup.UnregisterSpecificEventHandlers()
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.UnregisterSpecificEventHandlers()
+  type: Method
+  source:
+    id: UnregisterSpecificEventHandlers
+    path: ''
+    startLine: 14148
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Screens
+  summary: "\nUnregister event handlers specific to derived class\n"
+  example: []
+  syntax:
+    content: protected abstract void UnregisterSpecificEventHandlers()
+    content.vb: Protected MustOverride Sub UnregisterSpecificEventHandlers
+  overload: GameFramework.UI.Screens.SaveFileListPopup.UnregisterSpecificEventHandlers*
+  modifiers.csharp:
+  - protected
+  - abstract
+  modifiers.vb:
+  - Protected
+  - MustOverride
+- uid: GameFramework.UI.Screens.SaveFileListPopup.UpdateSpecificButtonStates
+  commentId: M:GameFramework.UI.Screens.SaveFileListPopup.UpdateSpecificButtonStates
+  id: UpdateSpecificButtonStates
+  parent: GameFramework.UI.Screens.SaveFileListPopup
+  langs:
+  - csharp
+  - vb
+  name: UpdateSpecificButtonStates()
+  nameWithType: SaveFileListPopup.UpdateSpecificButtonStates()
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.UpdateSpecificButtonStates()
+  type: Method
+  source:
+    id: UpdateSpecificButtonStates
+    path: ''
+    startLine: 14153
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Screens
+  summary: "\nUpdate button states based on current selection and derived class needs\n"
+  example: []
+  syntax:
+    content: protected abstract void UpdateSpecificButtonStates()
+    content.vb: Protected MustOverride Sub UpdateSpecificButtonStates
+  overload: GameFramework.UI.Screens.SaveFileListPopup.UpdateSpecificButtonStates*
+  modifiers.csharp:
+  - protected
+  - abstract
+  modifiers.vb:
+  - Protected
+  - MustOverride
+- uid: GameFramework.UI.Screens.SaveFileListPopup.InitializeBaseUI
+  commentId: M:GameFramework.UI.Screens.SaveFileListPopup.InitializeBaseUI
+  id: InitializeBaseUI
+  parent: GameFramework.UI.Screens.SaveFileListPopup
+  langs:
+  - csharp
+  - vb
+  name: InitializeBaseUI()
+  nameWithType: SaveFileListPopup.InitializeBaseUI()
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.InitializeBaseUI()
+  type: Method
+  source:
+    id: InitializeBaseUI
+    path: ''
+    startLine: 14159
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Screens
+  syntax:
+    content: protected void InitializeBaseUI()
+    content.vb: Protected Sub InitializeBaseUI
+  overload: GameFramework.UI.Screens.SaveFileListPopup.InitializeBaseUI*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: GameFramework.UI.Screens.SaveFileListPopup.OnShow
+  commentId: M:GameFramework.UI.Screens.SaveFileListPopup.OnShow
+  id: OnShow
+  parent: GameFramework.UI.Screens.SaveFileListPopup
+  langs:
+  - csharp
+  - vb
+  name: OnShow()
+  nameWithType: SaveFileListPopup.OnShow()
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.OnShow()
+  type: Method
+  source:
+    id: OnShow
+    path: ''
+    startLine: 14261
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Screens
+  syntax:
+    content: protected override async void OnShow()
+    content.vb: Protected Overrides Sub OnShow
+  overridden: GameFramework.UI.UIScreen.OnShow
+  overload: GameFramework.UI.Screens.SaveFileListPopup.OnShow*
+  modifiers.csharp:
+  - protected
+  - override
+  - async
+  modifiers.vb:
+  - Protected
+  - Overrides
+- uid: GameFramework.UI.Screens.SaveFileListPopup.OnHide
+  commentId: M:GameFramework.UI.Screens.SaveFileListPopup.OnHide
+  id: OnHide
+  parent: GameFramework.UI.Screens.SaveFileListPopup
+  langs:
+  - csharp
+  - vb
+  name: OnHide()
+  nameWithType: SaveFileListPopup.OnHide()
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.OnHide()
+  type: Method
+  source:
+    id: OnHide
+    path: ''
+    startLine: 14269
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Screens
+  syntax:
+    content: protected override void OnHide()
+    content.vb: Protected Overrides Sub OnHide
+  overridden: GameFramework.UI.UIScreen.OnHide
+  overload: GameFramework.UI.Screens.SaveFileListPopup.OnHide*
+  modifiers.csharp:
+  - protected
+  - override
+  modifiers.vb:
+  - Protected
+  - Overrides
+- uid: GameFramework.UI.Screens.SaveFileListPopup.ResetUIState
+  commentId: M:GameFramework.UI.Screens.SaveFileListPopup.ResetUIState
+  id: ResetUIState
+  parent: GameFramework.UI.Screens.SaveFileListPopup
+  langs:
+  - csharp
+  - vb
+  name: ResetUIState()
+  nameWithType: SaveFileListPopup.ResetUIState()
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.ResetUIState()
+  type: Method
+  source:
+    id: ResetUIState
+    path: ''
+    startLine: 14315
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Screens
+  syntax:
+    content: protected virtual void ResetUIState()
+    content.vb: Protected Overridable Sub ResetUIState
+  overload: GameFramework.UI.Screens.SaveFileListPopup.ResetUIState*
+  modifiers.csharp:
+  - protected
+  - virtual
+  modifiers.vb:
+  - Protected
+  - Overridable
+- uid: GameFramework.UI.Screens.SaveFileListPopup.UpdateSelection(SaveFileInfo)
+  commentId: M:GameFramework.UI.Screens.SaveFileListPopup.UpdateSelection(SaveFileInfo)
+  id: UpdateSelection(SaveFileInfo)
+  parent: GameFramework.UI.Screens.SaveFileListPopup
+  langs:
+  - csharp
+  - vb
+  name: UpdateSelection(SaveFileInfo)
+  nameWithType: SaveFileListPopup.UpdateSelection(SaveFileInfo)
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.UpdateSelection(SaveFileInfo)
+  type: Method
+  source:
+    id: UpdateSelection
+    path: ''
+    startLine: 14325
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Screens
+  syntax:
+    content: protected virtual void UpdateSelection(SaveFileInfo selectedSaveFile)
+    parameters:
+    - id: selectedSaveFile
+      type: SaveFileInfo
+    content.vb: Protected Overridable Sub UpdateSelection(selectedSaveFile As SaveFileInfo)
+  overload: GameFramework.UI.Screens.SaveFileListPopup.UpdateSelection*
+  modifiers.csharp:
+  - protected
+  - virtual
+  modifiers.vb:
+  - Protected
+  - Overridable
+- uid: GameFramework.UI.Screens.SaveFileListPopup.UpdateButtonStates
+  commentId: M:GameFramework.UI.Screens.SaveFileListPopup.UpdateButtonStates
+  id: UpdateButtonStates
+  parent: GameFramework.UI.Screens.SaveFileListPopup
+  langs:
+  - csharp
+  - vb
+  name: UpdateButtonStates()
+  nameWithType: SaveFileListPopup.UpdateButtonStates()
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.UpdateButtonStates()
+  type: Method
+  source:
+    id: UpdateButtonStates
+    path: ''
+    startLine: 14333
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Screens
+  syntax:
+    content: protected virtual void UpdateButtonStates()
+    content.vb: Protected Overridable Sub UpdateButtonStates
+  overload: GameFramework.UI.Screens.SaveFileListPopup.UpdateButtonStates*
+  modifiers.csharp:
+  - protected
+  - virtual
+  modifiers.vb:
+  - Protected
+  - Overridable
+- uid: GameFramework.UI.Screens.SaveFileListPopup.CanDeleteSelectedFile
+  commentId: M:GameFramework.UI.Screens.SaveFileListPopup.CanDeleteSelectedFile
+  id: CanDeleteSelectedFile
+  parent: GameFramework.UI.Screens.SaveFileListPopup
+  langs:
+  - csharp
+  - vb
+  name: CanDeleteSelectedFile()
+  nameWithType: SaveFileListPopup.CanDeleteSelectedFile()
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.CanDeleteSelectedFile()
+  type: Method
+  source:
+    id: CanDeleteSelectedFile
+    path: ''
+    startLine: 14342
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Screens
+  syntax:
+    content: protected virtual bool CanDeleteSelectedFile()
+    return:
+      type: System.Boolean
+    content.vb: Protected Overridable Function CanDeleteSelectedFile As Boolean
+  overload: GameFramework.UI.Screens.SaveFileListPopup.CanDeleteSelectedFile*
+  modifiers.csharp:
+  - protected
+  - virtual
+  modifiers.vb:
+  - Protected
+  - Overridable
+- uid: GameFramework.UI.Screens.SaveFileListPopup.SetDataLoadingState(System.Boolean)
+  commentId: M:GameFramework.UI.Screens.SaveFileListPopup.SetDataLoadingState(System.Boolean)
+  id: SetDataLoadingState(System.Boolean)
+  parent: GameFramework.UI.Screens.SaveFileListPopup
+  langs:
+  - csharp
+  - vb
+  name: SetDataLoadingState(Boolean)
+  nameWithType: SaveFileListPopup.SetDataLoadingState(Boolean)
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.SetDataLoadingState(System.Boolean)
+  type: Method
+  source:
+    id: SetDataLoadingState
+    path: ''
+    startLine: 14350
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Screens
+  syntax:
+    content: protected void SetDataLoadingState(bool isLoading)
+    parameters:
+    - id: isLoading
+      type: System.Boolean
+    content.vb: Protected Sub SetDataLoadingState(isLoading As Boolean)
+  overload: GameFramework.UI.Screens.SaveFileListPopup.SetDataLoadingState*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: GameFramework.UI.Screens.SaveFileListPopup.SetDeletingState(System.Boolean)
+  commentId: M:GameFramework.UI.Screens.SaveFileListPopup.SetDeletingState(System.Boolean)
+  id: SetDeletingState(System.Boolean)
+  parent: GameFramework.UI.Screens.SaveFileListPopup
+  langs:
+  - csharp
+  - vb
+  name: SetDeletingState(Boolean)
+  nameWithType: SaveFileListPopup.SetDeletingState(Boolean)
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.SetDeletingState(System.Boolean)
+  type: Method
+  source:
+    id: SetDeletingState
+    path: ''
+    startLine: 14356
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Screens
+  syntax:
+    content: protected void SetDeletingState(bool isDeleting)
+    parameters:
+    - id: isDeleting
+      type: System.Boolean
+    content.vb: Protected Sub SetDeletingState(isDeleting As Boolean)
+  overload: GameFramework.UI.Screens.SaveFileListPopup.SetDeletingState*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: GameFramework.UI.Screens.SaveFileListPopup.SetStatusMessage(System.String,System.Boolean)
+  commentId: M:GameFramework.UI.Screens.SaveFileListPopup.SetStatusMessage(System.String,System.Boolean)
+  id: SetStatusMessage(System.String,System.Boolean)
+  parent: GameFramework.UI.Screens.SaveFileListPopup
+  langs:
+  - csharp
+  - vb
+  name: SetStatusMessage(String, Boolean)
+  nameWithType: SaveFileListPopup.SetStatusMessage(String, Boolean)
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.SetStatusMessage(System.String, System.Boolean)
+  type: Method
+  source:
+    id: SetStatusMessage
+    path: ''
+    startLine: 14362
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Screens
+  syntax:
+    content: protected void SetStatusMessage(string message, bool show)
+    parameters:
+    - id: message
+      type: System.String
+    - id: show
+      type: System.Boolean
+    content.vb: Protected Sub SetStatusMessage(message As String, show As Boolean)
+  overload: GameFramework.UI.Screens.SaveFileListPopup.SetStatusMessage*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: GameFramework.UI.Screens.SaveFileListPopup.RefreshSaveFilesList
+  commentId: M:GameFramework.UI.Screens.SaveFileListPopup.RefreshSaveFilesList
+  id: RefreshSaveFilesList
+  parent: GameFramework.UI.Screens.SaveFileListPopup
+  langs:
+  - csharp
+  - vb
+  name: RefreshSaveFilesList()
+  nameWithType: SaveFileListPopup.RefreshSaveFilesList()
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.RefreshSaveFilesList()
+  type: Method
+  source:
+    id: RefreshSaveFilesList
+    path: ''
+    startLine: 14377
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Screens
+  summary: "\nRefreshes the save files list using LoadService\n"
+  example: []
+  syntax:
+    content: protected async Task RefreshSaveFilesList()
+    return:
+      type: Task
+    content.vb: Protected Function RefreshSaveFilesList As Task
+  overload: GameFramework.UI.Screens.SaveFileListPopup.RefreshSaveFilesList*
+  modifiers.csharp:
+  - protected
+  - async
+  modifiers.vb:
+  - Protected
+- uid: GameFramework.UI.Screens.SaveFileListPopup.ClosePopup
+  commentId: M:GameFramework.UI.Screens.SaveFileListPopup.ClosePopup
+  id: ClosePopup
+  parent: GameFramework.UI.Screens.SaveFileListPopup
+  langs:
+  - csharp
+  - vb
+  name: ClosePopup()
+  nameWithType: SaveFileListPopup.ClosePopup()
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.ClosePopup()
+  type: Method
+  source:
+    id: ClosePopup
+    path: ''
+    startLine: 14501
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Screens
+  summary: "\nAbstract method for closing the popup - derived classes implement with their specific type\n"
+  example: []
+  syntax:
+    content: protected abstract Task ClosePopup()
+    return:
+      type: Task
+    content.vb: Protected MustOverride Function ClosePopup As Task
+  overload: GameFramework.UI.Screens.SaveFileListPopup.ClosePopup*
+  modifiers.csharp:
+  - protected
+  - abstract
+  modifiers.vb:
+  - Protected
+  - MustOverride
+references:
+- uid: GameFramework.UI.Screens
+  commentId: N:GameFramework.UI.Screens
+  name: GameFramework.UI.Screens
+  nameWithType: GameFramework.UI.Screens
+  fullName: GameFramework.UI.Screens
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: GameFramework.UI.UIScreen
+  commentId: T:GameFramework.UI.UIScreen
+  parent: GameFramework.UI
+  name: UIScreen
+  nameWithType: UIScreen
+  fullName: GameFramework.UI.UIScreen
+- uid: GameFramework.UI.UIPopup
+  commentId: T:GameFramework.UI.UIPopup
+  parent: GameFramework.UI
+  name: UIPopup
+  nameWithType: UIPopup
+  fullName: GameFramework.UI.UIPopup
+- uid: GameFramework.UI.UIPopup.CountsAsGameBlockingPopup
+  commentId: P:GameFramework.UI.UIPopup.CountsAsGameBlockingPopup
+  parent: GameFramework.UI.UIPopup
+  name: CountsAsGameBlockingPopup
+  nameWithType: UIPopup.CountsAsGameBlockingPopup
+  fullName: GameFramework.UI.UIPopup.CountsAsGameBlockingPopup
+- uid: GameFramework.UI.UIScreen.RootElement
+  commentId: P:GameFramework.UI.UIScreen.RootElement
+  parent: GameFramework.UI.UIScreen
+  name: RootElement
+  nameWithType: UIScreen.RootElement
+  fullName: GameFramework.UI.UIScreen.RootElement
+- uid: GameFramework.UI.UIScreen.IsVisible
+  commentId: P:GameFramework.UI.UIScreen.IsVisible
+  parent: GameFramework.UI.UIScreen
+  name: IsVisible
+  nameWithType: UIScreen.IsVisible
+  fullName: GameFramework.UI.UIScreen.IsVisible
+- uid: GameFramework.UI.UIScreen.NeedsFrameUpdates
+  commentId: P:GameFramework.UI.UIScreen.NeedsFrameUpdates
+  parent: GameFramework.UI.UIScreen
+  name: NeedsFrameUpdates
+  nameWithType: UIScreen.NeedsFrameUpdates
+  fullName: GameFramework.UI.UIScreen.NeedsFrameUpdates
+- uid: GameFramework.UI.UIScreen.Show
+  commentId: M:GameFramework.UI.UIScreen.Show
+  parent: GameFramework.UI.UIScreen
+  name: Show()
+  nameWithType: UIScreen.Show()
+  fullName: GameFramework.UI.UIScreen.Show()
+  spec.csharp:
+  - uid: GameFramework.UI.UIScreen.Show
+    name: Show
+    nameWithType: UIScreen.Show
+    fullName: GameFramework.UI.UIScreen.Show
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.UI.UIScreen.Show
+    name: Show
+    nameWithType: UIScreen.Show
+    fullName: GameFramework.UI.UIScreen.Show
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.UI.UIScreen.Hide
+  commentId: M:GameFramework.UI.UIScreen.Hide
+  parent: GameFramework.UI.UIScreen
+  name: Hide()
+  nameWithType: UIScreen.Hide()
+  fullName: GameFramework.UI.UIScreen.Hide()
+  spec.csharp:
+  - uid: GameFramework.UI.UIScreen.Hide
+    name: Hide
+    nameWithType: UIScreen.Hide
+    fullName: GameFramework.UI.UIScreen.Hide
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.UI.UIScreen.Hide
+    name: Hide
+    nameWithType: UIScreen.Hide
+    fullName: GameFramework.UI.UIScreen.Hide
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.UI.UIScreen.EnableFrameUpdates
+  commentId: M:GameFramework.UI.UIScreen.EnableFrameUpdates
+  parent: GameFramework.UI.UIScreen
+  name: EnableFrameUpdates()
+  nameWithType: UIScreen.EnableFrameUpdates()
+  fullName: GameFramework.UI.UIScreen.EnableFrameUpdates()
+  spec.csharp:
+  - uid: GameFramework.UI.UIScreen.EnableFrameUpdates
+    name: EnableFrameUpdates
+    nameWithType: UIScreen.EnableFrameUpdates
+    fullName: GameFramework.UI.UIScreen.EnableFrameUpdates
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.UI.UIScreen.EnableFrameUpdates
+    name: EnableFrameUpdates
+    nameWithType: UIScreen.EnableFrameUpdates
+    fullName: GameFramework.UI.UIScreen.EnableFrameUpdates
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.UI.UIScreen.DisableFrameUpdates
+  commentId: M:GameFramework.UI.UIScreen.DisableFrameUpdates
+  parent: GameFramework.UI.UIScreen
+  name: DisableFrameUpdates()
+  nameWithType: UIScreen.DisableFrameUpdates()
+  fullName: GameFramework.UI.UIScreen.DisableFrameUpdates()
+  spec.csharp:
+  - uid: GameFramework.UI.UIScreen.DisableFrameUpdates
+    name: DisableFrameUpdates
+    nameWithType: UIScreen.DisableFrameUpdates
+    fullName: GameFramework.UI.UIScreen.DisableFrameUpdates
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.UI.UIScreen.DisableFrameUpdates
+    name: DisableFrameUpdates
+    nameWithType: UIScreen.DisableFrameUpdates
+    fullName: GameFramework.UI.UIScreen.DisableFrameUpdates
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.UI.UIScreen.OnUpdate(System.Single)
+  commentId: M:GameFramework.UI.UIScreen.OnUpdate(System.Single)
+  parent: GameFramework.UI.UIScreen
+  isExternal: true
+  name: OnUpdate(Single)
+  nameWithType: UIScreen.OnUpdate(Single)
+  fullName: GameFramework.UI.UIScreen.OnUpdate(System.Single)
+  spec.csharp:
+  - uid: GameFramework.UI.UIScreen.OnUpdate(System.Single)
+    name: OnUpdate
+    nameWithType: UIScreen.OnUpdate
+    fullName: GameFramework.UI.UIScreen.OnUpdate
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.UI.UIScreen.OnUpdate(System.Single)
+    name: OnUpdate
+    nameWithType: UIScreen.OnUpdate
+    fullName: GameFramework.UI.UIScreen.OnUpdate
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.UI.UIScreen.Cleanup
+  commentId: M:GameFramework.UI.UIScreen.Cleanup
+  parent: GameFramework.UI.UIScreen
+  name: Cleanup()
+  nameWithType: UIScreen.Cleanup()
+  fullName: GameFramework.UI.UIScreen.Cleanup()
+  spec.csharp:
+  - uid: GameFramework.UI.UIScreen.Cleanup
+    name: Cleanup
+    nameWithType: UIScreen.Cleanup
+    fullName: GameFramework.UI.UIScreen.Cleanup
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.UI.UIScreen.Cleanup
+    name: Cleanup
+    nameWithType: UIScreen.Cleanup
+    fullName: GameFramework.UI.UIScreen.Cleanup
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.UI.UIScreen.ShouldUpdateWhenPaused
+  commentId: M:GameFramework.UI.UIScreen.ShouldUpdateWhenPaused
+  parent: GameFramework.UI.UIScreen
+  name: ShouldUpdateWhenPaused()
+  nameWithType: UIScreen.ShouldUpdateWhenPaused()
+  fullName: GameFramework.UI.UIScreen.ShouldUpdateWhenPaused()
+  spec.csharp:
+  - uid: GameFramework.UI.UIScreen.ShouldUpdateWhenPaused
+    name: ShouldUpdateWhenPaused
+    nameWithType: UIScreen.ShouldUpdateWhenPaused
+    fullName: GameFramework.UI.UIScreen.ShouldUpdateWhenPaused
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.UI.UIScreen.ShouldUpdateWhenPaused
+    name: ShouldUpdateWhenPaused
+    nameWithType: UIScreen.ShouldUpdateWhenPaused
+    fullName: GameFramework.UI.UIScreen.ShouldUpdateWhenPaused
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: GameFramework.UI
+  commentId: N:GameFramework.UI
+  name: GameFramework.UI
+  nameWithType: GameFramework.UI
+  fullName: GameFramework.UI
+- uid: ListView
+  commentId: '!:ListView'
+  isExternal: true
+  name: ListView
+  nameWithType: ListView
+  fullName: ListView
+- uid: Button
+  isExternal: true
+  name: Button
+  nameWithType: Button
+  fullName: Button
+- uid: Label
+  commentId: '!:Label'
+  isExternal: true
+  name: Label
+  nameWithType: Label
+  fullName: Label
+- uid: IUIService
+  isExternal: true
+  name: IUIService
+  nameWithType: IUIService
+  fullName: IUIService
+- uid: ILoadService
+  commentId: '!:ILoadService'
+  isExternal: true
+  name: ILoadService
+  nameWithType: ILoadService
+  fullName: ILoadService
+- uid: ISaveService
+  isExternal: true
+  name: ISaveService
+  nameWithType: ISaveService
+  fullName: ISaveService
+- uid: IEventSystem
+  isExternal: true
+  name: IEventSystem
+  nameWithType: IEventSystem
+  fullName: IEventSystem
+- uid: SaveFileInfo[]
+  isExternal: true
+  name: SaveFileInfo[]
+  nameWithType: SaveFileInfo[]
+  fullName: SaveFileInfo[]
+  nameWithType.vb: SaveFileInfo()
+  fullName.vb: SaveFileInfo()
+  name.vb: SaveFileInfo()
+  spec.csharp:
+  - uid: SaveFileInfo
+    name: SaveFileInfo
+    nameWithType: SaveFileInfo
+    fullName: SaveFileInfo
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: SaveFileInfo
+    name: SaveFileInfo
+    nameWithType: SaveFileInfo
+    fullName: SaveFileInfo
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: SaveFileInfo
+  isExternal: true
+  name: SaveFileInfo
+  nameWithType: SaveFileInfo
+  fullName: SaveFileInfo
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: GameFramework.UI.Screens.SaveFileListPopup.#ctor*
+  commentId: Overload:GameFramework.UI.Screens.SaveFileListPopup.#ctor
+  name: SaveFileListPopup
+  nameWithType: SaveFileListPopup.SaveFileListPopup
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.SaveFileListPopup
+- uid: VisualElement
+  isExternal: true
+  name: VisualElement
+  nameWithType: VisualElement
+  fullName: VisualElement
+- uid: GameFramework.UI.Screens.SaveFileListPopup.CacheSpecificUIElements*
+  commentId: Overload:GameFramework.UI.Screens.SaveFileListPopup.CacheSpecificUIElements
+  name: CacheSpecificUIElements
+  nameWithType: SaveFileListPopup.CacheSpecificUIElements
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.CacheSpecificUIElements
+- uid: GameFramework.UI.Screens.SaveFileListPopup.SetupSpecificFunctionality*
+  commentId: Overload:GameFramework.UI.Screens.SaveFileListPopup.SetupSpecificFunctionality
+  name: SetupSpecificFunctionality
+  nameWithType: SaveFileListPopup.SetupSpecificFunctionality
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.SetupSpecificFunctionality
+- uid: GameFramework.UI.Screens.SaveFileListPopup.RegisterSpecificEventHandlers*
+  commentId: Overload:GameFramework.UI.Screens.SaveFileListPopup.RegisterSpecificEventHandlers
+  name: RegisterSpecificEventHandlers
+  nameWithType: SaveFileListPopup.RegisterSpecificEventHandlers
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.RegisterSpecificEventHandlers
+- uid: GameFramework.UI.Screens.SaveFileListPopup.UnregisterSpecificEventHandlers*
+  commentId: Overload:GameFramework.UI.Screens.SaveFileListPopup.UnregisterSpecificEventHandlers
+  name: UnregisterSpecificEventHandlers
+  nameWithType: SaveFileListPopup.UnregisterSpecificEventHandlers
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.UnregisterSpecificEventHandlers
+- uid: GameFramework.UI.Screens.SaveFileListPopup.UpdateSpecificButtonStates*
+  commentId: Overload:GameFramework.UI.Screens.SaveFileListPopup.UpdateSpecificButtonStates
+  name: UpdateSpecificButtonStates
+  nameWithType: SaveFileListPopup.UpdateSpecificButtonStates
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.UpdateSpecificButtonStates
+- uid: GameFramework.UI.Screens.SaveFileListPopup.InitializeBaseUI*
+  commentId: Overload:GameFramework.UI.Screens.SaveFileListPopup.InitializeBaseUI
+  name: InitializeBaseUI
+  nameWithType: SaveFileListPopup.InitializeBaseUI
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.InitializeBaseUI
+- uid: GameFramework.UI.UIScreen.OnShow
+  commentId: M:GameFramework.UI.UIScreen.OnShow
+  parent: GameFramework.UI.UIScreen
+  name: OnShow()
+  nameWithType: UIScreen.OnShow()
+  fullName: GameFramework.UI.UIScreen.OnShow()
+  spec.csharp:
+  - uid: GameFramework.UI.UIScreen.OnShow
+    name: OnShow
+    nameWithType: UIScreen.OnShow
+    fullName: GameFramework.UI.UIScreen.OnShow
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.UI.UIScreen.OnShow
+    name: OnShow
+    nameWithType: UIScreen.OnShow
+    fullName: GameFramework.UI.UIScreen.OnShow
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.UI.Screens.SaveFileListPopup.OnShow*
+  commentId: Overload:GameFramework.UI.Screens.SaveFileListPopup.OnShow
+  name: OnShow
+  nameWithType: SaveFileListPopup.OnShow
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.OnShow
+- uid: GameFramework.UI.UIScreen.OnHide
+  commentId: M:GameFramework.UI.UIScreen.OnHide
+  parent: GameFramework.UI.UIScreen
+  name: OnHide()
+  nameWithType: UIScreen.OnHide()
+  fullName: GameFramework.UI.UIScreen.OnHide()
+  spec.csharp:
+  - uid: GameFramework.UI.UIScreen.OnHide
+    name: OnHide
+    nameWithType: UIScreen.OnHide
+    fullName: GameFramework.UI.UIScreen.OnHide
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.UI.UIScreen.OnHide
+    name: OnHide
+    nameWithType: UIScreen.OnHide
+    fullName: GameFramework.UI.UIScreen.OnHide
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.UI.Screens.SaveFileListPopup.OnHide*
+  commentId: Overload:GameFramework.UI.Screens.SaveFileListPopup.OnHide
+  name: OnHide
+  nameWithType: SaveFileListPopup.OnHide
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.OnHide
+- uid: GameFramework.UI.Screens.SaveFileListPopup.ResetUIState*
+  commentId: Overload:GameFramework.UI.Screens.SaveFileListPopup.ResetUIState
+  name: ResetUIState
+  nameWithType: SaveFileListPopup.ResetUIState
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.ResetUIState
+- uid: GameFramework.UI.Screens.SaveFileListPopup.UpdateSelection*
+  commentId: Overload:GameFramework.UI.Screens.SaveFileListPopup.UpdateSelection
+  name: UpdateSelection
+  nameWithType: SaveFileListPopup.UpdateSelection
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.UpdateSelection
+- uid: GameFramework.UI.Screens.SaveFileListPopup.UpdateButtonStates*
+  commentId: Overload:GameFramework.UI.Screens.SaveFileListPopup.UpdateButtonStates
+  name: UpdateButtonStates
+  nameWithType: SaveFileListPopup.UpdateButtonStates
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.UpdateButtonStates
+- uid: GameFramework.UI.Screens.SaveFileListPopup.CanDeleteSelectedFile*
+  commentId: Overload:GameFramework.UI.Screens.SaveFileListPopup.CanDeleteSelectedFile
+  name: CanDeleteSelectedFile
+  nameWithType: SaveFileListPopup.CanDeleteSelectedFile
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.CanDeleteSelectedFile
+- uid: GameFramework.UI.Screens.SaveFileListPopup.SetDataLoadingState*
+  commentId: Overload:GameFramework.UI.Screens.SaveFileListPopup.SetDataLoadingState
+  name: SetDataLoadingState
+  nameWithType: SaveFileListPopup.SetDataLoadingState
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.SetDataLoadingState
+- uid: GameFramework.UI.Screens.SaveFileListPopup.SetDeletingState*
+  commentId: Overload:GameFramework.UI.Screens.SaveFileListPopup.SetDeletingState
+  name: SetDeletingState
+  nameWithType: SaveFileListPopup.SetDeletingState
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.SetDeletingState
+- uid: GameFramework.UI.Screens.SaveFileListPopup.SetStatusMessage*
+  commentId: Overload:GameFramework.UI.Screens.SaveFileListPopup.SetStatusMessage
+  name: SetStatusMessage
+  nameWithType: SaveFileListPopup.SetStatusMessage
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.SetStatusMessage
+- uid: GameFramework.UI.Screens.SaveFileListPopup.RefreshSaveFilesList*
+  commentId: Overload:GameFramework.UI.Screens.SaveFileListPopup.RefreshSaveFilesList
+  name: RefreshSaveFilesList
+  nameWithType: SaveFileListPopup.RefreshSaveFilesList
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.RefreshSaveFilesList
+- uid: Task
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: Task
+- uid: GameFramework.UI.Screens.SaveFileListPopup.ClosePopup*
+  commentId: Overload:GameFramework.UI.Screens.SaveFileListPopup.ClosePopup
+  name: ClosePopup
+  nameWithType: SaveFileListPopup.ClosePopup
+  fullName: GameFramework.UI.Screens.SaveFileListPopup.ClosePopup

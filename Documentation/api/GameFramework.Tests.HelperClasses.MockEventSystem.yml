@@ -1,0 +1,526 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.Tests.HelperClasses.MockEventSystem
+  commentId: T:GameFramework.Tests.HelperClasses.MockEventSystem
+  id: MockEventSystem
+  parent: GameFramework.Tests.HelperClasses
+  children:
+  - GameFramework.Tests.HelperClasses.MockEventSystem.Clear
+  - GameFramework.Tests.HelperClasses.MockEventSystem.InitializeAsync
+  - GameFramework.Tests.HelperClasses.MockEventSystem.IsInitialized
+  - GameFramework.Tests.HelperClasses.MockEventSystem.Publish``1
+  - GameFramework.Tests.HelperClasses.MockEventSystem.Publish``1(``0)
+  - GameFramework.Tests.HelperClasses.MockEventSystem.Shutdown
+  - GameFramework.Tests.HelperClasses.MockEventSystem.Subscribe``1(System.Action)
+  - GameFramework.Tests.HelperClasses.MockEventSystem.Subscribe``1(System.Action{``0})
+  - GameFramework.Tests.HelperClasses.MockEventSystem.Unsubscribe``1(System.Action)
+  - GameFramework.Tests.HelperClasses.MockEventSystem.Unsubscribe``1(System.Action{``0})
+  langs:
+  - csharp
+  - vb
+  name: MockEventSystem
+  nameWithType: MockEventSystem
+  fullName: GameFramework.Tests.HelperClasses.MockEventSystem
+  type: Class
+  source:
+    id: MockEventSystem
+    path: ''
+    startLine: 16080
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Tests.HelperClasses
+  summary: "\nMock implementation of IEventSystem for testing\n"
+  example: []
+  syntax:
+    content: 'public class MockEventSystem : IEventSystem'
+    content.vb: >-
+      Public Class MockEventSystem
+          Inherits IEventSystem
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: GameFramework.Tests.HelperClasses.MockEventSystem.IsInitialized
+  commentId: P:GameFramework.Tests.HelperClasses.MockEventSystem.IsInitialized
+  id: IsInitialized
+  parent: GameFramework.Tests.HelperClasses.MockEventSystem
+  langs:
+  - csharp
+  - vb
+  name: IsInitialized
+  nameWithType: MockEventSystem.IsInitialized
+  fullName: GameFramework.Tests.HelperClasses.MockEventSystem.IsInitialized
+  type: Property
+  source:
+    id: IsInitialized
+    path: ''
+    startLine: 16082
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Tests.HelperClasses
+  syntax:
+    content: public bool IsInitialized { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsInitialized As Boolean
+  overload: GameFramework.Tests.HelperClasses.MockEventSystem.IsInitialized*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: GameFramework.Tests.HelperClasses.MockEventSystem.InitializeAsync
+  commentId: M:GameFramework.Tests.HelperClasses.MockEventSystem.InitializeAsync
+  id: InitializeAsync
+  parent: GameFramework.Tests.HelperClasses.MockEventSystem
+  langs:
+  - csharp
+  - vb
+  name: InitializeAsync()
+  nameWithType: MockEventSystem.InitializeAsync()
+  fullName: GameFramework.Tests.HelperClasses.MockEventSystem.InitializeAsync()
+  type: Method
+  source:
+    id: InitializeAsync
+    path: ''
+    startLine: 16084
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Tests.HelperClasses
+  syntax:
+    content: public Task InitializeAsync()
+    return:
+      type: Task
+    content.vb: Public Function InitializeAsync As Task
+  overload: GameFramework.Tests.HelperClasses.MockEventSystem.InitializeAsync*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.Tests.HelperClasses.MockEventSystem.Shutdown
+  commentId: M:GameFramework.Tests.HelperClasses.MockEventSystem.Shutdown
+  id: Shutdown
+  parent: GameFramework.Tests.HelperClasses.MockEventSystem
+  langs:
+  - csharp
+  - vb
+  name: Shutdown()
+  nameWithType: MockEventSystem.Shutdown()
+  fullName: GameFramework.Tests.HelperClasses.MockEventSystem.Shutdown()
+  type: Method
+  source:
+    id: Shutdown
+    path: ''
+    startLine: 16090
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Tests.HelperClasses
+  syntax:
+    content: public void Shutdown()
+    content.vb: Public Sub Shutdown
+  overload: GameFramework.Tests.HelperClasses.MockEventSystem.Shutdown*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.Tests.HelperClasses.MockEventSystem.Subscribe``1(System.Action{``0})
+  commentId: M:GameFramework.Tests.HelperClasses.MockEventSystem.Subscribe``1(System.Action{``0})
+  id: Subscribe``1(System.Action{``0})
+  parent: GameFramework.Tests.HelperClasses.MockEventSystem
+  langs:
+  - csharp
+  - vb
+  name: Subscribe<T>(Action<T>)
+  nameWithType: MockEventSystem.Subscribe<T>(Action<T>)
+  fullName: GameFramework.Tests.HelperClasses.MockEventSystem.Subscribe<T>(System.Action<T>)
+  type: Method
+  source:
+    id: Subscribe
+    path: ''
+    startLine: 16092
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Tests.HelperClasses
+  syntax:
+    content: >-
+      public void Subscribe<T>(Action<T> handler)
+          where T : class
+    parameters:
+    - id: handler
+      type: System.Action{{T}}
+    typeParameters:
+    - id: T
+    content.vb: Public Sub Subscribe(Of T As Class)(handler As Action(Of T))
+  overload: GameFramework.Tests.HelperClasses.MockEventSystem.Subscribe*
+  nameWithType.vb: MockEventSystem.Subscribe(Of T)(Action(Of T))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: GameFramework.Tests.HelperClasses.MockEventSystem.Subscribe(Of T)(System.Action(Of T))
+  name.vb: Subscribe(Of T)(Action(Of T))
+- uid: GameFramework.Tests.HelperClasses.MockEventSystem.Subscribe``1(System.Action)
+  commentId: M:GameFramework.Tests.HelperClasses.MockEventSystem.Subscribe``1(System.Action)
+  id: Subscribe``1(System.Action)
+  parent: GameFramework.Tests.HelperClasses.MockEventSystem
+  langs:
+  - csharp
+  - vb
+  name: Subscribe<T>(Action)
+  nameWithType: MockEventSystem.Subscribe<T>(Action)
+  fullName: GameFramework.Tests.HelperClasses.MockEventSystem.Subscribe<T>(System.Action)
+  type: Method
+  source:
+    id: Subscribe
+    path: ''
+    startLine: 16097
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Tests.HelperClasses
+  syntax:
+    content: public void Subscribe<T>(Action handler)
+    parameters:
+    - id: handler
+      type: System.Action
+    typeParameters:
+    - id: T
+    content.vb: Public Sub Subscribe(Of T)(handler As Action)
+  overload: GameFramework.Tests.HelperClasses.MockEventSystem.Subscribe*
+  nameWithType.vb: MockEventSystem.Subscribe(Of T)(Action)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: GameFramework.Tests.HelperClasses.MockEventSystem.Subscribe(Of T)(System.Action)
+  name.vb: Subscribe(Of T)(Action)
+- uid: GameFramework.Tests.HelperClasses.MockEventSystem.Unsubscribe``1(System.Action{``0})
+  commentId: M:GameFramework.Tests.HelperClasses.MockEventSystem.Unsubscribe``1(System.Action{``0})
+  id: Unsubscribe``1(System.Action{``0})
+  parent: GameFramework.Tests.HelperClasses.MockEventSystem
+  langs:
+  - csharp
+  - vb
+  name: Unsubscribe<T>(Action<T>)
+  nameWithType: MockEventSystem.Unsubscribe<T>(Action<T>)
+  fullName: GameFramework.Tests.HelperClasses.MockEventSystem.Unsubscribe<T>(System.Action<T>)
+  type: Method
+  source:
+    id: Unsubscribe
+    path: ''
+    startLine: 16102
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Tests.HelperClasses
+  syntax:
+    content: >-
+      public void Unsubscribe<T>(Action<T> handler)
+          where T : class
+    parameters:
+    - id: handler
+      type: System.Action{{T}}
+    typeParameters:
+    - id: T
+    content.vb: Public Sub Unsubscribe(Of T As Class)(handler As Action(Of T))
+  overload: GameFramework.Tests.HelperClasses.MockEventSystem.Unsubscribe*
+  nameWithType.vb: MockEventSystem.Unsubscribe(Of T)(Action(Of T))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: GameFramework.Tests.HelperClasses.MockEventSystem.Unsubscribe(Of T)(System.Action(Of T))
+  name.vb: Unsubscribe(Of T)(Action(Of T))
+- uid: GameFramework.Tests.HelperClasses.MockEventSystem.Unsubscribe``1(System.Action)
+  commentId: M:GameFramework.Tests.HelperClasses.MockEventSystem.Unsubscribe``1(System.Action)
+  id: Unsubscribe``1(System.Action)
+  parent: GameFramework.Tests.HelperClasses.MockEventSystem
+  langs:
+  - csharp
+  - vb
+  name: Unsubscribe<T>(Action)
+  nameWithType: MockEventSystem.Unsubscribe<T>(Action)
+  fullName: GameFramework.Tests.HelperClasses.MockEventSystem.Unsubscribe<T>(System.Action)
+  type: Method
+  source:
+    id: Unsubscribe
+    path: ''
+    startLine: 16107
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Tests.HelperClasses
+  syntax:
+    content: public void Unsubscribe<T>(Action handler)
+    parameters:
+    - id: handler
+      type: System.Action
+    typeParameters:
+    - id: T
+    content.vb: Public Sub Unsubscribe(Of T)(handler As Action)
+  overload: GameFramework.Tests.HelperClasses.MockEventSystem.Unsubscribe*
+  nameWithType.vb: MockEventSystem.Unsubscribe(Of T)(Action)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: GameFramework.Tests.HelperClasses.MockEventSystem.Unsubscribe(Of T)(System.Action)
+  name.vb: Unsubscribe(Of T)(Action)
+- uid: GameFramework.Tests.HelperClasses.MockEventSystem.Publish``1(``0)
+  commentId: M:GameFramework.Tests.HelperClasses.MockEventSystem.Publish``1(``0)
+  id: Publish``1(``0)
+  parent: GameFramework.Tests.HelperClasses.MockEventSystem
+  langs:
+  - csharp
+  - vb
+  name: Publish<T>(T)
+  nameWithType: MockEventSystem.Publish<T>(T)
+  fullName: GameFramework.Tests.HelperClasses.MockEventSystem.Publish<T>(T)
+  type: Method
+  source:
+    id: Publish
+    path: ''
+    startLine: 16112
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Tests.HelperClasses
+  syntax:
+    content: >-
+      public void Publish<T>(T eventData)
+          where T : class
+    parameters:
+    - id: eventData
+      type: '{T}'
+    typeParameters:
+    - id: T
+    content.vb: Public Sub Publish(Of T As Class)(eventData As T)
+  overload: GameFramework.Tests.HelperClasses.MockEventSystem.Publish*
+  nameWithType.vb: MockEventSystem.Publish(Of T)(T)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: GameFramework.Tests.HelperClasses.MockEventSystem.Publish(Of T)(T)
+  name.vb: Publish(Of T)(T)
+- uid: GameFramework.Tests.HelperClasses.MockEventSystem.Publish``1
+  commentId: M:GameFramework.Tests.HelperClasses.MockEventSystem.Publish``1
+  id: Publish``1
+  parent: GameFramework.Tests.HelperClasses.MockEventSystem
+  langs:
+  - csharp
+  - vb
+  name: Publish<T>()
+  nameWithType: MockEventSystem.Publish<T>()
+  fullName: GameFramework.Tests.HelperClasses.MockEventSystem.Publish<T>()
+  type: Method
+  source:
+    id: Publish
+    path: ''
+    startLine: 16117
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Tests.HelperClasses
+  syntax:
+    content: public void Publish<T>()
+    typeParameters:
+    - id: T
+    content.vb: Public Sub Publish(Of T)
+  overload: GameFramework.Tests.HelperClasses.MockEventSystem.Publish*
+  nameWithType.vb: MockEventSystem.Publish(Of T)()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: GameFramework.Tests.HelperClasses.MockEventSystem.Publish(Of T)()
+  name.vb: Publish(Of T)()
+- uid: GameFramework.Tests.HelperClasses.MockEventSystem.Clear
+  commentId: M:GameFramework.Tests.HelperClasses.MockEventSystem.Clear
+  id: Clear
+  parent: GameFramework.Tests.HelperClasses.MockEventSystem
+  langs:
+  - csharp
+  - vb
+  name: Clear()
+  nameWithType: MockEventSystem.Clear()
+  fullName: GameFramework.Tests.HelperClasses.MockEventSystem.Clear()
+  type: Method
+  source:
+    id: Clear
+    path: ''
+    startLine: 16122
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Tests.HelperClasses
+  syntax:
+    content: public void Clear()
+    content.vb: Public Sub Clear
+  overload: GameFramework.Tests.HelperClasses.MockEventSystem.Clear*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: GameFramework.Tests.HelperClasses
+  commentId: N:GameFramework.Tests.HelperClasses
+  name: GameFramework.Tests.HelperClasses
+  nameWithType: GameFramework.Tests.HelperClasses
+  fullName: GameFramework.Tests.HelperClasses
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: GameFramework.Tests.HelperClasses.MockEventSystem.IsInitialized*
+  commentId: Overload:GameFramework.Tests.HelperClasses.MockEventSystem.IsInitialized
+  name: IsInitialized
+  nameWithType: MockEventSystem.IsInitialized
+  fullName: GameFramework.Tests.HelperClasses.MockEventSystem.IsInitialized
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: GameFramework.Tests.HelperClasses.MockEventSystem.InitializeAsync*
+  commentId: Overload:GameFramework.Tests.HelperClasses.MockEventSystem.InitializeAsync
+  name: InitializeAsync
+  nameWithType: MockEventSystem.InitializeAsync
+  fullName: GameFramework.Tests.HelperClasses.MockEventSystem.InitializeAsync
+- uid: Task
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: Task
+- uid: GameFramework.Tests.HelperClasses.MockEventSystem.Shutdown*
+  commentId: Overload:GameFramework.Tests.HelperClasses.MockEventSystem.Shutdown
+  name: Shutdown
+  nameWithType: MockEventSystem.Shutdown
+  fullName: GameFramework.Tests.HelperClasses.MockEventSystem.Shutdown
+- uid: GameFramework.Tests.HelperClasses.MockEventSystem.Subscribe*
+  commentId: Overload:GameFramework.Tests.HelperClasses.MockEventSystem.Subscribe
+  name: Subscribe
+  nameWithType: MockEventSystem.Subscribe
+  fullName: GameFramework.Tests.HelperClasses.MockEventSystem.Subscribe
+- uid: System.Action{{T}}
+  commentId: T:System.Action{``0}
+  parent: System
+  definition: System.Action`1
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullName.vb: System.Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Action`1
+  commentId: T:System.Action`1
+  isExternal: true
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullName.vb: System.Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Action
+  commentId: T:System.Action
+  parent: System
+  isExternal: true
+  name: Action
+  nameWithType: Action
+  fullName: System.Action
+- uid: GameFramework.Tests.HelperClasses.MockEventSystem.Unsubscribe*
+  commentId: Overload:GameFramework.Tests.HelperClasses.MockEventSystem.Unsubscribe
+  name: Unsubscribe
+  nameWithType: MockEventSystem.Unsubscribe
+  fullName: GameFramework.Tests.HelperClasses.MockEventSystem.Unsubscribe
+- uid: GameFramework.Tests.HelperClasses.MockEventSystem.Publish*
+  commentId: Overload:GameFramework.Tests.HelperClasses.MockEventSystem.Publish
+  name: Publish
+  nameWithType: MockEventSystem.Publish
+  fullName: GameFramework.Tests.HelperClasses.MockEventSystem.Publish
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: GameFramework.Tests.HelperClasses.MockEventSystem.Clear*
+  commentId: Overload:GameFramework.Tests.HelperClasses.MockEventSystem.Clear
+  name: Clear
+  nameWithType: MockEventSystem.Clear
+  fullName: GameFramework.Tests.HelperClasses.MockEventSystem.Clear

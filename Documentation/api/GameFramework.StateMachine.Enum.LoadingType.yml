@@ -1,0 +1,158 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.StateMachine.Enum.LoadingType
+  commentId: T:GameFramework.StateMachine.Enum.LoadingType
+  id: LoadingType
+  parent: GameFramework.StateMachine.Enum
+  children:
+  - GameFramework.StateMachine.Enum.LoadingType.GameRestart
+  - GameFramework.StateMachine.Enum.LoadingType.LoadSave
+  - GameFramework.StateMachine.Enum.LoadingType.NewGame
+  - GameFramework.StateMachine.Enum.LoadingType.SceneTransition
+  langs:
+  - csharp
+  - vb
+  name: LoadingType
+  nameWithType: LoadingType
+  fullName: GameFramework.StateMachine.Enum.LoadingType
+  type: Enum
+  source:
+    id: LoadingType
+    path: ''
+    startLine: 11973
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.StateMachine.Enum
+  syntax:
+    content: public enum LoadingType
+    content.vb: Public Enum LoadingType
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: GameFramework.StateMachine.Enum.LoadingType.NewGame
+  commentId: F:GameFramework.StateMachine.Enum.LoadingType.NewGame
+  id: NewGame
+  parent: GameFramework.StateMachine.Enum.LoadingType
+  langs:
+  - csharp
+  - vb
+  name: NewGame
+  nameWithType: LoadingType.NewGame
+  fullName: GameFramework.StateMachine.Enum.LoadingType.NewGame
+  type: Field
+  source:
+    id: NewGame
+    path: ''
+    startLine: 11975
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.StateMachine.Enum
+  syntax:
+    content: NewGame = 0
+    return:
+      type: GameFramework.StateMachine.Enum.LoadingType
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: GameFramework.StateMachine.Enum.LoadingType.LoadSave
+  commentId: F:GameFramework.StateMachine.Enum.LoadingType.LoadSave
+  id: LoadSave
+  parent: GameFramework.StateMachine.Enum.LoadingType
+  langs:
+  - csharp
+  - vb
+  name: LoadSave
+  nameWithType: LoadingType.LoadSave
+  fullName: GameFramework.StateMachine.Enum.LoadingType.LoadSave
+  type: Field
+  source:
+    id: LoadSave
+    path: ''
+    startLine: 11976
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.StateMachine.Enum
+  syntax:
+    content: LoadSave = 1
+    return:
+      type: GameFramework.StateMachine.Enum.LoadingType
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: GameFramework.StateMachine.Enum.LoadingType.SceneTransition
+  commentId: F:GameFramework.StateMachine.Enum.LoadingType.SceneTransition
+  id: SceneTransition
+  parent: GameFramework.StateMachine.Enum.LoadingType
+  langs:
+  - csharp
+  - vb
+  name: SceneTransition
+  nameWithType: LoadingType.SceneTransition
+  fullName: GameFramework.StateMachine.Enum.LoadingType.SceneTransition
+  type: Field
+  source:
+    id: SceneTransition
+    path: ''
+    startLine: 11977
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.StateMachine.Enum
+  syntax:
+    content: SceneTransition = 2
+    return:
+      type: GameFramework.StateMachine.Enum.LoadingType
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: GameFramework.StateMachine.Enum.LoadingType.GameRestart
+  commentId: F:GameFramework.StateMachine.Enum.LoadingType.GameRestart
+  id: GameRestart
+  parent: GameFramework.StateMachine.Enum.LoadingType
+  langs:
+  - csharp
+  - vb
+  name: GameRestart
+  nameWithType: LoadingType.GameRestart
+  fullName: GameFramework.StateMachine.Enum.LoadingType.GameRestart
+  type: Field
+  source:
+    id: GameRestart
+    path: ''
+    startLine: 11978
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.StateMachine.Enum
+  syntax:
+    content: GameRestart = 3
+    return:
+      type: GameFramework.StateMachine.Enum.LoadingType
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: GameFramework.StateMachine.Enum
+  commentId: N:GameFramework.StateMachine.Enum
+  name: GameFramework.StateMachine.Enum
+  nameWithType: GameFramework.StateMachine.Enum
+  fullName: GameFramework.StateMachine.Enum
+- uid: GameFramework.StateMachine.Enum.LoadingType
+  commentId: T:GameFramework.StateMachine.Enum.LoadingType
+  parent: GameFramework.StateMachine.Enum
+  name: LoadingType
+  nameWithType: LoadingType
+  fullName: GameFramework.StateMachine.Enum.LoadingType

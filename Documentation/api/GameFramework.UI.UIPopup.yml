@@ -1,0 +1,746 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.UI.UIPopup
+  commentId: T:GameFramework.UI.UIPopup
+  id: UIPopup
+  parent: GameFramework.UI
+  children:
+  - GameFramework.UI.UIPopup.#ctor(VisualElement)
+  - GameFramework.UI.UIPopup.CountsAsGameBlockingPopup
+  langs:
+  - csharp
+  - vb
+  name: UIPopup
+  nameWithType: UIPopup
+  fullName: GameFramework.UI.UIPopup
+  type: Class
+  source:
+    id: UIPopup
+    path: ''
+    startLine: 13118
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI
+  summary: "\nBase class for all UI popups\n"
+  example: []
+  syntax:
+    content: 'public abstract class UIPopup : UIScreen'
+    content.vb: >-
+      Public MustInherit Class UIPopup
+          Inherits UIScreen
+  inheritance:
+  - System.Object
+  - GameFramework.UI.UIScreen
+  derivedClasses:
+  - GameFramework.UI.Popups.ConfirmationPopup
+  - GameFramework.UI.Popups.DebugPopup
+  - GameFramework.UI.Popups.ErrorPopup
+  - GameFramework.UI.Popups.OptionsPopup
+  - GameFramework.UI.Popups.PausePopup
+  - GameFramework.UI.Screens.SaveFileListPopup
+  inheritedMembers:
+  - GameFramework.UI.UIScreen.RootElement
+  - GameFramework.UI.UIScreen.IsVisible
+  - GameFramework.UI.UIScreen.NeedsFrameUpdates
+  - GameFramework.UI.UIScreen._eventSystem
+  - GameFramework.UI.UIScreen.Show
+  - GameFramework.UI.UIScreen.Hide
+  - GameFramework.UI.UIScreen.EnableFrameUpdates
+  - GameFramework.UI.UIScreen.DisableFrameUpdates
+  - GameFramework.UI.UIScreen.OnUpdate(System.Single)
+  - GameFramework.UI.UIScreen.OnShow
+  - GameFramework.UI.UIScreen.OnHide
+  - GameFramework.UI.UIScreen.Cleanup
+  - GameFramework.UI.UIScreen.ShouldUpdateWhenPaused
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - abstract
+  - class
+  modifiers.vb:
+  - Public
+  - MustInherit
+  - Class
+- uid: GameFramework.UI.UIPopup.#ctor(VisualElement)
+  commentId: M:GameFramework.UI.UIPopup.#ctor(VisualElement)
+  id: '#ctor(VisualElement)'
+  parent: GameFramework.UI.UIPopup
+  langs:
+  - csharp
+  - vb
+  name: UIPopup(VisualElement)
+  nameWithType: UIPopup.UIPopup(VisualElement)
+  fullName: GameFramework.UI.UIPopup.UIPopup(VisualElement)
+  type: Constructor
+  source:
+    id: .ctor
+    path: ''
+    startLine: 13120
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI
+  syntax:
+    content: protected UIPopup(VisualElement rootElement)
+    parameters:
+    - id: rootElement
+      type: VisualElement
+    content.vb: Protected Sub New(rootElement As VisualElement)
+  overload: GameFramework.UI.UIPopup.#ctor*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: GameFramework.UI.UIPopup.CountsAsGameBlockingPopup
+  commentId: P:GameFramework.UI.UIPopup.CountsAsGameBlockingPopup
+  id: CountsAsGameBlockingPopup
+  parent: GameFramework.UI.UIPopup
+  langs:
+  - csharp
+  - vb
+  name: CountsAsGameBlockingPopup
+  nameWithType: UIPopup.CountsAsGameBlockingPopup
+  fullName: GameFramework.UI.UIPopup.CountsAsGameBlockingPopup
+  type: Property
+  source:
+    id: CountsAsGameBlockingPopup
+    path: ''
+    startLine: 13126
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI
+  summary: "\nWhether this popup should be counted in popup management checks.\nDebug/utility popups should return false to avoid blocking game flow.\n"
+  example: []
+  syntax:
+    content: public virtual bool CountsAsGameBlockingPopup { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Overridable ReadOnly Property CountsAsGameBlockingPopup As Boolean
+  overload: GameFramework.UI.UIPopup.CountsAsGameBlockingPopup*
+  modifiers.csharp:
+  - public
+  - virtual
+  - get
+  modifiers.vb:
+  - Public
+  - Overridable
+  - ReadOnly
+references:
+- uid: GameFramework.UI
+  commentId: N:GameFramework.UI
+  name: GameFramework.UI
+  nameWithType: GameFramework.UI
+  fullName: GameFramework.UI
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: GameFramework.UI.UIScreen
+  commentId: T:GameFramework.UI.UIScreen
+  parent: GameFramework.UI
+  name: UIScreen
+  nameWithType: UIScreen
+  fullName: GameFramework.UI.UIScreen
+- uid: GameFramework.UI.UIScreen.RootElement
+  commentId: P:GameFramework.UI.UIScreen.RootElement
+  parent: GameFramework.UI.UIScreen
+  name: RootElement
+  nameWithType: UIScreen.RootElement
+  fullName: GameFramework.UI.UIScreen.RootElement
+- uid: GameFramework.UI.UIScreen.IsVisible
+  commentId: P:GameFramework.UI.UIScreen.IsVisible
+  parent: GameFramework.UI.UIScreen
+  name: IsVisible
+  nameWithType: UIScreen.IsVisible
+  fullName: GameFramework.UI.UIScreen.IsVisible
+- uid: GameFramework.UI.UIScreen.NeedsFrameUpdates
+  commentId: P:GameFramework.UI.UIScreen.NeedsFrameUpdates
+  parent: GameFramework.UI.UIScreen
+  name: NeedsFrameUpdates
+  nameWithType: UIScreen.NeedsFrameUpdates
+  fullName: GameFramework.UI.UIScreen.NeedsFrameUpdates
+- uid: GameFramework.UI.UIScreen._eventSystem
+  commentId: F:GameFramework.UI.UIScreen._eventSystem
+  parent: GameFramework.UI.UIScreen
+  name: _eventSystem
+  nameWithType: UIScreen._eventSystem
+  fullName: GameFramework.UI.UIScreen._eventSystem
+- uid: GameFramework.UI.UIScreen.Show
+  commentId: M:GameFramework.UI.UIScreen.Show
+  parent: GameFramework.UI.UIScreen
+  name: Show()
+  nameWithType: UIScreen.Show()
+  fullName: GameFramework.UI.UIScreen.Show()
+  spec.csharp:
+  - uid: GameFramework.UI.UIScreen.Show
+    name: Show
+    nameWithType: UIScreen.Show
+    fullName: GameFramework.UI.UIScreen.Show
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.UI.UIScreen.Show
+    name: Show
+    nameWithType: UIScreen.Show
+    fullName: GameFramework.UI.UIScreen.Show
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.UI.UIScreen.Hide
+  commentId: M:GameFramework.UI.UIScreen.Hide
+  parent: GameFramework.UI.UIScreen
+  name: Hide()
+  nameWithType: UIScreen.Hide()
+  fullName: GameFramework.UI.UIScreen.Hide()
+  spec.csharp:
+  - uid: GameFramework.UI.UIScreen.Hide
+    name: Hide
+    nameWithType: UIScreen.Hide
+    fullName: GameFramework.UI.UIScreen.Hide
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.UI.UIScreen.Hide
+    name: Hide
+    nameWithType: UIScreen.Hide
+    fullName: GameFramework.UI.UIScreen.Hide
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.UI.UIScreen.EnableFrameUpdates
+  commentId: M:GameFramework.UI.UIScreen.EnableFrameUpdates
+  parent: GameFramework.UI.UIScreen
+  name: EnableFrameUpdates()
+  nameWithType: UIScreen.EnableFrameUpdates()
+  fullName: GameFramework.UI.UIScreen.EnableFrameUpdates()
+  spec.csharp:
+  - uid: GameFramework.UI.UIScreen.EnableFrameUpdates
+    name: EnableFrameUpdates
+    nameWithType: UIScreen.EnableFrameUpdates
+    fullName: GameFramework.UI.UIScreen.EnableFrameUpdates
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.UI.UIScreen.EnableFrameUpdates
+    name: EnableFrameUpdates
+    nameWithType: UIScreen.EnableFrameUpdates
+    fullName: GameFramework.UI.UIScreen.EnableFrameUpdates
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.UI.UIScreen.DisableFrameUpdates
+  commentId: M:GameFramework.UI.UIScreen.DisableFrameUpdates
+  parent: GameFramework.UI.UIScreen
+  name: DisableFrameUpdates()
+  nameWithType: UIScreen.DisableFrameUpdates()
+  fullName: GameFramework.UI.UIScreen.DisableFrameUpdates()
+  spec.csharp:
+  - uid: GameFramework.UI.UIScreen.DisableFrameUpdates
+    name: DisableFrameUpdates
+    nameWithType: UIScreen.DisableFrameUpdates
+    fullName: GameFramework.UI.UIScreen.DisableFrameUpdates
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.UI.UIScreen.DisableFrameUpdates
+    name: DisableFrameUpdates
+    nameWithType: UIScreen.DisableFrameUpdates
+    fullName: GameFramework.UI.UIScreen.DisableFrameUpdates
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.UI.UIScreen.OnUpdate(System.Single)
+  commentId: M:GameFramework.UI.UIScreen.OnUpdate(System.Single)
+  parent: GameFramework.UI.UIScreen
+  isExternal: true
+  name: OnUpdate(Single)
+  nameWithType: UIScreen.OnUpdate(Single)
+  fullName: GameFramework.UI.UIScreen.OnUpdate(System.Single)
+  spec.csharp:
+  - uid: GameFramework.UI.UIScreen.OnUpdate(System.Single)
+    name: OnUpdate
+    nameWithType: UIScreen.OnUpdate
+    fullName: GameFramework.UI.UIScreen.OnUpdate
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.UI.UIScreen.OnUpdate(System.Single)
+    name: OnUpdate
+    nameWithType: UIScreen.OnUpdate
+    fullName: GameFramework.UI.UIScreen.OnUpdate
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.UI.UIScreen.OnShow
+  commentId: M:GameFramework.UI.UIScreen.OnShow
+  parent: GameFramework.UI.UIScreen
+  name: OnShow()
+  nameWithType: UIScreen.OnShow()
+  fullName: GameFramework.UI.UIScreen.OnShow()
+  spec.csharp:
+  - uid: GameFramework.UI.UIScreen.OnShow
+    name: OnShow
+    nameWithType: UIScreen.OnShow
+    fullName: GameFramework.UI.UIScreen.OnShow
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.UI.UIScreen.OnShow
+    name: OnShow
+    nameWithType: UIScreen.OnShow
+    fullName: GameFramework.UI.UIScreen.OnShow
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.UI.UIScreen.OnHide
+  commentId: M:GameFramework.UI.UIScreen.OnHide
+  parent: GameFramework.UI.UIScreen
+  name: OnHide()
+  nameWithType: UIScreen.OnHide()
+  fullName: GameFramework.UI.UIScreen.OnHide()
+  spec.csharp:
+  - uid: GameFramework.UI.UIScreen.OnHide
+    name: OnHide
+    nameWithType: UIScreen.OnHide
+    fullName: GameFramework.UI.UIScreen.OnHide
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.UI.UIScreen.OnHide
+    name: OnHide
+    nameWithType: UIScreen.OnHide
+    fullName: GameFramework.UI.UIScreen.OnHide
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.UI.UIScreen.Cleanup
+  commentId: M:GameFramework.UI.UIScreen.Cleanup
+  parent: GameFramework.UI.UIScreen
+  name: Cleanup()
+  nameWithType: UIScreen.Cleanup()
+  fullName: GameFramework.UI.UIScreen.Cleanup()
+  spec.csharp:
+  - uid: GameFramework.UI.UIScreen.Cleanup
+    name: Cleanup
+    nameWithType: UIScreen.Cleanup
+    fullName: GameFramework.UI.UIScreen.Cleanup
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.UI.UIScreen.Cleanup
+    name: Cleanup
+    nameWithType: UIScreen.Cleanup
+    fullName: GameFramework.UI.UIScreen.Cleanup
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.UI.UIScreen.ShouldUpdateWhenPaused
+  commentId: M:GameFramework.UI.UIScreen.ShouldUpdateWhenPaused
+  parent: GameFramework.UI.UIScreen
+  name: ShouldUpdateWhenPaused()
+  nameWithType: UIScreen.ShouldUpdateWhenPaused()
+  fullName: GameFramework.UI.UIScreen.ShouldUpdateWhenPaused()
+  spec.csharp:
+  - uid: GameFramework.UI.UIScreen.ShouldUpdateWhenPaused
+    name: ShouldUpdateWhenPaused
+    nameWithType: UIScreen.ShouldUpdateWhenPaused
+    fullName: GameFramework.UI.UIScreen.ShouldUpdateWhenPaused
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.UI.UIScreen.ShouldUpdateWhenPaused
+    name: ShouldUpdateWhenPaused
+    nameWithType: UIScreen.ShouldUpdateWhenPaused
+    fullName: GameFramework.UI.UIScreen.ShouldUpdateWhenPaused
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: GameFramework.UI.UIPopup.#ctor*
+  commentId: Overload:GameFramework.UI.UIPopup.#ctor
+  name: UIPopup
+  nameWithType: UIPopup.UIPopup
+  fullName: GameFramework.UI.UIPopup.UIPopup
+- uid: VisualElement
+  isExternal: true
+  name: VisualElement
+  nameWithType: VisualElement
+  fullName: VisualElement
+- uid: GameFramework.UI.UIPopup.CountsAsGameBlockingPopup*
+  commentId: Overload:GameFramework.UI.UIPopup.CountsAsGameBlockingPopup
+  name: CountsAsGameBlockingPopup
+  nameWithType: UIPopup.CountsAsGameBlockingPopup
+  fullName: GameFramework.UI.UIPopup.CountsAsGameBlockingPopup
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean

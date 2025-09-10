@@ -1,0 +1,34 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.StateMachine.Interfaces
+  commentId: N:GameFramework.StateMachine.Interfaces
+  id: GameFramework.StateMachine.Interfaces
+  children:
+  - GameFramework.StateMachine.Interfaces.IFixedUpdatable
+  - GameFramework.StateMachine.Interfaces.ILateUpdatable
+  - GameFramework.StateMachine.Interfaces.IUpdatable
+  langs:
+  - csharp
+  - vb
+  name: GameFramework.StateMachine.Interfaces
+  nameWithType: GameFramework.StateMachine.Interfaces
+  fullName: GameFramework.StateMachine.Interfaces
+  type: Namespace
+  assemblies:
+  - cs.temp.dll
+references:
+- uid: GameFramework.StateMachine.Interfaces.IFixedUpdatable
+  commentId: T:GameFramework.StateMachine.Interfaces.IFixedUpdatable
+  name: IFixedUpdatable
+  nameWithType: IFixedUpdatable
+  fullName: GameFramework.StateMachine.Interfaces.IFixedUpdatable
+- uid: GameFramework.StateMachine.Interfaces.ILateUpdatable
+  commentId: T:GameFramework.StateMachine.Interfaces.ILateUpdatable
+  name: ILateUpdatable
+  nameWithType: ILateUpdatable
+  fullName: GameFramework.StateMachine.Interfaces.ILateUpdatable
+- uid: GameFramework.StateMachine.Interfaces.IUpdatable
+  commentId: T:GameFramework.StateMachine.Interfaces.IUpdatable
+  name: IUpdatable
+  nameWithType: IUpdatable
+  fullName: GameFramework.StateMachine.Interfaces.IUpdatable

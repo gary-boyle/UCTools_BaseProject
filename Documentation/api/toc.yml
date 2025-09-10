@@ -1,0 +1,468 @@
+### YamlMime:TableOfContent
+- uid: GameFramework.ConsoleTool
+  name: GameFramework.ConsoleTool
+  items:
+  - uid: GameFramework.ConsoleTool.Console
+    name: Console
+  - uid: GameFramework.ConsoleTool.ConsoleContext
+    name: ConsoleContext
+  - uid: GameFramework.ConsoleTool.ConsoleGUI
+    name: ConsoleGUI
+  - uid: GameFramework.ConsoleTool.IConsoleCommand
+    name: IConsoleCommand
+  - uid: GameFramework.ConsoleTool.IConsoleContext
+    name: IConsoleContext
+  - uid: GameFramework.ConsoleTool.IConsoleUI
+    name: IConsoleUI
+- uid: GameFramework.ConsoleTool.Commands
+  name: GameFramework.ConsoleTool.Commands
+  items:
+  - uid: GameFramework.ConsoleTool.Commands.ConsoleCommandBase
+    name: ConsoleCommandBase
+  - uid: GameFramework.ConsoleTool.Commands.ConsoleCommandRegistry
+    name: ConsoleCommandRegistry
+  - uid: GameFramework.ConsoleTool.Commands.DebugCommand
+    name: DebugCommand
+  - uid: GameFramework.ConsoleTool.Commands.ExampleCommand
+    name: ExampleCommand
+  - uid: GameFramework.ConsoleTool.Commands.ExecCommand
+    name: ExecCommand
+  - uid: GameFramework.ConsoleTool.Commands.HelpCommand
+    name: HelpCommand
+  - uid: GameFramework.ConsoleTool.Commands.WaitCommand
+    name: WaitCommand
+- uid: GameFramework.ConsoleTool.Enums
+  name: GameFramework.ConsoleTool.Enums
+  items:
+  - uid: GameFramework.ConsoleTool.Enums.CategoryEnum
+    name: CategoryEnum
+- uid: GameFramework.ConsoleTool.Utilities
+  name: GameFramework.ConsoleTool.Utilities
+  items:
+  - uid: GameFramework.ConsoleTool.Utilities.CommandUtilities
+    name: CommandUtilities
+- uid: GameFramework.Core
+  name: GameFramework.Core
+  items:
+  - uid: GameFramework.Core.DIContainer
+    name: DIContainer
+  - uid: GameFramework.Core.GameContext
+    name: GameContext
+  - uid: GameFramework.Core.GameManager
+    name: GameManager
+- uid: GameFramework.DataStructures
+  name: GameFramework.DataStructures
+  items:
+  - uid: GameFramework.DataStructures.GameProgress
+    name: GameProgress
+  - uid: GameFramework.DataStructures.GameSession
+    name: GameSession
+  - uid: GameFramework.DataStructures.PlayerState
+    name: PlayerState
+  - uid: GameFramework.DataStructures.SaveFileInfo
+    name: SaveFileInfo
+- uid: GameFramework.EventSystem
+  name: GameFramework.EventSystem
+  items:
+  - uid: GameFramework.EventSystem.EventSystem
+    name: EventSystem
+- uid: GameFramework.EventSystem.Events
+  name: GameFramework.EventSystem.Events
+  items:
+  - uid: GameFramework.EventSystem.Events.ConsoleHistoryDownInputEvent
+    name: ConsoleHistoryDownInputEvent
+  - uid: GameFramework.EventSystem.Events.ConsoleHistoryUpInputEvent
+    name: ConsoleHistoryUpInputEvent
+  - uid: GameFramework.EventSystem.Events.ConsoleSubmitInputEvent
+    name: ConsoleSubmitInputEvent
+  - uid: GameFramework.EventSystem.Events.ConsoleTabCompleteInputEvent
+    name: ConsoleTabCompleteInputEvent
+  - uid: GameFramework.EventSystem.Events.ConsoleToggleInputEvent
+    name: ConsoleToggleInputEvent
+  - uid: GameFramework.EventSystem.Events.CreditsRequestedEvent
+    name: CreditsRequestedEvent
+  - uid: GameFramework.EventSystem.Events.GameEndedEvent
+    name: GameEndedEvent
+  - uid: GameFramework.EventSystem.Events.GameOverEvent
+    name: GameOverEvent
+  - uid: GameFramework.EventSystem.Events.GamePausedEvent
+    name: GamePausedEvent
+  - uid: GameFramework.EventSystem.Events.GameResumedEvent
+    name: GameResumedEvent
+  - uid: GameFramework.EventSystem.Events.GameStartedEvent
+    name: GameStartedEvent
+  - uid: GameFramework.EventSystem.Events.GameStateChangeEvent
+    name: GameStateChangeEvent
+  - uid: GameFramework.EventSystem.Events.GameSystemsInitializedEvent
+    name: GameSystemsInitializedEvent
+  - uid: GameFramework.EventSystem.Events.LoadGameEvent
+    name: LoadGameEvent
+  - uid: GameFramework.EventSystem.Events.LoadGameRequestedEvent
+    name: LoadGameRequestedEvent
+  - uid: GameFramework.EventSystem.Events.LoadingProgressEvent
+    name: LoadingProgressEvent
+  - uid: GameFramework.EventSystem.Events.LoadSaveFileEvent
+    name: LoadSaveFileEvent
+  - uid: GameFramework.EventSystem.Events.LoadWindowRequestedEvent
+    name: LoadWindowRequestedEvent
+  - uid: GameFramework.EventSystem.Events.MainMenuRequestedEvent
+    name: MainMenuRequestedEvent
+  - uid: GameFramework.EventSystem.Events.NewGameRequestedEvent
+    name: NewGameRequestedEvent
+  - uid: GameFramework.EventSystem.Events.OptionsChangedEvent
+    name: OptionsChangedEvent
+  - uid: GameFramework.EventSystem.Events.OptionsRequestedEvent
+    name: OptionsRequestedEvent
+  - uid: GameFramework.EventSystem.Events.PauseRequestedEvent
+    name: PauseRequestedEvent
+  - uid: GameFramework.EventSystem.Events.PlayerAttackInputEvent
+    name: PlayerAttackInputEvent
+  - uid: GameFramework.EventSystem.Events.PlayerCrouchInputEvent
+    name: PlayerCrouchInputEvent
+  - uid: GameFramework.EventSystem.Events.PlayerInteractInputEvent
+    name: PlayerInteractInputEvent
+  - uid: GameFramework.EventSystem.Events.PlayerJumpInputEvent
+    name: PlayerJumpInputEvent
+  - uid: GameFramework.EventSystem.Events.PlayerLookInputEvent
+    name: PlayerLookInputEvent
+  - uid: GameFramework.EventSystem.Events.PlayerMoveInputEvent
+    name: PlayerMoveInputEvent
+  - uid: GameFramework.EventSystem.Events.PlayerNextInputEvent
+    name: PlayerNextInputEvent
+  - uid: GameFramework.EventSystem.Events.PlayerPauseInputEvent
+    name: PlayerPauseInputEvent
+  - uid: GameFramework.EventSystem.Events.PlayerPreviousInputEvent
+    name: PlayerPreviousInputEvent
+  - uid: GameFramework.EventSystem.Events.PlayerSprintInputEvent
+    name: PlayerSprintInputEvent
+  - uid: GameFramework.EventSystem.Events.QuitRequestedEvent
+    name: QuitRequestedEvent
+  - uid: GameFramework.EventSystem.Events.ResumeRequestedEvent
+    name: ResumeRequestedEvent
+  - uid: GameFramework.EventSystem.Events.SaveGameEvent
+    name: SaveGameEvent
+  - uid: GameFramework.EventSystem.Events.SaveGameRequestedEvent
+    name: SaveGameRequestedEvent
+  - uid: GameFramework.EventSystem.Events.SceneLoadedEvent
+    name: SceneLoadedEvent
+  - uid: GameFramework.EventSystem.Events.UICancelInputEvent
+    name: UICancelInputEvent
+  - uid: GameFramework.EventSystem.Events.UIClickInputEvent
+    name: UIClickInputEvent
+  - uid: GameFramework.EventSystem.Events.UIMiddleClickInputEvent
+    name: UIMiddleClickInputEvent
+  - uid: GameFramework.EventSystem.Events.UINavigateInputEvent
+    name: UINavigateInputEvent
+  - uid: GameFramework.EventSystem.Events.UIPointInputEvent
+    name: UIPointInputEvent
+  - uid: GameFramework.EventSystem.Events.UIRightClickInputEvent
+    name: UIRightClickInputEvent
+  - uid: GameFramework.EventSystem.Events.UIScrollWheelInputEvent
+    name: UIScrollWheelInputEvent
+  - uid: GameFramework.EventSystem.Events.UISubmitInputEvent
+    name: UISubmitInputEvent
+  - uid: GameFramework.EventSystem.Events.UITrackedDeviceOrientationInputEvent
+    name: UITrackedDeviceOrientationInputEvent
+  - uid: GameFramework.EventSystem.Events.UITrackedDevicePositionInputEvent
+    name: UITrackedDevicePositionInputEvent
+  - uid: GameFramework.EventSystem.Events.VictoryEvent
+    name: VictoryEvent
+- uid: GameFramework.EventSystem.Interfaces
+  name: GameFramework.EventSystem.Interfaces
+  items:
+  - uid: GameFramework.EventSystem.Interfaces.IEventSystem
+    name: IEventSystem
+- uid: GameFramework.Input
+  name: GameFramework.Input
+  items:
+  - uid: GameFramework.Input.InputContext
+    name: InputContext
+  - uid: GameFramework.Input.InputHandlerBase
+    name: InputHandlerBase
+  - uid: GameFramework.Input.InputManager
+    name: InputManager
+- uid: GameFramework.Input.Handlers
+  name: GameFramework.Input.Handlers
+  items:
+  - uid: GameFramework.Input.Handlers.ConsoleInputHandler
+    name: ConsoleInputHandler
+  - uid: GameFramework.Input.Handlers.PlayerInputHandler
+    name: PlayerInputHandler
+  - uid: GameFramework.Input.Handlers.UIInputHandler
+    name: UIInputHandler
+- uid: GameFramework.Input.Interfaces
+  name: GameFramework.Input.Interfaces
+  items:
+  - uid: GameFramework.Input.Interfaces.IInputManager
+    name: IInputManager
+- uid: GameFramework.Services
+  name: GameFramework.Services
+  items:
+  - uid: GameFramework.Services.AudioService
+    name: AudioService
+  - uid: GameFramework.Services.ConfigService
+    name: ConfigService
+  - uid: GameFramework.Services.ConsoleService
+    name: ConsoleService
+  - uid: GameFramework.Services.GameDataService
+    name: GameDataService
+  - uid: GameFramework.Services.LoadService
+    name: LoadService
+  - uid: GameFramework.Services.PauseService
+    name: PauseService
+  - uid: GameFramework.Services.SaveService
+    name: SaveService
+  - uid: GameFramework.Services.SceneService
+    name: SceneService
+  - uid: GameFramework.Services.TimeService
+    name: TimeService
+  - uid: GameFramework.Services.TimeStatistics
+    name: TimeStatistics
+  - uid: GameFramework.Services.UIService
+    name: UIService
+- uid: GameFramework.Services.Interfaces
+  name: GameFramework.Services.Interfaces
+  items:
+  - uid: GameFramework.Services.Interfaces.IAudioService
+    name: IAudioService
+  - uid: GameFramework.Services.Interfaces.IConfigService
+    name: IConfigService
+  - uid: GameFramework.Services.Interfaces.IConsoleService
+    name: IConsoleService
+  - uid: GameFramework.Services.Interfaces.IGameDataService
+    name: IGameDataService
+  - uid: GameFramework.Services.Interfaces.IGameService
+    name: IGameService
+  - uid: GameFramework.Services.Interfaces.ILoadService
+    name: ILoadService
+  - uid: GameFramework.Services.Interfaces.IPauseService
+    name: IPauseService
+  - uid: GameFramework.Services.Interfaces.ISaveService
+    name: ISaveService
+  - uid: GameFramework.Services.Interfaces.ISceneService
+    name: ISceneService
+  - uid: GameFramework.Services.Interfaces.ITimeService
+    name: ITimeService
+  - uid: GameFramework.Services.Interfaces.IUIService
+    name: IUIService
+- uid: GameFramework.StateMachine
+  name: GameFramework.StateMachine
+  items:
+  - uid: GameFramework.StateMachine.GameStateMachine
+    name: GameStateMachine
+  - uid: GameFramework.StateMachine.IGameStateMachine
+    name: IGameStateMachine
+- uid: GameFramework.StateMachine.Data
+  name: GameFramework.StateMachine.Data
+  items:
+  - uid: GameFramework.StateMachine.Data.LoadingConfiguration
+    name: LoadingConfiguration
+- uid: GameFramework.StateMachine.Enum
+  name: GameFramework.StateMachine.Enum
+  items:
+  - uid: GameFramework.StateMachine.Enum.GameStateType
+    name: GameStateType
+  - uid: GameFramework.StateMachine.Enum.LoadingType
+    name: LoadingType
+- uid: GameFramework.StateMachine.GameStates
+  name: GameFramework.StateMachine.GameStates
+  items:
+  - uid: GameFramework.StateMachine.GameStates.BootstrapState
+    name: BootstrapState
+  - uid: GameFramework.StateMachine.GameStates.CreditsState
+    name: CreditsState
+  - uid: GameFramework.StateMachine.GameStates.GameOverState
+    name: GameOverState
+  - uid: GameFramework.StateMachine.GameStates.LoadingState
+    name: LoadingState
+  - uid: GameFramework.StateMachine.GameStates.MainMenuState
+    name: MainMenuState
+  - uid: GameFramework.StateMachine.GameStates.NewGameState
+    name: NewGameState
+  - uid: GameFramework.StateMachine.GameStates.PlayingState
+    name: PlayingState
+  - uid: GameFramework.StateMachine.GameStates.QuitState
+    name: QuitState
+  - uid: GameFramework.StateMachine.GameStates.SplashState
+    name: SplashState
+  - uid: GameFramework.StateMachine.GameStates.VictoryState
+    name: VictoryState
+- uid: GameFramework.StateMachine.Interfaces
+  name: GameFramework.StateMachine.Interfaces
+  items:
+  - uid: GameFramework.StateMachine.Interfaces.IFixedUpdatable
+    name: IFixedUpdatable
+  - uid: GameFramework.StateMachine.Interfaces.ILateUpdatable
+    name: ILateUpdatable
+  - uid: GameFramework.StateMachine.Interfaces.IUpdatable
+    name: IUpdatable
+- uid: GameFramework.Tests
+  name: GameFramework.Tests
+  items:
+  - uid: GameFramework.Tests.DIContainerTests
+    name: DIContainerTests
+  - uid: GameFramework.Tests.EventSystemTests
+    name: EventSystemTests
+- uid: GameFramework.Tests.HelperClasses
+  name: GameFramework.Tests.HelperClasses
+  items:
+  - uid: GameFramework.Tests.HelperClasses.CircularDependencyA
+    name: CircularDependencyA
+  - uid: GameFramework.Tests.HelperClasses.CircularDependencyB
+    name: CircularDependencyB
+  - uid: GameFramework.Tests.HelperClasses.ComplexTestService
+    name: ComplexTestService
+  - uid: GameFramework.Tests.HelperClasses.ITestDependency
+    name: ITestDependency
+  - uid: GameFramework.Tests.HelperClasses.ITestService
+    name: ITestService
+  - uid: GameFramework.Tests.HelperClasses.MockEventSystem
+    name: MockEventSystem
+  - uid: GameFramework.Tests.HelperClasses.SimpleTestService
+    name: SimpleTestService
+  - uid: GameFramework.Tests.HelperClasses.TestDependency
+    name: TestDependency
+  - uid: GameFramework.Tests.HelperClasses.TestEvent
+    name: TestEvent
+  - uid: GameFramework.Tests.HelperClasses.TestService
+    name: TestService
+- uid: GameFramework.Tests.HelperClasses.UI.GameFramework.Tests.Services
+  name: GameFramework.Tests.HelperClasses.UI.GameFramework.Tests.Services
+  items:
+  - uid: GameFramework.Tests.HelperClasses.UI.GameFramework.Tests.Services.MockUIDocumentWrapper
+    name: MockUIDocumentWrapper
+  - uid: GameFramework.Tests.HelperClasses.UI.GameFramework.Tests.Services.TestUIPopup
+    name: TestUIPopup
+  - uid: GameFramework.Tests.HelperClasses.UI.GameFramework.Tests.Services.TestUIScreen
+    name: TestUIScreen
+  - uid: GameFramework.Tests.HelperClasses.UI.GameFramework.Tests.Services.UnregisteredPopup
+    name: UnregisteredPopup
+  - uid: GameFramework.Tests.HelperClasses.UI.GameFramework.Tests.Services.UnregisteredScreen
+    name: UnregisteredScreen
+- uid: GameFramework.Tests.UI
+  name: GameFramework.Tests.UI
+  items:
+  - uid: GameFramework.Tests.UI.UIScreenBaseTests
+    name: UIScreenBaseTests
+  - uid: GameFramework.Tests.UI.UIServiceIntegrationTests
+    name: UIServiceIntegrationTests
+- uid: GameFramework.UI
+  name: GameFramework.UI
+  items:
+  - uid: GameFramework.UI.UIPopup
+    name: UIPopup
+  - uid: GameFramework.UI.UIScreen
+    name: UIScreen
+- uid: GameFramework.UI.Interfaces
+  name: GameFramework.UI.Interfaces
+  items:
+  - uid: GameFramework.UI.Interfaces.IUIDocumentWrapper
+    name: IUIDocumentWrapper
+- uid: GameFramework.UI.Popups
+  name: GameFramework.UI.Popups
+  items:
+  - uid: GameFramework.UI.Popups.ConfirmationPopup
+    name: ConfirmationPopup
+  - uid: GameFramework.UI.Popups.DebugPopup
+    name: DebugPopup
+  - uid: GameFramework.UI.Popups.ErrorPopup
+    name: ErrorPopup
+  - uid: GameFramework.UI.Popups.OptionsPopup
+    name: OptionsPopup
+  - uid: GameFramework.UI.Popups.PausePopup
+    name: PausePopup
+- uid: GameFramework.UI.Screens
+  name: GameFramework.UI.Screens
+  items:
+  - uid: GameFramework.UI.Screens.CreditsScreen
+    name: CreditsScreen
+  - uid: GameFramework.UI.Screens.GameOverScreen
+    name: GameOverScreen
+  - uid: GameFramework.UI.Screens.GamePlayScreen
+    name: GamePlayScreen
+  - uid: GameFramework.UI.Screens.LoadGamePopup
+    name: LoadGamePopup
+  - uid: GameFramework.UI.Screens.LoadingScreen
+    name: LoadingScreen
+  - uid: GameFramework.UI.Screens.MainMenuScreen
+    name: MainMenuScreen
+  - uid: GameFramework.UI.Screens.NewGameScreen
+    name: NewGameScreen
+  - uid: GameFramework.UI.Screens.SaveFileListPopup
+    name: SaveFileListPopup
+  - uid: GameFramework.UI.Screens.SaveGamePopup
+    name: SaveGamePopup
+  - uid: GameFramework.UI.Screens.SplashScreen
+    name: SplashScreen
+  - uid: GameFramework.UI.Screens.VictoryScreen
+    name: VictoryScreen
+- uid: GameFramework.UI.Utilities
+  name: GameFramework.UI.Utilities
+  items:
+  - uid: GameFramework.UI.Utilities.CircularBuffer`1
+    name: CircularBuffer<T>
+    name.vb: CircularBuffer(Of T)
+  - uid: GameFramework.UI.Utilities.GraphElement
+    name: GraphElement
+- uid: GrameFramework.Config
+  name: GrameFramework.Config
+  items:
+  - uid: GrameFramework.Config.AudioSettings_SO
+    name: AudioSettings_SO
+  - uid: GrameFramework.Config.DebugSettings_SO
+    name: DebugSettings_SO
+  - uid: GrameFramework.Config.GameplaySettings_SO
+    name: GameplaySettings_SO
+  - uid: GrameFramework.Config.GraphicsSettings_SO
+    name: GraphicsSettings_SO
+  - uid: GrameFramework.Config.InputSettings_SO
+    name: InputSettings_SO
+- uid: UCTools_ConfigVariables
+  name: UCTools_ConfigVariables
+  items:
+  - uid: UCTools_ConfigVariables.BoolConfigVariable
+    name: BoolConfigVariable
+  - uid: UCTools_ConfigVariables.ConfigCategory
+    name: ConfigCategory
+  - uid: UCTools_ConfigVariables.ConfigFlags
+    name: ConfigFlags
+  - uid: UCTools_ConfigVariables.ConfigVariableBase
+    name: ConfigVariableBase
+  - uid: UCTools_ConfigVariables.EnumConfigVariable`1
+    name: EnumConfigVariable<T>
+    name.vb: EnumConfigVariable(Of T)
+  - uid: UCTools_ConfigVariables.FloatConfigVariable
+    name: FloatConfigVariable
+  - uid: UCTools_ConfigVariables.IntConfigVariable
+    name: IntConfigVariable
+  - uid: UCTools_ConfigVariables.QualityConfigVariable
+    name: QualityConfigVariable
+  - uid: UCTools_ConfigVariables.QualityOption
+    name: QualityOption
+  - uid: UCTools_ConfigVariables.QualityOptionExtensions
+    name: QualityOptionExtensions
+  - uid: UCTools_ConfigVariables.ResolutionConfigVariable
+    name: ResolutionConfigVariable
+  - uid: UCTools_ConfigVariables.ResolutionOption
+    name: ResolutionOption
+  - uid: UCTools_ConfigVariables.ResolutionOptionExtensions
+    name: ResolutionOptionExtensions
+  - uid: UCTools_ConfigVariables.StringConfigVariable
+    name: StringConfigVariable
+- uid: UCTools_Utilities
+  name: UCTools_Utilities
+  items:
+  - uid: UCTools_Utilities.Coroutines
+    name: Coroutines
+  - uid: UCTools_Utilities.EventRegistry
+    name: EventRegistry
+  - uid: UCTools_Utilities.Singleton`1
+    name: Singleton<T>
+    name.vb: Singleton(Of T)
+- uid: UCTools_Utilities.UI
+  name: UCTools_Utilities.UI
+  items:
+  - uid: UCTools_Utilities.UI.UIElementValidator
+    name: UIElementValidator
+  - uid: UCTools_Utilities.UI.UIElementValidator.ValidationMode
+    name: UIElementValidator.ValidationMode

@@ -1,0 +1,727 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.Services.Interfaces.IUIService
+  commentId: T:GameFramework.Services.Interfaces.IUIService
+  id: IUIService
+  parent: GameFramework.Services.Interfaces
+  children:
+  - GameFramework.Services.Interfaces.IUIService.CloseAllPopupsAsync
+  - GameFramework.Services.Interfaces.IUIService.GetCurrentPopup
+  - GameFramework.Services.Interfaces.IUIService.GetCurrentPopupType
+  - GameFramework.Services.Interfaces.IUIService.GetOpenPopupCount
+  - GameFramework.Services.Interfaces.IUIService.GetPopup``1
+  - GameFramework.Services.Interfaces.IUIService.GetPopupStackPosition``1
+  - GameFramework.Services.Interfaces.IUIService.GetScreen``1
+  - GameFramework.Services.Interfaces.IUIService.HasOpenPopups
+  - GameFramework.Services.Interfaces.IUIService.HidePopupAsync``1
+  - GameFramework.Services.Interfaces.IUIService.HideScreenAsync``1
+  - GameFramework.Services.Interfaces.IUIService.InitializeAsync
+  - GameFramework.Services.Interfaces.IUIService.IsCurrentPopup``1
+  - GameFramework.Services.Interfaces.IUIService.IsInitialized
+  - GameFramework.Services.Interfaces.IUIService.IsPopupOpen``1
+  - GameFramework.Services.Interfaces.IUIService.SetDebugPopupText(System.String)
+  - GameFramework.Services.Interfaces.IUIService.ShowPopupAsync``1
+  - GameFramework.Services.Interfaces.IUIService.ShowScreenAsync``1
+  - GameFramework.Services.Interfaces.IUIService.Shutdown
+  - GameFramework.Services.Interfaces.IUIService.Update
+  langs:
+  - csharp
+  - vb
+  name: IUIService
+  nameWithType: IUIService
+  fullName: GameFramework.Services.Interfaces.IUIService
+  type: Interface
+  source:
+    id: IUIService
+    path: ''
+    startLine: 11347
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  summary: "\nMinimal UI Service interface with essential popup management\n"
+  example: []
+  syntax:
+    content: 'public interface IUIService : IGameService'
+    content.vb: >-
+      Public Interface IUIService
+          Inherits IGameService
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: GameFramework.Services.Interfaces.IUIService.IsInitialized
+  commentId: P:GameFramework.Services.Interfaces.IUIService.IsInitialized
+  id: IsInitialized
+  parent: GameFramework.Services.Interfaces.IUIService
+  langs:
+  - csharp
+  - vb
+  name: IsInitialized
+  nameWithType: IUIService.IsInitialized
+  fullName: GameFramework.Services.Interfaces.IUIService.IsInitialized
+  type: Property
+  source:
+    id: IsInitialized
+    path: ''
+    startLine: 11349
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: bool IsInitialized { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property IsInitialized As Boolean
+  overload: GameFramework.Services.Interfaces.IUIService.IsInitialized*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: GameFramework.Services.Interfaces.IUIService.InitializeAsync
+  commentId: M:GameFramework.Services.Interfaces.IUIService.InitializeAsync
+  id: InitializeAsync
+  parent: GameFramework.Services.Interfaces.IUIService
+  langs:
+  - csharp
+  - vb
+  name: InitializeAsync()
+  nameWithType: IUIService.InitializeAsync()
+  fullName: GameFramework.Services.Interfaces.IUIService.InitializeAsync()
+  type: Method
+  source:
+    id: InitializeAsync
+    path: ''
+    startLine: 11351
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: Task InitializeAsync()
+    return:
+      type: Task
+    content.vb: Function InitializeAsync As Task
+  overload: GameFramework.Services.Interfaces.IUIService.InitializeAsync*
+- uid: GameFramework.Services.Interfaces.IUIService.Shutdown
+  commentId: M:GameFramework.Services.Interfaces.IUIService.Shutdown
+  id: Shutdown
+  parent: GameFramework.Services.Interfaces.IUIService
+  langs:
+  - csharp
+  - vb
+  name: Shutdown()
+  nameWithType: IUIService.Shutdown()
+  fullName: GameFramework.Services.Interfaces.IUIService.Shutdown()
+  type: Method
+  source:
+    id: Shutdown
+    path: ''
+    startLine: 11352
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: void Shutdown()
+    content.vb: Sub Shutdown
+  overload: GameFramework.Services.Interfaces.IUIService.Shutdown*
+- uid: GameFramework.Services.Interfaces.IUIService.Update
+  commentId: M:GameFramework.Services.Interfaces.IUIService.Update
+  id: Update
+  parent: GameFramework.Services.Interfaces.IUIService
+  langs:
+  - csharp
+  - vb
+  name: Update()
+  nameWithType: IUIService.Update()
+  fullName: GameFramework.Services.Interfaces.IUIService.Update()
+  type: Method
+  source:
+    id: Update
+    path: ''
+    startLine: 11353
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: void Update()
+    content.vb: Sub Update
+  overload: GameFramework.Services.Interfaces.IUIService.Update*
+- uid: GameFramework.Services.Interfaces.IUIService.ShowScreenAsync``1
+  commentId: M:GameFramework.Services.Interfaces.IUIService.ShowScreenAsync``1
+  id: ShowScreenAsync``1
+  parent: GameFramework.Services.Interfaces.IUIService
+  langs:
+  - csharp
+  - vb
+  name: ShowScreenAsync<T>()
+  nameWithType: IUIService.ShowScreenAsync<T>()
+  fullName: GameFramework.Services.Interfaces.IUIService.ShowScreenAsync<T>()
+  type: Method
+  source:
+    id: ShowScreenAsync
+    path: ''
+    startLine: 11356
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: >-
+      Task ShowScreenAsync<T>()
+          where T : UIScreen
+    typeParameters:
+    - id: T
+    return:
+      type: Task
+    content.vb: Function ShowScreenAsync(Of T As UIScreen) As Task
+  overload: GameFramework.Services.Interfaces.IUIService.ShowScreenAsync*
+  nameWithType.vb: IUIService.ShowScreenAsync(Of T)()
+  fullName.vb: GameFramework.Services.Interfaces.IUIService.ShowScreenAsync(Of T)()
+  name.vb: ShowScreenAsync(Of T)()
+- uid: GameFramework.Services.Interfaces.IUIService.HideScreenAsync``1
+  commentId: M:GameFramework.Services.Interfaces.IUIService.HideScreenAsync``1
+  id: HideScreenAsync``1
+  parent: GameFramework.Services.Interfaces.IUIService
+  langs:
+  - csharp
+  - vb
+  name: HideScreenAsync<T>()
+  nameWithType: IUIService.HideScreenAsync<T>()
+  fullName: GameFramework.Services.Interfaces.IUIService.HideScreenAsync<T>()
+  type: Method
+  source:
+    id: HideScreenAsync
+    path: ''
+    startLine: 11357
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: >-
+      Task HideScreenAsync<T>()
+          where T : UIScreen
+    typeParameters:
+    - id: T
+    return:
+      type: Task
+    content.vb: Function HideScreenAsync(Of T As UIScreen) As Task
+  overload: GameFramework.Services.Interfaces.IUIService.HideScreenAsync*
+  nameWithType.vb: IUIService.HideScreenAsync(Of T)()
+  fullName.vb: GameFramework.Services.Interfaces.IUIService.HideScreenAsync(Of T)()
+  name.vb: HideScreenAsync(Of T)()
+- uid: GameFramework.Services.Interfaces.IUIService.GetScreen``1
+  commentId: M:GameFramework.Services.Interfaces.IUIService.GetScreen``1
+  id: GetScreen``1
+  parent: GameFramework.Services.Interfaces.IUIService
+  langs:
+  - csharp
+  - vb
+  name: GetScreen<T>()
+  nameWithType: IUIService.GetScreen<T>()
+  fullName: GameFramework.Services.Interfaces.IUIService.GetScreen<T>()
+  type: Method
+  source:
+    id: GetScreen
+    path: ''
+    startLine: 11358
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: >-
+      T GetScreen<T>()
+          where T : UIScreen
+    typeParameters:
+    - id: T
+    return:
+      type: '{T}'
+    content.vb: Function GetScreen(Of T As UIScreen) As T
+  overload: GameFramework.Services.Interfaces.IUIService.GetScreen*
+  nameWithType.vb: IUIService.GetScreen(Of T)()
+  fullName.vb: GameFramework.Services.Interfaces.IUIService.GetScreen(Of T)()
+  name.vb: GetScreen(Of T)()
+- uid: GameFramework.Services.Interfaces.IUIService.GetPopup``1
+  commentId: M:GameFramework.Services.Interfaces.IUIService.GetPopup``1
+  id: GetPopup``1
+  parent: GameFramework.Services.Interfaces.IUIService
+  langs:
+  - csharp
+  - vb
+  name: GetPopup<T>()
+  nameWithType: IUIService.GetPopup<T>()
+  fullName: GameFramework.Services.Interfaces.IUIService.GetPopup<T>()
+  type: Method
+  source:
+    id: GetPopup
+    path: ''
+    startLine: 11360
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: >-
+      T GetPopup<T>()
+          where T : UIPopup
+    typeParameters:
+    - id: T
+    return:
+      type: '{T}'
+    content.vb: Function GetPopup(Of T As UIPopup) As T
+  overload: GameFramework.Services.Interfaces.IUIService.GetPopup*
+  nameWithType.vb: IUIService.GetPopup(Of T)()
+  fullName.vb: GameFramework.Services.Interfaces.IUIService.GetPopup(Of T)()
+  name.vb: GetPopup(Of T)()
+- uid: GameFramework.Services.Interfaces.IUIService.ShowPopupAsync``1
+  commentId: M:GameFramework.Services.Interfaces.IUIService.ShowPopupAsync``1
+  id: ShowPopupAsync``1
+  parent: GameFramework.Services.Interfaces.IUIService
+  langs:
+  - csharp
+  - vb
+  name: ShowPopupAsync<T>()
+  nameWithType: IUIService.ShowPopupAsync<T>()
+  fullName: GameFramework.Services.Interfaces.IUIService.ShowPopupAsync<T>()
+  type: Method
+  source:
+    id: ShowPopupAsync
+    path: ''
+    startLine: 11363
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: >-
+      Task ShowPopupAsync<T>()
+          where T : UIPopup
+    typeParameters:
+    - id: T
+    return:
+      type: Task
+    content.vb: Function ShowPopupAsync(Of T As UIPopup) As Task
+  overload: GameFramework.Services.Interfaces.IUIService.ShowPopupAsync*
+  nameWithType.vb: IUIService.ShowPopupAsync(Of T)()
+  fullName.vb: GameFramework.Services.Interfaces.IUIService.ShowPopupAsync(Of T)()
+  name.vb: ShowPopupAsync(Of T)()
+- uid: GameFramework.Services.Interfaces.IUIService.HidePopupAsync``1
+  commentId: M:GameFramework.Services.Interfaces.IUIService.HidePopupAsync``1
+  id: HidePopupAsync``1
+  parent: GameFramework.Services.Interfaces.IUIService
+  langs:
+  - csharp
+  - vb
+  name: HidePopupAsync<T>()
+  nameWithType: IUIService.HidePopupAsync<T>()
+  fullName: GameFramework.Services.Interfaces.IUIService.HidePopupAsync<T>()
+  type: Method
+  source:
+    id: HidePopupAsync
+    path: ''
+    startLine: 11364
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: >-
+      Task HidePopupAsync<T>()
+          where T : UIPopup
+    typeParameters:
+    - id: T
+    return:
+      type: Task
+    content.vb: Function HidePopupAsync(Of T As UIPopup) As Task
+  overload: GameFramework.Services.Interfaces.IUIService.HidePopupAsync*
+  nameWithType.vb: IUIService.HidePopupAsync(Of T)()
+  fullName.vb: GameFramework.Services.Interfaces.IUIService.HidePopupAsync(Of T)()
+  name.vb: HidePopupAsync(Of T)()
+- uid: GameFramework.Services.Interfaces.IUIService.CloseAllPopupsAsync
+  commentId: M:GameFramework.Services.Interfaces.IUIService.CloseAllPopupsAsync
+  id: CloseAllPopupsAsync
+  parent: GameFramework.Services.Interfaces.IUIService
+  langs:
+  - csharp
+  - vb
+  name: CloseAllPopupsAsync()
+  nameWithType: IUIService.CloseAllPopupsAsync()
+  fullName: GameFramework.Services.Interfaces.IUIService.CloseAllPopupsAsync()
+  type: Method
+  source:
+    id: CloseAllPopupsAsync
+    path: ''
+    startLine: 11365
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: Task CloseAllPopupsAsync()
+    return:
+      type: Task
+    content.vb: Function CloseAllPopupsAsync As Task
+  overload: GameFramework.Services.Interfaces.IUIService.CloseAllPopupsAsync*
+- uid: GameFramework.Services.Interfaces.IUIService.HasOpenPopups
+  commentId: M:GameFramework.Services.Interfaces.IUIService.HasOpenPopups
+  id: HasOpenPopups
+  parent: GameFramework.Services.Interfaces.IUIService
+  langs:
+  - csharp
+  - vb
+  name: HasOpenPopups()
+  nameWithType: IUIService.HasOpenPopups()
+  fullName: GameFramework.Services.Interfaces.IUIService.HasOpenPopups()
+  type: Method
+  source:
+    id: HasOpenPopups
+    path: ''
+    startLine: 11366
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: bool HasOpenPopups()
+    return:
+      type: System.Boolean
+    content.vb: Function HasOpenPopups As Boolean
+  overload: GameFramework.Services.Interfaces.IUIService.HasOpenPopups*
+- uid: GameFramework.Services.Interfaces.IUIService.GetCurrentPopup
+  commentId: M:GameFramework.Services.Interfaces.IUIService.GetCurrentPopup
+  id: GetCurrentPopup
+  parent: GameFramework.Services.Interfaces.IUIService
+  langs:
+  - csharp
+  - vb
+  name: GetCurrentPopup()
+  nameWithType: IUIService.GetCurrentPopup()
+  fullName: GameFramework.Services.Interfaces.IUIService.GetCurrentPopup()
+  type: Method
+  source:
+    id: GetCurrentPopup
+    path: ''
+    startLine: 11367
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: UIPopup GetCurrentPopup()
+    return:
+      type: UIPopup
+    content.vb: Function GetCurrentPopup As UIPopup
+  overload: GameFramework.Services.Interfaces.IUIService.GetCurrentPopup*
+- uid: GameFramework.Services.Interfaces.IUIService.IsCurrentPopup``1
+  commentId: M:GameFramework.Services.Interfaces.IUIService.IsCurrentPopup``1
+  id: IsCurrentPopup``1
+  parent: GameFramework.Services.Interfaces.IUIService
+  langs:
+  - csharp
+  - vb
+  name: IsCurrentPopup<T>()
+  nameWithType: IUIService.IsCurrentPopup<T>()
+  fullName: GameFramework.Services.Interfaces.IUIService.IsCurrentPopup<T>()
+  type: Method
+  source:
+    id: IsCurrentPopup
+    path: ''
+    startLine: 11370
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: >-
+      bool IsCurrentPopup<T>()
+          where T : UIPopup
+    typeParameters:
+    - id: T
+    return:
+      type: System.Boolean
+    content.vb: Function IsCurrentPopup(Of T As UIPopup) As Boolean
+  overload: GameFramework.Services.Interfaces.IUIService.IsCurrentPopup*
+  nameWithType.vb: IUIService.IsCurrentPopup(Of T)()
+  fullName.vb: GameFramework.Services.Interfaces.IUIService.IsCurrentPopup(Of T)()
+  name.vb: IsCurrentPopup(Of T)()
+- uid: GameFramework.Services.Interfaces.IUIService.GetCurrentPopupType
+  commentId: M:GameFramework.Services.Interfaces.IUIService.GetCurrentPopupType
+  id: GetCurrentPopupType
+  parent: GameFramework.Services.Interfaces.IUIService
+  langs:
+  - csharp
+  - vb
+  name: GetCurrentPopupType()
+  nameWithType: IUIService.GetCurrentPopupType()
+  fullName: GameFramework.Services.Interfaces.IUIService.GetCurrentPopupType()
+  type: Method
+  source:
+    id: GetCurrentPopupType
+    path: ''
+    startLine: 11371
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: Type GetCurrentPopupType()
+    return:
+      type: Type
+    content.vb: Function GetCurrentPopupType As Type
+  overload: GameFramework.Services.Interfaces.IUIService.GetCurrentPopupType*
+- uid: GameFramework.Services.Interfaces.IUIService.GetOpenPopupCount
+  commentId: M:GameFramework.Services.Interfaces.IUIService.GetOpenPopupCount
+  id: GetOpenPopupCount
+  parent: GameFramework.Services.Interfaces.IUIService
+  langs:
+  - csharp
+  - vb
+  name: GetOpenPopupCount()
+  nameWithType: IUIService.GetOpenPopupCount()
+  fullName: GameFramework.Services.Interfaces.IUIService.GetOpenPopupCount()
+  type: Method
+  source:
+    id: GetOpenPopupCount
+    path: ''
+    startLine: 11372
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: int GetOpenPopupCount()
+    return:
+      type: System.Int32
+    content.vb: Function GetOpenPopupCount As Integer
+  overload: GameFramework.Services.Interfaces.IUIService.GetOpenPopupCount*
+- uid: GameFramework.Services.Interfaces.IUIService.IsPopupOpen``1
+  commentId: M:GameFramework.Services.Interfaces.IUIService.IsPopupOpen``1
+  id: IsPopupOpen``1
+  parent: GameFramework.Services.Interfaces.IUIService
+  langs:
+  - csharp
+  - vb
+  name: IsPopupOpen<T>()
+  nameWithType: IUIService.IsPopupOpen<T>()
+  fullName: GameFramework.Services.Interfaces.IUIService.IsPopupOpen<T>()
+  type: Method
+  source:
+    id: IsPopupOpen
+    path: ''
+    startLine: 11373
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: >-
+      bool IsPopupOpen<T>()
+          where T : UIPopup
+    typeParameters:
+    - id: T
+    return:
+      type: System.Boolean
+    content.vb: Function IsPopupOpen(Of T As UIPopup) As Boolean
+  overload: GameFramework.Services.Interfaces.IUIService.IsPopupOpen*
+  nameWithType.vb: IUIService.IsPopupOpen(Of T)()
+  fullName.vb: GameFramework.Services.Interfaces.IUIService.IsPopupOpen(Of T)()
+  name.vb: IsPopupOpen(Of T)()
+- uid: GameFramework.Services.Interfaces.IUIService.GetPopupStackPosition``1
+  commentId: M:GameFramework.Services.Interfaces.IUIService.GetPopupStackPosition``1
+  id: GetPopupStackPosition``1
+  parent: GameFramework.Services.Interfaces.IUIService
+  langs:
+  - csharp
+  - vb
+  name: GetPopupStackPosition<T>()
+  nameWithType: IUIService.GetPopupStackPosition<T>()
+  fullName: GameFramework.Services.Interfaces.IUIService.GetPopupStackPosition<T>()
+  type: Method
+  source:
+    id: GetPopupStackPosition
+    path: ''
+    startLine: 11375
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: >-
+      int GetPopupStackPosition<T>()
+          where T : UIPopup
+    typeParameters:
+    - id: T
+    return:
+      type: System.Int32
+    content.vb: Function GetPopupStackPosition(Of T As UIPopup) As Integer
+  overload: GameFramework.Services.Interfaces.IUIService.GetPopupStackPosition*
+  nameWithType.vb: IUIService.GetPopupStackPosition(Of T)()
+  fullName.vb: GameFramework.Services.Interfaces.IUIService.GetPopupStackPosition(Of T)()
+  name.vb: GetPopupStackPosition(Of T)()
+- uid: GameFramework.Services.Interfaces.IUIService.SetDebugPopupText(System.String)
+  commentId: M:GameFramework.Services.Interfaces.IUIService.SetDebugPopupText(System.String)
+  id: SetDebugPopupText(System.String)
+  parent: GameFramework.Services.Interfaces.IUIService
+  langs:
+  - csharp
+  - vb
+  name: SetDebugPopupText(String)
+  nameWithType: IUIService.SetDebugPopupText(String)
+  fullName: GameFramework.Services.Interfaces.IUIService.SetDebugPopupText(System.String)
+  type: Method
+  source:
+    id: SetDebugPopupText
+    path: ''
+    startLine: 11378
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: void SetDebugPopupText(string text)
+    parameters:
+    - id: text
+      type: System.String
+    content.vb: Sub SetDebugPopupText(text As String)
+  overload: GameFramework.Services.Interfaces.IUIService.SetDebugPopupText*
+references:
+- uid: GameFramework.Services.Interfaces
+  commentId: N:GameFramework.Services.Interfaces
+  name: GameFramework.Services.Interfaces
+  nameWithType: GameFramework.Services.Interfaces
+  fullName: GameFramework.Services.Interfaces
+- uid: GameFramework.Services.Interfaces.IUIService.IsInitialized*
+  commentId: Overload:GameFramework.Services.Interfaces.IUIService.IsInitialized
+  name: IsInitialized
+  nameWithType: IUIService.IsInitialized
+  fullName: GameFramework.Services.Interfaces.IUIService.IsInitialized
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: GameFramework.Services.Interfaces.IUIService.InitializeAsync*
+  commentId: Overload:GameFramework.Services.Interfaces.IUIService.InitializeAsync
+  name: InitializeAsync
+  nameWithType: IUIService.InitializeAsync
+  fullName: GameFramework.Services.Interfaces.IUIService.InitializeAsync
+- uid: Task
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: Task
+- uid: GameFramework.Services.Interfaces.IUIService.Shutdown*
+  commentId: Overload:GameFramework.Services.Interfaces.IUIService.Shutdown
+  name: Shutdown
+  nameWithType: IUIService.Shutdown
+  fullName: GameFramework.Services.Interfaces.IUIService.Shutdown
+- uid: GameFramework.Services.Interfaces.IUIService.Update*
+  commentId: Overload:GameFramework.Services.Interfaces.IUIService.Update
+  name: Update
+  nameWithType: IUIService.Update
+  fullName: GameFramework.Services.Interfaces.IUIService.Update
+- uid: GameFramework.Services.Interfaces.IUIService.ShowScreenAsync*
+  commentId: Overload:GameFramework.Services.Interfaces.IUIService.ShowScreenAsync
+  name: ShowScreenAsync
+  nameWithType: IUIService.ShowScreenAsync
+  fullName: GameFramework.Services.Interfaces.IUIService.ShowScreenAsync
+- uid: GameFramework.Services.Interfaces.IUIService.HideScreenAsync*
+  commentId: Overload:GameFramework.Services.Interfaces.IUIService.HideScreenAsync
+  name: HideScreenAsync
+  nameWithType: IUIService.HideScreenAsync
+  fullName: GameFramework.Services.Interfaces.IUIService.HideScreenAsync
+- uid: GameFramework.Services.Interfaces.IUIService.GetScreen*
+  commentId: Overload:GameFramework.Services.Interfaces.IUIService.GetScreen
+  name: GetScreen
+  nameWithType: IUIService.GetScreen
+  fullName: GameFramework.Services.Interfaces.IUIService.GetScreen
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: GameFramework.Services.Interfaces.IUIService.GetPopup*
+  commentId: Overload:GameFramework.Services.Interfaces.IUIService.GetPopup
+  name: GetPopup
+  nameWithType: IUIService.GetPopup
+  fullName: GameFramework.Services.Interfaces.IUIService.GetPopup
+- uid: GameFramework.Services.Interfaces.IUIService.ShowPopupAsync*
+  commentId: Overload:GameFramework.Services.Interfaces.IUIService.ShowPopupAsync
+  name: ShowPopupAsync
+  nameWithType: IUIService.ShowPopupAsync
+  fullName: GameFramework.Services.Interfaces.IUIService.ShowPopupAsync
+- uid: GameFramework.Services.Interfaces.IUIService.HidePopupAsync*
+  commentId: Overload:GameFramework.Services.Interfaces.IUIService.HidePopupAsync
+  name: HidePopupAsync
+  nameWithType: IUIService.HidePopupAsync
+  fullName: GameFramework.Services.Interfaces.IUIService.HidePopupAsync
+- uid: GameFramework.Services.Interfaces.IUIService.CloseAllPopupsAsync*
+  commentId: Overload:GameFramework.Services.Interfaces.IUIService.CloseAllPopupsAsync
+  name: CloseAllPopupsAsync
+  nameWithType: IUIService.CloseAllPopupsAsync
+  fullName: GameFramework.Services.Interfaces.IUIService.CloseAllPopupsAsync
+- uid: GameFramework.Services.Interfaces.IUIService.HasOpenPopups*
+  commentId: Overload:GameFramework.Services.Interfaces.IUIService.HasOpenPopups
+  name: HasOpenPopups
+  nameWithType: IUIService.HasOpenPopups
+  fullName: GameFramework.Services.Interfaces.IUIService.HasOpenPopups
+- uid: GameFramework.Services.Interfaces.IUIService.GetCurrentPopup*
+  commentId: Overload:GameFramework.Services.Interfaces.IUIService.GetCurrentPopup
+  name: GetCurrentPopup
+  nameWithType: IUIService.GetCurrentPopup
+  fullName: GameFramework.Services.Interfaces.IUIService.GetCurrentPopup
+- uid: UIPopup
+  isExternal: true
+  name: UIPopup
+  nameWithType: UIPopup
+  fullName: UIPopup
+- uid: GameFramework.Services.Interfaces.IUIService.IsCurrentPopup*
+  commentId: Overload:GameFramework.Services.Interfaces.IUIService.IsCurrentPopup
+  name: IsCurrentPopup
+  nameWithType: IUIService.IsCurrentPopup
+  fullName: GameFramework.Services.Interfaces.IUIService.IsCurrentPopup
+- uid: GameFramework.Services.Interfaces.IUIService.GetCurrentPopupType*
+  commentId: Overload:GameFramework.Services.Interfaces.IUIService.GetCurrentPopupType
+  name: GetCurrentPopupType
+  nameWithType: IUIService.GetCurrentPopupType
+  fullName: GameFramework.Services.Interfaces.IUIService.GetCurrentPopupType
+- uid: Type
+  isExternal: true
+  name: Type
+  nameWithType: Type
+  fullName: Type
+- uid: GameFramework.Services.Interfaces.IUIService.GetOpenPopupCount*
+  commentId: Overload:GameFramework.Services.Interfaces.IUIService.GetOpenPopupCount
+  name: GetOpenPopupCount
+  nameWithType: IUIService.GetOpenPopupCount
+  fullName: GameFramework.Services.Interfaces.IUIService.GetOpenPopupCount
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: GameFramework.Services.Interfaces.IUIService.IsPopupOpen*
+  commentId: Overload:GameFramework.Services.Interfaces.IUIService.IsPopupOpen
+  name: IsPopupOpen
+  nameWithType: IUIService.IsPopupOpen
+  fullName: GameFramework.Services.Interfaces.IUIService.IsPopupOpen
+- uid: GameFramework.Services.Interfaces.IUIService.GetPopupStackPosition*
+  commentId: Overload:GameFramework.Services.Interfaces.IUIService.GetPopupStackPosition
+  name: GetPopupStackPosition
+  nameWithType: IUIService.GetPopupStackPosition
+  fullName: GameFramework.Services.Interfaces.IUIService.GetPopupStackPosition
+- uid: GameFramework.Services.Interfaces.IUIService.SetDebugPopupText*
+  commentId: Overload:GameFramework.Services.Interfaces.IUIService.SetDebugPopupText
+  name: SetDebugPopupText
+  nameWithType: IUIService.SetDebugPopupText
+  fullName: GameFramework.Services.Interfaces.IUIService.SetDebugPopupText
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String

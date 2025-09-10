@@ -1,0 +1,303 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.ConsoleTool.Enums.CategoryEnum
+  commentId: T:GameFramework.ConsoleTool.Enums.CategoryEnum
+  id: CategoryEnum
+  parent: GameFramework.ConsoleTool.Enums
+  children:
+  - GameFramework.ConsoleTool.Enums.CategoryEnum.Audio
+  - GameFramework.ConsoleTool.Enums.CategoryEnum.Debug
+  - GameFramework.ConsoleTool.Enums.CategoryEnum.Development
+  - GameFramework.ConsoleTool.Enums.CategoryEnum.Game
+  - GameFramework.ConsoleTool.Enums.CategoryEnum.General
+  - GameFramework.ConsoleTool.Enums.CategoryEnum.Graphics
+  - GameFramework.ConsoleTool.Enums.CategoryEnum.Network
+  - GameFramework.ConsoleTool.Enums.CategoryEnum.Scripting
+  - GameFramework.ConsoleTool.Enums.CategoryEnum.System
+  langs:
+  - csharp
+  - vb
+  name: CategoryEnum
+  nameWithType: CategoryEnum
+  fullName: GameFramework.ConsoleTool.Enums.CategoryEnum
+  type: Enum
+  source:
+    id: CategoryEnum
+    path: ''
+    startLine: 2484
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool.Enums
+  syntax:
+    content: public enum CategoryEnum
+    content.vb: Public Enum CategoryEnum
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: GameFramework.ConsoleTool.Enums.CategoryEnum.General
+  commentId: F:GameFramework.ConsoleTool.Enums.CategoryEnum.General
+  id: General
+  parent: GameFramework.ConsoleTool.Enums.CategoryEnum
+  langs:
+  - csharp
+  - vb
+  name: General
+  nameWithType: CategoryEnum.General
+  fullName: GameFramework.ConsoleTool.Enums.CategoryEnum.General
+  type: Field
+  source:
+    id: General
+    path: ''
+    startLine: 2486
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool.Enums
+  syntax:
+    content: General = 0
+    return:
+      type: GameFramework.ConsoleTool.Enums.CategoryEnum
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: GameFramework.ConsoleTool.Enums.CategoryEnum.Scripting
+  commentId: F:GameFramework.ConsoleTool.Enums.CategoryEnum.Scripting
+  id: Scripting
+  parent: GameFramework.ConsoleTool.Enums.CategoryEnum
+  langs:
+  - csharp
+  - vb
+  name: Scripting
+  nameWithType: CategoryEnum.Scripting
+  fullName: GameFramework.ConsoleTool.Enums.CategoryEnum.Scripting
+  type: Field
+  source:
+    id: Scripting
+    path: ''
+    startLine: 2487
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool.Enums
+  syntax:
+    content: Scripting = 1
+    return:
+      type: GameFramework.ConsoleTool.Enums.CategoryEnum
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: GameFramework.ConsoleTool.Enums.CategoryEnum.System
+  commentId: F:GameFramework.ConsoleTool.Enums.CategoryEnum.System
+  id: System
+  parent: GameFramework.ConsoleTool.Enums.CategoryEnum
+  langs:
+  - csharp
+  - vb
+  name: System
+  nameWithType: CategoryEnum.System
+  fullName: GameFramework.ConsoleTool.Enums.CategoryEnum.System
+  type: Field
+  source:
+    id: System
+    path: ''
+    startLine: 2488
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool.Enums
+  syntax:
+    content: System = 2
+    return:
+      type: GameFramework.ConsoleTool.Enums.CategoryEnum
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: GameFramework.ConsoleTool.Enums.CategoryEnum.Debug
+  commentId: F:GameFramework.ConsoleTool.Enums.CategoryEnum.Debug
+  id: Debug
+  parent: GameFramework.ConsoleTool.Enums.CategoryEnum
+  langs:
+  - csharp
+  - vb
+  name: Debug
+  nameWithType: CategoryEnum.Debug
+  fullName: GameFramework.ConsoleTool.Enums.CategoryEnum.Debug
+  type: Field
+  source:
+    id: Debug
+    path: ''
+    startLine: 2489
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool.Enums
+  syntax:
+    content: Debug = 3
+    return:
+      type: GameFramework.ConsoleTool.Enums.CategoryEnum
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: GameFramework.ConsoleTool.Enums.CategoryEnum.Game
+  commentId: F:GameFramework.ConsoleTool.Enums.CategoryEnum.Game
+  id: Game
+  parent: GameFramework.ConsoleTool.Enums.CategoryEnum
+  langs:
+  - csharp
+  - vb
+  name: Game
+  nameWithType: CategoryEnum.Game
+  fullName: GameFramework.ConsoleTool.Enums.CategoryEnum.Game
+  type: Field
+  source:
+    id: Game
+    path: ''
+    startLine: 2490
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool.Enums
+  syntax:
+    content: Game = 4
+    return:
+      type: GameFramework.ConsoleTool.Enums.CategoryEnum
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: GameFramework.ConsoleTool.Enums.CategoryEnum.Graphics
+  commentId: F:GameFramework.ConsoleTool.Enums.CategoryEnum.Graphics
+  id: Graphics
+  parent: GameFramework.ConsoleTool.Enums.CategoryEnum
+  langs:
+  - csharp
+  - vb
+  name: Graphics
+  nameWithType: CategoryEnum.Graphics
+  fullName: GameFramework.ConsoleTool.Enums.CategoryEnum.Graphics
+  type: Field
+  source:
+    id: Graphics
+    path: ''
+    startLine: 2491
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool.Enums
+  syntax:
+    content: Graphics = 5
+    return:
+      type: GameFramework.ConsoleTool.Enums.CategoryEnum
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: GameFramework.ConsoleTool.Enums.CategoryEnum.Audio
+  commentId: F:GameFramework.ConsoleTool.Enums.CategoryEnum.Audio
+  id: Audio
+  parent: GameFramework.ConsoleTool.Enums.CategoryEnum
+  langs:
+  - csharp
+  - vb
+  name: Audio
+  nameWithType: CategoryEnum.Audio
+  fullName: GameFramework.ConsoleTool.Enums.CategoryEnum.Audio
+  type: Field
+  source:
+    id: Audio
+    path: ''
+    startLine: 2492
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool.Enums
+  syntax:
+    content: Audio = 6
+    return:
+      type: GameFramework.ConsoleTool.Enums.CategoryEnum
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: GameFramework.ConsoleTool.Enums.CategoryEnum.Network
+  commentId: F:GameFramework.ConsoleTool.Enums.CategoryEnum.Network
+  id: Network
+  parent: GameFramework.ConsoleTool.Enums.CategoryEnum
+  langs:
+  - csharp
+  - vb
+  name: Network
+  nameWithType: CategoryEnum.Network
+  fullName: GameFramework.ConsoleTool.Enums.CategoryEnum.Network
+  type: Field
+  source:
+    id: Network
+    path: ''
+    startLine: 2493
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool.Enums
+  syntax:
+    content: Network = 7
+    return:
+      type: GameFramework.ConsoleTool.Enums.CategoryEnum
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: GameFramework.ConsoleTool.Enums.CategoryEnum.Development
+  commentId: F:GameFramework.ConsoleTool.Enums.CategoryEnum.Development
+  id: Development
+  parent: GameFramework.ConsoleTool.Enums.CategoryEnum
+  langs:
+  - csharp
+  - vb
+  name: Development
+  nameWithType: CategoryEnum.Development
+  fullName: GameFramework.ConsoleTool.Enums.CategoryEnum.Development
+  type: Field
+  source:
+    id: Development
+    path: ''
+    startLine: 2494
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool.Enums
+  syntax:
+    content: Development = 8
+    return:
+      type: GameFramework.ConsoleTool.Enums.CategoryEnum
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: GameFramework.ConsoleTool.Enums
+  commentId: N:GameFramework.ConsoleTool.Enums
+  name: GameFramework.ConsoleTool.Enums
+  nameWithType: GameFramework.ConsoleTool.Enums
+  fullName: GameFramework.ConsoleTool.Enums
+- uid: GameFramework.ConsoleTool.Enums.CategoryEnum
+  commentId: T:GameFramework.ConsoleTool.Enums.CategoryEnum
+  parent: GameFramework.ConsoleTool.Enums
+  name: CategoryEnum
+  nameWithType: CategoryEnum
+  fullName: GameFramework.ConsoleTool.Enums.CategoryEnum

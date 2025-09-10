@@ -1,0 +1,905 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.ConsoleTool.ConsoleContext
+  commentId: T:GameFramework.ConsoleTool.ConsoleContext
+  id: ConsoleContext
+  parent: GameFramework.ConsoleTool
+  children:
+  - GameFramework.ConsoleTool.ConsoleContext.EnqueueCommand(System.String)
+  - GameFramework.ConsoleTool.ConsoleContext.IsCommandRegistered(System.String)
+  - GameFramework.ConsoleTool.ConsoleContext.SetWaitForLoad(System.Boolean)
+  - GameFramework.ConsoleTool.ConsoleContext.SetWaitFrames(System.Int32)
+  - GameFramework.ConsoleTool.ConsoleContext.WriteError(System.String)
+  - GameFramework.ConsoleTool.ConsoleContext.WriteLine(System.String)
+  - GameFramework.ConsoleTool.ConsoleContext.WriteWarning(System.String)
+  langs:
+  - csharp
+  - vb
+  name: ConsoleContext
+  nameWithType: ConsoleContext
+  fullName: GameFramework.ConsoleTool.ConsoleContext
+  type: Class
+  source:
+    id: ConsoleContext
+    path: ''
+    startLine: 988
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  summary: "\nImplementation of console context that provides safe access to console functionality\nActs as a facade to prevent commands from directly accessing console internals\n"
+  example: []
+  syntax:
+    content: 'public class ConsoleContext : IConsoleContext'
+    content.vb: >-
+      Public Class ConsoleContext
+          Implements IConsoleContext
+  inheritance:
+  - System.Object
+  implements:
+  - GameFramework.ConsoleTool.IConsoleContext
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: GameFramework.ConsoleTool.ConsoleContext.WriteLine(System.String)
+  commentId: M:GameFramework.ConsoleTool.ConsoleContext.WriteLine(System.String)
+  id: WriteLine(System.String)
+  parent: GameFramework.ConsoleTool.ConsoleContext
+  langs:
+  - csharp
+  - vb
+  name: WriteLine(String)
+  nameWithType: ConsoleContext.WriteLine(String)
+  fullName: GameFramework.ConsoleTool.ConsoleContext.WriteLine(System.String)
+  type: Method
+  source:
+    id: WriteLine
+    path: ''
+    startLine: 990
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  syntax:
+    content: public void WriteLine(string message)
+    parameters:
+    - id: message
+      type: System.String
+    content.vb: Public Sub WriteLine(message As String)
+  overload: GameFramework.ConsoleTool.ConsoleContext.WriteLine*
+  implements:
+  - GameFramework.ConsoleTool.IConsoleContext.WriteLine(System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.ConsoleTool.ConsoleContext.WriteError(System.String)
+  commentId: M:GameFramework.ConsoleTool.ConsoleContext.WriteError(System.String)
+  id: WriteError(System.String)
+  parent: GameFramework.ConsoleTool.ConsoleContext
+  langs:
+  - csharp
+  - vb
+  name: WriteError(String)
+  nameWithType: ConsoleContext.WriteError(String)
+  fullName: GameFramework.ConsoleTool.ConsoleContext.WriteError(System.String)
+  type: Method
+  source:
+    id: WriteError
+    path: ''
+    startLine: 995
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  syntax:
+    content: public void WriteError(string message)
+    parameters:
+    - id: message
+      type: System.String
+    content.vb: Public Sub WriteError(message As String)
+  overload: GameFramework.ConsoleTool.ConsoleContext.WriteError*
+  implements:
+  - GameFramework.ConsoleTool.IConsoleContext.WriteError(System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.ConsoleTool.ConsoleContext.WriteWarning(System.String)
+  commentId: M:GameFramework.ConsoleTool.ConsoleContext.WriteWarning(System.String)
+  id: WriteWarning(System.String)
+  parent: GameFramework.ConsoleTool.ConsoleContext
+  langs:
+  - csharp
+  - vb
+  name: WriteWarning(String)
+  nameWithType: ConsoleContext.WriteWarning(String)
+  fullName: GameFramework.ConsoleTool.ConsoleContext.WriteWarning(System.String)
+  type: Method
+  source:
+    id: WriteWarning
+    path: ''
+    startLine: 1000
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  syntax:
+    content: public void WriteWarning(string message)
+    parameters:
+    - id: message
+      type: System.String
+    content.vb: Public Sub WriteWarning(message As String)
+  overload: GameFramework.ConsoleTool.ConsoleContext.WriteWarning*
+  implements:
+  - GameFramework.ConsoleTool.IConsoleContext.WriteWarning(System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.ConsoleTool.ConsoleContext.EnqueueCommand(System.String)
+  commentId: M:GameFramework.ConsoleTool.ConsoleContext.EnqueueCommand(System.String)
+  id: EnqueueCommand(System.String)
+  parent: GameFramework.ConsoleTool.ConsoleContext
+  langs:
+  - csharp
+  - vb
+  name: EnqueueCommand(String)
+  nameWithType: ConsoleContext.EnqueueCommand(String)
+  fullName: GameFramework.ConsoleTool.ConsoleContext.EnqueueCommand(System.String)
+  type: Method
+  source:
+    id: EnqueueCommand
+    path: ''
+    startLine: 1005
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  syntax:
+    content: public void EnqueueCommand(string command)
+    parameters:
+    - id: command
+      type: System.String
+    content.vb: Public Sub EnqueueCommand(command As String)
+  overload: GameFramework.ConsoleTool.ConsoleContext.EnqueueCommand*
+  implements:
+  - GameFramework.ConsoleTool.IConsoleContext.EnqueueCommand(System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.ConsoleTool.ConsoleContext.SetWaitFrames(System.Int32)
+  commentId: M:GameFramework.ConsoleTool.ConsoleContext.SetWaitFrames(System.Int32)
+  id: SetWaitFrames(System.Int32)
+  parent: GameFramework.ConsoleTool.ConsoleContext
+  langs:
+  - csharp
+  - vb
+  name: SetWaitFrames(Int32)
+  nameWithType: ConsoleContext.SetWaitFrames(Int32)
+  fullName: GameFramework.ConsoleTool.ConsoleContext.SetWaitFrames(System.Int32)
+  type: Method
+  source:
+    id: SetWaitFrames
+    path: ''
+    startLine: 1010
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  syntax:
+    content: public void SetWaitFrames(int frames)
+    parameters:
+    - id: frames
+      type: System.Int32
+    content.vb: Public Sub SetWaitFrames(frames As Integer)
+  overload: GameFramework.ConsoleTool.ConsoleContext.SetWaitFrames*
+  implements:
+  - GameFramework.ConsoleTool.IConsoleContext.SetWaitFrames(System.Int32)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.ConsoleTool.ConsoleContext.SetWaitForLoad(System.Boolean)
+  commentId: M:GameFramework.ConsoleTool.ConsoleContext.SetWaitForLoad(System.Boolean)
+  id: SetWaitForLoad(System.Boolean)
+  parent: GameFramework.ConsoleTool.ConsoleContext
+  langs:
+  - csharp
+  - vb
+  name: SetWaitForLoad(Boolean)
+  nameWithType: ConsoleContext.SetWaitForLoad(Boolean)
+  fullName: GameFramework.ConsoleTool.ConsoleContext.SetWaitForLoad(System.Boolean)
+  type: Method
+  source:
+    id: SetWaitForLoad
+    path: ''
+    startLine: 1015
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  syntax:
+    content: public void SetWaitForLoad(bool wait)
+    parameters:
+    - id: wait
+      type: System.Boolean
+    content.vb: Public Sub SetWaitForLoad(wait As Boolean)
+  overload: GameFramework.ConsoleTool.ConsoleContext.SetWaitForLoad*
+  implements:
+  - GameFramework.ConsoleTool.IConsoleContext.SetWaitForLoad(System.Boolean)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.ConsoleTool.ConsoleContext.IsCommandRegistered(System.String)
+  commentId: M:GameFramework.ConsoleTool.ConsoleContext.IsCommandRegistered(System.String)
+  id: IsCommandRegistered(System.String)
+  parent: GameFramework.ConsoleTool.ConsoleContext
+  langs:
+  - csharp
+  - vb
+  name: IsCommandRegistered(String)
+  nameWithType: ConsoleContext.IsCommandRegistered(String)
+  fullName: GameFramework.ConsoleTool.ConsoleContext.IsCommandRegistered(System.String)
+  type: Method
+  source:
+    id: IsCommandRegistered
+    path: ''
+    startLine: 1020
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  syntax:
+    content: public bool IsCommandRegistered(string commandName)
+    parameters:
+    - id: commandName
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Function IsCommandRegistered(commandName As String) As Boolean
+  overload: GameFramework.ConsoleTool.ConsoleContext.IsCommandRegistered*
+  implements:
+  - GameFramework.ConsoleTool.IConsoleContext.IsCommandRegistered(System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: GameFramework.ConsoleTool
+  commentId: N:GameFramework.ConsoleTool
+  name: GameFramework.ConsoleTool
+  nameWithType: GameFramework.ConsoleTool
+  fullName: GameFramework.ConsoleTool
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: GameFramework.ConsoleTool.IConsoleContext
+  commentId: T:GameFramework.ConsoleTool.IConsoleContext
+  parent: GameFramework.ConsoleTool
+  name: IConsoleContext
+  nameWithType: IConsoleContext
+  fullName: GameFramework.ConsoleTool.IConsoleContext
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: GameFramework.ConsoleTool.ConsoleContext.WriteLine*
+  commentId: Overload:GameFramework.ConsoleTool.ConsoleContext.WriteLine
+  name: WriteLine
+  nameWithType: ConsoleContext.WriteLine
+  fullName: GameFramework.ConsoleTool.ConsoleContext.WriteLine
+- uid: GameFramework.ConsoleTool.IConsoleContext.WriteLine(System.String)
+  commentId: M:GameFramework.ConsoleTool.IConsoleContext.WriteLine(System.String)
+  parent: GameFramework.ConsoleTool.IConsoleContext
+  isExternal: true
+  name: WriteLine(String)
+  nameWithType: IConsoleContext.WriteLine(String)
+  fullName: GameFramework.ConsoleTool.IConsoleContext.WriteLine(System.String)
+  spec.csharp:
+  - uid: GameFramework.ConsoleTool.IConsoleContext.WriteLine(System.String)
+    name: WriteLine
+    nameWithType: IConsoleContext.WriteLine
+    fullName: GameFramework.ConsoleTool.IConsoleContext.WriteLine
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.ConsoleTool.IConsoleContext.WriteLine(System.String)
+    name: WriteLine
+    nameWithType: IConsoleContext.WriteLine
+    fullName: GameFramework.ConsoleTool.IConsoleContext.WriteLine
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: GameFramework.ConsoleTool.ConsoleContext.WriteError*
+  commentId: Overload:GameFramework.ConsoleTool.ConsoleContext.WriteError
+  name: WriteError
+  nameWithType: ConsoleContext.WriteError
+  fullName: GameFramework.ConsoleTool.ConsoleContext.WriteError
+- uid: GameFramework.ConsoleTool.IConsoleContext.WriteError(System.String)
+  commentId: M:GameFramework.ConsoleTool.IConsoleContext.WriteError(System.String)
+  parent: GameFramework.ConsoleTool.IConsoleContext
+  isExternal: true
+  name: WriteError(String)
+  nameWithType: IConsoleContext.WriteError(String)
+  fullName: GameFramework.ConsoleTool.IConsoleContext.WriteError(System.String)
+  spec.csharp:
+  - uid: GameFramework.ConsoleTool.IConsoleContext.WriteError(System.String)
+    name: WriteError
+    nameWithType: IConsoleContext.WriteError
+    fullName: GameFramework.ConsoleTool.IConsoleContext.WriteError
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.ConsoleTool.IConsoleContext.WriteError(System.String)
+    name: WriteError
+    nameWithType: IConsoleContext.WriteError
+    fullName: GameFramework.ConsoleTool.IConsoleContext.WriteError
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.ConsoleTool.ConsoleContext.WriteWarning*
+  commentId: Overload:GameFramework.ConsoleTool.ConsoleContext.WriteWarning
+  name: WriteWarning
+  nameWithType: ConsoleContext.WriteWarning
+  fullName: GameFramework.ConsoleTool.ConsoleContext.WriteWarning
+- uid: GameFramework.ConsoleTool.IConsoleContext.WriteWarning(System.String)
+  commentId: M:GameFramework.ConsoleTool.IConsoleContext.WriteWarning(System.String)
+  parent: GameFramework.ConsoleTool.IConsoleContext
+  isExternal: true
+  name: WriteWarning(String)
+  nameWithType: IConsoleContext.WriteWarning(String)
+  fullName: GameFramework.ConsoleTool.IConsoleContext.WriteWarning(System.String)
+  spec.csharp:
+  - uid: GameFramework.ConsoleTool.IConsoleContext.WriteWarning(System.String)
+    name: WriteWarning
+    nameWithType: IConsoleContext.WriteWarning
+    fullName: GameFramework.ConsoleTool.IConsoleContext.WriteWarning
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.ConsoleTool.IConsoleContext.WriteWarning(System.String)
+    name: WriteWarning
+    nameWithType: IConsoleContext.WriteWarning
+    fullName: GameFramework.ConsoleTool.IConsoleContext.WriteWarning
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.ConsoleTool.ConsoleContext.EnqueueCommand*
+  commentId: Overload:GameFramework.ConsoleTool.ConsoleContext.EnqueueCommand
+  name: EnqueueCommand
+  nameWithType: ConsoleContext.EnqueueCommand
+  fullName: GameFramework.ConsoleTool.ConsoleContext.EnqueueCommand
+- uid: GameFramework.ConsoleTool.IConsoleContext.EnqueueCommand(System.String)
+  commentId: M:GameFramework.ConsoleTool.IConsoleContext.EnqueueCommand(System.String)
+  parent: GameFramework.ConsoleTool.IConsoleContext
+  isExternal: true
+  name: EnqueueCommand(String)
+  nameWithType: IConsoleContext.EnqueueCommand(String)
+  fullName: GameFramework.ConsoleTool.IConsoleContext.EnqueueCommand(System.String)
+  spec.csharp:
+  - uid: GameFramework.ConsoleTool.IConsoleContext.EnqueueCommand(System.String)
+    name: EnqueueCommand
+    nameWithType: IConsoleContext.EnqueueCommand
+    fullName: GameFramework.ConsoleTool.IConsoleContext.EnqueueCommand
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.ConsoleTool.IConsoleContext.EnqueueCommand(System.String)
+    name: EnqueueCommand
+    nameWithType: IConsoleContext.EnqueueCommand
+    fullName: GameFramework.ConsoleTool.IConsoleContext.EnqueueCommand
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.ConsoleTool.ConsoleContext.SetWaitFrames*
+  commentId: Overload:GameFramework.ConsoleTool.ConsoleContext.SetWaitFrames
+  name: SetWaitFrames
+  nameWithType: ConsoleContext.SetWaitFrames
+  fullName: GameFramework.ConsoleTool.ConsoleContext.SetWaitFrames
+- uid: GameFramework.ConsoleTool.IConsoleContext.SetWaitFrames(System.Int32)
+  commentId: M:GameFramework.ConsoleTool.IConsoleContext.SetWaitFrames(System.Int32)
+  parent: GameFramework.ConsoleTool.IConsoleContext
+  isExternal: true
+  name: SetWaitFrames(Int32)
+  nameWithType: IConsoleContext.SetWaitFrames(Int32)
+  fullName: GameFramework.ConsoleTool.IConsoleContext.SetWaitFrames(System.Int32)
+  spec.csharp:
+  - uid: GameFramework.ConsoleTool.IConsoleContext.SetWaitFrames(System.Int32)
+    name: SetWaitFrames
+    nameWithType: IConsoleContext.SetWaitFrames
+    fullName: GameFramework.ConsoleTool.IConsoleContext.SetWaitFrames
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.ConsoleTool.IConsoleContext.SetWaitFrames(System.Int32)
+    name: SetWaitFrames
+    nameWithType: IConsoleContext.SetWaitFrames
+    fullName: GameFramework.ConsoleTool.IConsoleContext.SetWaitFrames
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: GameFramework.ConsoleTool.ConsoleContext.SetWaitForLoad*
+  commentId: Overload:GameFramework.ConsoleTool.ConsoleContext.SetWaitForLoad
+  name: SetWaitForLoad
+  nameWithType: ConsoleContext.SetWaitForLoad
+  fullName: GameFramework.ConsoleTool.ConsoleContext.SetWaitForLoad
+- uid: GameFramework.ConsoleTool.IConsoleContext.SetWaitForLoad(System.Boolean)
+  commentId: M:GameFramework.ConsoleTool.IConsoleContext.SetWaitForLoad(System.Boolean)
+  parent: GameFramework.ConsoleTool.IConsoleContext
+  isExternal: true
+  name: SetWaitForLoad(Boolean)
+  nameWithType: IConsoleContext.SetWaitForLoad(Boolean)
+  fullName: GameFramework.ConsoleTool.IConsoleContext.SetWaitForLoad(System.Boolean)
+  spec.csharp:
+  - uid: GameFramework.ConsoleTool.IConsoleContext.SetWaitForLoad(System.Boolean)
+    name: SetWaitForLoad
+    nameWithType: IConsoleContext.SetWaitForLoad
+    fullName: GameFramework.ConsoleTool.IConsoleContext.SetWaitForLoad
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.ConsoleTool.IConsoleContext.SetWaitForLoad(System.Boolean)
+    name: SetWaitForLoad
+    nameWithType: IConsoleContext.SetWaitForLoad
+    fullName: GameFramework.ConsoleTool.IConsoleContext.SetWaitForLoad
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: GameFramework.ConsoleTool.ConsoleContext.IsCommandRegistered*
+  commentId: Overload:GameFramework.ConsoleTool.ConsoleContext.IsCommandRegistered
+  name: IsCommandRegistered
+  nameWithType: ConsoleContext.IsCommandRegistered
+  fullName: GameFramework.ConsoleTool.ConsoleContext.IsCommandRegistered
+- uid: GameFramework.ConsoleTool.IConsoleContext.IsCommandRegistered(System.String)
+  commentId: M:GameFramework.ConsoleTool.IConsoleContext.IsCommandRegistered(System.String)
+  parent: GameFramework.ConsoleTool.IConsoleContext
+  isExternal: true
+  name: IsCommandRegistered(String)
+  nameWithType: IConsoleContext.IsCommandRegistered(String)
+  fullName: GameFramework.ConsoleTool.IConsoleContext.IsCommandRegistered(System.String)
+  spec.csharp:
+  - uid: GameFramework.ConsoleTool.IConsoleContext.IsCommandRegistered(System.String)
+    name: IsCommandRegistered
+    nameWithType: IConsoleContext.IsCommandRegistered
+    fullName: GameFramework.ConsoleTool.IConsoleContext.IsCommandRegistered
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.ConsoleTool.IConsoleContext.IsCommandRegistered(System.String)
+    name: IsCommandRegistered
+    nameWithType: IConsoleContext.IsCommandRegistered
+    fullName: GameFramework.ConsoleTool.IConsoleContext.IsCommandRegistered
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )

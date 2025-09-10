@@ -1,0 +1,880 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.Services.Interfaces.ILoadService
+  commentId: T:GameFramework.Services.Interfaces.ILoadService
+  id: ILoadService
+  parent: GameFramework.Services.Interfaces
+  children:
+  - GameFramework.Services.Interfaces.ILoadService.CanLoadGame(SaveFileInfo)
+  - GameFramework.Services.Interfaces.ILoadService.CanLoadGame(System.String)
+  - GameFramework.Services.Interfaces.ILoadService.GetLoadableSaveFilesAsync
+  - GameFramework.Services.Interfaces.ILoadService.InitializeAsync
+  - GameFramework.Services.Interfaces.ILoadService.IsInitialized
+  - GameFramework.Services.Interfaces.ILoadService.IsLoading
+  - GameFramework.Services.Interfaces.ILoadService.LoadGameAsync(SaveFileInfo)
+  - GameFramework.Services.Interfaces.ILoadService.LoadGameAsync(System.String)
+  - GameFramework.Services.Interfaces.ILoadService.LoadingCompleted
+  - GameFramework.Services.Interfaces.ILoadService.LoadingFailed
+  - GameFramework.Services.Interfaces.ILoadService.LoadingMessageChanged
+  - GameFramework.Services.Interfaces.ILoadService.LoadingProgressChanged
+  - GameFramework.Services.Interfaces.ILoadService.LoadMostRecentGameAsync
+  - GameFramework.Services.Interfaces.ILoadService.Shutdown
+  langs:
+  - csharp
+  - vb
+  name: ILoadService
+  nameWithType: ILoadService
+  fullName: GameFramework.Services.Interfaces.ILoadService
+  type: Interface
+  source:
+    id: ILoadService
+    path: ''
+    startLine: 11108
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  summary: "\nService responsible for orchestrating all game loading operations\nHandles the business logic of loading games, creating sessions, and managing state transitions\n"
+  example: []
+  syntax:
+    content: public interface ILoadService
+    content.vb: Public Interface ILoadService
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: GameFramework.Services.Interfaces.ILoadService.IsInitialized
+  commentId: P:GameFramework.Services.Interfaces.ILoadService.IsInitialized
+  id: IsInitialized
+  parent: GameFramework.Services.Interfaces.ILoadService
+  langs:
+  - csharp
+  - vb
+  name: IsInitialized
+  nameWithType: ILoadService.IsInitialized
+  fullName: GameFramework.Services.Interfaces.ILoadService.IsInitialized
+  type: Property
+  source:
+    id: IsInitialized
+    path: ''
+    startLine: 11110
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: bool IsInitialized { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property IsInitialized As Boolean
+  overload: GameFramework.Services.Interfaces.ILoadService.IsInitialized*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: GameFramework.Services.Interfaces.ILoadService.IsLoading
+  commentId: P:GameFramework.Services.Interfaces.ILoadService.IsLoading
+  id: IsLoading
+  parent: GameFramework.Services.Interfaces.ILoadService
+  langs:
+  - csharp
+  - vb
+  name: IsLoading
+  nameWithType: ILoadService.IsLoading
+  fullName: GameFramework.Services.Interfaces.ILoadService.IsLoading
+  type: Property
+  source:
+    id: IsLoading
+    path: ''
+    startLine: 11111
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: bool IsLoading { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property IsLoading As Boolean
+  overload: GameFramework.Services.Interfaces.ILoadService.IsLoading*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: GameFramework.Services.Interfaces.ILoadService.InitializeAsync
+  commentId: M:GameFramework.Services.Interfaces.ILoadService.InitializeAsync
+  id: InitializeAsync
+  parent: GameFramework.Services.Interfaces.ILoadService
+  langs:
+  - csharp
+  - vb
+  name: InitializeAsync()
+  nameWithType: ILoadService.InitializeAsync()
+  fullName: GameFramework.Services.Interfaces.ILoadService.InitializeAsync()
+  type: Method
+  source:
+    id: InitializeAsync
+    path: ''
+    startLine: 11114
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: Task InitializeAsync()
+    return:
+      type: Task
+    content.vb: Function InitializeAsync As Task
+  overload: GameFramework.Services.Interfaces.ILoadService.InitializeAsync*
+- uid: GameFramework.Services.Interfaces.ILoadService.Shutdown
+  commentId: M:GameFramework.Services.Interfaces.ILoadService.Shutdown
+  id: Shutdown
+  parent: GameFramework.Services.Interfaces.ILoadService
+  langs:
+  - csharp
+  - vb
+  name: Shutdown()
+  nameWithType: ILoadService.Shutdown()
+  fullName: GameFramework.Services.Interfaces.ILoadService.Shutdown()
+  type: Method
+  source:
+    id: Shutdown
+    path: ''
+    startLine: 11115
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: void Shutdown()
+    content.vb: Sub Shutdown
+  overload: GameFramework.Services.Interfaces.ILoadService.Shutdown*
+- uid: GameFramework.Services.Interfaces.ILoadService.LoadGameAsync(System.String)
+  commentId: M:GameFramework.Services.Interfaces.ILoadService.LoadGameAsync(System.String)
+  id: LoadGameAsync(System.String)
+  parent: GameFramework.Services.Interfaces.ILoadService
+  langs:
+  - csharp
+  - vb
+  name: LoadGameAsync(String)
+  nameWithType: ILoadService.LoadGameAsync(String)
+  fullName: GameFramework.Services.Interfaces.ILoadService.LoadGameAsync(System.String)
+  type: Method
+  source:
+    id: LoadGameAsync
+    path: ''
+    startLine: 11118
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: Task<bool> LoadGameAsync(string saveFileName)
+    parameters:
+    - id: saveFileName
+      type: System.String
+    return:
+      type: Task{System.Boolean}
+    content.vb: Function LoadGameAsync(saveFileName As String) As Task(Of Boolean)
+  overload: GameFramework.Services.Interfaces.ILoadService.LoadGameAsync*
+- uid: GameFramework.Services.Interfaces.ILoadService.LoadGameAsync(SaveFileInfo)
+  commentId: M:GameFramework.Services.Interfaces.ILoadService.LoadGameAsync(SaveFileInfo)
+  id: LoadGameAsync(SaveFileInfo)
+  parent: GameFramework.Services.Interfaces.ILoadService
+  langs:
+  - csharp
+  - vb
+  name: LoadGameAsync(SaveFileInfo)
+  nameWithType: ILoadService.LoadGameAsync(SaveFileInfo)
+  fullName: GameFramework.Services.Interfaces.ILoadService.LoadGameAsync(SaveFileInfo)
+  type: Method
+  source:
+    id: LoadGameAsync
+    path: ''
+    startLine: 11119
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: Task<bool> LoadGameAsync(SaveFileInfo saveFileInfo)
+    parameters:
+    - id: saveFileInfo
+      type: SaveFileInfo
+    return:
+      type: Task{System.Boolean}
+    content.vb: Function LoadGameAsync(saveFileInfo As SaveFileInfo) As Task(Of Boolean)
+  overload: GameFramework.Services.Interfaces.ILoadService.LoadGameAsync*
+- uid: GameFramework.Services.Interfaces.ILoadService.LoadMostRecentGameAsync
+  commentId: M:GameFramework.Services.Interfaces.ILoadService.LoadMostRecentGameAsync
+  id: LoadMostRecentGameAsync
+  parent: GameFramework.Services.Interfaces.ILoadService
+  langs:
+  - csharp
+  - vb
+  name: LoadMostRecentGameAsync()
+  nameWithType: ILoadService.LoadMostRecentGameAsync()
+  fullName: GameFramework.Services.Interfaces.ILoadService.LoadMostRecentGameAsync()
+  type: Method
+  source:
+    id: LoadMostRecentGameAsync
+    path: ''
+    startLine: 11120
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: Task<bool> LoadMostRecentGameAsync()
+    return:
+      type: Task{System.Boolean}
+    content.vb: Function LoadMostRecentGameAsync As Task(Of Boolean)
+  overload: GameFramework.Services.Interfaces.ILoadService.LoadMostRecentGameAsync*
+- uid: GameFramework.Services.Interfaces.ILoadService.GetLoadableSaveFilesAsync
+  commentId: M:GameFramework.Services.Interfaces.ILoadService.GetLoadableSaveFilesAsync
+  id: GetLoadableSaveFilesAsync
+  parent: GameFramework.Services.Interfaces.ILoadService
+  langs:
+  - csharp
+  - vb
+  name: GetLoadableSaveFilesAsync()
+  nameWithType: ILoadService.GetLoadableSaveFilesAsync()
+  fullName: GameFramework.Services.Interfaces.ILoadService.GetLoadableSaveFilesAsync()
+  type: Method
+  source:
+    id: GetLoadableSaveFilesAsync
+    path: ''
+    startLine: 11123
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: Task<SaveFileInfo[]> GetLoadableSaveFilesAsync()
+    return:
+      type: Task{SaveFileInfo[]}
+    content.vb: Function GetLoadableSaveFilesAsync As Task(Of SaveFileInfo())
+  overload: GameFramework.Services.Interfaces.ILoadService.GetLoadableSaveFilesAsync*
+- uid: GameFramework.Services.Interfaces.ILoadService.CanLoadGame(System.String)
+  commentId: M:GameFramework.Services.Interfaces.ILoadService.CanLoadGame(System.String)
+  id: CanLoadGame(System.String)
+  parent: GameFramework.Services.Interfaces.ILoadService
+  langs:
+  - csharp
+  - vb
+  name: CanLoadGame(String)
+  nameWithType: ILoadService.CanLoadGame(String)
+  fullName: GameFramework.Services.Interfaces.ILoadService.CanLoadGame(System.String)
+  type: Method
+  source:
+    id: CanLoadGame
+    path: ''
+    startLine: 11124
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: Task<bool> CanLoadGame(string saveFileName)
+    parameters:
+    - id: saveFileName
+      type: System.String
+    return:
+      type: Task{System.Boolean}
+    content.vb: Function CanLoadGame(saveFileName As String) As Task(Of Boolean)
+  overload: GameFramework.Services.Interfaces.ILoadService.CanLoadGame*
+- uid: GameFramework.Services.Interfaces.ILoadService.CanLoadGame(SaveFileInfo)
+  commentId: M:GameFramework.Services.Interfaces.ILoadService.CanLoadGame(SaveFileInfo)
+  id: CanLoadGame(SaveFileInfo)
+  parent: GameFramework.Services.Interfaces.ILoadService
+  langs:
+  - csharp
+  - vb
+  name: CanLoadGame(SaveFileInfo)
+  nameWithType: ILoadService.CanLoadGame(SaveFileInfo)
+  fullName: GameFramework.Services.Interfaces.ILoadService.CanLoadGame(SaveFileInfo)
+  type: Method
+  source:
+    id: CanLoadGame
+    path: ''
+    startLine: 11125
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: Task<bool> CanLoadGame(SaveFileInfo saveFileInfo)
+    parameters:
+    - id: saveFileInfo
+      type: SaveFileInfo
+    return:
+      type: Task{System.Boolean}
+    content.vb: Function CanLoadGame(saveFileInfo As SaveFileInfo) As Task(Of Boolean)
+  overload: GameFramework.Services.Interfaces.ILoadService.CanLoadGame*
+- uid: GameFramework.Services.Interfaces.ILoadService.LoadingProgressChanged
+  commentId: E:GameFramework.Services.Interfaces.ILoadService.LoadingProgressChanged
+  id: LoadingProgressChanged
+  parent: GameFramework.Services.Interfaces.ILoadService
+  langs:
+  - csharp
+  - vb
+  name: LoadingProgressChanged
+  nameWithType: ILoadService.LoadingProgressChanged
+  fullName: GameFramework.Services.Interfaces.ILoadService.LoadingProgressChanged
+  type: Event
+  source:
+    id: LoadingProgressChanged
+    path: ''
+    startLine: 11128
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: event Action<string, float> LoadingProgressChanged
+    return:
+      type: Action{System.String,System.Single}
+    content.vb: Event LoadingProgressChanged As Action(Of String, Single)
+- uid: GameFramework.Services.Interfaces.ILoadService.LoadingMessageChanged
+  commentId: E:GameFramework.Services.Interfaces.ILoadService.LoadingMessageChanged
+  id: LoadingMessageChanged
+  parent: GameFramework.Services.Interfaces.ILoadService
+  langs:
+  - csharp
+  - vb
+  name: LoadingMessageChanged
+  nameWithType: ILoadService.LoadingMessageChanged
+  fullName: GameFramework.Services.Interfaces.ILoadService.LoadingMessageChanged
+  type: Event
+  source:
+    id: LoadingMessageChanged
+    path: ''
+    startLine: 11129
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: event Action<string> LoadingMessageChanged
+    return:
+      type: Action{System.String}
+    content.vb: Event LoadingMessageChanged As Action(Of String)
+- uid: GameFramework.Services.Interfaces.ILoadService.LoadingFailed
+  commentId: E:GameFramework.Services.Interfaces.ILoadService.LoadingFailed
+  id: LoadingFailed
+  parent: GameFramework.Services.Interfaces.ILoadService
+  langs:
+  - csharp
+  - vb
+  name: LoadingFailed
+  nameWithType: ILoadService.LoadingFailed
+  fullName: GameFramework.Services.Interfaces.ILoadService.LoadingFailed
+  type: Event
+  source:
+    id: LoadingFailed
+    path: ''
+    startLine: 11130
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: event Action<Exception> LoadingFailed
+    return:
+      type: Action{Exception}
+    content.vb: Event LoadingFailed As Action(Of Exception)
+- uid: GameFramework.Services.Interfaces.ILoadService.LoadingCompleted
+  commentId: E:GameFramework.Services.Interfaces.ILoadService.LoadingCompleted
+  id: LoadingCompleted
+  parent: GameFramework.Services.Interfaces.ILoadService
+  langs:
+  - csharp
+  - vb
+  name: LoadingCompleted
+  nameWithType: ILoadService.LoadingCompleted
+  fullName: GameFramework.Services.Interfaces.ILoadService.LoadingCompleted
+  type: Event
+  source:
+    id: LoadingCompleted
+    path: ''
+    startLine: 11131
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: event Action<GameSession> LoadingCompleted
+    return:
+      type: Action{GameSession}
+    content.vb: Event LoadingCompleted As Action(Of GameSession)
+references:
+- uid: GameFramework.Services.Interfaces
+  commentId: N:GameFramework.Services.Interfaces
+  name: GameFramework.Services.Interfaces
+  nameWithType: GameFramework.Services.Interfaces
+  fullName: GameFramework.Services.Interfaces
+- uid: GameFramework.Services.Interfaces.ILoadService.IsInitialized*
+  commentId: Overload:GameFramework.Services.Interfaces.ILoadService.IsInitialized
+  name: IsInitialized
+  nameWithType: ILoadService.IsInitialized
+  fullName: GameFramework.Services.Interfaces.ILoadService.IsInitialized
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: GameFramework.Services.Interfaces.ILoadService.IsLoading*
+  commentId: Overload:GameFramework.Services.Interfaces.ILoadService.IsLoading
+  name: IsLoading
+  nameWithType: ILoadService.IsLoading
+  fullName: GameFramework.Services.Interfaces.ILoadService.IsLoading
+- uid: GameFramework.Services.Interfaces.ILoadService.InitializeAsync*
+  commentId: Overload:GameFramework.Services.Interfaces.ILoadService.InitializeAsync
+  name: InitializeAsync
+  nameWithType: ILoadService.InitializeAsync
+  fullName: GameFramework.Services.Interfaces.ILoadService.InitializeAsync
+- uid: Task
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: Task
+- uid: GameFramework.Services.Interfaces.ILoadService.Shutdown*
+  commentId: Overload:GameFramework.Services.Interfaces.ILoadService.Shutdown
+  name: Shutdown
+  nameWithType: ILoadService.Shutdown
+  fullName: GameFramework.Services.Interfaces.ILoadService.Shutdown
+- uid: GameFramework.Services.Interfaces.ILoadService.LoadGameAsync*
+  commentId: Overload:GameFramework.Services.Interfaces.ILoadService.LoadGameAsync
+  name: LoadGameAsync
+  nameWithType: ILoadService.LoadGameAsync
+  fullName: GameFramework.Services.Interfaces.ILoadService.LoadGameAsync
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Task{System.Boolean}
+  commentId: '!:Task{System.Boolean}'
+  definition: Task`1
+  name: Task<Boolean>
+  nameWithType: Task<Boolean>
+  fullName: Task<System.Boolean>
+  nameWithType.vb: Task(Of Boolean)
+  fullName.vb: Task(Of System.Boolean)
+  name.vb: Task(Of Boolean)
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Task`1
+  isExternal: true
+  name: Task<>
+  nameWithType: Task<>
+  fullName: Task<>
+  nameWithType.vb: Task(Of )
+  fullName.vb: Task(Of )
+  name.vb: Task(Of )
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SaveFileInfo
+  isExternal: true
+  name: SaveFileInfo
+  nameWithType: SaveFileInfo
+  fullName: SaveFileInfo
+- uid: GameFramework.Services.Interfaces.ILoadService.LoadMostRecentGameAsync*
+  commentId: Overload:GameFramework.Services.Interfaces.ILoadService.LoadMostRecentGameAsync
+  name: LoadMostRecentGameAsync
+  nameWithType: ILoadService.LoadMostRecentGameAsync
+  fullName: GameFramework.Services.Interfaces.ILoadService.LoadMostRecentGameAsync
+- uid: GameFramework.Services.Interfaces.ILoadService.GetLoadableSaveFilesAsync*
+  commentId: Overload:GameFramework.Services.Interfaces.ILoadService.GetLoadableSaveFilesAsync
+  name: GetLoadableSaveFilesAsync
+  nameWithType: ILoadService.GetLoadableSaveFilesAsync
+  fullName: GameFramework.Services.Interfaces.ILoadService.GetLoadableSaveFilesAsync
+- uid: Task{SaveFileInfo[]}
+  commentId: '!:Task{SaveFileInfo[]}'
+  definition: Task`1
+  name: Task<SaveFileInfo[]>
+  nameWithType: Task<SaveFileInfo[]>
+  fullName: Task<SaveFileInfo[]>
+  nameWithType.vb: Task(Of SaveFileInfo())
+  fullName.vb: Task(Of SaveFileInfo())
+  name.vb: Task(Of SaveFileInfo())
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: SaveFileInfo
+    name: SaveFileInfo
+    nameWithType: SaveFileInfo
+    fullName: SaveFileInfo
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: SaveFileInfo
+    name: SaveFileInfo
+    nameWithType: SaveFileInfo
+    fullName: SaveFileInfo
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.Services.Interfaces.ILoadService.CanLoadGame*
+  commentId: Overload:GameFramework.Services.Interfaces.ILoadService.CanLoadGame
+  name: CanLoadGame
+  nameWithType: ILoadService.CanLoadGame
+  fullName: GameFramework.Services.Interfaces.ILoadService.CanLoadGame
+- uid: Action{System.String,System.Single}
+  commentId: '!:Action{System.String,System.Single}'
+  definition: Action`2
+  name: Action<String, Single>
+  nameWithType: Action<String, Single>
+  fullName: Action<System.String, System.Single>
+  nameWithType.vb: Action(Of String, Single)
+  fullName.vb: Action(Of System.String, System.Single)
+  name.vb: Action(Of String, Single)
+  spec.csharp:
+  - uid: Action`2
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Action`2
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Action`2
+  isExternal: true
+  name: Action<, >
+  nameWithType: Action<, >
+  fullName: Action<, >
+  nameWithType.vb: Action(Of , )
+  fullName.vb: Action(Of , )
+  name.vb: Action(Of , )
+  spec.csharp:
+  - uid: Action`2
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Action`2
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Action{System.String}
+  commentId: '!:Action{System.String}'
+  definition: Action`1
+  name: Action<String>
+  nameWithType: Action<String>
+  fullName: Action<System.String>
+  nameWithType.vb: Action(Of String)
+  fullName.vb: Action(Of System.String)
+  name.vb: Action(Of String)
+  spec.csharp:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Action`1
+  isExternal: true
+  name: Action<>
+  nameWithType: Action<>
+  fullName: Action<>
+  nameWithType.vb: Action(Of )
+  fullName.vb: Action(Of )
+  name.vb: Action(Of )
+  spec.csharp:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Action{Exception}
+  commentId: '!:Action{Exception}'
+  definition: Action`1
+  name: Action<Exception>
+  nameWithType: Action<Exception>
+  fullName: Action<Exception>
+  nameWithType.vb: Action(Of Exception)
+  fullName.vb: Action(Of Exception)
+  name.vb: Action(Of Exception)
+  spec.csharp:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Exception
+    name: Exception
+    nameWithType: Exception
+    fullName: Exception
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Exception
+    name: Exception
+    nameWithType: Exception
+    fullName: Exception
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Action{GameSession}
+  commentId: '!:Action{GameSession}'
+  definition: Action`1
+  name: Action<GameSession>
+  nameWithType: Action<GameSession>
+  fullName: Action<GameSession>
+  nameWithType.vb: Action(Of GameSession)
+  fullName.vb: Action(Of GameSession)
+  name.vb: Action(Of GameSession)
+  spec.csharp:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: GameSession
+    name: GameSession
+    nameWithType: GameSession
+    fullName: GameSession
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: GameSession
+    name: GameSession
+    nameWithType: GameSession
+    fullName: GameSession
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )

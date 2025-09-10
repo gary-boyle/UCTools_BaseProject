@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class UIScreen
+   | UCTools Base Project Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class UIScreen
+   | UCTools Base Project Documentation ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="GameFramework.UI.UIScreen">
+  
+  
+  <h1 id="GameFramework_UI_UIScreen" data-uid="GameFramework.UI.UIScreen" class="text-break">Class UIScreen
+  </h1>
+  <div class="markdown level0 summary"><p sourcefile="api/GameFramework.UI.UIScreen.yml" sourcestartlinenumber="2" sourceendlinenumber="3">Base class for all UI screens with optional frame update support
+Frame updates are managed centrally by UIService for performance</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">UIScreen</span></div>
+      <div class="level2"><a class="xref" href="GameFramework.UI.Screens.CreditsScreen.html">CreditsScreen</a></div>
+      <div class="level2"><a class="xref" href="GameFramework.UI.Screens.GameOverScreen.html">GameOverScreen</a></div>
+      <div class="level2"><a class="xref" href="GameFramework.UI.Screens.GamePlayScreen.html">GamePlayScreen</a></div>
+      <div class="level2"><a class="xref" href="GameFramework.UI.Screens.LoadingScreen.html">LoadingScreen</a></div>
+      <div class="level2"><a class="xref" href="GameFramework.UI.Screens.MainMenuScreen.html">MainMenuScreen</a></div>
+      <div class="level2"><a class="xref" href="GameFramework.UI.Screens.NewGameScreen.html">NewGameScreen</a></div>
+      <div class="level2"><a class="xref" href="GameFramework.UI.Screens.SplashScreen.html">SplashScreen</a></div>
+      <div class="level2"><a class="xref" href="GameFramework.UI.Screens.VictoryScreen.html">VictoryScreen</a></div>
+      <div class="level2"><a class="xref" href="GameFramework.UI.UIPopup.html">UIPopup</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.UI.html">GameFramework.UI</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="GameFramework_UI_UIScreen_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class UIScreen</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  
+  <a id="GameFramework_UI_UIScreen__ctor_" data-uid="GameFramework.UI.UIScreen.#ctor*"></a>
+  <h4 id="GameFramework_UI_UIScreen__ctor_VisualElement_" data-uid="GameFramework.UI.UIScreen.#ctor(VisualElement)">UIScreen(VisualElement)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected UIScreen(VisualElement rootElement)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">VisualElement</span></td>
+        <td><span class="parametername">rootElement</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+  </h3>
+  
+  
+  <h4 id="GameFramework_UI_UIScreen__eventSystem" data-uid="GameFramework.UI.UIScreen._eventSystem">_eventSystem</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected IEventSystem _eventSystem</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEventSystem</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="GameFramework_UI_UIScreen_IsVisible_" data-uid="GameFramework.UI.UIScreen.IsVisible*"></a>
+  <h4 id="GameFramework_UI_UIScreen_IsVisible" data-uid="GameFramework.UI.UIScreen.IsVisible">IsVisible</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsVisible { get; protected set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="GameFramework_UI_UIScreen_NeedsFrameUpdates_" data-uid="GameFramework.UI.UIScreen.NeedsFrameUpdates*"></a>
+  <h4 id="GameFramework_UI_UIScreen_NeedsFrameUpdates" data-uid="GameFramework.UI.UIScreen.NeedsFrameUpdates">NeedsFrameUpdates</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool NeedsFrameUpdates { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="GameFramework_UI_UIScreen_RootElement_" data-uid="GameFramework.UI.UIScreen.RootElement*"></a>
+  <h4 id="GameFramework_UI_UIScreen_RootElement" data-uid="GameFramework.UI.UIScreen.RootElement">RootElement</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected VisualElement RootElement { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">VisualElement</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="GameFramework_UI_UIScreen_Cleanup_" data-uid="GameFramework.UI.UIScreen.Cleanup*"></a>
+  <h4 id="GameFramework_UI_UIScreen_Cleanup" data-uid="GameFramework.UI.UIScreen.Cleanup">Cleanup()</h4>
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.UI.UIScreen.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Clean up when screen is destroyed</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void Cleanup()</code></pre>
+  </div>
+  
+  
+  <a id="GameFramework_UI_UIScreen_DisableFrameUpdates_" data-uid="GameFramework.UI.UIScreen.DisableFrameUpdates*"></a>
+  <h4 id="GameFramework_UI_UIScreen_DisableFrameUpdates" data-uid="GameFramework.UI.UIScreen.DisableFrameUpdates">DisableFrameUpdates()</h4>
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.UI.UIScreen.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Disable frame updates for this screen</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void DisableFrameUpdates()</code></pre>
+  </div>
+  
+  
+  <a id="GameFramework_UI_UIScreen_EnableFrameUpdates_" data-uid="GameFramework.UI.UIScreen.EnableFrameUpdates*"></a>
+  <h4 id="GameFramework_UI_UIScreen_EnableFrameUpdates" data-uid="GameFramework.UI.UIScreen.EnableFrameUpdates">EnableFrameUpdates()</h4>
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.UI.UIScreen.yml" sourcestartlinenumber="2" sourceendlinenumber="3">Call this in derived constructors if the screen needs frame updates
+This will register the screen with UIService for centralized updates</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void EnableFrameUpdates()</code></pre>
+  </div>
+  
+  
+  <a id="GameFramework_UI_UIScreen_Hide_" data-uid="GameFramework.UI.UIScreen.Hide*"></a>
+  <h4 id="GameFramework_UI_UIScreen_Hide" data-uid="GameFramework.UI.UIScreen.Hide">Hide()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void Hide()</code></pre>
+  </div>
+  
+  
+  <a id="GameFramework_UI_UIScreen_OnHide_" data-uid="GameFramework.UI.UIScreen.OnHide*"></a>
+  <h4 id="GameFramework_UI_UIScreen_OnHide" data-uid="GameFramework.UI.UIScreen.OnHide">OnHide()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnHide()</code></pre>
+  </div>
+  
+  
+  <a id="GameFramework_UI_UIScreen_OnShow_" data-uid="GameFramework.UI.UIScreen.OnShow*"></a>
+  <h4 id="GameFramework_UI_UIScreen_OnShow" data-uid="GameFramework.UI.UIScreen.OnShow">OnShow()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnShow()</code></pre>
+  </div>
+  
+  
+  <a id="GameFramework_UI_UIScreen_OnUpdate_" data-uid="GameFramework.UI.UIScreen.OnUpdate*"></a>
+  <h4 id="GameFramework_UI_UIScreen_OnUpdate_System_Single_" data-uid="GameFramework.UI.UIScreen.OnUpdate(System.Single)">OnUpdate(Single)</h4>
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.UI.UIScreen.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Override this for frame-based updates (only called when screen is visible and needs updates)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnUpdate(float deltaTime)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">deltaTime</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="GameFramework_UI_UIScreen_ShouldUpdateWhenPaused_" data-uid="GameFramework.UI.UIScreen.ShouldUpdateWhenPaused*"></a>
+  <h4 id="GameFramework_UI_UIScreen_ShouldUpdateWhenPaused" data-uid="GameFramework.UI.UIScreen.ShouldUpdateWhenPaused">ShouldUpdateWhenPaused()</h4>
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.UI.UIScreen.yml" sourcestartlinenumber="2" sourceendlinenumber="3">Override this to specify if this screen should update even when the game is paused
+Most screens should not update when paused, but some (like pause menus) might need to</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool ShouldUpdateWhenPaused()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="GameFramework_UI_UIScreen_Show_" data-uid="GameFramework.UI.UIScreen.Show*"></a>
+  <h4 id="GameFramework_UI_UIScreen_Show" data-uid="GameFramework.UI.UIScreen.Show">Show()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void Show()</code></pre>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            UCTools Base Project Documentation
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

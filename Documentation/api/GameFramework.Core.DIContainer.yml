@@ -1,0 +1,872 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.Core.DIContainer
+  commentId: T:GameFramework.Core.DIContainer
+  id: DIContainer
+  parent: GameFramework.Core
+  children:
+  - GameFramework.Core.DIContainer.Clear
+  - GameFramework.Core.DIContainer.Instance
+  - GameFramework.Core.DIContainer.IsRegistered(Type)
+  - GameFramework.Core.DIContainer.IsRegistered``1
+  - GameFramework.Core.DIContainer.RegisterFactory``1(Func{``0})
+  - GameFramework.Core.DIContainer.RegisterSingleton``1
+  - GameFramework.Core.DIContainer.RegisterSingleton``1(``0)
+  - GameFramework.Core.DIContainer.RegisterSingleton``2
+  - GameFramework.Core.DIContainer.RegisterTransient``2
+  - GameFramework.Core.DIContainer.Resolve(Type)
+  - GameFramework.Core.DIContainer.Resolve``1
+  langs:
+  - csharp
+  - vb
+  name: DIContainer
+  nameWithType: DIContainer
+  fullName: GameFramework.Core.DIContainer
+  type: Class
+  source:
+    id: DIContainer
+    path: ''
+    startLine: 2758
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Core
+  summary: "\nEnhanced dependency injection container with automatic constructor injection support.\nSupports singleton registration, factory registration, type bindings, and automatic dependency resolution.\n\nDesign: Service container with constructor injection and dependency graph resolution\nPros: Clean separation of concerns, automatic dependency resolution, easy testing, loose coupling\nCons: Runtime dependency resolution, potential circular dependencies, reflection overhead\n"
+  example: []
+  syntax:
+    content: public class DIContainer
+    content.vb: Public Class DIContainer
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: GameFramework.Core.DIContainer.Instance
+  commentId: P:GameFramework.Core.DIContainer.Instance
+  id: Instance
+  parent: GameFramework.Core.DIContainer
+  langs:
+  - csharp
+  - vb
+  name: Instance
+  nameWithType: DIContainer.Instance
+  fullName: GameFramework.Core.DIContainer.Instance
+  type: Property
+  source:
+    id: Instance
+    path: ''
+    startLine: 2761
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Core
+  syntax:
+    content: public static DIContainer Instance { get; }
+    parameters: []
+    return:
+      type: GameFramework.Core.DIContainer
+    content.vb: Public Shared ReadOnly Property Instance As DIContainer
+  overload: GameFramework.Core.DIContainer.Instance*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: GameFramework.Core.DIContainer.RegisterSingleton``1(``0)
+  commentId: M:GameFramework.Core.DIContainer.RegisterSingleton``1(``0)
+  id: RegisterSingleton``1(``0)
+  parent: GameFramework.Core.DIContainer
+  langs:
+  - csharp
+  - vb
+  name: RegisterSingleton<T>(T)
+  nameWithType: DIContainer.RegisterSingleton<T>(T)
+  fullName: GameFramework.Core.DIContainer.RegisterSingleton<T>(T)
+  type: Method
+  source:
+    id: RegisterSingleton
+    path: ''
+    startLine: 2771
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Core
+  summary: "\nRegister a singleton instance that will be reused for all requests\n"
+  example: []
+  syntax:
+    content: >-
+      public void RegisterSingleton<T>(T instance)
+          where T : class
+    parameters:
+    - id: instance
+      type: '{T}'
+    typeParameters:
+    - id: T
+    content.vb: Public Sub RegisterSingleton(Of T As Class)(instance As T)
+  overload: GameFramework.Core.DIContainer.RegisterSingleton*
+  nameWithType.vb: DIContainer.RegisterSingleton(Of T)(T)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: GameFramework.Core.DIContainer.RegisterSingleton(Of T)(T)
+  name.vb: RegisterSingleton(Of T)(T)
+- uid: GameFramework.Core.DIContainer.RegisterSingleton``2
+  commentId: M:GameFramework.Core.DIContainer.RegisterSingleton``2
+  id: RegisterSingleton``2
+  parent: GameFramework.Core.DIContainer
+  langs:
+  - csharp
+  - vb
+  name: RegisterSingleton<TInterface, TImplementation>()
+  nameWithType: DIContainer.RegisterSingleton<TInterface, TImplementation>()
+  fullName: GameFramework.Core.DIContainer.RegisterSingleton<TInterface, TImplementation>()
+  type: Method
+  source:
+    id: RegisterSingleton
+    path: ''
+    startLine: 2779
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Core
+  summary: "\nRegister a singleton by type - will be created on first request\n"
+  example: []
+  syntax:
+    content: >-
+      public void RegisterSingleton<TInterface, TImplementation>()
+          where TImplementation : class, TInterface
+    typeParameters:
+    - id: TInterface
+    - id: TImplementation
+    content.vb: Public Sub RegisterSingleton(Of TInterface, TImplementation As {Class, TInterface})
+  overload: GameFramework.Core.DIContainer.RegisterSingleton*
+  nameWithType.vb: DIContainer.RegisterSingleton(Of TInterface, TImplementation)()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: GameFramework.Core.DIContainer.RegisterSingleton(Of TInterface, TImplementation)()
+  name.vb: RegisterSingleton(Of TInterface, TImplementation)()
+- uid: GameFramework.Core.DIContainer.RegisterSingleton``1
+  commentId: M:GameFramework.Core.DIContainer.RegisterSingleton``1
+  id: RegisterSingleton``1
+  parent: GameFramework.Core.DIContainer
+  langs:
+  - csharp
+  - vb
+  name: RegisterSingleton<T>()
+  nameWithType: DIContainer.RegisterSingleton<T>()
+  fullName: GameFramework.Core.DIContainer.RegisterSingleton<T>()
+  type: Method
+  source:
+    id: RegisterSingleton
+    path: ''
+    startLine: 2788
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Core
+  summary: "\nRegister a singleton by type\n"
+  example: []
+  syntax:
+    content: >-
+      public void RegisterSingleton<T>()
+          where T : class
+    typeParameters:
+    - id: T
+    content.vb: Public Sub RegisterSingleton(Of T As Class)
+  overload: GameFramework.Core.DIContainer.RegisterSingleton*
+  nameWithType.vb: DIContainer.RegisterSingleton(Of T)()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: GameFramework.Core.DIContainer.RegisterSingleton(Of T)()
+  name.vb: RegisterSingleton(Of T)()
+- uid: GameFramework.Core.DIContainer.RegisterFactory``1(Func{``0})
+  commentId: M:GameFramework.Core.DIContainer.RegisterFactory``1(Func{``0})
+  id: RegisterFactory``1(Func{``0})
+  parent: GameFramework.Core.DIContainer
+  langs:
+  - csharp
+  - vb
+  name: RegisterFactory<T>(Func<T>)
+  nameWithType: DIContainer.RegisterFactory<T>(Func<T>)
+  fullName: GameFramework.Core.DIContainer.RegisterFactory<T>(Func<T>)
+  type: Method
+  source:
+    id: RegisterFactory
+    path: ''
+    startLine: 2796
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Core
+  summary: "\nRegister a factory function that creates new instances on each request\n"
+  example: []
+  syntax:
+    content: >-
+      public void RegisterFactory<T>(Func<T> factory)
+          where T : class
+    parameters:
+    - id: factory
+      type: Func{{T}}
+    typeParameters:
+    - id: T
+    content.vb: Public Sub RegisterFactory(Of T As Class)(factory As Func(Of T))
+  overload: GameFramework.Core.DIContainer.RegisterFactory*
+  nameWithType.vb: DIContainer.RegisterFactory(Of T)(Func(Of T))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: GameFramework.Core.DIContainer.RegisterFactory(Of T)(Func(Of T))
+  name.vb: RegisterFactory(Of T)(Func(Of T))
+- uid: GameFramework.Core.DIContainer.RegisterTransient``2
+  commentId: M:GameFramework.Core.DIContainer.RegisterTransient``2
+  id: RegisterTransient``2
+  parent: GameFramework.Core.DIContainer
+  langs:
+  - csharp
+  - vb
+  name: RegisterTransient<TInterface, TImplementation>()
+  nameWithType: DIContainer.RegisterTransient<TInterface, TImplementation>()
+  fullName: GameFramework.Core.DIContainer.RegisterTransient<TInterface, TImplementation>()
+  type: Method
+  source:
+    id: RegisterTransient
+    path: ''
+    startLine: 2804
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Core
+  summary: "\nRegister a transient type binding - new instance created each time\n"
+  example: []
+  syntax:
+    content: >-
+      public void RegisterTransient<TInterface, TImplementation>()
+          where TImplementation : class, TInterface
+    typeParameters:
+    - id: TInterface
+    - id: TImplementation
+    content.vb: Public Sub RegisterTransient(Of TInterface, TImplementation As {Class, TInterface})
+  overload: GameFramework.Core.DIContainer.RegisterTransient*
+  nameWithType.vb: DIContainer.RegisterTransient(Of TInterface, TImplementation)()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: GameFramework.Core.DIContainer.RegisterTransient(Of TInterface, TImplementation)()
+  name.vb: RegisterTransient(Of TInterface, TImplementation)()
+- uid: GameFramework.Core.DIContainer.Resolve``1
+  commentId: M:GameFramework.Core.DIContainer.Resolve``1
+  id: Resolve``1
+  parent: GameFramework.Core.DIContainer
+  langs:
+  - csharp
+  - vb
+  name: Resolve<T>()
+  nameWithType: DIContainer.Resolve<T>()
+  fullName: GameFramework.Core.DIContainer.Resolve<T>()
+  type: Method
+  source:
+    id: Resolve
+    path: ''
+    startLine: 2813
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Core
+  summary: "\nResolve a service instance with automatic constructor injection\n"
+  example: []
+  syntax:
+    content: >-
+      public T Resolve<T>()
+          where T : class
+    typeParameters:
+    - id: T
+    return:
+      type: '{T}'
+    content.vb: Public Function Resolve(Of T As Class) As T
+  overload: GameFramework.Core.DIContainer.Resolve*
+  nameWithType.vb: DIContainer.Resolve(Of T)()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: GameFramework.Core.DIContainer.Resolve(Of T)()
+  name.vb: Resolve(Of T)()
+- uid: GameFramework.Core.DIContainer.Resolve(Type)
+  commentId: M:GameFramework.Core.DIContainer.Resolve(Type)
+  id: Resolve(Type)
+  parent: GameFramework.Core.DIContainer
+  langs:
+  - csharp
+  - vb
+  name: Resolve(Type)
+  nameWithType: DIContainer.Resolve(Type)
+  fullName: GameFramework.Core.DIContainer.Resolve(Type)
+  type: Method
+  source:
+    id: Resolve
+    path: ''
+    startLine: 2821
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Core
+  summary: "\nResolve a service instance by type with automatic constructor injection\n"
+  example: []
+  syntax:
+    content: public object Resolve(Type type)
+    parameters:
+    - id: type
+      type: Type
+    return:
+      type: System.Object
+    content.vb: Public Function Resolve(type As Type) As Object
+  overload: GameFramework.Core.DIContainer.Resolve*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.Core.DIContainer.IsRegistered``1
+  commentId: M:GameFramework.Core.DIContainer.IsRegistered``1
+  id: IsRegistered``1
+  parent: GameFramework.Core.DIContainer
+  langs:
+  - csharp
+  - vb
+  name: IsRegistered<T>()
+  nameWithType: DIContainer.IsRegistered<T>()
+  fullName: GameFramework.Core.DIContainer.IsRegistered<T>()
+  type: Method
+  source:
+    id: IsRegistered
+    path: ''
+    startLine: 2894
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Core
+  summary: "\nCheck if a type is registered\n"
+  example: []
+  syntax:
+    content: public bool IsRegistered<T>()
+    typeParameters:
+    - id: T
+    return:
+      type: System.Boolean
+    content.vb: Public Function IsRegistered(Of T) As Boolean
+  overload: GameFramework.Core.DIContainer.IsRegistered*
+  nameWithType.vb: DIContainer.IsRegistered(Of T)()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: GameFramework.Core.DIContainer.IsRegistered(Of T)()
+  name.vb: IsRegistered(Of T)()
+- uid: GameFramework.Core.DIContainer.IsRegistered(Type)
+  commentId: M:GameFramework.Core.DIContainer.IsRegistered(Type)
+  id: IsRegistered(Type)
+  parent: GameFramework.Core.DIContainer
+  langs:
+  - csharp
+  - vb
+  name: IsRegistered(Type)
+  nameWithType: DIContainer.IsRegistered(Type)
+  fullName: GameFramework.Core.DIContainer.IsRegistered(Type)
+  type: Method
+  source:
+    id: IsRegistered
+    path: ''
+    startLine: 2899
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Core
+  syntax:
+    content: public bool IsRegistered(Type type)
+    parameters:
+    - id: type
+      type: Type
+    return:
+      type: System.Boolean
+    content.vb: Public Function IsRegistered(type As Type) As Boolean
+  overload: GameFramework.Core.DIContainer.IsRegistered*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.Core.DIContainer.Clear
+  commentId: M:GameFramework.Core.DIContainer.Clear
+  id: Clear
+  parent: GameFramework.Core.DIContainer
+  langs:
+  - csharp
+  - vb
+  name: Clear()
+  nameWithType: DIContainer.Clear()
+  fullName: GameFramework.Core.DIContainer.Clear()
+  type: Method
+  source:
+    id: Clear
+    path: ''
+    startLine: 2909
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Core
+  summary: "\nClear all registrations - useful for testing\n"
+  example: []
+  syntax:
+    content: public void Clear()
+    content.vb: Public Sub Clear
+  overload: GameFramework.Core.DIContainer.Clear*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: GameFramework.Core
+  commentId: N:GameFramework.Core
+  name: GameFramework.Core
+  nameWithType: GameFramework.Core
+  fullName: GameFramework.Core
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: GameFramework.Core.DIContainer.Instance*
+  commentId: Overload:GameFramework.Core.DIContainer.Instance
+  name: Instance
+  nameWithType: DIContainer.Instance
+  fullName: GameFramework.Core.DIContainer.Instance
+- uid: GameFramework.Core.DIContainer
+  commentId: T:GameFramework.Core.DIContainer
+  parent: GameFramework.Core
+  name: DIContainer
+  nameWithType: DIContainer
+  fullName: GameFramework.Core.DIContainer
+- uid: GameFramework.Core.DIContainer.RegisterSingleton*
+  commentId: Overload:GameFramework.Core.DIContainer.RegisterSingleton
+  name: RegisterSingleton
+  nameWithType: DIContainer.RegisterSingleton
+  fullName: GameFramework.Core.DIContainer.RegisterSingleton
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: GameFramework.Core.DIContainer.RegisterFactory*
+  commentId: Overload:GameFramework.Core.DIContainer.RegisterFactory
+  name: RegisterFactory
+  nameWithType: DIContainer.RegisterFactory
+  fullName: GameFramework.Core.DIContainer.RegisterFactory
+- uid: Func{{T}}
+  commentId: '!:Func{``0}'
+  definition: Func`1
+  name: Func<T>
+  nameWithType: Func<T>
+  fullName: Func<T>
+  nameWithType.vb: Func(Of T)
+  fullName.vb: Func(Of T)
+  name.vb: Func(Of T)
+  spec.csharp:
+  - uid: Func`1
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Func`1
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Func`1
+  commentId: '!:Func`1'
+  isExternal: true
+  name: Func<>
+  nameWithType: Func<>
+  fullName: Func<>
+  nameWithType.vb: Func(Of )
+  fullName.vb: Func(Of )
+  name.vb: Func(Of )
+  spec.csharp:
+  - uid: Func`1
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Func`1
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.Core.DIContainer.RegisterTransient*
+  commentId: Overload:GameFramework.Core.DIContainer.RegisterTransient
+  name: RegisterTransient
+  nameWithType: DIContainer.RegisterTransient
+  fullName: GameFramework.Core.DIContainer.RegisterTransient
+- uid: GameFramework.Core.DIContainer.Resolve*
+  commentId: Overload:GameFramework.Core.DIContainer.Resolve
+  name: Resolve
+  nameWithType: DIContainer.Resolve
+  fullName: GameFramework.Core.DIContainer.Resolve
+- uid: Type
+  isExternal: true
+  name: Type
+  nameWithType: Type
+  fullName: Type
+- uid: GameFramework.Core.DIContainer.IsRegistered*
+  commentId: Overload:GameFramework.Core.DIContainer.IsRegistered
+  name: IsRegistered
+  nameWithType: DIContainer.IsRegistered
+  fullName: GameFramework.Core.DIContainer.IsRegistered
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: GameFramework.Core.DIContainer.Clear*
+  commentId: Overload:GameFramework.Core.DIContainer.Clear
+  name: Clear
+  nameWithType: DIContainer.Clear
+  fullName: GameFramework.Core.DIContainer.Clear

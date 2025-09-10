@@ -1,0 +1,28 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.Tests.UI
+  commentId: N:GameFramework.Tests.UI
+  id: GameFramework.Tests.UI
+  children:
+  - GameFramework.Tests.UI.UIScreenBaseTests
+  - GameFramework.Tests.UI.UIServiceIntegrationTests
+  langs:
+  - csharp
+  - vb
+  name: GameFramework.Tests.UI
+  nameWithType: GameFramework.Tests.UI
+  fullName: GameFramework.Tests.UI
+  type: Namespace
+  assemblies:
+  - cs.temp.dll
+references:
+- uid: GameFramework.Tests.UI.UIScreenBaseTests
+  commentId: T:GameFramework.Tests.UI.UIScreenBaseTests
+  name: UIScreenBaseTests
+  nameWithType: UIScreenBaseTests
+  fullName: GameFramework.Tests.UI.UIScreenBaseTests
+- uid: GameFramework.Tests.UI.UIServiceIntegrationTests
+  commentId: T:GameFramework.Tests.UI.UIServiceIntegrationTests
+  name: UIServiceIntegrationTests
+  nameWithType: UIServiceIntegrationTests
+  fullName: GameFramework.Tests.UI.UIServiceIntegrationTests

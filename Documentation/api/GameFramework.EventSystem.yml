@@ -1,0 +1,22 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.EventSystem
+  commentId: N:GameFramework.EventSystem
+  id: GameFramework.EventSystem
+  children:
+  - GameFramework.EventSystem.EventSystem
+  langs:
+  - csharp
+  - vb
+  name: GameFramework.EventSystem
+  nameWithType: GameFramework.EventSystem
+  fullName: GameFramework.EventSystem
+  type: Namespace
+  assemblies:
+  - cs.temp.dll
+references:
+- uid: GameFramework.EventSystem.EventSystem
+  commentId: T:GameFramework.EventSystem.EventSystem
+  name: EventSystem
+  nameWithType: EventSystem
+  fullName: GameFramework.EventSystem.EventSystem

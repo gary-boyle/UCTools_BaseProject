@@ -1,0 +1,1021 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.DataStructures.SaveFileInfo
+  commentId: T:GameFramework.DataStructures.SaveFileInfo
+  id: SaveFileInfo
+  parent: GameFramework.DataStructures
+  children:
+  - GameFramework.DataStructures.SaveFileInfo.#ctor(System.String,GameFramework.DataStructures.GameSession)
+  - GameFramework.DataStructures.SaveFileInfo.currentScene
+  - GameFramework.DataStructures.SaveFileInfo.difficulty
+  - GameFramework.DataStructures.SaveFileInfo.displayName
+  - GameFramework.DataStructures.SaveFileInfo.fileName
+  - GameFramework.DataStructures.SaveFileInfo.formattedDate
+  - GameFramework.DataStructures.SaveFileInfo.formattedPlayTime
+  - GameFramework.DataStructures.SaveFileInfo.formattedSessionTime
+  - GameFramework.DataStructures.SaveFileInfo.GetDetailedPlayTimeInfo
+  - GameFramework.DataStructures.SaveFileInfo.GetSaveFileSummary
+  - GameFramework.DataStructures.SaveFileInfo.GetSaveTypeDescription
+  - GameFramework.DataStructures.SaveFileInfo.GetSaveTypeIndicator
+  - GameFramework.DataStructures.SaveFileInfo.GetTimeTrackingStatus
+  - GameFramework.DataStructures.SaveFileInfo.isAutoSave
+  - GameFramework.DataStructures.SaveFileInfo.lastSaveTime
+  - GameFramework.DataStructures.SaveFileInfo.playerLevel
+  - GameFramework.DataStructures.SaveFileInfo.playerName
+  - GameFramework.DataStructures.SaveFileInfo.playTimeInfo
+  - GameFramework.DataStructures.SaveFileInfo.score
+  - GameFramework.DataStructures.SaveFileInfo.sessionTimeSeconds
+  - GameFramework.DataStructures.SaveFileInfo.totalPlayTimeSeconds
+  langs:
+  - csharp
+  - vb
+  name: SaveFileInfo
+  nameWithType: SaveFileInfo
+  fullName: GameFramework.DataStructures.SaveFileInfo
+  type: Class
+  source:
+    id: SaveFileInfo
+    path: ''
+    startLine: 3933
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.DataStructures
+  summary: "\nRepresents information about a save file for display in the UI\nHandles display formatting for timestamp-based saves and autosaves\nProperly detects autosave files from both filename and session data\nUses TimeService-based playtime information for accurate display\n"
+  example: []
+  syntax:
+    content: public class SaveFileInfo
+    content.vb: Public Class SaveFileInfo
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: GameFramework.DataStructures.SaveFileInfo.fileName
+  commentId: F:GameFramework.DataStructures.SaveFileInfo.fileName
+  id: fileName
+  parent: GameFramework.DataStructures.SaveFileInfo
+  langs:
+  - csharp
+  - vb
+  name: fileName
+  nameWithType: SaveFileInfo.fileName
+  fullName: GameFramework.DataStructures.SaveFileInfo.fileName
+  type: Field
+  source:
+    id: fileName
+    path: ''
+    startLine: 3936
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.DataStructures
+  syntax:
+    content: public string fileName
+    return:
+      type: System.String
+    content.vb: Public fileName As String
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.DataStructures.SaveFileInfo.displayName
+  commentId: F:GameFramework.DataStructures.SaveFileInfo.displayName
+  id: displayName
+  parent: GameFramework.DataStructures.SaveFileInfo
+  langs:
+  - csharp
+  - vb
+  name: displayName
+  nameWithType: SaveFileInfo.displayName
+  fullName: GameFramework.DataStructures.SaveFileInfo.displayName
+  type: Field
+  source:
+    id: displayName
+    path: ''
+    startLine: 3937
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.DataStructures
+  syntax:
+    content: public string displayName
+    return:
+      type: System.String
+    content.vb: Public displayName As String
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.DataStructures.SaveFileInfo.playerName
+  commentId: F:GameFramework.DataStructures.SaveFileInfo.playerName
+  id: playerName
+  parent: GameFramework.DataStructures.SaveFileInfo
+  langs:
+  - csharp
+  - vb
+  name: playerName
+  nameWithType: SaveFileInfo.playerName
+  fullName: GameFramework.DataStructures.SaveFileInfo.playerName
+  type: Field
+  source:
+    id: playerName
+    path: ''
+    startLine: 3938
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.DataStructures
+  syntax:
+    content: public string playerName
+    return:
+      type: System.String
+    content.vb: Public playerName As String
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.DataStructures.SaveFileInfo.difficulty
+  commentId: F:GameFramework.DataStructures.SaveFileInfo.difficulty
+  id: difficulty
+  parent: GameFramework.DataStructures.SaveFileInfo
+  langs:
+  - csharp
+  - vb
+  name: difficulty
+  nameWithType: SaveFileInfo.difficulty
+  fullName: GameFramework.DataStructures.SaveFileInfo.difficulty
+  type: Field
+  source:
+    id: difficulty
+    path: ''
+    startLine: 3939
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.DataStructures
+  syntax:
+    content: public string difficulty
+    return:
+      type: System.String
+    content.vb: Public difficulty As String
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.DataStructures.SaveFileInfo.currentScene
+  commentId: F:GameFramework.DataStructures.SaveFileInfo.currentScene
+  id: currentScene
+  parent: GameFramework.DataStructures.SaveFileInfo
+  langs:
+  - csharp
+  - vb
+  name: currentScene
+  nameWithType: SaveFileInfo.currentScene
+  fullName: GameFramework.DataStructures.SaveFileInfo.currentScene
+  type: Field
+  source:
+    id: currentScene
+    path: ''
+    startLine: 3940
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.DataStructures
+  syntax:
+    content: public string currentScene
+    return:
+      type: System.String
+    content.vb: Public currentScene As String
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.DataStructures.SaveFileInfo.lastSaveTime
+  commentId: F:GameFramework.DataStructures.SaveFileInfo.lastSaveTime
+  id: lastSaveTime
+  parent: GameFramework.DataStructures.SaveFileInfo
+  langs:
+  - csharp
+  - vb
+  name: lastSaveTime
+  nameWithType: SaveFileInfo.lastSaveTime
+  fullName: GameFramework.DataStructures.SaveFileInfo.lastSaveTime
+  type: Field
+  source:
+    id: lastSaveTime
+    path: ''
+    startLine: 3941
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.DataStructures
+  syntax:
+    content: public DateTime lastSaveTime
+    return:
+      type: DateTime
+    content.vb: Public lastSaveTime As DateTime
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.DataStructures.SaveFileInfo.totalPlayTimeSeconds
+  commentId: F:GameFramework.DataStructures.SaveFileInfo.totalPlayTimeSeconds
+  id: totalPlayTimeSeconds
+  parent: GameFramework.DataStructures.SaveFileInfo
+  langs:
+  - csharp
+  - vb
+  name: totalPlayTimeSeconds
+  nameWithType: SaveFileInfo.totalPlayTimeSeconds
+  fullName: GameFramework.DataStructures.SaveFileInfo.totalPlayTimeSeconds
+  type: Field
+  source:
+    id: totalPlayTimeSeconds
+    path: ''
+    startLine: 3942
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.DataStructures
+  syntax:
+    content: public float totalPlayTimeSeconds
+    return:
+      type: System.Single
+    content.vb: Public totalPlayTimeSeconds As Single
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.DataStructures.SaveFileInfo.sessionTimeSeconds
+  commentId: F:GameFramework.DataStructures.SaveFileInfo.sessionTimeSeconds
+  id: sessionTimeSeconds
+  parent: GameFramework.DataStructures.SaveFileInfo
+  langs:
+  - csharp
+  - vb
+  name: sessionTimeSeconds
+  nameWithType: SaveFileInfo.sessionTimeSeconds
+  fullName: GameFramework.DataStructures.SaveFileInfo.sessionTimeSeconds
+  type: Field
+  source:
+    id: sessionTimeSeconds
+    path: ''
+    startLine: 3943
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.DataStructures
+  syntax:
+    content: public float sessionTimeSeconds
+    return:
+      type: System.Single
+    content.vb: Public sessionTimeSeconds As Single
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.DataStructures.SaveFileInfo.formattedPlayTime
+  commentId: F:GameFramework.DataStructures.SaveFileInfo.formattedPlayTime
+  id: formattedPlayTime
+  parent: GameFramework.DataStructures.SaveFileInfo
+  langs:
+  - csharp
+  - vb
+  name: formattedPlayTime
+  nameWithType: SaveFileInfo.formattedPlayTime
+  fullName: GameFramework.DataStructures.SaveFileInfo.formattedPlayTime
+  type: Field
+  source:
+    id: formattedPlayTime
+    path: ''
+    startLine: 3944
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.DataStructures
+  syntax:
+    content: public string formattedPlayTime
+    return:
+      type: System.String
+    content.vb: Public formattedPlayTime As String
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.DataStructures.SaveFileInfo.formattedSessionTime
+  commentId: F:GameFramework.DataStructures.SaveFileInfo.formattedSessionTime
+  id: formattedSessionTime
+  parent: GameFramework.DataStructures.SaveFileInfo
+  langs:
+  - csharp
+  - vb
+  name: formattedSessionTime
+  nameWithType: SaveFileInfo.formattedSessionTime
+  fullName: GameFramework.DataStructures.SaveFileInfo.formattedSessionTime
+  type: Field
+  source:
+    id: formattedSessionTime
+    path: ''
+    startLine: 3945
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.DataStructures
+  syntax:
+    content: public string formattedSessionTime
+    return:
+      type: System.String
+    content.vb: Public formattedSessionTime As String
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.DataStructures.SaveFileInfo.formattedDate
+  commentId: F:GameFramework.DataStructures.SaveFileInfo.formattedDate
+  id: formattedDate
+  parent: GameFramework.DataStructures.SaveFileInfo
+  langs:
+  - csharp
+  - vb
+  name: formattedDate
+  nameWithType: SaveFileInfo.formattedDate
+  fullName: GameFramework.DataStructures.SaveFileInfo.formattedDate
+  type: Field
+  source:
+    id: formattedDate
+    path: ''
+    startLine: 3946
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.DataStructures
+  syntax:
+    content: public string formattedDate
+    return:
+      type: System.String
+    content.vb: Public formattedDate As String
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.DataStructures.SaveFileInfo.isAutoSave
+  commentId: F:GameFramework.DataStructures.SaveFileInfo.isAutoSave
+  id: isAutoSave
+  parent: GameFramework.DataStructures.SaveFileInfo
+  langs:
+  - csharp
+  - vb
+  name: isAutoSave
+  nameWithType: SaveFileInfo.isAutoSave
+  fullName: GameFramework.DataStructures.SaveFileInfo.isAutoSave
+  type: Field
+  source:
+    id: isAutoSave
+    path: ''
+    startLine: 3947
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.DataStructures
+  syntax:
+    content: public bool isAutoSave
+    return:
+      type: System.Boolean
+    content.vb: Public isAutoSave As Boolean
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.DataStructures.SaveFileInfo.playerLevel
+  commentId: F:GameFramework.DataStructures.SaveFileInfo.playerLevel
+  id: playerLevel
+  parent: GameFramework.DataStructures.SaveFileInfo
+  langs:
+  - csharp
+  - vb
+  name: playerLevel
+  nameWithType: SaveFileInfo.playerLevel
+  fullName: GameFramework.DataStructures.SaveFileInfo.playerLevel
+  type: Field
+  source:
+    id: playerLevel
+    path: ''
+    startLine: 3950
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.DataStructures
+  syntax:
+    content: public int playerLevel
+    return:
+      type: System.Int32
+    content.vb: Public playerLevel As Integer
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.DataStructures.SaveFileInfo.score
+  commentId: F:GameFramework.DataStructures.SaveFileInfo.score
+  id: score
+  parent: GameFramework.DataStructures.SaveFileInfo
+  langs:
+  - csharp
+  - vb
+  name: score
+  nameWithType: SaveFileInfo.score
+  fullName: GameFramework.DataStructures.SaveFileInfo.score
+  type: Field
+  source:
+    id: score
+    path: ''
+    startLine: 3951
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.DataStructures
+  syntax:
+    content: public int score
+    return:
+      type: System.Int32
+    content.vb: Public score As Integer
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.DataStructures.SaveFileInfo.playTimeInfo
+  commentId: F:GameFramework.DataStructures.SaveFileInfo.playTimeInfo
+  id: playTimeInfo
+  parent: GameFramework.DataStructures.SaveFileInfo
+  langs:
+  - csharp
+  - vb
+  name: playTimeInfo
+  nameWithType: SaveFileInfo.playTimeInfo
+  fullName: GameFramework.DataStructures.SaveFileInfo.playTimeInfo
+  type: Field
+  source:
+    id: playTimeInfo
+    path: ''
+    startLine: 3952
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.DataStructures
+  syntax:
+    content: public PlayTimeInfo playTimeInfo
+    return:
+      type: PlayTimeInfo
+    content.vb: Public playTimeInfo As PlayTimeInfo
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.DataStructures.SaveFileInfo.#ctor(System.String,GameFramework.DataStructures.GameSession)
+  commentId: M:GameFramework.DataStructures.SaveFileInfo.#ctor(System.String,GameFramework.DataStructures.GameSession)
+  id: '#ctor(System.String,GameFramework.DataStructures.GameSession)'
+  parent: GameFramework.DataStructures.SaveFileInfo
+  langs:
+  - csharp
+  - vb
+  name: SaveFileInfo(String, GameSession)
+  nameWithType: SaveFileInfo.SaveFileInfo(String, GameSession)
+  fullName: GameFramework.DataStructures.SaveFileInfo.SaveFileInfo(System.String, GameFramework.DataStructures.GameSession)
+  type: Constructor
+  source:
+    id: .ctor
+    path: ''
+    startLine: 3954
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.DataStructures
+  syntax:
+    content: public SaveFileInfo(string fileName, GameSession session)
+    parameters:
+    - id: fileName
+      type: System.String
+    - id: session
+      type: GameFramework.DataStructures.GameSession
+    content.vb: Public Sub New(fileName As String, session As GameSession)
+  overload: GameFramework.DataStructures.SaveFileInfo.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.DataStructures.SaveFileInfo.GetSaveTypeDescription
+  commentId: M:GameFramework.DataStructures.SaveFileInfo.GetSaveTypeDescription
+  id: GetSaveTypeDescription
+  parent: GameFramework.DataStructures.SaveFileInfo
+  langs:
+  - csharp
+  - vb
+  name: GetSaveTypeDescription()
+  nameWithType: SaveFileInfo.GetSaveTypeDescription()
+  fullName: GameFramework.DataStructures.SaveFileInfo.GetSaveTypeDescription()
+  type: Method
+  source:
+    id: GetSaveTypeDescription
+    path: ''
+    startLine: 4027
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.DataStructures
+  summary: "\nGets a short description for the save type\n"
+  example: []
+  syntax:
+    content: public string GetSaveTypeDescription()
+    return:
+      type: System.String
+    content.vb: Public Function GetSaveTypeDescription As String
+  overload: GameFramework.DataStructures.SaveFileInfo.GetSaveTypeDescription*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.DataStructures.SaveFileInfo.GetSaveTypeIndicator
+  commentId: M:GameFramework.DataStructures.SaveFileInfo.GetSaveTypeIndicator
+  id: GetSaveTypeIndicator
+  parent: GameFramework.DataStructures.SaveFileInfo
+  langs:
+  - csharp
+  - vb
+  name: GetSaveTypeIndicator()
+  nameWithType: SaveFileInfo.GetSaveTypeIndicator()
+  fullName: GameFramework.DataStructures.SaveFileInfo.GetSaveTypeIndicator()
+  type: Method
+  source:
+    id: GetSaveTypeIndicator
+    path: ''
+    startLine: 4035
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.DataStructures
+  summary: "\nGets a user-friendly save type indicator\n"
+  example: []
+  syntax:
+    content: public string GetSaveTypeIndicator()
+    return:
+      type: System.String
+    content.vb: Public Function GetSaveTypeIndicator As String
+  overload: GameFramework.DataStructures.SaveFileInfo.GetSaveTypeIndicator*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.DataStructures.SaveFileInfo.GetDetailedPlayTimeInfo
+  commentId: M:GameFramework.DataStructures.SaveFileInfo.GetDetailedPlayTimeInfo
+  id: GetDetailedPlayTimeInfo
+  parent: GameFramework.DataStructures.SaveFileInfo
+  langs:
+  - csharp
+  - vb
+  name: GetDetailedPlayTimeInfo()
+  nameWithType: SaveFileInfo.GetDetailedPlayTimeInfo()
+  fullName: GameFramework.DataStructures.SaveFileInfo.GetDetailedPlayTimeInfo()
+  type: Method
+  source:
+    id: GetDetailedPlayTimeInfo
+    path: ''
+    startLine: 4043
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.DataStructures
+  summary: "\nGets detailed playtime information for display\n"
+  example: []
+  syntax:
+    content: public string GetDetailedPlayTimeInfo()
+    return:
+      type: System.String
+    content.vb: Public Function GetDetailedPlayTimeInfo As String
+  overload: GameFramework.DataStructures.SaveFileInfo.GetDetailedPlayTimeInfo*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.DataStructures.SaveFileInfo.GetSaveFileSummary
+  commentId: M:GameFramework.DataStructures.SaveFileInfo.GetSaveFileSummary
+  id: GetSaveFileSummary
+  parent: GameFramework.DataStructures.SaveFileInfo
+  langs:
+  - csharp
+  - vb
+  name: GetSaveFileSummary()
+  nameWithType: SaveFileInfo.GetSaveFileSummary()
+  fullName: GameFramework.DataStructures.SaveFileInfo.GetSaveFileSummary()
+  type: Method
+  source:
+    id: GetSaveFileSummary
+    path: ''
+    startLine: 4055
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.DataStructures
+  summary: "\nGets a comprehensive save file summary for tooltips or detailed views\n"
+  example: []
+  syntax:
+    content: public string GetSaveFileSummary()
+    return:
+      type: System.String
+    content.vb: Public Function GetSaveFileSummary As String
+  overload: GameFramework.DataStructures.SaveFileInfo.GetSaveFileSummary*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.DataStructures.SaveFileInfo.GetTimeTrackingStatus
+  commentId: M:GameFramework.DataStructures.SaveFileInfo.GetTimeTrackingStatus
+  id: GetTimeTrackingStatus
+  parent: GameFramework.DataStructures.SaveFileInfo
+  langs:
+  - csharp
+  - vb
+  name: GetTimeTrackingStatus()
+  nameWithType: SaveFileInfo.GetTimeTrackingStatus()
+  fullName: GameFramework.DataStructures.SaveFileInfo.GetTimeTrackingStatus()
+  type: Method
+  source:
+    id: GetTimeTrackingStatus
+    path: ''
+    startLine: 4069
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.DataStructures
+  summary: "\nGets time tracking status for debugging\n"
+  example: []
+  syntax:
+    content: public string GetTimeTrackingStatus()
+    return:
+      type: System.String
+    content.vb: Public Function GetTimeTrackingStatus As String
+  overload: GameFramework.DataStructures.SaveFileInfo.GetTimeTrackingStatus*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: GameFramework.DataStructures
+  commentId: N:GameFramework.DataStructures
+  name: GameFramework.DataStructures
+  nameWithType: GameFramework.DataStructures
+  fullName: GameFramework.DataStructures
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: DateTime
+  isExternal: true
+  name: DateTime
+  nameWithType: DateTime
+  fullName: DateTime
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  name: Single
+  nameWithType: Single
+  fullName: System.Single
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: PlayTimeInfo
+  commentId: T:PlayTimeInfo
+  name: PlayTimeInfo
+  nameWithType: PlayTimeInfo
+  fullName: PlayTimeInfo
+- uid: GameFramework.DataStructures.SaveFileInfo.#ctor*
+  commentId: Overload:GameFramework.DataStructures.SaveFileInfo.#ctor
+  name: SaveFileInfo
+  nameWithType: SaveFileInfo.SaveFileInfo
+  fullName: GameFramework.DataStructures.SaveFileInfo.SaveFileInfo
+- uid: GameFramework.DataStructures.GameSession
+  commentId: T:GameFramework.DataStructures.GameSession
+  parent: GameFramework.DataStructures
+  name: GameSession
+  nameWithType: GameSession
+  fullName: GameFramework.DataStructures.GameSession
+- uid: GameFramework.DataStructures.SaveFileInfo.GetSaveTypeDescription*
+  commentId: Overload:GameFramework.DataStructures.SaveFileInfo.GetSaveTypeDescription
+  name: GetSaveTypeDescription
+  nameWithType: SaveFileInfo.GetSaveTypeDescription
+  fullName: GameFramework.DataStructures.SaveFileInfo.GetSaveTypeDescription
+- uid: GameFramework.DataStructures.SaveFileInfo.GetSaveTypeIndicator*
+  commentId: Overload:GameFramework.DataStructures.SaveFileInfo.GetSaveTypeIndicator
+  name: GetSaveTypeIndicator
+  nameWithType: SaveFileInfo.GetSaveTypeIndicator
+  fullName: GameFramework.DataStructures.SaveFileInfo.GetSaveTypeIndicator
+- uid: GameFramework.DataStructures.SaveFileInfo.GetDetailedPlayTimeInfo*
+  commentId: Overload:GameFramework.DataStructures.SaveFileInfo.GetDetailedPlayTimeInfo
+  name: GetDetailedPlayTimeInfo
+  nameWithType: SaveFileInfo.GetDetailedPlayTimeInfo
+  fullName: GameFramework.DataStructures.SaveFileInfo.GetDetailedPlayTimeInfo
+- uid: GameFramework.DataStructures.SaveFileInfo.GetSaveFileSummary*
+  commentId: Overload:GameFramework.DataStructures.SaveFileInfo.GetSaveFileSummary
+  name: GetSaveFileSummary
+  nameWithType: SaveFileInfo.GetSaveFileSummary
+  fullName: GameFramework.DataStructures.SaveFileInfo.GetSaveFileSummary
+- uid: GameFramework.DataStructures.SaveFileInfo.GetTimeTrackingStatus*
+  commentId: Overload:GameFramework.DataStructures.SaveFileInfo.GetTimeTrackingStatus
+  name: GetTimeTrackingStatus
+  nameWithType: SaveFileInfo.GetTimeTrackingStatus
+  fullName: GameFramework.DataStructures.SaveFileInfo.GetTimeTrackingStatus

@@ -1,0 +1,1085 @@
+### YamlMime:ManagedReference
+items:
+- uid: UCTools_ConfigVariables.StringConfigVariable
+  commentId: T:UCTools_ConfigVariables.StringConfigVariable
+  id: StringConfigVariable
+  parent: UCTools_ConfigVariables
+  children:
+  - UCTools_ConfigVariables.StringConfigVariable.#ctor
+  - UCTools_ConfigVariables.StringConfigVariable.#ctor(System.String,System.String,System.String,UCTools_ConfigVariables.ConfigFlags)
+  - UCTools_ConfigVariables.StringConfigVariable.DefaultValue
+  - UCTools_ConfigVariables.StringConfigVariable.GetValueAsObject
+  - UCTools_ConfigVariables.StringConfigVariable.GetValueAsString
+  - UCTools_ConfigVariables.StringConfigVariable.ResetToDefault
+  - UCTools_ConfigVariables.StringConfigVariable.SetValueFromObject(System.Object)
+  - UCTools_ConfigVariables.StringConfigVariable.SetValueFromString(System.String)
+  - UCTools_ConfigVariables.StringConfigVariable.ValidateConfiguration(System.String@)
+  - UCTools_ConfigVariables.StringConfigVariable.Value
+  - UCTools_ConfigVariables.StringConfigVariable.ValueType
+  langs:
+  - csharp
+  - vb
+  name: StringConfigVariable
+  nameWithType: StringConfigVariable
+  fullName: UCTools_ConfigVariables.StringConfigVariable
+  type: Class
+  source:
+    id: StringConfigVariable
+    path: ''
+    startLine: 18817
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_ConfigVariables
+  summary: "\nString configuration variable\n"
+  example: []
+  syntax:
+    content: >-
+      [Serializable]
+
+      public class StringConfigVariable : ConfigVariableBase
+    content.vb: >-
+      <Serializable>
+
+      Public Class StringConfigVariable
+          Inherits ConfigVariableBase
+  inheritance:
+  - System.Object
+  - UCTools_ConfigVariables.ConfigVariableBase
+  inheritedMembers:
+  - UCTools_ConfigVariables.ConfigVariableBase.name
+  - UCTools_ConfigVariables.ConfigVariableBase.description
+  - UCTools_ConfigVariables.ConfigVariableBase.flags
+  - UCTools_ConfigVariables.ConfigVariableBase.ChangeCheck
+  - UCTools_ConfigVariables.ConfigVariableBase.MarkChanged
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  attributes:
+  - type: System.SerializableAttribute
+    ctor: System.SerializableAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: UCTools_ConfigVariables.StringConfigVariable.ValueType
+  commentId: P:UCTools_ConfigVariables.StringConfigVariable.ValueType
+  id: ValueType
+  parent: UCTools_ConfigVariables.StringConfigVariable
+  langs:
+  - csharp
+  - vb
+  name: ValueType
+  nameWithType: StringConfigVariable.ValueType
+  fullName: UCTools_ConfigVariables.StringConfigVariable.ValueType
+  type: Property
+  source:
+    id: ValueType
+    path: ''
+    startLine: 18824
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_ConfigVariables
+  syntax:
+    content: public override Type ValueType { get; }
+    parameters: []
+    return:
+      type: Type
+    content.vb: Public Overrides ReadOnly Property ValueType As Type
+  overridden: UCTools_ConfigVariables.ConfigVariableBase.ValueType
+  overload: UCTools_ConfigVariables.StringConfigVariable.ValueType*
+  modifiers.csharp:
+  - public
+  - override
+  - get
+  modifiers.vb:
+  - Public
+  - Overrides
+  - ReadOnly
+- uid: UCTools_ConfigVariables.StringConfigVariable.Value
+  commentId: P:UCTools_ConfigVariables.StringConfigVariable.Value
+  id: Value
+  parent: UCTools_ConfigVariables.StringConfigVariable
+  langs:
+  - csharp
+  - vb
+  name: Value
+  nameWithType: StringConfigVariable.Value
+  fullName: UCTools_ConfigVariables.StringConfigVariable.Value
+  type: Property
+  source:
+    id: Value
+    path: ''
+    startLine: 18827
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_ConfigVariables
+  summary: Current string value
+  example: []
+  syntax:
+    content: public string Value { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Value As String
+  overload: UCTools_ConfigVariables.StringConfigVariable.Value*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: UCTools_ConfigVariables.StringConfigVariable.DefaultValue
+  commentId: P:UCTools_ConfigVariables.StringConfigVariable.DefaultValue
+  id: DefaultValue
+  parent: UCTools_ConfigVariables.StringConfigVariable
+  langs:
+  - csharp
+  - vb
+  name: DefaultValue
+  nameWithType: StringConfigVariable.DefaultValue
+  fullName: UCTools_ConfigVariables.StringConfigVariable.DefaultValue
+  type: Property
+  source:
+    id: DefaultValue
+    path: ''
+    startLine: 18841
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_ConfigVariables
+  syntax:
+    content: public string DefaultValue { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property DefaultValue As String
+  overload: UCTools_ConfigVariables.StringConfigVariable.DefaultValue*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: UCTools_ConfigVariables.StringConfigVariable.ResetToDefault
+  commentId: M:UCTools_ConfigVariables.StringConfigVariable.ResetToDefault
+  id: ResetToDefault
+  parent: UCTools_ConfigVariables.StringConfigVariable
+  langs:
+  - csharp
+  - vb
+  name: ResetToDefault()
+  nameWithType: StringConfigVariable.ResetToDefault()
+  fullName: UCTools_ConfigVariables.StringConfigVariable.ResetToDefault()
+  type: Method
+  source:
+    id: ResetToDefault
+    path: ''
+    startLine: 18843
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_ConfigVariables
+  syntax:
+    content: public override void ResetToDefault()
+    content.vb: Public Overrides Sub ResetToDefault
+  overridden: UCTools_ConfigVariables.ConfigVariableBase.ResetToDefault
+  overload: UCTools_ConfigVariables.StringConfigVariable.ResetToDefault*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: UCTools_ConfigVariables.StringConfigVariable.ValidateConfiguration(System.String@)
+  commentId: M:UCTools_ConfigVariables.StringConfigVariable.ValidateConfiguration(System.String@)
+  id: ValidateConfiguration(System.String@)
+  parent: UCTools_ConfigVariables.StringConfigVariable
+  langs:
+  - csharp
+  - vb
+  name: ValidateConfiguration(out String)
+  nameWithType: StringConfigVariable.ValidateConfiguration(out String)
+  fullName: UCTools_ConfigVariables.StringConfigVariable.ValidateConfiguration(out System.String)
+  type: Method
+  source:
+    id: ValidateConfiguration
+    path: ''
+    startLine: 18848
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_ConfigVariables
+  syntax:
+    content: public override bool ValidateConfiguration(out string error)
+    parameters:
+    - id: error
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Overrides Function ValidateConfiguration(ByRef error As String) As Boolean
+  overridden: UCTools_ConfigVariables.ConfigVariableBase.ValidateConfiguration(System.String@)
+  overload: UCTools_ConfigVariables.StringConfigVariable.ValidateConfiguration*
+  nameWithType.vb: StringConfigVariable.ValidateConfiguration(ByRef String)
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+  fullName.vb: UCTools_ConfigVariables.StringConfigVariable.ValidateConfiguration(ByRef System.String)
+  name.vb: ValidateConfiguration(ByRef String)
+- uid: UCTools_ConfigVariables.StringConfigVariable.GetValueAsObject
+  commentId: M:UCTools_ConfigVariables.StringConfigVariable.GetValueAsObject
+  id: GetValueAsObject
+  parent: UCTools_ConfigVariables.StringConfigVariable
+  langs:
+  - csharp
+  - vb
+  name: GetValueAsObject()
+  nameWithType: StringConfigVariable.GetValueAsObject()
+  fullName: UCTools_ConfigVariables.StringConfigVariable.GetValueAsObject()
+  type: Method
+  source:
+    id: GetValueAsObject
+    path: ''
+    startLine: 18861
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_ConfigVariables
+  syntax:
+    content: public override object GetValueAsObject()
+    return:
+      type: System.Object
+    content.vb: Public Overrides Function GetValueAsObject As Object
+  overridden: UCTools_ConfigVariables.ConfigVariableBase.GetValueAsObject
+  overload: UCTools_ConfigVariables.StringConfigVariable.GetValueAsObject*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: UCTools_ConfigVariables.StringConfigVariable.SetValueFromObject(System.Object)
+  commentId: M:UCTools_ConfigVariables.StringConfigVariable.SetValueFromObject(System.Object)
+  id: SetValueFromObject(System.Object)
+  parent: UCTools_ConfigVariables.StringConfigVariable
+  langs:
+  - csharp
+  - vb
+  name: SetValueFromObject(Object)
+  nameWithType: StringConfigVariable.SetValueFromObject(Object)
+  fullName: UCTools_ConfigVariables.StringConfigVariable.SetValueFromObject(System.Object)
+  type: Method
+  source:
+    id: SetValueFromObject
+    path: ''
+    startLine: 18863
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_ConfigVariables
+  syntax:
+    content: public override bool SetValueFromObject(object value)
+    parameters:
+    - id: value
+      type: System.Object
+    return:
+      type: System.Boolean
+    content.vb: Public Overrides Function SetValueFromObject(value As Object) As Boolean
+  overridden: UCTools_ConfigVariables.ConfigVariableBase.SetValueFromObject(System.Object)
+  overload: UCTools_ConfigVariables.StringConfigVariable.SetValueFromObject*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: UCTools_ConfigVariables.StringConfigVariable.GetValueAsString
+  commentId: M:UCTools_ConfigVariables.StringConfigVariable.GetValueAsString
+  id: GetValueAsString
+  parent: UCTools_ConfigVariables.StringConfigVariable
+  langs:
+  - csharp
+  - vb
+  name: GetValueAsString()
+  nameWithType: StringConfigVariable.GetValueAsString()
+  fullName: UCTools_ConfigVariables.StringConfigVariable.GetValueAsString()
+  type: Method
+  source:
+    id: GetValueAsString
+    path: ''
+    startLine: 18875
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_ConfigVariables
+  syntax:
+    content: public override string GetValueAsString()
+    return:
+      type: System.String
+    content.vb: Public Overrides Function GetValueAsString As String
+  overridden: UCTools_ConfigVariables.ConfigVariableBase.GetValueAsString
+  overload: UCTools_ConfigVariables.StringConfigVariable.GetValueAsString*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: UCTools_ConfigVariables.StringConfigVariable.SetValueFromString(System.String)
+  commentId: M:UCTools_ConfigVariables.StringConfigVariable.SetValueFromString(System.String)
+  id: SetValueFromString(System.String)
+  parent: UCTools_ConfigVariables.StringConfigVariable
+  langs:
+  - csharp
+  - vb
+  name: SetValueFromString(String)
+  nameWithType: StringConfigVariable.SetValueFromString(String)
+  fullName: UCTools_ConfigVariables.StringConfigVariable.SetValueFromString(System.String)
+  type: Method
+  source:
+    id: SetValueFromString
+    path: ''
+    startLine: 18877
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_ConfigVariables
+  syntax:
+    content: public override bool SetValueFromString(string value)
+    parameters:
+    - id: value
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Overrides Function SetValueFromString(value As String) As Boolean
+  overridden: UCTools_ConfigVariables.ConfigVariableBase.SetValueFromString(System.String)
+  overload: UCTools_ConfigVariables.StringConfigVariable.SetValueFromString*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: UCTools_ConfigVariables.StringConfigVariable.#ctor(System.String,System.String,System.String,UCTools_ConfigVariables.ConfigFlags)
+  commentId: M:UCTools_ConfigVariables.StringConfigVariable.#ctor(System.String,System.String,System.String,UCTools_ConfigVariables.ConfigFlags)
+  id: '#ctor(System.String,System.String,System.String,UCTools_ConfigVariables.ConfigFlags)'
+  parent: UCTools_ConfigVariables.StringConfigVariable
+  langs:
+  - csharp
+  - vb
+  name: StringConfigVariable(String, String, String, ConfigFlags)
+  nameWithType: StringConfigVariable.StringConfigVariable(String, String, String, ConfigFlags)
+  fullName: UCTools_ConfigVariables.StringConfigVariable.StringConfigVariable(System.String, System.String, System.String, UCTools_ConfigVariables.ConfigFlags)
+  type: Constructor
+  source:
+    id: .ctor
+    path: ''
+    startLine: 18884
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_ConfigVariables
+  syntax:
+    content: public StringConfigVariable(string name, string description, string defaultValue, ConfigFlags flags = ConfigFlags.None)
+    parameters:
+    - id: name
+      type: System.String
+    - id: description
+      type: System.String
+    - id: defaultValue
+      type: System.String
+    - id: flags
+      type: UCTools_ConfigVariables.ConfigFlags
+    content.vb: Public Sub New(name As String, description As String, defaultValue As String, flags As ConfigFlags = ConfigFlags.None)
+  overload: UCTools_ConfigVariables.StringConfigVariable.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: UCTools_ConfigVariables.StringConfigVariable.#ctor
+  commentId: M:UCTools_ConfigVariables.StringConfigVariable.#ctor
+  id: '#ctor'
+  parent: UCTools_ConfigVariables.StringConfigVariable
+  langs:
+  - csharp
+  - vb
+  name: StringConfigVariable()
+  nameWithType: StringConfigVariable.StringConfigVariable()
+  fullName: UCTools_ConfigVariables.StringConfigVariable.StringConfigVariable()
+  type: Constructor
+  source:
+    id: .ctor
+    path: ''
+    startLine: 18893
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_ConfigVariables
+  syntax:
+    content: public StringConfigVariable()
+    content.vb: Public Sub New
+  overload: UCTools_ConfigVariables.StringConfigVariable.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: UCTools_ConfigVariables
+  commentId: N:UCTools_ConfigVariables
+  name: UCTools_ConfigVariables
+  nameWithType: UCTools_ConfigVariables
+  fullName: UCTools_ConfigVariables
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: UCTools_ConfigVariables.ConfigVariableBase
+  commentId: T:UCTools_ConfigVariables.ConfigVariableBase
+  parent: UCTools_ConfigVariables
+  name: ConfigVariableBase
+  nameWithType: ConfigVariableBase
+  fullName: UCTools_ConfigVariables.ConfigVariableBase
+- uid: UCTools_ConfigVariables.ConfigVariableBase.name
+  commentId: F:UCTools_ConfigVariables.ConfigVariableBase.name
+  parent: UCTools_ConfigVariables.ConfigVariableBase
+  name: name
+  nameWithType: ConfigVariableBase.name
+  fullName: UCTools_ConfigVariables.ConfigVariableBase.name
+- uid: UCTools_ConfigVariables.ConfigVariableBase.description
+  commentId: F:UCTools_ConfigVariables.ConfigVariableBase.description
+  parent: UCTools_ConfigVariables.ConfigVariableBase
+  name: description
+  nameWithType: ConfigVariableBase.description
+  fullName: UCTools_ConfigVariables.ConfigVariableBase.description
+- uid: UCTools_ConfigVariables.ConfigVariableBase.flags
+  commentId: F:UCTools_ConfigVariables.ConfigVariableBase.flags
+  parent: UCTools_ConfigVariables.ConfigVariableBase
+  name: flags
+  nameWithType: ConfigVariableBase.flags
+  fullName: UCTools_ConfigVariables.ConfigVariableBase.flags
+- uid: UCTools_ConfigVariables.ConfigVariableBase.ChangeCheck
+  commentId: M:UCTools_ConfigVariables.ConfigVariableBase.ChangeCheck
+  parent: UCTools_ConfigVariables.ConfigVariableBase
+  name: ChangeCheck()
+  nameWithType: ConfigVariableBase.ChangeCheck()
+  fullName: UCTools_ConfigVariables.ConfigVariableBase.ChangeCheck()
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.ConfigVariableBase.ChangeCheck
+    name: ChangeCheck
+    nameWithType: ConfigVariableBase.ChangeCheck
+    fullName: UCTools_ConfigVariables.ConfigVariableBase.ChangeCheck
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: UCTools_ConfigVariables.ConfigVariableBase.ChangeCheck
+    name: ChangeCheck
+    nameWithType: ConfigVariableBase.ChangeCheck
+    fullName: UCTools_ConfigVariables.ConfigVariableBase.ChangeCheck
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: UCTools_ConfigVariables.ConfigVariableBase.MarkChanged
+  commentId: M:UCTools_ConfigVariables.ConfigVariableBase.MarkChanged
+  parent: UCTools_ConfigVariables.ConfigVariableBase
+  name: MarkChanged()
+  nameWithType: ConfigVariableBase.MarkChanged()
+  fullName: UCTools_ConfigVariables.ConfigVariableBase.MarkChanged()
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.ConfigVariableBase.MarkChanged
+    name: MarkChanged
+    nameWithType: ConfigVariableBase.MarkChanged
+    fullName: UCTools_ConfigVariables.ConfigVariableBase.MarkChanged
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: UCTools_ConfigVariables.ConfigVariableBase.MarkChanged
+    name: MarkChanged
+    nameWithType: ConfigVariableBase.MarkChanged
+    fullName: UCTools_ConfigVariables.ConfigVariableBase.MarkChanged
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: UCTools_ConfigVariables.ConfigVariableBase.ValueType
+  commentId: P:UCTools_ConfigVariables.ConfigVariableBase.ValueType
+  parent: UCTools_ConfigVariables.ConfigVariableBase
+  name: ValueType
+  nameWithType: ConfigVariableBase.ValueType
+  fullName: UCTools_ConfigVariables.ConfigVariableBase.ValueType
+- uid: UCTools_ConfigVariables.StringConfigVariable.ValueType*
+  commentId: Overload:UCTools_ConfigVariables.StringConfigVariable.ValueType
+  name: ValueType
+  nameWithType: StringConfigVariable.ValueType
+  fullName: UCTools_ConfigVariables.StringConfigVariable.ValueType
+- uid: Type
+  isExternal: true
+  name: Type
+  nameWithType: Type
+  fullName: Type
+- uid: UCTools_ConfigVariables.StringConfigVariable.Value*
+  commentId: Overload:UCTools_ConfigVariables.StringConfigVariable.Value
+  name: Value
+  nameWithType: StringConfigVariable.Value
+  fullName: UCTools_ConfigVariables.StringConfigVariable.Value
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: UCTools_ConfigVariables.StringConfigVariable.DefaultValue*
+  commentId: Overload:UCTools_ConfigVariables.StringConfigVariable.DefaultValue
+  name: DefaultValue
+  nameWithType: StringConfigVariable.DefaultValue
+  fullName: UCTools_ConfigVariables.StringConfigVariable.DefaultValue
+- uid: UCTools_ConfigVariables.ConfigVariableBase.ResetToDefault
+  commentId: M:UCTools_ConfigVariables.ConfigVariableBase.ResetToDefault
+  parent: UCTools_ConfigVariables.ConfigVariableBase
+  name: ResetToDefault()
+  nameWithType: ConfigVariableBase.ResetToDefault()
+  fullName: UCTools_ConfigVariables.ConfigVariableBase.ResetToDefault()
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.ConfigVariableBase.ResetToDefault
+    name: ResetToDefault
+    nameWithType: ConfigVariableBase.ResetToDefault
+    fullName: UCTools_ConfigVariables.ConfigVariableBase.ResetToDefault
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: UCTools_ConfigVariables.ConfigVariableBase.ResetToDefault
+    name: ResetToDefault
+    nameWithType: ConfigVariableBase.ResetToDefault
+    fullName: UCTools_ConfigVariables.ConfigVariableBase.ResetToDefault
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: UCTools_ConfigVariables.StringConfigVariable.ResetToDefault*
+  commentId: Overload:UCTools_ConfigVariables.StringConfigVariable.ResetToDefault
+  name: ResetToDefault
+  nameWithType: StringConfigVariable.ResetToDefault
+  fullName: UCTools_ConfigVariables.StringConfigVariable.ResetToDefault
+- uid: UCTools_ConfigVariables.ConfigVariableBase.ValidateConfiguration(System.String@)
+  commentId: M:UCTools_ConfigVariables.ConfigVariableBase.ValidateConfiguration(System.String@)
+  parent: UCTools_ConfigVariables.ConfigVariableBase
+  isExternal: true
+  name: ValidateConfiguration(String)
+  nameWithType: ConfigVariableBase.ValidateConfiguration(String)
+  fullName: UCTools_ConfigVariables.ConfigVariableBase.ValidateConfiguration(System.String)
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.ConfigVariableBase.ValidateConfiguration(System.String@)
+    name: ValidateConfiguration
+    nameWithType: ConfigVariableBase.ValidateConfiguration
+    fullName: UCTools_ConfigVariables.ConfigVariableBase.ValidateConfiguration
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: UCTools_ConfigVariables.ConfigVariableBase.ValidateConfiguration(System.String@)
+    name: ValidateConfiguration
+    nameWithType: ConfigVariableBase.ValidateConfiguration
+    fullName: UCTools_ConfigVariables.ConfigVariableBase.ValidateConfiguration
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: UCTools_ConfigVariables.StringConfigVariable.ValidateConfiguration*
+  commentId: Overload:UCTools_ConfigVariables.StringConfigVariable.ValidateConfiguration
+  name: ValidateConfiguration
+  nameWithType: StringConfigVariable.ValidateConfiguration
+  fullName: UCTools_ConfigVariables.StringConfigVariable.ValidateConfiguration
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: UCTools_ConfigVariables.ConfigVariableBase.GetValueAsObject
+  commentId: M:UCTools_ConfigVariables.ConfigVariableBase.GetValueAsObject
+  parent: UCTools_ConfigVariables.ConfigVariableBase
+  name: GetValueAsObject()
+  nameWithType: ConfigVariableBase.GetValueAsObject()
+  fullName: UCTools_ConfigVariables.ConfigVariableBase.GetValueAsObject()
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.ConfigVariableBase.GetValueAsObject
+    name: GetValueAsObject
+    nameWithType: ConfigVariableBase.GetValueAsObject
+    fullName: UCTools_ConfigVariables.ConfigVariableBase.GetValueAsObject
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: UCTools_ConfigVariables.ConfigVariableBase.GetValueAsObject
+    name: GetValueAsObject
+    nameWithType: ConfigVariableBase.GetValueAsObject
+    fullName: UCTools_ConfigVariables.ConfigVariableBase.GetValueAsObject
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: UCTools_ConfigVariables.StringConfigVariable.GetValueAsObject*
+  commentId: Overload:UCTools_ConfigVariables.StringConfigVariable.GetValueAsObject
+  name: GetValueAsObject
+  nameWithType: StringConfigVariable.GetValueAsObject
+  fullName: UCTools_ConfigVariables.StringConfigVariable.GetValueAsObject
+- uid: UCTools_ConfigVariables.ConfigVariableBase.SetValueFromObject(System.Object)
+  commentId: M:UCTools_ConfigVariables.ConfigVariableBase.SetValueFromObject(System.Object)
+  parent: UCTools_ConfigVariables.ConfigVariableBase
+  isExternal: true
+  name: SetValueFromObject(Object)
+  nameWithType: ConfigVariableBase.SetValueFromObject(Object)
+  fullName: UCTools_ConfigVariables.ConfigVariableBase.SetValueFromObject(System.Object)
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.ConfigVariableBase.SetValueFromObject(System.Object)
+    name: SetValueFromObject
+    nameWithType: ConfigVariableBase.SetValueFromObject
+    fullName: UCTools_ConfigVariables.ConfigVariableBase.SetValueFromObject
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: UCTools_ConfigVariables.ConfigVariableBase.SetValueFromObject(System.Object)
+    name: SetValueFromObject
+    nameWithType: ConfigVariableBase.SetValueFromObject
+    fullName: UCTools_ConfigVariables.ConfigVariableBase.SetValueFromObject
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: UCTools_ConfigVariables.StringConfigVariable.SetValueFromObject*
+  commentId: Overload:UCTools_ConfigVariables.StringConfigVariable.SetValueFromObject
+  name: SetValueFromObject
+  nameWithType: StringConfigVariable.SetValueFromObject
+  fullName: UCTools_ConfigVariables.StringConfigVariable.SetValueFromObject
+- uid: UCTools_ConfigVariables.ConfigVariableBase.GetValueAsString
+  commentId: M:UCTools_ConfigVariables.ConfigVariableBase.GetValueAsString
+  parent: UCTools_ConfigVariables.ConfigVariableBase
+  name: GetValueAsString()
+  nameWithType: ConfigVariableBase.GetValueAsString()
+  fullName: UCTools_ConfigVariables.ConfigVariableBase.GetValueAsString()
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.ConfigVariableBase.GetValueAsString
+    name: GetValueAsString
+    nameWithType: ConfigVariableBase.GetValueAsString
+    fullName: UCTools_ConfigVariables.ConfigVariableBase.GetValueAsString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: UCTools_ConfigVariables.ConfigVariableBase.GetValueAsString
+    name: GetValueAsString
+    nameWithType: ConfigVariableBase.GetValueAsString
+    fullName: UCTools_ConfigVariables.ConfigVariableBase.GetValueAsString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: UCTools_ConfigVariables.StringConfigVariable.GetValueAsString*
+  commentId: Overload:UCTools_ConfigVariables.StringConfigVariable.GetValueAsString
+  name: GetValueAsString
+  nameWithType: StringConfigVariable.GetValueAsString
+  fullName: UCTools_ConfigVariables.StringConfigVariable.GetValueAsString
+- uid: UCTools_ConfigVariables.ConfigVariableBase.SetValueFromString(System.String)
+  commentId: M:UCTools_ConfigVariables.ConfigVariableBase.SetValueFromString(System.String)
+  parent: UCTools_ConfigVariables.ConfigVariableBase
+  isExternal: true
+  name: SetValueFromString(String)
+  nameWithType: ConfigVariableBase.SetValueFromString(String)
+  fullName: UCTools_ConfigVariables.ConfigVariableBase.SetValueFromString(System.String)
+  spec.csharp:
+  - uid: UCTools_ConfigVariables.ConfigVariableBase.SetValueFromString(System.String)
+    name: SetValueFromString
+    nameWithType: ConfigVariableBase.SetValueFromString
+    fullName: UCTools_ConfigVariables.ConfigVariableBase.SetValueFromString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: UCTools_ConfigVariables.ConfigVariableBase.SetValueFromString(System.String)
+    name: SetValueFromString
+    nameWithType: ConfigVariableBase.SetValueFromString
+    fullName: UCTools_ConfigVariables.ConfigVariableBase.SetValueFromString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: UCTools_ConfigVariables.StringConfigVariable.SetValueFromString*
+  commentId: Overload:UCTools_ConfigVariables.StringConfigVariable.SetValueFromString
+  name: SetValueFromString
+  nameWithType: StringConfigVariable.SetValueFromString
+  fullName: UCTools_ConfigVariables.StringConfigVariable.SetValueFromString
+- uid: UCTools_ConfigVariables.StringConfigVariable.#ctor*
+  commentId: Overload:UCTools_ConfigVariables.StringConfigVariable.#ctor
+  name: StringConfigVariable
+  nameWithType: StringConfigVariable.StringConfigVariable
+  fullName: UCTools_ConfigVariables.StringConfigVariable.StringConfigVariable
+- uid: UCTools_ConfigVariables.ConfigFlags
+  commentId: T:UCTools_ConfigVariables.ConfigFlags
+  parent: UCTools_ConfigVariables
+  name: ConfigFlags
+  nameWithType: ConfigFlags
+  fullName: UCTools_ConfigVariables.ConfigFlags

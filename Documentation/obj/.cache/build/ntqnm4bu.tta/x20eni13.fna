@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class TimeService
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class TimeService
+   ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="GameFramework.Services.TimeService">
+  
+  
+  <h1 id="GameFramework_Services_TimeService" data-uid="GameFramework.Services.TimeService" class="text-break">Class TimeService
+  </h1>
+  <div class="markdown level0 summary"><p sourcefile="api/GameFramework.Services.TimeService.yml" sourcestartlinenumber="2" sourceendlinenumber="4">TimeService manages game time tracking with proper pause handling and state awareness.
+Tracks time only when in PlayingState and not paused.
+Provides formatted time display and session tracking capabilities.</p>
+<p sourcefile="api/GameFramework.Services.TimeService.yml" sourcestartlinenumber="6" sourceendlinenumber="8">Design: Uses event-driven architecture to respond to game state changes and pause events.
+Pros: Accurate time tracking, integrates with pause system, provides multiple time formats
+Cons: Depends on proper event firing from other systems</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">TimeService</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">IUpdatable</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.Services.html">GameFramework.Services</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="GameFramework_Services_TimeService_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class TimeService : ITimeService</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  
+  <a id="GameFramework_Services_TimeService__ctor_" data-uid="GameFramework.Services.TimeService.#ctor*"></a>
+  <h4 id="GameFramework_Services_TimeService__ctor_IEventSystem_IPauseService_IGameDataService_" data-uid="GameFramework.Services.TimeService.#ctor(IEventSystem,IPauseService,IGameDataService)">TimeService(IEventSystem, IPauseService, IGameDataService)</h4>
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.Services.TimeService.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Constructor injection - receives required dependencies</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TimeService(IEventSystem eventSystem, IPauseService pauseService, IGameDataService gameDataService)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEventSystem</span></td>
+        <td><span class="parametername">eventSystem</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">IPauseService</span></td>
+        <td><span class="parametername">pauseService</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">IGameDataService</span></td>
+        <td><span class="parametername">gameDataService</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="GameFramework_Services_TimeService_GameTime_" data-uid="GameFramework.Services.TimeService.GameTime*"></a>
+  <h4 id="GameFramework_Services_TimeService_GameTime" data-uid="GameFramework.Services.TimeService.GameTime">GameTime</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float GameTime { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="GameFramework_Services_TimeService_GameTimeSpan_" data-uid="GameFramework.Services.TimeService.GameTimeSpan*"></a>
+  <h4 id="GameFramework_Services_TimeService_GameTimeSpan" data-uid="GameFramework.Services.TimeService.GameTimeSpan">GameTimeSpan</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TimeSpan GameTimeSpan { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TimeSpan</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="GameFramework_Services_TimeService_IsInitialized_" data-uid="GameFramework.Services.TimeService.IsInitialized*"></a>
+  <h4 id="GameFramework_Services_TimeService_IsInitialized" data-uid="GameFramework.Services.TimeService.IsInitialized">IsInitialized</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsInitialized { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="GameFramework_Services_TimeService_IsTrackingGameTime_" data-uid="GameFramework.Services.TimeService.IsTrackingGameTime*"></a>
+  <h4 id="GameFramework_Services_TimeService_IsTrackingGameTime" data-uid="GameFramework.Services.TimeService.IsTrackingGameTime">IsTrackingGameTime</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsTrackingGameTime { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="GameFramework_Services_TimeService_IsTrackingSessionTime_" data-uid="GameFramework.Services.TimeService.IsTrackingSessionTime*"></a>
+  <h4 id="GameFramework_Services_TimeService_IsTrackingSessionTime" data-uid="GameFramework.Services.TimeService.IsTrackingSessionTime">IsTrackingSessionTime</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsTrackingSessionTime { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="GameFramework_Services_TimeService_LevelTime_" data-uid="GameFramework.Services.TimeService.LevelTime*"></a>
+  <h4 id="GameFramework_Services_TimeService_LevelTime" data-uid="GameFramework.Services.TimeService.LevelTime">LevelTime</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float LevelTime { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="GameFramework_Services_TimeService_LevelTimeSpan_" data-uid="GameFramework.Services.TimeService.LevelTimeSpan*"></a>
+  <h4 id="GameFramework_Services_TimeService_LevelTimeSpan" data-uid="GameFramework.Services.TimeService.LevelTimeSpan">LevelTimeSpan</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TimeSpan LevelTimeSpan { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TimeSpan</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="GameFramework_Services_TimeService_SessionTime_" data-uid="GameFramework.Services.TimeService.SessionTime*"></a>
+  <h4 id="GameFramework_Services_TimeService_SessionTime" data-uid="GameFramework.Services.TimeService.SessionTime">SessionTime</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float SessionTime { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="GameFramework_Services_TimeService_SessionTimeSpan_" data-uid="GameFramework.Services.TimeService.SessionTimeSpan*"></a>
+  <h4 id="GameFramework_Services_TimeService_SessionTimeSpan" data-uid="GameFramework.Services.TimeService.SessionTimeSpan">SessionTimeSpan</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TimeSpan SessionTimeSpan { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TimeSpan</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="GameFramework_Services_TimeService_GetFormattedGameTime_" data-uid="GameFramework.Services.TimeService.GetFormattedGameTime*"></a>
+  <h4 id="GameFramework_Services_TimeService_GetFormattedGameTime" data-uid="GameFramework.Services.TimeService.GetFormattedGameTime">GetFormattedGameTime()</h4>
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.Services.TimeService.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Get formatted game time string (HH:MM:SS)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetFormattedGameTime()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="GameFramework_Services_TimeService_GetFormattedLevelTime_" data-uid="GameFramework.Services.TimeService.GetFormattedLevelTime*"></a>
+  <h4 id="GameFramework_Services_TimeService_GetFormattedLevelTime" data-uid="GameFramework.Services.TimeService.GetFormattedLevelTime">GetFormattedLevelTime()</h4>
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.Services.TimeService.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Get formatted level time string (HH:MM:SS)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetFormattedLevelTime()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="GameFramework_Services_TimeService_GetFormattedSessionTime_" data-uid="GameFramework.Services.TimeService.GetFormattedSessionTime*"></a>
+  <h4 id="GameFramework_Services_TimeService_GetFormattedSessionTime" data-uid="GameFramework.Services.TimeService.GetFormattedSessionTime">GetFormattedSessionTime()</h4>
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.Services.TimeService.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Get formatted session time string (HH:MM:SS)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetFormattedSessionTime()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="GameFramework_Services_TimeService_GetTimeStatistics_" data-uid="GameFramework.Services.TimeService.GetTimeStatistics*"></a>
+  <h4 id="GameFramework_Services_TimeService_GetTimeStatistics" data-uid="GameFramework.Services.TimeService.GetTimeStatistics">GetTimeStatistics()</h4>
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.Services.TimeService.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Get time statistics for debugging/display</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TimeStatistics GetTimeStatistics()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Services.TimeStatistics.html">TimeStatistics</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="GameFramework_Services_TimeService_InitializeAsync_" data-uid="GameFramework.Services.TimeService.InitializeAsync*"></a>
+  <h4 id="GameFramework_Services_TimeService_InitializeAsync" data-uid="GameFramework.Services.TimeService.InitializeAsync">InitializeAsync()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public async Task InitializeAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="GameFramework_Services_TimeService_ResetAllTimers_" data-uid="GameFramework.Services.TimeService.ResetAllTimers*"></a>
+  <h4 id="GameFramework_Services_TimeService_ResetAllTimers" data-uid="GameFramework.Services.TimeService.ResetAllTimers">ResetAllTimers()</h4>
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.Services.TimeService.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Reset all timers</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ResetAllTimers()</code></pre>
+  </div>
+  
+  
+  <a id="GameFramework_Services_TimeService_ResetLevelTimer_" data-uid="GameFramework.Services.TimeService.ResetLevelTimer*"></a>
+  <h4 id="GameFramework_Services_TimeService_ResetLevelTimer" data-uid="GameFramework.Services.TimeService.ResetLevelTimer">ResetLevelTimer()</h4>
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.Services.TimeService.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Reset only the level timer (for new scenes)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ResetLevelTimer()</code></pre>
+  </div>
+  
+  
+  <a id="GameFramework_Services_TimeService_Shutdown_" data-uid="GameFramework.Services.TimeService.Shutdown*"></a>
+  <h4 id="GameFramework_Services_TimeService_Shutdown" data-uid="GameFramework.Services.TimeService.Shutdown">Shutdown()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Shutdown()</code></pre>
+  </div>
+  
+  
+  <a id="GameFramework_Services_TimeService_Update_" data-uid="GameFramework.Services.TimeService.Update*"></a>
+  <h4 id="GameFramework_Services_TimeService_Update" data-uid="GameFramework.Services.TimeService.Update">Update()</h4>
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.Services.TimeService.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Update time tracking - called every frame by GameManager</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Update()</code></pre>
+  </div>
+  <h3 id="events">Events
+  </h3>
+  
+  
+  <h4 id="GameFramework_Services_TimeService_OnGameTimeChanged" data-uid="GameFramework.Services.TimeService.OnGameTimeChanged">OnGameTimeChanged</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event Action&lt;float&gt; OnGameTimeChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Action</span>&lt;<span class="xref">System.Single</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="GameFramework_Services_TimeService_OnLevelTimeChanged" data-uid="GameFramework.Services.TimeService.OnLevelTimeChanged">OnLevelTimeChanged</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event Action&lt;float&gt; OnLevelTimeChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Action</span>&lt;<span class="xref">System.Single</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="GameFramework_Services_TimeService_OnSessionTimeChanged" data-uid="GameFramework.Services.TimeService.OnSessionTimeChanged">OnSessionTimeChanged</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event Action&lt;float&gt; OnSessionTimeChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Action</span>&lt;<span class="xref">System.Single</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="GameFramework_Services_TimeService_OnTimersReset" data-uid="GameFramework.Services.TimeService.OnTimersReset">OnTimersReset</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event Action OnTimersReset</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Action</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">IUpdatable</span>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

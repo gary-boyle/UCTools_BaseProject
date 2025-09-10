@@ -1,0 +1,59 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.UI.Utilities
+  commentId: N:GameFramework.UI.Utilities
+  id: GameFramework.UI.Utilities
+  children:
+  - GameFramework.UI.Utilities.CircularBuffer`1
+  - GameFramework.UI.Utilities.GraphElement
+  langs:
+  - csharp
+  - vb
+  name: GameFramework.UI.Utilities
+  nameWithType: GameFramework.UI.Utilities
+  fullName: GameFramework.UI.Utilities
+  type: Namespace
+  assemblies:
+  - cs.temp.dll
+references:
+- uid: GameFramework.UI.Utilities.GraphElement
+  commentId: T:GameFramework.UI.Utilities.GraphElement
+  name: GraphElement
+  nameWithType: GraphElement
+  fullName: GameFramework.UI.Utilities.GraphElement
+- uid: GameFramework.UI.Utilities.CircularBuffer`1
+  commentId: T:GameFramework.UI.Utilities.CircularBuffer`1
+  name: CircularBuffer<T>
+  nameWithType: CircularBuffer<T>
+  fullName: GameFramework.UI.Utilities.CircularBuffer<T>
+  nameWithType.vb: CircularBuffer(Of T)
+  fullName.vb: GameFramework.UI.Utilities.CircularBuffer(Of T)
+  name.vb: CircularBuffer(Of T)
+  spec.csharp:
+  - uid: GameFramework.UI.Utilities.CircularBuffer`1
+    name: CircularBuffer
+    nameWithType: CircularBuffer
+    fullName: GameFramework.UI.Utilities.CircularBuffer
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: GameFramework.UI.Utilities.CircularBuffer`1
+    name: CircularBuffer
+    nameWithType: CircularBuffer
+    fullName: GameFramework.UI.Utilities.CircularBuffer
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )

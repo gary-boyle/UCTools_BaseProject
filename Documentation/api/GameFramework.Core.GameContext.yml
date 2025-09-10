@@ -1,0 +1,725 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.Core.GameContext
+  commentId: T:GameFramework.Core.GameContext
+  id: GameContext
+  parent: GameFramework.Core
+  children:
+  - GameFramework.Core.GameContext.#ctor(IEventSystem,ISceneService,IAudioService,IInputManager,IUIService,ISaveService,IConfigService,IGameDataService)
+  - GameFramework.Core.GameContext.AudioService
+  - GameFramework.Core.GameContext.ConfigService
+  - GameFramework.Core.GameContext.EventSystem
+  - GameFramework.Core.GameContext.GameDataService
+  - GameFramework.Core.GameContext.InputManager
+  - GameFramework.Core.GameContext.SaveService
+  - GameFramework.Core.GameContext.SceneService
+  - GameFramework.Core.GameContext.UIService
+  langs:
+  - csharp
+  - vb
+  name: GameContext
+  nameWithType: GameContext
+  fullName: GameFramework.Core.GameContext
+  type: Class
+  source:
+    id: GameContext
+    path: ''
+    startLine: 2931
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Core
+  summary: "\nContext object containing all core game services.\nUses constructor injection to receive all dependencies.\nProvides centralized access to services for game states and other systems.\n"
+  example: []
+  syntax:
+    content: public class GameContext
+    content.vb: Public Class GameContext
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: GameFramework.Core.GameContext.EventSystem
+  commentId: P:GameFramework.Core.GameContext.EventSystem
+  id: EventSystem
+  parent: GameFramework.Core.GameContext
+  langs:
+  - csharp
+  - vb
+  name: EventSystem
+  nameWithType: GameContext.EventSystem
+  fullName: GameFramework.Core.GameContext.EventSystem
+  type: Property
+  source:
+    id: EventSystem
+    path: ''
+    startLine: 2933
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Core
+  syntax:
+    content: public IEventSystem EventSystem { get; }
+    parameters: []
+    return:
+      type: IEventSystem
+    content.vb: Public ReadOnly Property EventSystem As IEventSystem
+  overload: GameFramework.Core.GameContext.EventSystem*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: GameFramework.Core.GameContext.SceneService
+  commentId: P:GameFramework.Core.GameContext.SceneService
+  id: SceneService
+  parent: GameFramework.Core.GameContext
+  langs:
+  - csharp
+  - vb
+  name: SceneService
+  nameWithType: GameContext.SceneService
+  fullName: GameFramework.Core.GameContext.SceneService
+  type: Property
+  source:
+    id: SceneService
+    path: ''
+    startLine: 2934
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Core
+  syntax:
+    content: public ISceneService SceneService { get; }
+    parameters: []
+    return:
+      type: ISceneService
+    content.vb: Public ReadOnly Property SceneService As ISceneService
+  overload: GameFramework.Core.GameContext.SceneService*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: GameFramework.Core.GameContext.AudioService
+  commentId: P:GameFramework.Core.GameContext.AudioService
+  id: AudioService
+  parent: GameFramework.Core.GameContext
+  langs:
+  - csharp
+  - vb
+  name: AudioService
+  nameWithType: GameContext.AudioService
+  fullName: GameFramework.Core.GameContext.AudioService
+  type: Property
+  source:
+    id: AudioService
+    path: ''
+    startLine: 2935
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Core
+  syntax:
+    content: public IAudioService AudioService { get; }
+    parameters: []
+    return:
+      type: IAudioService
+    content.vb: Public ReadOnly Property AudioService As IAudioService
+  overload: GameFramework.Core.GameContext.AudioService*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: GameFramework.Core.GameContext.InputManager
+  commentId: P:GameFramework.Core.GameContext.InputManager
+  id: InputManager
+  parent: GameFramework.Core.GameContext
+  langs:
+  - csharp
+  - vb
+  name: InputManager
+  nameWithType: GameContext.InputManager
+  fullName: GameFramework.Core.GameContext.InputManager
+  type: Property
+  source:
+    id: InputManager
+    path: ''
+    startLine: 2936
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Core
+  syntax:
+    content: public IInputManager InputManager { get; }
+    parameters: []
+    return:
+      type: IInputManager
+    content.vb: Public ReadOnly Property InputManager As IInputManager
+  overload: GameFramework.Core.GameContext.InputManager*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: GameFramework.Core.GameContext.UIService
+  commentId: P:GameFramework.Core.GameContext.UIService
+  id: UIService
+  parent: GameFramework.Core.GameContext
+  langs:
+  - csharp
+  - vb
+  name: UIService
+  nameWithType: GameContext.UIService
+  fullName: GameFramework.Core.GameContext.UIService
+  type: Property
+  source:
+    id: UIService
+    path: ''
+    startLine: 2937
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Core
+  syntax:
+    content: public IUIService UIService { get; }
+    parameters: []
+    return:
+      type: IUIService
+    content.vb: Public ReadOnly Property UIService As IUIService
+  overload: GameFramework.Core.GameContext.UIService*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: GameFramework.Core.GameContext.SaveService
+  commentId: P:GameFramework.Core.GameContext.SaveService
+  id: SaveService
+  parent: GameFramework.Core.GameContext
+  langs:
+  - csharp
+  - vb
+  name: SaveService
+  nameWithType: GameContext.SaveService
+  fullName: GameFramework.Core.GameContext.SaveService
+  type: Property
+  source:
+    id: SaveService
+    path: ''
+    startLine: 2938
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Core
+  syntax:
+    content: public ISaveService SaveService { get; }
+    parameters: []
+    return:
+      type: ISaveService
+    content.vb: Public ReadOnly Property SaveService As ISaveService
+  overload: GameFramework.Core.GameContext.SaveService*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: GameFramework.Core.GameContext.ConfigService
+  commentId: P:GameFramework.Core.GameContext.ConfigService
+  id: ConfigService
+  parent: GameFramework.Core.GameContext
+  langs:
+  - csharp
+  - vb
+  name: ConfigService
+  nameWithType: GameContext.ConfigService
+  fullName: GameFramework.Core.GameContext.ConfigService
+  type: Property
+  source:
+    id: ConfigService
+    path: ''
+    startLine: 2939
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Core
+  syntax:
+    content: public IConfigService ConfigService { get; }
+    parameters: []
+    return:
+      type: IConfigService
+    content.vb: Public ReadOnly Property ConfigService As IConfigService
+  overload: GameFramework.Core.GameContext.ConfigService*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: GameFramework.Core.GameContext.GameDataService
+  commentId: P:GameFramework.Core.GameContext.GameDataService
+  id: GameDataService
+  parent: GameFramework.Core.GameContext
+  langs:
+  - csharp
+  - vb
+  name: GameDataService
+  nameWithType: GameContext.GameDataService
+  fullName: GameFramework.Core.GameContext.GameDataService
+  type: Property
+  source:
+    id: GameDataService
+    path: ''
+    startLine: 2940
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Core
+  syntax:
+    content: public IGameDataService GameDataService { get; }
+    parameters: []
+    return:
+      type: IGameDataService
+    content.vb: Public ReadOnly Property GameDataService As IGameDataService
+  overload: GameFramework.Core.GameContext.GameDataService*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: GameFramework.Core.GameContext.#ctor(IEventSystem,ISceneService,IAudioService,IInputManager,IUIService,ISaveService,IConfigService,IGameDataService)
+  commentId: M:GameFramework.Core.GameContext.#ctor(IEventSystem,ISceneService,IAudioService,IInputManager,IUIService,ISaveService,IConfigService,IGameDataService)
+  id: '#ctor(IEventSystem,ISceneService,IAudioService,IInputManager,IUIService,ISaveService,IConfigService,IGameDataService)'
+  parent: GameFramework.Core.GameContext
+  langs:
+  - csharp
+  - vb
+  name: GameContext(IEventSystem, ISceneService, IAudioService, IInputManager, IUIService, ISaveService, IConfigService, IGameDataService)
+  nameWithType: GameContext.GameContext(IEventSystem, ISceneService, IAudioService, IInputManager, IUIService, ISaveService, IConfigService, IGameDataService)
+  fullName: GameFramework.Core.GameContext.GameContext(IEventSystem, ISceneService, IAudioService, IInputManager, IUIService, ISaveService, IConfigService, IGameDataService)
+  type: Constructor
+  source:
+    id: .ctor
+    path: ''
+    startLine: 2942
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Core
+  syntax:
+    content: public GameContext(IEventSystem eventSystem, ISceneService sceneService, IAudioService audioService, IInputManager inputManager, IUIService uiService, ISaveService saveService, IConfigService configService, IGameDataService gameDataService)
+    parameters:
+    - id: eventSystem
+      type: IEventSystem
+    - id: sceneService
+      type: ISceneService
+    - id: audioService
+      type: IAudioService
+    - id: inputManager
+      type: IInputManager
+    - id: uiService
+      type: IUIService
+    - id: saveService
+      type: ISaveService
+    - id: configService
+      type: IConfigService
+    - id: gameDataService
+      type: IGameDataService
+    content.vb: Public Sub New(eventSystem As IEventSystem, sceneService As ISceneService, audioService As IAudioService, inputManager As IInputManager, uiService As IUIService, saveService As ISaveService, configService As IConfigService, gameDataService As IGameDataService)
+  overload: GameFramework.Core.GameContext.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: GameFramework.Core
+  commentId: N:GameFramework.Core
+  name: GameFramework.Core
+  nameWithType: GameFramework.Core
+  fullName: GameFramework.Core
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: GameFramework.Core.GameContext.EventSystem*
+  commentId: Overload:GameFramework.Core.GameContext.EventSystem
+  name: EventSystem
+  nameWithType: GameContext.EventSystem
+  fullName: GameFramework.Core.GameContext.EventSystem
+- uid: IEventSystem
+  isExternal: true
+  name: IEventSystem
+  nameWithType: IEventSystem
+  fullName: IEventSystem
+- uid: GameFramework.Core.GameContext.SceneService*
+  commentId: Overload:GameFramework.Core.GameContext.SceneService
+  name: SceneService
+  nameWithType: GameContext.SceneService
+  fullName: GameFramework.Core.GameContext.SceneService
+- uid: ISceneService
+  isExternal: true
+  name: ISceneService
+  nameWithType: ISceneService
+  fullName: ISceneService
+- uid: GameFramework.Core.GameContext.AudioService*
+  commentId: Overload:GameFramework.Core.GameContext.AudioService
+  name: AudioService
+  nameWithType: GameContext.AudioService
+  fullName: GameFramework.Core.GameContext.AudioService
+- uid: IAudioService
+  isExternal: true
+  name: IAudioService
+  nameWithType: IAudioService
+  fullName: IAudioService
+- uid: GameFramework.Core.GameContext.InputManager*
+  commentId: Overload:GameFramework.Core.GameContext.InputManager
+  name: InputManager
+  nameWithType: GameContext.InputManager
+  fullName: GameFramework.Core.GameContext.InputManager
+- uid: IInputManager
+  isExternal: true
+  name: IInputManager
+  nameWithType: IInputManager
+  fullName: IInputManager
+- uid: GameFramework.Core.GameContext.UIService*
+  commentId: Overload:GameFramework.Core.GameContext.UIService
+  name: UIService
+  nameWithType: GameContext.UIService
+  fullName: GameFramework.Core.GameContext.UIService
+- uid: IUIService
+  isExternal: true
+  name: IUIService
+  nameWithType: IUIService
+  fullName: IUIService
+- uid: GameFramework.Core.GameContext.SaveService*
+  commentId: Overload:GameFramework.Core.GameContext.SaveService
+  name: SaveService
+  nameWithType: GameContext.SaveService
+  fullName: GameFramework.Core.GameContext.SaveService
+- uid: ISaveService
+  isExternal: true
+  name: ISaveService
+  nameWithType: ISaveService
+  fullName: ISaveService
+- uid: GameFramework.Core.GameContext.ConfigService*
+  commentId: Overload:GameFramework.Core.GameContext.ConfigService
+  name: ConfigService
+  nameWithType: GameContext.ConfigService
+  fullName: GameFramework.Core.GameContext.ConfigService
+- uid: IConfigService
+  isExternal: true
+  name: IConfigService
+  nameWithType: IConfigService
+  fullName: IConfigService
+- uid: GameFramework.Core.GameContext.GameDataService*
+  commentId: Overload:GameFramework.Core.GameContext.GameDataService
+  name: GameDataService
+  nameWithType: GameContext.GameDataService
+  fullName: GameFramework.Core.GameContext.GameDataService
+- uid: IGameDataService
+  isExternal: true
+  name: IGameDataService
+  nameWithType: IGameDataService
+  fullName: IGameDataService
+- uid: GameFramework.Core.GameContext.#ctor*
+  commentId: Overload:GameFramework.Core.GameContext.#ctor
+  name: GameContext
+  nameWithType: GameContext.GameContext
+  fullName: GameFramework.Core.GameContext.GameContext

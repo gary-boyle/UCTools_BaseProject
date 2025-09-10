@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class InputHandlerBase
+   | UCTools Base Project Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class InputHandlerBase
+   | UCTools Base Project Documentation ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="GameFramework.Input.InputHandlerBase">
+  
+  
+  <h1 id="GameFramework_Input_InputHandlerBase" data-uid="GameFramework.Input.InputHandlerBase" class="text-break">Class InputHandlerBase
+  </h1>
+  <div class="markdown level0 summary"><p sourcefile="api/GameFramework.Input.InputHandlerBase.yml" sourcestartlinenumber="2" sourceendlinenumber="3">Base class for all input handlers
+Each handler is responsible for one specific type of input (UI, Player, Console, etc.)</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">InputHandlerBase</span></div>
+      <div class="level2"><a class="xref" href="GameFramework.Input.Handlers.ConsoleInputHandler.html">ConsoleInputHandler</a></div>
+      <div class="level2"><a class="xref" href="GameFramework.Input.Handlers.PlayerInputHandler.html">PlayerInputHandler</a></div>
+      <div class="level2"><a class="xref" href="GameFramework.Input.Handlers.UIInputHandler.html">UIInputHandler</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.Input.html">GameFramework.Input</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="GameFramework_Input_InputHandlerBase_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class InputHandlerBase</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  
+  <a id="GameFramework_Input_InputHandlerBase__ctor_" data-uid="GameFramework.Input.InputHandlerBase.#ctor*"></a>
+  <h4 id="GameFramework_Input_InputHandlerBase__ctor_System_String_System_Int32_IEventSystem_System_Boolean_" data-uid="GameFramework.Input.InputHandlerBase.#ctor(System.String,System.Int32,IEventSystem,System.Boolean)">InputHandlerBase(String, Int32, IEventSystem, Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected InputHandlerBase(string name, int priority, IEventSystem eventSystem, bool consumeInput = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">name</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">priority</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">IEventSystem</span></td>
+        <td><span class="parametername">eventSystem</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">consumeInput</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+  </h3>
+  
+  
+  <h4 id="GameFramework_Input_InputHandlerBase__eventSystem" data-uid="GameFramework.Input.InputHandlerBase._eventSystem">_eventSystem</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly IEventSystem _eventSystem</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEventSystem</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="GameFramework_Input_InputHandlerBase_ConsumeInput_" data-uid="GameFramework.Input.InputHandlerBase.ConsumeInput*"></a>
+  <h4 id="GameFramework_Input_InputHandlerBase_ConsumeInput" data-uid="GameFramework.Input.InputHandlerBase.ConsumeInput">ConsumeInput</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ConsumeInput { get; protected set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="GameFramework_Input_InputHandlerBase_IsActive_" data-uid="GameFramework.Input.InputHandlerBase.IsActive*"></a>
+  <h4 id="GameFramework_Input_InputHandlerBase_IsActive" data-uid="GameFramework.Input.InputHandlerBase.IsActive">IsActive</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsActive { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="GameFramework_Input_InputHandlerBase_Name_" data-uid="GameFramework.Input.InputHandlerBase.Name*"></a>
+  <h4 id="GameFramework_Input_InputHandlerBase_Name" data-uid="GameFramework.Input.InputHandlerBase.Name">Name</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Name { get; protected set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="GameFramework_Input_InputHandlerBase_Priority_" data-uid="GameFramework.Input.InputHandlerBase.Priority*"></a>
+  <h4 id="GameFramework_Input_InputHandlerBase_Priority" data-uid="GameFramework.Input.InputHandlerBase.Priority">Priority</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Priority { get; protected set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="GameFramework_Input_InputHandlerBase_Activate_" data-uid="GameFramework.Input.InputHandlerBase.Activate*"></a>
+  <h4 id="GameFramework_Input_InputHandlerBase_Activate" data-uid="GameFramework.Input.InputHandlerBase.Activate">Activate()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Activate()</code></pre>
+  </div>
+  
+  
+  <a id="GameFramework_Input_InputHandlerBase_Deactivate_" data-uid="GameFramework.Input.InputHandlerBase.Deactivate*"></a>
+  <h4 id="GameFramework_Input_InputHandlerBase_Deactivate" data-uid="GameFramework.Input.InputHandlerBase.Deactivate">Deactivate()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Deactivate()</code></pre>
+  </div>
+  
+  
+  <a id="GameFramework_Input_InputHandlerBase_HandleInput_" data-uid="GameFramework.Input.InputHandlerBase.HandleInput*"></a>
+  <h4 id="GameFramework_Input_InputHandlerBase_HandleInput__1___0_" data-uid="GameFramework.Input.InputHandlerBase.HandleInput``1(``0)">HandleInput&lt;T&gt;(T)</h4>
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.Input.InputHandlerBase.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Handle an input event. Return true if the event was consumed and should not propagate to lower priority handlers.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract bool HandleInput&lt;T&gt;(T inputEvent)
+    where T : class</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">inputEvent</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="GameFramework_Input_InputHandlerBase_OnActivate_" data-uid="GameFramework.Input.InputHandlerBase.OnActivate*"></a>
+  <h4 id="GameFramework_Input_InputHandlerBase_OnActivate" data-uid="GameFramework.Input.InputHandlerBase.OnActivate">OnActivate()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnActivate()</code></pre>
+  </div>
+  
+  
+  <a id="GameFramework_Input_InputHandlerBase_OnDeactivate_" data-uid="GameFramework.Input.InputHandlerBase.OnDeactivate*"></a>
+  <h4 id="GameFramework_Input_InputHandlerBase_OnDeactivate" data-uid="GameFramework.Input.InputHandlerBase.OnDeactivate">OnDeactivate()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnDeactivate()</code></pre>
+  </div>
+  
+  
+  <a id="GameFramework_Input_InputHandlerBase_SubscribeToEvents_" data-uid="GameFramework.Input.InputHandlerBase.SubscribeToEvents*"></a>
+  <h4 id="GameFramework_Input_InputHandlerBase_SubscribeToEvents" data-uid="GameFramework.Input.InputHandlerBase.SubscribeToEvents">SubscribeToEvents()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract void SubscribeToEvents()</code></pre>
+  </div>
+  
+  
+  <a id="GameFramework_Input_InputHandlerBase_UnsubscribeFromEvents_" data-uid="GameFramework.Input.InputHandlerBase.UnsubscribeFromEvents*"></a>
+  <h4 id="GameFramework_Input_InputHandlerBase_UnsubscribeFromEvents" data-uid="GameFramework.Input.InputHandlerBase.UnsubscribeFromEvents">UnsubscribeFromEvents()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract void UnsubscribeFromEvents()</code></pre>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

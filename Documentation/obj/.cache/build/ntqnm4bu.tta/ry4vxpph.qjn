@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class LoadGamePopup
+   | UCTools Base Project Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class LoadGamePopup
+   | UCTools Base Project Documentation ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="GameFramework.UI.Screens.LoadGamePopup">
+  
+  
+  <h1 id="GameFramework_UI_Screens_LoadGamePopup" data-uid="GameFramework.UI.Screens.LoadGamePopup" class="text-break">Class LoadGamePopup
+  </h1>
+  <div class="markdown level0 summary"><p sourcefile="api/GameFramework.UI.Screens.LoadGamePopup.yml" sourcestartlinenumber="2" sourceendlinenumber="3">Load game popup that extends the base save file list functionality
+Provides double-click loading and load button functionality</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><a class="xref" href="GameFramework.UI.UIScreen.html">UIScreen</a></div>
+    <div class="level2"><a class="xref" href="GameFramework.UI.UIPopup.html">UIPopup</a></div>
+    <div class="level3"><a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html">SaveFileListPopup</a></div>
+    <div class="level4"><span class="xref">LoadGamePopup</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup__saveFileList">SaveFileListPopup._saveFileList</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup__deleteButton">SaveFileListPopup._deleteButton</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup__closeButton">SaveFileListPopup._closeButton</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup__statusLabel">SaveFileListPopup._statusLabel</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup__uiService">SaveFileListPopup._uiService</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup__loadService">SaveFileListPopup._loadService</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup__saveService">SaveFileListPopup._saveService</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup__eventSystem">SaveFileListPopup._eventSystem</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup__saveFiles">SaveFileListPopup._saveFiles</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup__selectedSaveFile">SaveFileListPopup._selectedSaveFile</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup__isLoadingData">SaveFileListPopup._isLoadingData</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup__isDeletingFile">SaveFileListPopup._isDeletingFile</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup_NO_SAVE_FILES_MESSAGE">SaveFileListPopup.NO_SAVE_FILES_MESSAGE</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup_LOADING_SAVE_FILES_MESSAGE">SaveFileListPopup.LOADING_SAVE_FILES_MESSAGE</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup_DELETING_SAVE_FILE_MESSAGE">SaveFileListPopup.DELETING_SAVE_FILE_MESSAGE</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup_ERROR_LOADING_MESSAGE">SaveFileListPopup.ERROR_LOADING_MESSAGE</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup_ERROR_DELETING_MESSAGE">SaveFileListPopup.ERROR_DELETING_MESSAGE</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup_InitializeBaseUI">SaveFileListPopup.InitializeBaseUI()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup_OnShow">SaveFileListPopup.OnShow()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup_OnHide">SaveFileListPopup.OnHide()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup_ResetUIState">SaveFileListPopup.ResetUIState()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup_UpdateSelection_SaveFileInfo_">SaveFileListPopup.UpdateSelection(SaveFileInfo)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup_UpdateButtonStates">SaveFileListPopup.UpdateButtonStates()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup_CanDeleteSelectedFile">SaveFileListPopup.CanDeleteSelectedFile()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup_SetDataLoadingState_System_Boolean_">SaveFileListPopup.SetDataLoadingState(Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup_SetDeletingState_System_Boolean_">SaveFileListPopup.SetDeletingState(Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup_SetStatusMessage_System_String_System_Boolean_">SaveFileListPopup.SetStatusMessage(String, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup_RefreshSaveFilesList">SaveFileListPopup.RefreshSaveFilesList()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.UIPopup.html#GameFramework_UI_UIPopup_CountsAsGameBlockingPopup">UIPopup.CountsAsGameBlockingPopup</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_RootElement">UIScreen.RootElement</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_IsVisible">UIScreen.IsVisible</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_NeedsFrameUpdates">UIScreen.NeedsFrameUpdates</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_Show">UIScreen.Show()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_Hide">UIScreen.Hide()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_EnableFrameUpdates">UIScreen.EnableFrameUpdates()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_DisableFrameUpdates">UIScreen.DisableFrameUpdates()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_OnUpdate_System_Single_">UIScreen.OnUpdate(Single)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_Cleanup">UIScreen.Cleanup()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_ShouldUpdateWhenPaused">UIScreen.ShouldUpdateWhenPaused()</a>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.UI.Screens.html">GameFramework.UI.Screens</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="GameFramework_UI_Screens_LoadGamePopup_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class LoadGamePopup : SaveFileListPopup</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  
+  <a id="GameFramework_UI_Screens_LoadGamePopup__ctor_" data-uid="GameFramework.UI.Screens.LoadGamePopup.#ctor*"></a>
+  <h4 id="GameFramework_UI_Screens_LoadGamePopup__ctor_VisualElement_" data-uid="GameFramework.UI.Screens.LoadGamePopup.#ctor(VisualElement)">LoadGamePopup(VisualElement)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LoadGamePopup(VisualElement rootElement)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">VisualElement</span></td>
+        <td><span class="parametername">rootElement</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="GameFramework_UI_Screens_LoadGamePopup_CacheSpecificUIElements_" data-uid="GameFramework.UI.Screens.LoadGamePopup.CacheSpecificUIElements*"></a>
+  <h4 id="GameFramework_UI_Screens_LoadGamePopup_CacheSpecificUIElements" data-uid="GameFramework.UI.Screens.LoadGamePopup.CacheSpecificUIElements">CacheSpecificUIElements()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void CacheSpecificUIElements()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup_CacheSpecificUIElements">SaveFileListPopup.CacheSpecificUIElements()</a></div>
+  
+  
+  <a id="GameFramework_UI_Screens_LoadGamePopup_ClosePopup_" data-uid="GameFramework.UI.Screens.LoadGamePopup.ClosePopup*"></a>
+  <h4 id="GameFramework_UI_Screens_LoadGamePopup_ClosePopup" data-uid="GameFramework.UI.Screens.LoadGamePopup.ClosePopup">ClosePopup()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override async Task ClosePopup()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup_ClosePopup">SaveFileListPopup.ClosePopup()</a></div>
+  
+  
+  <a id="GameFramework_UI_Screens_LoadGamePopup_RegisterSpecificEventHandlers_" data-uid="GameFramework.UI.Screens.LoadGamePopup.RegisterSpecificEventHandlers*"></a>
+  <h4 id="GameFramework_UI_Screens_LoadGamePopup_RegisterSpecificEventHandlers" data-uid="GameFramework.UI.Screens.LoadGamePopup.RegisterSpecificEventHandlers">RegisterSpecificEventHandlers()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void RegisterSpecificEventHandlers()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup_RegisterSpecificEventHandlers">SaveFileListPopup.RegisterSpecificEventHandlers()</a></div>
+  
+  
+  <a id="GameFramework_UI_Screens_LoadGamePopup_SetupSpecificFunctionality_" data-uid="GameFramework.UI.Screens.LoadGamePopup.SetupSpecificFunctionality*"></a>
+  <h4 id="GameFramework_UI_Screens_LoadGamePopup_SetupSpecificFunctionality" data-uid="GameFramework.UI.Screens.LoadGamePopup.SetupSpecificFunctionality">SetupSpecificFunctionality()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void SetupSpecificFunctionality()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup_SetupSpecificFunctionality">SaveFileListPopup.SetupSpecificFunctionality()</a></div>
+  
+  
+  <a id="GameFramework_UI_Screens_LoadGamePopup_UnregisterSpecificEventHandlers_" data-uid="GameFramework.UI.Screens.LoadGamePopup.UnregisterSpecificEventHandlers*"></a>
+  <h4 id="GameFramework_UI_Screens_LoadGamePopup_UnregisterSpecificEventHandlers" data-uid="GameFramework.UI.Screens.LoadGamePopup.UnregisterSpecificEventHandlers">UnregisterSpecificEventHandlers()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void UnregisterSpecificEventHandlers()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup_UnregisterSpecificEventHandlers">SaveFileListPopup.UnregisterSpecificEventHandlers()</a></div>
+  
+  
+  <a id="GameFramework_UI_Screens_LoadGamePopup_UpdateSpecificButtonStates_" data-uid="GameFramework.UI.Screens.LoadGamePopup.UpdateSpecificButtonStates*"></a>
+  <h4 id="GameFramework_UI_Screens_LoadGamePopup_UpdateSpecificButtonStates" data-uid="GameFramework.UI.Screens.LoadGamePopup.UpdateSpecificButtonStates">UpdateSpecificButtonStates()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void UpdateSpecificButtonStates()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup_UpdateSpecificButtonStates">SaveFileListPopup.UpdateSpecificButtonStates()</a></div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            UCTools Base Project Documentation
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

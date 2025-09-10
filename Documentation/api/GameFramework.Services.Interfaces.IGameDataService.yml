@@ -1,0 +1,853 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.Services.Interfaces.IGameDataService
+  commentId: T:GameFramework.Services.Interfaces.IGameDataService
+  id: IGameDataService
+  parent: GameFramework.Services.Interfaces
+  children:
+  - GameFramework.Services.Interfaces.IGameDataService.ClearSession
+  - GameFramework.Services.Interfaces.IGameDataService.CreateNewGameSession(LoadingConfiguration)
+  - GameFramework.Services.Interfaces.IGameDataService.CurrentLoadingConfig
+  - GameFramework.Services.Interfaces.IGameDataService.CurrentSession
+  - GameFramework.Services.Interfaces.IGameDataService.GetCustomData``1(System.String,``0)
+  - GameFramework.Services.Interfaces.IGameDataService.GetGameProgress
+  - GameFramework.Services.Interfaces.IGameDataService.GetLoadingData``1(System.String,``0)
+  - GameFramework.Services.Interfaces.IGameDataService.GetPlayerState
+  - GameFramework.Services.Interfaces.IGameDataService.HasActiveSession
+  - GameFramework.Services.Interfaces.IGameDataService.InitializeAsync
+  - GameFramework.Services.Interfaces.IGameDataService.IsInitialized
+  - GameFramework.Services.Interfaces.IGameDataService.LoadGameSession(GameSession)
+  - GameFramework.Services.Interfaces.IGameDataService.LoadSessionAsync(System.String)
+  - GameFramework.Services.Interfaces.IGameDataService.OnSessionCleared
+  - GameFramework.Services.Interfaces.IGameDataService.OnSessionCreated
+  - GameFramework.Services.Interfaces.IGameDataService.OnSessionLoaded
+  - GameFramework.Services.Interfaces.IGameDataService.SetCustomData``1(System.String,``0)
+  - GameFramework.Services.Interfaces.IGameDataService.Shutdown
+  - GameFramework.Services.Interfaces.IGameDataService.UpdateSession
+  langs:
+  - csharp
+  - vb
+  name: IGameDataService
+  nameWithType: IGameDataService
+  fullName: GameFramework.Services.Interfaces.IGameDataService
+  type: Interface
+  source:
+    id: IGameDataService
+    path: ''
+    startLine: 10969
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  summary: "\nClean IGameDataService interface for unified GameSession management\n"
+  example: []
+  syntax:
+    content: public interface IGameDataService
+    content.vb: Public Interface IGameDataService
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: GameFramework.Services.Interfaces.IGameDataService.IsInitialized
+  commentId: P:GameFramework.Services.Interfaces.IGameDataService.IsInitialized
+  id: IsInitialized
+  parent: GameFramework.Services.Interfaces.IGameDataService
+  langs:
+  - csharp
+  - vb
+  name: IsInitialized
+  nameWithType: IGameDataService.IsInitialized
+  fullName: GameFramework.Services.Interfaces.IGameDataService.IsInitialized
+  type: Property
+  source:
+    id: IsInitialized
+    path: ''
+    startLine: 10971
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: bool IsInitialized { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property IsInitialized As Boolean
+  overload: GameFramework.Services.Interfaces.IGameDataService.IsInitialized*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: GameFramework.Services.Interfaces.IGameDataService.CurrentSession
+  commentId: P:GameFramework.Services.Interfaces.IGameDataService.CurrentSession
+  id: CurrentSession
+  parent: GameFramework.Services.Interfaces.IGameDataService
+  langs:
+  - csharp
+  - vb
+  name: CurrentSession
+  nameWithType: IGameDataService.CurrentSession
+  fullName: GameFramework.Services.Interfaces.IGameDataService.CurrentSession
+  type: Property
+  source:
+    id: CurrentSession
+    path: ''
+    startLine: 10972
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: GameSession CurrentSession { get; }
+    parameters: []
+    return:
+      type: GameSession
+    content.vb: ReadOnly Property CurrentSession As GameSession
+  overload: GameFramework.Services.Interfaces.IGameDataService.CurrentSession*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: GameFramework.Services.Interfaces.IGameDataService.CurrentLoadingConfig
+  commentId: P:GameFramework.Services.Interfaces.IGameDataService.CurrentLoadingConfig
+  id: CurrentLoadingConfig
+  parent: GameFramework.Services.Interfaces.IGameDataService
+  langs:
+  - csharp
+  - vb
+  name: CurrentLoadingConfig
+  nameWithType: IGameDataService.CurrentLoadingConfig
+  fullName: GameFramework.Services.Interfaces.IGameDataService.CurrentLoadingConfig
+  type: Property
+  source:
+    id: CurrentLoadingConfig
+    path: ''
+    startLine: 10973
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: LoadingConfiguration CurrentLoadingConfig { get; set; }
+    parameters: []
+    return:
+      type: LoadingConfiguration
+    content.vb: Property CurrentLoadingConfig As LoadingConfiguration
+  overload: GameFramework.Services.Interfaces.IGameDataService.CurrentLoadingConfig*
+  modifiers.csharp:
+  - get
+  - set
+- uid: GameFramework.Services.Interfaces.IGameDataService.InitializeAsync
+  commentId: M:GameFramework.Services.Interfaces.IGameDataService.InitializeAsync
+  id: InitializeAsync
+  parent: GameFramework.Services.Interfaces.IGameDataService
+  langs:
+  - csharp
+  - vb
+  name: InitializeAsync()
+  nameWithType: IGameDataService.InitializeAsync()
+  fullName: GameFramework.Services.Interfaces.IGameDataService.InitializeAsync()
+  type: Method
+  source:
+    id: InitializeAsync
+    path: ''
+    startLine: 10976
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: Task InitializeAsync()
+    return:
+      type: Task
+    content.vb: Function InitializeAsync As Task
+  overload: GameFramework.Services.Interfaces.IGameDataService.InitializeAsync*
+- uid: GameFramework.Services.Interfaces.IGameDataService.Shutdown
+  commentId: M:GameFramework.Services.Interfaces.IGameDataService.Shutdown
+  id: Shutdown
+  parent: GameFramework.Services.Interfaces.IGameDataService
+  langs:
+  - csharp
+  - vb
+  name: Shutdown()
+  nameWithType: IGameDataService.Shutdown()
+  fullName: GameFramework.Services.Interfaces.IGameDataService.Shutdown()
+  type: Method
+  source:
+    id: Shutdown
+    path: ''
+    startLine: 10977
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: void Shutdown()
+    content.vb: Sub Shutdown
+  overload: GameFramework.Services.Interfaces.IGameDataService.Shutdown*
+- uid: GameFramework.Services.Interfaces.IGameDataService.CreateNewGameSession(LoadingConfiguration)
+  commentId: M:GameFramework.Services.Interfaces.IGameDataService.CreateNewGameSession(LoadingConfiguration)
+  id: CreateNewGameSession(LoadingConfiguration)
+  parent: GameFramework.Services.Interfaces.IGameDataService
+  langs:
+  - csharp
+  - vb
+  name: CreateNewGameSession(LoadingConfiguration)
+  nameWithType: IGameDataService.CreateNewGameSession(LoadingConfiguration)
+  fullName: GameFramework.Services.Interfaces.IGameDataService.CreateNewGameSession(LoadingConfiguration)
+  type: Method
+  source:
+    id: CreateNewGameSession
+    path: ''
+    startLine: 10980
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: void CreateNewGameSession(LoadingConfiguration config)
+    parameters:
+    - id: config
+      type: LoadingConfiguration
+    content.vb: Sub CreateNewGameSession(config As LoadingConfiguration)
+  overload: GameFramework.Services.Interfaces.IGameDataService.CreateNewGameSession*
+- uid: GameFramework.Services.Interfaces.IGameDataService.LoadGameSession(GameSession)
+  commentId: M:GameFramework.Services.Interfaces.IGameDataService.LoadGameSession(GameSession)
+  id: LoadGameSession(GameSession)
+  parent: GameFramework.Services.Interfaces.IGameDataService
+  langs:
+  - csharp
+  - vb
+  name: LoadGameSession(GameSession)
+  nameWithType: IGameDataService.LoadGameSession(GameSession)
+  fullName: GameFramework.Services.Interfaces.IGameDataService.LoadGameSession(GameSession)
+  type: Method
+  source:
+    id: LoadGameSession
+    path: ''
+    startLine: 10981
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: void LoadGameSession(GameSession session)
+    parameters:
+    - id: session
+      type: GameSession
+    content.vb: Sub LoadGameSession(session As GameSession)
+  overload: GameFramework.Services.Interfaces.IGameDataService.LoadGameSession*
+- uid: GameFramework.Services.Interfaces.IGameDataService.ClearSession
+  commentId: M:GameFramework.Services.Interfaces.IGameDataService.ClearSession
+  id: ClearSession
+  parent: GameFramework.Services.Interfaces.IGameDataService
+  langs:
+  - csharp
+  - vb
+  name: ClearSession()
+  nameWithType: IGameDataService.ClearSession()
+  fullName: GameFramework.Services.Interfaces.IGameDataService.ClearSession()
+  type: Method
+  source:
+    id: ClearSession
+    path: ''
+    startLine: 10982
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: void ClearSession()
+    content.vb: Sub ClearSession
+  overload: GameFramework.Services.Interfaces.IGameDataService.ClearSession*
+- uid: GameFramework.Services.Interfaces.IGameDataService.UpdateSession
+  commentId: M:GameFramework.Services.Interfaces.IGameDataService.UpdateSession
+  id: UpdateSession
+  parent: GameFramework.Services.Interfaces.IGameDataService
+  langs:
+  - csharp
+  - vb
+  name: UpdateSession()
+  nameWithType: IGameDataService.UpdateSession()
+  fullName: GameFramework.Services.Interfaces.IGameDataService.UpdateSession()
+  type: Method
+  source:
+    id: UpdateSession
+    path: ''
+    startLine: 10983
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: void UpdateSession()
+    content.vb: Sub UpdateSession
+  overload: GameFramework.Services.Interfaces.IGameDataService.UpdateSession*
+- uid: GameFramework.Services.Interfaces.IGameDataService.HasActiveSession
+  commentId: M:GameFramework.Services.Interfaces.IGameDataService.HasActiveSession
+  id: HasActiveSession
+  parent: GameFramework.Services.Interfaces.IGameDataService
+  langs:
+  - csharp
+  - vb
+  name: HasActiveSession()
+  nameWithType: IGameDataService.HasActiveSession()
+  fullName: GameFramework.Services.Interfaces.IGameDataService.HasActiveSession()
+  type: Method
+  source:
+    id: HasActiveSession
+    path: ''
+    startLine: 10984
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: bool HasActiveSession()
+    return:
+      type: System.Boolean
+    content.vb: Function HasActiveSession As Boolean
+  overload: GameFramework.Services.Interfaces.IGameDataService.HasActiveSession*
+- uid: GameFramework.Services.Interfaces.IGameDataService.LoadSessionAsync(System.String)
+  commentId: M:GameFramework.Services.Interfaces.IGameDataService.LoadSessionAsync(System.String)
+  id: LoadSessionAsync(System.String)
+  parent: GameFramework.Services.Interfaces.IGameDataService
+  langs:
+  - csharp
+  - vb
+  name: LoadSessionAsync(String)
+  nameWithType: IGameDataService.LoadSessionAsync(String)
+  fullName: GameFramework.Services.Interfaces.IGameDataService.LoadSessionAsync(System.String)
+  type: Method
+  source:
+    id: LoadSessionAsync
+    path: ''
+    startLine: 10988
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: Task<bool> LoadSessionAsync(string saveName)
+    parameters:
+    - id: saveName
+      type: System.String
+    return:
+      type: Task{System.Boolean}
+    content.vb: Function LoadSessionAsync(saveName As String) As Task(Of Boolean)
+  overload: GameFramework.Services.Interfaces.IGameDataService.LoadSessionAsync*
+- uid: GameFramework.Services.Interfaces.IGameDataService.GetPlayerState
+  commentId: M:GameFramework.Services.Interfaces.IGameDataService.GetPlayerState
+  id: GetPlayerState
+  parent: GameFramework.Services.Interfaces.IGameDataService
+  langs:
+  - csharp
+  - vb
+  name: GetPlayerState()
+  nameWithType: IGameDataService.GetPlayerState()
+  fullName: GameFramework.Services.Interfaces.IGameDataService.GetPlayerState()
+  type: Method
+  source:
+    id: GetPlayerState
+    path: ''
+    startLine: 10991
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: PlayerState GetPlayerState()
+    return:
+      type: PlayerState
+    content.vb: Function GetPlayerState As PlayerState
+  overload: GameFramework.Services.Interfaces.IGameDataService.GetPlayerState*
+- uid: GameFramework.Services.Interfaces.IGameDataService.GetGameProgress
+  commentId: M:GameFramework.Services.Interfaces.IGameDataService.GetGameProgress
+  id: GetGameProgress
+  parent: GameFramework.Services.Interfaces.IGameDataService
+  langs:
+  - csharp
+  - vb
+  name: GetGameProgress()
+  nameWithType: IGameDataService.GetGameProgress()
+  fullName: GameFramework.Services.Interfaces.IGameDataService.GetGameProgress()
+  type: Method
+  source:
+    id: GetGameProgress
+    path: ''
+    startLine: 10992
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: GameProgress GetGameProgress()
+    return:
+      type: GameProgress
+    content.vb: Function GetGameProgress As GameProgress
+  overload: GameFramework.Services.Interfaces.IGameDataService.GetGameProgress*
+- uid: GameFramework.Services.Interfaces.IGameDataService.GetCustomData``1(System.String,``0)
+  commentId: M:GameFramework.Services.Interfaces.IGameDataService.GetCustomData``1(System.String,``0)
+  id: GetCustomData``1(System.String,``0)
+  parent: GameFramework.Services.Interfaces.IGameDataService
+  langs:
+  - csharp
+  - vb
+  name: GetCustomData<T>(String, T)
+  nameWithType: IGameDataService.GetCustomData<T>(String, T)
+  fullName: GameFramework.Services.Interfaces.IGameDataService.GetCustomData<T>(System.String, T)
+  type: Method
+  source:
+    id: GetCustomData
+    path: ''
+    startLine: 10993
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: T GetCustomData<T>(string key, T defaultValue = null)
+    parameters:
+    - id: key
+      type: System.String
+    - id: defaultValue
+      type: '{T}'
+    typeParameters:
+    - id: T
+    return:
+      type: '{T}'
+    content.vb: Function GetCustomData(Of T)(key As String, defaultValue As T = Nothing) As T
+  overload: GameFramework.Services.Interfaces.IGameDataService.GetCustomData*
+  nameWithType.vb: IGameDataService.GetCustomData(Of T)(String, T)
+  fullName.vb: GameFramework.Services.Interfaces.IGameDataService.GetCustomData(Of T)(System.String, T)
+  name.vb: GetCustomData(Of T)(String, T)
+- uid: GameFramework.Services.Interfaces.IGameDataService.SetCustomData``1(System.String,``0)
+  commentId: M:GameFramework.Services.Interfaces.IGameDataService.SetCustomData``1(System.String,``0)
+  id: SetCustomData``1(System.String,``0)
+  parent: GameFramework.Services.Interfaces.IGameDataService
+  langs:
+  - csharp
+  - vb
+  name: SetCustomData<T>(String, T)
+  nameWithType: IGameDataService.SetCustomData<T>(String, T)
+  fullName: GameFramework.Services.Interfaces.IGameDataService.SetCustomData<T>(System.String, T)
+  type: Method
+  source:
+    id: SetCustomData
+    path: ''
+    startLine: 10994
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: void SetCustomData<T>(string key, T value)
+    parameters:
+    - id: key
+      type: System.String
+    - id: value
+      type: '{T}'
+    typeParameters:
+    - id: T
+    content.vb: Sub SetCustomData(Of T)(key As String, value As T)
+  overload: GameFramework.Services.Interfaces.IGameDataService.SetCustomData*
+  nameWithType.vb: IGameDataService.SetCustomData(Of T)(String, T)
+  fullName.vb: GameFramework.Services.Interfaces.IGameDataService.SetCustomData(Of T)(System.String, T)
+  name.vb: SetCustomData(Of T)(String, T)
+- uid: GameFramework.Services.Interfaces.IGameDataService.GetLoadingData``1(System.String,``0)
+  commentId: M:GameFramework.Services.Interfaces.IGameDataService.GetLoadingData``1(System.String,``0)
+  id: GetLoadingData``1(System.String,``0)
+  parent: GameFramework.Services.Interfaces.IGameDataService
+  langs:
+  - csharp
+  - vb
+  name: GetLoadingData<T>(String, T)
+  nameWithType: IGameDataService.GetLoadingData<T>(String, T)
+  fullName: GameFramework.Services.Interfaces.IGameDataService.GetLoadingData<T>(System.String, T)
+  type: Method
+  source:
+    id: GetLoadingData
+    path: ''
+    startLine: 10995
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: T GetLoadingData<T>(string key, T defaultValue = null)
+    parameters:
+    - id: key
+      type: System.String
+    - id: defaultValue
+      type: '{T}'
+    typeParameters:
+    - id: T
+    return:
+      type: '{T}'
+    content.vb: Function GetLoadingData(Of T)(key As String, defaultValue As T = Nothing) As T
+  overload: GameFramework.Services.Interfaces.IGameDataService.GetLoadingData*
+  nameWithType.vb: IGameDataService.GetLoadingData(Of T)(String, T)
+  fullName.vb: GameFramework.Services.Interfaces.IGameDataService.GetLoadingData(Of T)(System.String, T)
+  name.vb: GetLoadingData(Of T)(String, T)
+- uid: GameFramework.Services.Interfaces.IGameDataService.OnSessionCreated
+  commentId: E:GameFramework.Services.Interfaces.IGameDataService.OnSessionCreated
+  id: OnSessionCreated
+  parent: GameFramework.Services.Interfaces.IGameDataService
+  langs:
+  - csharp
+  - vb
+  name: OnSessionCreated
+  nameWithType: IGameDataService.OnSessionCreated
+  fullName: GameFramework.Services.Interfaces.IGameDataService.OnSessionCreated
+  type: Event
+  source:
+    id: OnSessionCreated
+    path: ''
+    startLine: 10998
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: event Action<GameSession> OnSessionCreated
+    return:
+      type: Action{GameSession}
+    content.vb: Event OnSessionCreated As Action(Of GameSession)
+- uid: GameFramework.Services.Interfaces.IGameDataService.OnSessionLoaded
+  commentId: E:GameFramework.Services.Interfaces.IGameDataService.OnSessionLoaded
+  id: OnSessionLoaded
+  parent: GameFramework.Services.Interfaces.IGameDataService
+  langs:
+  - csharp
+  - vb
+  name: OnSessionLoaded
+  nameWithType: IGameDataService.OnSessionLoaded
+  fullName: GameFramework.Services.Interfaces.IGameDataService.OnSessionLoaded
+  type: Event
+  source:
+    id: OnSessionLoaded
+    path: ''
+    startLine: 10999
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: event Action<GameSession> OnSessionLoaded
+    return:
+      type: Action{GameSession}
+    content.vb: Event OnSessionLoaded As Action(Of GameSession)
+- uid: GameFramework.Services.Interfaces.IGameDataService.OnSessionCleared
+  commentId: E:GameFramework.Services.Interfaces.IGameDataService.OnSessionCleared
+  id: OnSessionCleared
+  parent: GameFramework.Services.Interfaces.IGameDataService
+  langs:
+  - csharp
+  - vb
+  name: OnSessionCleared
+  nameWithType: IGameDataService.OnSessionCleared
+  fullName: GameFramework.Services.Interfaces.IGameDataService.OnSessionCleared
+  type: Event
+  source:
+    id: OnSessionCleared
+    path: ''
+    startLine: 11000
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: event Action OnSessionCleared
+    return:
+      type: Action
+    content.vb: Event OnSessionCleared As Action
+references:
+- uid: GameFramework.Services.Interfaces
+  commentId: N:GameFramework.Services.Interfaces
+  name: GameFramework.Services.Interfaces
+  nameWithType: GameFramework.Services.Interfaces
+  fullName: GameFramework.Services.Interfaces
+- uid: GameFramework.Services.Interfaces.IGameDataService.IsInitialized*
+  commentId: Overload:GameFramework.Services.Interfaces.IGameDataService.IsInitialized
+  name: IsInitialized
+  nameWithType: IGameDataService.IsInitialized
+  fullName: GameFramework.Services.Interfaces.IGameDataService.IsInitialized
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: GameFramework.Services.Interfaces.IGameDataService.CurrentSession*
+  commentId: Overload:GameFramework.Services.Interfaces.IGameDataService.CurrentSession
+  name: CurrentSession
+  nameWithType: IGameDataService.CurrentSession
+  fullName: GameFramework.Services.Interfaces.IGameDataService.CurrentSession
+- uid: GameSession
+  isExternal: true
+  name: GameSession
+  nameWithType: GameSession
+  fullName: GameSession
+- uid: GameFramework.Services.Interfaces.IGameDataService.CurrentLoadingConfig*
+  commentId: Overload:GameFramework.Services.Interfaces.IGameDataService.CurrentLoadingConfig
+  name: CurrentLoadingConfig
+  nameWithType: IGameDataService.CurrentLoadingConfig
+  fullName: GameFramework.Services.Interfaces.IGameDataService.CurrentLoadingConfig
+- uid: LoadingConfiguration
+  isExternal: true
+  name: LoadingConfiguration
+  nameWithType: LoadingConfiguration
+  fullName: LoadingConfiguration
+- uid: GameFramework.Services.Interfaces.IGameDataService.InitializeAsync*
+  commentId: Overload:GameFramework.Services.Interfaces.IGameDataService.InitializeAsync
+  name: InitializeAsync
+  nameWithType: IGameDataService.InitializeAsync
+  fullName: GameFramework.Services.Interfaces.IGameDataService.InitializeAsync
+- uid: Task
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: Task
+- uid: GameFramework.Services.Interfaces.IGameDataService.Shutdown*
+  commentId: Overload:GameFramework.Services.Interfaces.IGameDataService.Shutdown
+  name: Shutdown
+  nameWithType: IGameDataService.Shutdown
+  fullName: GameFramework.Services.Interfaces.IGameDataService.Shutdown
+- uid: GameFramework.Services.Interfaces.IGameDataService.CreateNewGameSession*
+  commentId: Overload:GameFramework.Services.Interfaces.IGameDataService.CreateNewGameSession
+  name: CreateNewGameSession
+  nameWithType: IGameDataService.CreateNewGameSession
+  fullName: GameFramework.Services.Interfaces.IGameDataService.CreateNewGameSession
+- uid: GameFramework.Services.Interfaces.IGameDataService.LoadGameSession*
+  commentId: Overload:GameFramework.Services.Interfaces.IGameDataService.LoadGameSession
+  name: LoadGameSession
+  nameWithType: IGameDataService.LoadGameSession
+  fullName: GameFramework.Services.Interfaces.IGameDataService.LoadGameSession
+- uid: GameFramework.Services.Interfaces.IGameDataService.ClearSession*
+  commentId: Overload:GameFramework.Services.Interfaces.IGameDataService.ClearSession
+  name: ClearSession
+  nameWithType: IGameDataService.ClearSession
+  fullName: GameFramework.Services.Interfaces.IGameDataService.ClearSession
+- uid: GameFramework.Services.Interfaces.IGameDataService.UpdateSession*
+  commentId: Overload:GameFramework.Services.Interfaces.IGameDataService.UpdateSession
+  name: UpdateSession
+  nameWithType: IGameDataService.UpdateSession
+  fullName: GameFramework.Services.Interfaces.IGameDataService.UpdateSession
+- uid: GameFramework.Services.Interfaces.IGameDataService.HasActiveSession*
+  commentId: Overload:GameFramework.Services.Interfaces.IGameDataService.HasActiveSession
+  name: HasActiveSession
+  nameWithType: IGameDataService.HasActiveSession
+  fullName: GameFramework.Services.Interfaces.IGameDataService.HasActiveSession
+- uid: GameFramework.Services.Interfaces.IGameDataService.LoadSessionAsync*
+  commentId: Overload:GameFramework.Services.Interfaces.IGameDataService.LoadSessionAsync
+  name: LoadSessionAsync
+  nameWithType: IGameDataService.LoadSessionAsync
+  fullName: GameFramework.Services.Interfaces.IGameDataService.LoadSessionAsync
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Task{System.Boolean}
+  commentId: '!:Task{System.Boolean}'
+  definition: Task`1
+  name: Task<Boolean>
+  nameWithType: Task<Boolean>
+  fullName: Task<System.Boolean>
+  nameWithType.vb: Task(Of Boolean)
+  fullName.vb: Task(Of System.Boolean)
+  name.vb: Task(Of Boolean)
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Task`1
+  isExternal: true
+  name: Task<>
+  nameWithType: Task<>
+  fullName: Task<>
+  nameWithType.vb: Task(Of )
+  fullName.vb: Task(Of )
+  name.vb: Task(Of )
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.Services.Interfaces.IGameDataService.GetPlayerState*
+  commentId: Overload:GameFramework.Services.Interfaces.IGameDataService.GetPlayerState
+  name: GetPlayerState
+  nameWithType: IGameDataService.GetPlayerState
+  fullName: GameFramework.Services.Interfaces.IGameDataService.GetPlayerState
+- uid: PlayerState
+  isExternal: true
+  name: PlayerState
+  nameWithType: PlayerState
+  fullName: PlayerState
+- uid: GameFramework.Services.Interfaces.IGameDataService.GetGameProgress*
+  commentId: Overload:GameFramework.Services.Interfaces.IGameDataService.GetGameProgress
+  name: GetGameProgress
+  nameWithType: IGameDataService.GetGameProgress
+  fullName: GameFramework.Services.Interfaces.IGameDataService.GetGameProgress
+- uid: GameProgress
+  isExternal: true
+  name: GameProgress
+  nameWithType: GameProgress
+  fullName: GameProgress
+- uid: GameFramework.Services.Interfaces.IGameDataService.GetCustomData*
+  commentId: Overload:GameFramework.Services.Interfaces.IGameDataService.GetCustomData
+  name: GetCustomData
+  nameWithType: IGameDataService.GetCustomData
+  fullName: GameFramework.Services.Interfaces.IGameDataService.GetCustomData
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: GameFramework.Services.Interfaces.IGameDataService.SetCustomData*
+  commentId: Overload:GameFramework.Services.Interfaces.IGameDataService.SetCustomData
+  name: SetCustomData
+  nameWithType: IGameDataService.SetCustomData
+  fullName: GameFramework.Services.Interfaces.IGameDataService.SetCustomData
+- uid: GameFramework.Services.Interfaces.IGameDataService.GetLoadingData*
+  commentId: Overload:GameFramework.Services.Interfaces.IGameDataService.GetLoadingData
+  name: GetLoadingData
+  nameWithType: IGameDataService.GetLoadingData
+  fullName: GameFramework.Services.Interfaces.IGameDataService.GetLoadingData
+- uid: Action{GameSession}
+  commentId: '!:Action{GameSession}'
+  definition: Action`1
+  name: Action<GameSession>
+  nameWithType: Action<GameSession>
+  fullName: Action<GameSession>
+  nameWithType.vb: Action(Of GameSession)
+  fullName.vb: Action(Of GameSession)
+  name.vb: Action(Of GameSession)
+  spec.csharp:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: GameSession
+    name: GameSession
+    nameWithType: GameSession
+    fullName: GameSession
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: GameSession
+    name: GameSession
+    nameWithType: GameSession
+    fullName: GameSession
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Action`1
+  isExternal: true
+  name: Action<>
+  nameWithType: Action<>
+  fullName: Action<>
+  nameWithType.vb: Action(Of )
+  fullName.vb: Action(Of )
+  name.vb: Action(Of )
+  spec.csharp:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Action
+  isExternal: true
+  name: Action
+  nameWithType: Action
+  fullName: Action

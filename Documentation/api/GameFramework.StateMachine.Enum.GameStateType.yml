@@ -1,0 +1,334 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.StateMachine.Enum.GameStateType
+  commentId: T:GameFramework.StateMachine.Enum.GameStateType
+  id: GameStateType
+  parent: GameFramework.StateMachine.Enum
+  children:
+  - GameFramework.StateMachine.Enum.GameStateType.Bootstrap
+  - GameFramework.StateMachine.Enum.GameStateType.Credits
+  - GameFramework.StateMachine.Enum.GameStateType.GameOver
+  - GameFramework.StateMachine.Enum.GameStateType.Loading
+  - GameFramework.StateMachine.Enum.GameStateType.MainMenu
+  - GameFramework.StateMachine.Enum.GameStateType.NewGame
+  - GameFramework.StateMachine.Enum.GameStateType.Playing
+  - GameFramework.StateMachine.Enum.GameStateType.Quit
+  - GameFramework.StateMachine.Enum.GameStateType.Splash
+  - GameFramework.StateMachine.Enum.GameStateType.Victory
+  langs:
+  - csharp
+  - vb
+  name: GameStateType
+  nameWithType: GameStateType
+  fullName: GameFramework.StateMachine.Enum.GameStateType
+  type: Enum
+  source:
+    id: GameStateType
+    path: ''
+    startLine: 11955
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.StateMachine.Enum
+  summary: "\nEnumeration of all possible game states\n"
+  example: []
+  syntax:
+    content: public enum GameStateType
+    content.vb: Public Enum GameStateType
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: GameFramework.StateMachine.Enum.GameStateType.Bootstrap
+  commentId: F:GameFramework.StateMachine.Enum.GameStateType.Bootstrap
+  id: Bootstrap
+  parent: GameFramework.StateMachine.Enum.GameStateType
+  langs:
+  - csharp
+  - vb
+  name: Bootstrap
+  nameWithType: GameStateType.Bootstrap
+  fullName: GameFramework.StateMachine.Enum.GameStateType.Bootstrap
+  type: Field
+  source:
+    id: Bootstrap
+    path: ''
+    startLine: 11957
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.StateMachine.Enum
+  syntax:
+    content: Bootstrap = 0
+    return:
+      type: GameFramework.StateMachine.Enum.GameStateType
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: GameFramework.StateMachine.Enum.GameStateType.Splash
+  commentId: F:GameFramework.StateMachine.Enum.GameStateType.Splash
+  id: Splash
+  parent: GameFramework.StateMachine.Enum.GameStateType
+  langs:
+  - csharp
+  - vb
+  name: Splash
+  nameWithType: GameStateType.Splash
+  fullName: GameFramework.StateMachine.Enum.GameStateType.Splash
+  type: Field
+  source:
+    id: Splash
+    path: ''
+    startLine: 11958
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.StateMachine.Enum
+  syntax:
+    content: Splash = 1
+    return:
+      type: GameFramework.StateMachine.Enum.GameStateType
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: GameFramework.StateMachine.Enum.GameStateType.MainMenu
+  commentId: F:GameFramework.StateMachine.Enum.GameStateType.MainMenu
+  id: MainMenu
+  parent: GameFramework.StateMachine.Enum.GameStateType
+  langs:
+  - csharp
+  - vb
+  name: MainMenu
+  nameWithType: GameStateType.MainMenu
+  fullName: GameFramework.StateMachine.Enum.GameStateType.MainMenu
+  type: Field
+  source:
+    id: MainMenu
+    path: ''
+    startLine: 11959
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.StateMachine.Enum
+  syntax:
+    content: MainMenu = 2
+    return:
+      type: GameFramework.StateMachine.Enum.GameStateType
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: GameFramework.StateMachine.Enum.GameStateType.Loading
+  commentId: F:GameFramework.StateMachine.Enum.GameStateType.Loading
+  id: Loading
+  parent: GameFramework.StateMachine.Enum.GameStateType
+  langs:
+  - csharp
+  - vb
+  name: Loading
+  nameWithType: GameStateType.Loading
+  fullName: GameFramework.StateMachine.Enum.GameStateType.Loading
+  type: Field
+  source:
+    id: Loading
+    path: ''
+    startLine: 11960
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.StateMachine.Enum
+  syntax:
+    content: Loading = 3
+    return:
+      type: GameFramework.StateMachine.Enum.GameStateType
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: GameFramework.StateMachine.Enum.GameStateType.NewGame
+  commentId: F:GameFramework.StateMachine.Enum.GameStateType.NewGame
+  id: NewGame
+  parent: GameFramework.StateMachine.Enum.GameStateType
+  langs:
+  - csharp
+  - vb
+  name: NewGame
+  nameWithType: GameStateType.NewGame
+  fullName: GameFramework.StateMachine.Enum.GameStateType.NewGame
+  type: Field
+  source:
+    id: NewGame
+    path: ''
+    startLine: 11961
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.StateMachine.Enum
+  syntax:
+    content: NewGame = 4
+    return:
+      type: GameFramework.StateMachine.Enum.GameStateType
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: GameFramework.StateMachine.Enum.GameStateType.Playing
+  commentId: F:GameFramework.StateMachine.Enum.GameStateType.Playing
+  id: Playing
+  parent: GameFramework.StateMachine.Enum.GameStateType
+  langs:
+  - csharp
+  - vb
+  name: Playing
+  nameWithType: GameStateType.Playing
+  fullName: GameFramework.StateMachine.Enum.GameStateType.Playing
+  type: Field
+  source:
+    id: Playing
+    path: ''
+    startLine: 11962
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.StateMachine.Enum
+  syntax:
+    content: Playing = 5
+    return:
+      type: GameFramework.StateMachine.Enum.GameStateType
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: GameFramework.StateMachine.Enum.GameStateType.Credits
+  commentId: F:GameFramework.StateMachine.Enum.GameStateType.Credits
+  id: Credits
+  parent: GameFramework.StateMachine.Enum.GameStateType
+  langs:
+  - csharp
+  - vb
+  name: Credits
+  nameWithType: GameStateType.Credits
+  fullName: GameFramework.StateMachine.Enum.GameStateType.Credits
+  type: Field
+  source:
+    id: Credits
+    path: ''
+    startLine: 11965
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.StateMachine.Enum
+  syntax:
+    content: Credits = 6
+    return:
+      type: GameFramework.StateMachine.Enum.GameStateType
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: GameFramework.StateMachine.Enum.GameStateType.GameOver
+  commentId: F:GameFramework.StateMachine.Enum.GameStateType.GameOver
+  id: GameOver
+  parent: GameFramework.StateMachine.Enum.GameStateType
+  langs:
+  - csharp
+  - vb
+  name: GameOver
+  nameWithType: GameStateType.GameOver
+  fullName: GameFramework.StateMachine.Enum.GameStateType.GameOver
+  type: Field
+  source:
+    id: GameOver
+    path: ''
+    startLine: 11966
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.StateMachine.Enum
+  syntax:
+    content: GameOver = 7
+    return:
+      type: GameFramework.StateMachine.Enum.GameStateType
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: GameFramework.StateMachine.Enum.GameStateType.Victory
+  commentId: F:GameFramework.StateMachine.Enum.GameStateType.Victory
+  id: Victory
+  parent: GameFramework.StateMachine.Enum.GameStateType
+  langs:
+  - csharp
+  - vb
+  name: Victory
+  nameWithType: GameStateType.Victory
+  fullName: GameFramework.StateMachine.Enum.GameStateType.Victory
+  type: Field
+  source:
+    id: Victory
+    path: ''
+    startLine: 11967
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.StateMachine.Enum
+  syntax:
+    content: Victory = 8
+    return:
+      type: GameFramework.StateMachine.Enum.GameStateType
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: GameFramework.StateMachine.Enum.GameStateType.Quit
+  commentId: F:GameFramework.StateMachine.Enum.GameStateType.Quit
+  id: Quit
+  parent: GameFramework.StateMachine.Enum.GameStateType
+  langs:
+  - csharp
+  - vb
+  name: Quit
+  nameWithType: GameStateType.Quit
+  fullName: GameFramework.StateMachine.Enum.GameStateType.Quit
+  type: Field
+  source:
+    id: Quit
+    path: ''
+    startLine: 11968
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.StateMachine.Enum
+  syntax:
+    content: Quit = 9
+    return:
+      type: GameFramework.StateMachine.Enum.GameStateType
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: GameFramework.StateMachine.Enum
+  commentId: N:GameFramework.StateMachine.Enum
+  name: GameFramework.StateMachine.Enum
+  nameWithType: GameFramework.StateMachine.Enum
+  fullName: GameFramework.StateMachine.Enum
+- uid: GameFramework.StateMachine.Enum.GameStateType
+  commentId: T:GameFramework.StateMachine.Enum.GameStateType
+  parent: GameFramework.StateMachine.Enum
+  name: GameStateType
+  nameWithType: GameStateType
+  fullName: GameFramework.StateMachine.Enum.GameStateType

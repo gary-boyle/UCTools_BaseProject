@@ -1,0 +1,131 @@
+### YamlMime:ManagedReference
+items:
+- uid: UCTools_ConfigVariables.QualityOption
+  commentId: T:UCTools_ConfigVariables.QualityOption
+  id: QualityOption
+  parent: UCTools_ConfigVariables
+  children:
+  - UCTools_ConfigVariables.QualityOption.High
+  - UCTools_ConfigVariables.QualityOption.Low
+  - UCTools_ConfigVariables.QualityOption.Medium
+  langs:
+  - csharp
+  - vb
+  name: QualityOption
+  nameWithType: QualityOption
+  fullName: UCTools_ConfigVariables.QualityOption
+  type: Enum
+  source:
+    id: QualityOption
+    path: ''
+    startLine: 17995
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_ConfigVariables
+  summary: "\nPredefined quality options for dropdown selection\n"
+  example: []
+  syntax:
+    content: public enum QualityOption
+    content.vb: Public Enum QualityOption
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: UCTools_ConfigVariables.QualityOption.Low
+  commentId: F:UCTools_ConfigVariables.QualityOption.Low
+  id: Low
+  parent: UCTools_ConfigVariables.QualityOption
+  langs:
+  - csharp
+  - vb
+  name: Low
+  nameWithType: QualityOption.Low
+  fullName: UCTools_ConfigVariables.QualityOption.Low
+  type: Field
+  source:
+    id: Low
+    path: ''
+    startLine: 17997
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_ConfigVariables
+  syntax:
+    content: Low = 0
+    return:
+      type: UCTools_ConfigVariables.QualityOption
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: UCTools_ConfigVariables.QualityOption.Medium
+  commentId: F:UCTools_ConfigVariables.QualityOption.Medium
+  id: Medium
+  parent: UCTools_ConfigVariables.QualityOption
+  langs:
+  - csharp
+  - vb
+  name: Medium
+  nameWithType: QualityOption.Medium
+  fullName: UCTools_ConfigVariables.QualityOption.Medium
+  type: Field
+  source:
+    id: Medium
+    path: ''
+    startLine: 17998
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_ConfigVariables
+  syntax:
+    content: Medium = 1
+    return:
+      type: UCTools_ConfigVariables.QualityOption
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: UCTools_ConfigVariables.QualityOption.High
+  commentId: F:UCTools_ConfigVariables.QualityOption.High
+  id: High
+  parent: UCTools_ConfigVariables.QualityOption
+  langs:
+  - csharp
+  - vb
+  name: High
+  nameWithType: QualityOption.High
+  fullName: UCTools_ConfigVariables.QualityOption.High
+  type: Field
+  source:
+    id: High
+    path: ''
+    startLine: 17999
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_ConfigVariables
+  syntax:
+    content: High = 2
+    return:
+      type: UCTools_ConfigVariables.QualityOption
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: UCTools_ConfigVariables
+  commentId: N:UCTools_ConfigVariables
+  name: UCTools_ConfigVariables
+  nameWithType: UCTools_ConfigVariables
+  fullName: UCTools_ConfigVariables
+- uid: UCTools_ConfigVariables.QualityOption
+  commentId: T:UCTools_ConfigVariables.QualityOption
+  parent: UCTools_ConfigVariables
+  name: QualityOption
+  nameWithType: QualityOption
+  fullName: UCTools_ConfigVariables.QualityOption

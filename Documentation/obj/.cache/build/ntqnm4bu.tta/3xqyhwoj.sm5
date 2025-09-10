@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class DIContainerTests
+   | UCTools Base Project Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class DIContainerTests
+   | UCTools Base Project Documentation ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="GameFramework.Tests.DIContainerTests">
+  
+  
+  <h1 id="GameFramework_Tests_DIContainerTests" data-uid="GameFramework.Tests.DIContainerTests" class="text-break">Class DIContainerTests
+  </h1>
+  <div class="markdown level0 summary"><p sourcefile="api/GameFramework.Tests.DIContainerTests.yml" sourcestartlinenumber="2" sourceendlinenumber="4">Comprehensive test suite for DIContainer class.
+Tests singleton registration, factory registration, dependency resolution,
+circular dependency detection, and error handling.</p>
+<p sourcefile="api/GameFramework.Tests.DIContainerTests.yml" sourcestartlinenumber="6" sourceendlinenumber="8">Design: Isolated unit tests with proper setup/teardown and dependency management
+Pros: Thorough coverage, edge case testing, clear test structure, proper DI testing
+Cons: Requires mock objects, potential test maintenance overhead</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">DIContainerTests</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.Tests.html">GameFramework.Tests</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="GameFramework_Tests_DIContainerTests_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class DIContainerTests</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="GameFramework_Tests_DIContainerTests_Clear_ShouldRemoveAllRegistrations_" data-uid="GameFramework.Tests.DIContainerTests.Clear_ShouldRemoveAllRegistrations*"></a>
+  <h4 id="GameFramework_Tests_DIContainerTests_Clear_ShouldRemoveAllRegistrations" data-uid="GameFramework.Tests.DIContainerTests.Clear_ShouldRemoveAllRegistrations">Clear_ShouldRemoveAllRegistrations()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Clear_ShouldRemoveAllRegistrations()</code></pre>
+  </div>
+  
+  
+  <a id="GameFramework_Tests_DIContainerTests_IsRegistered_WithRegisteredType_ShouldReturnTrue_" data-uid="GameFramework.Tests.DIContainerTests.IsRegistered_WithRegisteredType_ShouldReturnTrue*"></a>
+  <h4 id="GameFramework_Tests_DIContainerTests_IsRegistered_WithRegisteredType_ShouldReturnTrue" data-uid="GameFramework.Tests.DIContainerTests.IsRegistered_WithRegisteredType_ShouldReturnTrue">IsRegistered_WithRegisteredType_ShouldReturnTrue()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void IsRegistered_WithRegisteredType_ShouldReturnTrue()</code></pre>
+  </div>
+  
+  
+  <a id="GameFramework_Tests_DIContainerTests_IsRegistered_WithUnregisteredType_ShouldReturnFalse_" data-uid="GameFramework.Tests.DIContainerTests.IsRegistered_WithUnregisteredType_ShouldReturnFalse*"></a>
+  <h4 id="GameFramework_Tests_DIContainerTests_IsRegistered_WithUnregisteredType_ShouldReturnFalse" data-uid="GameFramework.Tests.DIContainerTests.IsRegistered_WithUnregisteredType_ShouldReturnFalse">IsRegistered_WithUnregisteredType_ShouldReturnFalse()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void IsRegistered_WithUnregisteredType_ShouldReturnFalse()</code></pre>
+  </div>
+  
+  
+  <a id="GameFramework_Tests_DIContainerTests_RegisterFactory_ShouldCreateNewInstanceEachTime_" data-uid="GameFramework.Tests.DIContainerTests.RegisterFactory_ShouldCreateNewInstanceEachTime*"></a>
+  <h4 id="GameFramework_Tests_DIContainerTests_RegisterFactory_ShouldCreateNewInstanceEachTime" data-uid="GameFramework.Tests.DIContainerTests.RegisterFactory_ShouldCreateNewInstanceEachTime">RegisterFactory_ShouldCreateNewInstanceEachTime()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RegisterFactory_ShouldCreateNewInstanceEachTime()</code></pre>
+  </div>
+  
+  
+  <a id="GameFramework_Tests_DIContainerTests_RegisterSingleton_ConcreteType_ShouldCreateSingleInstance_" data-uid="GameFramework.Tests.DIContainerTests.RegisterSingleton_ConcreteType_ShouldCreateSingleInstance*"></a>
+  <h4 id="GameFramework_Tests_DIContainerTests_RegisterSingleton_ConcreteType_ShouldCreateSingleInstance" data-uid="GameFramework.Tests.DIContainerTests.RegisterSingleton_ConcreteType_ShouldCreateSingleInstance">RegisterSingleton_ConcreteType_ShouldCreateSingleInstance()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RegisterSingleton_ConcreteType_ShouldCreateSingleInstance()</code></pre>
+  </div>
+  
+  
+  <a id="GameFramework_Tests_DIContainerTests_RegisterSingleton_WithInstance_ShouldReturnSameInstance_" data-uid="GameFramework.Tests.DIContainerTests.RegisterSingleton_WithInstance_ShouldReturnSameInstance*"></a>
+  <h4 id="GameFramework_Tests_DIContainerTests_RegisterSingleton_WithInstance_ShouldReturnSameInstance" data-uid="GameFramework.Tests.DIContainerTests.RegisterSingleton_WithInstance_ShouldReturnSameInstance">RegisterSingleton_WithInstance_ShouldReturnSameInstance()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RegisterSingleton_WithInstance_ShouldReturnSameInstance()</code></pre>
+  </div>
+  
+  
+  <a id="GameFramework_Tests_DIContainerTests_RegisterSingleton_WithType_ShouldCreateSingleInstance_" data-uid="GameFramework.Tests.DIContainerTests.RegisterSingleton_WithType_ShouldCreateSingleInstance*"></a>
+  <h4 id="GameFramework_Tests_DIContainerTests_RegisterSingleton_WithType_ShouldCreateSingleInstance" data-uid="GameFramework.Tests.DIContainerTests.RegisterSingleton_WithType_ShouldCreateSingleInstance">RegisterSingleton_WithType_ShouldCreateSingleInstance()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RegisterSingleton_WithType_ShouldCreateSingleInstance()</code></pre>
+  </div>
+  
+  
+  <a id="GameFramework_Tests_DIContainerTests_RegisterTransient_ShouldCreateNewInstanceEachTime_" data-uid="GameFramework.Tests.DIContainerTests.RegisterTransient_ShouldCreateNewInstanceEachTime*"></a>
+  <h4 id="GameFramework_Tests_DIContainerTests_RegisterTransient_ShouldCreateNewInstanceEachTime" data-uid="GameFramework.Tests.DIContainerTests.RegisterTransient_ShouldCreateNewInstanceEachTime">RegisterTransient_ShouldCreateNewInstanceEachTime()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RegisterTransient_ShouldCreateNewInstanceEachTime()</code></pre>
+  </div>
+  
+  
+  <a id="GameFramework_Tests_DIContainerTests_Resolve_CircularDependency_ShouldThrowException_" data-uid="GameFramework.Tests.DIContainerTests.Resolve_CircularDependency_ShouldThrowException*"></a>
+  <h4 id="GameFramework_Tests_DIContainerTests_Resolve_CircularDependency_ShouldThrowException" data-uid="GameFramework.Tests.DIContainerTests.Resolve_CircularDependency_ShouldThrowException">Resolve_CircularDependency_ShouldThrowException()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Resolve_CircularDependency_ShouldThrowException()</code></pre>
+  </div>
+  
+  
+  <a id="GameFramework_Tests_DIContainerTests_Resolve_ComplexDependencyChain_ShouldResolveAll_" data-uid="GameFramework.Tests.DIContainerTests.Resolve_ComplexDependencyChain_ShouldResolveAll*"></a>
+  <h4 id="GameFramework_Tests_DIContainerTests_Resolve_ComplexDependencyChain_ShouldResolveAll" data-uid="GameFramework.Tests.DIContainerTests.Resolve_ComplexDependencyChain_ShouldResolveAll">Resolve_ComplexDependencyChain_ShouldResolveAll()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Resolve_ComplexDependencyChain_ShouldResolveAll()</code></pre>
+  </div>
+  
+  
+  <a id="GameFramework_Tests_DIContainerTests_Resolve_ConcreteTypeWithoutRegistration_ShouldCreateInstance_" data-uid="GameFramework.Tests.DIContainerTests.Resolve_ConcreteTypeWithoutRegistration_ShouldCreateInstance*"></a>
+  <h4 id="GameFramework_Tests_DIContainerTests_Resolve_ConcreteTypeWithoutRegistration_ShouldCreateInstance" data-uid="GameFramework.Tests.DIContainerTests.Resolve_ConcreteTypeWithoutRegistration_ShouldCreateInstance">Resolve_ConcreteTypeWithoutRegistration_ShouldCreateInstance()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Resolve_ConcreteTypeWithoutRegistration_ShouldCreateInstance()</code></pre>
+  </div>
+  
+  
+  <a id="GameFramework_Tests_DIContainerTests_Resolve_MissingDependency_ShouldThrowException_" data-uid="GameFramework.Tests.DIContainerTests.Resolve_MissingDependency_ShouldThrowException*"></a>
+  <h4 id="GameFramework_Tests_DIContainerTests_Resolve_MissingDependency_ShouldThrowException" data-uid="GameFramework.Tests.DIContainerTests.Resolve_MissingDependency_ShouldThrowException">Resolve_MissingDependency_ShouldThrowException()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Resolve_MissingDependency_ShouldThrowException()</code></pre>
+  </div>
+  
+  
+  <a id="GameFramework_Tests_DIContainerTests_Resolve_SimpleServiceWithoutDependencies_ShouldCreateInstance_" data-uid="GameFramework.Tests.DIContainerTests.Resolve_SimpleServiceWithoutDependencies_ShouldCreateInstance*"></a>
+  <h4 id="GameFramework_Tests_DIContainerTests_Resolve_SimpleServiceWithoutDependencies_ShouldCreateInstance" data-uid="GameFramework.Tests.DIContainerTests.Resolve_SimpleServiceWithoutDependencies_ShouldCreateInstance">Resolve_SimpleServiceWithoutDependencies_ShouldCreateInstance()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Resolve_SimpleServiceWithoutDependencies_ShouldCreateInstance()</code></pre>
+  </div>
+  
+  
+  <a id="GameFramework_Tests_DIContainerTests_Resolve_UnregisteredInterface_ShouldThrowException_" data-uid="GameFramework.Tests.DIContainerTests.Resolve_UnregisteredInterface_ShouldThrowException*"></a>
+  <h4 id="GameFramework_Tests_DIContainerTests_Resolve_UnregisteredInterface_ShouldThrowException" data-uid="GameFramework.Tests.DIContainerTests.Resolve_UnregisteredInterface_ShouldThrowException">Resolve_UnregisteredInterface_ShouldThrowException()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Resolve_UnregisteredInterface_ShouldThrowException()</code></pre>
+  </div>
+  
+  
+  <a id="GameFramework_Tests_DIContainerTests_Resolve_WithDependencies_ShouldInjectConstructorParameters_" data-uid="GameFramework.Tests.DIContainerTests.Resolve_WithDependencies_ShouldInjectConstructorParameters*"></a>
+  <h4 id="GameFramework_Tests_DIContainerTests_Resolve_WithDependencies_ShouldInjectConstructorParameters" data-uid="GameFramework.Tests.DIContainerTests.Resolve_WithDependencies_ShouldInjectConstructorParameters">Resolve_WithDependencies_ShouldInjectConstructorParameters()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Resolve_WithDependencies_ShouldInjectConstructorParameters()</code></pre>
+  </div>
+  
+  
+  <a id="GameFramework_Tests_DIContainerTests_Setup_" data-uid="GameFramework.Tests.DIContainerTests.Setup*"></a>
+  <h4 id="GameFramework_Tests_DIContainerTests_Setup" data-uid="GameFramework.Tests.DIContainerTests.Setup">Setup()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Setup()</code></pre>
+  </div>
+  
+  
+  <a id="GameFramework_Tests_DIContainerTests_TearDown_" data-uid="GameFramework.Tests.DIContainerTests.TearDown*"></a>
+  <h4 id="GameFramework_Tests_DIContainerTests_TearDown" data-uid="GameFramework.Tests.DIContainerTests.TearDown">TearDown()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void TearDown()</code></pre>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            UCTools Base Project Documentation
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

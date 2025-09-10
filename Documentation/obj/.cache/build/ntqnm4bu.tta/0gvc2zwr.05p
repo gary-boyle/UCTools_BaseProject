@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class GameDataService
+   | UCTools Base Project Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class GameDataService
+   | UCTools Base Project Documentation ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="GameFramework.Services.GameDataService">
+  
+  
+  <h1 id="GameFramework_Services_GameDataService" data-uid="GameFramework.Services.GameDataService" class="text-break">Class GameDataService
+  </h1>
+  <div class="markdown level0 summary"><p sourcefile="api/GameFramework.Services.GameDataService.yml" sourcestartlinenumber="2" sourceendlinenumber="5">Clean GameDataService that manages unified GameSession data
+Single source of truth for all game state information
+Delegates all save/load operations to SaveService
+Uses TimeService for all playtime tracking - no manual time management</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">GameDataService</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">IUpdatable</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.Services.html">GameFramework.Services</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="GameFramework_Services_GameDataService_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class GameDataService : IGameDataService</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  
+  <a id="GameFramework_Services_GameDataService__ctor_" data-uid="GameFramework.Services.GameDataService.#ctor*"></a>
+  <h4 id="GameFramework_Services_GameDataService__ctor_IEventSystem_ISaveService_" data-uid="GameFramework.Services.GameDataService.#ctor(IEventSystem,ISaveService)">GameDataService(IEventSystem, ISaveService)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GameDataService(IEventSystem eventSystem, ISaveService saveService)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEventSystem</span></td>
+        <td><span class="parametername">eventSystem</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">ISaveService</span></td>
+        <td><span class="parametername">saveService</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="GameFramework_Services_GameDataService_CurrentLoadingConfig_" data-uid="GameFramework.Services.GameDataService.CurrentLoadingConfig*"></a>
+  <h4 id="GameFramework_Services_GameDataService_CurrentLoadingConfig" data-uid="GameFramework.Services.GameDataService.CurrentLoadingConfig">CurrentLoadingConfig</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LoadingConfiguration CurrentLoadingConfig { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">LoadingConfiguration</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="GameFramework_Services_GameDataService_CurrentSession_" data-uid="GameFramework.Services.GameDataService.CurrentSession*"></a>
+  <h4 id="GameFramework_Services_GameDataService_CurrentSession" data-uid="GameFramework.Services.GameDataService.CurrentSession">CurrentSession</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GameSession CurrentSession { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">GameSession</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="GameFramework_Services_GameDataService_IsInitialized_" data-uid="GameFramework.Services.GameDataService.IsInitialized*"></a>
+  <h4 id="GameFramework_Services_GameDataService_IsInitialized" data-uid="GameFramework.Services.GameDataService.IsInitialized">IsInitialized</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsInitialized { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="GameFramework_Services_GameDataService_ClearSession_" data-uid="GameFramework.Services.GameDataService.ClearSession*"></a>
+  <h4 id="GameFramework_Services_GameDataService_ClearSession" data-uid="GameFramework.Services.GameDataService.ClearSession">ClearSession()</h4>
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.Services.GameDataService.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Clears the current session</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearSession()</code></pre>
+  </div>
+  
+  
+  <a id="GameFramework_Services_GameDataService_CreateNewGameSession_" data-uid="GameFramework.Services.GameDataService.CreateNewGameSession*"></a>
+  <h4 id="GameFramework_Services_GameDataService_CreateNewGameSession_LoadingConfiguration_" data-uid="GameFramework.Services.GameDataService.CreateNewGameSession(LoadingConfiguration)">CreateNewGameSession(LoadingConfiguration)</h4>
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.Services.GameDataService.yml" sourcestartlinenumber="2" sourceendlinenumber="3">Creates a new game session from loading configuration
+TimeService will handle playtime tracking automatically</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CreateNewGameSession(LoadingConfiguration config)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">LoadingConfiguration</span></td>
+        <td><span class="parametername">config</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="GameFramework_Services_GameDataService_GetCustomData_" data-uid="GameFramework.Services.GameDataService.GetCustomData*"></a>
+  <h4 id="GameFramework_Services_GameDataService_GetCustomData__1_System_String___0_" data-uid="GameFramework.Services.GameDataService.GetCustomData``1(System.String,``0)">GetCustomData&lt;T&gt;(String, T)</h4>
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.Services.GameDataService.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Gets custom data from current session</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T GetCustomData&lt;T&gt;(string key, T defaultValue = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">defaultValue</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="GameFramework_Services_GameDataService_GetGameProgress_" data-uid="GameFramework.Services.GameDataService.GetGameProgress*"></a>
+  <h4 id="GameFramework_Services_GameDataService_GetGameProgress" data-uid="GameFramework.Services.GameDataService.GetGameProgress">GetGameProgress()</h4>
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.Services.GameDataService.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Gets the current game progress - throws if no active session  </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GameProgress GetGameProgress()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">GameProgress</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="GameFramework_Services_GameDataService_GetLoadingData_" data-uid="GameFramework.Services.GameDataService.GetLoadingData*"></a>
+  <h4 id="GameFramework_Services_GameDataService_GetLoadingData__1_System_String___0_" data-uid="GameFramework.Services.GameDataService.GetLoadingData``1(System.String,``0)">GetLoadingData&lt;T&gt;(String, T)</h4>
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.Services.GameDataService.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Gets loading configuration data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T GetLoadingData&lt;T&gt;(string key, T defaultValue = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">defaultValue</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="GameFramework_Services_GameDataService_GetPlayerState_" data-uid="GameFramework.Services.GameDataService.GetPlayerState*"></a>
+  <h4 id="GameFramework_Services_GameDataService_GetPlayerState" data-uid="GameFramework.Services.GameDataService.GetPlayerState">GetPlayerState()</h4>
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.Services.GameDataService.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Gets the current player state - throws if no active session</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PlayerState GetPlayerState()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">PlayerState</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="GameFramework_Services_GameDataService_HasActiveSession_" data-uid="GameFramework.Services.GameDataService.HasActiveSession*"></a>
+  <h4 id="GameFramework_Services_GameDataService_HasActiveSession" data-uid="GameFramework.Services.GameDataService.HasActiveSession">HasActiveSession()</h4>
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.Services.GameDataService.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Checks if there&apos;s an active game session</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasActiveSession()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="GameFramework_Services_GameDataService_InitializeAsync_" data-uid="GameFramework.Services.GameDataService.InitializeAsync*"></a>
+  <h4 id="GameFramework_Services_GameDataService_InitializeAsync" data-uid="GameFramework.Services.GameDataService.InitializeAsync">InitializeAsync()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public async Task InitializeAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="GameFramework_Services_GameDataService_LoadGameSession_" data-uid="GameFramework.Services.GameDataService.LoadGameSession*"></a>
+  <h4 id="GameFramework_Services_GameDataService_LoadGameSession_GameSession_" data-uid="GameFramework.Services.GameDataService.LoadGameSession(GameSession)">LoadGameSession(GameSession)</h4>
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.Services.GameDataService.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Loads existing game session - TimeService handles playtime restoration</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void LoadGameSession(GameSession session)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">GameSession</span></td>
+        <td><span class="parametername">session</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="GameFramework_Services_GameDataService_LoadSessionAsync_" data-uid="GameFramework.Services.GameDataService.LoadSessionAsync*"></a>
+  <h4 id="GameFramework_Services_GameDataService_LoadSessionAsync_SaveFileInfo_" data-uid="GameFramework.Services.GameDataService.LoadSessionAsync(SaveFileInfo)">LoadSessionAsync(SaveFileInfo)</h4>
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.Services.GameDataService.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Loads a session using SaveFileInfo from SaveService</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public async Task&lt;bool&gt; LoadSessionAsync(SaveFileInfo saveFileInfo)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">SaveFileInfo</span></td>
+        <td><span class="parametername">saveFileInfo</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="GameFramework_Services_GameDataService_LoadSessionAsync_" data-uid="GameFramework.Services.GameDataService.LoadSessionAsync*"></a>
+  <h4 id="GameFramework_Services_GameDataService_LoadSessionAsync_System_String_" data-uid="GameFramework.Services.GameDataService.LoadSessionAsync(System.String)">LoadSessionAsync(String)</h4>
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.Services.GameDataService.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Loads a session from save file using SaveService</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public async Task&lt;bool&gt; LoadSessionAsync(string saveName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">saveName</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="GameFramework_Services_GameDataService_PerformAutoSaveAsync_" data-uid="GameFramework.Services.GameDataService.PerformAutoSaveAsync*"></a>
+  <h4 id="GameFramework_Services_GameDataService_PerformAutoSaveAsync" data-uid="GameFramework.Services.GameDataService.PerformAutoSaveAsync">PerformAutoSaveAsync()</h4>
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.Services.GameDataService.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Performs an auto-save using SaveService</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public async Task&lt;(bool success, string saveName)&gt; PerformAutoSaveAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Boolean</span>, <span class="xref">System.String</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="GameFramework_Services_GameDataService_SaveCurrentSessionAsync_" data-uid="GameFramework.Services.GameDataService.SaveCurrentSessionAsync*"></a>
+  <h4 id="GameFramework_Services_GameDataService_SaveCurrentSessionAsync" data-uid="GameFramework.Services.GameDataService.SaveCurrentSessionAsync">SaveCurrentSessionAsync()</h4>
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.Services.GameDataService.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Performs a regular save using SaveService - returns save name for UI feedback</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public async Task&lt;(bool success, string saveName)&gt; SaveCurrentSessionAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Boolean</span>, <span class="xref">System.String</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="GameFramework_Services_GameDataService_SetCustomData_" data-uid="GameFramework.Services.GameDataService.SetCustomData*"></a>
+  <h4 id="GameFramework_Services_GameDataService_SetCustomData__1_System_String___0_" data-uid="GameFramework.Services.GameDataService.SetCustomData``1(System.String,``0)">SetCustomData&lt;T&gt;(String, T)</h4>
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.Services.GameDataService.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Sets custom data in current session</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetCustomData&lt;T&gt;(string key, T value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">value</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="GameFramework_Services_GameDataService_Shutdown_" data-uid="GameFramework.Services.GameDataService.Shutdown*"></a>
+  <h4 id="GameFramework_Services_GameDataService_Shutdown" data-uid="GameFramework.Services.GameDataService.Shutdown">Shutdown()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Shutdown()</code></pre>
+  </div>
+  
+  
+  <a id="GameFramework_Services_GameDataService_Update_" data-uid="GameFramework.Services.GameDataService.Update*"></a>
+  <h4 id="GameFramework_Services_GameDataService_Update" data-uid="GameFramework.Services.GameDataService.Update">Update()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Update()</code></pre>
+  </div>
+  
+  
+  <a id="GameFramework_Services_GameDataService_UpdateSession_" data-uid="GameFramework.Services.GameDataService.UpdateSession*"></a>
+  <h4 id="GameFramework_Services_GameDataService_UpdateSession" data-uid="GameFramework.Services.GameDataService.UpdateSession">UpdateSession()</h4>
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.Services.GameDataService.yml" sourcestartlinenumber="2" sourceendlinenumber="3">Updates session and handles auto-save timing
+TimeService handles all playtime tracking - we just manage auto-saves</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UpdateSession()</code></pre>
+  </div>
+  <h3 id="events">Events
+  </h3>
+  
+  
+  <h4 id="GameFramework_Services_GameDataService_OnSessionCleared" data-uid="GameFramework.Services.GameDataService.OnSessionCleared">OnSessionCleared</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event Action OnSessionCleared</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Action</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="GameFramework_Services_GameDataService_OnSessionCreated" data-uid="GameFramework.Services.GameDataService.OnSessionCreated">OnSessionCreated</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event Action&lt;GameSession&gt; OnSessionCreated</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Action</span>&lt;<span class="xref">GameSession</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="GameFramework_Services_GameDataService_OnSessionLoaded" data-uid="GameFramework.Services.GameDataService.OnSessionLoaded">OnSessionLoaded</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event Action&lt;GameSession&gt; OnSessionLoaded</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Action</span>&lt;<span class="xref">GameSession</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">IUpdatable</span>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            UCTools Base Project Documentation
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,512 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.Tests.UI.UIServiceIntegrationTests
+  commentId: T:GameFramework.Tests.UI.UIServiceIntegrationTests
+  id: UIServiceIntegrationTests
+  parent: GameFramework.Tests.UI
+  children:
+  - GameFramework.Tests.UI.UIServiceIntegrationTests.EventSystem_ShouldBeProperlyInitialized
+  - GameFramework.Tests.UI.UIServiceIntegrationTests.FullWorkflow_InitializeShowHideShutdown_ShouldWorkCorrectly
+  - GameFramework.Tests.UI.UIServiceIntegrationTests.MultipleScreensVisible_ShouldAllBeVisible
+  - GameFramework.Tests.UI.UIServiceIntegrationTests.SetUp
+  - GameFramework.Tests.UI.UIServiceIntegrationTests.TearDown
+  langs:
+  - csharp
+  - vb
+  name: UIServiceIntegrationTests
+  nameWithType: UIServiceIntegrationTests
+  fullName: GameFramework.Tests.UI.UIServiceIntegrationTests
+  type: Class
+  source:
+    id: UIServiceIntegrationTests
+    path: ''
+    startLine: 16860
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Tests.UI
+  syntax:
+    content: public class UIServiceIntegrationTests
+    content.vb: Public Class UIServiceIntegrationTests
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: GameFramework.Tests.UI.UIServiceIntegrationTests.SetUp
+  commentId: M:GameFramework.Tests.UI.UIServiceIntegrationTests.SetUp
+  id: SetUp
+  parent: GameFramework.Tests.UI.UIServiceIntegrationTests
+  langs:
+  - csharp
+  - vb
+  name: SetUp()
+  nameWithType: UIServiceIntegrationTests.SetUp()
+  fullName: GameFramework.Tests.UI.UIServiceIntegrationTests.SetUp()
+  type: Method
+  source:
+    id: SetUp
+    path: ''
+    startLine: 16868
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Tests.UI
+  syntax:
+    content: public void SetUp()
+    content.vb: Public Sub SetUp
+  overload: GameFramework.Tests.UI.UIServiceIntegrationTests.SetUp*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.Tests.UI.UIServiceIntegrationTests.TearDown
+  commentId: M:GameFramework.Tests.UI.UIServiceIntegrationTests.TearDown
+  id: TearDown
+  parent: GameFramework.Tests.UI.UIServiceIntegrationTests
+  langs:
+  - csharp
+  - vb
+  name: TearDown()
+  nameWithType: UIServiceIntegrationTests.TearDown()
+  fullName: GameFramework.Tests.UI.UIServiceIntegrationTests.TearDown()
+  type: Method
+  source:
+    id: TearDown
+    path: ''
+    startLine: 16903
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Tests.UI
+  syntax:
+    content: public void TearDown()
+    content.vb: Public Sub TearDown
+  overload: GameFramework.Tests.UI.UIServiceIntegrationTests.TearDown*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.Tests.UI.UIServiceIntegrationTests.FullWorkflow_InitializeShowHideShutdown_ShouldWorkCorrectly
+  commentId: M:GameFramework.Tests.UI.UIServiceIntegrationTests.FullWorkflow_InitializeShowHideShutdown_ShouldWorkCorrectly
+  id: FullWorkflow_InitializeShowHideShutdown_ShouldWorkCorrectly
+  parent: GameFramework.Tests.UI.UIServiceIntegrationTests
+  langs:
+  - csharp
+  - vb
+  name: FullWorkflow_InitializeShowHideShutdown_ShouldWorkCorrectly()
+  nameWithType: UIServiceIntegrationTests.FullWorkflow_InitializeShowHideShutdown_ShouldWorkCorrectly()
+  fullName: GameFramework.Tests.UI.UIServiceIntegrationTests.FullWorkflow_InitializeShowHideShutdown_ShouldWorkCorrectly()
+  type: Method
+  source:
+    id: FullWorkflow_InitializeShowHideShutdown_ShouldWorkCorrectly
+    path: ''
+    startLine: 16913
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Tests.UI
+  syntax:
+    content: public async Task FullWorkflow_InitializeShowHideShutdown_ShouldWorkCorrectly()
+    return:
+      type: Task
+    content.vb: Public Function FullWorkflow_InitializeShowHideShutdown_ShouldWorkCorrectly As Task
+  overload: GameFramework.Tests.UI.UIServiceIntegrationTests.FullWorkflow_InitializeShowHideShutdown_ShouldWorkCorrectly*
+  modifiers.csharp:
+  - public
+  - async
+  modifiers.vb:
+  - Public
+- uid: GameFramework.Tests.UI.UIServiceIntegrationTests.MultipleScreensVisible_ShouldAllBeVisible
+  commentId: M:GameFramework.Tests.UI.UIServiceIntegrationTests.MultipleScreensVisible_ShouldAllBeVisible
+  id: MultipleScreensVisible_ShouldAllBeVisible
+  parent: GameFramework.Tests.UI.UIServiceIntegrationTests
+  langs:
+  - csharp
+  - vb
+  name: MultipleScreensVisible_ShouldAllBeVisible()
+  nameWithType: UIServiceIntegrationTests.MultipleScreensVisible_ShouldAllBeVisible()
+  fullName: GameFramework.Tests.UI.UIServiceIntegrationTests.MultipleScreensVisible_ShouldAllBeVisible()
+  type: Method
+  source:
+    id: MultipleScreensVisible_ShouldAllBeVisible
+    path: ''
+    startLine: 16941
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Tests.UI
+  syntax:
+    content: public async Task MultipleScreensVisible_ShouldAllBeVisible()
+    return:
+      type: Task
+    content.vb: Public Function MultipleScreensVisible_ShouldAllBeVisible As Task
+  overload: GameFramework.Tests.UI.UIServiceIntegrationTests.MultipleScreensVisible_ShouldAllBeVisible*
+  modifiers.csharp:
+  - public
+  - async
+  modifiers.vb:
+  - Public
+- uid: GameFramework.Tests.UI.UIServiceIntegrationTests.EventSystem_ShouldBeProperlyInitialized
+  commentId: M:GameFramework.Tests.UI.UIServiceIntegrationTests.EventSystem_ShouldBeProperlyInitialized
+  id: EventSystem_ShouldBeProperlyInitialized
+  parent: GameFramework.Tests.UI.UIServiceIntegrationTests
+  langs:
+  - csharp
+  - vb
+  name: EventSystem_ShouldBeProperlyInitialized()
+  nameWithType: UIServiceIntegrationTests.EventSystem_ShouldBeProperlyInitialized()
+  fullName: GameFramework.Tests.UI.UIServiceIntegrationTests.EventSystem_ShouldBeProperlyInitialized()
+  type: Method
+  source:
+    id: EventSystem_ShouldBeProperlyInitialized
+    path: ''
+    startLine: 16975
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Tests.UI
+  syntax:
+    content: public async Task EventSystem_ShouldBeProperlyInitialized()
+    return:
+      type: Task
+    content.vb: Public Function EventSystem_ShouldBeProperlyInitialized As Task
+  overload: GameFramework.Tests.UI.UIServiceIntegrationTests.EventSystem_ShouldBeProperlyInitialized*
+  modifiers.csharp:
+  - public
+  - async
+  modifiers.vb:
+  - Public
+references:
+- uid: GameFramework.Tests.UI
+  commentId: N:GameFramework.Tests.UI
+  name: GameFramework.Tests.UI
+  nameWithType: GameFramework.Tests.UI
+  fullName: GameFramework.Tests.UI
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: GameFramework.Tests.UI.UIServiceIntegrationTests.SetUp*
+  commentId: Overload:GameFramework.Tests.UI.UIServiceIntegrationTests.SetUp
+  name: SetUp
+  nameWithType: UIServiceIntegrationTests.SetUp
+  fullName: GameFramework.Tests.UI.UIServiceIntegrationTests.SetUp
+- uid: GameFramework.Tests.UI.UIServiceIntegrationTests.TearDown*
+  commentId: Overload:GameFramework.Tests.UI.UIServiceIntegrationTests.TearDown
+  name: TearDown
+  nameWithType: UIServiceIntegrationTests.TearDown
+  fullName: GameFramework.Tests.UI.UIServiceIntegrationTests.TearDown
+- uid: GameFramework.Tests.UI.UIServiceIntegrationTests.FullWorkflow_InitializeShowHideShutdown_ShouldWorkCorrectly*
+  commentId: Overload:GameFramework.Tests.UI.UIServiceIntegrationTests.FullWorkflow_InitializeShowHideShutdown_ShouldWorkCorrectly
+  name: FullWorkflow_InitializeShowHideShutdown_ShouldWorkCorrectly
+  nameWithType: UIServiceIntegrationTests.FullWorkflow_InitializeShowHideShutdown_ShouldWorkCorrectly
+  fullName: GameFramework.Tests.UI.UIServiceIntegrationTests.FullWorkflow_InitializeShowHideShutdown_ShouldWorkCorrectly
+- uid: Task
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: Task
+- uid: GameFramework.Tests.UI.UIServiceIntegrationTests.MultipleScreensVisible_ShouldAllBeVisible*
+  commentId: Overload:GameFramework.Tests.UI.UIServiceIntegrationTests.MultipleScreensVisible_ShouldAllBeVisible
+  name: MultipleScreensVisible_ShouldAllBeVisible
+  nameWithType: UIServiceIntegrationTests.MultipleScreensVisible_ShouldAllBeVisible
+  fullName: GameFramework.Tests.UI.UIServiceIntegrationTests.MultipleScreensVisible_ShouldAllBeVisible
+- uid: GameFramework.Tests.UI.UIServiceIntegrationTests.EventSystem_ShouldBeProperlyInitialized*
+  commentId: Overload:GameFramework.Tests.UI.UIServiceIntegrationTests.EventSystem_ShouldBeProperlyInitialized
+  name: EventSystem_ShouldBeProperlyInitialized
+  nameWithType: UIServiceIntegrationTests.EventSystem_ShouldBeProperlyInitialized
+  fullName: GameFramework.Tests.UI.UIServiceIntegrationTests.EventSystem_ShouldBeProperlyInitialized

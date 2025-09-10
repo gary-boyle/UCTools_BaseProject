@@ -1,0 +1,46 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.UI.Popups
+  commentId: N:GameFramework.UI.Popups
+  id: GameFramework.UI.Popups
+  children:
+  - GameFramework.UI.Popups.ConfirmationPopup
+  - GameFramework.UI.Popups.DebugPopup
+  - GameFramework.UI.Popups.ErrorPopup
+  - GameFramework.UI.Popups.OptionsPopup
+  - GameFramework.UI.Popups.PausePopup
+  langs:
+  - csharp
+  - vb
+  name: GameFramework.UI.Popups
+  nameWithType: GameFramework.UI.Popups
+  fullName: GameFramework.UI.Popups
+  type: Namespace
+  assemblies:
+  - cs.temp.dll
+references:
+- uid: GameFramework.UI.Popups.ConfirmationPopup
+  commentId: T:GameFramework.UI.Popups.ConfirmationPopup
+  name: ConfirmationPopup
+  nameWithType: ConfirmationPopup
+  fullName: GameFramework.UI.Popups.ConfirmationPopup
+- uid: GameFramework.UI.Popups.ErrorPopup
+  commentId: T:GameFramework.UI.Popups.ErrorPopup
+  name: ErrorPopup
+  nameWithType: ErrorPopup
+  fullName: GameFramework.UI.Popups.ErrorPopup
+- uid: GameFramework.UI.Popups.OptionsPopup
+  commentId: T:GameFramework.UI.Popups.OptionsPopup
+  name: OptionsPopup
+  nameWithType: OptionsPopup
+  fullName: GameFramework.UI.Popups.OptionsPopup
+- uid: GameFramework.UI.Popups.PausePopup
+  commentId: T:GameFramework.UI.Popups.PausePopup
+  name: PausePopup
+  nameWithType: PausePopup
+  fullName: GameFramework.UI.Popups.PausePopup
+- uid: GameFramework.UI.Popups.DebugPopup
+  commentId: T:GameFramework.UI.Popups.DebugPopup
+  name: DebugPopup
+  nameWithType: DebugPopup
+  fullName: GameFramework.UI.Popups.DebugPopup

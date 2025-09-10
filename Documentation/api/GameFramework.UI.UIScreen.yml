@@ -1,0 +1,869 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.UI.UIScreen
+  commentId: T:GameFramework.UI.UIScreen
+  id: UIScreen
+  parent: GameFramework.UI
+  children:
+  - GameFramework.UI.UIScreen.#ctor(VisualElement)
+  - GameFramework.UI.UIScreen._eventSystem
+  - GameFramework.UI.UIScreen.Cleanup
+  - GameFramework.UI.UIScreen.DisableFrameUpdates
+  - GameFramework.UI.UIScreen.EnableFrameUpdates
+  - GameFramework.UI.UIScreen.Hide
+  - GameFramework.UI.UIScreen.IsVisible
+  - GameFramework.UI.UIScreen.NeedsFrameUpdates
+  - GameFramework.UI.UIScreen.OnHide
+  - GameFramework.UI.UIScreen.OnShow
+  - GameFramework.UI.UIScreen.OnUpdate(System.Single)
+  - GameFramework.UI.UIScreen.RootElement
+  - GameFramework.UI.UIScreen.ShouldUpdateWhenPaused
+  - GameFramework.UI.UIScreen.Show
+  langs:
+  - csharp
+  - vb
+  name: UIScreen
+  nameWithType: UIScreen
+  fullName: GameFramework.UI.UIScreen
+  type: Class
+  source:
+    id: UIScreen
+    path: ''
+    startLine: 13142
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI
+  summary: "\nBase class for all UI screens with optional frame update support\nFrame updates are managed centrally by UIService for performance\n"
+  example: []
+  syntax:
+    content: public abstract class UIScreen
+    content.vb: Public MustInherit Class UIScreen
+  inheritance:
+  - System.Object
+  derivedClasses:
+  - GameFramework.UI.Screens.CreditsScreen
+  - GameFramework.UI.Screens.GameOverScreen
+  - GameFramework.UI.Screens.GamePlayScreen
+  - GameFramework.UI.Screens.LoadingScreen
+  - GameFramework.UI.Screens.MainMenuScreen
+  - GameFramework.UI.Screens.NewGameScreen
+  - GameFramework.UI.Screens.SplashScreen
+  - GameFramework.UI.Screens.VictoryScreen
+  - GameFramework.UI.UIPopup
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - abstract
+  - class
+  modifiers.vb:
+  - Public
+  - MustInherit
+  - Class
+- uid: GameFramework.UI.UIScreen.RootElement
+  commentId: P:GameFramework.UI.UIScreen.RootElement
+  id: RootElement
+  parent: GameFramework.UI.UIScreen
+  langs:
+  - csharp
+  - vb
+  name: RootElement
+  nameWithType: UIScreen.RootElement
+  fullName: GameFramework.UI.UIScreen.RootElement
+  type: Property
+  source:
+    id: RootElement
+    path: ''
+    startLine: 13144
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI
+  syntax:
+    content: protected VisualElement RootElement { get; }
+    parameters: []
+    return:
+      type: VisualElement
+    content.vb: Protected ReadOnly Property RootElement As VisualElement
+  overload: GameFramework.UI.UIScreen.RootElement*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: GameFramework.UI.UIScreen.IsVisible
+  commentId: P:GameFramework.UI.UIScreen.IsVisible
+  id: IsVisible
+  parent: GameFramework.UI.UIScreen
+  langs:
+  - csharp
+  - vb
+  name: IsVisible
+  nameWithType: UIScreen.IsVisible
+  fullName: GameFramework.UI.UIScreen.IsVisible
+  type: Property
+  source:
+    id: IsVisible
+    path: ''
+    startLine: 13145
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI
+  syntax:
+    content: public bool IsVisible { get; protected set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property IsVisible As Boolean
+  overload: GameFramework.UI.UIScreen.IsVisible*
+  modifiers.csharp:
+  - public
+  - get
+  - protected set
+  modifiers.vb:
+  - Public
+  - Get
+  - Protected Set
+- uid: GameFramework.UI.UIScreen.NeedsFrameUpdates
+  commentId: P:GameFramework.UI.UIScreen.NeedsFrameUpdates
+  id: NeedsFrameUpdates
+  parent: GameFramework.UI.UIScreen
+  langs:
+  - csharp
+  - vb
+  name: NeedsFrameUpdates
+  nameWithType: UIScreen.NeedsFrameUpdates
+  fullName: GameFramework.UI.UIScreen.NeedsFrameUpdates
+  type: Property
+  source:
+    id: NeedsFrameUpdates
+    path: ''
+    startLine: 13146
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI
+  syntax:
+    content: public bool NeedsFrameUpdates { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property NeedsFrameUpdates As Boolean
+  overload: GameFramework.UI.UIScreen.NeedsFrameUpdates*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: GameFramework.UI.UIScreen._eventSystem
+  commentId: F:GameFramework.UI.UIScreen._eventSystem
+  id: _eventSystem
+  parent: GameFramework.UI.UIScreen
+  langs:
+  - csharp
+  - vb
+  name: _eventSystem
+  nameWithType: UIScreen._eventSystem
+  fullName: GameFramework.UI.UIScreen._eventSystem
+  type: Field
+  source:
+    id: _eventSystem
+    path: ''
+    startLine: 13148
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI
+  syntax:
+    content: protected IEventSystem _eventSystem
+    return:
+      type: IEventSystem
+    content.vb: Protected _eventSystem As IEventSystem
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: GameFramework.UI.UIScreen.#ctor(VisualElement)
+  commentId: M:GameFramework.UI.UIScreen.#ctor(VisualElement)
+  id: '#ctor(VisualElement)'
+  parent: GameFramework.UI.UIScreen
+  langs:
+  - csharp
+  - vb
+  name: UIScreen(VisualElement)
+  nameWithType: UIScreen.UIScreen(VisualElement)
+  fullName: GameFramework.UI.UIScreen.UIScreen(VisualElement)
+  type: Constructor
+  source:
+    id: .ctor
+    path: ''
+    startLine: 13150
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI
+  syntax:
+    content: protected UIScreen(VisualElement rootElement)
+    parameters:
+    - id: rootElement
+      type: VisualElement
+    content.vb: Protected Sub New(rootElement As VisualElement)
+  overload: GameFramework.UI.UIScreen.#ctor*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: GameFramework.UI.UIScreen.Show
+  commentId: M:GameFramework.UI.UIScreen.Show
+  id: Show
+  parent: GameFramework.UI.UIScreen
+  langs:
+  - csharp
+  - vb
+  name: Show()
+  nameWithType: UIScreen.Show()
+  fullName: GameFramework.UI.UIScreen.Show()
+  type: Method
+  source:
+    id: Show
+    path: ''
+    startLine: 13158
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI
+  syntax:
+    content: public virtual void Show()
+    content.vb: Public Overridable Sub Show
+  overload: GameFramework.UI.UIScreen.Show*
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+- uid: GameFramework.UI.UIScreen.Hide
+  commentId: M:GameFramework.UI.UIScreen.Hide
+  id: Hide
+  parent: GameFramework.UI.UIScreen
+  langs:
+  - csharp
+  - vb
+  name: Hide()
+  nameWithType: UIScreen.Hide()
+  fullName: GameFramework.UI.UIScreen.Hide()
+  type: Method
+  source:
+    id: Hide
+    path: ''
+    startLine: 13165
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI
+  syntax:
+    content: public virtual void Hide()
+    content.vb: Public Overridable Sub Hide
+  overload: GameFramework.UI.UIScreen.Hide*
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+- uid: GameFramework.UI.UIScreen.EnableFrameUpdates
+  commentId: M:GameFramework.UI.UIScreen.EnableFrameUpdates
+  id: EnableFrameUpdates
+  parent: GameFramework.UI.UIScreen
+  langs:
+  - csharp
+  - vb
+  name: EnableFrameUpdates()
+  nameWithType: UIScreen.EnableFrameUpdates()
+  fullName: GameFramework.UI.UIScreen.EnableFrameUpdates()
+  type: Method
+  source:
+    id: EnableFrameUpdates
+    path: ''
+    startLine: 13176
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI
+  summary: "\nCall this in derived constructors if the screen needs frame updates\nThis will register the screen with UIService for centralized updates\n"
+  example: []
+  syntax:
+    content: protected void EnableFrameUpdates()
+    content.vb: Protected Sub EnableFrameUpdates
+  overload: GameFramework.UI.UIScreen.EnableFrameUpdates*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: GameFramework.UI.UIScreen.DisableFrameUpdates
+  commentId: M:GameFramework.UI.UIScreen.DisableFrameUpdates
+  id: DisableFrameUpdates
+  parent: GameFramework.UI.UIScreen
+  langs:
+  - csharp
+  - vb
+  name: DisableFrameUpdates()
+  nameWithType: UIScreen.DisableFrameUpdates()
+  fullName: GameFramework.UI.UIScreen.DisableFrameUpdates()
+  type: Method
+  source:
+    id: DisableFrameUpdates
+    path: ''
+    startLine: 13191
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI
+  summary: "\nDisable frame updates for this screen\n"
+  example: []
+  syntax:
+    content: protected void DisableFrameUpdates()
+    content.vb: Protected Sub DisableFrameUpdates
+  overload: GameFramework.UI.UIScreen.DisableFrameUpdates*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: GameFramework.UI.UIScreen.OnUpdate(System.Single)
+  commentId: M:GameFramework.UI.UIScreen.OnUpdate(System.Single)
+  id: OnUpdate(System.Single)
+  parent: GameFramework.UI.UIScreen
+  langs:
+  - csharp
+  - vb
+  name: OnUpdate(Single)
+  nameWithType: UIScreen.OnUpdate(Single)
+  fullName: GameFramework.UI.UIScreen.OnUpdate(System.Single)
+  type: Method
+  source:
+    id: OnUpdate
+    path: ''
+    startLine: 13206
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI
+  summary: "\nOverride this for frame-based updates (only called when screen is visible and needs updates)\n"
+  example: []
+  syntax:
+    content: protected virtual void OnUpdate(float deltaTime)
+    parameters:
+    - id: deltaTime
+      type: System.Single
+    content.vb: Protected Overridable Sub OnUpdate(deltaTime As Single)
+  overload: GameFramework.UI.UIScreen.OnUpdate*
+  modifiers.csharp:
+  - protected
+  - virtual
+  modifiers.vb:
+  - Protected
+  - Overridable
+- uid: GameFramework.UI.UIScreen.OnShow
+  commentId: M:GameFramework.UI.UIScreen.OnShow
+  id: OnShow
+  parent: GameFramework.UI.UIScreen
+  langs:
+  - csharp
+  - vb
+  name: OnShow()
+  nameWithType: UIScreen.OnShow()
+  fullName: GameFramework.UI.UIScreen.OnShow()
+  type: Method
+  source:
+    id: OnShow
+    path: ''
+    startLine: 13220
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI
+  syntax:
+    content: protected virtual void OnShow()
+    content.vb: Protected Overridable Sub OnShow
+  overload: GameFramework.UI.UIScreen.OnShow*
+  modifiers.csharp:
+  - protected
+  - virtual
+  modifiers.vb:
+  - Protected
+  - Overridable
+- uid: GameFramework.UI.UIScreen.OnHide
+  commentId: M:GameFramework.UI.UIScreen.OnHide
+  id: OnHide
+  parent: GameFramework.UI.UIScreen
+  langs:
+  - csharp
+  - vb
+  name: OnHide()
+  nameWithType: UIScreen.OnHide()
+  fullName: GameFramework.UI.UIScreen.OnHide()
+  type: Method
+  source:
+    id: OnHide
+    path: ''
+    startLine: 13221
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI
+  syntax:
+    content: protected virtual void OnHide()
+    content.vb: Protected Overridable Sub OnHide
+  overload: GameFramework.UI.UIScreen.OnHide*
+  modifiers.csharp:
+  - protected
+  - virtual
+  modifiers.vb:
+  - Protected
+  - Overridable
+- uid: GameFramework.UI.UIScreen.Cleanup
+  commentId: M:GameFramework.UI.UIScreen.Cleanup
+  id: Cleanup
+  parent: GameFramework.UI.UIScreen
+  langs:
+  - csharp
+  - vb
+  name: Cleanup()
+  nameWithType: UIScreen.Cleanup()
+  fullName: GameFramework.UI.UIScreen.Cleanup()
+  type: Method
+  source:
+    id: Cleanup
+    path: ''
+    startLine: 13226
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI
+  summary: "\nClean up when screen is destroyed\n"
+  example: []
+  syntax:
+    content: public virtual void Cleanup()
+    content.vb: Public Overridable Sub Cleanup
+  overload: GameFramework.UI.UIScreen.Cleanup*
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+- uid: GameFramework.UI.UIScreen.ShouldUpdateWhenPaused
+  commentId: M:GameFramework.UI.UIScreen.ShouldUpdateWhenPaused
+  id: ShouldUpdateWhenPaused
+  parent: GameFramework.UI.UIScreen
+  langs:
+  - csharp
+  - vb
+  name: ShouldUpdateWhenPaused()
+  nameWithType: UIScreen.ShouldUpdateWhenPaused()
+  fullName: GameFramework.UI.UIScreen.ShouldUpdateWhenPaused()
+  type: Method
+  source:
+    id: ShouldUpdateWhenPaused
+    path: ''
+    startLine: 13239
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI
+  summary: "\nOverride this to specify if this screen should update even when the game is paused\nMost screens should not update when paused, but some (like pause menus) might need to\n"
+  example: []
+  syntax:
+    content: public virtual bool ShouldUpdateWhenPaused()
+    return:
+      type: System.Boolean
+    content.vb: Public Overridable Function ShouldUpdateWhenPaused As Boolean
+  overload: GameFramework.UI.UIScreen.ShouldUpdateWhenPaused*
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+references:
+- uid: GameFramework.UI
+  commentId: N:GameFramework.UI
+  name: GameFramework.UI
+  nameWithType: GameFramework.UI
+  fullName: GameFramework.UI
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: GameFramework.UI.UIScreen.RootElement*
+  commentId: Overload:GameFramework.UI.UIScreen.RootElement
+  name: RootElement
+  nameWithType: UIScreen.RootElement
+  fullName: GameFramework.UI.UIScreen.RootElement
+- uid: VisualElement
+  isExternal: true
+  name: VisualElement
+  nameWithType: VisualElement
+  fullName: VisualElement
+- uid: GameFramework.UI.UIScreen.IsVisible*
+  commentId: Overload:GameFramework.UI.UIScreen.IsVisible
+  name: IsVisible
+  nameWithType: UIScreen.IsVisible
+  fullName: GameFramework.UI.UIScreen.IsVisible
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: GameFramework.UI.UIScreen.NeedsFrameUpdates*
+  commentId: Overload:GameFramework.UI.UIScreen.NeedsFrameUpdates
+  name: NeedsFrameUpdates
+  nameWithType: UIScreen.NeedsFrameUpdates
+  fullName: GameFramework.UI.UIScreen.NeedsFrameUpdates
+- uid: IEventSystem
+  isExternal: true
+  name: IEventSystem
+  nameWithType: IEventSystem
+  fullName: IEventSystem
+- uid: GameFramework.UI.UIScreen.#ctor*
+  commentId: Overload:GameFramework.UI.UIScreen.#ctor
+  name: UIScreen
+  nameWithType: UIScreen.UIScreen
+  fullName: GameFramework.UI.UIScreen.UIScreen
+- uid: GameFramework.UI.UIScreen.Show*
+  commentId: Overload:GameFramework.UI.UIScreen.Show
+  name: Show
+  nameWithType: UIScreen.Show
+  fullName: GameFramework.UI.UIScreen.Show
+- uid: GameFramework.UI.UIScreen.Hide*
+  commentId: Overload:GameFramework.UI.UIScreen.Hide
+  name: Hide
+  nameWithType: UIScreen.Hide
+  fullName: GameFramework.UI.UIScreen.Hide
+- uid: GameFramework.UI.UIScreen.EnableFrameUpdates*
+  commentId: Overload:GameFramework.UI.UIScreen.EnableFrameUpdates
+  name: EnableFrameUpdates
+  nameWithType: UIScreen.EnableFrameUpdates
+  fullName: GameFramework.UI.UIScreen.EnableFrameUpdates
+- uid: GameFramework.UI.UIScreen.DisableFrameUpdates*
+  commentId: Overload:GameFramework.UI.UIScreen.DisableFrameUpdates
+  name: DisableFrameUpdates
+  nameWithType: UIScreen.DisableFrameUpdates
+  fullName: GameFramework.UI.UIScreen.DisableFrameUpdates
+- uid: GameFramework.UI.UIScreen.OnUpdate*
+  commentId: Overload:GameFramework.UI.UIScreen.OnUpdate
+  name: OnUpdate
+  nameWithType: UIScreen.OnUpdate
+  fullName: GameFramework.UI.UIScreen.OnUpdate
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  name: Single
+  nameWithType: Single
+  fullName: System.Single
+- uid: GameFramework.UI.UIScreen.OnShow*
+  commentId: Overload:GameFramework.UI.UIScreen.OnShow
+  name: OnShow
+  nameWithType: UIScreen.OnShow
+  fullName: GameFramework.UI.UIScreen.OnShow
+- uid: GameFramework.UI.UIScreen.OnHide*
+  commentId: Overload:GameFramework.UI.UIScreen.OnHide
+  name: OnHide
+  nameWithType: UIScreen.OnHide
+  fullName: GameFramework.UI.UIScreen.OnHide
+- uid: GameFramework.UI.UIScreen.Cleanup*
+  commentId: Overload:GameFramework.UI.UIScreen.Cleanup
+  name: Cleanup
+  nameWithType: UIScreen.Cleanup
+  fullName: GameFramework.UI.UIScreen.Cleanup
+- uid: GameFramework.UI.UIScreen.ShouldUpdateWhenPaused*
+  commentId: Overload:GameFramework.UI.UIScreen.ShouldUpdateWhenPaused
+  name: ShouldUpdateWhenPaused
+  nameWithType: UIScreen.ShouldUpdateWhenPaused
+  fullName: GameFramework.UI.UIScreen.ShouldUpdateWhenPaused

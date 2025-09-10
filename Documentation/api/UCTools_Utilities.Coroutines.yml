@@ -1,0 +1,552 @@
+### YamlMime:ManagedReference
+items:
+- uid: UCTools_Utilities.Coroutines
+  commentId: T:UCTools_Utilities.Coroutines
+  id: Coroutines
+  parent: UCTools_Utilities
+  children:
+  - UCTools_Utilities.Coroutines.Initialize(MonoBehaviour)
+  - UCTools_Utilities.Coroutines.IsInitialized
+  - UCTools_Utilities.Coroutines.StartCoroutine(System.Collections.Generic.IEnumerator)
+  - UCTools_Utilities.Coroutines.StopCoroutine(Coroutine)
+  - UCTools_Utilities.Coroutines.StopCoroutine(Coroutine@)
+  langs:
+  - csharp
+  - vb
+  name: Coroutines
+  nameWithType: Coroutines
+  fullName: UCTools_Utilities.Coroutines
+  type: Class
+  source:
+    id: Coroutines
+    path: ''
+    startLine: 18961
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_Utilities
+  summary: "\nThe Coroutines class provides static methods for managing coroutines\nwithout the need for a MonoBehaviour component attached to a game object.\nThis is useful if you have a System.Object or ScriptableObject that needs to run a coroutine.\n"
+  example: []
+  syntax:
+    content: public static class Coroutines
+    content.vb: Public Module Coroutines
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: UCTools_Utilities.Coroutines.IsInitialized
+  commentId: P:UCTools_Utilities.Coroutines.IsInitialized
+  id: IsInitialized
+  parent: UCTools_Utilities.Coroutines
+  langs:
+  - csharp
+  - vb
+  name: IsInitialized
+  nameWithType: Coroutines.IsInitialized
+  fullName: UCTools_Utilities.Coroutines.IsInitialized
+  type: Property
+  source:
+    id: IsInitialized
+    path: ''
+    startLine: 18965
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_Utilities
+  syntax:
+    content: public static bool IsInitialized { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Shared ReadOnly Property IsInitialized As Boolean
+  overload: UCTools_Utilities.Coroutines.IsInitialized*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: UCTools_Utilities.Coroutines.Initialize(MonoBehaviour)
+  commentId: M:UCTools_Utilities.Coroutines.Initialize(MonoBehaviour)
+  id: Initialize(MonoBehaviour)
+  parent: UCTools_Utilities.Coroutines
+  langs:
+  - csharp
+  - vb
+  name: Initialize(MonoBehaviour)
+  nameWithType: Coroutines.Initialize(MonoBehaviour)
+  fullName: UCTools_Utilities.Coroutines.Initialize(MonoBehaviour)
+  type: Method
+  source:
+    id: Initialize
+    path: ''
+    startLine: 18967
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_Utilities
+  syntax:
+    content: public static void Initialize(MonoBehaviour runner)
+    parameters:
+    - id: runner
+      type: MonoBehaviour
+    content.vb: Public Shared Sub Initialize(runner As MonoBehaviour)
+  overload: UCTools_Utilities.Coroutines.Initialize*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: UCTools_Utilities.Coroutines.StartCoroutine(System.Collections.Generic.IEnumerator)
+  commentId: M:UCTools_Utilities.Coroutines.StartCoroutine(System.Collections.Generic.IEnumerator)
+  id: StartCoroutine(System.Collections.Generic.IEnumerator)
+  parent: UCTools_Utilities.Coroutines
+  langs:
+  - csharp
+  - vb
+  name: StartCoroutine(IEnumerator)
+  nameWithType: Coroutines.StartCoroutine(IEnumerator)
+  fullName: UCTools_Utilities.Coroutines.StartCoroutine(System.Collections.Generic.IEnumerator)
+  type: Method
+  source:
+    id: StartCoroutine
+    path: ''
+    startLine: 18973
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_Utilities
+  syntax:
+    content: public static Coroutine StartCoroutine(IEnumerator coroutine)
+    parameters:
+    - id: coroutine
+      type: System.Collections.Generic.IEnumerator
+    return:
+      type: Coroutine
+    content.vb: Public Shared Function StartCoroutine(coroutine As IEnumerator) As Coroutine
+  overload: UCTools_Utilities.Coroutines.StartCoroutine*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: UCTools_Utilities.Coroutines.StopCoroutine(Coroutine)
+  commentId: M:UCTools_Utilities.Coroutines.StopCoroutine(Coroutine)
+  id: StopCoroutine(Coroutine)
+  parent: UCTools_Utilities.Coroutines
+  langs:
+  - csharp
+  - vb
+  name: StopCoroutine(Coroutine)
+  nameWithType: Coroutines.StopCoroutine(Coroutine)
+  fullName: UCTools_Utilities.Coroutines.StopCoroutine(Coroutine)
+  type: Method
+  source:
+    id: StopCoroutine
+    path: ''
+    startLine: 18983
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_Utilities
+  syntax:
+    content: public static void StopCoroutine(Coroutine coroutine)
+    parameters:
+    - id: coroutine
+      type: Coroutine
+    content.vb: Public Shared Sub StopCoroutine(coroutine As Coroutine)
+  overload: UCTools_Utilities.Coroutines.StopCoroutine*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: UCTools_Utilities.Coroutines.StopCoroutine(Coroutine@)
+  commentId: M:UCTools_Utilities.Coroutines.StopCoroutine(Coroutine@)
+  id: StopCoroutine(Coroutine@)
+  parent: UCTools_Utilities.Coroutines
+  langs:
+  - csharp
+  - vb
+  name: StopCoroutine(ref Coroutine)
+  nameWithType: Coroutines.StopCoroutine(ref Coroutine)
+  fullName: UCTools_Utilities.Coroutines.StopCoroutine(ref Coroutine)
+  type: Method
+  source:
+    id: StopCoroutine
+    path: ''
+    startLine: 18991
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_Utilities
+  syntax:
+    content: public static void StopCoroutine(ref Coroutine coroutine)
+    parameters:
+    - id: coroutine
+      type: Coroutine
+    content.vb: Public Shared Sub StopCoroutine(ByRef coroutine As Coroutine)
+  overload: UCTools_Utilities.Coroutines.StopCoroutine*
+  nameWithType.vb: Coroutines.StopCoroutine(ByRef Coroutine)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: UCTools_Utilities.Coroutines.StopCoroutine(ByRef Coroutine)
+  name.vb: StopCoroutine(ByRef Coroutine)
+references:
+- uid: UCTools_Utilities
+  commentId: N:UCTools_Utilities
+  name: UCTools_Utilities
+  nameWithType: UCTools_Utilities
+  fullName: UCTools_Utilities
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: UCTools_Utilities.Coroutines.IsInitialized*
+  commentId: Overload:UCTools_Utilities.Coroutines.IsInitialized
+  name: IsInitialized
+  nameWithType: Coroutines.IsInitialized
+  fullName: UCTools_Utilities.Coroutines.IsInitialized
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: UCTools_Utilities.Coroutines.Initialize*
+  commentId: Overload:UCTools_Utilities.Coroutines.Initialize
+  name: Initialize
+  nameWithType: Coroutines.Initialize
+  fullName: UCTools_Utilities.Coroutines.Initialize
+- uid: MonoBehaviour
+  commentId: '!:MonoBehaviour'
+  isExternal: true
+  name: MonoBehaviour
+  nameWithType: MonoBehaviour
+  fullName: MonoBehaviour
+- uid: UCTools_Utilities.Coroutines.StartCoroutine*
+  commentId: Overload:UCTools_Utilities.Coroutines.StartCoroutine
+  name: StartCoroutine
+  nameWithType: Coroutines.StartCoroutine
+  fullName: UCTools_Utilities.Coroutines.StartCoroutine
+- uid: System.Collections.Generic.IEnumerator
+  commentId: '!:System.Collections.Generic.IEnumerator'
+  isExternal: true
+  name: IEnumerator
+  nameWithType: IEnumerator
+  fullName: System.Collections.Generic.IEnumerator
+- uid: Coroutine
+  isExternal: true
+  name: Coroutine
+  nameWithType: Coroutine
+  fullName: Coroutine
+- uid: UCTools_Utilities.Coroutines.StopCoroutine*
+  commentId: Overload:UCTools_Utilities.Coroutines.StopCoroutine
+  name: StopCoroutine
+  nameWithType: Coroutines.StopCoroutine
+  fullName: UCTools_Utilities.Coroutines.StopCoroutine

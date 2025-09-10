@@ -1,0 +1,258 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.Services.Interfaces.IConsoleService
+  commentId: T:GameFramework.Services.Interfaces.IConsoleService
+  id: IConsoleService
+  parent: GameFramework.Services.Interfaces
+  children:
+  - GameFramework.Services.Interfaces.IConsoleService.ExecuteCommand(System.String)
+  - GameFramework.Services.Interfaces.IConsoleService.InitializeAsync
+  - GameFramework.Services.Interfaces.IConsoleService.IsConsoleOpen
+  - GameFramework.Services.Interfaces.IConsoleService.SetConsoleOpen(System.Boolean)
+  - GameFramework.Services.Interfaces.IConsoleService.Shutdown
+  - GameFramework.Services.Interfaces.IConsoleService.WriteLine(System.String)
+  langs:
+  - csharp
+  - vb
+  name: IConsoleService
+  nameWithType: IConsoleService
+  fullName: GameFramework.Services.Interfaces.IConsoleService
+  type: Interface
+  source:
+    id: IConsoleService
+    path: ''
+    startLine: 10949
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: 'public interface IConsoleService : IGameService'
+    content.vb: >-
+      Public Interface IConsoleService
+          Inherits IGameService
+  inheritedMembers:
+  - GameFramework.Services.Interfaces.IGameService.IsInitialized
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: GameFramework.Services.Interfaces.IConsoleService.InitializeAsync
+  commentId: M:GameFramework.Services.Interfaces.IConsoleService.InitializeAsync
+  id: InitializeAsync
+  parent: GameFramework.Services.Interfaces.IConsoleService
+  langs:
+  - csharp
+  - vb
+  name: InitializeAsync()
+  nameWithType: IConsoleService.InitializeAsync()
+  fullName: GameFramework.Services.Interfaces.IConsoleService.InitializeAsync()
+  type: Method
+  source:
+    id: InitializeAsync
+    path: ''
+    startLine: 10951
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: Task InitializeAsync()
+    return:
+      type: Task
+    content.vb: Function InitializeAsync As Task
+  overload: GameFramework.Services.Interfaces.IConsoleService.InitializeAsync*
+- uid: GameFramework.Services.Interfaces.IConsoleService.Shutdown
+  commentId: M:GameFramework.Services.Interfaces.IConsoleService.Shutdown
+  id: Shutdown
+  parent: GameFramework.Services.Interfaces.IConsoleService
+  langs:
+  - csharp
+  - vb
+  name: Shutdown()
+  nameWithType: IConsoleService.Shutdown()
+  fullName: GameFramework.Services.Interfaces.IConsoleService.Shutdown()
+  type: Method
+  source:
+    id: Shutdown
+    path: ''
+    startLine: 10952
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: void Shutdown()
+    content.vb: Sub Shutdown
+  overload: GameFramework.Services.Interfaces.IConsoleService.Shutdown*
+- uid: GameFramework.Services.Interfaces.IConsoleService.IsConsoleOpen
+  commentId: M:GameFramework.Services.Interfaces.IConsoleService.IsConsoleOpen
+  id: IsConsoleOpen
+  parent: GameFramework.Services.Interfaces.IConsoleService
+  langs:
+  - csharp
+  - vb
+  name: IsConsoleOpen()
+  nameWithType: IConsoleService.IsConsoleOpen()
+  fullName: GameFramework.Services.Interfaces.IConsoleService.IsConsoleOpen()
+  type: Method
+  source:
+    id: IsConsoleOpen
+    path: ''
+    startLine: 10953
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: bool IsConsoleOpen()
+    return:
+      type: System.Boolean
+    content.vb: Function IsConsoleOpen As Boolean
+  overload: GameFramework.Services.Interfaces.IConsoleService.IsConsoleOpen*
+- uid: GameFramework.Services.Interfaces.IConsoleService.SetConsoleOpen(System.Boolean)
+  commentId: M:GameFramework.Services.Interfaces.IConsoleService.SetConsoleOpen(System.Boolean)
+  id: SetConsoleOpen(System.Boolean)
+  parent: GameFramework.Services.Interfaces.IConsoleService
+  langs:
+  - csharp
+  - vb
+  name: SetConsoleOpen(Boolean)
+  nameWithType: IConsoleService.SetConsoleOpen(Boolean)
+  fullName: GameFramework.Services.Interfaces.IConsoleService.SetConsoleOpen(System.Boolean)
+  type: Method
+  source:
+    id: SetConsoleOpen
+    path: ''
+    startLine: 10954
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: void SetConsoleOpen(bool open)
+    parameters:
+    - id: open
+      type: System.Boolean
+    content.vb: Sub SetConsoleOpen(open As Boolean)
+  overload: GameFramework.Services.Interfaces.IConsoleService.SetConsoleOpen*
+- uid: GameFramework.Services.Interfaces.IConsoleService.ExecuteCommand(System.String)
+  commentId: M:GameFramework.Services.Interfaces.IConsoleService.ExecuteCommand(System.String)
+  id: ExecuteCommand(System.String)
+  parent: GameFramework.Services.Interfaces.IConsoleService
+  langs:
+  - csharp
+  - vb
+  name: ExecuteCommand(String)
+  nameWithType: IConsoleService.ExecuteCommand(String)
+  fullName: GameFramework.Services.Interfaces.IConsoleService.ExecuteCommand(System.String)
+  type: Method
+  source:
+    id: ExecuteCommand
+    path: ''
+    startLine: 10955
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: void ExecuteCommand(string command)
+    parameters:
+    - id: command
+      type: System.String
+    content.vb: Sub ExecuteCommand(command As String)
+  overload: GameFramework.Services.Interfaces.IConsoleService.ExecuteCommand*
+- uid: GameFramework.Services.Interfaces.IConsoleService.WriteLine(System.String)
+  commentId: M:GameFramework.Services.Interfaces.IConsoleService.WriteLine(System.String)
+  id: WriteLine(System.String)
+  parent: GameFramework.Services.Interfaces.IConsoleService
+  langs:
+  - csharp
+  - vb
+  name: WriteLine(String)
+  nameWithType: IConsoleService.WriteLine(String)
+  fullName: GameFramework.Services.Interfaces.IConsoleService.WriteLine(System.String)
+  type: Method
+  source:
+    id: WriteLine
+    path: ''
+    startLine: 10956
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.Services.Interfaces
+  syntax:
+    content: void WriteLine(string message)
+    parameters:
+    - id: message
+      type: System.String
+    content.vb: Sub WriteLine(message As String)
+  overload: GameFramework.Services.Interfaces.IConsoleService.WriteLine*
+references:
+- uid: GameFramework.Services.Interfaces
+  commentId: N:GameFramework.Services.Interfaces
+  name: GameFramework.Services.Interfaces
+  nameWithType: GameFramework.Services.Interfaces
+  fullName: GameFramework.Services.Interfaces
+- uid: GameFramework.Services.Interfaces.IGameService.IsInitialized
+  commentId: P:GameFramework.Services.Interfaces.IGameService.IsInitialized
+  parent: GameFramework.Services.Interfaces.IGameService
+  name: IsInitialized
+  nameWithType: IGameService.IsInitialized
+  fullName: GameFramework.Services.Interfaces.IGameService.IsInitialized
+- uid: GameFramework.Services.Interfaces.IGameService
+  commentId: T:GameFramework.Services.Interfaces.IGameService
+  parent: GameFramework.Services.Interfaces
+  name: IGameService
+  nameWithType: IGameService
+  fullName: GameFramework.Services.Interfaces.IGameService
+- uid: GameFramework.Services.Interfaces.IConsoleService.InitializeAsync*
+  commentId: Overload:GameFramework.Services.Interfaces.IConsoleService.InitializeAsync
+  name: InitializeAsync
+  nameWithType: IConsoleService.InitializeAsync
+  fullName: GameFramework.Services.Interfaces.IConsoleService.InitializeAsync
+- uid: Task
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: Task
+- uid: GameFramework.Services.Interfaces.IConsoleService.Shutdown*
+  commentId: Overload:GameFramework.Services.Interfaces.IConsoleService.Shutdown
+  name: Shutdown
+  nameWithType: IConsoleService.Shutdown
+  fullName: GameFramework.Services.Interfaces.IConsoleService.Shutdown
+- uid: GameFramework.Services.Interfaces.IConsoleService.IsConsoleOpen*
+  commentId: Overload:GameFramework.Services.Interfaces.IConsoleService.IsConsoleOpen
+  name: IsConsoleOpen
+  nameWithType: IConsoleService.IsConsoleOpen
+  fullName: GameFramework.Services.Interfaces.IConsoleService.IsConsoleOpen
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: GameFramework.Services.Interfaces.IConsoleService.SetConsoleOpen*
+  commentId: Overload:GameFramework.Services.Interfaces.IConsoleService.SetConsoleOpen
+  name: SetConsoleOpen
+  nameWithType: IConsoleService.SetConsoleOpen
+  fullName: GameFramework.Services.Interfaces.IConsoleService.SetConsoleOpen
+- uid: GameFramework.Services.Interfaces.IConsoleService.ExecuteCommand*
+  commentId: Overload:GameFramework.Services.Interfaces.IConsoleService.ExecuteCommand
+  name: ExecuteCommand
+  nameWithType: IConsoleService.ExecuteCommand
+  fullName: GameFramework.Services.Interfaces.IConsoleService.ExecuteCommand
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: GameFramework.Services.Interfaces.IConsoleService.WriteLine*
+  commentId: Overload:GameFramework.Services.Interfaces.IConsoleService.WriteLine
+  name: WriteLine
+  nameWithType: IConsoleService.WriteLine
+  fullName: GameFramework.Services.Interfaces.IConsoleService.WriteLine

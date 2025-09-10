@@ -1,0 +1,634 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.ConsoleTool.ConsoleGUI
+  commentId: T:GameFramework.ConsoleTool.ConsoleGUI
+  id: ConsoleGUI
+  parent: GameFramework.ConsoleTool
+  children:
+  - GameFramework.ConsoleTool.ConsoleGUI.ConsoleLateUpdate
+  - GameFramework.ConsoleTool.ConsoleGUI.ConsoleUpdate
+  - GameFramework.ConsoleTool.ConsoleGUI.Init
+  - GameFramework.ConsoleTool.ConsoleGUI.IsOpen
+  - GameFramework.ConsoleTool.ConsoleGUI.OutputString(System.String)
+  - GameFramework.ConsoleTool.ConsoleGUI.SetOpen(System.Boolean)
+  - GameFramework.ConsoleTool.ConsoleGUI.SetPrompt(System.String)
+  - GameFramework.ConsoleTool.ConsoleGUI.Shutdown
+  langs:
+  - csharp
+  - vb
+  name: ConsoleGUI
+  nameWithType: ConsoleGUI
+  fullName: GameFramework.ConsoleTool.ConsoleGUI
+  type: Class
+  source:
+    id: ConsoleGUI
+    path: ''
+    startLine: 1054
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  summary: "\nConsole GUI component responsible for rendering console UI and handling user input.\n\nArchitecture:\n- Pure UI component - only handles visual representation\n- Subscribes to console-specific input events (not toggle - that&apos;s handled by ConsoleService)\n- Uses events to communicate back to console system\n- Optimized string building for better performance\n\nInput Handling Flow:\n1. InputManager detects console input (submit, tab, history) \n2. InputManager publishes console input events\n3. ConsoleGUI receives events and updates UI accordingly\n4. ConsoleGUI calls Console static methods to execute commands\n"
+  example: []
+  syntax:
+    content: 'public class ConsoleGUI : MonoBehaviour, IConsoleUI'
+    content.vb: >-
+      Public Class ConsoleGUI
+          Inherits MonoBehaviour
+          Implements IConsoleUI
+  inheritance:
+  - System.Object
+  implements:
+  - GameFramework.ConsoleTool.IConsoleUI
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: GameFramework.ConsoleTool.ConsoleGUI.Init
+  commentId: M:GameFramework.ConsoleTool.ConsoleGUI.Init
+  id: Init
+  parent: GameFramework.ConsoleTool.ConsoleGUI
+  langs:
+  - csharp
+  - vb
+  name: Init()
+  nameWithType: ConsoleGUI.Init()
+  fullName: GameFramework.ConsoleTool.ConsoleGUI.Init()
+  type: Method
+  source:
+    id: Init
+    path: ''
+    startLine: 1112
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  summary: "\nInitialize the console UI\n"
+  example: []
+  syntax:
+    content: public void Init()
+    content.vb: Public Sub Init
+  overload: GameFramework.ConsoleTool.ConsoleGUI.Init*
+  implements:
+  - GameFramework.ConsoleTool.IConsoleUI.Init
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.ConsoleTool.ConsoleGUI.Shutdown
+  commentId: M:GameFramework.ConsoleTool.ConsoleGUI.Shutdown
+  id: Shutdown
+  parent: GameFramework.ConsoleTool.ConsoleGUI
+  langs:
+  - csharp
+  - vb
+  name: Shutdown()
+  nameWithType: ConsoleGUI.Shutdown()
+  fullName: GameFramework.ConsoleTool.ConsoleGUI.Shutdown()
+  type: Method
+  source:
+    id: Shutdown
+    path: ''
+    startLine: 1126
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  summary: "\nShutdown the console UI\n"
+  example: []
+  syntax:
+    content: public void Shutdown()
+    content.vb: Public Sub Shutdown
+  overload: GameFramework.ConsoleTool.ConsoleGUI.Shutdown*
+  implements:
+  - GameFramework.ConsoleTool.IConsoleUI.Shutdown
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.ConsoleTool.ConsoleGUI.OutputString(System.String)
+  commentId: M:GameFramework.ConsoleTool.ConsoleGUI.OutputString(System.String)
+  id: OutputString(System.String)
+  parent: GameFramework.ConsoleTool.ConsoleGUI
+  langs:
+  - csharp
+  - vb
+  name: OutputString(String)
+  nameWithType: ConsoleGUI.OutputString(String)
+  fullName: GameFramework.ConsoleTool.ConsoleGUI.OutputString(System.String)
+  type: Method
+  source:
+    id: OutputString
+    path: ''
+    startLine: 1140
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  summary: "\nAdd a line of text to the console output\nUses StringBuilder for efficient string concatenation\n"
+  example: []
+  syntax:
+    content: public void OutputString(string message)
+    parameters:
+    - id: message
+      type: System.String
+    content.vb: Public Sub OutputString(message As String)
+  overload: GameFramework.ConsoleTool.ConsoleGUI.OutputString*
+  implements:
+  - GameFramework.ConsoleTool.IConsoleUI.OutputString(System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.ConsoleTool.ConsoleGUI.IsOpen
+  commentId: M:GameFramework.ConsoleTool.ConsoleGUI.IsOpen
+  id: IsOpen
+  parent: GameFramework.ConsoleTool.ConsoleGUI
+  langs:
+  - csharp
+  - vb
+  name: IsOpen()
+  nameWithType: ConsoleGUI.IsOpen()
+  fullName: GameFramework.ConsoleTool.ConsoleGUI.IsOpen()
+  type: Method
+  source:
+    id: IsOpen
+    path: ''
+    startLine: 1158
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  summary: "\nCheck if console is currently visible\n"
+  example: []
+  syntax:
+    content: public bool IsOpen()
+    return:
+      type: System.Boolean
+    content.vb: Public Function IsOpen As Boolean
+  overload: GameFramework.ConsoleTool.ConsoleGUI.IsOpen*
+  implements:
+  - GameFramework.ConsoleTool.IConsoleUI.IsOpen
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.ConsoleTool.ConsoleGUI.SetOpen(System.Boolean)
+  commentId: M:GameFramework.ConsoleTool.ConsoleGUI.SetOpen(System.Boolean)
+  id: SetOpen(System.Boolean)
+  parent: GameFramework.ConsoleTool.ConsoleGUI
+  langs:
+  - csharp
+  - vb
+  name: SetOpen(Boolean)
+  nameWithType: ConsoleGUI.SetOpen(Boolean)
+  fullName: GameFramework.ConsoleTool.ConsoleGUI.SetOpen(System.Boolean)
+  type: Method
+  source:
+    id: SetOpen
+    path: ''
+    startLine: 1166
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  summary: "\nShow or hide the console\n"
+  example: []
+  syntax:
+    content: public void SetOpen(bool open)
+    parameters:
+    - id: open
+      type: System.Boolean
+    content.vb: Public Sub SetOpen(open As Boolean)
+  overload: GameFramework.ConsoleTool.ConsoleGUI.SetOpen*
+  implements:
+  - GameFramework.ConsoleTool.IConsoleUI.SetOpen(System.Boolean)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.ConsoleTool.ConsoleGUI.ConsoleUpdate
+  commentId: M:GameFramework.ConsoleTool.ConsoleGUI.ConsoleUpdate
+  id: ConsoleUpdate
+  parent: GameFramework.ConsoleTool.ConsoleGUI
+  langs:
+  - csharp
+  - vb
+  name: ConsoleUpdate()
+  nameWithType: ConsoleGUI.ConsoleUpdate()
+  fullName: GameFramework.ConsoleTool.ConsoleGUI.ConsoleUpdate()
+  type: Method
+  source:
+    id: ConsoleUpdate
+    path: ''
+    startLine: 1191
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  summary: "\nUpdate console UI (called every frame when console is open)\n"
+  example: []
+  syntax:
+    content: public void ConsoleUpdate()
+    content.vb: Public Sub ConsoleUpdate
+  overload: GameFramework.ConsoleTool.ConsoleGUI.ConsoleUpdate*
+  implements:
+  - GameFramework.ConsoleTool.IConsoleUI.ConsoleUpdate
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.ConsoleTool.ConsoleGUI.ConsoleLateUpdate
+  commentId: M:GameFramework.ConsoleTool.ConsoleGUI.ConsoleLateUpdate
+  id: ConsoleLateUpdate
+  parent: GameFramework.ConsoleTool.ConsoleGUI
+  langs:
+  - csharp
+  - vb
+  name: ConsoleLateUpdate()
+  nameWithType: ConsoleGUI.ConsoleLateUpdate()
+  fullName: GameFramework.ConsoleTool.ConsoleGUI.ConsoleLateUpdate()
+  type: Method
+  source:
+    id: ConsoleLateUpdate
+    path: ''
+    startLine: 1201
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  summary: "\nLate update for console UI (handles caret positioning after UI events)\n"
+  example: []
+  syntax:
+    content: public void ConsoleLateUpdate()
+    content.vb: Public Sub ConsoleLateUpdate
+  overload: GameFramework.ConsoleTool.ConsoleGUI.ConsoleLateUpdate*
+  implements:
+  - GameFramework.ConsoleTool.IConsoleUI.ConsoleLateUpdate
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.ConsoleTool.ConsoleGUI.SetPrompt(System.String)
+  commentId: M:GameFramework.ConsoleTool.ConsoleGUI.SetPrompt(System.String)
+  id: SetPrompt(System.String)
+  parent: GameFramework.ConsoleTool.ConsoleGUI
+  langs:
+  - csharp
+  - vb
+  name: SetPrompt(String)
+  nameWithType: ConsoleGUI.SetPrompt(String)
+  fullName: GameFramework.ConsoleTool.ConsoleGUI.SetPrompt(System.String)
+  type: Method
+  source:
+    id: SetPrompt
+    path: ''
+    startLine: 1213
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.ConsoleTool
+  summary: "\nSet console prompt text (not currently used but part of interface)\n"
+  example: []
+  syntax:
+    content: public void SetPrompt(string prompt)
+    parameters:
+    - id: prompt
+      type: System.String
+    content.vb: Public Sub SetPrompt(prompt As String)
+  overload: GameFramework.ConsoleTool.ConsoleGUI.SetPrompt*
+  implements:
+  - GameFramework.ConsoleTool.IConsoleUI.SetPrompt(System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: GameFramework.ConsoleTool
+  commentId: N:GameFramework.ConsoleTool
+  name: GameFramework.ConsoleTool
+  nameWithType: GameFramework.ConsoleTool
+  fullName: GameFramework.ConsoleTool
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: GameFramework.ConsoleTool.IConsoleUI
+  commentId: T:GameFramework.ConsoleTool.IConsoleUI
+  parent: GameFramework.ConsoleTool
+  name: IConsoleUI
+  nameWithType: IConsoleUI
+  fullName: GameFramework.ConsoleTool.IConsoleUI
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: GameFramework.ConsoleTool.ConsoleGUI.Init*
+  commentId: Overload:GameFramework.ConsoleTool.ConsoleGUI.Init
+  name: Init
+  nameWithType: ConsoleGUI.Init
+  fullName: GameFramework.ConsoleTool.ConsoleGUI.Init
+- uid: GameFramework.ConsoleTool.IConsoleUI.Init
+  commentId: M:GameFramework.ConsoleTool.IConsoleUI.Init
+  parent: GameFramework.ConsoleTool.IConsoleUI
+  name: Init()
+  nameWithType: IConsoleUI.Init()
+  fullName: GameFramework.ConsoleTool.IConsoleUI.Init()
+  spec.csharp:
+  - uid: GameFramework.ConsoleTool.IConsoleUI.Init
+    name: Init
+    nameWithType: IConsoleUI.Init
+    fullName: GameFramework.ConsoleTool.IConsoleUI.Init
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.ConsoleTool.IConsoleUI.Init
+    name: Init
+    nameWithType: IConsoleUI.Init
+    fullName: GameFramework.ConsoleTool.IConsoleUI.Init
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.ConsoleTool.ConsoleGUI.Shutdown*
+  commentId: Overload:GameFramework.ConsoleTool.ConsoleGUI.Shutdown
+  name: Shutdown
+  nameWithType: ConsoleGUI.Shutdown
+  fullName: GameFramework.ConsoleTool.ConsoleGUI.Shutdown
+- uid: GameFramework.ConsoleTool.IConsoleUI.Shutdown
+  commentId: M:GameFramework.ConsoleTool.IConsoleUI.Shutdown
+  parent: GameFramework.ConsoleTool.IConsoleUI
+  name: Shutdown()
+  nameWithType: IConsoleUI.Shutdown()
+  fullName: GameFramework.ConsoleTool.IConsoleUI.Shutdown()
+  spec.csharp:
+  - uid: GameFramework.ConsoleTool.IConsoleUI.Shutdown
+    name: Shutdown
+    nameWithType: IConsoleUI.Shutdown
+    fullName: GameFramework.ConsoleTool.IConsoleUI.Shutdown
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.ConsoleTool.IConsoleUI.Shutdown
+    name: Shutdown
+    nameWithType: IConsoleUI.Shutdown
+    fullName: GameFramework.ConsoleTool.IConsoleUI.Shutdown
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.ConsoleTool.ConsoleGUI.OutputString*
+  commentId: Overload:GameFramework.ConsoleTool.ConsoleGUI.OutputString
+  name: OutputString
+  nameWithType: ConsoleGUI.OutputString
+  fullName: GameFramework.ConsoleTool.ConsoleGUI.OutputString
+- uid: GameFramework.ConsoleTool.IConsoleUI.OutputString(System.String)
+  commentId: M:GameFramework.ConsoleTool.IConsoleUI.OutputString(System.String)
+  parent: GameFramework.ConsoleTool.IConsoleUI
+  isExternal: true
+  name: OutputString(String)
+  nameWithType: IConsoleUI.OutputString(String)
+  fullName: GameFramework.ConsoleTool.IConsoleUI.OutputString(System.String)
+  spec.csharp:
+  - uid: GameFramework.ConsoleTool.IConsoleUI.OutputString(System.String)
+    name: OutputString
+    nameWithType: IConsoleUI.OutputString
+    fullName: GameFramework.ConsoleTool.IConsoleUI.OutputString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.ConsoleTool.IConsoleUI.OutputString(System.String)
+    name: OutputString
+    nameWithType: IConsoleUI.OutputString
+    fullName: GameFramework.ConsoleTool.IConsoleUI.OutputString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: GameFramework.ConsoleTool.ConsoleGUI.IsOpen*
+  commentId: Overload:GameFramework.ConsoleTool.ConsoleGUI.IsOpen
+  name: IsOpen
+  nameWithType: ConsoleGUI.IsOpen
+  fullName: GameFramework.ConsoleTool.ConsoleGUI.IsOpen
+- uid: GameFramework.ConsoleTool.IConsoleUI.IsOpen
+  commentId: M:GameFramework.ConsoleTool.IConsoleUI.IsOpen
+  parent: GameFramework.ConsoleTool.IConsoleUI
+  name: IsOpen()
+  nameWithType: IConsoleUI.IsOpen()
+  fullName: GameFramework.ConsoleTool.IConsoleUI.IsOpen()
+  spec.csharp:
+  - uid: GameFramework.ConsoleTool.IConsoleUI.IsOpen
+    name: IsOpen
+    nameWithType: IConsoleUI.IsOpen
+    fullName: GameFramework.ConsoleTool.IConsoleUI.IsOpen
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.ConsoleTool.IConsoleUI.IsOpen
+    name: IsOpen
+    nameWithType: IConsoleUI.IsOpen
+    fullName: GameFramework.ConsoleTool.IConsoleUI.IsOpen
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: GameFramework.ConsoleTool.ConsoleGUI.SetOpen*
+  commentId: Overload:GameFramework.ConsoleTool.ConsoleGUI.SetOpen
+  name: SetOpen
+  nameWithType: ConsoleGUI.SetOpen
+  fullName: GameFramework.ConsoleTool.ConsoleGUI.SetOpen
+- uid: GameFramework.ConsoleTool.IConsoleUI.SetOpen(System.Boolean)
+  commentId: M:GameFramework.ConsoleTool.IConsoleUI.SetOpen(System.Boolean)
+  parent: GameFramework.ConsoleTool.IConsoleUI
+  isExternal: true
+  name: SetOpen(Boolean)
+  nameWithType: IConsoleUI.SetOpen(Boolean)
+  fullName: GameFramework.ConsoleTool.IConsoleUI.SetOpen(System.Boolean)
+  spec.csharp:
+  - uid: GameFramework.ConsoleTool.IConsoleUI.SetOpen(System.Boolean)
+    name: SetOpen
+    nameWithType: IConsoleUI.SetOpen
+    fullName: GameFramework.ConsoleTool.IConsoleUI.SetOpen
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.ConsoleTool.IConsoleUI.SetOpen(System.Boolean)
+    name: SetOpen
+    nameWithType: IConsoleUI.SetOpen
+    fullName: GameFramework.ConsoleTool.IConsoleUI.SetOpen
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.ConsoleTool.ConsoleGUI.ConsoleUpdate*
+  commentId: Overload:GameFramework.ConsoleTool.ConsoleGUI.ConsoleUpdate
+  name: ConsoleUpdate
+  nameWithType: ConsoleGUI.ConsoleUpdate
+  fullName: GameFramework.ConsoleTool.ConsoleGUI.ConsoleUpdate
+- uid: GameFramework.ConsoleTool.IConsoleUI.ConsoleUpdate
+  commentId: M:GameFramework.ConsoleTool.IConsoleUI.ConsoleUpdate
+  parent: GameFramework.ConsoleTool.IConsoleUI
+  name: ConsoleUpdate()
+  nameWithType: IConsoleUI.ConsoleUpdate()
+  fullName: GameFramework.ConsoleTool.IConsoleUI.ConsoleUpdate()
+  spec.csharp:
+  - uid: GameFramework.ConsoleTool.IConsoleUI.ConsoleUpdate
+    name: ConsoleUpdate
+    nameWithType: IConsoleUI.ConsoleUpdate
+    fullName: GameFramework.ConsoleTool.IConsoleUI.ConsoleUpdate
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.ConsoleTool.IConsoleUI.ConsoleUpdate
+    name: ConsoleUpdate
+    nameWithType: IConsoleUI.ConsoleUpdate
+    fullName: GameFramework.ConsoleTool.IConsoleUI.ConsoleUpdate
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.ConsoleTool.ConsoleGUI.ConsoleLateUpdate*
+  commentId: Overload:GameFramework.ConsoleTool.ConsoleGUI.ConsoleLateUpdate
+  name: ConsoleLateUpdate
+  nameWithType: ConsoleGUI.ConsoleLateUpdate
+  fullName: GameFramework.ConsoleTool.ConsoleGUI.ConsoleLateUpdate
+- uid: GameFramework.ConsoleTool.IConsoleUI.ConsoleLateUpdate
+  commentId: M:GameFramework.ConsoleTool.IConsoleUI.ConsoleLateUpdate
+  parent: GameFramework.ConsoleTool.IConsoleUI
+  name: ConsoleLateUpdate()
+  nameWithType: IConsoleUI.ConsoleLateUpdate()
+  fullName: GameFramework.ConsoleTool.IConsoleUI.ConsoleLateUpdate()
+  spec.csharp:
+  - uid: GameFramework.ConsoleTool.IConsoleUI.ConsoleLateUpdate
+    name: ConsoleLateUpdate
+    nameWithType: IConsoleUI.ConsoleLateUpdate
+    fullName: GameFramework.ConsoleTool.IConsoleUI.ConsoleLateUpdate
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.ConsoleTool.IConsoleUI.ConsoleLateUpdate
+    name: ConsoleLateUpdate
+    nameWithType: IConsoleUI.ConsoleLateUpdate
+    fullName: GameFramework.ConsoleTool.IConsoleUI.ConsoleLateUpdate
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameFramework.ConsoleTool.ConsoleGUI.SetPrompt*
+  commentId: Overload:GameFramework.ConsoleTool.ConsoleGUI.SetPrompt
+  name: SetPrompt
+  nameWithType: ConsoleGUI.SetPrompt
+  fullName: GameFramework.ConsoleTool.ConsoleGUI.SetPrompt
+- uid: GameFramework.ConsoleTool.IConsoleUI.SetPrompt(System.String)
+  commentId: M:GameFramework.ConsoleTool.IConsoleUI.SetPrompt(System.String)
+  parent: GameFramework.ConsoleTool.IConsoleUI
+  isExternal: true
+  name: SetPrompt(String)
+  nameWithType: IConsoleUI.SetPrompt(String)
+  fullName: GameFramework.ConsoleTool.IConsoleUI.SetPrompt(System.String)
+  spec.csharp:
+  - uid: GameFramework.ConsoleTool.IConsoleUI.SetPrompt(System.String)
+    name: SetPrompt
+    nameWithType: IConsoleUI.SetPrompt
+    fullName: GameFramework.ConsoleTool.IConsoleUI.SetPrompt
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GameFramework.ConsoleTool.IConsoleUI.SetPrompt(System.String)
+    name: SetPrompt
+    nameWithType: IConsoleUI.SetPrompt
+    fullName: GameFramework.ConsoleTool.IConsoleUI.SetPrompt
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )

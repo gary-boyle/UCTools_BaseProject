@@ -1,0 +1,401 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameFramework.UI.Utilities.GraphElement
+  commentId: T:GameFramework.UI.Utilities.GraphElement
+  id: GraphElement
+  parent: GameFramework.UI.Utilities
+  children:
+  - GameFramework.UI.Utilities.GraphElement.#ctor(System.Int32)
+  - GameFramework.UI.Utilities.GraphElement.AddDataPoint(System.Single)
+  - GameFramework.UI.Utilities.GraphElement.Clear
+  - GameFramework.UI.Utilities.GraphElement.EnableAutoScale
+  - GameFramework.UI.Utilities.GraphElement.MaxDataPoints
+  - GameFramework.UI.Utilities.GraphElement.MaxDisplayValue
+  - GameFramework.UI.Utilities.GraphElement.MinDisplayValue
+  - GameFramework.UI.Utilities.GraphElement.SetFixedScale(System.Single,System.Single)
+  - GameFramework.UI.Utilities.GraphElement.SetLineColor(Color)
+  langs:
+  - csharp
+  - vb
+  name: GraphElement
+  nameWithType: GraphElement
+  fullName: GameFramework.UI.Utilities.GraphElement
+  type: Class
+  source:
+    id: GraphElement
+    path: ''
+    startLine: 15779
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Utilities
+  summary: "\nCustom UI element that renders a simple line graph for performance metrics\n\nDesign:\n- Uses Unity&apos;s MeshGenerationContext for efficient rendering\n- Circular buffer for memory-efficient data storage\n- Configurable colors, ranges, and smoothing\n- Auto-scaling based on data range\n\nPros:\n- Efficient rendering using Unity&apos;s native mesh generation\n- Memory efficient with fixed-size circular buffer\n- Smooth visual updates with configurable sampling\n- Auto-scaling prevents data clipping\n\nCons:\n- Custom rendering adds complexity\n- Limited to simple line graphs\n- Requires manual styling integration\n"
+  example: []
+  syntax:
+    content: 'public class GraphElement : VisualElement'
+    content.vb: >-
+      Public Class GraphElement
+          Inherits VisualElement
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: GameFramework.UI.Utilities.GraphElement.MaxDataPoints
+  commentId: P:GameFramework.UI.Utilities.GraphElement.MaxDataPoints
+  id: MaxDataPoints
+  parent: GameFramework.UI.Utilities.GraphElement
+  langs:
+  - csharp
+  - vb
+  name: MaxDataPoints
+  nameWithType: GraphElement.MaxDataPoints
+  fullName: GameFramework.UI.Utilities.GraphElement.MaxDataPoints
+  type: Property
+  source:
+    id: MaxDataPoints
+    path: ''
+    startLine: 15791
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Utilities
+  syntax:
+    content: public int MaxDataPoints { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property MaxDataPoints As Integer
+  overload: GameFramework.UI.Utilities.GraphElement.MaxDataPoints*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: GameFramework.UI.Utilities.GraphElement.MinDisplayValue
+  commentId: P:GameFramework.UI.Utilities.GraphElement.MinDisplayValue
+  id: MinDisplayValue
+  parent: GameFramework.UI.Utilities.GraphElement
+  langs:
+  - csharp
+  - vb
+  name: MinDisplayValue
+  nameWithType: GraphElement.MinDisplayValue
+  fullName: GameFramework.UI.Utilities.GraphElement.MinDisplayValue
+  type: Property
+  source:
+    id: MinDisplayValue
+    path: ''
+    startLine: 15792
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Utilities
+  syntax:
+    content: public float MinDisplayValue { get; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public ReadOnly Property MinDisplayValue As Single
+  overload: GameFramework.UI.Utilities.GraphElement.MinDisplayValue*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: GameFramework.UI.Utilities.GraphElement.MaxDisplayValue
+  commentId: P:GameFramework.UI.Utilities.GraphElement.MaxDisplayValue
+  id: MaxDisplayValue
+  parent: GameFramework.UI.Utilities.GraphElement
+  langs:
+  - csharp
+  - vb
+  name: MaxDisplayValue
+  nameWithType: GraphElement.MaxDisplayValue
+  fullName: GameFramework.UI.Utilities.GraphElement.MaxDisplayValue
+  type: Property
+  source:
+    id: MaxDisplayValue
+    path: ''
+    startLine: 15793
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Utilities
+  syntax:
+    content: public float MaxDisplayValue { get; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public ReadOnly Property MaxDisplayValue As Single
+  overload: GameFramework.UI.Utilities.GraphElement.MaxDisplayValue*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: GameFramework.UI.Utilities.GraphElement.#ctor(System.Int32)
+  commentId: M:GameFramework.UI.Utilities.GraphElement.#ctor(System.Int32)
+  id: '#ctor(System.Int32)'
+  parent: GameFramework.UI.Utilities.GraphElement
+  langs:
+  - csharp
+  - vb
+  name: GraphElement(Int32)
+  nameWithType: GraphElement.GraphElement(Int32)
+  fullName: GameFramework.UI.Utilities.GraphElement.GraphElement(System.Int32)
+  type: Constructor
+  source:
+    id: .ctor
+    path: ''
+    startLine: 15795
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Utilities
+  syntax:
+    content: public GraphElement(int maxDataPoints = 60)
+    parameters:
+    - id: maxDataPoints
+      type: System.Int32
+    content.vb: Public Sub New(maxDataPoints As Integer = 60)
+  overload: GameFramework.UI.Utilities.GraphElement.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.UI.Utilities.GraphElement.AddDataPoint(System.Single)
+  commentId: M:GameFramework.UI.Utilities.GraphElement.AddDataPoint(System.Single)
+  id: AddDataPoint(System.Single)
+  parent: GameFramework.UI.Utilities.GraphElement
+  langs:
+  - csharp
+  - vb
+  name: AddDataPoint(Single)
+  nameWithType: GraphElement.AddDataPoint(Single)
+  fullName: GameFramework.UI.Utilities.GraphElement.AddDataPoint(System.Single)
+  type: Method
+  source:
+    id: AddDataPoint
+    path: ''
+    startLine: 15819
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Utilities
+  summary: "\nAdd a new data point to the graph\n"
+  example: []
+  syntax:
+    content: public void AddDataPoint(float value)
+    parameters:
+    - id: value
+      type: System.Single
+    content.vb: Public Sub AddDataPoint(value As Single)
+  overload: GameFramework.UI.Utilities.GraphElement.AddDataPoint*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.UI.Utilities.GraphElement.SetLineColor(Color)
+  commentId: M:GameFramework.UI.Utilities.GraphElement.SetLineColor(Color)
+  id: SetLineColor(Color)
+  parent: GameFramework.UI.Utilities.GraphElement
+  langs:
+  - csharp
+  - vb
+  name: SetLineColor(Color)
+  nameWithType: GraphElement.SetLineColor(Color)
+  fullName: GameFramework.UI.Utilities.GraphElement.SetLineColor(Color)
+  type: Method
+  source:
+    id: SetLineColor
+    path: ''
+    startLine: 15836
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Utilities
+  summary: "\nSet the line color for the graph\n"
+  example: []
+  syntax:
+    content: public void SetLineColor(Color color)
+    parameters:
+    - id: color
+      type: Color
+    content.vb: Public Sub SetLineColor(color As Color)
+  overload: GameFramework.UI.Utilities.GraphElement.SetLineColor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.UI.Utilities.GraphElement.SetFixedScale(System.Single,System.Single)
+  commentId: M:GameFramework.UI.Utilities.GraphElement.SetFixedScale(System.Single,System.Single)
+  id: SetFixedScale(System.Single,System.Single)
+  parent: GameFramework.UI.Utilities.GraphElement
+  langs:
+  - csharp
+  - vb
+  name: SetFixedScale(Single, Single)
+  nameWithType: GraphElement.SetFixedScale(Single, Single)
+  fullName: GameFramework.UI.Utilities.GraphElement.SetFixedScale(System.Single, System.Single)
+  type: Method
+  source:
+    id: SetFixedScale
+    path: ''
+    startLine: 15845
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Utilities
+  summary: "\nSet fixed scale range (disables auto-scaling)\n"
+  example: []
+  syntax:
+    content: public void SetFixedScale(float minValue, float maxValue)
+    parameters:
+    - id: minValue
+      type: System.Single
+    - id: maxValue
+      type: System.Single
+    content.vb: Public Sub SetFixedScale(minValue As Single, maxValue As Single)
+  overload: GameFramework.UI.Utilities.GraphElement.SetFixedScale*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.UI.Utilities.GraphElement.EnableAutoScale
+  commentId: M:GameFramework.UI.Utilities.GraphElement.EnableAutoScale
+  id: EnableAutoScale
+  parent: GameFramework.UI.Utilities.GraphElement
+  langs:
+  - csharp
+  - vb
+  name: EnableAutoScale()
+  nameWithType: GraphElement.EnableAutoScale()
+  fullName: GameFramework.UI.Utilities.GraphElement.EnableAutoScale()
+  type: Method
+  source:
+    id: EnableAutoScale
+    path: ''
+    startLine: 15856
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Utilities
+  summary: "\nEnable auto-scaling based on data range\n"
+  example: []
+  syntax:
+    content: public void EnableAutoScale()
+    content.vb: Public Sub EnableAutoScale
+  overload: GameFramework.UI.Utilities.GraphElement.EnableAutoScale*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GameFramework.UI.Utilities.GraphElement.Clear
+  commentId: M:GameFramework.UI.Utilities.GraphElement.Clear
+  id: Clear
+  parent: GameFramework.UI.Utilities.GraphElement
+  langs:
+  - csharp
+  - vb
+  name: Clear()
+  nameWithType: GraphElement.Clear()
+  fullName: GameFramework.UI.Utilities.GraphElement.Clear()
+  type: Method
+  source:
+    id: Clear
+    path: ''
+    startLine: 15866
+  assemblies:
+  - cs.temp.dll
+  namespace: GameFramework.UI.Utilities
+  summary: "\nClear all data points\n"
+  example: []
+  syntax:
+    content: public void Clear()
+    content.vb: Public Sub Clear
+  overload: GameFramework.UI.Utilities.GraphElement.Clear*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: GameFramework.UI.Utilities
+  commentId: N:GameFramework.UI.Utilities
+  name: GameFramework.UI.Utilities
+  nameWithType: GameFramework.UI.Utilities
+  fullName: GameFramework.UI.Utilities
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: GameFramework.UI.Utilities.GraphElement.MaxDataPoints*
+  commentId: Overload:GameFramework.UI.Utilities.GraphElement.MaxDataPoints
+  name: MaxDataPoints
+  nameWithType: GraphElement.MaxDataPoints
+  fullName: GameFramework.UI.Utilities.GraphElement.MaxDataPoints
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: GameFramework.UI.Utilities.GraphElement.MinDisplayValue*
+  commentId: Overload:GameFramework.UI.Utilities.GraphElement.MinDisplayValue
+  name: MinDisplayValue
+  nameWithType: GraphElement.MinDisplayValue
+  fullName: GameFramework.UI.Utilities.GraphElement.MinDisplayValue
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  name: Single
+  nameWithType: Single
+  fullName: System.Single
+- uid: GameFramework.UI.Utilities.GraphElement.MaxDisplayValue*
+  commentId: Overload:GameFramework.UI.Utilities.GraphElement.MaxDisplayValue
+  name: MaxDisplayValue
+  nameWithType: GraphElement.MaxDisplayValue
+  fullName: GameFramework.UI.Utilities.GraphElement.MaxDisplayValue
+- uid: GameFramework.UI.Utilities.GraphElement.#ctor*
+  commentId: Overload:GameFramework.UI.Utilities.GraphElement.#ctor
+  name: GraphElement
+  nameWithType: GraphElement.GraphElement
+  fullName: GameFramework.UI.Utilities.GraphElement.GraphElement
+- uid: GameFramework.UI.Utilities.GraphElement.AddDataPoint*
+  commentId: Overload:GameFramework.UI.Utilities.GraphElement.AddDataPoint
+  name: AddDataPoint
+  nameWithType: GraphElement.AddDataPoint
+  fullName: GameFramework.UI.Utilities.GraphElement.AddDataPoint
+- uid: GameFramework.UI.Utilities.GraphElement.SetLineColor*
+  commentId: Overload:GameFramework.UI.Utilities.GraphElement.SetLineColor
+  name: SetLineColor
+  nameWithType: GraphElement.SetLineColor
+  fullName: GameFramework.UI.Utilities.GraphElement.SetLineColor
+- uid: Color
+  isExternal: true
+  name: Color
+  nameWithType: Color
+  fullName: Color
+- uid: GameFramework.UI.Utilities.GraphElement.SetFixedScale*
+  commentId: Overload:GameFramework.UI.Utilities.GraphElement.SetFixedScale
+  name: SetFixedScale
+  nameWithType: GraphElement.SetFixedScale
+  fullName: GameFramework.UI.Utilities.GraphElement.SetFixedScale
+- uid: GameFramework.UI.Utilities.GraphElement.EnableAutoScale*
+  commentId: Overload:GameFramework.UI.Utilities.GraphElement.EnableAutoScale
+  name: EnableAutoScale
+  nameWithType: GraphElement.EnableAutoScale
+  fullName: GameFramework.UI.Utilities.GraphElement.EnableAutoScale
+- uid: GameFramework.UI.Utilities.GraphElement.Clear*
+  commentId: Overload:GameFramework.UI.Utilities.GraphElement.Clear
+  name: Clear
+  nameWithType: GraphElement.Clear
+  fullName: GameFramework.UI.Utilities.GraphElement.Clear

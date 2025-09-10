@@ -1,0 +1,601 @@
+### YamlMime:ManagedReference
+items:
+- uid: UCTools_ConfigVariables.QualityOptionExtensions
+  commentId: T:UCTools_ConfigVariables.QualityOptionExtensions
+  id: QualityOptionExtensions
+  parent: UCTools_ConfigVariables
+  children:
+  - UCTools_ConfigVariables.QualityOptionExtensions.FromInt(System.Int32)
+  - UCTools_ConfigVariables.QualityOptionExtensions.GetAllDisplayNames
+  - UCTools_ConfigVariables.QualityOptionExtensions.GetDisplayName(UCTools_ConfigVariables.QualityOption)
+  - UCTools_ConfigVariables.QualityOptionExtensions.GetQualityLevel(UCTools_ConfigVariables.QualityOption)
+  - UCTools_ConfigVariables.QualityOptionExtensions.ToInt(UCTools_ConfigVariables.QualityOption)
+  langs:
+  - csharp
+  - vb
+  name: QualityOptionExtensions
+  nameWithType: QualityOptionExtensions
+  fullName: UCTools_ConfigVariables.QualityOptionExtensions
+  type: Class
+  source:
+    id: QualityOptionExtensions
+    path: ''
+    startLine: 18005
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_ConfigVariables
+  summary: "\nExtension methods for QualityOption enum\n"
+  example: []
+  syntax:
+    content: public static class QualityOptionExtensions
+    content.vb: Public Module QualityOptionExtensions
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: UCTools_ConfigVariables.QualityOptionExtensions.GetQualityLevel(UCTools_ConfigVariables.QualityOption)
+  commentId: M:UCTools_ConfigVariables.QualityOptionExtensions.GetQualityLevel(UCTools_ConfigVariables.QualityOption)
+  id: GetQualityLevel(UCTools_ConfigVariables.QualityOption)
+  isExtensionMethod: true
+  parent: UCTools_ConfigVariables.QualityOptionExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetQualityLevel(QualityOption)
+  nameWithType: QualityOptionExtensions.GetQualityLevel(QualityOption)
+  fullName: UCTools_ConfigVariables.QualityOptionExtensions.GetQualityLevel(UCTools_ConfigVariables.QualityOption)
+  type: Method
+  source:
+    id: GetQualityLevel
+    path: ''
+    startLine: 18024
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_ConfigVariables
+  summary: "\nGet the Unity quality level for this option\n"
+  example: []
+  syntax:
+    content: public static int GetQualityLevel(this QualityOption option)
+    parameters:
+    - id: option
+      type: UCTools_ConfigVariables.QualityOption
+    return:
+      type: System.Int32
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetQualityLevel(option As QualityOption) As Integer
+  overload: UCTools_ConfigVariables.QualityOptionExtensions.GetQualityLevel*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: UCTools_ConfigVariables.QualityOptionExtensions.GetDisplayName(UCTools_ConfigVariables.QualityOption)
+  commentId: M:UCTools_ConfigVariables.QualityOptionExtensions.GetDisplayName(UCTools_ConfigVariables.QualityOption)
+  id: GetDisplayName(UCTools_ConfigVariables.QualityOption)
+  isExtensionMethod: true
+  parent: UCTools_ConfigVariables.QualityOptionExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetDisplayName(QualityOption)
+  nameWithType: QualityOptionExtensions.GetDisplayName(QualityOption)
+  fullName: UCTools_ConfigVariables.QualityOptionExtensions.GetDisplayName(UCTools_ConfigVariables.QualityOption)
+  type: Method
+  source:
+    id: GetDisplayName
+    path: ''
+    startLine: 18035
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_ConfigVariables
+  summary: "\nGet display name for this quality option\n"
+  example: []
+  syntax:
+    content: public static string GetDisplayName(this QualityOption option)
+    parameters:
+    - id: option
+      type: UCTools_ConfigVariables.QualityOption
+    return:
+      type: System.String
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetDisplayName(option As QualityOption) As String
+  overload: UCTools_ConfigVariables.QualityOptionExtensions.GetDisplayName*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: UCTools_ConfigVariables.QualityOptionExtensions.GetAllDisplayNames
+  commentId: M:UCTools_ConfigVariables.QualityOptionExtensions.GetAllDisplayNames
+  id: GetAllDisplayNames
+  parent: UCTools_ConfigVariables.QualityOptionExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetAllDisplayNames()
+  nameWithType: QualityOptionExtensions.GetAllDisplayNames()
+  fullName: UCTools_ConfigVariables.QualityOptionExtensions.GetAllDisplayNames()
+  type: Method
+  source:
+    id: GetAllDisplayNames
+    path: ''
+    startLine: 18046
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_ConfigVariables
+  summary: "\nGet all display names for dropdown choices\n"
+  example: []
+  syntax:
+    content: public static string[] GetAllDisplayNames()
+    return:
+      type: System.String[]
+    content.vb: Public Shared Function GetAllDisplayNames As String()
+  overload: UCTools_ConfigVariables.QualityOptionExtensions.GetAllDisplayNames*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: UCTools_ConfigVariables.QualityOptionExtensions.ToInt(UCTools_ConfigVariables.QualityOption)
+  commentId: M:UCTools_ConfigVariables.QualityOptionExtensions.ToInt(UCTools_ConfigVariables.QualityOption)
+  id: ToInt(UCTools_ConfigVariables.QualityOption)
+  isExtensionMethod: true
+  parent: UCTools_ConfigVariables.QualityOptionExtensions
+  langs:
+  - csharp
+  - vb
+  name: ToInt(QualityOption)
+  nameWithType: QualityOptionExtensions.ToInt(QualityOption)
+  fullName: UCTools_ConfigVariables.QualityOptionExtensions.ToInt(UCTools_ConfigVariables.QualityOption)
+  type: Method
+  source:
+    id: ToInt
+    path: ''
+    startLine: 18054
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_ConfigVariables
+  summary: "\nGet the integer value of the quality option\n"
+  example: []
+  syntax:
+    content: public static int ToInt(this QualityOption option)
+    parameters:
+    - id: option
+      type: UCTools_ConfigVariables.QualityOption
+    return:
+      type: System.Int32
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function ToInt(option As QualityOption) As Integer
+  overload: UCTools_ConfigVariables.QualityOptionExtensions.ToInt*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: UCTools_ConfigVariables.QualityOptionExtensions.FromInt(System.Int32)
+  commentId: M:UCTools_ConfigVariables.QualityOptionExtensions.FromInt(System.Int32)
+  id: FromInt(System.Int32)
+  parent: UCTools_ConfigVariables.QualityOptionExtensions
+  langs:
+  - csharp
+  - vb
+  name: FromInt(Int32)
+  nameWithType: QualityOptionExtensions.FromInt(Int32)
+  fullName: UCTools_ConfigVariables.QualityOptionExtensions.FromInt(System.Int32)
+  type: Method
+  source:
+    id: FromInt
+    path: ''
+    startLine: 18062
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_ConfigVariables
+  summary: "\nConvert integer back to QualityOption\n"
+  example: []
+  syntax:
+    content: public static QualityOption FromInt(int value)
+    parameters:
+    - id: value
+      type: System.Int32
+    return:
+      type: UCTools_ConfigVariables.QualityOption
+    content.vb: Public Shared Function FromInt(value As Integer) As QualityOption
+  overload: UCTools_ConfigVariables.QualityOptionExtensions.FromInt*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: UCTools_ConfigVariables
+  commentId: N:UCTools_ConfigVariables
+  name: UCTools_ConfigVariables
+  nameWithType: UCTools_ConfigVariables
+  fullName: UCTools_ConfigVariables
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: UCTools_ConfigVariables.QualityOptionExtensions.GetQualityLevel*
+  commentId: Overload:UCTools_ConfigVariables.QualityOptionExtensions.GetQualityLevel
+  name: GetQualityLevel
+  nameWithType: QualityOptionExtensions.GetQualityLevel
+  fullName: UCTools_ConfigVariables.QualityOptionExtensions.GetQualityLevel
+- uid: UCTools_ConfigVariables.QualityOption
+  commentId: T:UCTools_ConfigVariables.QualityOption
+  parent: UCTools_ConfigVariables
+  name: QualityOption
+  nameWithType: QualityOption
+  fullName: UCTools_ConfigVariables.QualityOption
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: UCTools_ConfigVariables.QualityOptionExtensions.GetDisplayName*
+  commentId: Overload:UCTools_ConfigVariables.QualityOptionExtensions.GetDisplayName
+  name: GetDisplayName
+  nameWithType: QualityOptionExtensions.GetDisplayName
+  fullName: UCTools_ConfigVariables.QualityOptionExtensions.GetDisplayName
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: UCTools_ConfigVariables.QualityOptionExtensions.GetAllDisplayNames*
+  commentId: Overload:UCTools_ConfigVariables.QualityOptionExtensions.GetAllDisplayNames
+  name: GetAllDisplayNames
+  nameWithType: QualityOptionExtensions.GetAllDisplayNames
+  fullName: UCTools_ConfigVariables.QualityOptionExtensions.GetAllDisplayNames
+- uid: System.String[]
+  isExternal: true
+  name: String[]
+  nameWithType: String[]
+  fullName: System.String[]
+  nameWithType.vb: String()
+  fullName.vb: System.String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: UCTools_ConfigVariables.QualityOptionExtensions.ToInt*
+  commentId: Overload:UCTools_ConfigVariables.QualityOptionExtensions.ToInt
+  name: ToInt
+  nameWithType: QualityOptionExtensions.ToInt
+  fullName: UCTools_ConfigVariables.QualityOptionExtensions.ToInt
+- uid: UCTools_ConfigVariables.QualityOptionExtensions.FromInt*
+  commentId: Overload:UCTools_ConfigVariables.QualityOptionExtensions.FromInt
+  name: FromInt
+  nameWithType: QualityOptionExtensions.FromInt
+  fullName: UCTools_ConfigVariables.QualityOptionExtensions.FromInt

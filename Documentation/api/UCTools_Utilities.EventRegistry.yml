@@ -1,0 +1,344 @@
+### YamlMime:ManagedReference
+items:
+- uid: UCTools_Utilities.EventRegistry
+  commentId: T:UCTools_Utilities.EventRegistry
+  id: EventRegistry
+  parent: UCTools_Utilities
+  children:
+  - UCTools_Utilities.EventRegistry.Dispose
+  - UCTools_Utilities.EventRegistry.RegisterCallback``1(VisualElement,Action)
+  - UCTools_Utilities.EventRegistry.RegisterCallback``1(VisualElement,Action{``0})
+  - UCTools_Utilities.EventRegistry.RegisterValueChangedCallback``1(BindableElement,Action{``0})
+  langs:
+  - csharp
+  - vb
+  name: EventRegistry
+  nameWithType: EventRegistry
+  fullName: UCTools_Utilities.EventRegistry
+  type: Class
+  source:
+    id: EventRegistry
+    path: ''
+    startLine: 19033
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_Utilities
+  syntax:
+    content: 'public class EventRegistry : IDisposable'
+    content.vb: >-
+      Public Class EventRegistry
+          Inherits IDisposable
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: UCTools_Utilities.EventRegistry.RegisterCallback``1(VisualElement,Action{``0})
+  commentId: M:UCTools_Utilities.EventRegistry.RegisterCallback``1(VisualElement,Action{``0})
+  id: RegisterCallback``1(VisualElement,Action{``0})
+  parent: UCTools_Utilities.EventRegistry
+  langs:
+  - csharp
+  - vb
+  name: RegisterCallback<TEvent>(VisualElement, Action<TEvent>)
+  nameWithType: EventRegistry.RegisterCallback<TEvent>(VisualElement, Action<TEvent>)
+  fullName: UCTools_Utilities.EventRegistry.RegisterCallback<TEvent>(VisualElement, Action<TEvent>)
+  type: Method
+  source:
+    id: RegisterCallback
+    path: ''
+    startLine: 19040
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_Utilities
+  syntax:
+    content: >-
+      public void RegisterCallback<TEvent>(VisualElement visualElement, Action<TEvent> callback)
+          where TEvent : EventBase<TEvent>, new()
+    parameters:
+    - id: visualElement
+      type: VisualElement
+    - id: callback
+      type: Action{{TEvent}}
+    typeParameters:
+    - id: TEvent
+    content.vb: Public Sub RegisterCallback(Of TEvent As {EventBase(Of TEvent), New})(visualElement As VisualElement, callback As Action(Of TEvent))
+  overload: UCTools_Utilities.EventRegistry.RegisterCallback*
+  nameWithType.vb: EventRegistry.RegisterCallback(Of TEvent)(VisualElement, Action(Of TEvent))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: UCTools_Utilities.EventRegistry.RegisterCallback(Of TEvent)(VisualElement, Action(Of TEvent))
+  name.vb: RegisterCallback(Of TEvent)(VisualElement, Action(Of TEvent))
+- uid: UCTools_Utilities.EventRegistry.RegisterCallback``1(VisualElement,Action)
+  commentId: M:UCTools_Utilities.EventRegistry.RegisterCallback``1(VisualElement,Action)
+  id: RegisterCallback``1(VisualElement,Action)
+  parent: UCTools_Utilities.EventRegistry
+  langs:
+  - csharp
+  - vb
+  name: RegisterCallback<TEvent>(VisualElement, Action)
+  nameWithType: EventRegistry.RegisterCallback<TEvent>(VisualElement, Action)
+  fullName: UCTools_Utilities.EventRegistry.RegisterCallback<TEvent>(VisualElement, Action)
+  type: Method
+  source:
+    id: RegisterCallback
+    path: ''
+    startLine: 19050
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_Utilities
+  syntax:
+    content: >-
+      public void RegisterCallback<TEvent>(VisualElement visualElement, Action callback)
+          where TEvent : EventBase<TEvent>, new()
+    parameters:
+    - id: visualElement
+      type: VisualElement
+    - id: callback
+      type: Action
+    typeParameters:
+    - id: TEvent
+    content.vb: Public Sub RegisterCallback(Of TEvent As {EventBase(Of TEvent), New})(visualElement As VisualElement, callback As Action)
+  overload: UCTools_Utilities.EventRegistry.RegisterCallback*
+  nameWithType.vb: EventRegistry.RegisterCallback(Of TEvent)(VisualElement, Action)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: UCTools_Utilities.EventRegistry.RegisterCallback(Of TEvent)(VisualElement, Action)
+  name.vb: RegisterCallback(Of TEvent)(VisualElement, Action)
+- uid: UCTools_Utilities.EventRegistry.RegisterValueChangedCallback``1(BindableElement,Action{``0})
+  commentId: M:UCTools_Utilities.EventRegistry.RegisterValueChangedCallback``1(BindableElement,Action{``0})
+  id: RegisterValueChangedCallback``1(BindableElement,Action{``0})
+  parent: UCTools_Utilities.EventRegistry
+  langs:
+  - csharp
+  - vb
+  name: RegisterValueChangedCallback<T>(BindableElement, Action<T>)
+  nameWithType: EventRegistry.RegisterValueChangedCallback<T>(BindableElement, Action<T>)
+  fullName: UCTools_Utilities.EventRegistry.RegisterValueChangedCallback<T>(BindableElement, Action<T>)
+  type: Method
+  source:
+    id: RegisterValueChangedCallback
+    path: ''
+    startLine: 19063
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_Utilities
+  syntax:
+    content: >-
+      public void RegisterValueChangedCallback<T>(BindableElement bindableElement, Action<T> callback)
+          where T : struct
+    parameters:
+    - id: bindableElement
+      type: BindableElement
+    - id: callback
+      type: Action{{T}}
+    typeParameters:
+    - id: T
+    content.vb: Public Sub RegisterValueChangedCallback(Of T As Structure)(bindableElement As BindableElement, callback As Action(Of T))
+  overload: UCTools_Utilities.EventRegistry.RegisterValueChangedCallback*
+  nameWithType.vb: EventRegistry.RegisterValueChangedCallback(Of T)(BindableElement, Action(Of T))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: UCTools_Utilities.EventRegistry.RegisterValueChangedCallback(Of T)(BindableElement, Action(Of T))
+  name.vb: RegisterValueChangedCallback(Of T)(BindableElement, Action(Of T))
+- uid: UCTools_Utilities.EventRegistry.Dispose
+  commentId: M:UCTools_Utilities.EventRegistry.Dispose
+  id: Dispose
+  parent: UCTools_Utilities.EventRegistry
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: EventRegistry.Dispose()
+  fullName: UCTools_Utilities.EventRegistry.Dispose()
+  type: Method
+  source:
+    id: Dispose
+    path: ''
+    startLine: 19074
+  assemblies:
+  - cs.temp.dll
+  namespace: UCTools_Utilities
+  syntax:
+    content: public void Dispose()
+    content.vb: Public Sub Dispose
+  overload: UCTools_Utilities.EventRegistry.Dispose*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: UCTools_Utilities
+  commentId: N:UCTools_Utilities
+  name: UCTools_Utilities
+  nameWithType: UCTools_Utilities
+  fullName: UCTools_Utilities
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: UCTools_Utilities.EventRegistry.RegisterCallback*
+  commentId: Overload:UCTools_Utilities.EventRegistry.RegisterCallback
+  name: RegisterCallback
+  nameWithType: EventRegistry.RegisterCallback
+  fullName: UCTools_Utilities.EventRegistry.RegisterCallback
+- uid: VisualElement
+  isExternal: true
+  name: VisualElement
+  nameWithType: VisualElement
+  fullName: VisualElement
+- uid: Action{{TEvent}}
+  commentId: '!:Action{``0}'
+  definition: Action`1
+  name: Action<TEvent>
+  nameWithType: Action<TEvent>
+  fullName: Action<TEvent>
+  nameWithType.vb: Action(Of TEvent)
+  fullName.vb: Action(Of TEvent)
+  name.vb: Action(Of TEvent)
+  spec.csharp:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TEvent
+    nameWithType: TEvent
+    fullName: TEvent
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TEvent
+    nameWithType: TEvent
+    fullName: TEvent
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Action`1
+  isExternal: true
+  name: Action<>
+  nameWithType: Action<>
+  fullName: Action<>
+  nameWithType.vb: Action(Of )
+  fullName.vb: Action(Of )
+  name.vb: Action(Of )
+  spec.csharp:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Action
+  isExternal: true
+  name: Action
+  nameWithType: Action
+  fullName: Action
+- uid: UCTools_Utilities.EventRegistry.RegisterValueChangedCallback*
+  commentId: Overload:UCTools_Utilities.EventRegistry.RegisterValueChangedCallback
+  name: RegisterValueChangedCallback
+  nameWithType: EventRegistry.RegisterValueChangedCallback
+  fullName: UCTools_Utilities.EventRegistry.RegisterValueChangedCallback
+- uid: BindableElement
+  commentId: '!:BindableElement'
+  isExternal: true
+  name: BindableElement
+  nameWithType: BindableElement
+  fullName: BindableElement
+- uid: Action{{T}}
+  commentId: '!:Action{``0}'
+  definition: Action`1
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: Action<T>
+  nameWithType.vb: Action(Of T)
+  fullName.vb: Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: UCTools_Utilities.EventRegistry.Dispose*
+  commentId: Overload:UCTools_Utilities.EventRegistry.Dispose
+  name: Dispose
+  nameWithType: EventRegistry.Dispose
+  fullName: UCTools_Utilities.EventRegistry.Dispose
