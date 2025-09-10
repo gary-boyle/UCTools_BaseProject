@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class TimeService | UCTools Base Project Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class TimeService | UCTools Base Project Documentation ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="GameFramework.Services.TimeService">
+
+
+
+  <h1 id="GameFramework_Services_TimeService" data-uid="GameFramework.Services.TimeService" class="text-break">Class TimeService</h1>
+  <div class="markdown level0 summary"><p>TimeService manages game time tracking with proper pause handling and state awareness.
+Tracks time only when in PlayingState and not paused.
+Provides formatted time display and session tracking capabilities.</p>
+<p>Design: Uses event-driven architecture to respond to game state changes and pause events.
+Pros: Accurate time tracking, integrates with pause system, provides multiple time formats
+Cons: Depends on proper event firing from other systems</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+    <div class="level1"><span class="xref">TimeService</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="GameFramework.Services.Interfaces.ITimeService.html">ITimeService</a></div>
+    <div><a class="xref" href="GameFramework.StateMachine.Interfaces.IUpdatable.html">IUpdatable</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.Services.html">Services</a></h6>
+  <h6><strong>Assembly</strong>: .dll</h6>
+  <h5 id="GameFramework_Services_TimeService_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class TimeService : ITimeService, IUpdatable</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_TimeService__ctor_GameFramework_EventSystem_Interfaces_IEventSystem_GameFramework_Services_Interfaces_IPauseService_GameFramework_Services_Interfaces_IGameDataService_.md&amp;value=---%0Auid%3A%20GameFramework.Services.TimeService.%23ctor(GameFramework.EventSystem.Interfaces.IEventSystem%2CGameFramework.Services.Interfaces.IPauseService%2CGameFramework.Services.Interfaces.IGameDataService)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/TimeService.cs/#L70">View Source</a>
+  </span>
+  <a id="GameFramework_Services_TimeService__ctor_" data-uid="GameFramework.Services.TimeService.#ctor*"></a>
+  <h4 id="GameFramework_Services_TimeService__ctor_GameFramework_EventSystem_Interfaces_IEventSystem_GameFramework_Services_Interfaces_IPauseService_GameFramework_Services_Interfaces_IGameDataService_" data-uid="GameFramework.Services.TimeService.#ctor(GameFramework.EventSystem.Interfaces.IEventSystem,GameFramework.Services.Interfaces.IPauseService,GameFramework.Services.Interfaces.IGameDataService)">TimeService(IEventSystem, IPauseService, IGameDataService)</h4>
+  <div class="markdown level1 summary"><p>Constructor injection - receives required dependencies</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TimeService(IEventSystem eventSystem, IPauseService pauseService, IGameDataService gameDataService)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.EventSystem.Interfaces.IEventSystem.html">IEventSystem</a></td>
+        <td><span class="parametername">eventSystem</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="GameFramework.Services.Interfaces.IPauseService.html">IPauseService</a></td>
+        <td><span class="parametername">pauseService</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="GameFramework.Services.Interfaces.IGameDataService.html">IGameDataService</a></td>
+        <td><span class="parametername">gameDataService</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_TimeService_GameTime.md&amp;value=---%0Auid%3A%20GameFramework.Services.TimeService.GameTime%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/TimeService.cs/#L28">View Source</a>
+  </span>
+  <a id="GameFramework_Services_TimeService_GameTime_" data-uid="GameFramework.Services.TimeService.GameTime*"></a>
+  <h4 id="GameFramework_Services_TimeService_GameTime" data-uid="GameFramework.Services.TimeService.GameTime">GameTime</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float GameTime { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_TimeService_GameTimeSpan.md&amp;value=---%0Auid%3A%20GameFramework.Services.TimeService.GameTimeSpan%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/TimeService.cs/#L31">View Source</a>
+  </span>
+  <a id="GameFramework_Services_TimeService_GameTimeSpan_" data-uid="GameFramework.Services.TimeService.GameTimeSpan*"></a>
+  <h4 id="GameFramework_Services_TimeService_GameTimeSpan" data-uid="GameFramework.Services.TimeService.GameTimeSpan">GameTimeSpan</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TimeSpan GameTimeSpan { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timespan">TimeSpan</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_TimeService_IsInitialized.md&amp;value=---%0Auid%3A%20GameFramework.Services.TimeService.IsInitialized%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/TimeService.cs/#L25">View Source</a>
+  </span>
+  <a id="GameFramework_Services_TimeService_IsInitialized_" data-uid="GameFramework.Services.TimeService.IsInitialized*"></a>
+  <h4 id="GameFramework_Services_TimeService_IsInitialized" data-uid="GameFramework.Services.TimeService.IsInitialized">IsInitialized</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsInitialized { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_TimeService_IsTrackingGameTime.md&amp;value=---%0Auid%3A%20GameFramework.Services.TimeService.IsTrackingGameTime%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/TimeService.cs/#L36">View Source</a>
+  </span>
+  <a id="GameFramework_Services_TimeService_IsTrackingGameTime_" data-uid="GameFramework.Services.TimeService.IsTrackingGameTime*"></a>
+  <h4 id="GameFramework_Services_TimeService_IsTrackingGameTime" data-uid="GameFramework.Services.TimeService.IsTrackingGameTime">IsTrackingGameTime</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsTrackingGameTime { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_TimeService_IsTrackingSessionTime.md&amp;value=---%0Auid%3A%20GameFramework.Services.TimeService.IsTrackingSessionTime%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/TimeService.cs/#L37">View Source</a>
+  </span>
+  <a id="GameFramework_Services_TimeService_IsTrackingSessionTime_" data-uid="GameFramework.Services.TimeService.IsTrackingSessionTime*"></a>
+  <h4 id="GameFramework_Services_TimeService_IsTrackingSessionTime" data-uid="GameFramework.Services.TimeService.IsTrackingSessionTime">IsTrackingSessionTime</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsTrackingSessionTime { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_TimeService_LevelTime.md&amp;value=---%0Auid%3A%20GameFramework.Services.TimeService.LevelTime%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/TimeService.cs/#L30">View Source</a>
+  </span>
+  <a id="GameFramework_Services_TimeService_LevelTime_" data-uid="GameFramework.Services.TimeService.LevelTime*"></a>
+  <h4 id="GameFramework_Services_TimeService_LevelTime" data-uid="GameFramework.Services.TimeService.LevelTime">LevelTime</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float LevelTime { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_TimeService_LevelTimeSpan.md&amp;value=---%0Auid%3A%20GameFramework.Services.TimeService.LevelTimeSpan%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/TimeService.cs/#L33">View Source</a>
+  </span>
+  <a id="GameFramework_Services_TimeService_LevelTimeSpan_" data-uid="GameFramework.Services.TimeService.LevelTimeSpan*"></a>
+  <h4 id="GameFramework_Services_TimeService_LevelTimeSpan" data-uid="GameFramework.Services.TimeService.LevelTimeSpan">LevelTimeSpan</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TimeSpan LevelTimeSpan { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timespan">TimeSpan</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_TimeService_SessionTime.md&amp;value=---%0Auid%3A%20GameFramework.Services.TimeService.SessionTime%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/TimeService.cs/#L29">View Source</a>
+  </span>
+  <a id="GameFramework_Services_TimeService_SessionTime_" data-uid="GameFramework.Services.TimeService.SessionTime*"></a>
+  <h4 id="GameFramework_Services_TimeService_SessionTime" data-uid="GameFramework.Services.TimeService.SessionTime">SessionTime</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float SessionTime { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_TimeService_SessionTimeSpan.md&amp;value=---%0Auid%3A%20GameFramework.Services.TimeService.SessionTimeSpan%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/TimeService.cs/#L32">View Source</a>
+  </span>
+  <a id="GameFramework_Services_TimeService_SessionTimeSpan_" data-uid="GameFramework.Services.TimeService.SessionTimeSpan*"></a>
+  <h4 id="GameFramework_Services_TimeService_SessionTimeSpan" data-uid="GameFramework.Services.TimeService.SessionTimeSpan">SessionTimeSpan</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TimeSpan SessionTimeSpan { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timespan">TimeSpan</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_TimeService_GetFormattedGameTime.md&amp;value=---%0Auid%3A%20GameFramework.Services.TimeService.GetFormattedGameTime%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/TimeService.cs/#L177">View Source</a>
+  </span>
+  <a id="GameFramework_Services_TimeService_GetFormattedGameTime_" data-uid="GameFramework.Services.TimeService.GetFormattedGameTime*"></a>
+  <h4 id="GameFramework_Services_TimeService_GetFormattedGameTime" data-uid="GameFramework.Services.TimeService.GetFormattedGameTime">GetFormattedGameTime()</h4>
+  <div class="markdown level1 summary"><p>Get formatted game time string (HH:MM:SS)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetFormattedGameTime()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_TimeService_GetFormattedLevelTime.md&amp;value=---%0Auid%3A%20GameFramework.Services.TimeService.GetFormattedLevelTime%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/TimeService.cs/#L193">View Source</a>
+  </span>
+  <a id="GameFramework_Services_TimeService_GetFormattedLevelTime_" data-uid="GameFramework.Services.TimeService.GetFormattedLevelTime*"></a>
+  <h4 id="GameFramework_Services_TimeService_GetFormattedLevelTime" data-uid="GameFramework.Services.TimeService.GetFormattedLevelTime">GetFormattedLevelTime()</h4>
+  <div class="markdown level1 summary"><p>Get formatted level time string (HH:MM:SS)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetFormattedLevelTime()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_TimeService_GetFormattedSessionTime.md&amp;value=---%0Auid%3A%20GameFramework.Services.TimeService.GetFormattedSessionTime%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/TimeService.cs/#L185">View Source</a>
+  </span>
+  <a id="GameFramework_Services_TimeService_GetFormattedSessionTime_" data-uid="GameFramework.Services.TimeService.GetFormattedSessionTime*"></a>
+  <h4 id="GameFramework_Services_TimeService_GetFormattedSessionTime" data-uid="GameFramework.Services.TimeService.GetFormattedSessionTime">GetFormattedSessionTime()</h4>
+  <div class="markdown level1 summary"><p>Get formatted session time string (HH:MM:SS)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetFormattedSessionTime()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_TimeService_GetTimeStatistics.md&amp;value=---%0Auid%3A%20GameFramework.Services.TimeService.GetTimeStatistics%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/TimeService.cs/#L227">View Source</a>
+  </span>
+  <a id="GameFramework_Services_TimeService_GetTimeStatistics_" data-uid="GameFramework.Services.TimeService.GetTimeStatistics*"></a>
+  <h4 id="GameFramework_Services_TimeService_GetTimeStatistics" data-uid="GameFramework.Services.TimeService.GetTimeStatistics">GetTimeStatistics()</h4>
+  <div class="markdown level1 summary"><p>Get time statistics for debugging/display</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TimeStatistics GetTimeStatistics()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Services.TimeStatistics.html">TimeStatistics</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_TimeService_InitializeAsync.md&amp;value=---%0Auid%3A%20GameFramework.Services.TimeService.InitializeAsync%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/TimeService.cs/#L84">View Source</a>
+  </span>
+  <a id="GameFramework_Services_TimeService_InitializeAsync_" data-uid="GameFramework.Services.TimeService.InitializeAsync*"></a>
+  <h4 id="GameFramework_Services_TimeService_InitializeAsync" data-uid="GameFramework.Services.TimeService.InitializeAsync">InitializeAsync()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task InitializeAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_TimeService_ResetAllTimers.md&amp;value=---%0Auid%3A%20GameFramework.Services.TimeService.ResetAllTimers%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/TimeService.cs/#L201">View Source</a>
+  </span>
+  <a id="GameFramework_Services_TimeService_ResetAllTimers_" data-uid="GameFramework.Services.TimeService.ResetAllTimers*"></a>
+  <h4 id="GameFramework_Services_TimeService_ResetAllTimers" data-uid="GameFramework.Services.TimeService.ResetAllTimers">ResetAllTimers()</h4>
+  <div class="markdown level1 summary"><p>Reset all timers</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ResetAllTimers()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_TimeService_ResetLevelTimer.md&amp;value=---%0Auid%3A%20GameFramework.Services.TimeService.ResetLevelTimer%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/TimeService.cs/#L217">View Source</a>
+  </span>
+  <a id="GameFramework_Services_TimeService_ResetLevelTimer_" data-uid="GameFramework.Services.TimeService.ResetLevelTimer*"></a>
+  <h4 id="GameFramework_Services_TimeService_ResetLevelTimer" data-uid="GameFramework.Services.TimeService.ResetLevelTimer">ResetLevelTimer()</h4>
+  <div class="markdown level1 summary"><p>Reset only the level timer (for new scenes)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ResetLevelTimer()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_TimeService_Shutdown.md&amp;value=---%0Auid%3A%20GameFramework.Services.TimeService.Shutdown%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/TimeService.cs/#L115">View Source</a>
+  </span>
+  <a id="GameFramework_Services_TimeService_Shutdown_" data-uid="GameFramework.Services.TimeService.Shutdown*"></a>
+  <h4 id="GameFramework_Services_TimeService_Shutdown" data-uid="GameFramework.Services.TimeService.Shutdown">Shutdown()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Shutdown()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_TimeService_Update.md&amp;value=---%0Auid%3A%20GameFramework.Services.TimeService.Update%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/TimeService.cs/#L143">View Source</a>
+  </span>
+  <a id="GameFramework_Services_TimeService_Update_" data-uid="GameFramework.Services.TimeService.Update*"></a>
+  <h4 id="GameFramework_Services_TimeService_Update" data-uid="GameFramework.Services.TimeService.Update">Update()</h4>
+  <div class="markdown level1 summary"><p>Update time tracking - called every frame by GameManager</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Update()</code></pre>
+  </div>
+  <h3 id="events">Events
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_TimeService_OnGameTimeChanged.md&amp;value=---%0Auid%3A%20GameFramework.Services.TimeService.OnGameTimeChanged%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/TimeService.cs/#L58">View Source</a>
+  </span>
+  <h4 id="GameFramework_Services_TimeService_OnGameTimeChanged" data-uid="GameFramework.Services.TimeService.OnGameTimeChanged">OnGameTimeChanged</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event Action&lt;float&gt; OnGameTimeChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_TimeService_OnLevelTimeChanged.md&amp;value=---%0Auid%3A%20GameFramework.Services.TimeService.OnLevelTimeChanged%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/TimeService.cs/#L60">View Source</a>
+  </span>
+  <h4 id="GameFramework_Services_TimeService_OnLevelTimeChanged" data-uid="GameFramework.Services.TimeService.OnLevelTimeChanged">OnLevelTimeChanged</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event Action&lt;float&gt; OnLevelTimeChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_TimeService_OnSessionTimeChanged.md&amp;value=---%0Auid%3A%20GameFramework.Services.TimeService.OnSessionTimeChanged%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/TimeService.cs/#L59">View Source</a>
+  </span>
+  <h4 id="GameFramework_Services_TimeService_OnSessionTimeChanged" data-uid="GameFramework.Services.TimeService.OnSessionTimeChanged">OnSessionTimeChanged</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event Action&lt;float&gt; OnSessionTimeChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_TimeService_OnTimersReset.md&amp;value=---%0Auid%3A%20GameFramework.Services.TimeService.OnTimersReset%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/TimeService.cs/#L61">View Source</a>
+  </span>
+  <h4 id="GameFramework_Services_TimeService_OnTimersReset" data-uid="GameFramework.Services.TimeService.OnTimersReset">OnTimersReset</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event Action OnTimersReset</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action">Action</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="GameFramework.Services.Interfaces.ITimeService.html">ITimeService</a>
+  </div>
+  <div>
+      <a class="xref" href="GameFramework.StateMachine.Interfaces.IUpdatable.html">IUpdatable</a>
+  </div>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_TimeService.md&amp;value=---%0Auid%3A%20GameFramework.Services.TimeService%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/TimeService.cs/#L21" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      UCTools Base Project Documentation
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

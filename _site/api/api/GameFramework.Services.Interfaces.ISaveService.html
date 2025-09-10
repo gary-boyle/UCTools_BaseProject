@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Interface ISaveService | UCTools Base Project Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Interface ISaveService | UCTools Base Project Documentation ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="GameFramework.Services.Interfaces.ISaveService">
+
+
+
+  <h1 id="GameFramework_Services_Interfaces_ISaveService" data-uid="GameFramework.Services.Interfaces.ISaveService" class="text-break">Interface ISaveService</h1>
+  <div class="markdown level0 summary"><p>Interface for save service that handles both file operations and business logic
+Provides clean separation between low-level file I/O and high-level save operations
+Supports both regular saves and autosaves with automatic file management</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.Services.html">Services</a>.<a class="xref" href="GameFramework.Services.Interfaces.html">Interfaces</a></h6>
+  <h6><strong>Assembly</strong>: .dll</h6>
+  <h5 id="GameFramework_Services_Interfaces_ISaveService_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface ISaveService : IGameService</code></pre>
+  </div>
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_Interfaces_ISaveService_IsInitialized.md&amp;value=---%0Auid%3A%20GameFramework.Services.Interfaces.ISaveService.IsInitialized%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/Interfaces/ISaveService.cs/#L13">View Source</a>
+  </span>
+  <a id="GameFramework_Services_Interfaces_ISaveService_IsInitialized_" data-uid="GameFramework.Services.Interfaces.ISaveService.IsInitialized*"></a>
+  <h4 id="GameFramework_Services_Interfaces_ISaveService_IsInitialized" data-uid="GameFramework.Services.Interfaces.ISaveService.IsInitialized">IsInitialized</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool IsInitialized { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_Interfaces_ISaveService_CanSaveGame.md&amp;value=---%0Auid%3A%20GameFramework.Services.Interfaces.ISaveService.CanSaveGame%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/Interfaces/ISaveService.cs/#L23">View Source</a>
+  </span>
+  <a id="GameFramework_Services_Interfaces_ISaveService_CanSaveGame_" data-uid="GameFramework.Services.Interfaces.ISaveService.CanSaveGame*"></a>
+  <h4 id="GameFramework_Services_Interfaces_ISaveService_CanSaveGame" data-uid="GameFramework.Services.Interfaces.ISaveService.CanSaveGame">CanSaveGame()</h4>
+  <div class="markdown level1 summary"><p>Checks if the game can currently be saved based on session state</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool CanSaveGame()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_Interfaces_ISaveService_DeleteSaveAsync_System_String_.md&amp;value=---%0Auid%3A%20GameFramework.Services.Interfaces.ISaveService.DeleteSaveAsync(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/Interfaces/ISaveService.cs/#L59">View Source</a>
+  </span>
+  <a id="GameFramework_Services_Interfaces_ISaveService_DeleteSaveAsync_" data-uid="GameFramework.Services.Interfaces.ISaveService.DeleteSaveAsync*"></a>
+  <h4 id="GameFramework_Services_Interfaces_ISaveService_DeleteSaveAsync_System_String_" data-uid="GameFramework.Services.Interfaces.ISaveService.DeleteSaveAsync(System.String)">DeleteSaveAsync(string)</h4>
+  <div class="markdown level1 summary"><p>Deletes a save file by name</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; DeleteSaveAsync(string saveName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">saveName</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_Interfaces_ISaveService_DeleteSaveFileByInfoAsync_GameFramework_DataStructures_SaveFileInfo_.md&amp;value=---%0Auid%3A%20GameFramework.Services.Interfaces.ISaveService.DeleteSaveFileByInfoAsync(GameFramework.DataStructures.SaveFileInfo)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/Interfaces/ISaveService.cs/#L92">View Source</a>
+  </span>
+  <a id="GameFramework_Services_Interfaces_ISaveService_DeleteSaveFileByInfoAsync_" data-uid="GameFramework.Services.Interfaces.ISaveService.DeleteSaveFileByInfoAsync*"></a>
+  <h4 id="GameFramework_Services_Interfaces_ISaveService_DeleteSaveFileByInfoAsync_GameFramework_DataStructures_SaveFileInfo_" data-uid="GameFramework.Services.Interfaces.ISaveService.DeleteSaveFileByInfoAsync(GameFramework.DataStructures.SaveFileInfo)">DeleteSaveFileByInfoAsync(SaveFileInfo)</h4>
+  <div class="markdown level1 summary"><p>Deletes a save file using SaveFileInfo</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; DeleteSaveFileByInfoAsync(SaveFileInfo saveFileInfo)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.DataStructures.SaveFileInfo.html">SaveFileInfo</a></td>
+        <td><span class="parametername">saveFileInfo</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_Interfaces_ISaveService_GetMostRecentSaveName.md&amp;value=---%0Auid%3A%20GameFramework.Services.Interfaces.ISaveService.GetMostRecentSaveName%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/Interfaces/ISaveService.cs/#L73">View Source</a>
+  </span>
+  <a id="GameFramework_Services_Interfaces_ISaveService_GetMostRecentSaveName_" data-uid="GameFramework.Services.Interfaces.ISaveService.GetMostRecentSaveName*"></a>
+  <h4 id="GameFramework_Services_Interfaces_ISaveService_GetMostRecentSaveName" data-uid="GameFramework.Services.Interfaces.ISaveService.GetMostRecentSaveName">GetMostRecentSaveName()</h4>
+  <div class="markdown level1 summary"><p>Gets the name of the most recently saved file</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string GetMostRecentSaveName()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_Interfaces_ISaveService_GetSaveFileInfoAsync_System_String_.md&amp;value=---%0Auid%3A%20GameFramework.Services.Interfaces.ISaveService.GetSaveFileInfoAsync(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/Interfaces/ISaveService.cs/#L87">View Source</a>
+  </span>
+  <a id="GameFramework_Services_Interfaces_ISaveService_GetSaveFileInfoAsync_" data-uid="GameFramework.Services.Interfaces.ISaveService.GetSaveFileInfoAsync*"></a>
+  <h4 id="GameFramework_Services_Interfaces_ISaveService_GetSaveFileInfoAsync_System_String_" data-uid="GameFramework.Services.Interfaces.ISaveService.GetSaveFileInfoAsync(System.String)">GetSaveFileInfoAsync(string)</h4>
+  <div class="markdown level1 summary"><p>Gets formatted save file information for a specific save file</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;SaveFileInfo&gt; GetSaveFileInfoAsync(string saveName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">saveName</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="GameFramework.DataStructures.SaveFileInfo.html">SaveFileInfo</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_Interfaces_ISaveService_GetSaveFileInfosAsync.md&amp;value=---%0Auid%3A%20GameFramework.Services.Interfaces.ISaveService.GetSaveFileInfosAsync%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/Interfaces/ISaveService.cs/#L82">View Source</a>
+  </span>
+  <a id="GameFramework_Services_Interfaces_ISaveService_GetSaveFileInfosAsync_" data-uid="GameFramework.Services.Interfaces.ISaveService.GetSaveFileInfosAsync*"></a>
+  <h4 id="GameFramework_Services_Interfaces_ISaveService_GetSaveFileInfosAsync" data-uid="GameFramework.Services.Interfaces.ISaveService.GetSaveFileInfosAsync">GetSaveFileInfosAsync()</h4>
+  <div class="markdown level1 summary"><p>Gets formatted save file information for UI display, sorted by most recent first</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;SaveFileInfo[]&gt; GetSaveFileInfosAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="GameFramework.DataStructures.SaveFileInfo.html">SaveFileInfo</a>[]&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_Interfaces_ISaveService_GetSaveFilesAsync.md&amp;value=---%0Auid%3A%20GameFramework.Services.Interfaces.ISaveService.GetSaveFilesAsync%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/Interfaces/ISaveService.cs/#L54">View Source</a>
+  </span>
+  <a id="GameFramework_Services_Interfaces_ISaveService_GetSaveFilesAsync_" data-uid="GameFramework.Services.Interfaces.ISaveService.GetSaveFilesAsync*"></a>
+  <h4 id="GameFramework_Services_Interfaces_ISaveService_GetSaveFilesAsync" data-uid="GameFramework.Services.Interfaces.ISaveService.GetSaveFilesAsync">GetSaveFilesAsync()</h4>
+  <div class="markdown level1 summary"><p>Gets all save file names</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;string[]&gt; GetSaveFilesAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_Interfaces_ISaveService_HasAnySaves.md&amp;value=---%0Auid%3A%20GameFramework.Services.Interfaces.ISaveService.HasAnySaves%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/Interfaces/ISaveService.cs/#L68">View Source</a>
+  </span>
+  <a id="GameFramework_Services_Interfaces_ISaveService_HasAnySaves_" data-uid="GameFramework.Services.Interfaces.ISaveService.HasAnySaves*"></a>
+  <h4 id="GameFramework_Services_Interfaces_ISaveService_HasAnySaves" data-uid="GameFramework.Services.Interfaces.ISaveService.HasAnySaves">HasAnySaves()</h4>
+  <div class="markdown level1 summary"><p>Checks if any save files exist</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool HasAnySaves()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_Interfaces_ISaveService_InitializeAsync.md&amp;value=---%0Auid%3A%20GameFramework.Services.Interfaces.ISaveService.InitializeAsync%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/Interfaces/ISaveService.cs/#L15">View Source</a>
+  </span>
+  <a id="GameFramework_Services_Interfaces_ISaveService_InitializeAsync_" data-uid="GameFramework.Services.Interfaces.ISaveService.InitializeAsync*"></a>
+  <h4 id="GameFramework_Services_Interfaces_ISaveService_InitializeAsync" data-uid="GameFramework.Services.Interfaces.ISaveService.InitializeAsync">InitializeAsync()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task InitializeAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_Interfaces_ISaveService_LoadGameSessionAsync_System_String_.md&amp;value=---%0Auid%3A%20GameFramework.Services.Interfaces.ISaveService.LoadGameSessionAsync(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/Interfaces/ISaveService.cs/#L49">View Source</a>
+  </span>
+  <a id="GameFramework_Services_Interfaces_ISaveService_LoadGameSessionAsync_" data-uid="GameFramework.Services.Interfaces.ISaveService.LoadGameSessionAsync*"></a>
+  <h4 id="GameFramework_Services_Interfaces_ISaveService_LoadGameSessionAsync_System_String_" data-uid="GameFramework.Services.Interfaces.ISaveService.LoadGameSessionAsync(System.String)">LoadGameSessionAsync(string)</h4>
+  <div class="markdown level1 summary"><p>Loads a game session from a save file</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;GameSession&gt; LoadGameSessionAsync(string saveName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">saveName</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="GameFramework.DataStructures.GameSession.html">GameSession</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_Interfaces_ISaveService_LoadGameSessionByInfoAsync_GameFramework_DataStructures_SaveFileInfo_.md&amp;value=---%0Auid%3A%20GameFramework.Services.Interfaces.ISaveService.LoadGameSessionByInfoAsync(GameFramework.DataStructures.SaveFileInfo)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/Interfaces/ISaveService.cs/#L97">View Source</a>
+  </span>
+  <a id="GameFramework_Services_Interfaces_ISaveService_LoadGameSessionByInfoAsync_" data-uid="GameFramework.Services.Interfaces.ISaveService.LoadGameSessionByInfoAsync*"></a>
+  <h4 id="GameFramework_Services_Interfaces_ISaveService_LoadGameSessionByInfoAsync_GameFramework_DataStructures_SaveFileInfo_" data-uid="GameFramework.Services.Interfaces.ISaveService.LoadGameSessionByInfoAsync(GameFramework.DataStructures.SaveFileInfo)">LoadGameSessionByInfoAsync(SaveFileInfo)</h4>
+  <div class="markdown level1 summary"><p>Loads a game session using SaveFileInfo</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;GameSession&gt; LoadGameSessionByInfoAsync(SaveFileInfo saveFileInfo)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.DataStructures.SaveFileInfo.html">SaveFileInfo</a></td>
+        <td><span class="parametername">saveFileInfo</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="GameFramework.DataStructures.GameSession.html">GameSession</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_Interfaces_ISaveService_PerformAutoSaveAsync.md&amp;value=---%0Auid%3A%20GameFramework.Services.Interfaces.ISaveService.PerformAutoSaveAsync%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/Interfaces/ISaveService.cs/#L35">View Source</a>
+  </span>
+  <a id="GameFramework_Services_Interfaces_ISaveService_PerformAutoSaveAsync_" data-uid="GameFramework.Services.Interfaces.ISaveService.PerformAutoSaveAsync*"></a>
+  <h4 id="GameFramework_Services_Interfaces_ISaveService_PerformAutoSaveAsync" data-uid="GameFramework.Services.Interfaces.ISaveService.PerformAutoSaveAsync">PerformAutoSaveAsync()</h4>
+  <div class="markdown level1 summary"><p>Performs an autosave, always overwriting the existing autosave file
+Returns success status and the generated save name</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;(bool success, string saveName)&gt; PerformAutoSaveAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;(<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.boolean,system.string-.success">success</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.boolean,system.string-.savename">saveName</a>)&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_Interfaces_ISaveService_PerformRegularSaveAsync.md&amp;value=---%0Auid%3A%20GameFramework.Services.Interfaces.ISaveService.PerformRegularSaveAsync%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/Interfaces/ISaveService.cs/#L29">View Source</a>
+  </span>
+  <a id="GameFramework_Services_Interfaces_ISaveService_PerformRegularSaveAsync_" data-uid="GameFramework.Services.Interfaces.ISaveService.PerformRegularSaveAsync*"></a>
+  <h4 id="GameFramework_Services_Interfaces_ISaveService_PerformRegularSaveAsync" data-uid="GameFramework.Services.Interfaces.ISaveService.PerformRegularSaveAsync">PerformRegularSaveAsync()</h4>
+  <div class="markdown level1 summary"><p>Performs a regular save with automatic timestamp-based naming
+Returns success status and the generated save name</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;(bool success, string saveName)&gt; PerformRegularSaveAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;(<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.boolean,system.string-.success">success</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.boolean,system.string-.savename">saveName</a>)&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_Interfaces_ISaveService_SaveGameSessionAsync_GameFramework_DataStructures_GameSession_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20GameFramework.Services.Interfaces.ISaveService.SaveGameSessionAsync(GameFramework.DataStructures.GameSession%2CSystem.String%2CSystem.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/Interfaces/ISaveService.cs/#L44">View Source</a>
+  </span>
+  <a id="GameFramework_Services_Interfaces_ISaveService_SaveGameSessionAsync_" data-uid="GameFramework.Services.Interfaces.ISaveService.SaveGameSessionAsync*"></a>
+  <h4 id="GameFramework_Services_Interfaces_ISaveService_SaveGameSessionAsync_GameFramework_DataStructures_GameSession_System_String_System_Boolean_" data-uid="GameFramework.Services.Interfaces.ISaveService.SaveGameSessionAsync(GameFramework.DataStructures.GameSession,System.String,System.Boolean)">SaveGameSessionAsync(GameSession, string, bool)</h4>
+  <div class="markdown level1 summary"><p>Saves a game session with timestamp-based naming</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; SaveGameSessionAsync(GameSession session, string saveName = null, bool isAutoSave = false)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.DataStructures.GameSession.html">GameSession</a></td>
+        <td><span class="parametername">session</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">saveName</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">isAutoSave</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_Interfaces_ISaveService_Shutdown.md&amp;value=---%0Auid%3A%20GameFramework.Services.Interfaces.ISaveService.Shutdown%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/Interfaces/ISaveService.cs/#L16">View Source</a>
+  </span>
+  <a id="GameFramework_Services_Interfaces_ISaveService_Shutdown_" data-uid="GameFramework.Services.Interfaces.ISaveService.Shutdown*"></a>
+  <h4 id="GameFramework_Services_Interfaces_ISaveService_Shutdown" data-uid="GameFramework.Services.Interfaces.ISaveService.Shutdown">Shutdown()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void Shutdown()</code></pre>
+  </div>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_Interfaces_ISaveService.md&amp;value=---%0Auid%3A%20GameFramework.Services.Interfaces.ISaveService%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/Interfaces/ISaveService.cs/#L11" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      UCTools Base Project Documentation
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

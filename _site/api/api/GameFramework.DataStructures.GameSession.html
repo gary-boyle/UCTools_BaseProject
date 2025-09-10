@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class GameSession | UCTools Base Project Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class GameSession | UCTools Base Project Documentation ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="GameFramework.DataStructures.GameSession">
+
+
+
+  <h1 id="GameFramework_DataStructures_GameSession" data-uid="GameFramework.DataStructures.GameSession" class="text-break">Class GameSession</h1>
+  <div class="markdown level0 summary"><p>Central game session data - single source of truth for all game state
+Stores playtime data in serializable fields while providing TimeService integration
+Ensures playtime persists correctly across save/load operations</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+    <div class="level1"><span class="xref">GameSession</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.DataStructures.html">DataStructures</a></h6>
+  <h6><strong>Assembly</strong>: .dll</h6>
+  <h5 id="GameFramework_DataStructures_GameSession_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Serializable]
+public class GameSession</code></pre>
+  </div>
+  <h3 id="fields">Fields
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_DataStructures_GameSession_currentScene.md&amp;value=---%0Auid%3A%20GameFramework.DataStructures.GameSession.currentScene%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/DataStructures/GameSession.cs/#L21">View Source</a>
+  </span>
+  <h4 id="GameFramework_DataStructures_GameSession_currentScene" data-uid="GameFramework.DataStructures.GameSession.currentScene">currentScene</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string currentScene</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_DataStructures_GameSession_customData.md&amp;value=---%0Auid%3A%20GameFramework.DataStructures.GameSession.customData%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/DataStructures/GameSession.cs/#L37">View Source</a>
+  </span>
+  <h4 id="GameFramework_DataStructures_GameSession_customData" data-uid="GameFramework.DataStructures.GameSession.customData">customData</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Dictionary&lt;string, object&gt; customData</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_DataStructures_GameSession_difficulty.md&amp;value=---%0Auid%3A%20GameFramework.DataStructures.GameSession.difficulty%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/DataStructures/GameSession.cs/#L20">View Source</a>
+  </span>
+  <h4 id="GameFramework_DataStructures_GameSession_difficulty" data-uid="GameFramework.DataStructures.GameSession.difficulty">difficulty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string difficulty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_DataStructures_GameSession_lastSaveTime.md&amp;value=---%0Auid%3A%20GameFramework.DataStructures.GameSession.lastSaveTime%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/DataStructures/GameSession.cs/#L23">View Source</a>
+  </span>
+  <h4 id="GameFramework_DataStructures_GameSession_lastSaveTime" data-uid="GameFramework.DataStructures.GameSession.lastSaveTime">lastSaveTime</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateTime lastSaveTime</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_DataStructures_GameSession_player.md&amp;value=---%0Auid%3A%20GameFramework.DataStructures.GameSession.player%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/DataStructures/GameSession.cs/#L31">View Source</a>
+  </span>
+  <h4 id="GameFramework_DataStructures_GameSession_player" data-uid="GameFramework.DataStructures.GameSession.player">player</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PlayerState player</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.DataStructures.PlayerState.html">PlayerState</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_DataStructures_GameSession_playerName.md&amp;value=---%0Auid%3A%20GameFramework.DataStructures.GameSession.playerName%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/DataStructures/GameSession.cs/#L19">View Source</a>
+  </span>
+  <h4 id="GameFramework_DataStructures_GameSession_playerName" data-uid="GameFramework.DataStructures.GameSession.playerName">playerName</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string playerName</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_DataStructures_GameSession_progress.md&amp;value=---%0Auid%3A%20GameFramework.DataStructures.GameSession.progress%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/DataStructures/GameSession.cs/#L34">View Source</a>
+  </span>
+  <h4 id="GameFramework_DataStructures_GameSession_progress" data-uid="GameFramework.DataStructures.GameSession.progress">progress</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GameProgress progress</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.DataStructures.GameProgress.html">GameProgress</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_DataStructures_GameSession_sessionStartTime.md&amp;value=---%0Auid%3A%20GameFramework.DataStructures.GameSession.sessionStartTime%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/DataStructures/GameSession.cs/#L22">View Source</a>
+  </span>
+  <h4 id="GameFramework_DataStructures_GameSession_sessionStartTime" data-uid="GameFramework.DataStructures.GameSession.sessionStartTime">sessionStartTime</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateTime sessionStartTime</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_DataStructures_GameSession_FormattedPlayTime.md&amp;value=---%0Auid%3A%20GameFramework.DataStructures.GameSession.FormattedPlayTime%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/DataStructures/GameSession.cs/#L74">View Source</a>
+  </span>
+  <a id="GameFramework_DataStructures_GameSession_FormattedPlayTime_" data-uid="GameFramework.DataStructures.GameSession.FormattedPlayTime*"></a>
+  <h4 id="GameFramework_DataStructures_GameSession_FormattedPlayTime" data-uid="GameFramework.DataStructures.GameSession.FormattedPlayTime">FormattedPlayTime</h4>
+  <div class="markdown level1 summary"><p>Gets formatted playtime string for display (HH:MM:SS)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string FormattedPlayTime { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_DataStructures_GameSession_FormattedSessionTime.md&amp;value=---%0Auid%3A%20GameFramework.DataStructures.GameSession.FormattedSessionTime%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/DataStructures/GameSession.cs/#L90">View Source</a>
+  </span>
+  <a id="GameFramework_DataStructures_GameSession_FormattedSessionTime_" data-uid="GameFramework.DataStructures.GameSession.FormattedSessionTime*"></a>
+  <h4 id="GameFramework_DataStructures_GameSession_FormattedSessionTime" data-uid="GameFramework.DataStructures.GameSession.FormattedSessionTime">FormattedSessionTime</h4>
+  <div class="markdown level1 summary"><p>Gets formatted session time string for display (HH:MM:SS)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string FormattedSessionTime { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_DataStructures_GameSession_HasSavedTimeData.md&amp;value=---%0Auid%3A%20GameFramework.DataStructures.GameSession.HasSavedTimeData%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/DataStructures/GameSession.cs/#L155">View Source</a>
+  </span>
+  <a id="GameFramework_DataStructures_GameSession_HasSavedTimeData_" data-uid="GameFramework.DataStructures.GameSession.HasSavedTimeData*"></a>
+  <h4 id="GameFramework_DataStructures_GameSession_HasSavedTimeData" data-uid="GameFramework.DataStructures.GameSession.HasSavedTimeData">HasSavedTimeData</h4>
+  <div class="markdown level1 summary"><p>Checks if this session has saved time data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasSavedTimeData { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_DataStructures_GameSession_SavedGameTime.md&amp;value=---%0Auid%3A%20GameFramework.DataStructures.GameSession.SavedGameTime%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/DataStructures/GameSession.cs/#L145">View Source</a>
+  </span>
+  <a id="GameFramework_DataStructures_GameSession_SavedGameTime_" data-uid="GameFramework.DataStructures.GameSession.SavedGameTime*"></a>
+  <h4 id="GameFramework_DataStructures_GameSession_SavedGameTime" data-uid="GameFramework.DataStructures.GameSession.SavedGameTime">SavedGameTime</h4>
+  <div class="markdown level1 summary"><p>Gets the serialized/saved playtime data (for UI display when TimeService not available)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float SavedGameTime { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_DataStructures_GameSession_SavedSessionTime.md&amp;value=---%0Auid%3A%20GameFramework.DataStructures.GameSession.SavedSessionTime%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/DataStructures/GameSession.cs/#L150">View Source</a>
+  </span>
+  <a id="GameFramework_DataStructures_GameSession_SavedSessionTime_" data-uid="GameFramework.DataStructures.GameSession.SavedSessionTime*"></a>
+  <h4 id="GameFramework_DataStructures_GameSession_SavedSessionTime" data-uid="GameFramework.DataStructures.GameSession.SavedSessionTime">SavedSessionTime</h4>
+  <div class="markdown level1 summary"><p>Gets the serialized/saved session time data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float SavedSessionTime { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_DataStructures_GameSession_SessionTimeSeconds.md&amp;value=---%0Auid%3A%20GameFramework.DataStructures.GameSession.SessionTimeSeconds%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/DataStructures/GameSession.cs/#L58">View Source</a>
+  </span>
+  <a id="GameFramework_DataStructures_GameSession_SessionTimeSeconds_" data-uid="GameFramework.DataStructures.GameSession.SessionTimeSeconds*"></a>
+  <h4 id="GameFramework_DataStructures_GameSession_SessionTimeSeconds" data-uid="GameFramework.DataStructures.GameSession.SessionTimeSeconds">SessionTimeSeconds</h4>
+  <div class="markdown level1 summary"><p>Gets the current session time - uses TimeService if available, fallback to saved data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float SessionTimeSeconds { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_DataStructures_GameSession_TotalPlayTimeSeconds.md&amp;value=---%0Auid%3A%20GameFramework.DataStructures.GameSession.TotalPlayTimeSeconds%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/DataStructures/GameSession.cs/#L42">View Source</a>
+  </span>
+  <a id="GameFramework_DataStructures_GameSession_TotalPlayTimeSeconds_" data-uid="GameFramework.DataStructures.GameSession.TotalPlayTimeSeconds*"></a>
+  <h4 id="GameFramework_DataStructures_GameSession_TotalPlayTimeSeconds" data-uid="GameFramework.DataStructures.GameSession.TotalPlayTimeSeconds">TotalPlayTimeSeconds</h4>
+  <div class="markdown level1 summary"><p>Gets the current total playtime - uses TimeService if available, fallback to saved data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float TotalPlayTimeSeconds { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_DataStructures_GameSession_CreateNewGame_System_String_System_String_System_String_.md&amp;value=---%0Auid%3A%20GameFramework.DataStructures.GameSession.CreateNewGame(System.String%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/DataStructures/GameSession.cs/#L160">View Source</a>
+  </span>
+  <a id="GameFramework_DataStructures_GameSession_CreateNewGame_" data-uid="GameFramework.DataStructures.GameSession.CreateNewGame*"></a>
+  <h4 id="GameFramework_DataStructures_GameSession_CreateNewGame_System_String_System_String_System_String_" data-uid="GameFramework.DataStructures.GameSession.CreateNewGame(System.String,System.String,System.String)">CreateNewGame(string, string, string)</h4>
+  <div class="markdown level1 summary"><p>Creates a new game session with specified parameters</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static GameSession CreateNewGame(string playerName, string difficulty, string startingScene)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">playerName</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">difficulty</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">startingScene</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.DataStructures.GameSession.html">GameSession</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_DataStructures_GameSession_GetCustomData__1_System_String___0_.md&amp;value=---%0Auid%3A%20GameFramework.DataStructures.GameSession.GetCustomData%60%601(System.String%2C%60%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/DataStructures/GameSession.cs/#L306">View Source</a>
+  </span>
+  <a id="GameFramework_DataStructures_GameSession_GetCustomData_" data-uid="GameFramework.DataStructures.GameSession.GetCustomData*"></a>
+  <h4 id="GameFramework_DataStructures_GameSession_GetCustomData__1_System_String___0_" data-uid="GameFramework.DataStructures.GameSession.GetCustomData``1(System.String,``0)">GetCustomData&lt;T&gt;(string, T)</h4>
+  <div class="markdown level1 summary"><p>Gets custom data with optional default value</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T GetCustomData&lt;T&gt;(string key, T defaultValue = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">defaultValue</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_DataStructures_GameSession_GetPlayTimeInfo.md&amp;value=---%0Auid%3A%20GameFramework.DataStructures.GameSession.GetPlayTimeInfo%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/DataStructures/GameSession.cs/#L200">View Source</a>
+  </span>
+  <a id="GameFramework_DataStructures_GameSession_GetPlayTimeInfo_" data-uid="GameFramework.DataStructures.GameSession.GetPlayTimeInfo*"></a>
+  <h4 id="GameFramework_DataStructures_GameSession_GetPlayTimeInfo" data-uid="GameFramework.DataStructures.GameSession.GetPlayTimeInfo">GetPlayTimeInfo()</h4>
+  <div class="markdown level1 summary"><p>Gets playtime statistics for debugging or display</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PlayTimeInfo GetPlayTimeInfo()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="PlayTimeInfo.html">PlayTimeInfo</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_DataStructures_GameSession_GetSessionAge.md&amp;value=---%0Auid%3A%20GameFramework.DataStructures.GameSession.GetSessionAge%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/DataStructures/GameSession.cs/#L241">View Source</a>
+  </span>
+  <a id="GameFramework_DataStructures_GameSession_GetSessionAge_" data-uid="GameFramework.DataStructures.GameSession.GetSessionAge*"></a>
+  <h4 id="GameFramework_DataStructures_GameSession_GetSessionAge" data-uid="GameFramework.DataStructures.GameSession.GetSessionAge">GetSessionAge()</h4>
+  <div class="markdown level1 summary"><p>Gets the age of this session (time since creation)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TimeSpan GetSessionAge()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timespan">TimeSpan</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_DataStructures_GameSession_GetTimeSinceLastSave.md&amp;value=---%0Auid%3A%20GameFramework.DataStructures.GameSession.GetTimeSinceLastSave%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/DataStructures/GameSession.cs/#L249">View Source</a>
+  </span>
+  <a id="GameFramework_DataStructures_GameSession_GetTimeSinceLastSave_" data-uid="GameFramework.DataStructures.GameSession.GetTimeSinceLastSave*"></a>
+  <h4 id="GameFramework_DataStructures_GameSession_GetTimeSinceLastSave" data-uid="GameFramework.DataStructures.GameSession.GetTimeSinceLastSave">GetTimeSinceLastSave()</h4>
+  <div class="markdown level1 summary"><p>Gets the time since last save</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TimeSpan GetTimeSinceLastSave()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timespan">TimeSpan</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_DataStructures_GameSession_RestoreTimeDataToService.md&amp;value=---%0Auid%3A%20GameFramework.DataStructures.GameSession.RestoreTimeDataToService%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/DataStructures/GameSession.cs/#L127">View Source</a>
+  </span>
+  <a id="GameFramework_DataStructures_GameSession_RestoreTimeDataToService_" data-uid="GameFramework.DataStructures.GameSession.RestoreTimeDataToService*"></a>
+  <h4 id="GameFramework_DataStructures_GameSession_RestoreTimeDataToService" data-uid="GameFramework.DataStructures.GameSession.RestoreTimeDataToService">RestoreTimeDataToService()</h4>
+  <div class="markdown level1 summary"><p>Restores time data to TimeService after loading (if supported by TimeService)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RestoreTimeDataToService()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_DataStructures_GameSession_SetCurrentScene_System_String_.md&amp;value=---%0Auid%3A%20GameFramework.DataStructures.GameSession.SetCurrentScene(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/DataStructures/GameSession.cs/#L274">View Source</a>
+  </span>
+  <a id="GameFramework_DataStructures_GameSession_SetCurrentScene_" data-uid="GameFramework.DataStructures.GameSession.SetCurrentScene*"></a>
+  <h4 id="GameFramework_DataStructures_GameSession_SetCurrentScene_System_String_" data-uid="GameFramework.DataStructures.GameSession.SetCurrentScene(System.String)">SetCurrentScene(string)</h4>
+  <div class="markdown level1 summary"><p>Updates the current scene reference</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetCurrentScene(string sceneName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">sceneName</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_DataStructures_GameSession_SetCustomData__1_System_String___0_.md&amp;value=---%0Auid%3A%20GameFramework.DataStructures.GameSession.SetCustomData%60%601(System.String%2C%60%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/DataStructures/GameSession.cs/#L291">View Source</a>
+  </span>
+  <a id="GameFramework_DataStructures_GameSession_SetCustomData_" data-uid="GameFramework.DataStructures.GameSession.SetCustomData*"></a>
+  <h4 id="GameFramework_DataStructures_GameSession_SetCustomData__1_System_String___0_" data-uid="GameFramework.DataStructures.GameSession.SetCustomData``1(System.String,``0)">SetCustomData&lt;T&gt;(string, T)</h4>
+  <div class="markdown level1 summary"><p>Adds or updates custom data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetCustomData&lt;T&gt;(string key, T value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">value</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_DataStructures_GameSession_ToLoadingConfiguration.md&amp;value=---%0Auid%3A%20GameFramework.DataStructures.GameSession.ToLoadingConfiguration%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/DataStructures/GameSession.cs/#L257">View Source</a>
+  </span>
+  <a id="GameFramework_DataStructures_GameSession_ToLoadingConfiguration_" data-uid="GameFramework.DataStructures.GameSession.ToLoadingConfiguration*"></a>
+  <h4 id="GameFramework_DataStructures_GameSession_ToLoadingConfiguration" data-uid="GameFramework.DataStructures.GameSession.ToLoadingConfiguration">ToLoadingConfiguration()</h4>
+  <div class="markdown level1 summary"><p>Converts session to loading configuration for state transitions</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LoadingConfiguration ToLoadingConfiguration()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.StateMachine.Data.LoadingConfiguration.html">LoadingConfiguration</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_DataStructures_GameSession_ToString.md&amp;value=---%0Auid%3A%20GameFramework.DataStructures.GameSession.ToString%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/DataStructures/GameSession.cs/#L327">View Source</a>
+  </span>
+  <a id="GameFramework_DataStructures_GameSession_ToString_" data-uid="GameFramework.DataStructures.GameSession.ToString*"></a>
+  <h4 id="GameFramework_DataStructures_GameSession_ToString" data-uid="GameFramework.DataStructures.GameSession.ToString">ToString()</h4>
+  <div class="markdown level1 summary"><p>Gets a summary string for debugging</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_DataStructures_GameSession_UpdateLastSaveTime.md&amp;value=---%0Auid%3A%20GameFramework.DataStructures.GameSession.UpdateLastSaveTime%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/DataStructures/GameSession.cs/#L190">View Source</a>
+  </span>
+  <a id="GameFramework_DataStructures_GameSession_UpdateLastSaveTime_" data-uid="GameFramework.DataStructures.GameSession.UpdateLastSaveTime*"></a>
+  <h4 id="GameFramework_DataStructures_GameSession_UpdateLastSaveTime" data-uid="GameFramework.DataStructures.GameSession.UpdateLastSaveTime">UpdateLastSaveTime()</h4>
+  <div class="markdown level1 summary"><p>Updates the last save time and captures current playtime data
+Called when the game is saved</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UpdateLastSaveTime()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_DataStructures_GameSession_UpdateTimeDataFromService.md&amp;value=---%0Auid%3A%20GameFramework.DataStructures.GameSession.UpdateTimeDataFromService%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/DataStructures/GameSession.cs/#L107">View Source</a>
+  </span>
+  <a id="GameFramework_DataStructures_GameSession_UpdateTimeDataFromService_" data-uid="GameFramework.DataStructures.GameSession.UpdateTimeDataFromService*"></a>
+  <h4 id="GameFramework_DataStructures_GameSession_UpdateTimeDataFromService" data-uid="GameFramework.DataStructures.GameSession.UpdateTimeDataFromService">UpdateTimeDataFromService()</h4>
+  <div class="markdown level1 summary"><p>Updates the saved time data from TimeService before saving
+Call this before serializing the session to ensure current time data is captured</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UpdateTimeDataFromService()</code></pre>
+  </div>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_DataStructures_GameSession.md&amp;value=---%0Auid%3A%20GameFramework.DataStructures.GameSession%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/DataStructures/GameSession.cs/#L15" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      UCTools Base Project Documentation
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>
