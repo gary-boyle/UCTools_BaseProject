@@ -2,13 +2,13 @@
 using GameFramework.EventSystem.Events;
 using GameFramework.Services.Interfaces;
 using UCTools_Utilities.UI;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace GameFramework.UI.Screens
 {
     /// <summary>
-    /// Main menu screen implementation with event publishing
+    /// Main menu screen - pure UI component that only reports user interactions
+    /// Does not handle its own lifecycle - that's managed by the MainMenuState
     /// </summary>
     public class MainMenuScreen : UIScreen
     {
@@ -21,7 +21,6 @@ namespace GameFramework.UI.Screens
         public MainMenuScreen(VisualElement rootElement) : base(rootElement)
         {
             InitializeButtons();
-            
             UIElementValidator.ValidateElementsWithNames(this, UIElementValidator.ValidationMode.ThrowExceptions);
         }
         
@@ -32,9 +31,6 @@ namespace GameFramework.UI.Screens
             _optionsButton = RootElement?.Q<Button>("btn_Options");
             _creditsButton = RootElement?.Q<Button>("btn_Credits");
             _quitButton = RootElement?.Q<Button>("btn_QuitGame");
-
-            
-            // Simple validation - just pass all the elements
             
             // Subscribe to button events
             _newGameButton?.RegisterCallback<ClickEvent>(OnNewGameClicked);
@@ -44,42 +40,59 @@ namespace GameFramework.UI.Screens
             _quitButton?.RegisterCallback<ClickEvent>(OnQuitClicked);
         }
         
+        #region UI Event Handlers - Only Report User Interactions
+        
+        /// <summary>
+        /// Report new game request - state will handle transitions
+        /// </summary>
         private void OnNewGameClicked(ClickEvent evt)
         {
-            Debug.Log("New Game Pressed");
-            // Get event system from game manager and publish event
             _eventSystem?.Publish(new NewGameRequestedEvent());
         }
         
+        /// <summary>
+        /// Report load game request - state will handle popup management
+        /// </summary>
         private void OnLoadClicked(ClickEvent evt)
         {
-            Debug.Log("Load Pressed");
             _eventSystem?.Publish(new LoadWindowRequestedEvent());
         }
         
+        /// <summary>
+        /// Report options request - state will handle popup management
+        /// </summary>
         private void OnOptionsClicked(ClickEvent evt)
         {
             _eventSystem?.Publish(new OptionsRequestedEvent());
         }
         
+        /// <summary>
+        /// Report credits request - state will handle transitions
+        /// </summary>
         private void OnCreditsClicked(ClickEvent evt)
         {
             _eventSystem?.Publish(new CreditsRequestedEvent());
         }
         
+        /// <summary>
+        /// Report quit request - state will handle transitions
+        /// </summary>
         private void OnQuitClicked(ClickEvent evt)
         {
             _eventSystem?.Publish(new QuitRequestedEvent());
         }
         
+        #endregion
+        
         protected override void OnShow()
         {
-            // Update continue button state
+            // Update button states based on current game state
             var saveService = GameManager.GetService<ISaveService>();
             if (_loadButton != null && saveService != null)
             {
                 _loadButton.SetEnabled(saveService.HasAnySaves());
             }
         }
+        
     }
 }
