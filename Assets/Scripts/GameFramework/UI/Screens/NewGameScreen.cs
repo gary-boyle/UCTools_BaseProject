@@ -10,12 +10,14 @@ namespace GameFramework.UI.Screens
     /// <summary>
     /// New Game Screen that allows players to configure and start a new game
     /// Handles UI event registration/unregistration properly in OnShow/OnHide
+    /// Includes proper back button navigation functionality using existing event system
     /// </summary>
     public class NewGameScreen : UIScreen
     {
         #region UI Elements
         
         private Button _confirmButton;
+        private Button _backButton; // Added: Cache for back button
         private TextField _playerNameTextField;
         private DropdownField _difficultyDropdown;
         
@@ -65,6 +67,7 @@ namespace GameFramework.UI.Screens
         {
             // Cache UI elements
             _confirmButton = RootElement?.Q<Button>("btn_Confirm");
+            _backButton = RootElement?.Q<Button>("btn_Back"); // Added: Cache back button
             _playerNameTextField = RootElement?.Q<TextField>("txt_PlayerName");
             _difficultyDropdown = RootElement?.Q<DropdownField>("dd_Difficulty");
 
@@ -112,6 +115,12 @@ namespace GameFramework.UI.Screens
                 _confirmButton.RegisterCallback<ClickEvent>(OnNewGameClicked);
             }
             
+            // Added: Register back button click event
+            if (_backButton != null)
+            {
+                _backButton.RegisterCallback<ClickEvent>(OnBackButtonClicked);
+            }
+            
             // Register text field key events
             if (_playerNameTextField != null)
             {
@@ -128,6 +137,12 @@ namespace GameFramework.UI.Screens
             if (_confirmButton != null)
             {
                 _confirmButton.UnregisterCallback<ClickEvent>(OnNewGameClicked);
+            }
+            
+            // Added: Unregister back button click event
+            if (_backButton != null)
+            {
+                _backButton.UnregisterCallback<ClickEvent>(OnBackButtonClicked);
             }
             
             // Unregister text field key events
@@ -173,8 +188,24 @@ namespace GameFramework.UI.Screens
         }
         
         /// <summary>
+        /// Added: Handles the back button click to return to main menu
+        /// Uses the existing MainMenuRequestedEvent from the event system
+        /// </summary>
+        private void OnBackButtonClicked(ClickEvent evt)
+        {
+            // Use existing event system to request navigation back to main menu
+            var mainMenuEvent = new MainMenuRequestedEvent();
+            
+            // Publish the main menu request event
+            _eventSystem?.Publish(mainMenuEvent);
+            
+            // Stop event propagation
+            evt?.StopPropagation();
+        }
+        
+        /// <summary>
         /// Handles key down events in the player name text field
-        /// Allows Enter key to confirm new game creation
+        /// Allows Enter key to confirm new game creation and Escape key to go back
         /// </summary>
         private void OnTextFieldKeyDown(KeyDownEvent evt)
         {
@@ -184,6 +215,13 @@ namespace GameFramework.UI.Screens
                 // Trigger the same logic as clicking the confirm button
                 OnNewGameClicked(null);
                 evt.StopPropagation(); // Prevent further processing of the key event
+            }
+            // Added: Allow Escape key to go back to main menu
+            else if (evt.keyCode == UnityEngine.KeyCode.Escape)
+            {
+                // Trigger the same logic as clicking the back button
+                OnBackButtonClicked(null);
+                evt.StopPropagation();
             }
         }
         

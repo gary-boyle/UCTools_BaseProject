@@ -15,6 +15,7 @@ namespace GameFramework.StateMachine.GameStates
     /// <summary>
     /// Updated NewGameState that properly initializes the central GameDataManager
     /// Creates unified game session from new game parameters
+    /// Now handles MainMenuRequestedEvent for back button functionality
     /// </summary>
     public class NewGameState : BaseGameState
     {
@@ -40,6 +41,9 @@ namespace GameFramework.StateMachine.GameStates
 
             // Subscribe to new game requests
             EventSystem.Subscribe<NewGameRequestedEvent>(OnNewGameRequested);
+            
+            // Added: Subscribe to main menu requests (for back button functionality)
+            EventSystem.Subscribe<MainMenuRequestedEvent>(OnMainMenuRequested);
             
             // Show new game UI
             await UIService.ShowScreenAsync<NewGameScreen>();
@@ -69,9 +73,27 @@ namespace GameFramework.StateMachine.GameStates
             await TransitionToStateAsync(GameStateType.Loading);
         }
         
+        /// <summary>
+        /// Added: Handles main menu requests (back button functionality)
+        /// Transitions back to the main menu state
+        /// </summary>
+        private async void OnMainMenuRequested(MainMenuRequestedEvent evt)
+        {
+            // Hide the new game screen
+            await UIService.HideScreenAsync<NewGameScreen>();
+            
+            // Transition back to main menu
+            await TransitionToStateAsync(GameStateType.MainMenu);
+        }
+        
         public override async Task ExitAsync()
         {
+            // Unsubscribe from new game events
             EventSystem.Unsubscribe<NewGameRequestedEvent>(OnNewGameRequested);
+            
+            // Added: Unsubscribe from main menu events
+            EventSystem.Unsubscribe<MainMenuRequestedEvent>(OnMainMenuRequested);
+            
             await base.ExitAsync();
         }
     }

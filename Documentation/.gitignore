@@ -1,0 +1,18 @@
+
+# DocFX build outputs
+_site/*
+_site/api/*
+api/*
+obj/*
+obj/.cache/*
+log/*
+
+# Temporary files
+*.tmp
+*.temp
+
+# DocFX cache
+.docfx/*
+
+# Log files
+*.log

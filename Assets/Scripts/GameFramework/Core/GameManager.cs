@@ -12,7 +12,6 @@ using GameFramework.Input;
 using GameFramework.Input.Handlers;
 using GameFramework.Input.Interfaces;
 using UCTools_ConfigVariables;
-//using UCTools_ConfigVariables; // Add this for ConfigCategory
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UIElements;
@@ -21,9 +20,21 @@ namespace GameFramework.Core
 {
     /// <summary>
     /// Main game manager that bootstraps the entire game framework using dependency injection.
+    /// This singleton class initializes all core services, manages the game state machine, 
+    /// and coordinates frame updates across all systems.
     /// </summary>
-    public class GameManager : MonoBehaviour // Remove Singleton<GameManager> inheritance
+    /// <remarks>
+    /// The GameManager follows this initialization sequence:
+    /// 1. Creates DI container and registers all services
+    /// 2. Initializes services in dependency order
+    /// 3. Sets up the game state machine
+    /// 4. Collects updatable systems for frame updates
+    /// 5. Begins normal game operation
+    /// </remarks>
+    public class GameManager : MonoBehaviour
     {
+        #region Serialized Fields
+
         [Header("Debug Settings")]
         [SerializeField] private bool _enableDebugConsole = true;
         [SerializeField] private bool _enableVerboseLogging = false;
@@ -32,17 +43,34 @@ namespace GameFramework.Core
         [SerializeField] private UIDocument _UIPrefab;
         [SerializeField] private ConsoleGUI _consoleGUIPrefab;
         
-        
         [FormerlySerializedAs("_audioSettings")]
         [Header("Configuration Settings")]
         [SerializeField] private AudioSettings_SO audioSettingsSo;
-        [FormerlySerializedAs("_graphicsSettings")] [SerializeField] private GraphicsSettings_SO graphicsSettingsSo;
-        [FormerlySerializedAs("_gameplaySettings")] [SerializeField] private GameplaySettings_SO gameplaySettingsSo;
-        [FormerlySerializedAs("_inputSettings")] [SerializeField] private InputSettings_SO inputSettingsSo;
-        [FormerlySerializedAs("_debugSettings")] [SerializeField] private DebugSettings_SO debugSettingsSo;
+        [FormerlySerializedAs("_graphicsSettings")] 
+        [SerializeField] private GraphicsSettings_SO graphicsSettingsSo;
+        [FormerlySerializedAs("_gameplaySettings")] 
+        [SerializeField] private GameplaySettings_SO gameplaySettingsSo;
+        [FormerlySerializedAs("_inputSettings")] 
+        [SerializeField] private InputSettings_SO inputSettingsSo;
+        [FormerlySerializedAs("_debugSettings")] 
+        [SerializeField] private DebugSettings_SO debugSettingsSo;
 
-        // Singleton implementation
+        #endregion
+
+        #region Singleton Implementation
+
+        /// <summary>
+        /// Private static instance of the GameManager singleton.
+        /// </summary>
         private static GameManager _instance;
+        
+        /// <summary>
+        /// Gets the singleton instance of the GameManager.
+        /// </summary>
+        /// <value>The GameManager instance, or null if not yet initialized.</value>
+        /// <remarks>
+        /// Logs an error if accessed before initialization. Use <see cref="IsReady"/> to check availability.
+        /// </remarks>
         public static GameManager Instance 
         { 
             get 
@@ -55,21 +83,61 @@ namespace GameFramework.Core
             }
         }
 
-        // Core systems
+        #endregion
+
+        #region Private Fields
+
+        /// <summary>
+        /// The dependency injection container that manages all service instances.
+        /// </summary>
         private DIContainer _container;
-        private IGameStateMachine _stateMachine;
-        private List<IUpdatable> _updatables = new();
-        private List<IFixedUpdatable> _fixedUpdatables = new();
-        private List<ILateUpdatable> _lateUpdatables = new();
-        
-        // Initialization tracking
-        private bool _isInitialized = false;
-        private bool _servicesRegistered = false;
-        private TaskCompletionSource<bool> _initializationComplete = new();
         
         /// <summary>
-        /// Initialize the singleton and start the dependency injection setup
+        /// The main game state machine that controls game flow.
         /// </summary>
+        private IGameStateMachine _stateMachine;
+        
+        /// <summary>
+        /// Collection of systems that need Update() calls every frame.
+        /// </summary>
+        private List<IUpdatable> _updatables = new();
+        
+        /// <summary>
+        /// Collection of systems that need FixedUpdate() calls for physics updates.
+        /// </summary>
+        private List<IFixedUpdatable> _fixedUpdatables = new();
+        
+        /// <summary>
+        /// Collection of systems that need LateUpdate() calls after all other updates.
+        /// </summary>
+        private List<ILateUpdatable> _lateUpdatables = new();
+        
+        /// <summary>
+        /// Flag indicating whether the framework has completed initialization.
+        /// </summary>
+        private bool _isInitialized = false;
+        
+        /// <summary>
+        /// Flag indicating whether all services have been registered in the DI container.
+        /// </summary>
+        private bool _servicesRegistered = false;
+        
+        /// <summary>
+        /// Task completion source for async initialization tracking.
+        /// </summary>
+        private TaskCompletionSource<bool> _initializationComplete = new();
+
+        #endregion
+
+        #region Unity Lifecycle
+
+        /// <summary>
+        /// Unity Awake callback. Initializes the singleton pattern and starts framework initialization.
+        /// </summary>
+        /// <remarks>
+        /// Creates the singleton instance, marks it as DontDestroyOnLoad, and begins async initialization.
+        /// Destroys duplicate instances if they exist.
+        /// </remarks>
         private void Awake() 
         {
             // Singleton pattern implementation
@@ -89,6 +157,12 @@ namespace GameFramework.Core
             }
         }
         
+        /// <summary>
+        /// Unity Update callback. Calls Update() on all registered updatable systems.
+        /// </summary>
+        /// <remarks>
+        /// Only executes if the framework is fully initialized. Systems are updated in registration order.
+        /// </remarks>
         private void Update() 
         {
             // Only update if initialized
@@ -101,6 +175,12 @@ namespace GameFramework.Core
             }
         }
         
+        /// <summary>
+        /// Unity FixedUpdate callback. Calls FixedUpdate() on all registered fixed updatable systems.
+        /// </summary>
+        /// <remarks>
+        /// Only executes if the framework is fully initialized. Used for physics-related updates.
+        /// </remarks>
         private void FixedUpdate()
         {
             // Only update if initialized
@@ -113,6 +193,13 @@ namespace GameFramework.Core
             }
         }
         
+        /// <summary>
+        /// Unity LateUpdate callback. Calls LateUpdate() on all registered late updatable systems.
+        /// </summary>
+        /// <remarks>
+        /// Only executes if the framework is fully initialized. Used for updates that should happen 
+        /// after all other systems have updated.
+        /// </remarks>
         private void LateUpdate()
         {
             // Only update if initialized
@@ -124,10 +211,57 @@ namespace GameFramework.Core
                 lateUpdatable.LateUpdate();
             }
         }
+
+        /// <summary>
+        /// Unity OnApplicationQuit callback. Cleanly shuts down all framework systems.
+        /// </summary>
+        private void OnApplicationQuit()
+        {
+            Debug.Log("[GameManager] Shutting down game framework...");
+    
+            _stateMachine?.Shutdown();
+    
+            // Shutdown console service if it exists
+            if (_enableDebugConsole && _container?.IsRegistered<IConsoleService>() == true)
+            {
+                var consoleService = _container.Resolve<IConsoleService>();
+                consoleService?.Shutdown();
+            }
+    
+            // Shutdown all registered services
+            var eventSystem = _container?.Resolve<IEventSystem>();
+            eventSystem?.Shutdown();
+    
+            _container?.Clear();
+        }
         
         /// <summary>
-        /// Complete framework initialization using dependency injection
+        /// Unity OnDestroy callback. Cleans up singleton reference.
         /// </summary>
+        private void OnDestroy()
+        {
+            if (_instance == this)
+            {
+                _instance = null;
+            }
+        }
+
+        #endregion
+
+        #region Framework Initialization
+
+        /// <summary>
+        /// Asynchronously initializes the entire game framework using dependency injection.
+        /// </summary>
+        /// <returns>A task that completes when initialization is finished.</returns>
+        /// <remarks>
+        /// This method orchestrates the complete framework startup sequence:
+        /// 1. Creates the DI container
+        /// 2. Registers all services in dependency order
+        /// 3. Initializes all services
+        /// 4. Sets up the state machine
+        /// 5. Collects updatable systems
+        /// </remarks>
         private async Task InitializeFrameworkAsync()
         {
             if (_isInitialized) return;
@@ -148,7 +282,7 @@ namespace GameFramework.Core
                 _servicesRegistered = true; // Mark that services are registered
                 Debug.Log("[GameManager] Services registered, container ready");
                 
-                // INITIALIZE ALL SERVICES AFTER REGISTRATION
+                // Initialize all services after registration
                 await InitializeServicesAsync();
                 
                 // Create and initialize the state machine
@@ -171,8 +305,13 @@ namespace GameFramework.Core
         }
         
         /// <summary>
-        /// Initialize all registered services in the correct order
+        /// Initializes all registered services in the correct dependency order.
         /// </summary>
+        /// <returns>A task that completes when all services are initialized.</returns>
+        /// <remarks>
+        /// Services are initialized in dependency order to ensure all required dependencies 
+        /// are available when each service starts up.
+        /// </remarks>
         private async Task InitializeServicesAsync()
         {
             Debug.Log("[GameManager] Initializing services...");
@@ -184,9 +323,6 @@ namespace GameFramework.Core
             
             var audioService = _container.Resolve<IAudioService>();
             await audioService.InitializeAsync();
-            
-            // var inputService = _container.Resolve<IInputService>();
-            // await inputService.InitializeAsync();
 
             var timeService = _container.Resolve<ITimeService>();
             await timeService.InitializeAsync();
@@ -218,42 +354,19 @@ namespace GameFramework.Core
             
             Debug.Log("[GameManager] All services initialized!");
         }
-        
+
+        #endregion
+
+        #region Service Registration
+
         /// <summary>
-        /// Register config categories with the ConfigService
+        /// Registers core framework services in the dependency injection container.
         /// </summary>
-        private void RegisterConfigCategories(ConfigService configService)
-        {
-            if (configService == null)
-            {
-                Debug.LogError("[GameManager] ConfigService is null, cannot register config categories");
-                return;
-            }
-            
-            var categories = new List<ConfigCategory>();
-            
-            // Add non-null config categories
-            if (audioSettingsSo != null) categories.Add(audioSettingsSo);
-            if (graphicsSettingsSo != null) categories.Add(graphicsSettingsSo);
-            if (gameplaySettingsSo != null) categories.Add(gameplaySettingsSo);
-            if (inputSettingsSo != null) categories.Add(inputSettingsSo);
-            if (debugSettingsSo != null) categories.Add(debugSettingsSo);
-            
-            if (categories.Count > 0)
-            {
-                configService.RegisterConfigCategories(categories.ToArray());
-                Debug.Log($"[GameManager] Registered {categories.Count} config categories");
-            }
-            else
-            {
-                Debug.LogWarning("[GameManager] No config categories assigned! Please assign config assets in the inspector.");
-            }
-        }
-        
-        /// <summary>
-        /// Register core services that other systems depend on
-        /// Order matters for dependency resolution
-        /// </summary>
+        /// <remarks>
+        /// Services are registered in dependency order where services with no dependencies 
+        /// are registered first, followed by services that depend on them.
+        /// Registration order is critical for proper dependency resolution.
+        /// </remarks>
         private void RegisterCoreServices()
         {
             Debug.Log("[GameManager] Registering core services...");
@@ -279,12 +392,11 @@ namespace GameFramework.Core
     
             // Register input manager with interface
             _container.RegisterSingleton<IInputManager, InputManager>();
-
             
-            // CREATE AND REGISTER UI DOCUMENT BEFORE UI SERVICE
+            // Create and register UI document before UI service
             RegisterUIDocument();
     
-            // CREATE AND REGISTER CONSOLE GUI BEFORE CONSOLE SERVICE (if debug console is enabled)
+            // Create and register console GUI before console service (if debug console is enabled)
             if (_enableDebugConsole)
             {
                 RegisterConsoleGUI();
@@ -309,8 +421,12 @@ namespace GameFramework.Core
         }
         
         /// <summary>
-        /// Create ConsoleGUI instance from prefab and register it in the DI container
+        /// Creates and registers the ConsoleGUI instance from the assigned prefab.
         /// </summary>
+        /// <remarks>
+        /// The ConsoleGUI is instantiated from the prefab, marked as DontDestroyOnLoad,
+        /// and registered directly in the DI container for injection into the ConsoleService.
+        /// </remarks>
         private void RegisterConsoleGUI()
         {
             Debug.Log("[GameManager] Setting up ConsoleGUI from prefab...");
@@ -342,8 +458,12 @@ namespace GameFramework.Core
         }
         
         /// <summary>
-        /// Create UIDocument instance from prefab and register it in the DI container
+        /// Creates and registers the UIDocument instance from the assigned prefab.
         /// </summary>
+        /// <remarks>
+        /// The UIDocument is instantiated from the prefab, marked as DontDestroyOnLoad,
+        /// and registered directly in the DI container for injection into the UIService.
+        /// </remarks>
         private void RegisterUIDocument()
         {
             Debug.Log("[GameManager] Setting up UI Document from prefab...");
@@ -375,8 +495,12 @@ namespace GameFramework.Core
         }
         
         /// <summary>
-        /// Register additional game systems and managers
+        /// Registers additional game-specific systems and managers.
         /// </summary>
+        /// <remarks>
+        /// This method is available for registering custom game systems that extend 
+        /// the core framework functionality.
+        /// </remarks>
         private void RegisterGameSystems()
         {
             Debug.Log("[GameManager] Registering game systems...");
@@ -389,8 +513,13 @@ namespace GameFramework.Core
         }
         
         /// <summary>
-        /// Register all game states for DI container to create with proper injection
+        /// Registers all game states as transient services in the DI container.
         /// </summary>
+        /// <remarks>
+        /// Game states are registered as transient to allow the state machine to create 
+        /// fresh instances with proper dependency injection. The state machine handles 
+        /// caching and lifecycle management of state instances.
+        /// </remarks>
         private void RegisterGameStates()
         {
             Debug.Log("[GameManager] Registering game states...");
@@ -409,10 +538,59 @@ namespace GameFramework.Core
             _container.RegisterTransient<VictoryState, VictoryState>();
             _container.RegisterTransient<QuitState, QuitState>();
         }
-        
+
+        #endregion
+
+        #region Configuration Management
+
         /// <summary>
-        /// Collect all systems that need frame updates
+        /// Registers configuration categories with the ConfigService.
         /// </summary>
+        /// <param name="configService">The ConfigService instance to register categories with.</param>
+        /// <remarks>
+        /// Only non-null configuration ScriptableObject assets assigned in the inspector 
+        /// are registered. Logs a warning if no config categories are assigned.
+        /// </remarks>
+        private void RegisterConfigCategories(ConfigService configService)
+        {
+            if (configService == null)
+            {
+                Debug.LogError("[GameManager] ConfigService is null, cannot register config categories");
+                return;
+            }
+            
+            var categories = new List<ConfigCategory>();
+            
+            // Add non-null config categories
+            if (audioSettingsSo != null) categories.Add(audioSettingsSo);
+            if (graphicsSettingsSo != null) categories.Add(graphicsSettingsSo);
+            if (gameplaySettingsSo != null) categories.Add(gameplaySettingsSo);
+            if (inputSettingsSo != null) categories.Add(inputSettingsSo);
+            if (debugSettingsSo != null) categories.Add(debugSettingsSo);
+            
+            if (categories.Count > 0)
+            {
+                configService.RegisterConfigCategories(categories.ToArray());
+                Debug.Log($"[GameManager] Registered {categories.Count} config categories");
+            }
+            else
+            {
+                Debug.LogWarning("[GameManager] No config categories assigned! Please assign config assets in the inspector.");
+            }
+        }
+
+        #endregion
+
+        #region System Collection
+
+        /// <summary>
+        /// Collects all systems that implement update interfaces for frame-based updates.
+        /// </summary>
+        /// <remarks>
+        /// This method scans all registered services for IUpdatable, IFixedUpdatable, and 
+        /// ILateUpdatable implementations and adds them to the appropriate update collections.
+        /// The GameManager will then call their update methods each frame.
+        /// </remarks>
         private void CollectUpdatableSystems()
         {
             Debug.Log("[GameManager] Collecting updatable systems...");
@@ -432,17 +610,11 @@ namespace GameFramework.Core
             var timeService = _container.Resolve<ITimeService>();
             if (timeService is IUpdatable timeUpdatable)
                 _updatables.Add(timeUpdatable);
-            
-            // // Add other systems that need updates
-            // var inputService = _container.Resolve<IInputService>();
-            // if (inputService is IUpdatable inputUpdatable)
-            //     _updatables.Add(inputUpdatable);
 
             // Add InputManager for updates
             var inputManager = _container.Resolve<IInputManager>();
             if (inputManager is IUpdatable inputManagerUpdatable)
                 _updatables.Add(inputManagerUpdatable);
-
             
             var pauseService = _container.Resolve<IPauseService>();
             if (pauseService is IUpdatable pauseUpdatable)
@@ -467,18 +639,52 @@ namespace GameFramework.Core
     
             Debug.Log($"[GameManager] Collected {_updatables.Count} updatable systems, {_fixedUpdatables.Count} fixed updatable systems, {_lateUpdatables.Count} late updatable systems");
         }
-        
+
+        #endregion
+
+        #region Public API
+
         /// <summary>
-        /// Get access to a service from anywhere in the game - with proper null checks
+        /// Gets a service instance from the dependency injection container.
         /// </summary>
+        /// <typeparam name="T">The type of service to retrieve.</typeparam>
+        /// <returns>The service instance, or null if not found or GameManager not initialized.</returns>
+        /// <remarks>
+        /// This method provides global access to registered services. Use <see cref="IsReady"/> 
+        /// to check if services are available before calling this method.
+        /// </remarks>
+        /// <example>
+        /// <code>
+        /// var audioService = GameManager.GetService&lt;IAudioService&gt;();
+        /// if (audioService != null)
+        /// {
+        ///     audioService.PlaySound("buttonClick");
+        /// }
+        /// </code>
+        /// </example>
         public static T GetService<T>() where T : class
         {
             return Instance?._container?.Resolve<T>();
         }
         
         /// <summary>
-        /// Async version for waiting until services are ready
+        /// Asynchronously gets a service instance, waiting for initialization to complete if necessary.
         /// </summary>
+        /// <typeparam name="T">The type of service to retrieve.</typeparam>
+        /// <returns>A task that resolves to the service instance, or null if GameManager instance is null.</returns>
+        /// <remarks>
+        /// This method is useful for getting services during early initialization phases where 
+        /// you need to wait for the framework to be ready.
+        /// </remarks>
+        /// <example>
+        /// <code>
+        /// var audioService = await GameManager.GetServiceAsync&lt;IAudioService&gt;();
+        /// if (audioService != null)
+        /// {
+        ///     audioService.PlaySound("gameStart");
+        /// }
+        /// </code>
+        /// </example>
         public static async Task<T> GetServiceAsync<T>() where T : class
         {
             if (_instance == null)
@@ -494,39 +700,15 @@ namespace GameFramework.Core
         }
         
         /// <summary>
-        /// Check if the GameManager is ready
+        /// Gets a value indicating whether the GameManager is ready and services are available.
         /// </summary>
+        /// <value>True if the GameManager instance exists and services are registered; otherwise, false.</value>
+        /// <remarks>
+        /// Use this property to check if it's safe to call <see cref="GetService{T}"/> without 
+        /// risking null reference exceptions.
+        /// </remarks>
         public static bool IsReady => _instance != null && _instance._servicesRegistered;
-        
-        /// <summary>
-        /// Shutdown the entire framework cleanly
-        /// </summary>
-        private void OnApplicationQuit()
-        {
-            Debug.Log("[GameManager] Shutting down game framework...");
-    
-            _stateMachine?.Shutdown();
-    
-            // Shutdown console service if it exists
-            if (_enableDebugConsole && _container?.IsRegistered<IConsoleService>() == true)
-            {
-                var consoleService = _container.Resolve<IConsoleService>();
-                consoleService?.Shutdown();
-            }
-    
-            // Shutdown all registered services
-            var eventSystem = _container?.Resolve<IEventSystem>();
-            eventSystem?.Shutdown();
-    
-            _container?.Clear();
-        }
-        
-        private void OnDestroy()
-        {
-            if (_instance == this)
-            {
-                _instance = null;
-            }
-        }
+
+        #endregion
     }
 }

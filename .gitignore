@@ -73,3 +73,41 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# DocFX build outputs
+/Documentation/_site/*
+/Documentation/_site/api/*
+/Documentation/api/*
+/Documentation/obj/*
+/Documentation/obj/.cache/*
+/Documentation/log/*
+
+# Temporary files
+*.tmp
+*.temp
+
+# DocFX cache
+.docfx/*
+
+# Log files
+*.log
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files (if you edit docs in IDE)
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Backup files
+*.bak
+*.backup

@@ -47,10 +47,29 @@
       "templates/darkfx"
     ],
     "globalMetadata": {
-      "_appTitle": "UCTools Base Project Documentation",
-      "_appFooter": "UCTools Base Project Documentation",
-      "_enableSearch": true
+            "_appTitle": "UCTools Base Project",
+      "_appName": "UCTools",
+      "_appFooter": "© 2025 UCTools Base Project Documentation",
+      "_enableSearch": true,
+      "_enableNewTab": true,
+      "_disableNavbar": false,
+      "_disableBreadcrumb": false,
+      "_disableContribution": false,
+      "_disableToc": false,
+      "_disableAffix": false,
+      "_tocRel": "toc.html",
+      "_enableMemberList": true,
+      "_gitContribute": {
+        "repo": "https://github.com/gary-boyle/UCTools_BaseProject",
+        "branch": "main"
+      },
+      "_gitUrlPattern": "github"
     },
-    "dest": "_site"
+    "dest": "_site",
+     "fileMetadata": {
+      "_disableContribution": {
+        "api/**": true
+      }
+    }
   }
 }

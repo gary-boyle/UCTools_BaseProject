@@ -15,6 +15,7 @@ namespace GameFramework.StateMachine.GameStates
     /// <summary>
     /// Simplified PlayingState - no direct input handling
     /// Just declares what input context it needs
+    /// Now properly handles cleanup when returning to main menu
     /// </summary>
     public class PlayingState : BaseGameState
     {
@@ -57,16 +58,36 @@ namespace GameFramework.StateMachine.GameStates
             _eventSystem.Subscribe<PauseRequestedEvent>(OnPauseRequested);
             _eventSystem.Subscribe<ResumeRequestedEvent>(OnResumeRequested);
             _eventSystem.Subscribe<GameOverEvent>(OnGameOver);
-    
+            _eventSystem.Subscribe<MainMenuRequestedEvent>(OnMainMenuRequested);
+
             await UIService.ShowScreenAsync<GamePlayScreen>();
             AudioService.PlayMusic("gameplay");
         }        
+        
         public override async Task ExitAsync()
         {
+            // **ENHANCED: Ensure all popups are closed and game is unpaused when exiting**
+            Debug.Log("[PlayingState] Exiting - cleaning up popups and pause state");
+            
+            // Close all popups (including pause popup)
+            await UIService.CloseAllPopupsAsync();
+            
+            // Resume game if it's paused
+            if (_pauseService.IsPaused)
+            {
+                Debug.Log("[PlayingState] Resuming game during exit");
+                _pauseService.ResumeGame();
+            }
+            
+            // Reset input context
+            _inputManager.SetInputContext(InputContext.UI);
+            
+            // Unsubscribe from events
             _eventSystem.Unsubscribe<PauseRequestedEvent>(OnPauseRequested);
             _eventSystem.Unsubscribe<ResumeRequestedEvent>(OnResumeRequested);
             _eventSystem.Unsubscribe<GameOverEvent>(OnGameOver);
-            
+            _eventSystem.Unsubscribe<MainMenuRequestedEvent>(OnMainMenuRequested);
+
             await UIService.HideScreenAsync<GamePlayScreen>();
             await base.ExitAsync();
         }
@@ -100,8 +121,38 @@ namespace GameFramework.StateMachine.GameStates
             }
         }
         
+        /// <summary>
+        /// FIXED: Handles main menu requests with proper cleanup
+        /// Closes all popups, resumes game, then transitions to main menu
+        /// </summary>
+        private async void OnMainMenuRequested(MainMenuRequestedEvent evt)
+        {
+            Debug.Log("[PlayingState] Main menu requested - performing cleanup before transition");
+            
+            // Close all popups (including pause popup) before transitioning
+            await UIService.CloseAllPopupsAsync();
+            
+            // Resume game if it's paused
+            if (_pauseService.IsPaused)
+            {
+                Debug.Log("[PlayingState] Resuming game before returning to main menu");
+                _pauseService.ResumeGame();
+            }
+            
+            // Transition to main menu (ExitAsync will handle additional cleanup)
+            await TransitionToStateAsync(GameStateType.MainMenu);
+        }
+        
         private async void OnGameOver(GameOverEvent evt)
         {
+            // Close popups and resume game before transitioning to game over
+            await UIService.CloseAllPopupsAsync();
+            
+            if (_pauseService.IsPaused)
+            {
+                _pauseService.ResumeGame();
+            }
+            
             await TransitionToStateAsync(GameStateType.GameOver);
         }
     }

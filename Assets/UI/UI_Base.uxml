@@ -15,7 +15,7 @@
     <Style src="project://database/Assets/UI/USS/default.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3#default" />
     <engine:Instance template="UI_SplashWindow" name="UI_SplashScreen" class="ui-screen" />
     <engine:Instance template="UI_MainMenuWindow" name="UI_MainMenuScreen" class="ui-screen" />
-    <engine:Instance template="UI_HUDWindow" name="UI_GamePlayScreen" class="ui-screen" />
+    <engine:Instance template="UI_HUDWindow" name="UI_GamePlayScreen" class="ui-screen" style="background-color: rgba(26, 26, 26, 0);" />
     <engine:Instance template="UI_LoadingScreen" name="UI_LoadingScreen" class="ui-screen" />
     <engine:Instance template="UI_NewGameMenuWindow" name="UI_NewGameScreen" class="ui-screen" />
     <engine:Instance template="UI_CreditsScreen" name="UI_CreditScreen" class="ui-screen" />
