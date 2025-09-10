@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="csharp">
+  <head>
+    <meta charset="utf-8">
+      <title>Class AudioService
+ | UCTools Base Project Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class AudioService
+ | UCTools Base Project Documentation ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In This Article">
+      <meta name="loc:searchResultsCount" content="">
+      <meta name="loc:searchNoResults" content="">
+      <meta name="loc:tocFilter" content="Enter here to filter...">
+      <meta name="loc:nextArticle" content="">
+      <meta name="loc:prevArticle" content="">
+      <meta name="loc:themeLight" content="">
+      <meta name="loc:themeDark" content="">
+      <meta name="loc:themeAuto" content="">
+      <meta name="loc:changeTheme" content="">
+      <meta name="loc:copy" content="">
+      <meta name="loc:downloadPdf" content="">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="GameFramework.Services.AudioService">
+  
+  
+  <h1 id="GameFramework_Services_AudioService" data-uid="GameFramework.Services.AudioService" class="text-break">
+    Class AudioService
+    
+  </h1>
+  
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="GameFramework.Services.html">GameFramework.Services</a></dd></dl>
+    <dl><dt>Assembly</dt><dd>cs.temp.dll.dll</dd></dl>
+  </div>
+  
+  <div class="markdown summary"><p sourcefile="api/GameFramework.Services.AudioService.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Audio service implementation with constructor injection</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class AudioService : IAudioService</code></pre>
+  </div>
+  
+  
+  
+  
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><span class="xref">System.Object</span></div>
+      <div><span class="xref">AudioService</span></div>
+    </dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h2 class="section" id="constructors">Constructors
+  </h2>
+  
+  
+  <a id="GameFramework_Services_AudioService__ctor_" data-uid="GameFramework.Services.AudioService.#ctor*"></a>
+  
+  <h3 id="GameFramework_Services_AudioService__ctor_IEventSystem_IConfigService_" data-uid="GameFramework.Services.AudioService.#ctor(IEventSystem,IConfigService)">
+    AudioService(IEventSystem, IConfigService)
+    
+  </h3>
+  
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.Services.AudioService.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Constructor injection - receives required dependencies</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AudioService(IEventSystem eventSystem, IConfigService configService)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>eventSystem</code> <span class="xref">IEventSystem</span></dt>
+    <dd></dd>
+    <dt><code>configService</code> <span class="xref">IConfigService</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h2 class="section" id="properties">Properties
+  </h2>
+  
+  
+  <a id="GameFramework_Services_AudioService_IsInitialized_" data-uid="GameFramework.Services.AudioService.IsInitialized*"></a>
+  
+  <h3 id="GameFramework_Services_AudioService_IsInitialized" data-uid="GameFramework.Services.AudioService.IsInitialized">
+    IsInitialized
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsInitialized { get; }</code></pre>
+  </div>
+
+  
+  
+  
+  
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.Boolean</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  <h2 class="section" id="methods">Methods
+  </h2>
+  
+  
+  <a id="GameFramework_Services_AudioService_GetMasterVolume_" data-uid="GameFramework.Services.AudioService.GetMasterVolume*"></a>
+  
+  <h3 id="GameFramework_Services_AudioService_GetMasterVolume" data-uid="GameFramework.Services.AudioService.GetMasterVolume">
+    GetMasterVolume()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float GetMasterVolume()</code></pre>
+  </div>
+
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.Single</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_AudioService_GetMusicVolume_" data-uid="GameFramework.Services.AudioService.GetMusicVolume*"></a>
+  
+  <h3 id="GameFramework_Services_AudioService_GetMusicVolume" data-uid="GameFramework.Services.AudioService.GetMusicVolume">
+    GetMusicVolume()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float GetMusicVolume()</code></pre>
+  </div>
+
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.Single</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_AudioService_GetSFXVolume_" data-uid="GameFramework.Services.AudioService.GetSFXVolume*"></a>
+  
+  <h3 id="GameFramework_Services_AudioService_GetSFXVolume" data-uid="GameFramework.Services.AudioService.GetSFXVolume">
+    GetSFXVolume()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float GetSFXVolume()</code></pre>
+  </div>
+
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.Single</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_AudioService_InitializeAsync_" data-uid="GameFramework.Services.AudioService.InitializeAsync*"></a>
+  
+  <h3 id="GameFramework_Services_AudioService_InitializeAsync" data-uid="GameFramework.Services.AudioService.InitializeAsync">
+    InitializeAsync()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public async Task InitializeAsync()</code></pre>
+  </div>
+
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Task</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_AudioService_PlayMusic_" data-uid="GameFramework.Services.AudioService.PlayMusic*"></a>
+  
+  <h3 id="GameFramework_Services_AudioService_PlayMusic_System_String_" data-uid="GameFramework.Services.AudioService.PlayMusic(System.String)">
+    PlayMusic(String)
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PlayMusic(string musicName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>musicName</code> <span class="xref">System.String</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_AudioService_PlaySound_" data-uid="GameFramework.Services.AudioService.PlaySound*"></a>
+  
+  <h3 id="GameFramework_Services_AudioService_PlaySound_System_String_" data-uid="GameFramework.Services.AudioService.PlaySound(System.String)">
+    PlaySound(String)
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PlaySound(string soundName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>soundName</code> <span class="xref">System.String</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_AudioService_SetMasterVolume_" data-uid="GameFramework.Services.AudioService.SetMasterVolume*"></a>
+  
+  <h3 id="GameFramework_Services_AudioService_SetMasterVolume_System_Single_" data-uid="GameFramework.Services.AudioService.SetMasterVolume(System.Single)">
+    SetMasterVolume(Single)
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetMasterVolume(float volume)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>volume</code> <span class="xref">System.Single</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_AudioService_SetMusicVolume_" data-uid="GameFramework.Services.AudioService.SetMusicVolume*"></a>
+  
+  <h3 id="GameFramework_Services_AudioService_SetMusicVolume_System_Single_" data-uid="GameFramework.Services.AudioService.SetMusicVolume(System.Single)">
+    SetMusicVolume(Single)
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetMusicVolume(float volume)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>volume</code> <span class="xref">System.Single</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_AudioService_SetSFXVolume_" data-uid="GameFramework.Services.AudioService.SetSFXVolume*"></a>
+  
+  <h3 id="GameFramework_Services_AudioService_SetSFXVolume_System_Single_" data-uid="GameFramework.Services.AudioService.SetSFXVolume(System.Single)">
+    SetSFXVolume(Single)
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetSFXVolume(float volume)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>volume</code> <span class="xref">System.Single</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_AudioService_Shutdown_" data-uid="GameFramework.Services.AudioService.Shutdown*"></a>
+  
+  <h3 id="GameFramework_Services_AudioService_Shutdown" data-uid="GameFramework.Services.AudioService.Shutdown">
+    Shutdown()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Shutdown()</code></pre>
+  </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_AudioService_StopMusic_" data-uid="GameFramework.Services.AudioService.StopMusic*"></a>
+  
+  <h3 id="GameFramework_Services_AudioService_StopMusic" data-uid="GameFramework.Services.AudioService.StopMusic">
+    StopMusic()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void StopMusic()</code></pre>
+  </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_AudioService_StopSound_" data-uid="GameFramework.Services.AudioService.StopSound*"></a>
+  
+  <h3 id="GameFramework_Services_AudioService_StopSound_System_String_" data-uid="GameFramework.Services.AudioService.StopSound(System.String)">
+    StopSound(String)
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void StopSound(string soundName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>soundName</code> <span class="xref">System.String</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</article>
+
+        <div class="contribution d-print-none">
+          
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          UCTools Base Project Documentation
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

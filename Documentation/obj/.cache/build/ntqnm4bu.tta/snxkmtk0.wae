@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="csharp">
+  <head>
+    <meta charset="utf-8">
+      <title>Class EventSystemTests
+ | UCTools Base Project Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class EventSystemTests
+ | UCTools Base Project Documentation ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In This Article">
+      <meta name="loc:searchResultsCount" content="">
+      <meta name="loc:searchNoResults" content="">
+      <meta name="loc:tocFilter" content="Enter here to filter...">
+      <meta name="loc:nextArticle" content="">
+      <meta name="loc:prevArticle" content="">
+      <meta name="loc:themeLight" content="">
+      <meta name="loc:themeDark" content="">
+      <meta name="loc:themeAuto" content="">
+      <meta name="loc:changeTheme" content="">
+      <meta name="loc:copy" content="">
+      <meta name="loc:downloadPdf" content="">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="GameFramework.Tests.EventSystemTests">
+  
+  
+  <h1 id="GameFramework_Tests_EventSystemTests" data-uid="GameFramework.Tests.EventSystemTests" class="text-break">
+    Class EventSystemTests
+    
+  </h1>
+  
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="GameFramework.Tests.html">GameFramework.Tests</a></dd></dl>
+    <dl><dt>Assembly</dt><dd>cs.temp.dll.dll</dd></dl>
+  </div>
+  
+  <div class="markdown summary"><p sourcefile="api/GameFramework.Tests.EventSystemTests.yml" sourcestartlinenumber="2" sourceendlinenumber="3">Comprehensive test suite for EventSystem class.
+Tests event subscription, publishing, error handling, and lifecycle management.</p>
+<p sourcefile="api/GameFramework.Tests.EventSystemTests.yml" sourcestartlinenumber="5" sourceendlinenumber="7">Design: Isolated tests with event handler validation
+Pros: Covers all event system functionality, tests error scenarios
+Cons: Async testing complexity, event handler timing considerations</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class EventSystemTests</code></pre>
+  </div>
+  
+  
+  
+  
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><span class="xref">System.Object</span></div>
+      <div><span class="xref">EventSystemTests</span></div>
+    </dd>
+  </dl>
+  
+  
+  
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </dd></dl>
+  
+  
+  
+  
+  
+  
+  <h2 class="section" id="methods">Methods
+  </h2>
+  
+  
+  <a id="GameFramework_Tests_EventSystemTests_Clear_ShouldRemoveAllHandlers_" data-uid="GameFramework.Tests.EventSystemTests.Clear_ShouldRemoveAllHandlers*"></a>
+  
+  <h3 id="GameFramework_Tests_EventSystemTests_Clear_ShouldRemoveAllHandlers" data-uid="GameFramework.Tests.EventSystemTests.Clear_ShouldRemoveAllHandlers">
+    Clear_ShouldRemoveAllHandlers()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Clear_ShouldRemoveAllHandlers()</code></pre>
+  </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Tests_EventSystemTests_InitializeAsync_CalledTwice_ShouldNotReinitialize_" data-uid="GameFramework.Tests.EventSystemTests.InitializeAsync_CalledTwice_ShouldNotReinitialize*"></a>
+  
+  <h3 id="GameFramework_Tests_EventSystemTests_InitializeAsync_CalledTwice_ShouldNotReinitialize" data-uid="GameFramework.Tests.EventSystemTests.InitializeAsync_CalledTwice_ShouldNotReinitialize">
+    InitializeAsync_CalledTwice_ShouldNotReinitialize()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public async Task InitializeAsync_CalledTwice_ShouldNotReinitialize()</code></pre>
+  </div>
+
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Task</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Tests_EventSystemTests_InitializeAsync_ShouldSetInitializedFlag_" data-uid="GameFramework.Tests.EventSystemTests.InitializeAsync_ShouldSetInitializedFlag*"></a>
+  
+  <h3 id="GameFramework_Tests_EventSystemTests_InitializeAsync_ShouldSetInitializedFlag" data-uid="GameFramework.Tests.EventSystemTests.InitializeAsync_ShouldSetInitializedFlag">
+    InitializeAsync_ShouldSetInitializedFlag()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public async Task InitializeAsync_ShouldSetInitializedFlag()</code></pre>
+  </div>
+
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Task</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Tests_EventSystemTests_Publish_HandlerThrowsException_ShouldContinueWithOtherHandlers_" data-uid="GameFramework.Tests.EventSystemTests.Publish_HandlerThrowsException_ShouldContinueWithOtherHandlers*"></a>
+  
+  <h3 id="GameFramework_Tests_EventSystemTests_Publish_HandlerThrowsException_ShouldContinueWithOtherHandlers" data-uid="GameFramework.Tests.EventSystemTests.Publish_HandlerThrowsException_ShouldContinueWithOtherHandlers">
+    Publish_HandlerThrowsException_ShouldContinueWithOtherHandlers()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Publish_HandlerThrowsException_ShouldContinueWithOtherHandlers()</code></pre>
+  </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Tests_EventSystemTests_Publish_WithNoSubscribers_ShouldNotThrow_" data-uid="GameFramework.Tests.EventSystemTests.Publish_WithNoSubscribers_ShouldNotThrow*"></a>
+  
+  <h3 id="GameFramework_Tests_EventSystemTests_Publish_WithNoSubscribers_ShouldNotThrow" data-uid="GameFramework.Tests.EventSystemTests.Publish_WithNoSubscribers_ShouldNotThrow">
+    Publish_WithNoSubscribers_ShouldNotThrow()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Publish_WithNoSubscribers_ShouldNotThrow()</code></pre>
+  </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Tests_EventSystemTests_Setup_" data-uid="GameFramework.Tests.EventSystemTests.Setup*"></a>
+  
+  <h3 id="GameFramework_Tests_EventSystemTests_Setup" data-uid="GameFramework.Tests.EventSystemTests.Setup">
+    Setup()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Setup()</code></pre>
+  </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Tests_EventSystemTests_Shutdown_ShouldClearAndResetInitialization_" data-uid="GameFramework.Tests.EventSystemTests.Shutdown_ShouldClearAndResetInitialization*"></a>
+  
+  <h3 id="GameFramework_Tests_EventSystemTests_Shutdown_ShouldClearAndResetInitialization" data-uid="GameFramework.Tests.EventSystemTests.Shutdown_ShouldClearAndResetInitialization">
+    Shutdown_ShouldClearAndResetInitialization()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Shutdown_ShouldClearAndResetInitialization()</code></pre>
+  </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Tests_EventSystemTests_Subscribe_MultipleHandlers_ShouldCallAllHandlers_" data-uid="GameFramework.Tests.EventSystemTests.Subscribe_MultipleHandlers_ShouldCallAllHandlers*"></a>
+  
+  <h3 id="GameFramework_Tests_EventSystemTests_Subscribe_MultipleHandlers_ShouldCallAllHandlers" data-uid="GameFramework.Tests.EventSystemTests.Subscribe_MultipleHandlers_ShouldCallAllHandlers">
+    Subscribe_MultipleHandlers_ShouldCallAllHandlers()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Subscribe_MultipleHandlers_ShouldCallAllHandlers()</code></pre>
+  </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Tests_EventSystemTests_Subscribe_WithParameterHandler_ShouldReceiveEvents_" data-uid="GameFramework.Tests.EventSystemTests.Subscribe_WithParameterHandler_ShouldReceiveEvents*"></a>
+  
+  <h3 id="GameFramework_Tests_EventSystemTests_Subscribe_WithParameterHandler_ShouldReceiveEvents" data-uid="GameFramework.Tests.EventSystemTests.Subscribe_WithParameterHandler_ShouldReceiveEvents">
+    Subscribe_WithParameterHandler_ShouldReceiveEvents()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Subscribe_WithParameterHandler_ShouldReceiveEvents()</code></pre>
+  </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Tests_EventSystemTests_Subscribe_WithParameterlessHandler_ShouldReceiveEvents_" data-uid="GameFramework.Tests.EventSystemTests.Subscribe_WithParameterlessHandler_ShouldReceiveEvents*"></a>
+  
+  <h3 id="GameFramework_Tests_EventSystemTests_Subscribe_WithParameterlessHandler_ShouldReceiveEvents" data-uid="GameFramework.Tests.EventSystemTests.Subscribe_WithParameterlessHandler_ShouldReceiveEvents">
+    Subscribe_WithParameterlessHandler_ShouldReceiveEvents()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Subscribe_WithParameterlessHandler_ShouldReceiveEvents()</code></pre>
+  </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Tests_EventSystemTests_TearDown_" data-uid="GameFramework.Tests.EventSystemTests.TearDown*"></a>
+  
+  <h3 id="GameFramework_Tests_EventSystemTests_TearDown" data-uid="GameFramework.Tests.EventSystemTests.TearDown">
+    TearDown()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void TearDown()</code></pre>
+  </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Tests_EventSystemTests_Unsubscribe_NonExistentHandler_ShouldNotThrow_" data-uid="GameFramework.Tests.EventSystemTests.Unsubscribe_NonExistentHandler_ShouldNotThrow*"></a>
+  
+  <h3 id="GameFramework_Tests_EventSystemTests_Unsubscribe_NonExistentHandler_ShouldNotThrow" data-uid="GameFramework.Tests.EventSystemTests.Unsubscribe_NonExistentHandler_ShouldNotThrow">
+    Unsubscribe_NonExistentHandler_ShouldNotThrow()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Unsubscribe_NonExistentHandler_ShouldNotThrow()</code></pre>
+  </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Tests_EventSystemTests_Unsubscribe_ParameterHandler_ShouldRemoveHandler_" data-uid="GameFramework.Tests.EventSystemTests.Unsubscribe_ParameterHandler_ShouldRemoveHandler*"></a>
+  
+  <h3 id="GameFramework_Tests_EventSystemTests_Unsubscribe_ParameterHandler_ShouldRemoveHandler" data-uid="GameFramework.Tests.EventSystemTests.Unsubscribe_ParameterHandler_ShouldRemoveHandler">
+    Unsubscribe_ParameterHandler_ShouldRemoveHandler()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Unsubscribe_ParameterHandler_ShouldRemoveHandler()</code></pre>
+  </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Tests_EventSystemTests_Unsubscribe_ParameterlessHandler_ShouldRemoveHandler_" data-uid="GameFramework.Tests.EventSystemTests.Unsubscribe_ParameterlessHandler_ShouldRemoveHandler*"></a>
+  
+  <h3 id="GameFramework_Tests_EventSystemTests_Unsubscribe_ParameterlessHandler_ShouldRemoveHandler" data-uid="GameFramework.Tests.EventSystemTests.Unsubscribe_ParameterlessHandler_ShouldRemoveHandler">
+    Unsubscribe_ParameterlessHandler_ShouldRemoveHandler()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Unsubscribe_ParameterlessHandler_ShouldRemoveHandler()</code></pre>
+  </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</article>
+
+        <div class="contribution d-print-none">
+          
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          UCTools Base Project Documentation
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

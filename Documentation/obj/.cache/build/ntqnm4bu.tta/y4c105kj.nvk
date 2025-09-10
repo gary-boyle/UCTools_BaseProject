@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="csharp">
+  <head>
+    <meta charset="utf-8">
+      <title>UCTools Base Project Documentation | UCTools Base Project Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="UCTools Base Project Documentation | UCTools Base Project Documentation ">
+      
+      
+      <link rel="icon" href="favicon.ico">
+      <link rel="stylesheet" href="public/docfx.min.css">
+      <link rel="stylesheet" href="public/main.css">
+      <meta name="docfx:navrel" content="">
+      <meta name="docfx:tocrel" content="">
+      
+      <meta name="docfx:rel" content="">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Documentation/index.md/#L1">
+      <meta name="loc:inThisArticle" content="In This Article">
+      <meta name="loc:searchResultsCount" content="">
+      <meta name="loc:searchNoResults" content="">
+      <meta name="loc:tocFilter" content="Enter here to filter...">
+      <meta name="loc:nextArticle" content="">
+      <meta name="loc:prevArticle" content="">
+      <meta name="loc:themeLight" content="">
+      <meta name="loc:themeDark" content="">
+      <meta name="loc:themeAuto" content="">
+      <meta name="loc:changeTheme" content="">
+      <meta name="loc:copy" content="">
+      <meta name="loc:downloadPdf" content="">
+
+      <script type="module" src="./public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="index.html">
+            <img id="logo" class="svg" src="logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="uctools-base-project-documentation" sourcefile="index.md" sourcestartlinenumber="1" sourceendlinenumber="1">UCTools Base Project Documentation</h1>
+
+<p sourcefile="index.md" sourcestartlinenumber="3" sourceendlinenumber="3">Welcome to the UCTools Base Project documentation.</p>
+<h2 id="api-reference" sourcefile="index.md" sourcestartlinenumber="5" sourceendlinenumber="5">API Reference</h2>
+<ul sourcefile="index.md" sourcestartlinenumber="6" sourceendlinenumber="6">
+<li sourcefile="index.md" sourcestartlinenumber="6" sourceendlinenumber="6"><a href="api/api/index.html" data-raw-source="[API Documentation](api/index.md)" sourcefile="index.md" sourcestartlinenumber="6" sourceendlinenumber="6">API Documentation</a></li>
+</ul>
+</article>
+
+        <div class="contribution d-print-none">
+          
+          <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Documentation/index.md/#L1" class="edit-link">Improve this Doc</a>
+          
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          UCTools Base Project Documentation
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

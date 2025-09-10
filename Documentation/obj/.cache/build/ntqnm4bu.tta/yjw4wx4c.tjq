@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="csharp">
+  <head>
+    <meta charset="utf-8">
+      <title>Class Console
+ | UCTools Base Project Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class Console
+ | UCTools Base Project Documentation ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In This Article">
+      <meta name="loc:searchResultsCount" content="">
+      <meta name="loc:searchNoResults" content="">
+      <meta name="loc:tocFilter" content="Enter here to filter...">
+      <meta name="loc:nextArticle" content="">
+      <meta name="loc:prevArticle" content="">
+      <meta name="loc:themeLight" content="">
+      <meta name="loc:themeDark" content="">
+      <meta name="loc:themeAuto" content="">
+      <meta name="loc:changeTheme" content="">
+      <meta name="loc:copy" content="">
+      <meta name="loc:downloadPdf" content="">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="GameFramework.ConsoleTool.Console">
+  
+  
+  <h1 id="GameFramework_ConsoleTool_Console" data-uid="GameFramework.ConsoleTool.Console" class="text-break">
+    Class Console
+    
+  </h1>
+  
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="GameFramework.ConsoleTool.html">GameFramework.ConsoleTool</a></dd></dl>
+    <dl><dt>Assembly</dt><dd>cs.temp.dll.dll</dd></dl>
+  </div>
+  
+  <div class="markdown summary"><p sourcefile="api/GameFramework.ConsoleTool.Console.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Core console system that manages command execution, history, and output.</p>
+<p sourcefile="api/GameFramework.ConsoleTool.Console.yml" sourcestartlinenumber="4" sourceendlinenumber="4">Architecture:</p>
+<ul sourcefile="api/GameFramework.ConsoleTool.Console.yml" sourcestartlinenumber="5" sourceendlinenumber="8">
+<li sourcefile="api/GameFramework.ConsoleTool.Console.yml" sourcestartlinenumber="5" sourceendlinenumber="5">Static class for global access (consider making non-static in future for better testability)</li>
+<li sourcefile="api/GameFramework.ConsoleTool.Console.yml" sourcestartlinenumber="6" sourceendlinenumber="6">Manages command queue, history, and execution</li>
+<li sourcefile="api/GameFramework.ConsoleTool.Console.yml" sourcestartlinenumber="7" sourceendlinenumber="7">Delegates UI operations to registered IConsoleUI implementation</li>
+<li sourcefile="api/GameFramework.ConsoleTool.Console.yml" sourcestartlinenumber="8" sourceendlinenumber="8">Thread-safe command queuing for commands from other threads</li>
+</ul>
+<p sourcefile="api/GameFramework.ConsoleTool.Console.yml" sourcestartlinenumber="10" sourceendlinenumber="10">Command Execution Flow:</p>
+<ol sourcefile="api/GameFramework.ConsoleTool.Console.yml" sourcestartlinenumber="11" sourceendlinenumber="14">
+<li sourcefile="api/GameFramework.ConsoleTool.Console.yml" sourcestartlinenumber="11" sourceendlinenumber="11">Commands are queued via EnqueueCommand()</li>
+<li sourcefile="api/GameFramework.ConsoleTool.Console.yml" sourcestartlinenumber="12" sourceendlinenumber="12">ConsoleUpdate() processes the queue each frame</li>
+<li sourcefile="api/GameFramework.ConsoleTool.Console.yml" sourcestartlinenumber="13" sourceendlinenumber="13">Commands are tokenized and looked up in registry</li>
+<li sourcefile="api/GameFramework.ConsoleTool.Console.yml" sourcestartlinenumber="14" sourceendlinenumber="14">Command execution results are output to console</li>
+</ol>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class Console</code></pre>
+  </div>
+  
+  
+  
+  
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><span class="xref">System.Object</span></div>
+      <div><span class="xref">Console</span></div>
+    </dd>
+  </dl>
+  
+  
+  
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </dd></dl>
+  
+  
+  
+  
+  
+  
+  <h2 class="section" id="fields">Fields
+  </h2>
+  
+  
+  
+  <h3 id="GameFramework_ConsoleTool_Console_s_PendingCommandsWaitForFrames" data-uid="GameFramework.ConsoleTool.Console.s_PendingCommandsWaitForFrames">
+    s_PendingCommandsWaitForFrames
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int s_PendingCommandsWaitForFrames</code></pre>
+  </div>
+
+  
+  
+  
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.Int32</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 id="GameFramework_ConsoleTool_Console_s_PendingCommandsWaitForLoad" data-uid="GameFramework.ConsoleTool.Console.s_PendingCommandsWaitForLoad">
+    s_PendingCommandsWaitForLoad
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool s_PendingCommandsWaitForLoad</code></pre>
+  </div>
+
+  
+  
+  
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.Boolean</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h2 class="section" id="methods">Methods
+  </h2>
+  
+  
+  <a id="GameFramework_ConsoleTool_Console_ConsoleLateUpdate_" data-uid="GameFramework.ConsoleTool.Console.ConsoleLateUpdate*"></a>
+  
+  <h3 id="GameFramework_ConsoleTool_Console_ConsoleLateUpdate" data-uid="GameFramework.ConsoleTool.Console.ConsoleLateUpdate">
+    ConsoleLateUpdate()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.ConsoleTool.Console.yml" sourcestartlinenumber="2" sourceendlinenumber="3">Late update for console UI
+Should be called every frame by ConsoleService</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void ConsoleLateUpdate()</code></pre>
+  </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_ConsoleTool_Console_ConsoleUpdate_" data-uid="GameFramework.ConsoleTool.Console.ConsoleUpdate*"></a>
+  
+  <h3 id="GameFramework_ConsoleTool_Console_ConsoleUpdate" data-uid="GameFramework.ConsoleTool.Console.ConsoleUpdate">
+    ConsoleUpdate()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.ConsoleTool.Console.yml" sourcestartlinenumber="2" sourceendlinenumber="3">Process pending commands and update console UI
+Should be called every frame by ConsoleService</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void ConsoleUpdate()</code></pre>
+  </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_ConsoleTool_Console_EnqueueCommand_" data-uid="GameFramework.ConsoleTool.Console.EnqueueCommand*"></a>
+  
+  <h3 id="GameFramework_ConsoleTool_Console_EnqueueCommand_System_String_" data-uid="GameFramework.ConsoleTool.Console.EnqueueCommand(System.String)">
+    EnqueueCommand(String)
+    
+  </h3>
+  
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.ConsoleTool.Console.yml" sourcestartlinenumber="2" sourceendlinenumber="3">Add a command to the execution queue with history tracking
+Thread-safe for commands from other threads</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void EnqueueCommand(string command)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>command</code> <span class="xref">System.String</span></dt>
+    <dd><p sourcefile="api/GameFramework.ConsoleTool.Console.yml" sourcestartlinenumber="1" sourceendlinenumber="1">Command string to execute</p>
+</dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_ConsoleTool_Console_EnqueueCommandNoHistory_" data-uid="GameFramework.ConsoleTool.Console.EnqueueCommandNoHistory*"></a>
+  
+  <h3 id="GameFramework_ConsoleTool_Console_EnqueueCommandNoHistory_System_String_" data-uid="GameFramework.ConsoleTool.Console.EnqueueCommandNoHistory(System.String)">
+    EnqueueCommandNoHistory(String)
+    
+  </h3>
+  
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.ConsoleTool.Console.yml" sourcestartlinenumber="2" sourceendlinenumber="3">Add a command to execution queue without adding to history
+Useful for programmatic commands that shouldn&apos;t appear in user history</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void EnqueueCommandNoHistory(string command)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>command</code> <span class="xref">System.String</span></dt>
+    <dd><p sourcefile="api/GameFramework.ConsoleTool.Console.yml" sourcestartlinenumber="1" sourceendlinenumber="1">Command string to execute</p>
+</dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_ConsoleTool_Console_HistoryDown_" data-uid="GameFramework.ConsoleTool.Console.HistoryDown*"></a>
+  
+  <h3 id="GameFramework_ConsoleTool_Console_HistoryDown" data-uid="GameFramework.ConsoleTool.Console.HistoryDown">
+    HistoryDown()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.ConsoleTool.Console.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Get next command from history</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string HistoryDown()</code></pre>
+  </div>
+
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.String</span></dt>
+    <dd><p sourcefile="api/GameFramework.ConsoleTool.Console.yml" sourcestartlinenumber="1" sourceendlinenumber="1">Next command or empty string if at end</p>
+</dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_ConsoleTool_Console_HistoryUp_" data-uid="GameFramework.ConsoleTool.Console.HistoryUp*"></a>
+  
+  <h3 id="GameFramework_ConsoleTool_Console_HistoryUp_System_String_" data-uid="GameFramework.ConsoleTool.Console.HistoryUp(System.String)">
+    HistoryUp(String)
+    
+  </h3>
+  
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.ConsoleTool.Console.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Get previous command from history</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string HistoryUp(string current)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>current</code> <span class="xref">System.String</span></dt>
+    <dd><p sourcefile="api/GameFramework.ConsoleTool.Console.yml" sourcestartlinenumber="1" sourceendlinenumber="1">Current input text (stored if at end of history)</p>
+</dd>
+  </dl>
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.String</span></dt>
+    <dd><p sourcefile="api/GameFramework.ConsoleTool.Console.yml" sourcestartlinenumber="1" sourceendlinenumber="1">Previous command or empty string if at beginning</p>
+</dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_ConsoleTool_Console_Init_" data-uid="GameFramework.ConsoleTool.Console.Init*"></a>
+  
+  <h3 id="GameFramework_ConsoleTool_Console_Init_GameFramework_ConsoleTool_IConsoleUI_" data-uid="GameFramework.ConsoleTool.Console.Init(GameFramework.ConsoleTool.IConsoleUI)">
+    Init(IConsoleUI)
+    
+  </h3>
+  
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.ConsoleTool.Console.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Initialize the console system with a UI implementation</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Init(IConsoleUI consoleUI)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>consoleUI</code> <a class="xref" href="GameFramework.ConsoleTool.IConsoleUI.html">IConsoleUI</a></dt>
+    <dd><p sourcefile="api/GameFramework.ConsoleTool.Console.yml" sourcestartlinenumber="1" sourceendlinenumber="1">UI implementation to use for console display</p>
+</dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_ConsoleTool_Console_IsOpen_" data-uid="GameFramework.ConsoleTool.Console.IsOpen*"></a>
+  
+  <h3 id="GameFramework_ConsoleTool_Console_IsOpen" data-uid="GameFramework.ConsoleTool.Console.IsOpen">
+    IsOpen()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.ConsoleTool.Console.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Check if console is currently open/visible</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsOpen()</code></pre>
+  </div>
+
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.Boolean</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_ConsoleTool_Console_SetOpen_" data-uid="GameFramework.ConsoleTool.Console.SetOpen*"></a>
+  
+  <h3 id="GameFramework_ConsoleTool_Console_SetOpen_System_Boolean_" data-uid="GameFramework.ConsoleTool.Console.SetOpen(System.Boolean)">
+    SetOpen(Boolean)
+    
+  </h3>
+  
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.ConsoleTool.Console.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Set console open/closed state</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SetOpen(bool open)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>open</code> <span class="xref">System.Boolean</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_ConsoleTool_Console_SetPrompt_" data-uid="GameFramework.ConsoleTool.Console.SetPrompt*"></a>
+  
+  <h3 id="GameFramework_ConsoleTool_Console_SetPrompt_System_String_" data-uid="GameFramework.ConsoleTool.Console.SetPrompt(System.String)">
+    SetPrompt(String)
+    
+  </h3>
+  
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.ConsoleTool.Console.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Set the console prompt text</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SetPrompt(string prompt)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>prompt</code> <span class="xref">System.String</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_ConsoleTool_Console_Shutdown_" data-uid="GameFramework.ConsoleTool.Console.Shutdown*"></a>
+  
+  <h3 id="GameFramework_ConsoleTool_Console_Shutdown" data-uid="GameFramework.ConsoleTool.Console.Shutdown">
+    Shutdown()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.ConsoleTool.Console.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Shutdown the console system</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Shutdown()</code></pre>
+  </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_ConsoleTool_Console_TabComplete_" data-uid="GameFramework.ConsoleTool.Console.TabComplete*"></a>
+  
+  <h3 id="GameFramework_ConsoleTool_Console_TabComplete_System_String_" data-uid="GameFramework.ConsoleTool.Console.TabComplete(System.String)">
+    TabComplete(String)
+    
+  </h3>
+  
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.ConsoleTool.Console.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Perform tab completion on a partial command</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string TabComplete(string prefix)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>prefix</code> <span class="xref">System.String</span></dt>
+    <dd><p sourcefile="api/GameFramework.ConsoleTool.Console.yml" sourcestartlinenumber="1" sourceendlinenumber="1">Partial command to complete</p>
+</dd>
+  </dl>
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.String</span></dt>
+    <dd><p sourcefile="api/GameFramework.ConsoleTool.Console.yml" sourcestartlinenumber="1" sourceendlinenumber="1">Completed command or original if no matches</p>
+</dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_ConsoleTool_Console_Write_" data-uid="GameFramework.ConsoleTool.Console.Write*"></a>
+  
+  <h3 id="GameFramework_ConsoleTool_Console_Write_System_String_" data-uid="GameFramework.ConsoleTool.Console.Write(System.String)">
+    Write(String)
+    
+  </h3>
+  
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.ConsoleTool.Console.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Write a message to the console output</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Write(string message)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>message</code> <span class="xref">System.String</span></dt>
+    <dd><p sourcefile="api/GameFramework.ConsoleTool.Console.yml" sourcestartlinenumber="1" sourceendlinenumber="1">Message to display</p>
+</dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</article>
+
+        <div class="contribution d-print-none">
+          
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          UCTools Base Project Documentation
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

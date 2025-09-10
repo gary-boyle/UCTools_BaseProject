@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="csharp">
+  <head>
+    <meta charset="utf-8">
+      <title>Class ResolutionConfigVariable
+ | UCTools Base Project Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ResolutionConfigVariable
+ | UCTools Base Project Documentation ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In This Article">
+      <meta name="loc:searchResultsCount" content="">
+      <meta name="loc:searchNoResults" content="">
+      <meta name="loc:tocFilter" content="Enter here to filter...">
+      <meta name="loc:nextArticle" content="">
+      <meta name="loc:prevArticle" content="">
+      <meta name="loc:themeLight" content="">
+      <meta name="loc:themeDark" content="">
+      <meta name="loc:themeAuto" content="">
+      <meta name="loc:changeTheme" content="">
+      <meta name="loc:copy" content="">
+      <meta name="loc:downloadPdf" content="">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="UCTools_ConfigVariables.ResolutionConfigVariable">
+  
+  
+  <h1 id="UCTools_ConfigVariables_ResolutionConfigVariable" data-uid="UCTools_ConfigVariables.ResolutionConfigVariable" class="text-break">
+    Class ResolutionConfigVariable
+    
+  </h1>
+  
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="UCTools_ConfigVariables.html">UCTools_ConfigVariables</a></dd></dl>
+    <dl><dt>Assembly</dt><dd>cs.temp.dll.dll</dd></dl>
+  </div>
+  
+  <div class="markdown summary"><p sourcefile="api/UCTools_ConfigVariables.ResolutionConfigVariable.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Specific resolution config variable for cleaner usage</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Serializable]
+public class ResolutionConfigVariable : EnumConfigVariable&lt;ResolutionOption&gt;</code></pre>
+  </div>
+  
+  
+  
+  
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><span class="xref">System.Object</span></div>
+      <div><a class="xref" href="UCTools_ConfigVariables.ConfigVariableBase.html">ConfigVariableBase</a></div>
+      <div><a class="xref" href="UCTools_ConfigVariables.EnumConfigVariable-1.html">EnumConfigVariable</a>&lt;<a class="xref" href="UCTools_ConfigVariables.ResolutionOption.html">ResolutionOption</a>&gt;</div>
+      <div><span class="xref">ResolutionConfigVariable</span></div>
+    </dd>
+  </dl>
+  
+  
+  
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="UCTools_ConfigVariables.EnumConfigVariable-1.html#UCTools_ConfigVariables_EnumConfigVariable_1_ValueType">EnumConfigVariable&lt;ResolutionOption&gt;.ValueType</a>
+    </div>
+    <div>
+      <a class="xref" href="UCTools_ConfigVariables.EnumConfigVariable-1.html#UCTools_ConfigVariables_EnumConfigVariable_1_Value">EnumConfigVariable&lt;ResolutionOption&gt;.Value</a>
+    </div>
+    <div>
+      <a class="xref" href="UCTools_ConfigVariables.EnumConfigVariable-1.html#UCTools_ConfigVariables_EnumConfigVariable_1_IntValue">EnumConfigVariable&lt;ResolutionOption&gt;.IntValue</a>
+    </div>
+    <div>
+      <a class="xref" href="UCTools_ConfigVariables.EnumConfigVariable-1.html#UCTools_ConfigVariables_EnumConfigVariable_1_DefaultValue">EnumConfigVariable&lt;ResolutionOption&gt;.DefaultValue</a>
+    </div>
+    <div>
+      <a class="xref" href="UCTools_ConfigVariables.EnumConfigVariable-1.html#UCTools_ConfigVariables_EnumConfigVariable_1_ResetToDefault">EnumConfigVariable&lt;ResolutionOption&gt;.ResetToDefault()</a>
+    </div>
+    <div>
+      <a class="xref" href="UCTools_ConfigVariables.EnumConfigVariable-1.html#UCTools_ConfigVariables_EnumConfigVariable_1_ValidateConfiguration_System_String__">EnumConfigVariable&lt;ResolutionOption&gt;.ValidateConfiguration(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="UCTools_ConfigVariables.EnumConfigVariable-1.html#UCTools_ConfigVariables_EnumConfigVariable_1_GetValueAsObject">EnumConfigVariable&lt;ResolutionOption&gt;.GetValueAsObject()</a>
+    </div>
+    <div>
+      <a class="xref" href="UCTools_ConfigVariables.EnumConfigVariable-1.html#UCTools_ConfigVariables_EnumConfigVariable_1_SetValueFromObject_System_Object_">EnumConfigVariable&lt;ResolutionOption&gt;.SetValueFromObject(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="UCTools_ConfigVariables.EnumConfigVariable-1.html#UCTools_ConfigVariables_EnumConfigVariable_1_GetValueAsString">EnumConfigVariable&lt;ResolutionOption&gt;.GetValueAsString()</a>
+    </div>
+    <div>
+      <a class="xref" href="UCTools_ConfigVariables.EnumConfigVariable-1.html#UCTools_ConfigVariables_EnumConfigVariable_1_SetValueFromString_System_String_">EnumConfigVariable&lt;ResolutionOption&gt;.SetValueFromString(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="UCTools_ConfigVariables.ConfigVariableBase.html#UCTools_ConfigVariables_ConfigVariableBase_name">ConfigVariableBase.name</a>
+    </div>
+    <div>
+      <a class="xref" href="UCTools_ConfigVariables.ConfigVariableBase.html#UCTools_ConfigVariables_ConfigVariableBase_description">ConfigVariableBase.description</a>
+    </div>
+    <div>
+      <a class="xref" href="UCTools_ConfigVariables.ConfigVariableBase.html#UCTools_ConfigVariables_ConfigVariableBase_flags">ConfigVariableBase.flags</a>
+    </div>
+    <div>
+      <a class="xref" href="UCTools_ConfigVariables.ConfigVariableBase.html#UCTools_ConfigVariables_ConfigVariableBase_ChangeCheck">ConfigVariableBase.ChangeCheck()</a>
+    </div>
+    <div>
+      <a class="xref" href="UCTools_ConfigVariables.ConfigVariableBase.html#UCTools_ConfigVariables_ConfigVariableBase_MarkChanged">ConfigVariableBase.MarkChanged()</a>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </dd></dl>
+  
+  
+  
+  
+  
+  
+  <h2 class="section" id="constructors">Constructors
+  </h2>
+  
+  
+  <a id="UCTools_ConfigVariables_ResolutionConfigVariable__ctor_" data-uid="UCTools_ConfigVariables.ResolutionConfigVariable.#ctor*"></a>
+  
+  <h3 id="UCTools_ConfigVariables_ResolutionConfigVariable__ctor" data-uid="UCTools_ConfigVariables.ResolutionConfigVariable.#ctor">
+    ResolutionConfigVariable()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ResolutionConfigVariable()</code></pre>
+  </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="UCTools_ConfigVariables_ResolutionConfigVariable__ctor_" data-uid="UCTools_ConfigVariables.ResolutionConfigVariable.#ctor*"></a>
+  
+  <h3 id="UCTools_ConfigVariables_ResolutionConfigVariable__ctor_System_String_System_String_UCTools_ConfigVariables_ResolutionOption_UCTools_ConfigVariables_ConfigFlags_" data-uid="UCTools_ConfigVariables.ResolutionConfigVariable.#ctor(System.String,System.String,UCTools_ConfigVariables.ResolutionOption,UCTools_ConfigVariables.ConfigFlags)">
+    ResolutionConfigVariable(String, String, ResolutionOption, ConfigFlags)
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ResolutionConfigVariable(string name, string description, ResolutionOption defaultValue, ConfigFlags flags = ConfigFlags.Save)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <span class="xref">System.String</span></dt>
+    <dd></dd>
+    <dt><code>description</code> <span class="xref">System.String</span></dt>
+    <dd></dd>
+    <dt><code>defaultValue</code> <a class="xref" href="UCTools_ConfigVariables.ResolutionOption.html">ResolutionOption</a></dt>
+    <dd></dd>
+    <dt><code>flags</code> <a class="xref" href="UCTools_ConfigVariables.ConfigFlags.html">ConfigFlags</a></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h2 class="section" id="properties">Properties
+  </h2>
+  
+  
+  <a id="UCTools_ConfigVariables_ResolutionConfigVariable_DisplayName_" data-uid="UCTools_ConfigVariables.ResolutionConfigVariable.DisplayName*"></a>
+  
+  <h3 id="UCTools_ConfigVariables_ResolutionConfigVariable_DisplayName" data-uid="UCTools_ConfigVariables.ResolutionConfigVariable.DisplayName">
+    DisplayName
+    
+  </h3>
+  
+  <div class="markdown level1 summary"><p sourcefile="api/UCTools_ConfigVariables.ResolutionConfigVariable.yml" sourcestartlinenumber="1" sourceendlinenumber="1">Get current display name</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string DisplayName { get; }</code></pre>
+  </div>
+
+  
+  
+  
+  
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.String</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="UCTools_ConfigVariables_ResolutionConfigVariable_Height_" data-uid="UCTools_ConfigVariables.ResolutionConfigVariable.Height*"></a>
+  
+  <h3 id="UCTools_ConfigVariables_ResolutionConfigVariable_Height" data-uid="UCTools_ConfigVariables.ResolutionConfigVariable.Height">
+    Height
+    
+  </h3>
+  
+  <div class="markdown level1 summary"><p sourcefile="api/UCTools_ConfigVariables.ResolutionConfigVariable.yml" sourcestartlinenumber="1" sourceendlinenumber="1">Get current resolution height</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Height { get; }</code></pre>
+  </div>
+
+  
+  
+  
+  
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.Int32</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="UCTools_ConfigVariables_ResolutionConfigVariable_Width_" data-uid="UCTools_ConfigVariables.ResolutionConfigVariable.Width*"></a>
+  
+  <h3 id="UCTools_ConfigVariables_ResolutionConfigVariable_Width" data-uid="UCTools_ConfigVariables.ResolutionConfigVariable.Width">
+    Width
+    
+  </h3>
+  
+  <div class="markdown level1 summary"><p sourcefile="api/UCTools_ConfigVariables.ResolutionConfigVariable.yml" sourcestartlinenumber="1" sourceendlinenumber="1">Get current resolution width</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Width { get; }</code></pre>
+  </div>
+
+  
+  
+  
+  
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.Int32</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+</article>
+
+        <div class="contribution d-print-none">
+          
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          UCTools Base Project Documentation
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

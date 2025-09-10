@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="csharp">
+  <head>
+    <meta charset="utf-8">
+      <title>Namespace GameFramework.EventSystem.Events
+ | UCTools Base Project Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Namespace GameFramework.EventSystem.Events
+ | UCTools Base Project Documentation ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In This Article">
+      <meta name="loc:searchResultsCount" content="">
+      <meta name="loc:searchNoResults" content="">
+      <meta name="loc:tocFilter" content="Enter here to filter...">
+      <meta name="loc:nextArticle" content="">
+      <meta name="loc:prevArticle" content="">
+      <meta name="loc:themeLight" content="">
+      <meta name="loc:themeDark" content="">
+      <meta name="loc:themeAuto" content="">
+      <meta name="loc:changeTheme" content="">
+      <meta name="loc:copy" content="">
+      <meta name="loc:downloadPdf" content="">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="GameFramework.EventSystem.Events">
+  
+  <h1 id="GameFramework_EventSystem_Events" data-uid="GameFramework.EventSystem.Events" class="text-break">Namespace GameFramework.EventSystem.Events
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 remarks"></div>
+
+    <h3 id="classes">Classes
+  </h3>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.ConsoleHistoryDownInputEvent.html">ConsoleHistoryDownInputEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.ConsoleHistoryUpInputEvent.html">ConsoleHistoryUpInputEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.ConsoleSubmitInputEvent.html">ConsoleSubmitInputEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.ConsoleTabCompleteInputEvent.html">ConsoleTabCompleteInputEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.ConsoleToggleInputEvent.html">ConsoleToggleInputEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.CreditsRequestedEvent.html">CreditsRequestedEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.GameEndedEvent.html">GameEndedEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.GameOverEvent.html">GameOverEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.GamePausedEvent.html">GamePausedEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.GameResumedEvent.html">GameResumedEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.GameStartedEvent.html">GameStartedEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.GameStateChangeEvent.html">GameStateChangeEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.GameSystemsInitializedEvent.html">GameSystemsInitializedEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.LoadGameEvent.html">LoadGameEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.LoadGameRequestedEvent.html">LoadGameRequestedEvent</a></dt>
+      <dd><p sourcefile="api/GameFramework.EventSystem.Events.LoadGameRequestedEvent.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Event triggered when the player requests to load a saved game</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.LoadingProgressEvent.html">LoadingProgressEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.LoadSaveFileEvent.html">LoadSaveFileEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.LoadWindowRequestedEvent.html">LoadWindowRequestedEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.MainMenuRequestedEvent.html">MainMenuRequestedEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.NewGameRequestedEvent.html">NewGameRequestedEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.OptionsChangedEvent.html">OptionsChangedEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.OptionsRequestedEvent.html">OptionsRequestedEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.PauseRequestedEvent.html">PauseRequestedEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.PlayerAttackInputEvent.html">PlayerAttackInputEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.PlayerCrouchInputEvent.html">PlayerCrouchInputEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.PlayerInteractInputEvent.html">PlayerInteractInputEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.PlayerJumpInputEvent.html">PlayerJumpInputEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.PlayerLookInputEvent.html">PlayerLookInputEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.PlayerMoveInputEvent.html">PlayerMoveInputEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.PlayerNextInputEvent.html">PlayerNextInputEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.PlayerPauseInputEvent.html">PlayerPauseInputEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.PlayerPreviousInputEvent.html">PlayerPreviousInputEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.PlayerSprintInputEvent.html">PlayerSprintInputEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.QuitRequestedEvent.html">QuitRequestedEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.ResumeRequestedEvent.html">ResumeRequestedEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.SaveGameEvent.html">SaveGameEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.SaveGameRequestedEvent.html">SaveGameRequestedEvent</a></dt>
+      <dd><p sourcefile="api/GameFramework.EventSystem.Events.SaveGameRequestedEvent.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Event triggered when the player requests to save the game</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.SceneLoadedEvent.html">SceneLoadedEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.UICancelInputEvent.html">UICancelInputEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.UIClickInputEvent.html">UIClickInputEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.UIMiddleClickInputEvent.html">UIMiddleClickInputEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.UINavigateInputEvent.html">UINavigateInputEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.UIPointInputEvent.html">UIPointInputEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.UIRightClickInputEvent.html">UIRightClickInputEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.UIScrollWheelInputEvent.html">UIScrollWheelInputEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.UISubmitInputEvent.html">UISubmitInputEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.UITrackedDeviceOrientationInputEvent.html">UITrackedDeviceOrientationInputEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.UITrackedDevicePositionInputEvent.html">UITrackedDevicePositionInputEvent</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.EventSystem.Events.VictoryEvent.html">VictoryEvent</a></dt>
+      <dd></dd>
+    </dl>
+</article>
+
+        <div class="contribution d-print-none">
+          
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          UCTools Base Project Documentation
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

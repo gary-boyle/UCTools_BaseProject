@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="csharp">
+  <head>
+    <meta charset="utf-8">
+      <title>Interface IUIService
+ | UCTools Base Project Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface IUIService
+ | UCTools Base Project Documentation ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In This Article">
+      <meta name="loc:searchResultsCount" content="">
+      <meta name="loc:searchNoResults" content="">
+      <meta name="loc:tocFilter" content="Enter here to filter...">
+      <meta name="loc:nextArticle" content="">
+      <meta name="loc:prevArticle" content="">
+      <meta name="loc:themeLight" content="">
+      <meta name="loc:themeDark" content="">
+      <meta name="loc:themeAuto" content="">
+      <meta name="loc:changeTheme" content="">
+      <meta name="loc:copy" content="">
+      <meta name="loc:downloadPdf" content="">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="GameFramework.Services.Interfaces.IUIService">
+  
+  
+  <h1 id="GameFramework_Services_Interfaces_IUIService" data-uid="GameFramework.Services.Interfaces.IUIService" class="text-break">
+    Interface IUIService
+    
+  </h1>
+  
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="GameFramework.Services.Interfaces.html">GameFramework.Services.Interfaces</a></dd></dl>
+    <dl><dt>Assembly</dt><dd>cs.temp.dll.dll</dd></dl>
+  </div>
+  
+  <div class="markdown summary"><p sourcefile="api/GameFramework.Services.Interfaces.IUIService.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Minimal UI Service interface with essential popup management</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IUIService : IGameService</code></pre>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h2 class="section" id="properties">Properties
+  </h2>
+  
+  
+  <a id="GameFramework_Services_Interfaces_IUIService_IsInitialized_" data-uid="GameFramework.Services.Interfaces.IUIService.IsInitialized*"></a>
+  
+  <h3 id="GameFramework_Services_Interfaces_IUIService_IsInitialized" data-uid="GameFramework.Services.Interfaces.IUIService.IsInitialized">
+    IsInitialized
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool IsInitialized { get; }</code></pre>
+  </div>
+
+  
+  
+  
+  
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.Boolean</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  <h2 class="section" id="methods">Methods
+  </h2>
+  
+  
+  <a id="GameFramework_Services_Interfaces_IUIService_CloseAllPopupsAsync_" data-uid="GameFramework.Services.Interfaces.IUIService.CloseAllPopupsAsync*"></a>
+  
+  <h3 id="GameFramework_Services_Interfaces_IUIService_CloseAllPopupsAsync" data-uid="GameFramework.Services.Interfaces.IUIService.CloseAllPopupsAsync">
+    CloseAllPopupsAsync()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task CloseAllPopupsAsync()</code></pre>
+  </div>
+
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Task</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_Interfaces_IUIService_GetCurrentPopup_" data-uid="GameFramework.Services.Interfaces.IUIService.GetCurrentPopup*"></a>
+  
+  <h3 id="GameFramework_Services_Interfaces_IUIService_GetCurrentPopup" data-uid="GameFramework.Services.Interfaces.IUIService.GetCurrentPopup">
+    GetCurrentPopup()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">UIPopup GetCurrentPopup()</code></pre>
+  </div>
+
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UIPopup</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_Interfaces_IUIService_GetCurrentPopupType_" data-uid="GameFramework.Services.Interfaces.IUIService.GetCurrentPopupType*"></a>
+  
+  <h3 id="GameFramework_Services_Interfaces_IUIService_GetCurrentPopupType" data-uid="GameFramework.Services.Interfaces.IUIService.GetCurrentPopupType">
+    GetCurrentPopupType()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Type GetCurrentPopupType()</code></pre>
+  </div>
+
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Type</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_Interfaces_IUIService_GetOpenPopupCount_" data-uid="GameFramework.Services.Interfaces.IUIService.GetOpenPopupCount*"></a>
+  
+  <h3 id="GameFramework_Services_Interfaces_IUIService_GetOpenPopupCount" data-uid="GameFramework.Services.Interfaces.IUIService.GetOpenPopupCount">
+    GetOpenPopupCount()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">int GetOpenPopupCount()</code></pre>
+  </div>
+
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.Int32</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_Interfaces_IUIService_GetPopup_" data-uid="GameFramework.Services.Interfaces.IUIService.GetPopup*"></a>
+  
+  <h3 id="GameFramework_Services_Interfaces_IUIService_GetPopup__1" data-uid="GameFramework.Services.Interfaces.IUIService.GetPopup``1">
+    GetPopup&lt;T&gt;()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">T GetPopup&lt;T&gt;()
+    where T : UIPopup</code></pre>
+  </div>
+
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+  
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_Interfaces_IUIService_GetPopupStackPosition_" data-uid="GameFramework.Services.Interfaces.IUIService.GetPopupStackPosition*"></a>
+  
+  <h3 id="GameFramework_Services_Interfaces_IUIService_GetPopupStackPosition__1" data-uid="GameFramework.Services.Interfaces.IUIService.GetPopupStackPosition``1">
+    GetPopupStackPosition&lt;T&gt;()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">int GetPopupStackPosition&lt;T&gt;()
+    where T : UIPopup</code></pre>
+  </div>
+
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.Int32</span></dt>
+    <dd></dd>
+  </dl>
+  
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_Interfaces_IUIService_GetScreen_" data-uid="GameFramework.Services.Interfaces.IUIService.GetScreen*"></a>
+  
+  <h3 id="GameFramework_Services_Interfaces_IUIService_GetScreen__1" data-uid="GameFramework.Services.Interfaces.IUIService.GetScreen``1">
+    GetScreen&lt;T&gt;()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">T GetScreen&lt;T&gt;()
+    where T : UIScreen</code></pre>
+  </div>
+
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+  
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_Interfaces_IUIService_HasOpenPopups_" data-uid="GameFramework.Services.Interfaces.IUIService.HasOpenPopups*"></a>
+  
+  <h3 id="GameFramework_Services_Interfaces_IUIService_HasOpenPopups" data-uid="GameFramework.Services.Interfaces.IUIService.HasOpenPopups">
+    HasOpenPopups()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool HasOpenPopups()</code></pre>
+  </div>
+
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.Boolean</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_Interfaces_IUIService_HidePopupAsync_" data-uid="GameFramework.Services.Interfaces.IUIService.HidePopupAsync*"></a>
+  
+  <h3 id="GameFramework_Services_Interfaces_IUIService_HidePopupAsync__1" data-uid="GameFramework.Services.Interfaces.IUIService.HidePopupAsync``1">
+    HidePopupAsync&lt;T&gt;()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task HidePopupAsync&lt;T&gt;()
+    where T : UIPopup</code></pre>
+  </div>
+
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Task</span></dt>
+    <dd></dd>
+  </dl>
+  
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_Interfaces_IUIService_HideScreenAsync_" data-uid="GameFramework.Services.Interfaces.IUIService.HideScreenAsync*"></a>
+  
+  <h3 id="GameFramework_Services_Interfaces_IUIService_HideScreenAsync__1" data-uid="GameFramework.Services.Interfaces.IUIService.HideScreenAsync``1">
+    HideScreenAsync&lt;T&gt;()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task HideScreenAsync&lt;T&gt;()
+    where T : UIScreen</code></pre>
+  </div>
+
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Task</span></dt>
+    <dd></dd>
+  </dl>
+  
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_Interfaces_IUIService_InitializeAsync_" data-uid="GameFramework.Services.Interfaces.IUIService.InitializeAsync*"></a>
+  
+  <h3 id="GameFramework_Services_Interfaces_IUIService_InitializeAsync" data-uid="GameFramework.Services.Interfaces.IUIService.InitializeAsync">
+    InitializeAsync()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task InitializeAsync()</code></pre>
+  </div>
+
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Task</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_Interfaces_IUIService_IsCurrentPopup_" data-uid="GameFramework.Services.Interfaces.IUIService.IsCurrentPopup*"></a>
+  
+  <h3 id="GameFramework_Services_Interfaces_IUIService_IsCurrentPopup__1" data-uid="GameFramework.Services.Interfaces.IUIService.IsCurrentPopup``1">
+    IsCurrentPopup&lt;T&gt;()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool IsCurrentPopup&lt;T&gt;()
+    where T : UIPopup</code></pre>
+  </div>
+
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.Boolean</span></dt>
+    <dd></dd>
+  </dl>
+  
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_Interfaces_IUIService_IsPopupOpen_" data-uid="GameFramework.Services.Interfaces.IUIService.IsPopupOpen*"></a>
+  
+  <h3 id="GameFramework_Services_Interfaces_IUIService_IsPopupOpen__1" data-uid="GameFramework.Services.Interfaces.IUIService.IsPopupOpen``1">
+    IsPopupOpen&lt;T&gt;()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool IsPopupOpen&lt;T&gt;()
+    where T : UIPopup</code></pre>
+  </div>
+
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.Boolean</span></dt>
+    <dd></dd>
+  </dl>
+  
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_Interfaces_IUIService_SetDebugPopupText_" data-uid="GameFramework.Services.Interfaces.IUIService.SetDebugPopupText*"></a>
+  
+  <h3 id="GameFramework_Services_Interfaces_IUIService_SetDebugPopupText_System_String_" data-uid="GameFramework.Services.Interfaces.IUIService.SetDebugPopupText(System.String)">
+    SetDebugPopupText(String)
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void SetDebugPopupText(string text)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>text</code> <span class="xref">System.String</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_Interfaces_IUIService_ShowPopupAsync_" data-uid="GameFramework.Services.Interfaces.IUIService.ShowPopupAsync*"></a>
+  
+  <h3 id="GameFramework_Services_Interfaces_IUIService_ShowPopupAsync__1" data-uid="GameFramework.Services.Interfaces.IUIService.ShowPopupAsync``1">
+    ShowPopupAsync&lt;T&gt;()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task ShowPopupAsync&lt;T&gt;()
+    where T : UIPopup</code></pre>
+  </div>
+
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Task</span></dt>
+    <dd></dd>
+  </dl>
+  
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_Interfaces_IUIService_ShowScreenAsync_" data-uid="GameFramework.Services.Interfaces.IUIService.ShowScreenAsync*"></a>
+  
+  <h3 id="GameFramework_Services_Interfaces_IUIService_ShowScreenAsync__1" data-uid="GameFramework.Services.Interfaces.IUIService.ShowScreenAsync``1">
+    ShowScreenAsync&lt;T&gt;()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task ShowScreenAsync&lt;T&gt;()
+    where T : UIScreen</code></pre>
+  </div>
+
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Task</span></dt>
+    <dd></dd>
+  </dl>
+  
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_Interfaces_IUIService_Shutdown_" data-uid="GameFramework.Services.Interfaces.IUIService.Shutdown*"></a>
+  
+  <h3 id="GameFramework_Services_Interfaces_IUIService_Shutdown" data-uid="GameFramework.Services.Interfaces.IUIService.Shutdown">
+    Shutdown()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void Shutdown()</code></pre>
+  </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_Interfaces_IUIService_Update_" data-uid="GameFramework.Services.Interfaces.IUIService.Update*"></a>
+  
+  <h3 id="GameFramework_Services_Interfaces_IUIService_Update" data-uid="GameFramework.Services.Interfaces.IUIService.Update">
+    Update()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void Update()</code></pre>
+  </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</article>
+
+        <div class="contribution d-print-none">
+          
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          UCTools Base Project Documentation
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

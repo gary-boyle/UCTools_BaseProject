@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="csharp">
+  <head>
+    <meta charset="utf-8">
+      <title>Class SaveFileInfo
+ | UCTools Base Project Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class SaveFileInfo
+ | UCTools Base Project Documentation ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In This Article">
+      <meta name="loc:searchResultsCount" content="">
+      <meta name="loc:searchNoResults" content="">
+      <meta name="loc:tocFilter" content="Enter here to filter...">
+      <meta name="loc:nextArticle" content="">
+      <meta name="loc:prevArticle" content="">
+      <meta name="loc:themeLight" content="">
+      <meta name="loc:themeDark" content="">
+      <meta name="loc:themeAuto" content="">
+      <meta name="loc:changeTheme" content="">
+      <meta name="loc:copy" content="">
+      <meta name="loc:downloadPdf" content="">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="GameFramework.DataStructures.SaveFileInfo">
+  
+  
+  <h1 id="GameFramework_DataStructures_SaveFileInfo" data-uid="GameFramework.DataStructures.SaveFileInfo" class="text-break">
+    Class SaveFileInfo
+    
+  </h1>
+  
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="GameFramework.DataStructures.html">GameFramework.DataStructures</a></dd></dl>
+    <dl><dt>Assembly</dt><dd>cs.temp.dll.dll</dd></dl>
+  </div>
+  
+  <div class="markdown summary"><p sourcefile="api/GameFramework.DataStructures.SaveFileInfo.yml" sourcestartlinenumber="2" sourceendlinenumber="5">Represents information about a save file for display in the UI
+Handles display formatting for timestamp-based saves and autosaves
+Properly detects autosave files from both filename and session data
+Uses TimeService-based playtime information for accurate display</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class SaveFileInfo</code></pre>
+  </div>
+  
+  
+  
+  
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><span class="xref">System.Object</span></div>
+      <div><span class="xref">SaveFileInfo</span></div>
+    </dd>
+  </dl>
+  
+  
+  
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </dd></dl>
+  
+  
+  
+  
+  
+  
+  <h2 class="section" id="constructors">Constructors
+  </h2>
+  
+  
+  <a id="GameFramework_DataStructures_SaveFileInfo__ctor_" data-uid="GameFramework.DataStructures.SaveFileInfo.#ctor*"></a>
+  
+  <h3 id="GameFramework_DataStructures_SaveFileInfo__ctor_System_String_GameFramework_DataStructures_GameSession_" data-uid="GameFramework.DataStructures.SaveFileInfo.#ctor(System.String,GameFramework.DataStructures.GameSession)">
+    SaveFileInfo(String, GameSession)
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SaveFileInfo(string fileName, GameSession session)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>fileName</code> <span class="xref">System.String</span></dt>
+    <dd></dd>
+    <dt><code>session</code> <a class="xref" href="GameFramework.DataStructures.GameSession.html">GameSession</a></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h2 class="section" id="fields">Fields
+  </h2>
+  
+  
+  
+  <h3 id="GameFramework_DataStructures_SaveFileInfo_currentScene" data-uid="GameFramework.DataStructures.SaveFileInfo.currentScene">
+    currentScene
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string currentScene</code></pre>
+  </div>
+
+  
+  
+  
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.String</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 id="GameFramework_DataStructures_SaveFileInfo_difficulty" data-uid="GameFramework.DataStructures.SaveFileInfo.difficulty">
+    difficulty
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string difficulty</code></pre>
+  </div>
+
+  
+  
+  
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.String</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 id="GameFramework_DataStructures_SaveFileInfo_displayName" data-uid="GameFramework.DataStructures.SaveFileInfo.displayName">
+    displayName
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string displayName</code></pre>
+  </div>
+
+  
+  
+  
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.String</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 id="GameFramework_DataStructures_SaveFileInfo_fileName" data-uid="GameFramework.DataStructures.SaveFileInfo.fileName">
+    fileName
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string fileName</code></pre>
+  </div>
+
+  
+  
+  
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.String</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 id="GameFramework_DataStructures_SaveFileInfo_formattedDate" data-uid="GameFramework.DataStructures.SaveFileInfo.formattedDate">
+    formattedDate
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string formattedDate</code></pre>
+  </div>
+
+  
+  
+  
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.String</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 id="GameFramework_DataStructures_SaveFileInfo_formattedPlayTime" data-uid="GameFramework.DataStructures.SaveFileInfo.formattedPlayTime">
+    formattedPlayTime
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string formattedPlayTime</code></pre>
+  </div>
+
+  
+  
+  
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.String</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 id="GameFramework_DataStructures_SaveFileInfo_formattedSessionTime" data-uid="GameFramework.DataStructures.SaveFileInfo.formattedSessionTime">
+    formattedSessionTime
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string formattedSessionTime</code></pre>
+  </div>
+
+  
+  
+  
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.String</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 id="GameFramework_DataStructures_SaveFileInfo_isAutoSave" data-uid="GameFramework.DataStructures.SaveFileInfo.isAutoSave">
+    isAutoSave
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool isAutoSave</code></pre>
+  </div>
+
+  
+  
+  
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.Boolean</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 id="GameFramework_DataStructures_SaveFileInfo_lastSaveTime" data-uid="GameFramework.DataStructures.SaveFileInfo.lastSaveTime">
+    lastSaveTime
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateTime lastSaveTime</code></pre>
+  </div>
+
+  
+  
+  
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">DateTime</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 id="GameFramework_DataStructures_SaveFileInfo_playerLevel" data-uid="GameFramework.DataStructures.SaveFileInfo.playerLevel">
+    playerLevel
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int playerLevel</code></pre>
+  </div>
+
+  
+  
+  
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.Int32</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 id="GameFramework_DataStructures_SaveFileInfo_playerName" data-uid="GameFramework.DataStructures.SaveFileInfo.playerName">
+    playerName
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string playerName</code></pre>
+  </div>
+
+  
+  
+  
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.String</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 id="GameFramework_DataStructures_SaveFileInfo_playTimeInfo" data-uid="GameFramework.DataStructures.SaveFileInfo.playTimeInfo">
+    playTimeInfo
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PlayTimeInfo playTimeInfo</code></pre>
+  </div>
+
+  
+  
+  
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">PlayTimeInfo</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 id="GameFramework_DataStructures_SaveFileInfo_score" data-uid="GameFramework.DataStructures.SaveFileInfo.score">
+    score
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int score</code></pre>
+  </div>
+
+  
+  
+  
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.Int32</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 id="GameFramework_DataStructures_SaveFileInfo_sessionTimeSeconds" data-uid="GameFramework.DataStructures.SaveFileInfo.sessionTimeSeconds">
+    sessionTimeSeconds
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float sessionTimeSeconds</code></pre>
+  </div>
+
+  
+  
+  
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.Single</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 id="GameFramework_DataStructures_SaveFileInfo_totalPlayTimeSeconds" data-uid="GameFramework.DataStructures.SaveFileInfo.totalPlayTimeSeconds">
+    totalPlayTimeSeconds
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float totalPlayTimeSeconds</code></pre>
+  </div>
+
+  
+  
+  
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.Single</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h2 class="section" id="methods">Methods
+  </h2>
+  
+  
+  <a id="GameFramework_DataStructures_SaveFileInfo_GetDetailedPlayTimeInfo_" data-uid="GameFramework.DataStructures.SaveFileInfo.GetDetailedPlayTimeInfo*"></a>
+  
+  <h3 id="GameFramework_DataStructures_SaveFileInfo_GetDetailedPlayTimeInfo" data-uid="GameFramework.DataStructures.SaveFileInfo.GetDetailedPlayTimeInfo">
+    GetDetailedPlayTimeInfo()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.DataStructures.SaveFileInfo.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Gets detailed playtime information for display</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetDetailedPlayTimeInfo()</code></pre>
+  </div>
+
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.String</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_DataStructures_SaveFileInfo_GetSaveFileSummary_" data-uid="GameFramework.DataStructures.SaveFileInfo.GetSaveFileSummary*"></a>
+  
+  <h3 id="GameFramework_DataStructures_SaveFileInfo_GetSaveFileSummary" data-uid="GameFramework.DataStructures.SaveFileInfo.GetSaveFileSummary">
+    GetSaveFileSummary()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.DataStructures.SaveFileInfo.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Gets a comprehensive save file summary for tooltips or detailed views</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetSaveFileSummary()</code></pre>
+  </div>
+
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.String</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_DataStructures_SaveFileInfo_GetSaveTypeDescription_" data-uid="GameFramework.DataStructures.SaveFileInfo.GetSaveTypeDescription*"></a>
+  
+  <h3 id="GameFramework_DataStructures_SaveFileInfo_GetSaveTypeDescription" data-uid="GameFramework.DataStructures.SaveFileInfo.GetSaveTypeDescription">
+    GetSaveTypeDescription()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.DataStructures.SaveFileInfo.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Gets a short description for the save type</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetSaveTypeDescription()</code></pre>
+  </div>
+
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.String</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_DataStructures_SaveFileInfo_GetSaveTypeIndicator_" data-uid="GameFramework.DataStructures.SaveFileInfo.GetSaveTypeIndicator*"></a>
+  
+  <h3 id="GameFramework_DataStructures_SaveFileInfo_GetSaveTypeIndicator" data-uid="GameFramework.DataStructures.SaveFileInfo.GetSaveTypeIndicator">
+    GetSaveTypeIndicator()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.DataStructures.SaveFileInfo.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Gets a user-friendly save type indicator</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetSaveTypeIndicator()</code></pre>
+  </div>
+
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.String</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_DataStructures_SaveFileInfo_GetTimeTrackingStatus_" data-uid="GameFramework.DataStructures.SaveFileInfo.GetTimeTrackingStatus*"></a>
+  
+  <h3 id="GameFramework_DataStructures_SaveFileInfo_GetTimeTrackingStatus" data-uid="GameFramework.DataStructures.SaveFileInfo.GetTimeTrackingStatus">
+    GetTimeTrackingStatus()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.DataStructures.SaveFileInfo.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Gets time tracking status for debugging</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetTimeTrackingStatus()</code></pre>
+  </div>
+
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.String</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</article>
+
+        <div class="contribution d-print-none">
+          
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          UCTools Base Project Documentation
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

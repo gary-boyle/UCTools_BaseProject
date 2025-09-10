@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="csharp">
+  <head>
+    <meta charset="utf-8">
+      <title>Namespace GameFramework.UI.Screens
+ | UCTools Base Project Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Namespace GameFramework.UI.Screens
+ | UCTools Base Project Documentation ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In This Article">
+      <meta name="loc:searchResultsCount" content="">
+      <meta name="loc:searchNoResults" content="">
+      <meta name="loc:tocFilter" content="Enter here to filter...">
+      <meta name="loc:nextArticle" content="">
+      <meta name="loc:prevArticle" content="">
+      <meta name="loc:themeLight" content="">
+      <meta name="loc:themeDark" content="">
+      <meta name="loc:themeAuto" content="">
+      <meta name="loc:changeTheme" content="">
+      <meta name="loc:copy" content="">
+      <meta name="loc:downloadPdf" content="">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="GameFramework.UI.Screens">
+  
+  <h1 id="GameFramework_UI_Screens" data-uid="GameFramework.UI.Screens" class="text-break">Namespace GameFramework.UI.Screens
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 remarks"></div>
+
+    <h3 id="classes">Classes
+  </h3>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.UI.Screens.CreditsScreen.html">CreditsScreen</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.UI.Screens.GameOverScreen.html">GameOverScreen</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.UI.Screens.GamePlayScreen.html">GamePlayScreen</a></dt>
+      <dd><p sourcefile="api/GameFramework.UI.Screens.GamePlayScreen.yml" sourcestartlinenumber="2" sourceendlinenumber="4">Main gameplay screen with HUD elements and debug information display
+Provides access to game state information and gameplay controls
+Uses TimeService for accurate playtime display with proper pause handling</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.UI.Screens.LoadGamePopup.html">LoadGamePopup</a></dt>
+      <dd><p sourcefile="api/GameFramework.UI.Screens.LoadGamePopup.yml" sourcestartlinenumber="2" sourceendlinenumber="3">Load game popup that extends the base save file list functionality
+Provides double-click loading and load button functionality</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.UI.Screens.LoadingScreen.html">LoadingScreen</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.UI.Screens.MainMenuScreen.html">MainMenuScreen</a></dt>
+      <dd><p sourcefile="api/GameFramework.UI.Screens.MainMenuScreen.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Main menu screen implementation with event publishing</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.UI.Screens.NewGameScreen.html">NewGameScreen</a></dt>
+      <dd><p sourcefile="api/GameFramework.UI.Screens.NewGameScreen.yml" sourcestartlinenumber="2" sourceendlinenumber="3">New Game Screen that allows players to configure and start a new game
+Handles UI event registration/unregistration properly in OnShow/OnHide</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html">SaveFileListPopup</a></dt>
+      <dd><p sourcefile="api/GameFramework.UI.Screens.SaveFileListPopup.yml" sourcestartlinenumber="2" sourceendlinenumber="4">Base class for popups that display and manage save file lists
+Provides common functionality for save file display, selection, and deletion
+Derived classes implement specific load/save behaviors</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.UI.Screens.SaveGamePopup.html">SaveGamePopup</a></dt>
+      <dd><p sourcefile="api/GameFramework.UI.Screens.SaveGamePopup.yml" sourcestartlinenumber="2" sourceendlinenumber="4">Save game popup that extends the base save file list functionality
+Delegates all business logic to SaveService for clean separation of concerns
+Provides both regular saves and autosaves through simple UI interactions</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.UI.Screens.SplashScreen.html">SplashScreen</a></dt>
+      <dd><p sourcefile="api/GameFramework.UI.Screens.SplashScreen.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Splash screen implementation</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.UI.Screens.VictoryScreen.html">VictoryScreen</a></dt>
+      <dd></dd>
+    </dl>
+</article>
+
+        <div class="contribution d-print-none">
+          
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          UCTools Base Project Documentation
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

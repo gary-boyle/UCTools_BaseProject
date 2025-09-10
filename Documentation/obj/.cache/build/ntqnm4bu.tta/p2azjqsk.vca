@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="csharp">
+  <head>
+    <meta charset="utf-8">
+      <title>Namespace GameFramework.ConsoleTool.Commands
+ | UCTools Base Project Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Namespace GameFramework.ConsoleTool.Commands
+ | UCTools Base Project Documentation ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In This Article">
+      <meta name="loc:searchResultsCount" content="">
+      <meta name="loc:searchNoResults" content="">
+      <meta name="loc:tocFilter" content="Enter here to filter...">
+      <meta name="loc:nextArticle" content="">
+      <meta name="loc:prevArticle" content="">
+      <meta name="loc:themeLight" content="">
+      <meta name="loc:themeDark" content="">
+      <meta name="loc:themeAuto" content="">
+      <meta name="loc:changeTheme" content="">
+      <meta name="loc:copy" content="">
+      <meta name="loc:downloadPdf" content="">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="GameFramework.ConsoleTool.Commands">
+  
+  <h1 id="GameFramework_ConsoleTool_Commands" data-uid="GameFramework.ConsoleTool.Commands" class="text-break">Namespace GameFramework.ConsoleTool.Commands
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 remarks"></div>
+
+    <h3 id="classes">Classes
+  </h3>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.html">ConsoleCommandBase</a></dt>
+      <dd><p sourcefile="api/GameFramework.ConsoleTool.Commands.ConsoleCommandBase.yml" sourcestartlinenumber="2" sourceendlinenumber="3">Base class for console commands providing common functionality
+Handles basic validation and provides utility methods</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.ConsoleTool.Commands.ConsoleCommandRegistry.html">ConsoleCommandRegistry</a></dt>
+      <dd><p sourcefile="api/GameFramework.ConsoleTool.Commands.ConsoleCommandRegistry.yml" sourcestartlinenumber="2" sourceendlinenumber="3">Registry system for console commands with automatic discovery and registration
+Handles command lifecycle and provides efficient lookup mechanisms</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.ConsoleTool.Commands.DebugCommand.html">DebugCommand</a></dt>
+      <dd><p sourcefile="api/GameFramework.ConsoleTool.Commands.DebugCommand.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Console command for controlling the DebugPopup visibility</p>
+<p sourcefile="api/GameFramework.ConsoleTool.Commands.DebugCommand.yml" sourcestartlinenumber="4" sourceendlinenumber="4">Usage Examples:</p>
+<blockquote sourcefile="api/GameFramework.ConsoleTool.Commands.DebugCommand.yml" sourcestartlinenumber="5" sourceendlinenumber="8"><p sourcefile="api/GameFramework.ConsoleTool.Commands.DebugCommand.yml" sourcestartlinenumber="5" sourceendlinenumber="8">debug                    - Toggle debug popup on/off
+debug on                 - Enable debug popup
+debug off                - Disable debug popup
+debug status             - Show current debug popup state</p>
+</blockquote>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.ConsoleTool.Commands.ExampleCommand.html">ExampleCommand</a></dt>
+      <dd><p sourcefile="api/GameFramework.ConsoleTool.Commands.ExampleCommand.yml" sourcestartlinenumber="2" sourceendlinenumber="3">Example console command that demonstrates how to create custom commands
+This command creates primitive GameObjects in the scene for testing and demonstration</p>
+<p sourcefile="api/GameFramework.ConsoleTool.Commands.ExampleCommand.yml" sourcestartlinenumber="5" sourceendlinenumber="5">Usage Examples:</p>
+<blockquote sourcefile="api/GameFramework.ConsoleTool.Commands.ExampleCommand.yml" sourcestartlinenumber="6" sourceendlinenumber="9"><p sourcefile="api/GameFramework.ConsoleTool.Commands.ExampleCommand.yml" sourcestartlinenumber="6" sourceendlinenumber="9">spawn                    - Creates a cube at origin (0,0,0)
+spawn sphere             - Creates a sphere at origin
+spawn cube 5 10 0        - Creates a cube at position (5, 10, 0)
+spawn cylinder 0 5 0 red - Creates a red cylinder at (0, 5, 0)</p>
+</blockquote>
+<p sourcefile="api/GameFramework.ConsoleTool.Commands.ExampleCommand.yml" sourcestartlinenumber="11" sourceendlinenumber="12">This serves as a template for creating your own console commands
+Copy this file and modify it to create new functionality</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.ConsoleTool.Commands.ExecCommand.html">ExecCommand</a></dt>
+      <dd><p sourcefile="api/GameFramework.ConsoleTool.Commands.ExecCommand.yml" sourcestartlinenumber="2" sourceendlinenumber="3">Execute command that runs console commands from a text file
+Supports silent execution and error handling for batch operations</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.ConsoleTool.Commands.HelpCommand.html">HelpCommand</a></dt>
+      <dd><p sourcefile="api/GameFramework.ConsoleTool.Commands.HelpCommand.yml" sourcestartlinenumber="2" sourceendlinenumber="3">Help command that displays available commands and their descriptions
+Supports filtering by category and detailed command information</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.ConsoleTool.Commands.WaitCommand.html">WaitCommand</a></dt>
+      <dd><p sourcefile="api/GameFramework.ConsoleTool.Commands.WaitCommand.yml" sourcestartlinenumber="2" sourceendlinenumber="3">Wait command that pauses command execution for specified number of frames
+Useful for scripting and automated testing scenarios</p>
+</dd>
+    </dl>
+</article>
+
+        <div class="contribution d-print-none">
+          
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          UCTools Base Project Documentation
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

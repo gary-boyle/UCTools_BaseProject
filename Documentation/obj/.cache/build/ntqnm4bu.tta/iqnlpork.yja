@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="csharp">
+  <head>
+    <meta charset="utf-8">
+      <title>Class StringConfigVariable
+ | UCTools Base Project Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class StringConfigVariable
+ | UCTools Base Project Documentation ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In This Article">
+      <meta name="loc:searchResultsCount" content="">
+      <meta name="loc:searchNoResults" content="">
+      <meta name="loc:tocFilter" content="Enter here to filter...">
+      <meta name="loc:nextArticle" content="">
+      <meta name="loc:prevArticle" content="">
+      <meta name="loc:themeLight" content="">
+      <meta name="loc:themeDark" content="">
+      <meta name="loc:themeAuto" content="">
+      <meta name="loc:changeTheme" content="">
+      <meta name="loc:copy" content="">
+      <meta name="loc:downloadPdf" content="">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="UCTools_ConfigVariables.StringConfigVariable">
+  
+  
+  <h1 id="UCTools_ConfigVariables_StringConfigVariable" data-uid="UCTools_ConfigVariables.StringConfigVariable" class="text-break">
+    Class StringConfigVariable
+    
+  </h1>
+  
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="UCTools_ConfigVariables.html">UCTools_ConfigVariables</a></dd></dl>
+    <dl><dt>Assembly</dt><dd>cs.temp.dll.dll</dd></dl>
+  </div>
+  
+  <div class="markdown summary"><p sourcefile="api/UCTools_ConfigVariables.StringConfigVariable.yml" sourcestartlinenumber="2" sourceendlinenumber="2">String configuration variable</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Serializable]
+public class StringConfigVariable : ConfigVariableBase</code></pre>
+  </div>
+  
+  
+  
+  
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><span class="xref">System.Object</span></div>
+      <div><a class="xref" href="UCTools_ConfigVariables.ConfigVariableBase.html">ConfigVariableBase</a></div>
+      <div><span class="xref">StringConfigVariable</span></div>
+    </dd>
+  </dl>
+  
+  
+  
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="UCTools_ConfigVariables.ConfigVariableBase.html#UCTools_ConfigVariables_ConfigVariableBase_name">ConfigVariableBase.name</a>
+    </div>
+    <div>
+      <a class="xref" href="UCTools_ConfigVariables.ConfigVariableBase.html#UCTools_ConfigVariables_ConfigVariableBase_description">ConfigVariableBase.description</a>
+    </div>
+    <div>
+      <a class="xref" href="UCTools_ConfigVariables.ConfigVariableBase.html#UCTools_ConfigVariables_ConfigVariableBase_flags">ConfigVariableBase.flags</a>
+    </div>
+    <div>
+      <a class="xref" href="UCTools_ConfigVariables.ConfigVariableBase.html#UCTools_ConfigVariables_ConfigVariableBase_ChangeCheck">ConfigVariableBase.ChangeCheck()</a>
+    </div>
+    <div>
+      <a class="xref" href="UCTools_ConfigVariables.ConfigVariableBase.html#UCTools_ConfigVariables_ConfigVariableBase_MarkChanged">ConfigVariableBase.MarkChanged()</a>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </dd></dl>
+  
+  
+  
+  
+  
+  
+  <h2 class="section" id="constructors">Constructors
+  </h2>
+  
+  
+  <a id="UCTools_ConfigVariables_StringConfigVariable__ctor_" data-uid="UCTools_ConfigVariables.StringConfigVariable.#ctor*"></a>
+  
+  <h3 id="UCTools_ConfigVariables_StringConfigVariable__ctor" data-uid="UCTools_ConfigVariables.StringConfigVariable.#ctor">
+    StringConfigVariable()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public StringConfigVariable()</code></pre>
+  </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="UCTools_ConfigVariables_StringConfigVariable__ctor_" data-uid="UCTools_ConfigVariables.StringConfigVariable.#ctor*"></a>
+  
+  <h3 id="UCTools_ConfigVariables_StringConfigVariable__ctor_System_String_System_String_System_String_UCTools_ConfigVariables_ConfigFlags_" data-uid="UCTools_ConfigVariables.StringConfigVariable.#ctor(System.String,System.String,System.String,UCTools_ConfigVariables.ConfigFlags)">
+    StringConfigVariable(String, String, String, ConfigFlags)
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public StringConfigVariable(string name, string description, string defaultValue, ConfigFlags flags = ConfigFlags.None)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <span class="xref">System.String</span></dt>
+    <dd></dd>
+    <dt><code>description</code> <span class="xref">System.String</span></dt>
+    <dd></dd>
+    <dt><code>defaultValue</code> <span class="xref">System.String</span></dt>
+    <dd></dd>
+    <dt><code>flags</code> <a class="xref" href="UCTools_ConfigVariables.ConfigFlags.html">ConfigFlags</a></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h2 class="section" id="properties">Properties
+  </h2>
+  
+  
+  <a id="UCTools_ConfigVariables_StringConfigVariable_DefaultValue_" data-uid="UCTools_ConfigVariables.StringConfigVariable.DefaultValue*"></a>
+  
+  <h3 id="UCTools_ConfigVariables_StringConfigVariable_DefaultValue" data-uid="UCTools_ConfigVariables.StringConfigVariable.DefaultValue">
+    DefaultValue
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string DefaultValue { get; }</code></pre>
+  </div>
+
+  
+  
+  
+  
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.String</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="UCTools_ConfigVariables_StringConfigVariable_Value_" data-uid="UCTools_ConfigVariables.StringConfigVariable.Value*"></a>
+  
+  <h3 id="UCTools_ConfigVariables_StringConfigVariable_Value" data-uid="UCTools_ConfigVariables.StringConfigVariable.Value">
+    Value
+    
+  </h3>
+  
+  <div class="markdown level1 summary"><p sourcefile="api/UCTools_ConfigVariables.StringConfigVariable.yml" sourcestartlinenumber="1" sourceendlinenumber="1">Current string value</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Value { get; set; }</code></pre>
+  </div>
+
+  
+  
+  
+  
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.String</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="UCTools_ConfigVariables_StringConfigVariable_ValueType_" data-uid="UCTools_ConfigVariables.StringConfigVariable.ValueType*"></a>
+  
+  <h3 id="UCTools_ConfigVariables_StringConfigVariable_ValueType" data-uid="UCTools_ConfigVariables.StringConfigVariable.ValueType">
+    ValueType
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Type ValueType { get; }</code></pre>
+  </div>
+
+  
+  
+  
+  
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Type</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  <h2 class="section" id="methods">Methods
+  </h2>
+  
+  
+  <a id="UCTools_ConfigVariables_StringConfigVariable_GetValueAsObject_" data-uid="UCTools_ConfigVariables.StringConfigVariable.GetValueAsObject*"></a>
+  
+  <h3 id="UCTools_ConfigVariables_StringConfigVariable_GetValueAsObject" data-uid="UCTools_ConfigVariables.StringConfigVariable.GetValueAsObject">
+    GetValueAsObject()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override object GetValueAsObject()</code></pre>
+  </div>
+
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.Object</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="UCTools_ConfigVariables_StringConfigVariable_GetValueAsString_" data-uid="UCTools_ConfigVariables.StringConfigVariable.GetValueAsString*"></a>
+  
+  <h3 id="UCTools_ConfigVariables_StringConfigVariable_GetValueAsString" data-uid="UCTools_ConfigVariables.StringConfigVariable.GetValueAsString">
+    GetValueAsString()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string GetValueAsString()</code></pre>
+  </div>
+
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.String</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="UCTools_ConfigVariables_StringConfigVariable_ResetToDefault_" data-uid="UCTools_ConfigVariables.StringConfigVariable.ResetToDefault*"></a>
+  
+  <h3 id="UCTools_ConfigVariables_StringConfigVariable_ResetToDefault" data-uid="UCTools_ConfigVariables.StringConfigVariable.ResetToDefault">
+    ResetToDefault()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void ResetToDefault()</code></pre>
+  </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="UCTools_ConfigVariables_StringConfigVariable_SetValueFromObject_" data-uid="UCTools_ConfigVariables.StringConfigVariable.SetValueFromObject*"></a>
+  
+  <h3 id="UCTools_ConfigVariables_StringConfigVariable_SetValueFromObject_System_Object_" data-uid="UCTools_ConfigVariables.StringConfigVariable.SetValueFromObject(System.Object)">
+    SetValueFromObject(Object)
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool SetValueFromObject(object value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <span class="xref">System.Object</span></dt>
+    <dd></dd>
+  </dl>
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.Boolean</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="UCTools_ConfigVariables_StringConfigVariable_SetValueFromString_" data-uid="UCTools_ConfigVariables.StringConfigVariable.SetValueFromString*"></a>
+  
+  <h3 id="UCTools_ConfigVariables_StringConfigVariable_SetValueFromString_System_String_" data-uid="UCTools_ConfigVariables.StringConfigVariable.SetValueFromString(System.String)">
+    SetValueFromString(String)
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool SetValueFromString(string value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <span class="xref">System.String</span></dt>
+    <dd></dd>
+  </dl>
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.Boolean</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="UCTools_ConfigVariables_StringConfigVariable_ValidateConfiguration_" data-uid="UCTools_ConfigVariables.StringConfigVariable.ValidateConfiguration*"></a>
+  
+  <h3 id="UCTools_ConfigVariables_StringConfigVariable_ValidateConfiguration_System_String__" data-uid="UCTools_ConfigVariables.StringConfigVariable.ValidateConfiguration(System.String@)">
+    ValidateConfiguration(out String)
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool ValidateConfiguration(out string error)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>error</code> <span class="xref">System.String</span></dt>
+    <dd></dd>
+  </dl>
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.Boolean</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</article>
+
+        <div class="contribution d-print-none">
+          
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          UCTools Base Project Documentation
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

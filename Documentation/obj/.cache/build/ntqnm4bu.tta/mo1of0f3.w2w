@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="csharp">
+  <head>
+    <meta charset="utf-8">
+      <title>Class AudioSettings_SO
+ | UCTools Base Project Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class AudioSettings_SO
+ | UCTools Base Project Documentation ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In This Article">
+      <meta name="loc:searchResultsCount" content="">
+      <meta name="loc:searchNoResults" content="">
+      <meta name="loc:tocFilter" content="Enter here to filter...">
+      <meta name="loc:nextArticle" content="">
+      <meta name="loc:prevArticle" content="">
+      <meta name="loc:themeLight" content="">
+      <meta name="loc:themeDark" content="">
+      <meta name="loc:themeAuto" content="">
+      <meta name="loc:changeTheme" content="">
+      <meta name="loc:copy" content="">
+      <meta name="loc:downloadPdf" content="">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="GrameFramework.Config.AudioSettings_SO">
+  
+  
+  <h1 id="GrameFramework_Config_AudioSettings_SO" data-uid="GrameFramework.Config.AudioSettings_SO" class="text-break">
+    Class AudioSettings_SO
+    
+  </h1>
+  
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="GrameFramework.Config.html">GrameFramework.Config</a></dd></dl>
+    <dl><dt>Assembly</dt><dd>cs.temp.dll.dll</dd></dl>
+  </div>
+  
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class AudioSettings_SO : ConfigCategory</code></pre>
+  </div>
+  
+  
+  
+  
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><span class="xref">System.Object</span></div>
+      <div><a class="xref" href="UCTools_ConfigVariables.ConfigCategory.html">ConfigCategory</a></div>
+      <div><span class="xref">AudioSettings_SO</span></div>
+    </dd>
+  </dl>
+  
+  
+  
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="UCTools_ConfigVariables.ConfigCategory.html#UCTools_ConfigVariables_ConfigCategory_ResetToDefaults">ConfigCategory.ResetToDefaults()</a>
+    </div>
+    <div>
+      <a class="xref" href="UCTools_ConfigVariables.ConfigCategory.html#UCTools_ConfigVariables_ConfigCategory_ValidateAll_System_Collections_Generic_List_System_String___">ConfigCategory.ValidateAll(List&lt;String&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="UCTools_ConfigVariables.ConfigCategory.html#UCTools_ConfigVariables_ConfigCategory_OnValidate">ConfigCategory.OnValidate()</a>
+    </div>
+  </dd></dl>
+  
+  
+  
+  
+  
+  
+  <h2 class="section" id="fields">Fields
+  </h2>
+  
+  
+  
+  <h3 id="GrameFramework_Config_AudioSettings_SO_audioEnabled" data-uid="GrameFramework.Config.AudioSettings_SO.audioEnabled">
+    audioEnabled
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BoolConfigVariable audioEnabled</code></pre>
+  </div>
+
+  
+  
+  
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="UCTools_ConfigVariables.BoolConfigVariable.html">BoolConfigVariable</a></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 id="GrameFramework_Config_AudioSettings_SO_masterVolume" data-uid="GrameFramework.Config.AudioSettings_SO.masterVolume">
+    masterVolume
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IntConfigVariable masterVolume</code></pre>
+  </div>
+
+  
+  
+  
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="UCTools_ConfigVariables.IntConfigVariable.html">IntConfigVariable</a></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 id="GrameFramework_Config_AudioSettings_SO_musicVolume" data-uid="GrameFramework.Config.AudioSettings_SO.musicVolume">
+    musicVolume
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IntConfigVariable musicVolume</code></pre>
+  </div>
+
+  
+  
+  
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="UCTools_ConfigVariables.IntConfigVariable.html">IntConfigVariable</a></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 id="GrameFramework_Config_AudioSettings_SO_sfxVolume" data-uid="GrameFramework.Config.AudioSettings_SO.sfxVolume">
+    sfxVolume
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IntConfigVariable sfxVolume</code></pre>
+  </div>
+
+  
+  
+  
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="UCTools_ConfigVariables.IntConfigVariable.html">IntConfigVariable</a></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h2 class="section" id="methods">Methods
+  </h2>
+  
+  
+  <a id="GrameFramework_Config_AudioSettings_SO_GetAllVariables_" data-uid="GrameFramework.Config.AudioSettings_SO.GetAllVariables*"></a>
+  
+  <h3 id="GrameFramework_Config_AudioSettings_SO_GetAllVariables" data-uid="GrameFramework.Config.AudioSettings_SO.GetAllVariables">
+    GetAllVariables()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override List&lt;ConfigVariableBase&gt; GetAllVariables()</code></pre>
+  </div>
+
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.Collections.Generic.List</span>&lt;<a class="xref" href="UCTools_ConfigVariables.ConfigVariableBase.html">ConfigVariableBase</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GrameFramework_Config_AudioSettings_SO_SetAudioEnabled_" data-uid="GrameFramework.Config.AudioSettings_SO.SetAudioEnabled*"></a>
+  
+  <h3 id="GrameFramework_Config_AudioSettings_SO_SetAudioEnabled_System_Boolean_" data-uid="GrameFramework.Config.AudioSettings_SO.SetAudioEnabled(System.Boolean)">
+    SetAudioEnabled(Boolean)
+    
+  </h3>
+  
+  <div class="markdown level1 summary"><p sourcefile="api/GrameFramework.Config.AudioSettings_SO.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Apply audio enabled state change with immediate effect</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetAudioEnabled(bool enabled)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>enabled</code> <span class="xref">System.Boolean</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GrameFramework_Config_AudioSettings_SO_SetMasterVolume_" data-uid="GrameFramework.Config.AudioSettings_SO.SetMasterVolume*"></a>
+  
+  <h3 id="GrameFramework_Config_AudioSettings_SO_SetMasterVolume_System_Int32_" data-uid="GrameFramework.Config.AudioSettings_SO.SetMasterVolume(System.Int32)">
+    SetMasterVolume(Int32)
+    
+  </h3>
+  
+  <div class="markdown level1 summary"><p sourcefile="api/GrameFramework.Config.AudioSettings_SO.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Apply master volume change with immediate effect</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetMasterVolume(int volume)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>volume</code> <span class="xref">System.Int32</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GrameFramework_Config_AudioSettings_SO_SetMusicVolume_" data-uid="GrameFramework.Config.AudioSettings_SO.SetMusicVolume*"></a>
+  
+  <h3 id="GrameFramework_Config_AudioSettings_SO_SetMusicVolume_System_Int32_" data-uid="GrameFramework.Config.AudioSettings_SO.SetMusicVolume(System.Int32)">
+    SetMusicVolume(Int32)
+    
+  </h3>
+  
+  <div class="markdown level1 summary"><p sourcefile="api/GrameFramework.Config.AudioSettings_SO.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Apply music volume change with immediate effect</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetMusicVolume(int volume)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>volume</code> <span class="xref">System.Int32</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GrameFramework_Config_AudioSettings_SO_SetSfxVolume_" data-uid="GrameFramework.Config.AudioSettings_SO.SetSfxVolume*"></a>
+  
+  <h3 id="GrameFramework_Config_AudioSettings_SO_SetSfxVolume_System_Int32_" data-uid="GrameFramework.Config.AudioSettings_SO.SetSfxVolume(System.Int32)">
+    SetSfxVolume(Int32)
+    
+  </h3>
+  
+  <div class="markdown level1 summary"><p sourcefile="api/GrameFramework.Config.AudioSettings_SO.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Apply SFX volume change with immediate effect</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetSfxVolume(int volume)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>volume</code> <span class="xref">System.Int32</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</article>
+
+        <div class="contribution d-print-none">
+          
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          UCTools Base Project Documentation
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

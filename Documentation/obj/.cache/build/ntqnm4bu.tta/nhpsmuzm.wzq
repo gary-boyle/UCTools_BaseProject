@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="csharp">
+  <head>
+    <meta charset="utf-8">
+      <title>Class ConsoleInputHandler
+ | UCTools Base Project Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ConsoleInputHandler
+ | UCTools Base Project Documentation ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In This Article">
+      <meta name="loc:searchResultsCount" content="">
+      <meta name="loc:searchNoResults" content="">
+      <meta name="loc:tocFilter" content="Enter here to filter...">
+      <meta name="loc:nextArticle" content="">
+      <meta name="loc:prevArticle" content="">
+      <meta name="loc:themeLight" content="">
+      <meta name="loc:themeDark" content="">
+      <meta name="loc:themeAuto" content="">
+      <meta name="loc:changeTheme" content="">
+      <meta name="loc:copy" content="">
+      <meta name="loc:downloadPdf" content="">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="GameFramework.Input.Handlers.ConsoleInputHandler">
+  
+  
+  <h1 id="GameFramework_Input_Handlers_ConsoleInputHandler" data-uid="GameFramework.Input.Handlers.ConsoleInputHandler" class="text-break">
+    Class ConsoleInputHandler
+    
+  </h1>
+  
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="GameFramework.Input.Handlers.html">GameFramework.Input.Handlers</a></dd></dl>
+    <dl><dt>Assembly</dt><dd>cs.temp.dll.dll</dd></dl>
+  </div>
+  
+  <div class="markdown summary"><p sourcefile="api/GameFramework.Input.Handlers.ConsoleInputHandler.yml" sourcestartlinenumber="2" sourceendlinenumber="3">Handles console input - always active, highest priority
+When console is open, consumes most input to prevent conflicts</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ConsoleInputHandler : InputHandlerBase</code></pre>
+  </div>
+  
+  
+  
+  
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><span class="xref">System.Object</span></div>
+      <div><a class="xref" href="GameFramework.Input.InputHandlerBase.html">InputHandlerBase</a></div>
+      <div><span class="xref">ConsoleInputHandler</span></div>
+    </dd>
+  </dl>
+  
+  
+  
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="GameFramework.Input.InputHandlerBase.html#GameFramework_Input_InputHandlerBase_Name">InputHandlerBase.Name</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Input.InputHandlerBase.html#GameFramework_Input_InputHandlerBase_Priority">InputHandlerBase.Priority</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Input.InputHandlerBase.html#GameFramework_Input_InputHandlerBase_IsActive">InputHandlerBase.IsActive</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Input.InputHandlerBase.html#GameFramework_Input_InputHandlerBase_ConsumeInput">InputHandlerBase.ConsumeInput</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Input.InputHandlerBase.html#GameFramework_Input_InputHandlerBase__eventSystem">InputHandlerBase._eventSystem</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Input.InputHandlerBase.html#GameFramework_Input_InputHandlerBase_Activate">InputHandlerBase.Activate()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Input.InputHandlerBase.html#GameFramework_Input_InputHandlerBase_Deactivate">InputHandlerBase.Deactivate()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Input.InputHandlerBase.html#GameFramework_Input_InputHandlerBase_OnActivate">InputHandlerBase.OnActivate()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Input.InputHandlerBase.html#GameFramework_Input_InputHandlerBase_OnDeactivate">InputHandlerBase.OnDeactivate()</a>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </dd></dl>
+  
+  
+  
+  
+  
+  
+  <h2 class="section" id="constructors">Constructors
+  </h2>
+  
+  
+  <a id="GameFramework_Input_Handlers_ConsoleInputHandler__ctor_" data-uid="GameFramework.Input.Handlers.ConsoleInputHandler.#ctor*"></a>
+  
+  <h3 id="GameFramework_Input_Handlers_ConsoleInputHandler__ctor_IEventSystem_IConsoleService_IConfigService_" data-uid="GameFramework.Input.Handlers.ConsoleInputHandler.#ctor(IEventSystem,IConsoleService,IConfigService)">
+    ConsoleInputHandler(IEventSystem, IConsoleService, IConfigService)
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ConsoleInputHandler(IEventSystem eventSystem, IConsoleService consoleService, IConfigService configService)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>eventSystem</code> <span class="xref">IEventSystem</span></dt>
+    <dd></dd>
+    <dt><code>consoleService</code> <span class="xref">IConsoleService</span></dt>
+    <dd></dd>
+    <dt><code>configService</code> <span class="xref">IConfigService</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h2 class="section" id="methods">Methods
+  </h2>
+  
+  
+  <a id="GameFramework_Input_Handlers_ConsoleInputHandler_HandleInput_" data-uid="GameFramework.Input.Handlers.ConsoleInputHandler.HandleInput*"></a>
+  
+  <h3 id="GameFramework_Input_Handlers_ConsoleInputHandler_HandleInput__1___0_" data-uid="GameFramework.Input.Handlers.ConsoleInputHandler.HandleInput``1(``0)">
+    HandleInput&lt;T&gt;(T)
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool HandleInput&lt;T&gt;(T inputEvent)
+    where T : class</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>inputEvent</code> <span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.Boolean</span></dt>
+    <dd></dd>
+  </dl>
+  
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Input_Handlers_ConsoleInputHandler_SubscribeToEvents_" data-uid="GameFramework.Input.Handlers.ConsoleInputHandler.SubscribeToEvents*"></a>
+  
+  <h3 id="GameFramework_Input_Handlers_ConsoleInputHandler_SubscribeToEvents" data-uid="GameFramework.Input.Handlers.ConsoleInputHandler.SubscribeToEvents">
+    SubscribeToEvents()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void SubscribeToEvents()</code></pre>
+  </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Input_Handlers_ConsoleInputHandler_UnsubscribeFromEvents_" data-uid="GameFramework.Input.Handlers.ConsoleInputHandler.UnsubscribeFromEvents*"></a>
+  
+  <h3 id="GameFramework_Input_Handlers_ConsoleInputHandler_UnsubscribeFromEvents" data-uid="GameFramework.Input.Handlers.ConsoleInputHandler.UnsubscribeFromEvents">
+    UnsubscribeFromEvents()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void UnsubscribeFromEvents()</code></pre>
+  </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</article>
+
+        <div class="contribution d-print-none">
+          
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          UCTools Base Project Documentation
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

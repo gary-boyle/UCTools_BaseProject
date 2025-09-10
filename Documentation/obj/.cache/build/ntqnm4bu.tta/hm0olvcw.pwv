@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="csharp">
+  <head>
+    <meta charset="utf-8">
+      <title>Namespace GameFramework.UI.Popups
+ | UCTools Base Project Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Namespace GameFramework.UI.Popups
+ | UCTools Base Project Documentation ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In This Article">
+      <meta name="loc:searchResultsCount" content="">
+      <meta name="loc:searchNoResults" content="">
+      <meta name="loc:tocFilter" content="Enter here to filter...">
+      <meta name="loc:nextArticle" content="">
+      <meta name="loc:prevArticle" content="">
+      <meta name="loc:themeLight" content="">
+      <meta name="loc:themeDark" content="">
+      <meta name="loc:themeAuto" content="">
+      <meta name="loc:changeTheme" content="">
+      <meta name="loc:copy" content="">
+      <meta name="loc:downloadPdf" content="">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="GameFramework.UI.Popups">
+  
+  <h1 id="GameFramework_UI_Popups" data-uid="GameFramework.UI.Popups" class="text-break">Namespace GameFramework.UI.Popups
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 remarks"></div>
+
+    <h3 id="classes">Classes
+  </h3>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.UI.Popups.ConfirmationPopup.html">ConfirmationPopup</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.UI.Popups.DebugPopup.html">DebugPopup</a></dt>
+      <dd><p sourcefile="api/GameFramework.UI.Popups.DebugPopup.yml" sourcestartlinenumber="2" sourceendlinenumber="3">Enhanced debug popup with real-time performance graphs
+Displays FPS, memory consumption, and historical graphs of both metrics</p>
+<p sourcefile="api/GameFramework.UI.Popups.DebugPopup.yml" sourcestartlinenumber="5" sourceendlinenumber="5">Design:</p>
+<ul sourcefile="api/GameFramework.UI.Popups.DebugPopup.yml" sourcestartlinenumber="6" sourceendlinenumber="9">
+<li sourcefile="api/GameFramework.UI.Popups.DebugPopup.yml" sourcestartlinenumber="6" sourceendlinenumber="6">Integrates custom GraphElement controls for visual data representation</li>
+<li sourcefile="api/GameFramework.UI.Popups.DebugPopup.yml" sourcestartlinenumber="7" sourceendlinenumber="7">Maintains separate data collection intervals for metrics vs graphs</li>
+<li sourcefile="api/GameFramework.UI.Popups.DebugPopup.yml" sourcestartlinenumber="8" sourceendlinenumber="8">Uses color-coded indicators for quick performance assessment</li>
+<li sourcefile="api/GameFramework.UI.Popups.DebugPopup.yml" sourcestartlinenumber="9" sourceendlinenumber="9">Efficient data sampling to prevent performance impact</li>
+</ul>
+<p sourcefile="api/GameFramework.UI.Popups.DebugPopup.yml" sourcestartlinenumber="11" sourceendlinenumber="11">Pros:</p>
+<ul sourcefile="api/GameFramework.UI.Popups.DebugPopup.yml" sourcestartlinenumber="12" sourceendlinenumber="17">
+<li sourcefile="api/GameFramework.UI.Popups.DebugPopup.yml" sourcestartlinenumber="12" sourceendlinenumber="12">Visual trend analysis with historical graphs</li>
+<li sourcefile="api/GameFramework.UI.Popups.DebugPopup.yml" sourcestartlinenumber="13" sourceendlinenumber="13">Real-time performance monitoring with color coding</li>
+<li sourcefile="api/GameFramework.UI.Popups.DebugPopup.yml" sourcestartlinenumber="14" sourceendlinenumber="14">Memory efficient circular buffers for data storage</li>
+<li sourcefile="api/GameFramework.UI.Popups.DebugPopup.yml" sourcestartlinenumber="15" sourceendlinenumber="15">Configurable graph appearance and scaling</li>
+<li sourcefile="api/GameFramework.UI.Popups.DebugPopup.yml" sourcestartlinenumber="16" sourceendlinenumber="16">Clean separation between text metrics and visual graphs</li>
+<li sourcefile="api/GameFramework.UI.Popups.DebugPopup.yml" sourcestartlinenumber="17" sourceendlinenumber="17">Can be toggled on/off as overlay popup</li>
+</ul>
+<p sourcefile="api/GameFramework.UI.Popups.DebugPopup.yml" sourcestartlinenumber="19" sourceendlinenumber="19">Cons:</p>
+<ul sourcefile="api/GameFramework.UI.Popups.DebugPopup.yml" sourcestartlinenumber="20" sourceendlinenumber="22">
+<li sourcefile="api/GameFramework.UI.Popups.DebugPopup.yml" sourcestartlinenumber="20" sourceendlinenumber="20">Increased memory usage for graph data storage</li>
+<li sourcefile="api/GameFramework.UI.Popups.DebugPopup.yml" sourcestartlinenumber="21" sourceendlinenumber="21">Additional rendering overhead for custom graph elements</li>
+<li sourcefile="api/GameFramework.UI.Popups.DebugPopup.yml" sourcestartlinenumber="22" sourceendlinenumber="22">More complex initialization and cleanup</li>
+</ul>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.UI.Popups.ErrorPopup.html">ErrorPopup</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.UI.Popups.OptionsPopup.html">OptionsPopup</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFramework.UI.Popups.PausePopup.html">PausePopup</a></dt>
+      <dd><p sourcefile="api/GameFramework.UI.Popups.PausePopup.yml" sourcestartlinenumber="2" sourceendlinenumber="4">Pause popup UI that handles pause menu interactions as an overlay
+Provides options to resume, load game, access options, or return to main menu
+Works within PlayingState rather than as a separate state</p>
+</dd>
+    </dl>
+</article>
+
+        <div class="contribution d-print-none">
+          
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          UCTools Base Project Documentation
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

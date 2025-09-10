@@ -42,7 +42,10 @@
       }
     ],
     "output": "_site",
-    "template": ["default", "templates/unity"],
+    "template": [
+      "default", 
+      "templates/darkfx"
+    ],
     "globalMetadata": {
       "_appTitle": "UCTools Base Project Documentation",
       "_appFooter": "UCTools Base Project Documentation",

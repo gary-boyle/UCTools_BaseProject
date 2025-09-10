@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="csharp">
+  <head>
+    <meta charset="utf-8">
+      <title>Interface ITimeService
+ | UCTools Base Project Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface ITimeService
+ | UCTools Base Project Documentation ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In This Article">
+      <meta name="loc:searchResultsCount" content="">
+      <meta name="loc:searchNoResults" content="">
+      <meta name="loc:tocFilter" content="Enter here to filter...">
+      <meta name="loc:nextArticle" content="">
+      <meta name="loc:prevArticle" content="">
+      <meta name="loc:themeLight" content="">
+      <meta name="loc:themeDark" content="">
+      <meta name="loc:themeAuto" content="">
+      <meta name="loc:changeTheme" content="">
+      <meta name="loc:copy" content="">
+      <meta name="loc:downloadPdf" content="">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="GameFramework.Services.Interfaces.ITimeService">
+  
+  
+  <h1 id="GameFramework_Services_Interfaces_ITimeService" data-uid="GameFramework.Services.Interfaces.ITimeService" class="text-break">
+    Interface ITimeService
+    
+  </h1>
+  
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="GameFramework.Services.Interfaces.html">GameFramework.Services.Interfaces</a></dd></dl>
+    <dl><dt>Assembly</dt><dd>cs.temp.dll.dll</dd></dl>
+  </div>
+  
+  <div class="markdown summary"><p sourcefile="api/GameFramework.Services.Interfaces.ITimeService.yml" sourcestartlinenumber="2" sourceendlinenumber="3">Interface for time tracking service that manages game time, session time, and level time
+with proper pause handling and state awareness</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface ITimeService</code></pre>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h2 class="section" id="properties">Properties
+  </h2>
+  
+  
+  <a id="GameFramework_Services_Interfaces_ITimeService_GameTime_" data-uid="GameFramework.Services.Interfaces.ITimeService.GameTime*"></a>
+  
+  <h3 id="GameFramework_Services_Interfaces_ITimeService_GameTime" data-uid="GameFramework.Services.Interfaces.ITimeService.GameTime">
+    GameTime
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">float GameTime { get; }</code></pre>
+  </div>
+
+  
+  
+  
+  
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.Single</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_Interfaces_ITimeService_GameTimeSpan_" data-uid="GameFramework.Services.Interfaces.ITimeService.GameTimeSpan*"></a>
+  
+  <h3 id="GameFramework_Services_Interfaces_ITimeService_GameTimeSpan" data-uid="GameFramework.Services.Interfaces.ITimeService.GameTimeSpan">
+    GameTimeSpan
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">TimeSpan GameTimeSpan { get; }</code></pre>
+  </div>
+
+  
+  
+  
+  
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TimeSpan</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_Interfaces_ITimeService_IsInitialized_" data-uid="GameFramework.Services.Interfaces.ITimeService.IsInitialized*"></a>
+  
+  <h3 id="GameFramework_Services_Interfaces_ITimeService_IsInitialized" data-uid="GameFramework.Services.Interfaces.ITimeService.IsInitialized">
+    IsInitialized
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool IsInitialized { get; }</code></pre>
+  </div>
+
+  
+  
+  
+  
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.Boolean</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_Interfaces_ITimeService_IsTrackingGameTime_" data-uid="GameFramework.Services.Interfaces.ITimeService.IsTrackingGameTime*"></a>
+  
+  <h3 id="GameFramework_Services_Interfaces_ITimeService_IsTrackingGameTime" data-uid="GameFramework.Services.Interfaces.ITimeService.IsTrackingGameTime">
+    IsTrackingGameTime
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool IsTrackingGameTime { get; }</code></pre>
+  </div>
+
+  
+  
+  
+  
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.Boolean</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_Interfaces_ITimeService_IsTrackingSessionTime_" data-uid="GameFramework.Services.Interfaces.ITimeService.IsTrackingSessionTime*"></a>
+  
+  <h3 id="GameFramework_Services_Interfaces_ITimeService_IsTrackingSessionTime" data-uid="GameFramework.Services.Interfaces.ITimeService.IsTrackingSessionTime">
+    IsTrackingSessionTime
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool IsTrackingSessionTime { get; }</code></pre>
+  </div>
+
+  
+  
+  
+  
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.Boolean</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_Interfaces_ITimeService_LevelTime_" data-uid="GameFramework.Services.Interfaces.ITimeService.LevelTime*"></a>
+  
+  <h3 id="GameFramework_Services_Interfaces_ITimeService_LevelTime" data-uid="GameFramework.Services.Interfaces.ITimeService.LevelTime">
+    LevelTime
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">float LevelTime { get; }</code></pre>
+  </div>
+
+  
+  
+  
+  
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.Single</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_Interfaces_ITimeService_LevelTimeSpan_" data-uid="GameFramework.Services.Interfaces.ITimeService.LevelTimeSpan*"></a>
+  
+  <h3 id="GameFramework_Services_Interfaces_ITimeService_LevelTimeSpan" data-uid="GameFramework.Services.Interfaces.ITimeService.LevelTimeSpan">
+    LevelTimeSpan
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">TimeSpan LevelTimeSpan { get; }</code></pre>
+  </div>
+
+  
+  
+  
+  
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TimeSpan</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_Interfaces_ITimeService_SessionTime_" data-uid="GameFramework.Services.Interfaces.ITimeService.SessionTime*"></a>
+  
+  <h3 id="GameFramework_Services_Interfaces_ITimeService_SessionTime" data-uid="GameFramework.Services.Interfaces.ITimeService.SessionTime">
+    SessionTime
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">float SessionTime { get; }</code></pre>
+  </div>
+
+  
+  
+  
+  
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.Single</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_Interfaces_ITimeService_SessionTimeSpan_" data-uid="GameFramework.Services.Interfaces.ITimeService.SessionTimeSpan*"></a>
+  
+  <h3 id="GameFramework_Services_Interfaces_ITimeService_SessionTimeSpan" data-uid="GameFramework.Services.Interfaces.ITimeService.SessionTimeSpan">
+    SessionTimeSpan
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">TimeSpan SessionTimeSpan { get; }</code></pre>
+  </div>
+
+  
+  
+  
+  
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TimeSpan</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  <h2 class="section" id="methods">Methods
+  </h2>
+  
+  
+  <a id="GameFramework_Services_Interfaces_ITimeService_GetFormattedGameTime_" data-uid="GameFramework.Services.Interfaces.ITimeService.GetFormattedGameTime*"></a>
+  
+  <h3 id="GameFramework_Services_Interfaces_ITimeService_GetFormattedGameTime" data-uid="GameFramework.Services.Interfaces.ITimeService.GetFormattedGameTime">
+    GetFormattedGameTime()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string GetFormattedGameTime()</code></pre>
+  </div>
+
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.String</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_Interfaces_ITimeService_GetFormattedLevelTime_" data-uid="GameFramework.Services.Interfaces.ITimeService.GetFormattedLevelTime*"></a>
+  
+  <h3 id="GameFramework_Services_Interfaces_ITimeService_GetFormattedLevelTime" data-uid="GameFramework.Services.Interfaces.ITimeService.GetFormattedLevelTime">
+    GetFormattedLevelTime()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string GetFormattedLevelTime()</code></pre>
+  </div>
+
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.String</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_Interfaces_ITimeService_GetFormattedSessionTime_" data-uid="GameFramework.Services.Interfaces.ITimeService.GetFormattedSessionTime*"></a>
+  
+  <h3 id="GameFramework_Services_Interfaces_ITimeService_GetFormattedSessionTime" data-uid="GameFramework.Services.Interfaces.ITimeService.GetFormattedSessionTime">
+    GetFormattedSessionTime()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string GetFormattedSessionTime()</code></pre>
+  </div>
+
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">System.String</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_Interfaces_ITimeService_GetTimeStatistics_" data-uid="GameFramework.Services.Interfaces.ITimeService.GetTimeStatistics*"></a>
+  
+  <h3 id="GameFramework_Services_Interfaces_ITimeService_GetTimeStatistics" data-uid="GameFramework.Services.Interfaces.ITimeService.GetTimeStatistics">
+    GetTimeStatistics()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">TimeStatistics GetTimeStatistics()</code></pre>
+  </div>
+
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFramework.Services.TimeStatistics.html">TimeStatistics</a></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_Interfaces_ITimeService_InitializeAsync_" data-uid="GameFramework.Services.Interfaces.ITimeService.InitializeAsync*"></a>
+  
+  <h3 id="GameFramework_Services_Interfaces_ITimeService_InitializeAsync" data-uid="GameFramework.Services.Interfaces.ITimeService.InitializeAsync">
+    InitializeAsync()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task InitializeAsync()</code></pre>
+  </div>
+
+  
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Task</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_Interfaces_ITimeService_ResetAllTimers_" data-uid="GameFramework.Services.Interfaces.ITimeService.ResetAllTimers*"></a>
+  
+  <h3 id="GameFramework_Services_Interfaces_ITimeService_ResetAllTimers" data-uid="GameFramework.Services.Interfaces.ITimeService.ResetAllTimers">
+    ResetAllTimers()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void ResetAllTimers()</code></pre>
+  </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_Interfaces_ITimeService_ResetLevelTimer_" data-uid="GameFramework.Services.Interfaces.ITimeService.ResetLevelTimer*"></a>
+  
+  <h3 id="GameFramework_Services_Interfaces_ITimeService_ResetLevelTimer" data-uid="GameFramework.Services.Interfaces.ITimeService.ResetLevelTimer">
+    ResetLevelTimer()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void ResetLevelTimer()</code></pre>
+  </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a id="GameFramework_Services_Interfaces_ITimeService_Shutdown_" data-uid="GameFramework.Services.Interfaces.ITimeService.Shutdown*"></a>
+  
+  <h3 id="GameFramework_Services_Interfaces_ITimeService_Shutdown" data-uid="GameFramework.Services.Interfaces.ITimeService.Shutdown">
+    Shutdown()
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void Shutdown()</code></pre>
+  </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h2 class="section" id="events">Events
+  </h2>
+  
+  
+  
+  <h3 id="GameFramework_Services_Interfaces_ITimeService_OnGameTimeChanged" data-uid="GameFramework.Services.Interfaces.ITimeService.OnGameTimeChanged">
+    OnGameTimeChanged
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event Action&lt;float&gt; OnGameTimeChanged</code></pre>
+  </div>
+
+  
+  
+  
+  
+  
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Action</span>&lt;<span class="xref">System.Single</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 id="GameFramework_Services_Interfaces_ITimeService_OnLevelTimeChanged" data-uid="GameFramework.Services.Interfaces.ITimeService.OnLevelTimeChanged">
+    OnLevelTimeChanged
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event Action&lt;float&gt; OnLevelTimeChanged</code></pre>
+  </div>
+
+  
+  
+  
+  
+  
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Action</span>&lt;<span class="xref">System.Single</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 id="GameFramework_Services_Interfaces_ITimeService_OnSessionTimeChanged" data-uid="GameFramework.Services.Interfaces.ITimeService.OnSessionTimeChanged">
+    OnSessionTimeChanged
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event Action&lt;float&gt; OnSessionTimeChanged</code></pre>
+  </div>
+
+  
+  
+  
+  
+  
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Action</span>&lt;<span class="xref">System.Single</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 id="GameFramework_Services_Interfaces_ITimeService_OnTimersReset" data-uid="GameFramework.Services.Interfaces.ITimeService.OnTimersReset">
+    OnTimersReset
+    
+  </h3>
+  
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event Action OnTimersReset</code></pre>
+  </div>
+
+  
+  
+  
+  
+  
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Action</span></dt>
+    <dd></dd>
+  </dl>
+  
+  
+  
+  
+  
+  
+  
+</article>
+
+        <div class="contribution d-print-none">
+          
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          UCTools Base Project Documentation
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ExampleCommand
+   | UCTools Base Project Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ExampleCommand
+   | UCTools Base Project Documentation ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="GameFramework.ConsoleTool.Commands.ExampleCommand">
+  
+  
+  <h1 id="GameFramework_ConsoleTool_Commands_ExampleCommand" data-uid="GameFramework.ConsoleTool.Commands.ExampleCommand" class="text-break">Class ExampleCommand
+  </h1>
+  <div class="markdown level0 summary"><p sourcefile="api/GameFramework.ConsoleTool.Commands.ExampleCommand.yml" sourcestartlinenumber="2" sourceendlinenumber="3">Example console command that demonstrates how to create custom commands
+This command creates primitive GameObjects in the scene for testing and demonstration</p>
+<p sourcefile="api/GameFramework.ConsoleTool.Commands.ExampleCommand.yml" sourcestartlinenumber="5" sourceendlinenumber="5">Usage Examples:</p>
+<blockquote sourcefile="api/GameFramework.ConsoleTool.Commands.ExampleCommand.yml" sourcestartlinenumber="6" sourceendlinenumber="9"><p sourcefile="api/GameFramework.ConsoleTool.Commands.ExampleCommand.yml" sourcestartlinenumber="6" sourceendlinenumber="9">spawn                    - Creates a cube at origin (0,0,0)
+spawn sphere             - Creates a sphere at origin
+spawn cube 5 10 0        - Creates a cube at position (5, 10, 0)
+spawn cylinder 0 5 0 red - Creates a red cylinder at (0, 5, 0)</p>
+</blockquote>
+<p sourcefile="api/GameFramework.ConsoleTool.Commands.ExampleCommand.yml" sourcestartlinenumber="11" sourceendlinenumber="12">This serves as a template for creating your own console commands
+Copy this file and modify it to create new functionality</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><a class="xref" href="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.html">ConsoleCommandBase</a></div>
+    <div class="level2"><span class="xref">ExampleCommand</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="GameFramework.ConsoleTool.IConsoleCommand.html">IConsoleCommand</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.html#GameFramework_ConsoleTool_Commands_ConsoleCommandBase_TryParseInt_System_String_System_Int32__GameFramework_ConsoleTool_IConsoleContext_System_String_">ConsoleCommandBase.TryParseInt(String, Int32, IConsoleContext, String)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.html#GameFramework_ConsoleTool_Commands_ConsoleCommandBase_ValidateArgumentCount_System_String___System_Int32_GameFramework_ConsoleTool_IConsoleContext_">ConsoleCommandBase.ValidateArgumentCount(String[], Int32, IConsoleContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.html#GameFramework_ConsoleTool_Commands_ConsoleCommandBase_ValidateArgumentCount_System_String___System_Int32_System_Int32_GameFramework_ConsoleTool_IConsoleContext_">ConsoleCommandBase.ValidateArgumentCount(String[], Int32, Int32, IConsoleContext)</a>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.ConsoleTool.Commands.html">GameFramework.ConsoleTool.Commands</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="GameFramework_ConsoleTool_Commands_ExampleCommand_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ExampleCommand : ConsoleCommandBase, IConsoleCommand</code></pre>
+  </div>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="GameFramework_ConsoleTool_Commands_ExampleCommand_Category_" data-uid="GameFramework.ConsoleTool.Commands.ExampleCommand.Category*"></a>
+  <h4 id="GameFramework_ConsoleTool_Commands_ExampleCommand_Category" data-uid="GameFramework.ConsoleTool.Commands.ExampleCommand.Category">Category</h4>
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.ConsoleTool.Commands.ExampleCommand.yml" sourcestartlinenumber="2" sourceendlinenumber="3">Category for organizing commands in help display
+Common categories: &quot;System&quot;, &quot;Debug&quot;, &quot;Game&quot;, &quot;Testing&quot;, &quot;Development&quot;</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override CategoryEnum Category { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">CategoryEnum</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.html#GameFramework_ConsoleTool_Commands_ConsoleCommandBase_Category">ConsoleCommandBase.Category</a></div>
+  
+  
+  <a id="GameFramework_ConsoleTool_Commands_ExampleCommand_CommandName_" data-uid="GameFramework.ConsoleTool.Commands.ExampleCommand.CommandName*"></a>
+  <h4 id="GameFramework_ConsoleTool_Commands_ExampleCommand_CommandName" data-uid="GameFramework.ConsoleTool.Commands.ExampleCommand.CommandName">CommandName</h4>
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.ConsoleTool.Commands.ExampleCommand.yml" sourcestartlinenumber="2" sourceendlinenumber="3">The name users type to execute this command (case-insensitive)
+Keep it short and memorable - this is what users will type in the console</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string CommandName { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.html#GameFramework_ConsoleTool_Commands_ConsoleCommandBase_CommandName">ConsoleCommandBase.CommandName</a></div>
+  
+  
+  <a id="GameFramework_ConsoleTool_Commands_ExampleCommand_Description_" data-uid="GameFramework.ConsoleTool.Commands.ExampleCommand.Description*"></a>
+  <h4 id="GameFramework_ConsoleTool_Commands_ExampleCommand_Description" data-uid="GameFramework.ConsoleTool.Commands.ExampleCommand.Description">Description</h4>
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.ConsoleTool.Commands.ExampleCommand.yml" sourcestartlinenumber="2" sourceendlinenumber="3">Brief description shown in help command
+Should be concise but descriptive enough to understand the command&apos;s purpose</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string Description { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.html#GameFramework_ConsoleTool_Commands_ConsoleCommandBase_Description">ConsoleCommandBase.Description</a></div>
+  
+  
+  <a id="GameFramework_ConsoleTool_Commands_ExampleCommand_Tag_" data-uid="GameFramework.ConsoleTool.Commands.ExampleCommand.Tag*"></a>
+  <h4 id="GameFramework_ConsoleTool_Commands_ExampleCommand_Tag" data-uid="GameFramework.ConsoleTool.Commands.ExampleCommand.Tag">Tag</h4>
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.ConsoleTool.Commands.ExampleCommand.yml" sourcestartlinenumber="2" sourceendlinenumber="3">Tag for bulk operations (optional - use 0 if not needed)
+Useful for removing groups of related commands (e.g., all debug commands)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int Tag { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.html#GameFramework_ConsoleTool_Commands_ConsoleCommandBase_Tag">ConsoleCommandBase.Tag</a></div>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="GameFramework_ConsoleTool_Commands_ExampleCommand_Execute_" data-uid="GameFramework.ConsoleTool.Commands.ExampleCommand.Execute*"></a>
+  <h4 id="GameFramework_ConsoleTool_Commands_ExampleCommand_Execute_System_String___GameFramework_ConsoleTool_IConsoleContext_" data-uid="GameFramework.ConsoleTool.Commands.ExampleCommand.Execute(System.String[],GameFramework.ConsoleTool.IConsoleContext)">Execute(String[], IConsoleContext)</h4>
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.ConsoleTool.Commands.ExampleCommand.yml" sourcestartlinenumber="2" sourceendlinenumber="4">Main command execution method - this is called when user runs the command
+Parse arguments and perform the requested action
+Always validate input and provide helpful error messages</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Execute(string[] args, IConsoleContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p sourcefile="api/GameFramework.ConsoleTool.Commands.ExampleCommand.yml" sourcestartlinenumber="1" sourceendlinenumber="1">Command arguments (everything after the command name)</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="GameFramework.ConsoleTool.IConsoleContext.html">IConsoleContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p sourcefile="api/GameFramework.ConsoleTool.Commands.ExampleCommand.yml" sourcestartlinenumber="1" sourceendlinenumber="1">Console context for output and system interaction</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.html#GameFramework_ConsoleTool_Commands_ConsoleCommandBase_Execute_System_String___GameFramework_ConsoleTool_IConsoleContext_">ConsoleCommandBase.Execute(String[], IConsoleContext)</a></div>
+  
+  
+  <a id="GameFramework_ConsoleTool_Commands_ExampleCommand_GetUsage_" data-uid="GameFramework.ConsoleTool.Commands.ExampleCommand.GetUsage*"></a>
+  <h4 id="GameFramework_ConsoleTool_Commands_ExampleCommand_GetUsage" data-uid="GameFramework.ConsoleTool.Commands.ExampleCommand.GetUsage">GetUsage()</h4>
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.ConsoleTool.Commands.ExampleCommand.yml" sourcestartlinenumber="2" sourceendlinenumber="3">Provide detailed usage information for the help system
+Should include all possible argument combinations with examples</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string GetUsage()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.html#GameFramework_ConsoleTool_Commands_ConsoleCommandBase_GetUsage">ConsoleCommandBase.GetUsage()</a></div>
+  
+  
+  <a id="GameFramework_ConsoleTool_Commands_ExampleCommand_ValidateArgs_" data-uid="GameFramework.ConsoleTool.Commands.ExampleCommand.ValidateArgs*"></a>
+  <h4 id="GameFramework_ConsoleTool_Commands_ExampleCommand_ValidateArgs_System_String___" data-uid="GameFramework.ConsoleTool.Commands.ExampleCommand.ValidateArgs(System.String[])">ValidateArgs(String[])</h4>
+  <div class="markdown level1 summary"><p sourcefile="api/GameFramework.ConsoleTool.Commands.ExampleCommand.yml" sourcestartlinenumber="2" sourceendlinenumber="3">Validate arguments before execution (optional but recommended)
+Return false if arguments are invalid - prevents Execute() from being called</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool ValidateArgs(string[] args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.html#GameFramework_ConsoleTool_Commands_ConsoleCommandBase_ValidateArgs_System_String___">ConsoleCommandBase.ValidateArgs(String[])</a></div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="GameFramework.ConsoleTool.IConsoleCommand.html">IConsoleCommand</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+          
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+              UCTools Base Project Documentation
+              
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>
