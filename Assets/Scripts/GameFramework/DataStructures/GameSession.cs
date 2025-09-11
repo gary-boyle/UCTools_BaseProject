@@ -19,14 +19,46 @@ namespace GameFramework.DataStructures
         public string playerName = "Player";
         public string difficulty = "Normal";
         public string currentScene = "";
-        public DateTime sessionStartTime;
-        public DateTime lastSaveTime;
+        
+        [Header("DateTime Fields - Serializable")]
+        [SerializeField] private long _sessionStartTimeTicks;
+        [SerializeField] private long _lastSaveTimeTicks;
+        
+        /// <summary>
+        /// Gets/Sets the session start time with proper serialization support
+        /// </summary>
+        public DateTime sessionStartTime
+        {
+            get 
+            {
+                if (_sessionStartTimeTicks == 0)
+                    return DateTime.Now; // Fallback for uninitialized data
+                return new DateTime(_sessionStartTimeTicks);
+            }
+            set { _sessionStartTimeTicks = value.Ticks; }
+        }
+        
+        /// <summary>
+        /// Gets/Sets the last save time with proper serialization support
+        /// </summary>
+        public DateTime lastSaveTime
+        {
+            get 
+            {
+                if (_lastSaveTimeTicks == 0)
+                    return DateTime.Now; // Fallback for uninitialized data
+                return new DateTime(_lastSaveTimeTicks);
+            }
+            set { _lastSaveTimeTicks = value.Ticks; }
+        }
         
         [Header("Time Tracking - Serialized Fields")]
         [SerializeField] private float _savedGameTime = 0f;      // Serialized playtime data
         [SerializeField] private float _savedSessionTime = 0f;   // Serialized session time data
         [SerializeField] private bool _hasTimeData = false;      // Flag to know if we have saved time data
         
+        [SerializeField] public bool WasAutoSave = false;      // Flag to know if the game was an autosave
+
         [Header("Player State")]
         public PlayerState player = new PlayerState();
         
@@ -53,23 +85,8 @@ namespace GameFramework.DataStructures
         }
         
         /// <summary>
-        /// Gets the current session time - uses TimeService if available, fallback to saved data
-        /// </summary>
-        public float SessionTimeSeconds
-        {
-            get
-            {
-                var timeService = GameManager.GetService<ITimeService>();
-                if (timeService != null && timeService.IsInitialized)
-                {
-                    return timeService.SessionTime;
-                }
-                return _savedSessionTime; // Fallback to saved data when TimeService not available
-            }
-        }
-        
-        /// <summary>
         /// Gets formatted playtime string for display (HH:MM:SS)
+        /// Uses current TimeService if available, fallback to saved data
         /// </summary>
         public string FormattedPlayTime
         {
@@ -85,21 +102,29 @@ namespace GameFramework.DataStructures
         }
         
         /// <summary>
-        /// Gets formatted session time string for display (HH:MM:SS)
+        /// Gets the saved playtime string for display in save file lists (HH:MM:SS)
+        /// Always uses the saved time data, not current TimeService data
         /// </summary>
-        public string FormattedSessionTime
+        public string SavedFormattedPlayTime
         {
             get
             {
-                var timeService = GameManager.GetService<ITimeService>();
-                if (timeService != null && timeService.IsInitialized)
-                {
-                    return timeService.GetFormattedSessionTime();
-                }
-                return FormatTimeFromSeconds(_savedSessionTime);
+                return FormatTimeFromSeconds(_savedGameTime);
             }
         }
         
+        /// <summary>
+        /// Gets the saved session time string for display in save file lists (HH:MM:SS)
+        /// Always uses the saved time data, not current TimeService data
+        /// </summary>
+        public string SavedFormattedSessionTime
+        {
+            get
+            {
+                return FormatTimeFromSeconds(_savedSessionTime);
+            }
+        }
+
         /// <summary>
         /// Updates the saved time data from TimeService before saving
         /// Call this before serializing the session to ensure current time data is captured
@@ -107,17 +132,39 @@ namespace GameFramework.DataStructures
         public void UpdateTimeDataFromService()
         {
             var timeService = GameManager.GetService<ITimeService>();
+    
+            // Debug logs
+            Debug.Log($"[GameSession] UpdateTimeDataFromService - TimeService: {timeService != null}");
+    
+            if (timeService != null)
+            {
+                Debug.Log($"[GameSession] TimeService IsInitialized: {timeService.IsInitialized}");
+                Debug.Log($"[GameSession] TimeService GameTime: {timeService.GameTime}");
+                Debug.Log($"[GameSession] TimeService SessionTime: {timeService.SessionTime}");
+            }
+    
             if (timeService != null && timeService.IsInitialized)
             {
                 _savedGameTime = timeService.GameTime;
                 _savedSessionTime = timeService.SessionTime;
                 _hasTimeData = true;
-                
+        
                 Debug.Log($"[GameSession] Updated time data from TimeService - Game: {FormatTimeFromSeconds(_savedGameTime)}, Session: {FormatTimeFromSeconds(_savedSessionTime)}");
             }
             else
             {
-                Debug.LogWarning("[GameSession] TimeService not available - time data not updated");
+                Debug.LogWarning("[GameSession] TimeService not available - using fallback calculation");
+                
+                // Fallback: Calculate playtime based on session duration if we have no previous data
+                if (!_hasTimeData || _savedGameTime == 0f)
+                {
+                    var sessionDuration = (DateTime.Now - sessionStartTime).TotalSeconds;
+                    _savedGameTime = (float)sessionDuration;
+                    _savedSessionTime = (float)sessionDuration;
+                }
+                
+                _hasTimeData = true;
+                Debug.Log($"[GameSession] Using fallback time data: {FormatTimeFromSeconds(_savedGameTime)}");
             }
         }
         
@@ -144,26 +191,29 @@ namespace GameFramework.DataStructures
         /// </summary>
         public static GameSession CreateNewGame(string playerName, string difficulty, string startingScene)
         {
+            var now = DateTime.Now;
             var session = new GameSession
             {
                 playerName = playerName,
                 difficulty = difficulty,
                 currentScene = startingScene,
-                sessionStartTime = DateTime.Now,
-                lastSaveTime = DateTime.Now,
+                sessionStartTime = now,      // Uses the property, will set _sessionStartTimeTicks
+                lastSaveTime = now,          // Uses the property, will set _lastSaveTimeTicks
                 player = PlayerState.CreateDefault(difficulty),
                 progress = GameProgress.CreateDefault(),
-                _savedGameTime = 0f,      // Initialize time data
+                _savedGameTime = 0f,         // Initialize time data
                 _savedSessionTime = 0f,
-                _hasTimeData = true,      // Mark as having time data
+                _hasTimeData = true,         // Mark as having time data
+                WasAutoSave = false,
                 customData = new Dictionary<string, object>
                 {
-                    ["creationTime"] = DateTime.Now.ToString(),
+                    ["creationTime"] = now.ToString("O"), // ISO 8601 format for consistency
                     ["isNewGame"] = true,
                     ["startingPosition"] = "DefaultSpawn"
                 }
             };
             
+            Debug.Log($"[GameSession] Created new game session - Start: {session.sessionStartTime}, Save: {session.lastSaveTime}");
             return session;
         }
         
@@ -174,6 +224,8 @@ namespace GameFramework.DataStructures
         public void UpdateLastSaveTime()
         {
             lastSaveTime = DateTime.Now;
+            Debug.Log($"[GameSession] Updated lastSaveTime to: {lastSaveTime}");
+            
             UpdateTimeDataFromService(); // Capture current time data
         }
         
@@ -218,14 +270,6 @@ namespace GameFramework.DataStructures
                 timeSpan.Seconds);
         }
         
-        /// <summary>
-        /// Gets the age of this session (time since creation)
-        /// </summary>
-        public TimeSpan GetSessionAge()
-        {
-            return DateTime.Now - sessionStartTime;
-        }
-
         
         /// <summary>
         /// Updates the current scene reference
@@ -286,7 +330,8 @@ namespace GameFramework.DataStructures
         public override string ToString()
         {
             return $"GameSession[Player: {playerName}, Difficulty: {difficulty}, Scene: {currentScene}, " +
-                   $"Playtime: {FormattedPlayTime}, Level: {player.level}, HasTimeData: {_hasTimeData}]";
+                   $"Playtime: {FormattedPlayTime}, Level: {player.level}, HasTimeData: {_hasTimeData}, " +
+                   $"LastSave: {lastSaveTime}]";
         }
     }
 }

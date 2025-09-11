@@ -1,5 +1,5 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using GameFramework.Services.Data;
 
 namespace GameFramework.Services.Interfaces
 {
@@ -14,15 +14,9 @@ namespace GameFramework.Services.Interfaces
         // Time Properties
         float GameTime { get; }        // Time spent in PlayingState when not paused
         float SessionTime { get; }     // Total time since service started (excluding pause)
-        float LevelTime { get; }       // Time spent in current level/scene
-        
-        TimeSpan GameTimeSpan { get; }
-        TimeSpan SessionTimeSpan { get; }
-        TimeSpan LevelTimeSpan { get; }
-        
+
         // State Properties
         bool IsTrackingGameTime { get; }
-        bool IsTrackingSessionTime { get; }
         
         // Service Lifecycle
         Task InitializeAsync();
@@ -31,15 +25,6 @@ namespace GameFramework.Services.Interfaces
         // Time Methods
         string GetFormattedGameTime();
         string GetFormattedSessionTime();
-        string GetFormattedLevelTime();
-        void ResetAllTimers();
-        void ResetLevelTimer();
         TimeStatistics GetTimeStatistics();
-        
-        // Events
-        event Action<float> OnGameTimeChanged;
-        event Action<float> OnSessionTimeChanged;
-        event Action<float> OnLevelTimeChanged;
-        event Action OnTimersReset;
     }
 }

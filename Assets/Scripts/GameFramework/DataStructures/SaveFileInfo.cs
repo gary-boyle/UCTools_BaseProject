@@ -24,7 +24,6 @@ namespace GameFramework.DataStructures
         // Additional info for richer display
         public int playerLevel;
         public int score;
-        public PlayTimeInfo playTimeInfo;
 
         public SaveFileInfo(string fileName, GameSession session)
         {
@@ -35,48 +34,16 @@ namespace GameFramework.DataStructures
             this.lastSaveTime = session.lastSaveTime;
             this.playerLevel = session.player.level;
             this.score = session.progress.score;
-            
-            // Use TimeService-based playtime information
-            this.formattedPlayTime = session.FormattedPlayTime;
-            this.formattedSessionTime = session.FormattedSessionTime;
-            this.playTimeInfo = session.GetPlayTimeInfo();
+    
+            // Use SAVED playtime information for save file display
+            this.formattedPlayTime = session.SavedFormattedPlayTime;     
+            this.formattedSessionTime = session.SavedFormattedSessionTime; 
             
             // Check if this is an autosave from both filename and session data
-            this.isAutoSave = DetermineIfAutoSave(fileName, session);
-            
+            this.isAutoSave = session.WasAutoSave;
+    
             // Format display strings
             formattedDate = lastSaveTime.ToString("yyyy-MM-dd HH:mm");
-        }
-
-        /// <summary>
-        /// Determines if this save file is an autosave by checking both filename and session data
-        /// </summary>
-        private bool DetermineIfAutoSave(string fileName, GameSession session)
-        {
-            // Check filename first (most reliable)
-            if (fileName.Contains("[AUTOSAVE]"))
-            {
-                return true;
-            }
-            
-            // Fallback to session data if available
-            if (session.customData.ContainsKey("isAutoSave"))
-            {
-                if (bool.TryParse(session.customData["isAutoSave"].ToString(), out bool sessionAutoSave))
-                {
-                    return sessionAutoSave;
-                }
-            }
-            
-            return false;
-        }
-
-        /// <summary>
-        /// Gets a short description for the save type
-        /// </summary>
-        public string GetSaveTypeDescription()
-        {
-            return isAutoSave ? "Automatic Save" : "Manual Save";
         }
     }
 }

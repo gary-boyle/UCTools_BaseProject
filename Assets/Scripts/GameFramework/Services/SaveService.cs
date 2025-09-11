@@ -15,6 +15,10 @@ namespace GameFramework.Services
     /// Save service that handles file saving operations and save file metadata via event system
     /// Clean separation - UI triggers saves via events, service handles implementation
     /// All loading operations are handled by LoadService
+    /// 
+    /// Design: Event-driven architecture with caching for performance
+    /// Pros: Decoupled, performant metadata caching, player-specific autosaves
+    /// Cons: Async complexity, cache invalidation management
     /// </summary>
     public class SaveService : ISaveService
     {
@@ -25,6 +29,7 @@ namespace GameFramework.Services
         private const string SAVE_EXTENSION = ".gamesave";
         private const string AUTOSAVE_IDENTIFIER = "[AUTOSAVE]";
         
+        // Cache for save file metadata to avoid repeated file I/O
         private readonly Dictionary<string, SaveFileInfo> _saveFileInfoCache = new();
         
         public SaveService(IEventSystem eventSystem)
@@ -67,6 +72,9 @@ namespace GameFramework.Services
             IsInitialized = false;
         }
         
+        /// <summary>
+        /// Clears all cached save file metadata
+        /// </summary>
         private void ClearCaches()
         {
             _saveFileInfoCache.Clear();
@@ -89,6 +97,9 @@ namespace GameFramework.Services
         
         #region Public Interface - File Management
         
+        /// <summary>
+        /// Gets all save file names asynchronously
+        /// </summary>
         public async Task<string[]> GetSaveFilesAsync()
         {
             return await Task.Run(() =>
@@ -108,6 +119,9 @@ namespace GameFramework.Services
             });
         }
         
+        /// <summary>
+        /// Deletes a save file and clears its cache entry
+        /// </summary>
         public async Task<bool> DeleteSaveAsync(string saveName)
         {
             var filePath = GetSaveFilePath(saveName);
@@ -123,6 +137,9 @@ namespace GameFramework.Services
             return true;
         }
         
+        /// <summary>
+        /// Deletes a save file using SaveFileInfo object
+        /// </summary>
         public async Task<bool> DeleteSaveFileByInfoAsync(SaveFileInfo saveFileInfo)
         {
             if (saveFileInfo == null) return false;
@@ -133,6 +150,9 @@ namespace GameFramework.Services
         
         #region Public Interface - Metadata & Utilities
         
+        /// <summary>
+        /// Gets metadata for all save files, sorted by most recent first
+        /// </summary>
         public async Task<SaveFileInfo[]> GetSaveFileInfosAsync()
         {
             try
@@ -163,6 +183,9 @@ namespace GameFramework.Services
             }
         }
         
+        /// <summary>
+        /// Checks if any save files exist
+        /// </summary>
         public bool HasAnySaves()
         {
             if (!System.IO.Directory.Exists(_saveDirectory))
@@ -172,11 +195,17 @@ namespace GameFramework.Services
             return files.Length > 0;
         }
         
+        /// <summary>
+        /// Gets the full file path for a save name
+        /// </summary>
         public string GetSaveFilePath(string saveName)
         {
             return _saveDirectory + saveName + SAVE_EXTENSION;
         }
         
+        /// <summary>
+        /// Invalidates cached metadata for a specific save file
+        /// </summary>
         public void InvalidateCache(string saveName)
         {
             _saveFileInfoCache.Remove(saveName);
@@ -206,8 +235,8 @@ namespace GameFramework.Services
         }
         
         /// <summary>
-        /// Performs an autosave, always overwriting the existing autosave file
-        /// Called internally via event system
+        /// Performs an autosave, only overwriting existing autosaves for the current player
+        /// Uses consistent naming instead of timestamps for autosaves
         /// </summary>
         private async Task<(bool success, string saveName)> PerformAutoSaveAsync()
         {
@@ -218,10 +247,11 @@ namespace GameFramework.Services
                 return (false, null);
             }
 
-            // Delete existing autosave first
-            await DeleteExistingAutoSaveAsync();
+            // Delete existing autosave for current player only
+            await DeleteCurrentPlayerAutoSaveAsync(gameDataService.CurrentSession.playerName);
             
-            string saveName = GenerateTimestampSaveName(gameDataService.CurrentSession, true);
+            // Use consistent autosave naming (no timestamp) for each player
+            string saveName = GenerateAutoSaveName(gameDataService.CurrentSession);
             bool success = await SaveGameSessionInternalAsync(gameDataService.CurrentSession, saveName, true);
             
             return (success, saveName);
@@ -251,8 +281,6 @@ namespace GameFramework.Services
 
             try
             {
-                Debug.Log($"[SaveService] Overwriting save file: {targetSaveFile.fileName}");
-        
                 string saveName = targetSaveFile.fileName;
                 bool wasAutoSave = saveName.Contains(AUTOSAVE_IDENTIFIER);
                 bool success = await SaveGameSessionInternalAsync(gameDataService.CurrentSession, saveName, wasAutoSave);
@@ -288,15 +316,17 @@ namespace GameFramework.Services
         }
         
         /// <summary>
-        /// Internal method that performs the actual save operation
+        /// Internal method that performs the actual save operation with game session data
+        /// Updates playtime tracking and metadata before saving
         /// </summary>
         private async Task<bool> SaveGameSessionInternalAsync(GameSession session, string saveName, bool isAutoSave)
         {
             try
             {
                 session.UpdateLastSaveTime();
-                session.SetCustomData("isAutoSave", isAutoSave.ToString());
+                session.WasAutoSave = isAutoSave;
                 
+                // Store playtime information in custom data
                 var playTimeInfo = session.GetPlayTimeInfo();
                 session.SetCustomData("playTimeAtSave", playTimeInfo.GameTime);
                 session.SetCustomData("sessionTimeAtSave", playTimeInfo.SessionTime);
@@ -307,11 +337,9 @@ namespace GameFramework.Services
                 
                 await System.IO.File.WriteAllTextAsync(filePath, json);
                 
+                // Invalidate cache since file content changed
                 InvalidateCache(saveName);
                 _eventSystem.Publish(new SaveGameEvent());
-                
-                Debug.Log($"[SaveService] Game session saved as '{saveName}' (AutoSave: {isAutoSave}) - " +
-                         $"Playtime: {playTimeInfo.FormattedGameTime}, Session: {playTimeInfo.FormattedSessionTime}");
                 
                 return true;
             }
@@ -322,28 +350,50 @@ namespace GameFramework.Services
             }
         }
         
-        private async Task DeleteExistingAutoSaveAsync()
+        /// <summary>
+        /// Deletes only the autosave file for the current player, preserving other players' autosaves
+        /// This ensures each player maintains their own autosave without interfering with others
+        /// </summary>
+        private async Task DeleteCurrentPlayerAutoSaveAsync(string currentPlayerName)
         {
+            if (string.IsNullOrEmpty(currentPlayerName))
+            {
+                Debug.LogWarning("[SaveService] Cannot delete player autosave - no current player name");
+                return;
+            }
+                
             try
             {
-                var existingAutoSaves = await GetAutoSaveFilesAsync();
-                foreach (string autoSaveFile in existingAutoSaves)
+                var playerAutoSaveFiles = await GetPlayerAutoSaveFilesAsync(currentPlayerName);
+                foreach (string autoSaveFile in playerAutoSaveFiles)
                 {
                     await DeleteSaveAsync(autoSaveFile);
+                    Debug.Log($"[SaveService] Deleted existing autosave for player '{currentPlayerName}': {autoSaveFile}");
                 }
             }
             catch (Exception ex)
             {
-                Debug.LogWarning($"[SaveService] Error deleting existing autosaves: {ex.Message}");
+                Debug.LogWarning($"[SaveService] Error deleting autosaves for player '{currentPlayerName}': {ex.Message}");
             }
         }
         
-        private async Task<string[]> GetAutoSaveFilesAsync()
+        /// <summary>
+        /// Gets autosave files specifically for a given player name
+        /// </summary>
+        private async Task<string[]> GetPlayerAutoSaveFilesAsync(string playerName)
         {
             var allSaveFiles = await GetSaveFilesAsync();
-            return allSaveFiles.Where(fileName => fileName.Contains(AUTOSAVE_IDENTIFIER)).ToArray();
+            return allSaveFiles.Where(fileName => 
+                fileName.Contains(AUTOSAVE_IDENTIFIER) && 
+                fileName.StartsWith(playerName + "_", StringComparison.OrdinalIgnoreCase)
+            ).ToArray();
         }
         
+        
+        /// <summary>
+        /// Gets cached save file info, loading and caching it if not already cached
+        /// Uses file modification time to determine if cache is still valid
+        /// </summary>
         private async Task<SaveFileInfo> GetCachedSaveFileInfoAsync(string fileName)
         {
             var filePath = GetSaveFilePath(fileName);
@@ -352,12 +402,14 @@ namespace GameFramework.Services
             
             var fileTime = System.IO.File.GetLastWriteTime(filePath);
             
+            // Check if we have valid cached data
             if (_saveFileInfoCache.TryGetValue(fileName, out var cached) && 
                 cached.lastSaveTime == fileTime)
             {
                 return cached;
             }
             
+            // Load and cache new data
             var loadService = GameManager.GetService<ILoadService>();
             var info = await CreateSaveFileInfoAsync(fileName, loadService);
             if (info != null)
@@ -368,6 +420,9 @@ namespace GameFramework.Services
             return info;
         }
         
+        /// <summary>
+        /// Creates SaveFileInfo by loading the game session data
+        /// </summary>
         private static async Task<SaveFileInfo> CreateSaveFileInfoAsync(string fileName, ILoadService loadService)
         {
             try
@@ -376,8 +431,6 @@ namespace GameFramework.Services
                 if (gameSession == null) return null;
                 
                 var saveInfo = new SaveFileInfo(fileName, gameSession);
-                Debug.Log($"[SaveService] Created SaveFileInfo for '{fileName}' - " +
-                          $"Game time: {saveInfo.formattedPlayTime}, Session time: {saveInfo.formattedSessionTime}");
                 return saveInfo;
             }
             catch (Exception ex)
@@ -387,12 +440,25 @@ namespace GameFramework.Services
             }
         }
         
+        /// <summary>
+        /// Generates timestamped save names for regular saves
+        /// </summary>
         private static string GenerateTimestampSaveName(GameSession session, bool isAutoSave)
         {
             string timestamp = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
             string playerName = session.playerName ?? "Player";
             
             return isAutoSave ? $"{playerName}_{AUTOSAVE_IDENTIFIER}_{timestamp}" : $"{playerName}_Save_{timestamp}";
+        }
+        
+        /// <summary>
+        /// Generates consistent autosave names (without timestamps) for each player
+        /// This ensures each player has only one autosave file that gets overwritten
+        /// </summary>
+        private static string GenerateAutoSaveName(GameSession session)
+        {
+            string playerName = session.playerName ?? "Player";
+            return $"{playerName}_{AUTOSAVE_IDENTIFIER}";
         }
         
         #endregion

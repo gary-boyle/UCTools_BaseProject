@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using GameFramework.EventSystem.Events;
 using GameFramework.EventSystem.Interfaces;
+using GameFramework.Services.Data;
 using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine.Enum;
 using GameFramework.StateMachine.Interfaces;
@@ -38,7 +39,6 @@ namespace GameFramework.Services
         
         // Dependencies
         private readonly IEventSystem _eventSystem;
-        private readonly IPauseService _pauseService;
         private readonly IGameDataService _gameDataService;
         
         // Internal time tracking
@@ -54,12 +54,6 @@ namespace GameFramework.Services
         // For delta time calculations
         private float _lastUpdateTime;
         
-        // Events
-        public event Action<float> OnGameTimeChanged;
-        public event Action<float> OnSessionTimeChanged;
-        public event Action<float> OnLevelTimeChanged;
-        public event Action OnTimersReset;
-        
         #endregion
         
         #region Constructor
@@ -69,11 +63,9 @@ namespace GameFramework.Services
         /// </summary>
         public TimeService(
             IEventSystem eventSystem, 
-            IPauseService pauseService,
             IGameDataService gameDataService)
         {
             _eventSystem = eventSystem ?? throw new ArgumentNullException(nameof(eventSystem));
-            _pauseService = pauseService ?? throw new ArgumentNullException(nameof(pauseService));
             _gameDataService = gameDataService ?? throw new ArgumentNullException(nameof(gameDataService));
         }
         
@@ -108,15 +100,11 @@ namespace GameFramework.Services
             
             IsInitialized = true;
             await Task.CompletedTask;
-            
-            Debug.Log("[TimeService] Time service initialized successfully");
         }
         
         public void Shutdown()
         {
             if (!IsInitialized) return;
-            
-            Debug.Log("[TimeService] Shutting down time service...");
             
             // Save time data to session
             SaveTimeDataToSession();
@@ -143,29 +131,29 @@ namespace GameFramework.Services
         public void Update()
         {
             if (!_isInitialized) return;
-            
+    
             // Calculate delta time using real time (unaffected by Time.timeScale)
             float currentTime = Time.realtimeSinceStartup;
             float deltaTime = currentTime - _lastUpdateTime;
             _lastUpdateTime = currentTime;
 
-            // Update session time (always tracking when initialized and not paused)
+            // Update timers based on current state
             if (!_isPaused)
             {
+                // Always update session time when not paused
                 _sessionTime += deltaTime;
-                OnSessionTimeChanged?.Invoke(_sessionTime);
-            }
-            
-            // Update game time (only when in PlayingState and not paused)
-            if (IsTrackingGameTime)
-            {
-                _gameTime += deltaTime;
+        
+                // Only update game time when in playing state
+                if (_isInPlayingState)
+                {
+                    _gameTime += deltaTime;
+                }
+        
+                // Always update level time when not paused (could be refined based on needs)
                 _levelTime += deltaTime;
-                
-                OnGameTimeChanged?.Invoke(_gameTime);
-                OnLevelTimeChanged?.Invoke(_levelTime);
             }
         }
+
         
         #endregion
         
@@ -187,28 +175,15 @@ namespace GameFramework.Services
             return FormatTime(_sessionTime);
         }
         
-        /// <summary>
-        /// Get formatted level time string (HH:MM:SS)
-        /// </summary>
-        public string GetFormattedLevelTime()
-        {
-            return FormatTime(_levelTime);
-        }
         
         /// <summary>
         /// Reset all timers
         /// </summary>
         public void ResetAllTimers()
         {
-            Debug.Log("[TimeService] Resetting all timers...");
-            
             _gameTime = 0f;
             _sessionTime = 0f;
             _levelTime = 0f;
-            
-            OnTimersReset?.Invoke();
-            
-            Debug.Log("[TimeService] All timers reset");
         }
         
         /// <summary>
@@ -216,9 +191,7 @@ namespace GameFramework.Services
         /// </summary>
         public void ResetLevelTimer()
         {
-            Debug.Log("[TimeService] Resetting level timer...");
             _levelTime = 0f;
-            OnLevelTimeChanged?.Invoke(_levelTime);
         }
         
         /// <summary>
@@ -257,7 +230,6 @@ namespace GameFramework.Services
         private void OnGamePaused(GamePausedEvent evt)
         {
             _isPaused = true;
-            Debug.Log("[TimeService] Game paused - stopping time tracking");
         }
         
         private void OnGameResumed(GameResumedEvent evt)
@@ -266,25 +238,20 @@ namespace GameFramework.Services
             
             // Update last update time to prevent time jump when resuming
             _lastUpdateTime = Time.realtimeSinceStartup;
-            
-            Debug.Log("[TimeService] Game resumed - resuming time tracking");
         }
         
         private void OnNewGameRequested(NewGameRequestedEvent evt)
         {
-            Debug.Log("[TimeService] New game started - resetting timers");
             ResetAllTimers();
         }
         
         private void OnGameLoaded(LoadGameEvent evt)
         {
-            Debug.Log("[TimeService] Game loaded - loading time data from session");
             LoadTimeDataFromSession();
         }
         
         private void OnSceneLoaded(SceneLoadedEvent evt)
         {
-            Debug.Log($"[TimeService] Scene loaded: {evt.SceneName} - resetting level timer");
             ResetLevelTimer();
         }
         
@@ -309,12 +276,11 @@ namespace GameFramework.Services
         /// </summary>
         private void SaveTimeDataToSession()
         {
-            if (_gameDataService?.HasActiveSession() == true)
-            {
-                _gameDataService.SetCustomData("GameTime", _gameTime);
-                _gameDataService.SetCustomData("SessionTime", _sessionTime);
-                Debug.Log("[TimeService] Time data saved to session");
-            }
+            if (_gameDataService?.HasActiveSession() != true) return;
+            
+            _gameDataService.SetCustomData("GameTime", _gameTime);
+            _gameDataService.SetCustomData("SessionTime", _sessionTime);
+            Debug.Log("[TimeService] Time data saved to session");
         }
         
         /// <summary>
@@ -322,44 +288,13 @@ namespace GameFramework.Services
         /// </summary>
         private void LoadTimeDataFromSession()
         {
-            if (_gameDataService?.HasActiveSession() == true)
-            {
-                _gameTime = _gameDataService.GetCustomData<float>("GameTime", 0f);
-                _sessionTime = _gameDataService.GetCustomData<float>("SessionTime", 0f);
-                _levelTime = 0f; // Always reset level time when loading
-        
-                Debug.Log($"[TimeService] Time data loaded from session - Game: {GetFormattedGameTime()}, Session: {GetFormattedSessionTime()}");
-        
-                // Fire events to notify other systems of the loaded time
-                OnGameTimeChanged?.Invoke(_gameTime);
-                OnSessionTimeChanged?.Invoke(_sessionTime);
-                OnLevelTimeChanged?.Invoke(_levelTime);
-            }
+            if (_gameDataService?.HasActiveSession() != true) return;
+            
+            _gameTime = _gameDataService.GetCustomData<float>("GameTime", 0f);
+            _sessionTime = _gameDataService.GetCustomData<float>("SessionTime", 0f);
+            _levelTime = 0f; // Always reset level time when loading
         }
         
         #endregion
-    }
-    
-    /// <summary>
-    /// Data structure for time statistics
-    /// </summary>
-    public struct TimeStatistics
-    {
-        public float GameTime;
-        public float SessionTime;
-        public float LevelTime;
-        public bool IsTrackingGameTime;
-        public bool IsTrackingSessionTime;
-        public bool IsPaused;
-        public bool IsInPlayingState;
-        
-        public override string ToString()
-        {
-            return $"GameTime: {TimeSpan.FromSeconds(GameTime):hh\\:mm\\:ss}, " +
-                   $"SessionTime: {TimeSpan.FromSeconds(SessionTime):hh\\:mm\\:ss}, " +
-                   $"LevelTime: {TimeSpan.FromSeconds(LevelTime):hh\\:mm\\:ss}, " +
-                   $"Tracking: Game={IsTrackingGameTime}, Session={IsTrackingSessionTime}, " +
-                   $"Paused: {IsPaused}, PlayingState: {IsInPlayingState}";
-        }
     }
 }

@@ -30,6 +30,5 @@ namespace GameFramework.Services.Interfaces
         GameProgress GetGameProgress();
         T GetCustomData<T>(string key, T defaultValue = default);
         void SetCustomData<T>(string key, T value);
-        T GetLoadingData<T>(string key, T defaultValue = default);
     }
 }
