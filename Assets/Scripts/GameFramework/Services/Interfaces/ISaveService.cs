@@ -4,49 +4,57 @@ using GameFramework.DataStructures;
 namespace GameFramework.Services.Interfaces
 {
     /// <summary>
-    /// Interface for save service that handles both file operations and business logic
-    /// Provides clean separation between low-level file I/O and high-level save operations
-    /// Supports both regular saves and autosaves with automatic file management
+    /// Interface for save service that handles file operations and save file metadata
+    /// Save operations are triggered via event system for clean separation of concerns
+    /// Provides file management and metadata retrieval for UI systems
+    /// 
+    /// INTENT: Minimal interface focused on file operations and metadata
+    /// DESIGN: Save operations moved to event system, interface only exposes what external systems need
+    /// PROS: Clean separation, reduced coupling, focused responsibilities
+    /// CONS: Less direct control for external systems (but that's by design)
     /// </summary>
     public interface ISaveService : IGameService
     {
         bool IsInitialized { get; }
         
         Task InitializeAsync();
-        
         void Shutdown();
         
-        #region Business Logic Methods
-
+        #region Save Validation
+        
+        /// <summary>
+        /// Checks if the game can currently be saved based on session state
+        /// Used by UI to determine save button availability
+        /// </summary>
         bool CanSaveGame();
         
-        Task<(bool success, string saveName)> PerformRegularSaveAsync();
+        #endregion
         
-        Task<(bool success, string saveName)> PerformAutoSaveAsync();
+        #region File Management
+        
+        /// <summary>
+        /// Deletes a save file using SaveFileInfo
+        /// </summary>
+        Task<bool> DeleteSaveFileByInfoAsync(SaveFileInfo saveFileInfo);
         
         #endregion
         
-        #region Core Save/Load Operations
+        #region Metadata & Utilities
         
-        Task<string[]> GetSaveFilesAsync();
-        
-        Task<bool> DeleteSaveAsync(string saveName);
-        
-        #endregion
-        
-        #region Utility Methods
-        
-        bool HasAnySaves();
-        
-        string GetSaveFilePath(string saveName);
-        
-        #endregion
-        
-        #region UI Support Operations
-        
+        /// <summary>
+        /// Gets formatted save file information with caching
+        /// </summary>
         Task<SaveFileInfo[]> GetSaveFileInfosAsync();
         
-        Task<bool> DeleteSaveFileByInfoAsync(SaveFileInfo saveFileInfo);
+        /// <summary>
+        /// Checks if any save files exist
+        /// </summary>
+        bool HasAnySaves();
+        
+        /// <summary>
+        /// Gets the full file path for a save file name
+        /// </summary>
+        string GetSaveFilePath(string saveName);
         
         #endregion
     }

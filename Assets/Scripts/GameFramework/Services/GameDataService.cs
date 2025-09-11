@@ -165,52 +165,21 @@ namespace GameFramework.Services
             }
         }
         
-        /// <summary>
-        /// Performs a regular save using SaveService - returns save name for UI feedback
-        /// </summary>
-        public async Task<(bool success, string saveName)> SaveCurrentSessionAsync()
-        {
-            if (!_saveService.CanSaveGame())
-            {
-                Debug.LogWarning("[GameDataService] Cannot save game - no active session or save service unavailable");
-                return (false, null);
-            }
-            
-            var result = await _saveService.PerformRegularSaveAsync();
-            
-            if (result.success)
-            {
-                Debug.Log($"[GameDataService] Manual save completed: {result.saveName} - " +
-                         $"Playtime: {CurrentSession?.FormattedPlayTime ?? "N/A"}");
-            }
-            
-            return result;
-        }
         
         /// <summary>
         /// Performs an auto-save using SaveService
         /// </summary>
-        public async Task<(bool success, string saveName)> PerformAutoSaveAsync()
+        public async Task<bool> PerformAutoSaveAsync()
         {
             if (!_saveService.CanSaveGame())
             {
                 Debug.LogWarning("[GameDataService] Cannot auto-save - no active session or save service unavailable");
-                return (false, null);
+                return false;
             }
             
-            var result = await _saveService.PerformAutoSaveAsync();
+            _eventSystem.Publish(new AutoSaveRequestedEvent());
             
-            if (result.success)
-            {
-                Debug.Log($"[GameDataService] Auto-save completed: {result.saveName} - " +
-                         $"Playtime: {CurrentSession?.FormattedPlayTime ?? "N/A"}");
-            }
-            else
-            {
-                Debug.LogWarning("[GameDataService] Auto-save failed");
-            }
-            
-            return result;
+            return true;
         }
         
         #endregion

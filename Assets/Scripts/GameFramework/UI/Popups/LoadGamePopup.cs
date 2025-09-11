@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using GameFramework.DataStructures;
 using GameFramework.EventSystem.Events;
 using UCTools_Utilities.UI;
 using UnityEngine;
@@ -10,6 +11,11 @@ namespace GameFramework.UI.Screens
     /// <summary>
     /// Load game popup that extends the base save file list functionality
     /// Provides double-click loading and load button functionality
+    /// 
+    /// INTENT: Specialized popup for loading saved game files with enhanced UX
+    /// DESIGN: Leverages base class double-click infrastructure for consistent UX
+    /// PROS: Minimal code duplication, consistent interaction patterns, clean separation
+    /// CONS: Dependent on base class implementation
     /// </summary>
     public class LoadGamePopup : SaveFileListPopup
     {
@@ -34,7 +40,6 @@ namespace GameFramework.UI.Screens
 
         protected override void SetupSpecificFunctionality()
         {
-            SetupDoubleClickLoading();
         }
 
         protected override void RegisterSpecificEventHandlers()
@@ -45,18 +50,35 @@ namespace GameFramework.UI.Screens
         protected override void UnregisterSpecificEventHandlers()
         {
             _loadGameButton?.UnregisterCallback<ClickEvent>(OnLoadButtonClicked);
-            _saveFileList?.UnregisterCallback<MouseDownEvent>(OnListViewMouseDown);
         }
 
         protected override void UpdateSpecificButtonStates()
         {
+            if (!IsVisible) return;
+            
             bool canLoad = CanLoadSelectedFile();
             _loadGameButton?.SetEnabled(canLoad);
         }
 
         protected override async Task ClosePopup()
         {
-            await _uiService?.HidePopupAsync<LoadGamePopup>(); // ✅ Fixed: Use correct type
+            await _uiService?.HidePopupAsync<LoadGamePopup>();
+        }
+
+        /// <summary>
+        /// Implements double-click action for loading - called by base class
+        /// </summary>
+        protected override async Task OnDoubleClickAction(SaveFileInfo selectedSaveFile)
+        {
+            await RequestLoadSelectedFile();
+        }
+
+        /// <summary>
+        /// Implements double-click validation - called by base class
+        /// </summary>
+        protected override bool CanPerformDoubleClickAction()
+        {
+            return CanLoadSelectedFile();
         }
         
         #endregion
@@ -64,76 +86,61 @@ namespace GameFramework.UI.Screens
         #region Load-Specific Functionality
         
         /// <summary>
-        /// Sets up double-click functionality on the ListView
+        /// Validates if the currently selected file can be loaded
         /// </summary>
-        private void SetupDoubleClickLoading()
-        {
-            if (_saveFileList == null) return;
-            _saveFileList.RegisterCallback<MouseDownEvent>(OnListViewMouseDown);
-        }
-
         private bool CanLoadSelectedFile()
         {
-            return _selectedSaveFile != null &&
+            return IsVisible &&
+                   _selectedSaveFile != null &&
                    !_isLoadingData &&
                    !_isDeletingFile &&
                    !_loadService.IsLoading;
         }
 
-        private void OnLoadButtonClicked(ClickEvent evt)
+        /// <summary>
+        /// Handles load button click with validation
+        /// </summary>
+        private async void OnLoadButtonClicked(ClickEvent evt)
         {
-            Debug.Log("[LoadGamePopup] Load button clicked");
-
+            if (!IsVisible) return;
+            
             if (!CanLoadSelectedFile())
             {
-                Debug.LogWarning($"[LoadGamePopup] Cannot load - Selected: {_selectedSaveFile != null}, Loading: {_isLoadingData}");
+                Debug.LogWarning($"[LoadGamePopup] Cannot load - Selected: {_selectedSaveFile != null}, Loading: {_isLoadingData}, Visible: {IsVisible}");
                 return;
             }
 
-            RequestLoadSelectedFile();
+            await RequestLoadSelectedFile();
         }
 
         /// <summary>
-        /// Handles double-click on ListView - loads selected save file immediately
+        /// Requests loading of selected save file with comprehensive error handling
         /// </summary>
-        private void OnListViewMouseDown(MouseDownEvent evt)
+        private async Task RequestLoadSelectedFile()
         {
-            if (evt.clickCount == 2 && evt.button == 0) // Left mouse button double-click
+            if (!IsVisible || _selectedSaveFile == null)
             {
-                Debug.Log("[LoadGamePopup] Double-click detected on ListView");
-
-                if (_selectedSaveFile != null && CanLoadSelectedFile())
-                {
-                    Debug.Log($"[LoadGamePopup] Double-click loading save file: {_selectedSaveFile.fileName}");
-                    RequestLoadSelectedFile();
-                    evt.StopPropagation();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Publishes event to request loading of selected save file
-        /// </summary>
-        private void RequestLoadSelectedFile()
-        {
-            if (_selectedSaveFile == null)
-            {
-                Debug.LogWarning("[LoadGamePopup] No save file selected");
+                Debug.LogWarning($"[LoadGamePopup] Cannot request load - Visible: {IsVisible}, Selected: {_selectedSaveFile != null}");
                 return;
             }
-
-            Debug.Log($"[LoadGamePopup] Requesting load of save file: {_selectedSaveFile.fileName}");
-
-            // Publish the event - LoadService handles everything
-            var loadEvent = new LoadSaveFileEvent(_selectedSaveFile);
-            _eventSystem.Publish(loadEvent);
-
-            Debug.Log($"[LoadGamePopup] Published LoadSaveFileEvent for {_selectedSaveFile.fileName}");
-
-            // Close popup after requesting load
-            _ = ClosePopupAsync();
+            
+            try
+            {
+                var loadEvent = new LoadSaveFileEvent(_selectedSaveFile);
+                _eventSystem.Publish(loadEvent);
+                
+                // Close popup after requesting load
+                await ClosePopupAsync();
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"[LoadGamePopup] Error requesting load: {ex}");
+            }
         }
 
+        /// <summary>
+        /// Safely closes the popup with proper error handling
+        /// </summary>
         private async Task ClosePopupAsync()
         {
             try
@@ -145,7 +152,7 @@ namespace GameFramework.UI.Screens
                 Debug.LogError($"[LoadGamePopup] Error closing popup: {ex}");
             }
         }
-        
+
         #endregion
     }
 }

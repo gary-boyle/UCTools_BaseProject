@@ -66,7 +66,7 @@ namespace GameFramework.StateMachine.GameStates
             // Subscribe to pause state change events - this is where the magic happens
             _eventSystem.Subscribe<GamePausedEvent>(OnGamePaused);
             _eventSystem.Subscribe<GameResumedEvent>(OnGameResumed);
-
+            
             // Auto-resume if game is paused when entering (via event)
             if (_pauseService.IsPaused)
             {

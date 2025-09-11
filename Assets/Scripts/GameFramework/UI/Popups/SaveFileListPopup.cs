@@ -14,8 +14,13 @@ namespace GameFramework.UI.Screens
 {
     /// <summary>
     /// Base class for popups that display and manage save file lists
-    /// Provides common functionality for save file display, selection, and deletion
+    /// Provides common functionality for save file display, selection, deletion, and double-click handling
     /// Derived classes implement specific load/save behaviors
+    /// 
+    /// INTENT: Centralized save file list management with extensible interaction patterns
+    /// DESIGN: Template method pattern with double-click infrastructure and proper lifecycle management
+    /// PROS: DRY principle, centralized ListView logic, reusable double-click handling
+    /// CONS: More complex base class, requires careful abstract method implementation
     /// </summary>
     public abstract class SaveFileListPopup : UIPopup
     {
@@ -43,6 +48,14 @@ namespace GameFramework.UI.Screens
         protected SaveFileInfo _selectedSaveFile;
         protected bool _isLoadingData;
         protected bool _isDeletingFile;
+        
+        #endregion
+
+        #region Double-Click Management
+        
+        private float _lastClickTime = 0f;
+        private const float DOUBLE_CLICK_THRESHOLD = 0.5f;
+        private bool _listViewEventHandlersRegistered = false;
         
         #endregion
 
@@ -91,6 +104,50 @@ namespace GameFramework.UI.Screens
         /// </summary>
         protected abstract void UpdateSpecificButtonStates();
         
+        /// <summary>
+        /// Handle double-click action - implemented by derived classes
+        /// </summary>
+        /// <param name="selectedSaveFile">The save file that was double-clicked</param>
+        protected abstract Task OnDoubleClickAction(SaveFileInfo selectedSaveFile);
+        
+        /// <summary>
+        /// Check if double-click action can be performed - implemented by derived classes
+        /// </summary>
+        /// <returns>True if double-click action is allowed</returns>
+        protected abstract bool CanPerformDoubleClickAction();
+        
+        #endregion
+
+        #region Popup Lifecycle Override
+        
+        /// <summary>
+        /// Override Show to ensure proper setup each time popup is displayed
+        /// </summary>
+        public override void Show()
+        {
+            Debug.Log($"[{GetType().Name}] Show() called - setting up for display");
+            
+            // Clean up any existing handlers first
+            CleanupListViewEventHandlers();
+            
+            // Call base class show
+            base.Show();
+        }
+
+        /// <summary>
+        /// Override Hide to ensure proper cleanup each time popup is hidden
+        /// </summary>
+        public override void Hide()
+        {
+            Debug.Log($"[{GetType().Name}] Hide() called - cleaning up");
+            
+            // Clean up ListView handlers
+            CleanupListViewEventHandlers();
+            
+            // Call base class hide
+            base.Hide();
+        }
+        
         #endregion
 
         #region Initialization
@@ -112,6 +169,8 @@ namespace GameFramework.UI.Screens
             _deleteButton = RootElement?.Q<Button>("btn_DeleteSelected");
             _closeButton = RootElement?.Q<Button>("btn_Close");
             _statusLabel = RootElement?.Q<Label>("lbl_Status");
+            
+            Debug.Log($"[{GetType().Name}] Common UI elements cached - SaveFileList: {_saveFileList != null}");
         }
 
         private void ConfigureInitialStates()
@@ -125,8 +184,63 @@ namespace GameFramework.UI.Screens
             if (_saveFileList == null) return;
 
             _saveFileList.bindItem = BindListItem;
-            _saveFileList.selectionChanged += OnSelectionChanged;
             _saveFileList.selectionType = SelectionType.Single;
+            
+            Debug.Log($"[{GetType().Name}] ListView basic setup completed");
+        }
+        
+        #endregion
+
+        #region ListView Event Management
+        
+        /// <summary>
+        /// Sets up ListView event handlers including double-click functionality
+        /// </summary>
+        private void SetupListViewEventHandlers()
+        {
+            if (_saveFileList == null || _listViewEventHandlersRegistered) return;
+
+            try
+            {
+                // Clear any existing selection
+                _saveFileList.ClearSelection();
+                
+                // Register selection change callback
+                _saveFileList.selectionChanged += OnSelectionChanged;
+                
+                // Register pointer events for double-click detection
+                _saveFileList.RegisterCallback<PointerDownEvent>(OnListViewPointerDown, TrickleDown.TrickleDown);
+                _saveFileList.RegisterCallback<MouseDownEvent>(OnListViewMouseDown, TrickleDown.NoTrickleDown);
+                
+                _listViewEventHandlersRegistered = true;
+                Debug.Log($"[{GetType().Name}] ListView event handlers registered");
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"[{GetType().Name}] Error setting up ListView event handlers: {ex}");
+            }
+        }
+
+        /// <summary>
+        /// Cleans up ListView event handlers
+        /// </summary>
+        private void CleanupListViewEventHandlers()
+        {
+            if (_saveFileList == null || !_listViewEventHandlersRegistered) return;
+
+            try
+            {
+                _saveFileList.selectionChanged -= OnSelectionChanged;
+                _saveFileList.UnregisterCallback<PointerDownEvent>(OnListViewPointerDown);
+                _saveFileList.UnregisterCallback<MouseDownEvent>(OnListViewMouseDown);
+                
+                _listViewEventHandlersRegistered = false;
+                Debug.Log($"[{GetType().Name}] ListView event handlers cleaned up");
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"[{GetType().Name}] Error cleaning up ListView event handlers: {ex}");
+            }
         }
         
         #endregion
@@ -178,15 +292,12 @@ namespace GameFramework.UI.Screens
             if (autoSaveIndicator != null)
             {
                 autoSaveIndicator.style.display = saveFileInfo.isAutoSave ? DisplayStyle.Flex : DisplayStyle.None;
-        
-                // Add CSS class for styling if needed
                 autoSaveIndicator.EnableInClassList("autosave-active", saveFileInfo.isAutoSave);
             }
     
             // Add autosave class to the entire container for additional styling
             element.EnableInClassList("is-autosave", saveFileInfo.isAutoSave);
         }
-
 
         private void UpdateSelectionVisuals(VisualElement element, SaveFileInfo saveFileInfo)
         {
@@ -201,6 +312,7 @@ namespace GameFramework.UI.Screens
         {
             RegisterCommonEventHandlers();
             RegisterSpecificEventHandlers();
+            SetupListViewEventHandlers(); // Set up ListView handlers when showing
             ResetUIState();
             await RefreshSaveFilesList();
         }
@@ -209,6 +321,7 @@ namespace GameFramework.UI.Screens
         {
             UnregisterCommonEventHandlers();
             UnregisterSpecificEventHandlers();
+            CleanupListViewEventHandlers(); // Clean up ListView handlers when hiding
         }
 
         private void RegisterCommonEventHandlers()
@@ -225,8 +338,61 @@ namespace GameFramework.UI.Screens
 
         private void OnSelectionChanged(IEnumerable<object> selectedItems)
         {
-            var selectedSaveFile = selectedItems.FirstOrDefault() as SaveFileInfo;
-            UpdateSelection(selectedSaveFile);
+            if (!IsVisible) return;
+
+            try
+            {
+                var selectedSaveFile = selectedItems.FirstOrDefault() as SaveFileInfo;
+                UpdateSelection(selectedSaveFile);
+                Debug.Log($"[{GetType().Name}] Selection changed to: {selectedSaveFile?.fileName ?? "None"}");
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"[{GetType().Name}] Error handling selection change: {ex}");
+            }
+        }
+
+        /// <summary>
+        /// Handles pointer down events for reliable timing
+        /// </summary>
+        private void OnListViewPointerDown(PointerDownEvent evt)
+        {
+            if (!IsVisible) return;
+            
+            _lastClickTime = Time.unscaledTime;
+            Debug.Log($"[{GetType().Name}] Pointer down at {_lastClickTime}");
+        }
+
+        /// <summary>
+        /// Handles mouse down events for double-click detection
+        /// </summary>
+        private void OnListViewMouseDown(MouseDownEvent evt)
+        {
+            if (!IsVisible || evt.button != 0) return;
+            
+            if (evt.clickCount == 2)
+            {
+                float timeSinceLastClick = Time.unscaledTime - _lastClickTime;
+                
+                Debug.Log($"[{GetType().Name}] Double-click detected, time since last: {timeSinceLastClick}");
+                
+                if (timeSinceLastClick <= DOUBLE_CLICK_THRESHOLD && 
+                    _selectedSaveFile != null && 
+                    CanPerformDoubleClickAction())
+                {
+                    Debug.Log($"[{GetType().Name}] Performing double-click action on: {_selectedSaveFile.fileName}");
+                    
+                    // Delegate to derived class implementation
+                    _ = OnDoubleClickAction(_selectedSaveFile);
+                    
+                    evt.StopPropagation();
+                    evt.PreventDefault();
+                }
+                else
+                {
+                    Debug.LogWarning($"[{GetType().Name}] Double-click failed - Time: {timeSinceLastClick}, Selected: {_selectedSaveFile != null}, CanPerform: {CanPerformDoubleClickAction()}");
+                }
+            }
         }
 
         private async void OnDeleteButtonClicked(ClickEvent evt)

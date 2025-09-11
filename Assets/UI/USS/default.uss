@@ -868,3 +868,58 @@
     background-color: rgb(107, 179, 255) !important;
     border-color: rgb(140, 200, 255) !important;
 }
+/* Modal Overlay System */
+.ui-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.85);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.ui-modal-panel {
+    background-color: rgb(42, 42, 42);
+    border-radius: 16px;
+    padding: 40px;
+    border-width: 2px;
+    border-color: rgb(68, 68, 68);
+    min-width: 350px;
+}
+
+/* Save Progress Bar - Based on existing loading-progress */
+.saving-progress {
+    width: 250px;
+    height: 12px;
+    background-color: rgb(58, 58, 58);
+    border-radius: 6px;
+    border-width: 1px;
+    border-color: rgb(68, 68, 68);
+}
+
+.saving-progress .unity-progress-bar__background {
+    background-color: rgb(58, 58, 58);
+    border-radius: 6px;
+}
+
+.saving-progress .unity-progress-bar__progress {
+    background-color: rgb(74, 158, 255);
+    border-radius: 6px;
+}
+
+/* Save Status Label */
+.save-status-label {
+    min-height: 20px;
+}
+
+/* Show/Hide utilities if not already present */
+.visible {
+    display: flex;
+}
+
+.hidden {
+    display: none;
+}

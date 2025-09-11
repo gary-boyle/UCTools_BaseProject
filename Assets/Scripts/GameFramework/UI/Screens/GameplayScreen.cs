@@ -114,8 +114,7 @@ namespace GameFramework.UI.Screens
         /// </summary>
         private void OnTestButtonClicked(ClickEvent evt)
         {
-            Debug.Log("[GamePlayScreen] Test button clicked - performing auto-save");
-            _saveService?.PerformAutoSaveAsync();
+            _eventSystem.Publish(new AutoSaveRequestedEvent());
         }
         
         /// <summary>
@@ -123,7 +122,6 @@ namespace GameFramework.UI.Screens
         /// </summary>
         private void OnPauseButtonClicked(ClickEvent evt)
         {
-            Debug.Log("[GamePlayScreen] Pause button clicked - reporting to state");
             _eventSystem?.Publish(new PauseRequestedEvent());
         }
         
@@ -132,8 +130,7 @@ namespace GameFramework.UI.Screens
         /// </summary>
         private void OnSaveButtonClicked(ClickEvent evt)
         {
-            Debug.Log("[GamePlayScreen] Save button clicked - performing regular save");
-            _saveService?.PerformRegularSaveAsync();
+            _eventSystem.Publish(new RegularSaveRequestedEvent());
         }
 
         /// <summary>
@@ -141,7 +138,6 @@ namespace GameFramework.UI.Screens
         /// </summary>
         private void OnVictoryButtonClicked(ClickEvent evt)
         {
-            Debug.Log("[GamePlayScreen] Victory button clicked - triggering victory event");
             _eventSystem?.Publish(new VictoryEvent());
         }
 
@@ -150,7 +146,6 @@ namespace GameFramework.UI.Screens
         /// </summary>
         private void OnGameOverButtonClicked(ClickEvent evt)
         {
-            Debug.Log("[GamePlayScreen] Game Over button clicked - triggering game over event");
             _eventSystem?.Publish(new GameOverEvent());
         }   
 

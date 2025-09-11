@@ -132,10 +132,7 @@ namespace GameFramework.Services
                 session.RestoreTimeDataToService();
         
                 _eventSystem.Publish(new LoadGameEvent());
-        
-                Debug.Log($"[LoadService] Game session loaded from '{saveName}' - " +
-                          $"Playtime: {session.FormattedPlayTime}");
-        
+                
                 return session;
             }
             catch (Exception e)
@@ -174,9 +171,6 @@ namespace GameFramework.Services
             try
             {
                 IsLoading = true;
-                Debug.Log($"[LoadService] Starting load for: {saveFileInfo.fileName} - " +
-                          $"Playtime: {saveFileInfo.formattedPlayTime}");
-                         
                 return await ExecuteLoadingWorkflow(saveFileInfo);
             }
             catch (Exception e)
@@ -196,8 +190,6 @@ namespace GameFramework.Services
         /// </summary>
         private async Task<bool> ExecuteLoadingWorkflow(SaveFileInfo saveFileInfo)
         {
-            Debug.Log($"[LoadService] Starting loading workflow for: {saveFileInfo.fileName}");
-            
             // Load save data and validate its integrity
             NotifyProgress("Loading and validating save data...", 0.2f);
             var gameSession = await LoadAndValidateGameSession(saveFileInfo);
@@ -219,7 +211,6 @@ namespace GameFramework.Services
             NotifyProgress("Loading complete!", 1.0f);
             _eventSystem.Publish(new LoadingCompletedEvent(gameSession));
             
-            Debug.Log($"[LoadService] Successfully loaded game: {saveFileInfo.fileName}");
             return true;
         }
         
@@ -238,7 +229,6 @@ namespace GameFramework.Services
                     return null;
                 }
         
-                Debug.Log($"[LoadService] Game session loaded and validated: {saveFileInfo.fileName}");
                 return gameSession;
             }
             catch (Exception e)

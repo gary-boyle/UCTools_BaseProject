@@ -251,7 +251,7 @@ namespace GameFramework.StateMachine
             _validTransitions.Add((GameStateType.NewGame, GameStateType.MainMenu));
             _validTransitions.Add((GameStateType.NewGame, GameStateType.Playing));
             
-            // Playing game state transitions - NO MORE PAUSED STATE
+            // Playing game state transitions
             _validTransitions.Add((GameStateType.Playing, GameStateType.GameOver));
             _validTransitions.Add((GameStateType.Playing, GameStateType.Victory));
             _validTransitions.Add((GameStateType.Playing, GameStateType.MainMenu));
