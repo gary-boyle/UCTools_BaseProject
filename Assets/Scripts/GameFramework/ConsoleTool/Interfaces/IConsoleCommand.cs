@@ -1,6 +1,6 @@
 ﻿using GameFramework.ConsoleTool.Enums;
 
-namespace GameFramework.ConsoleTool
+namespace GameFramework.ConsoleTool.Interfaces
 {
     /// <summary>
     /// Interface for console commands that can be executed from the command line

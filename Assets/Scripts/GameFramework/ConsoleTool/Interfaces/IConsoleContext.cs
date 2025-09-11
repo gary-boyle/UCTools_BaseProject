@@ -1,4 +1,4 @@
-﻿namespace GameFramework.ConsoleTool
+﻿namespace GameFramework.ConsoleTool.Interfaces
 {
     /// <summary>
     /// Context interface providing access to console functionality

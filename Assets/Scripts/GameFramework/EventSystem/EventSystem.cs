@@ -54,41 +54,38 @@ namespace GameFramework.EventSystem
         public void Unsubscribe<T>(Action<T> handler) where T : class
         {
             var eventType = typeof(T);
-            if (_handlers.TryGetValue(eventType, out var handlers))
-            {
-                handlers.Remove(handler);
-                if (handlers.Count == 0)
-                    _handlers.Remove(eventType);
-            }
+            if (!_handlers.TryGetValue(eventType, out var handlers)) return;
+            
+            handlers.Remove(handler);
+            if (handlers.Count == 0)
+                _handlers.Remove(eventType);
         }
         
         public void Unsubscribe<T>(Action handler)
         {
             var eventType = typeof(T);
-            if (_handlers.TryGetValue(eventType, out var handlers))
-            {
-                handlers.Remove(handler);
-                if (handlers.Count == 0)
-                    _handlers.Remove(eventType);
-            }
+            if (!_handlers.TryGetValue(eventType, out var handlers)) return;
+            
+            handlers.Remove(handler);
+            if (handlers.Count == 0)
+                _handlers.Remove(eventType);
         }
         
         public void Publish<T>(T eventData) where T : class
         {
             var eventType = typeof(T);
-            if (_handlers.TryGetValue(eventType, out var handlers))
+            if (!_handlers.TryGetValue(eventType, out var handlers)) return;
+            
+            for (int i = handlers.Count - 1; i >= 0; i--)
             {
-                for (int i = handlers.Count - 1; i >= 0; i--)
+                try
                 {
-                    try
-                    {
-                        if (handlers[i] is Action<T> handler)
-                            handler.Invoke(eventData);
-                    }
-                    catch (Exception e)
-                    {
-                        Debug.LogError($"[EventSystem] Error in event handler for {eventType.Name}: {e}");
-                    }
+                    if (handlers[i] is Action<T> handler)
+                        handler.Invoke(eventData);
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"[EventSystem] Error in event handler for {eventType.Name}: {e}");
                 }
             }
         }
@@ -96,19 +93,18 @@ namespace GameFramework.EventSystem
         public void Publish<T>()
         {
             var eventType = typeof(T);
-            if (_handlers.TryGetValue(eventType, out var handlers))
+            if (!_handlers.TryGetValue(eventType, out var handlers)) return;
+            
+            for (int i = handlers.Count - 1; i >= 0; i--)
             {
-                for (int i = handlers.Count - 1; i >= 0; i--)
+                try
                 {
-                    try
-                    {
-                        if (handlers[i] is Action handler)
-                            handler.Invoke();
-                    }
-                    catch (Exception e)
-                    {
-                        Debug.LogError($"[EventSystem] Error in event handler for {eventType.Name}: {e}");
-                    }
+                    if (handlers[i] is Action handler)
+                        handler.Invoke();
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"[EventSystem] Error in event handler for {eventType.Name}: {e}");
                 }
             }
         }

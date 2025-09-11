@@ -8,6 +8,7 @@ using GameFramework.Input.Interfaces;
 using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine.Data;
 using GameFramework.StateMachine.Enum;
+using GameFramework.StateMachine.Interfaces;
 using GameFramework.UI.Screens;
 
 namespace GameFramework.StateMachine.GameStates
@@ -18,7 +19,7 @@ namespace GameFramework.StateMachine.GameStates
     /// </summary>
     public class NewGameState : BaseGameState
     {
-        protected readonly IGameDataService GameDataService;
+        private readonly IGameDataService GameDataService;
 
         public NewGameState(
             IGameStateMachine stateMachine,

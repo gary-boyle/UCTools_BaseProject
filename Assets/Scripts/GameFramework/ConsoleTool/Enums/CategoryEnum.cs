@@ -10,6 +10,6 @@
         Graphics,
         Audio,
         Network,
-        Development,
+        Development
     }
 }

@@ -1,16 +1,19 @@
-﻿/// <summary>
-/// Playtime information structure for UI display and debugging
-/// </summary>
-public struct PlayTimeInfo
+﻿namespace GameFramework.DataStructures
 {
-    public float GameTime;
-    public float SessionTime;
-    public string FormattedGameTime;
-    public string FormattedSessionTime;
-    public bool IsTracking;
-        
-    public override string ToString()
+    /// <summary>
+    /// Playtime information structure for UI display and debugging
+    /// </summary>
+    public struct PlayTimeInfo
     {
-        return $"PlayTime[Game: {FormattedGameTime}, Session: {FormattedSessionTime}, Tracking: {IsTracking}]";
+        public float GameTime;
+        public float SessionTime;
+        public string FormattedGameTime;
+        public string FormattedSessionTime;
+        public bool IsTracking;
+        
+        public override string ToString()
+        {
+            return $"PlayTime[Game: {FormattedGameTime}, Session: {FormattedSessionTime}, Tracking: {IsTracking}]";
+        }
     }
 }

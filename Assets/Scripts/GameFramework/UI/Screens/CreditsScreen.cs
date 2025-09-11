@@ -8,11 +8,6 @@ namespace GameFramework.UI.Screens
     /// <summary>
     /// Credits screen - displays game credits and handles user interactions
     /// Follows established pattern of publishing events rather than managing state directly
-    /// 
-    /// Intent: Display game credits and provide navigation back to main menu
-    /// Design: Event-driven UI component with clear separation of concerns
-    /// Pros: Maintainable, testable, follows established patterns
-    /// Cons: Requires event system for interactions
     /// </summary>
     public class CreditsScreen : UIScreen
     {

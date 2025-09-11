@@ -14,7 +14,7 @@ namespace GameFramework.Input.Handlers
         private readonly IConfigService _configService;
         
         public ConsoleInputHandler(IEventSystem eventSystem, IConsoleService consoleService, IConfigService configService)
-            : base("Console", 1000, eventSystem, true) // Highest priority
+            : base("Console", 1000, eventSystem) // Highest priority
         {
             _consoleService = consoleService;
             _configService = configService;
@@ -41,18 +41,11 @@ namespace GameFramework.Input.Handlers
                 return false; // Let it be handled by our event handler, don't consume
             
             // If console is open, consume most other input to prevent conflicts
-            if (_consoleService.IsConsoleOpen())
-            {
-                // Allow console-specific input through
-                if (inputEvent is ConsoleSubmitInputEvent || 
-                    inputEvent is ConsoleTabCompleteInputEvent)
-                    return false;
-                
-                // Consume all other input when console is open
-                return true;
-            }
-            
-            return false; // Console closed, don't consume input
+            if (!_consoleService.IsConsoleOpen()) return false; // Console closed, don't consume input
+
+            // Allow console-specific input through
+            return inputEvent is not ConsoleSubmitInputEvent && 
+                   inputEvent is not ConsoleTabCompleteInputEvent;
         }
         
         private void OnConsoleToggle(ConsoleToggleInputEvent evt)
@@ -63,14 +56,12 @@ namespace GameFramework.Input.Handlers
             }
         }
         
-        private void OnConsoleSubmit(ConsoleSubmitInputEvent evt)
+        private static void OnConsoleSubmit(ConsoleSubmitInputEvent evt)
         {
-            // Handle console command submission
         }
         
-        private void OnConsoleTab(ConsoleTabCompleteInputEvent evt)
+        private static void OnConsoleTab(ConsoleTabCompleteInputEvent evt)
         {
-            // Handle console tab completion
         }
     }
 }

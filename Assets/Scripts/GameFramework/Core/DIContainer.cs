@@ -39,14 +39,14 @@ namespace GameFramework.Core
     /// var service = container.Resolve&lt;IMyService&gt;();
     /// </code>
     /// </example>
-    public class DIContainer
+    public class DiContainer
     {
         #region Singleton Implementation
 
         /// <summary>
         /// Private static instance for singleton pattern.
         /// </summary>
-        private static DIContainer _instance;
+        private static DiContainer _instance;
         
         /// <summary>
         /// Gets the singleton instance of the DI container.
@@ -56,7 +56,7 @@ namespace GameFramework.Core
         /// Creates a new instance on first access. The container is designed to be used
         /// as a singleton to maintain consistent service registrations across the application.
         /// </remarks>
-        public static DIContainer Instance => _instance ??= new DIContainer();
+        public static DiContainer Instance => _instance ??= new DiContainer();
 
         #endregion
 
@@ -120,10 +120,7 @@ namespace GameFramework.Core
         /// <exception cref="ArgumentNullException">Thrown when instance is null.</exception>
         public void RegisterSingleton<T>(T instance) where T : class
         {
-            if (instance == null)
-                throw new ArgumentNullException(nameof(instance));
-                
-            _singletons[typeof(T)] = instance;
+            _singletons[typeof(T)] = instance ?? throw new ArgumentNullException(nameof(instance));
         }
         
         /// <summary>
@@ -275,7 +272,7 @@ namespace GameFramework.Core
         /// <exception cref="InvalidOperationException">
         /// Thrown when circular dependency is detected or no registration is found for the type.
         /// </exception>
-        public object Resolve(Type type)
+        private object Resolve(Type type)
         {
             // Prevent circular dependencies
             if (_resolutionStack.Contains(type))
@@ -424,7 +421,7 @@ namespace GameFramework.Core
                 
                 return Activator.CreateInstance(type, args);
             }
-            catch (Exception ex) when (!(ex is InvalidOperationException))
+            catch (Exception ex) when (ex is not InvalidOperationException)
             {
                 throw new InvalidOperationException($"Failed to create instance of type {type.Name}", ex);
             }

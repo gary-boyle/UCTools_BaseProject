@@ -102,11 +102,7 @@ namespace GameFramework.EventSystem.Events
         }
     }
     
-    public class PlayerJumpInputEvent
-    {
-        // Jump is typically just performed, no need for phase
-        public PlayerJumpInputEvent() { }
-    }
+    public class PlayerJumpInputEvent { }
 
     public class PlayerPreviousInputEvent { }
 
@@ -353,7 +349,7 @@ namespace GameFramework.EventSystem.Events
     public class LoadSaveFileEvent
     {
         public SaveFileInfo SaveFileInfo { get; }
-        public string SaveFileName => SaveFileInfo.fileName;
+        public string SaveFileName => SaveFileInfo.FileName;
 
         public LoadSaveFileEvent(SaveFileInfo saveFileInfo)
         {
@@ -410,7 +406,7 @@ namespace GameFramework.EventSystem.Events
     public class LoadingStartedEvent
     {
         public SaveFileInfo SaveFileInfo { get; }
-        public string SaveFileName => SaveFileInfo.fileName;
+        public string SaveFileName => SaveFileInfo.FileName;
         public DateTime StartTime { get; }
 
         public LoadingStartedEvent(SaveFileInfo saveFileInfo)

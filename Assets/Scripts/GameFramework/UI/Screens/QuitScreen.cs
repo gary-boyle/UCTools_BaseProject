@@ -9,11 +9,6 @@ namespace GameFramework.UI.Screens
     /// <summary>
     /// Quit screen - displays shutdown progress and handles graceful application exit
     /// Follows established pattern of publishing events rather than managing state directly
-    /// 
-    /// Intent: Provide visual feedback during shutdown process and allow cancellation when safe
-    /// Design: Event-driven UI component with progress tracking capabilities
-    /// Pros: Clear user feedback, graceful shutdown UX, cancellation support
-    /// Cons: Requires event system for interactions, complex progress management
     /// </summary>
     public class QuitScreen : UIScreen
     {

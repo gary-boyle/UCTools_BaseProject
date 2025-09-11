@@ -2,7 +2,7 @@
 using GameFramework.EventSystem.Interfaces;
 using UnityEngine;
 
-namespace GameFramework.Input
+namespace GameFramework.Input.Handlers
 {
     /// <summary>
     /// Base class for all input handlers
@@ -10,10 +10,10 @@ namespace GameFramework.Input
     /// </summary>
     public abstract class InputHandlerBase
     {
-        public string Name { get; protected set; }
+        private string Name { get; set; }
         public int Priority { get; protected set; } // Higher = more important
-        public bool IsActive { get; private set; }
-        public bool ConsumeInput { get; protected set; } // If true, stops event propagation to lower priority handlers
+        private bool IsActive { get; set; }
+        private bool ConsumeInput { get; set; } // If true, stops event propagation to lower priority handlers
         
         protected readonly IEventSystem _eventSystem;
         

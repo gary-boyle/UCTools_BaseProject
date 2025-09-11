@@ -6,8 +6,8 @@ using GameFramework.Input;
 using GameFramework.Input.Interfaces;
 using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine.Enum;
+using GameFramework.StateMachine.Interfaces;
 using GameFramework.UI.Screens;
-using UnityEngine;
 
 namespace GameFramework.StateMachine.GameStates
 {
@@ -64,8 +64,6 @@ namespace GameFramework.StateMachine.GameStates
         /// </summary>
         public override async Task ExitAsync()
         {
-            Debug.Log("[CreditsState] Exiting Credits state");
-            
             // Unsubscribe from events to prevent memory leaks
             _eventSystem.Unsubscribe<MainMenuRequestedEvent>(OnMainMenuRequested);
             

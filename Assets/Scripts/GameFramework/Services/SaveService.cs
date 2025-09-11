@@ -143,7 +143,7 @@ namespace GameFramework.Services
         public async Task<bool> DeleteSaveFileByInfoAsync(SaveFileInfo saveFileInfo)
         {
             if (saveFileInfo == null) return false;
-            return await DeleteSaveAsync(saveFileInfo.fileName);
+            return await DeleteSaveAsync(saveFileInfo.FileName);
         }
         
         #endregion
@@ -171,7 +171,7 @@ namespace GameFramework.Services
                 
                 // Sort by most recent first
                 var sortedInfos = saveFileInfos
-                    .OrderByDescending(info => info.lastSaveTime)
+                    .OrderByDescending(info => info.LastSaveTime)
                     .ToArray();
                 
                 return sortedInfos;
@@ -281,7 +281,7 @@ namespace GameFramework.Services
 
             try
             {
-                string saveName = targetSaveFile.fileName;
+                string saveName = targetSaveFile.FileName;
                 bool wasAutoSave = saveName.Contains(AUTOSAVE_IDENTIFIER);
                 bool success = await SaveGameSessionInternalAsync(gameDataService.CurrentSession, saveName, wasAutoSave);
         
@@ -294,7 +294,7 @@ namespace GameFramework.Services
             }
             catch (Exception ex)
             {
-                Debug.LogError($"[SaveService] Error overwriting save file '{targetSaveFile.fileName}': {ex}");
+                Debug.LogError($"[SaveService] Error overwriting save file '{targetSaveFile.FileName}': {ex}");
                 return false;
             }
         }
@@ -311,7 +311,7 @@ namespace GameFramework.Services
             if (!CanSaveGame()) return false;
             if (targetSaveFile == null) return false;
     
-            var filePath = GetSaveFilePath(targetSaveFile.fileName);
+            var filePath = GetSaveFilePath(targetSaveFile.FileName);
             return System.IO.File.Exists(filePath);
         }
         
@@ -404,7 +404,7 @@ namespace GameFramework.Services
             
             // Check if we have valid cached data
             if (_saveFileInfoCache.TryGetValue(fileName, out var cached) && 
-                cached.lastSaveTime == fileTime)
+                cached.LastSaveTime == fileTime)
             {
                 return cached;
             }
@@ -526,7 +526,7 @@ namespace GameFramework.Services
                 
                 if (success)
                 {
-                    _eventSystem.Publish(new SaveCompletedEvent(saveEvent.TargetSaveFile.fileName, false, true));
+                    _eventSystem.Publish(new SaveCompletedEvent(saveEvent.TargetSaveFile.FileName, false, true));
                 }
                 else
                 {

@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine.Serialization;
 
 namespace GameFramework.DataStructures
 {
@@ -11,39 +12,37 @@ namespace GameFramework.DataStructures
     [Serializable]
     public class SaveFileInfo
     {
-        public string fileName;
-        public string playerName;
-        public string difficulty;
-        public string currentScene;
-        public DateTime lastSaveTime;
-        public string formattedPlayTime;
-        public string formattedSessionTime;
-        public string formattedDate;
-        public bool isAutoSave;
-        
-        // Additional info for richer display
-        public int playerLevel;
-        public int score;
+        public string FileName;
+        public string PlayerName;
+        public string Difficulty;
+        public string CurrentScene;
+        public DateTime LastSaveTime;
+        public string FormattedPlayTime;
+        public string FormattedSessionTime;
+        public string FormattedDate;
+        public bool IsAutoSave;
+        public int PlayerLevel;
+        public int Score;
 
         public SaveFileInfo(string fileName, GameSession session)
         {
-            this.fileName = fileName;
-            this.playerName = session.playerName;
-            this.difficulty = session.difficulty;
-            this.currentScene = session.currentScene;
-            this.lastSaveTime = session.lastSaveTime;
-            this.playerLevel = session.player.level;
-            this.score = session.progress.score;
+            FileName = fileName;
+            PlayerName = session.playerName;
+            Difficulty = session.difficulty;
+            CurrentScene = session.currentScene;
+            LastSaveTime = session.lastSaveTime;
+            PlayerLevel = session.player.Level;
+            Score = session.progress.Score;
     
             // Use SAVED playtime information for save file display
-            this.formattedPlayTime = session.SavedFormattedPlayTime;     
-            this.formattedSessionTime = session.SavedFormattedSessionTime; 
+            FormattedPlayTime = session.SavedFormattedPlayTime;     
+            FormattedSessionTime = session.SavedFormattedSessionTime; 
             
             // Check if this is an autosave from both filename and session data
-            this.isAutoSave = session.WasAutoSave;
+            IsAutoSave = session.WasAutoSave;
     
             // Format display strings
-            formattedDate = lastSaveTime.ToString("yyyy-MM-dd HH:mm");
+            FormattedDate = LastSaveTime.ToString("yyyy-MM-dd HH:mm");
         }
     }
 }

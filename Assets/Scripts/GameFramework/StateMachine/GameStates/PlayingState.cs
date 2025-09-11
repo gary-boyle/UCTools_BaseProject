@@ -6,6 +6,7 @@ using GameFramework.Input;
 using GameFramework.Input.Interfaces;
 using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine.Enum;
+using GameFramework.StateMachine.Interfaces;
 using GameFramework.UI.Popups;
 using GameFramework.UI.Screens;
 using UnityEngine;

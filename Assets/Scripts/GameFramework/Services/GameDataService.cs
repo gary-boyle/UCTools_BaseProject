@@ -220,19 +220,19 @@ namespace GameFramework.Services
                 return false;
             }
 
-            if (session.player.maxHealth <= 0)
+            if (session.player.MaxHealth <= 0)
             {
                 Debug.LogError("[GameDataService] GameSession has invalid player max health");
                 return false;
             }
 
-            if (session.player.health > session.player.maxHealth)
+            if (session.player.Health > session.player.MaxHealth)
             {
                 Debug.LogWarning("[GameDataService] GameSession player health exceeds max health - auto-correcting");
-                session.player.health = session.player.maxHealth;
+                session.player.Health = session.player.MaxHealth;
             }
 
-            if (session.player.level < 1)
+            if (session.player.Level < 1)
             {
                 Debug.LogError("[GameDataService] GameSession has invalid player level");
                 return false;
@@ -245,10 +245,10 @@ namespace GameFramework.Services
                 return false;
             }
 
-            if (session.progress.score < 0)
+            if (session.progress.Score < 0)
             {
                 Debug.LogWarning("[GameDataService] GameSession has negative score - resetting to 0");
-                session.progress.score = 0;
+                session.progress.Score = 0;
             }
 
             // Validate timestamps

@@ -7,6 +7,7 @@ using GameFramework.EventSystem.Events;
 using GameFramework.EventSystem.Interfaces;
 using GameFramework.StateMachine.Enum;
 using GameFramework.StateMachine.GameStates;
+using GameFramework.StateMachine.Interfaces;
 using UnityEngine;
 using IFixedUpdatable = GameFramework.StateMachine.Interfaces.IFixedUpdatable;
 using IUpdatable = GameFramework.StateMachine.Interfaces.IUpdatable;
@@ -27,13 +28,12 @@ namespace GameFramework.StateMachine
         public BaseGameState CurrentState { get; private set; }
         public bool IsInitialized { get; private set; }
         
-        private readonly Dictionary<GameStateType, BaseGameState> _states = new Dictionary<GameStateType, BaseGameState>();
-        private readonly Stack<GameStateType> _stateHistory = new Stack<GameStateType>();
-        private readonly HashSet<(GameStateType from, GameStateType to)> _validTransitions = new HashSet<(GameStateType, GameStateType)>();
+        private readonly Dictionary<GameStateType, BaseGameState> _states;
+        private readonly Stack<GameStateType> _stateHistory;
+        private readonly HashSet<(GameStateType from, GameStateType to)> _validTransitions;
         private readonly GameContext _context;
         private readonly IEventSystem _eventSystem;
-        private readonly DIContainer _container;
-        private bool _isTransitioning = false;
+        private readonly DiContainer _container;
         
         /// <summary>
         /// All possible game states defined explicitly for Unity compatibility
@@ -56,7 +56,7 @@ namespace GameFramework.StateMachine
         /// <summary>
         /// Constructor injection - all dependencies provided by DI container
         /// </summary>
-        public GameStateMachine(GameContext context, IEventSystem eventSystem, DIContainer container)
+        public GameStateMachine(GameContext context, IEventSystem eventSystem, DiContainer container)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
             _eventSystem = eventSystem ?? throw new ArgumentNullException(nameof(eventSystem));
@@ -67,14 +67,11 @@ namespace GameFramework.StateMachine
         {
             if (IsInitialized) return;
             
-            Debug.Log("[GameStateMachine] Initializing state machine...");
-            
             // Register all states using DI container for constructor injection
             RegisterStates();
             
             // Define valid state transitions
             DefineStateTransitions();
-            _isTransitioning = false;
             IsInitialized = true;
             
             // Start with bootstrap state
@@ -83,10 +80,8 @@ namespace GameFramework.StateMachine
         
         public void Shutdown()
         {
-            if (CurrentState != null)
-            {
-                CurrentState.ExitAsync();
-            }
+            CurrentState?.ExitAsync();
+            
             _states.Clear();
             _stateHistory.Clear();
             IsInitialized = false;
@@ -104,24 +99,19 @@ namespace GameFramework.StateMachine
                 return;
             }
             
-            _isTransitioning = true;
-            
             // Store the previous state for the event
             var previousStateType = CurrentState?.StateType ?? GameStateType.Bootstrap;
             
             try
             {
                 // Exit current state
-                Debug.Log($"[GameStateMachine] Exiting current state: {previousStateType}");
                 if (CurrentState != null)
                 {
                     await CurrentState.ExitAsync();
                     _stateHistory.Push(previousStateType);
                 }
                 
-                // **CRITICAL FIX: Publish the state change event BEFORE entering new state**
                 // This ensures TimeService gets notified of the state change
-                Debug.Log($"[GameStateMachine] Publishing state change event: {previousStateType} -> {newStateType}");
                 _eventSystem.Publish(new GameStateChangeEvent 
                 { 
                     PreviousState = previousStateType,
@@ -130,13 +120,10 @@ namespace GameFramework.StateMachine
                 });
                 
                 // Enter new state
-                Debug.Log($"[GameStateMachine] Entering new state: {newStateType}");
                 if (_states.TryGetValue(newStateType, out var newState))
                 {
                     CurrentState = newState;
                     await CurrentState.EnterAsync(_context);
-                    
-                    Debug.Log($"[GameStateMachine] State transition completed: {previousStateType} -> {newStateType}");
                 }
                 else
                 {
@@ -147,10 +134,6 @@ namespace GameFramework.StateMachine
             {
                 Debug.LogError($"[GameStateMachine] Error during state transition from {previousStateType} to {newStateType}: {e}");
                 throw;
-            }
-            finally
-            {
-                _isTransitioning = false;
             }
         }
         
@@ -176,7 +159,6 @@ namespace GameFramework.StateMachine
         public void RegisterState(BaseGameState state)
         {
             _states[state.StateType] = state;
-            Debug.Log($"[GameStateMachine] Registered state: {state.StateType}");
         }
         
         public void Update()
@@ -194,8 +176,6 @@ namespace GameFramework.StateMachine
         /// </summary>
         private void RegisterStates()
         {
-            Debug.Log("[GameStateMachine] Registering game states with dependency injection...");
-            
             try
             {
                 // Use DI container to create states with all dependencies injected
@@ -209,8 +189,6 @@ namespace GameFramework.StateMachine
                 RegisterState(_container.Resolve<GameOverState>());
                 RegisterState(_container.Resolve<VictoryState>());
                 RegisterState(_container.Resolve<QuitState>());
-                
-                Debug.Log($"[GameStateMachine] Successfully registered {_states.Count} game states");
             }
             catch (Exception e)
             {
@@ -226,8 +204,6 @@ namespace GameFramework.StateMachine
         /// </summary>
         private void DefineStateTransitions()
         {
-            Debug.Log("[GameStateMachine] Defining valid state transitions...");
-            
             // Bootstrap transition
             _validTransitions.Add((GameStateType.Bootstrap, GameStateType.Splash));
             
@@ -273,109 +249,6 @@ namespace GameFramework.StateMachine
             _validTransitions.Add((GameStateType.Victory, GameStateType.Credits));
             _validTransitions.Add((GameStateType.Victory, GameStateType.NewGame));
             _validTransitions.Add((GameStateType.Victory, GameStateType.Quit));
-            
-            Debug.Log($"[GameStateMachine] Defined {_validTransitions.Count} valid state transitions");
-        }
-        
-        /// <summary>
-        /// Debug method to get all valid transitions from current state
-        /// Useful for debugging state machine issues
-        /// </summary>
-        public GameStateType[] GetValidTransitionsFromCurrentState()
-        {
-            var validTransitions = new List<GameStateType>();
-            
-            foreach (var transition in _validTransitions)
-            {
-                if (transition.from == CurrentStateType)
-                {
-                    validTransitions.Add(transition.to);
-                }
-            }
-            
-            return validTransitions.ToArray();
-        }
-        
-        /// <summary>
-        /// Debug method to check if a specific transition is valid
-        /// </summary>
-        public bool IsTransitionValid(GameStateType from, GameStateType to)
-        {
-            return _validTransitions.Contains((from, to));
-        }
-        
-        /// <summary>
-        /// Get the previous state from history (for back navigation)
-        /// </summary>
-        public GameStateType? GetPreviousState()
-        {
-            return _stateHistory.Count > 0 ? _stateHistory.Peek() : (GameStateType?)null;
-        }
-        
-        /// <summary>
-        /// Go back to the previous state if possible
-        /// </summary>
-        public async Task GoBackToPreviousStateAsync()
-        {
-            if (_stateHistory.Count > 0)
-            {
-                var previousState = _stateHistory.Pop();
-                if (CanTransitionTo(previousState))
-                {
-                    await ChangeStateAsync(previousState);
-                }
-                else
-                {
-                    Debug.LogWarning($"[GameStateMachine] Cannot transition back to {previousState} from {CurrentStateType}");
-                    // Put it back on the stack since we couldn't use it
-                    _stateHistory.Push(previousState);
-                }
-            }
-            else
-            {
-                Debug.LogWarning("[GameStateMachine] No previous state in history to go back to");
-            }
-        }
-        
-        /// <summary>
-        /// Clear the state history (useful when starting a new game)
-        /// </summary>
-        public void ClearStateHistory()
-        {
-            _stateHistory.Clear();
-            Debug.Log("[GameStateMachine] State history cleared");
-        }
-        
-        /// <summary>
-        /// Get a state by its type
-        /// </summary>
-        public T GetState<T>() where T : BaseGameState
-        {
-            return _states.Values.FirstOrDefault(s => s is T) as T;
-        }
-
-        /// <summary>
-        /// Get a state by its concrete type
-        /// </summary>
-        public BaseGameState GetStateByType(Type stateType)
-        {
-            return _states.Values.FirstOrDefault(s => s.GetType() == stateType);
-        }
-
-        /// <summary>
-        /// Check if a state of specific type exists
-        /// </summary>
-        public bool HasState<T>() where T : BaseGameState
-        {
-            return _states.Values.Any(s => s is T);
-        }
-
-        /// <summary>
-        /// Get state by GameStateType (you already have this via dictionary access)
-        /// </summary>
-        public BaseGameState GetStateByStateType(GameStateType stateType)
-        {
-            return _states.TryGetValue(stateType, out var state) ? state : null;
         }
     }
 }

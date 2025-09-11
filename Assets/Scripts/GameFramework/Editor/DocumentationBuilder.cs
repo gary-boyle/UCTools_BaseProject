@@ -1,45 +1,56 @@
 ﻿#if UNITY_EDITOR
-using UnityEngine;
-using UnityEditor;
 using System.Diagnostics;
+using UnityEditor;
+using UnityEngine;
 
-public class DocumentationBuilder : Editor
+namespace GameFramework.Editor
 {
-    [MenuItem("Tools/Build Documentation")]
-    public static void BuildDocs()
+    public class DocumentationBuilder : UnityEditor.Editor
     {
-        string projectPath = System.IO.Path.GetDirectoryName(Application.dataPath);
-        string docPath = System.IO.Path.Combine(projectPath, "Documentation");
-        
-        ProcessStartInfo startInfo = new ProcessStartInfo()
+        [MenuItem("Tools/Build Documentation")]
+        public static void BuildDocs()
         {
-            FileName = "docfx",
-            Arguments = "docfx.json",
-            WorkingDirectory = docPath,
-            UseShellExecute = false,
-            CreateNoWindow = true
-        };
+            string projectPath = System.IO.Path.GetDirectoryName(Application.dataPath);
+            if (projectPath != null)
+            {
+                string docPath = System.IO.Path.Combine(projectPath, "Documentation");
         
-        Process.Start(startInfo);
-        UnityEngine.Debug.Log("Documentation build started!");
-    }
+                ProcessStartInfo startInfo = new ProcessStartInfo
+                {
+                    FileName = "docfx",
+                    Arguments = "docfx.json",
+                    WorkingDirectory = docPath,
+                    UseShellExecute = false,
+                    CreateNoWindow = true
+                };
+        
+                Process.Start(startInfo);
+            }
+
+            UnityEngine.Debug.Log("Documentation build started!");
+        }
     
-    [MenuItem("Tools/Serve Documentation")]
-    public static void ServeDocs()
-    {
-        string projectPath = System.IO.Path.GetDirectoryName(Application.dataPath);
-        string docPath = System.IO.Path.Combine(projectPath, "Documentation");
-        
-        ProcessStartInfo startInfo = new ProcessStartInfo()
+        [MenuItem("Tools/Serve Documentation")]
+        public static void ServeDocs()
         {
-            FileName = "docfx",
-            Arguments = "--serve --port 8080",
-            WorkingDirectory = docPath,
-            UseShellExecute = true
-        };
+            string projectPath = System.IO.Path.GetDirectoryName(Application.dataPath);
+            if (projectPath != null)
+            {
+                string docPath = System.IO.Path.Combine(projectPath, "Documentation");
         
-        Process.Start(startInfo);
-        Application.OpenURL("http://localhost:8080");
+                ProcessStartInfo startInfo = new ProcessStartInfo()
+                {
+                    FileName = "docfx",
+                    Arguments = "--serve --port 8080",
+                    WorkingDirectory = docPath,
+                    UseShellExecute = true
+                };
+        
+                Process.Start(startInfo);
+            }
+
+            Application.OpenURL("http://localhost:8080");
+        }
     }
 }
 #endif

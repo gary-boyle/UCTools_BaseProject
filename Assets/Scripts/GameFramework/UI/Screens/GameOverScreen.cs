@@ -8,11 +8,6 @@ namespace GameFramework.UI.Screens
     /// <summary>
     /// Game Over screen - displays game over message and provides player options
     /// Follows established pattern of publishing events rather than managing state directly
-    /// 
-    /// Intent: Present game over state and provide options for player to continue
-    /// Design: Event-driven UI component with clear separation of concerns
-    /// Pros: Maintainable, testable, follows established patterns, multiple player options
-    /// Cons: Requires event system for interactions
     /// </summary>
     public class GameOverScreen : UIScreen
     {

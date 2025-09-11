@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine.Serialization;
 
 namespace GameFramework.DataStructures
 {
@@ -9,16 +10,16 @@ namespace GameFramework.DataStructures
     [Serializable]
     public class GameProgress
     {
-        public int score = 0;
-        public List<string> completedLevels = new List<string>();
-        public List<string> unlockedLevels = new List<string>();
-        public Dictionary<string, bool> achievements = new Dictionary<string, bool>();
-        public Dictionary<string, float> statistics = new Dictionary<string, float>();
+        public int Score = 0;
+        public List<string> CompletedLevels;
+        public List<string> UnlockedLevels;
+        public Dictionary<string, bool> Achievements;
+        public Dictionary<string, float> Statistics;
 
         public static GameProgress CreateDefault()
         {
             var progress = new GameProgress();
-            progress.unlockedLevels.Add("GameLevel1"); // Starting level
+            progress.UnlockedLevels.Add("GameLevel1");
             return progress;
         }
     }

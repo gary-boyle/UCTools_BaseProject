@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using GameFramework.ConsoleTool.Enums;
+using GameFramework.ConsoleTool.Interfaces;
 
 namespace GameFramework.ConsoleTool.Commands
 {

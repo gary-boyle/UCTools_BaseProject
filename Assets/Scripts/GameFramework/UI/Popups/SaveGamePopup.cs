@@ -317,7 +317,7 @@ namespace GameFramework.UI.Screens
                 _isSaving = true;
         
                 // Show progress overlay for overwrite
-                ShowProgressOverlay(PROGRESS_OVERWRITING, $"Overwriting {targetSaveFile.fileName}...");
+                ShowProgressOverlay(PROGRESS_OVERWRITING, $"Overwriting {targetSaveFile.FileName}...");
         
                 UpdateButtonStates();
         

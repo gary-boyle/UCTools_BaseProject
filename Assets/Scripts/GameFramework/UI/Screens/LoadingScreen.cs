@@ -12,24 +12,11 @@ namespace GameFramework.UI.Screens
     /// <summary>
     /// Loading screen that displays loading progress and messages
     /// 
-    /// Intent: Provides visual feedback during loading operations
-    /// 
     /// Design:
     /// - Subscribes to loading progress events through EventSystem
     /// - Updates loading text and progress display in real-time
     /// - Handles multiple loading event types for comprehensive coverage
     /// - Manages UI element references and lifecycle properly
-    /// 
-    /// Pros:
-    /// - Real-time loading feedback improves user experience
-    /// - Event-driven updates work with any loading source
-    /// - Clean separation of concerns between loading logic and UI
-    /// - Automatic progress updates without manual coordination
-    /// 
-    /// Cons:
-    /// - Requires EventSystem dependency for updates
-    /// - Multiple event subscriptions need careful lifecycle management
-    /// - UI updates happen on potentially different threads
     /// </summary>
     public class LoadingScreen : UIScreen
     {

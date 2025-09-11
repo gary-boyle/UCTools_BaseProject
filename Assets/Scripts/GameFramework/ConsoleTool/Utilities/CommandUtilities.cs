@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using GameFramework.ConsoleTool.Interfaces;
+using UnityEngine;
 
 namespace GameFramework.ConsoleTool.Utilities
 {

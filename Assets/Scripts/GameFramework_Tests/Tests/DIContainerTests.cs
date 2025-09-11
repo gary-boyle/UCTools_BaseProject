@@ -16,13 +16,13 @@ namespace GameFramework.Tests
     /// </summary>
     public class DIContainerTests
     {
-        private DIContainer _container;
+        private DiContainer _container;
 
         [SetUp]
         public void Setup()
         {
             // Create a fresh container instance for each test
-            _container = new DIContainer();
+            _container = new DiContainer();
             _container.Clear();
         }
 

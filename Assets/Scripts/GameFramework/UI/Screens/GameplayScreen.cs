@@ -12,10 +12,6 @@ namespace GameFramework.UI.Screens
     /// <summary>
     /// Game play screen - pure UI component that reports user interactions and displays game data
     /// Does not handle its own lifecycle - that's managed by the PlayingState
-    /// 
-    /// Design: Follows the established pattern where UI only reports user actions via events
-    /// Pros: Clear separation of concerns, testable, maintainable
-    /// Cons: Requires event system for all interactions
     /// </summary>
     public class GamePlayScreen : UIScreen
     {
@@ -189,7 +185,7 @@ namespace GameFramework.UI.Screens
         private void UpdateDebugLabel1(DataStructures.GameSession session, 
                                      DataStructures.PlayerState playerState)
         {
-            var text = $"Player: {session.playerName} | Level: {playerState.level}";
+            var text = $"Player: {session.playerName} | Level: {playerState.Level}";
             SetDebugLabel(_debugLabel1, text);
         }
         
@@ -198,7 +194,7 @@ namespace GameFramework.UI.Screens
         /// </summary>
         private void UpdateDebugLabel2(DataStructures.PlayerState playerState)
         {
-            var text = $"Health: {playerState.health}/{playerState.maxHealth}";
+            var text = $"Health: {playerState.Health}/{playerState.MaxHealth}";
             SetDebugLabel(_debugLabel2, text);
         }
         
@@ -207,8 +203,8 @@ namespace GameFramework.UI.Screens
         /// </summary>
         private void UpdateDebugLabel3(DataStructures.GameProgress progress)
         {
-            var completedLevels = progress.completedLevels.Count;
-            var text = $"Score: {progress.score} | Levels: {completedLevels}";
+            var completedLevels = progress.CompletedLevels.Count;
+            var text = $"Score: {progress.Score} | Levels: {completedLevels}";
             SetDebugLabel(_debugLabel3, text);
         }
         

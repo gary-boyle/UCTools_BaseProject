@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using GameFramework.ConsoleTool.Enums;
+using GameFramework.ConsoleTool.Interfaces;
 using UnityEngine;
 
 namespace GameFramework.ConsoleTool.Commands

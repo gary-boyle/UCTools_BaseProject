@@ -14,19 +14,6 @@ namespace GameFramework.UI.Popups
     /// - Maintains separate data collection intervals for metrics vs graphs
     /// - Uses color-coded indicators for quick performance assessment
     /// - Efficient data sampling to prevent performance impact
-    /// 
-    /// Pros:
-    /// - Visual trend analysis with historical graphs
-    /// - Real-time performance monitoring with color coding
-    /// - Memory efficient circular buffers for data storage
-    /// - Configurable graph appearance and scaling
-    /// - Clean separation between text metrics and visual graphs
-    /// - Can be toggled on/off as overlay popup
-    /// 
-    /// Cons:
-    /// - Increased memory usage for graph data storage
-    /// - Additional rendering overhead for custom graph elements
-    /// - More complex initialization and cleanup
     /// </summary>
     public class DebugPopup : UIPopup
     {

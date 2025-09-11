@@ -577,7 +577,7 @@ namespace GameFramework.Services
         /// </summary>
         private async void OnLoadSaveFileRequested(LoadSaveFileEvent evt)
         {
-            Debug.Log($"[UIService] Preparing UI for loading: {evt.SaveFileInfo.fileName}");
+            Debug.Log($"[UIService] Preparing UI for loading: {evt.SaveFileInfo.FileName}");
             await CloseAllPopupsForLoading();
         }
         

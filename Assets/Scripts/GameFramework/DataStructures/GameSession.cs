@@ -213,7 +213,6 @@ namespace GameFramework.DataStructures
                 }
             };
             
-            Debug.Log($"[GameSession] Created new game session - Start: {session.sessionStartTime}, Save: {session.lastSaveTime}");
             return session;
         }
         
@@ -224,7 +223,6 @@ namespace GameFramework.DataStructures
         public void UpdateLastSaveTime()
         {
             lastSaveTime = DateTime.Now;
-            Debug.Log($"[GameSession] Updated lastSaveTime to: {lastSaveTime}");
             
             UpdateTimeDataFromService(); // Capture current time data
         }
@@ -282,10 +280,7 @@ namespace GameFramework.DataStructures
                 return;
             }
             
-            var previousScene = currentScene;
             currentScene = sceneName;
-            
-            Debug.Log($"[GameSession] Scene changed: {previousScene} -> {currentScene}");
         }
         
         /// <summary>
@@ -300,7 +295,6 @@ namespace GameFramework.DataStructures
             }
             
             customData[key] = value;
-            Debug.Log($"[GameSession] Set custom data '{key}': {value}");
         }
         
         /// <summary>
@@ -330,7 +324,7 @@ namespace GameFramework.DataStructures
         public override string ToString()
         {
             return $"GameSession[Player: {playerName}, Difficulty: {difficulty}, Scene: {currentScene}, " +
-                   $"Playtime: {FormattedPlayTime}, Level: {player.level}, HasTimeData: {_hasTimeData}, " +
+                   $"Playtime: {FormattedPlayTime}, Level: {player.Level}, HasTimeData: {_hasTimeData}, " +
                    $"LastSave: {lastSaveTime}]";
         }
     }

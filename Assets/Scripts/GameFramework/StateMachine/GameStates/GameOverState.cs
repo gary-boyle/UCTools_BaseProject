@@ -6,8 +6,8 @@ using GameFramework.Input;
 using GameFramework.Input.Interfaces;
 using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine.Enum;
+using GameFramework.StateMachine.Interfaces;
 using GameFramework.UI.Screens;
-using UnityEngine;
 
 namespace GameFramework.StateMachine.GameStates
 {
@@ -23,7 +23,6 @@ namespace GameFramework.StateMachine.GameStates
     public class GameOverState : BaseGameState
     {
         private readonly IEventSystem _eventSystem;
-        private readonly ISaveService _saveService;
         
         /// <summary>
         /// Constructor injection - all dependencies provided by DI container
@@ -39,7 +38,6 @@ namespace GameFramework.StateMachine.GameStates
             : base(GameStateType.GameOver, stateMachine, eventSystem, audioService, uiService, inputManager, consoleService, gameDataService)
         {
             _eventSystem = eventSystem;
-            _saveService = GameManager.GetService<ISaveService>();
         }
         
         /// <summary>
@@ -69,8 +67,6 @@ namespace GameFramework.StateMachine.GameStates
         /// </summary>
         public override async Task ExitAsync()
         {
-            Debug.Log("[GameOverState] Exiting Game Over state");
-            
             // Unsubscribe from events to prevent memory leaks
             _eventSystem.Unsubscribe<NewGameRequestedEvent>(OnNewGameRequested);
             _eventSystem.Unsubscribe<LoadWindowRequestedEvent>(OnLoadWindowRequested);

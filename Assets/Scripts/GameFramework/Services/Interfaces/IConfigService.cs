@@ -19,6 +19,5 @@ namespace GameFramework.Services.Interfaces
         
         // ScriptableObject query methods
         T GetConfigCategory<T>() where T : ConfigCategory;
-        ConfigCategory GetConfigCategory(Type categoryType);
     }
 }

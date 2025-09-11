@@ -2,7 +2,7 @@
 using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine.Enum;
 
-namespace GameFramework.StateMachine
+namespace GameFramework.StateMachine.Interfaces
 {
     /// <summary>
     /// Advanced state machine with constructor injection support.
@@ -15,11 +15,6 @@ namespace GameFramework.StateMachine
     /// </summary>
     public interface IGameStateMachine : IGameService
     {
-        GameStateType CurrentStateType { get; }
-        BaseGameState CurrentState { get; }
         Task ChangeStateAsync(GameStateType newStateType);
-        Task ChangeStateAsync<T>() where T : BaseGameState;
-        bool CanTransitionTo(GameStateType stateType);
-        void RegisterState(BaseGameState state);
     }
 }

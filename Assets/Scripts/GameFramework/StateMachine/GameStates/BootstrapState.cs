@@ -4,10 +4,9 @@ using GameFramework.Core;
 using GameFramework.EventSystem.Interfaces;
 using GameFramework.Input;
 using GameFramework.Input.Interfaces;
-using GameFramework.Services;
 using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine.Enum;
-using UnityEngine;
+using GameFramework.StateMachine.Interfaces;
 
 namespace GameFramework.StateMachine.GameStates
 {
@@ -39,8 +38,6 @@ namespace GameFramework.StateMachine.GameStates
         public override async Task EnterAsync(GameContext context)
         {
             await base.EnterAsync(context);
-            
-            Debug.Log("[Bootstrap] Initializing core systems...");
             
             // Initialize all core services
             await InitializeCoreServices();

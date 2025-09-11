@@ -7,6 +7,7 @@ using GameFramework.Input;
 using GameFramework.Input.Interfaces;
 using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine.Enum;
+using GameFramework.StateMachine.Interfaces;
 using GameFramework.UI.Screens;
 using UnityEngine;
 
@@ -149,9 +150,8 @@ namespace GameFramework.StateMachine.GameStates
         /// </summary>
         private async Task AnimateProgressToTarget(float targetProgress, string actionName)
         {
-            float currentProgress = _quitScreen != null ? 0f : 0f; // Get current progress if available
-            float startProgress = currentProgress;
-            float duration = 0.5f; // Animation duration
+            float startProgress = 0f;
+            float duration = 0.5f; 
             float elapsed = 0f;
             
             while (elapsed < duration && !_shutdownCancelled)
@@ -251,7 +251,7 @@ namespace GameFramework.StateMachine.GameStates
         /// <summary>
         /// Actually quit the application
         /// </summary>
-        private void QuitApplication()
+        private static void QuitApplication()
         {
 #if UNITY_EDITOR
             // In editor, stop play mode

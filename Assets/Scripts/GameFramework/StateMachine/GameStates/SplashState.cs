@@ -6,6 +6,7 @@ using GameFramework.Input;
 using GameFramework.Input.Interfaces;
 using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine.Enum;
+using GameFramework.StateMachine.Interfaces;
 using GameFramework.UI.Screens;
 using UnityEngine;
 
@@ -18,7 +19,7 @@ namespace GameFramework.StateMachine.GameStates
     {
         private float _timer;
         private const float SPLASH_DURATION = 3f;
-        private bool _skipRequested = false;
+        private bool _skipRequested;
     
         /// <summary>
         /// Constructor injection - all dependencies provided by DI container
@@ -121,11 +122,10 @@ namespace GameFramework.StateMachine.GameStates
         /// </summary>
         private void RequestSkip()
         {
-            if (!_skipRequested)
-            {
-                _skipRequested = true;
-                Debug.Log("[SplashState] Skip requested via input");
-            }
+            if (_skipRequested) return;
+            
+            _skipRequested = true;
+            Debug.Log("[SplashState] Skip requested via input");
         }
         
         #endregion

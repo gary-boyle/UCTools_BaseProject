@@ -8,11 +8,6 @@ namespace GameFramework.UI.Screens
     /// <summary>
     /// Victory screen - displays victory celebration and provides player options
     /// Follows established pattern of publishing events rather than managing state directly
-    /// 
-    /// Intent: Celebrate player victory and provide options for continued play
-    /// Design: Event-driven UI component with clear separation of concerns
-    /// Pros: Maintainable, testable, follows established patterns, celebratory UX
-    /// Cons: Requires event system for interactions
     /// </summary>
     public class VictoryScreen : UIScreen
     {

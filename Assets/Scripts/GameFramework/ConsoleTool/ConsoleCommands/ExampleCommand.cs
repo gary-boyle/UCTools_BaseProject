@@ -1,4 +1,5 @@
 ﻿using GameFramework.ConsoleTool.Enums;
+using GameFramework.ConsoleTool.Interfaces;
 using GameFramework.ConsoleTool.Utilities;
 using UnityEngine;
 

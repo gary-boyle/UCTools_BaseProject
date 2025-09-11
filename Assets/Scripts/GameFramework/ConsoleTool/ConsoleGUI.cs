@@ -2,11 +2,11 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using TMPro;
-using GameFramework.Services.Interfaces;
 using GameFramework.Core;
 using GameFramework.EventSystem.Interfaces;
 using GameFramework.EventSystem.Events;
 using System.Text;
+using GameFramework.ConsoleTool.Interfaces;
 using GameFramework.Input.Interfaces; // Updated import
 
 namespace GameFramework.ConsoleTool
@@ -57,16 +57,7 @@ namespace GameFramework.ConsoleTool
 
         #region Unity Lifecycle
 
-        void Awake()
-        {
-            // // Set up input field callback for fallback submit handling
-            // if (inputField != null)
-            // {
-            //     inputField.onEndEdit.AddListener(OnInputFieldEndEdit);
-            // }
-        }
-
-        void Start()
+        private void Start()
         {
             ValidateDependencies();
             SetupEventSubscriptions();
@@ -92,7 +83,6 @@ namespace GameFramework.ConsoleTool
             }
             
             _isInitialized = true;
-            Debug.Log($"{LOG_PREFIX} Console GUI initialized");
         }
 
         /// <summary>
@@ -101,11 +91,6 @@ namespace GameFramework.ConsoleTool
         public void Shutdown()
         {
             _isInitialized = false;
-            
-            // ✅ REMOVED: No longer need to manually disable console input
-            // The ConsoleInputHandler manages this automatically based on console state
-            
-            Debug.Log($"{LOG_PREFIX} Console GUI shutdown");
         }
 
         /// <summary>
@@ -156,8 +141,6 @@ namespace GameFramework.ConsoleTool
             {
                 DeactivateInputField();
             }
-
-            Debug.Log($"{LOG_PREFIX} Console {(open ? "opened" : "closed")}");
         }
 
         /// <summary>
@@ -360,16 +343,13 @@ namespace GameFramework.ConsoleTool
         private void OnConsoleTabCompleteEvent(ConsoleTabCompleteInputEvent inputEvent)
         {
             if (!IsOpen() || inputField == null || !inputField.isFocused) return;
-
-            Debug.Log($"{LOG_PREFIX} Tab complete event received");
             
             // Only tab complete if cursor is at end of text
-            if (inputField.caretPosition == inputField.text.Length && inputField.text.Length > 0)
-            {
-                string completed = Console.TabComplete(inputField.text);
-                inputField.text = completed;
-                inputField.caretPosition = completed.Length;
-            }
+            if (inputField.caretPosition != inputField.text.Length || inputField.text.Length <= 0) return;
+            
+            string completed = Console.TabComplete(inputField.text);
+            inputField.text = completed;
+            inputField.caretPosition = completed.Length;
         }
 
         /// <summary>
@@ -378,8 +358,6 @@ namespace GameFramework.ConsoleTool
         private void OnConsoleHistoryUpEvent(ConsoleHistoryUpInputEvent inputEvent)
         {
             if (!IsOpen() || inputField == null || !inputField.isFocused) return;
-
-            Debug.Log($"{LOG_PREFIX} History up event received");
             
             string historyCommand = Console.HistoryUp(inputField.text);
             if (!string.IsNullOrEmpty(historyCommand))
@@ -395,8 +373,6 @@ namespace GameFramework.ConsoleTool
         private void OnConsoleHistoryDownEvent(ConsoleHistoryDownInputEvent inputEvent)
         {
             if (!IsOpen() || inputField == null || !inputField.isFocused) return;
-
-            Debug.Log($"{LOG_PREFIX} History down event received");
             
             string historyCommand = Console.HistoryDown();
             inputField.text = historyCommand ?? string.Empty;
@@ -411,7 +387,6 @@ namespace GameFramework.ConsoleTool
             if (inputField == null) return;
 
             string value = inputField.text;
-            Debug.Log($"{LOG_PREFIX} Submitting command: '{value}'");
             
             inputField.text = "";
             inputField.ActivateInputField();
@@ -423,18 +398,5 @@ namespace GameFramework.ConsoleTool
             }
         }
         #endregion
-        // /// <summary>
-        // /// Fallback handler for TMP_InputField onEndEdit event
-        // /// </summary>
-        // private void OnInputFieldEndEdit(string value)
-        // {
-        //     Debug.Log($"{LOG_PREFIX} Input field end edit: '{value}', reason: {inputField.wasCanceled}");
-        //     
-        //     // This is a fallback - main submission should be handled by input events
-        //     // Only submit if Enter was pressed (not Tab or Escape)
-        //     if (!inputField.wasCanceled && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)))
-        //     {
-        //         HandleSubmit();
-        //     }
     }
 }

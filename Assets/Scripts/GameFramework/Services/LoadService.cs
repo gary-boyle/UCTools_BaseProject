@@ -9,6 +9,7 @@ using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine;
 using GameFramework.StateMachine.Data;
 using GameFramework.StateMachine.Enum;
+using GameFramework.StateMachine.Interfaces;
 using UnityEngine;
 
 namespace GameFramework.Services
@@ -91,7 +92,7 @@ namespace GameFramework.Services
             // Notify other systems that loading is starting
             _eventSystem.Publish(new LoadingStartedEvent(evt.SaveFileInfo));
             
-            await HandleLoadRequest(evt.SaveFileInfo, $"LoadSaveFile: {evt.SaveFileInfo.fileName}");
+            await HandleLoadRequest(evt.SaveFileInfo, $"LoadSaveFile: {evt.SaveFileInfo.FileName}");
         }
         
         private async Task HandleLoadRequest(SaveFileInfo saveFileInfo, string context)
@@ -148,7 +149,7 @@ namespace GameFramework.Services
         private async Task<GameSession> LoadGameSessionByInfoAsync(SaveFileInfo saveFileInfo)
         {
             if (saveFileInfo == null) return null;
-            return await LoadGameSessionAsync(saveFileInfo.fileName);
+            return await LoadGameSessionAsync(saveFileInfo.FileName);
         }
         
         /// <summary>
@@ -175,7 +176,7 @@ namespace GameFramework.Services
             }
             catch (Exception e)
             {
-                Debug.LogError($"[LoadService] Error loading game '{saveFileInfo.fileName}': {e}");
+                Debug.LogError($"[LoadService] Error loading game '{saveFileInfo.FileName}': {e}");
                 _eventSystem.Publish(new LoadingFailedEvent(e));
                 return false;
             }
@@ -225,7 +226,7 @@ namespace GameFramework.Services
         
                 if (!_gameDataService.IsValidGameSession(gameSession))
                 {
-                    Debug.LogError($"[LoadService] Invalid game session: {saveFileInfo.fileName}");
+                    Debug.LogError($"[LoadService] Invalid game session: {saveFileInfo.FileName}");
                     return null;
                 }
         
@@ -252,15 +253,15 @@ namespace GameFramework.Services
                 ["timeServiceManaged"] = true,
                 
                 // Player data
-                ["playerLevel"] = gameSession.player.level,
-                ["playerHealth"] = gameSession.player.health,
-                ["playerMaxHealth"] = gameSession.player.maxHealth,
-                ["playerExperience"] = gameSession.player.experience,
-                ["playerPosition"] = gameSession.player.position,
-                ["playerRotation"] = gameSession.player.rotation,
+                ["playerLevel"] = gameSession.player.Level,
+                ["playerHealth"] = gameSession.player.Health,
+                ["playerMaxHealth"] = gameSession.player.MaxHealth,
+                ["playerExperience"] = gameSession.player.Experience,
+                ["playerPosition"] = gameSession.player.Position,
+                ["playerRotation"] = gameSession.player.Rotation,
                 
                 // Progress data
-                ["score"] = gameSession.progress.score,
+                ["score"] = gameSession.progress.Score,
                 ["sessionStartTime"] = gameSession.sessionStartTime.ToString(),
                 ["lastSaveTime"] = gameSession.lastSaveTime.ToString()
             };
@@ -291,10 +292,10 @@ namespace GameFramework.Services
         /// </summary>
         private async Task<bool> ValidateSaveFileAsync(SaveFileInfo saveFileInfo)
         {
-            if (saveFileInfo == null || string.IsNullOrEmpty(saveFileInfo.fileName))
+            if (saveFileInfo == null || string.IsNullOrEmpty(saveFileInfo.FileName))
                 return false;
                 
-            return await ValidateSaveFileAsync(saveFileInfo.fileName);
+            return await ValidateSaveFileAsync(saveFileInfo.FileName);
         }
         
         /// <summary>
@@ -387,7 +388,7 @@ namespace GameFramework.Services
             }
             catch (Exception e)
             {
-                Debug.LogWarning($"[LoadService] Save file '{saveFileInfo.fileName}' validation failed: {e.Message}");
+                Debug.LogWarning($"[LoadService] Save file '{saveFileInfo.FileName}' validation failed: {e.Message}");
                 return false;
             }
         }

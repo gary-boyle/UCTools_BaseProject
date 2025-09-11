@@ -12,13 +12,11 @@ namespace GameFramework.Input.Handlers
     public class UIInputHandler : InputHandlerBase
     {
         private readonly IUIService _uiService;
-        private readonly IPauseService _pauseService;
         
         public UIInputHandler(IEventSystem eventSystem, IUIService uiService, IPauseService pauseService)
-            : base("UI", 800, eventSystem, true) // High priority
+            : base("UI", 800, eventSystem) // High priority
         {
             _uiService = uiService;
-            _pauseService = pauseService;
         }
         
         protected override void SubscribeToEvents()
@@ -42,25 +40,18 @@ namespace GameFramework.Input.Handlers
             // If we have open popups, consume most input
             if (_uiService.HasOpenPopups())
             {
-                return inputEvent is UINavigateInputEvent || 
-                       inputEvent is UISubmitInputEvent || 
-                       inputEvent is UICancelInputEvent ||
-                       inputEvent is UIClickInputEvent;
+                return inputEvent is UINavigateInputEvent or UISubmitInputEvent or UICancelInputEvent or UIClickInputEvent;
             }
             
             return false; // Don't consume if no popups are open
         }
         
-        private void OnUINavigate(UINavigateInputEvent evt)
+        private static void OnUINavigate(UINavigateInputEvent evt)
         {
-            // Handle UI navigation
-            Debug.Log($"[UIInputHandler] Navigate: {evt.NavigationVector}");
         }
         
-        private void OnUISubmit(UISubmitInputEvent evt)
+        private static void OnUISubmit(UISubmitInputEvent evt)
         {
-            // Handle UI submit
-            Debug.Log("[UIInputHandler] Submit");
         }
         
         private void OnUICancel(UICancelInputEvent evt)
@@ -83,10 +74,8 @@ namespace GameFramework.Input.Handlers
             }
         }
         
-        private void OnUIClick(UIClickInputEvent evt)
+        private static void OnUIClick(UIClickInputEvent evt)
         {
-            // Handle UI clicks
-            Debug.Log($"[UIInputHandler] Click: {evt.Phase}");
         }
     }
 }

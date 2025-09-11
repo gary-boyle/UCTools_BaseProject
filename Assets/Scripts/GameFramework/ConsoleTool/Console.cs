@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 using GameFramework.ConsoleTool.Commands;
+using GameFramework.ConsoleTool.Interfaces;
 
 namespace GameFramework.ConsoleTool
 {
@@ -28,18 +30,19 @@ namespace GameFramework.ConsoleTool
         #endregion
 
         #region State
-        private static readonly List<string> s_PendingCommands = new List<string>();
-        private static readonly object s_CommandLock = new object(); // Thread safety for command queue
+
+        private static readonly List<string> s_PendingCommands;
+        private static readonly object s_CommandLock;
         
         private static readonly string[] s_History = new string[HISTORY_COUNT];
-        private static int s_HistoryNextIndex = 0;
-        private static int s_HistoryIndex = 0;
+        private static int s_HistoryNextIndex;
+        private static int s_HistoryIndex;
         
         private static IConsoleUI s_ConsoleUI;
         private static IConsoleContext s_ConsoleContext;
         
-        public static int s_PendingCommandsWaitForFrames = 0;
-        public static bool s_PendingCommandsWaitForLoad = false;
+        public static int s_PendingCommandsWaitForFrames;
+        public static bool s_PendingCommandsWaitForLoad;
         #endregion
 
         #region Initialization
@@ -111,15 +114,7 @@ namespace GameFramework.ConsoleTool
             
             s_ConsoleUI?.OutputString(message);
         }
-
-        /// <summary>
-        /// Check if console is currently open/visible
-        /// </summary>
-        public static bool IsOpen()
-        {
-            return s_ConsoleUI?.IsOpen() ?? false;
-        }
-
+        
         /// <summary>
         /// Set console open/closed state
         /// </summary>
@@ -127,15 +122,7 @@ namespace GameFramework.ConsoleTool
         {
             s_ConsoleUI?.SetOpen(open);
         }
-
-        /// <summary>
-        /// Set the console prompt text
-        /// </summary>
-        public static void SetPrompt(string prompt)
-        {
-            s_ConsoleUI?.SetPrompt(prompt);
-        }
-
+        
         #endregion
 
         #region Command Management
@@ -440,16 +427,9 @@ namespace GameFramework.ConsoleTool
         {
             if (string.IsNullOrEmpty(prefix)) return prefix;
 
-            var matches = new List<string>();
+            var matches = ConsoleCommandRegistry.GetCommandNames().Where(commandName => commandName.StartsWith(prefix, StringComparison.OrdinalIgnoreCase)).ToList();
 
             // Find matching command names
-            foreach (var commandName in ConsoleCommandRegistry.GetCommandNames())
-            {
-                if (commandName.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
-                {
-                    matches.Add(commandName);
-                }
-            }
 
             if (matches.Count == 0) return prefix;
 
@@ -482,10 +462,8 @@ namespace GameFramework.ConsoleTool
             if (strings.Count == 1) return strings[0];
 
             int minLength = strings[0].Length;
-            foreach (var str in strings)
-            {
-                minLength = Mathf.Min(minLength, str.Length);
-            }
+            
+            minLength = strings.Aggregate(minLength, (current, str) => Mathf.Min(current, str.Length));
 
             for (int i = startLength; i < minLength; i++)
             {

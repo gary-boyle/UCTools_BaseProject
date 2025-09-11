@@ -42,17 +42,12 @@ namespace GameFramework.Core
         [SerializeField] private UIDocument _UIPrefab;
         [SerializeField] private ConsoleGUI _consoleGUIPrefab;
         
-        [FormerlySerializedAs("_audioSettings")]
         [Header("Configuration Settings")]
-        [SerializeField] private AudioSettings_SO audioSettingsSo;
-        [FormerlySerializedAs("_graphicsSettings")] 
-        [SerializeField] private GraphicsSettings_SO graphicsSettingsSo;
-        [FormerlySerializedAs("_gameplaySettings")] 
-        [SerializeField] private GameplaySettings_SO gameplaySettingsSo;
-        [FormerlySerializedAs("_inputSettings")] 
-        [SerializeField] private InputSettings_SO inputSettingsSo;
-        [FormerlySerializedAs("_debugSettings")] 
-        [SerializeField] private DebugSettings_SO debugSettingsSo;
+        [SerializeField] private AudioSettings_SO _audioSettingsSo;
+        [SerializeField] private GraphicsSettings_SO _graphicsSettingsSo;
+        [SerializeField] private GameplaySettings_SO _gameplaySettingsSo;
+        [SerializeField] private InputSettings_SO _inputSettingsSo;
+        [SerializeField] private DebugSettings_SO _debugSettingsSo;
 
         #endregion
 
@@ -89,7 +84,7 @@ namespace GameFramework.Core
         /// <summary>
         /// The dependency injection container that manages all service instances.
         /// </summary>
-        private DIContainer _container;
+        private DiContainer _container;
         
         /// <summary>
         /// The main game state machine that controls game flow.
@@ -114,17 +109,17 @@ namespace GameFramework.Core
         /// <summary>
         /// Flag indicating whether the framework has completed initialization.
         /// </summary>
-        private bool _isInitialized = false;
+        private bool _isInitialized;
         
         /// <summary>
         /// Flag indicating whether all services have been registered in the DI container.
         /// </summary>
-        private bool _servicesRegistered = false;
+        private bool _servicesRegistered;
         
         /// <summary>
         /// Task completion source for async initialization tracking.
         /// </summary>
-        private TaskCompletionSource<bool> _initializationComplete = new();
+        private readonly TaskCompletionSource<bool> _initializationComplete = new();
 
         #endregion
 
@@ -267,7 +262,7 @@ namespace GameFramework.Core
             try
             {
                 // Initialize DI container
-                _container = DIContainer.Instance;
+                _container = DiContainer.Instance;
                 
                 // Register all services in dependency order
                 RegisterCoreServices();
@@ -541,11 +536,11 @@ namespace GameFramework.Core
             var categories = new List<ConfigCategory>();
             
             // Add non-null config categories
-            if (audioSettingsSo != null) categories.Add(audioSettingsSo);
-            if (graphicsSettingsSo != null) categories.Add(graphicsSettingsSo);
-            if (gameplaySettingsSo != null) categories.Add(gameplaySettingsSo);
-            if (inputSettingsSo != null) categories.Add(inputSettingsSo);
-            if (debugSettingsSo != null) categories.Add(debugSettingsSo);
+            if (_audioSettingsSo != null) categories.Add(_audioSettingsSo);
+            if (_graphicsSettingsSo != null) categories.Add(_graphicsSettingsSo);
+            if (_gameplaySettingsSo != null) categories.Add(_gameplaySettingsSo);
+            if (_inputSettingsSo != null) categories.Add(_inputSettingsSo);
+            if (_debugSettingsSo != null) categories.Add(_debugSettingsSo);
             
             if (categories.Count > 0)
             {
@@ -678,16 +673,6 @@ namespace GameFramework.Core
             return GetService<T>();
         }
         
-        /// <summary>
-        /// Gets a value indicating whether the GameManager is ready and services are available.
-        /// </summary>
-        /// <value>True if the GameManager instance exists and services are registered; otherwise, false.</value>
-        /// <remarks>
-        /// Use this property to check if it's safe to call <see cref="GetService{T}"/> without 
-        /// risking null reference exceptions.
-        /// </remarks>
-        public static bool IsReady => _instance != null && _instance._servicesRegistered;
-
         #endregion
     }
 }

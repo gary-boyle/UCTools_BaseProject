@@ -125,8 +125,6 @@ namespace GameFramework.UI.Screens
         /// </summary>
         public override void Show()
         {
-            Debug.Log($"[{GetType().Name}] Show() called - setting up for display");
-            
             // Clean up any existing handlers first
             CleanupListViewEventHandlers();
             
@@ -139,8 +137,6 @@ namespace GameFramework.UI.Screens
         /// </summary>
         public override void Hide()
         {
-            Debug.Log($"[{GetType().Name}] Hide() called - cleaning up");
-            
             // Clean up ListView handlers
             CleanupListViewEventHandlers();
             
@@ -169,8 +165,6 @@ namespace GameFramework.UI.Screens
             _deleteButton = RootElement?.Q<Button>("btn_DeleteSelected");
             _closeButton = RootElement?.Q<Button>("btn_Close");
             _statusLabel = RootElement?.Q<Label>("lbl_Status");
-            
-            Debug.Log($"[{GetType().Name}] Common UI elements cached - SaveFileList: {_saveFileList != null}");
         }
 
         private void ConfigureInitialStates()
@@ -185,8 +179,6 @@ namespace GameFramework.UI.Screens
 
             _saveFileList.bindItem = BindListItem;
             _saveFileList.selectionType = SelectionType.Single;
-            
-            Debug.Log($"[{GetType().Name}] ListView basic setup completed");
         }
         
         #endregion
@@ -213,7 +205,6 @@ namespace GameFramework.UI.Screens
                 _saveFileList.RegisterCallback<MouseDownEvent>(OnListViewMouseDown, TrickleDown.NoTrickleDown);
                 
                 _listViewEventHandlersRegistered = true;
-                Debug.Log($"[{GetType().Name}] ListView event handlers registered");
             }
             catch (Exception ex)
             {
@@ -235,7 +226,6 @@ namespace GameFramework.UI.Screens
                 _saveFileList.UnregisterCallback<MouseDownEvent>(OnListViewMouseDown);
                 
                 _listViewEventHandlersRegistered = false;
-                Debug.Log($"[{GetType().Name}] ListView event handlers cleaned up");
             }
             catch (Exception ex)
             {
@@ -269,13 +259,13 @@ namespace GameFramework.UI.Screens
         {
             var bindings = new Dictionary<string, string>
             {
-                ["lbl_PlayerName"] = saveFileInfo.playerName ?? "Unknown Player",
-                ["lbl_Difficulty"] = saveFileInfo.difficulty ?? "Normal",
-                ["lbl_Scene"] = saveFileInfo.currentScene ?? "Unknown Scene",
-                ["lbl_PlayTime"] = $"Play Time: {saveFileInfo.formattedPlayTime ?? "00:00:00"}",
-                ["lbl_SaveDate"] = $"Saved: {saveFileInfo.formattedDate ?? "Unknown Date"}",
-                ["lbl_PlayerLevel"] = $"Level {saveFileInfo.playerLevel}",
-                ["lbl_Score"] = $"Score: {saveFileInfo.score:N0}"
+                ["lbl_PlayerName"] = saveFileInfo.PlayerName ?? "Unknown Player",
+                ["lbl_Difficulty"] = saveFileInfo.Difficulty ?? "Normal",
+                ["lbl_Scene"] = saveFileInfo.CurrentScene ?? "Unknown Scene",
+                ["lbl_PlayTime"] = $"Play Time: {saveFileInfo.FormattedPlayTime ?? "00:00:00"}",
+                ["lbl_SaveDate"] = $"Saved: {saveFileInfo.FormattedDate ?? "Unknown Date"}",
+                ["lbl_PlayerLevel"] = $"Level {saveFileInfo.PlayerLevel}",
+                ["lbl_Score"] = $"Score: {saveFileInfo.Score:N0}"
             };
 
             foreach (var (elementName, text) in bindings)
@@ -291,12 +281,12 @@ namespace GameFramework.UI.Screens
             var autoSaveIndicator = element.Q<Label>("lbl_AutoSaveIndicator");
             if (autoSaveIndicator != null)
             {
-                autoSaveIndicator.style.display = saveFileInfo.isAutoSave ? DisplayStyle.Flex : DisplayStyle.None;
-                autoSaveIndicator.EnableInClassList("autosave-active", saveFileInfo.isAutoSave);
+                autoSaveIndicator.style.display = saveFileInfo.IsAutoSave ? DisplayStyle.Flex : DisplayStyle.None;
+                autoSaveIndicator.EnableInClassList("autosave-active", saveFileInfo.IsAutoSave);
             }
     
             // Add autosave class to the entire container for additional styling
-            element.EnableInClassList("is-autosave", saveFileInfo.isAutoSave);
+            element.EnableInClassList("is-autosave", saveFileInfo.IsAutoSave);
         }
 
         private void UpdateSelectionVisuals(VisualElement element, SaveFileInfo saveFileInfo)
@@ -344,7 +334,6 @@ namespace GameFramework.UI.Screens
             {
                 var selectedSaveFile = selectedItems.FirstOrDefault() as SaveFileInfo;
                 UpdateSelection(selectedSaveFile);
-                Debug.Log($"[{GetType().Name}] Selection changed to: {selectedSaveFile?.fileName ?? "None"}");
             }
             catch (Exception ex)
             {
@@ -360,7 +349,6 @@ namespace GameFramework.UI.Screens
             if (!IsVisible) return;
             
             _lastClickTime = Time.unscaledTime;
-            Debug.Log($"[{GetType().Name}] Pointer down at {_lastClickTime}");
         }
 
         /// <summary>
@@ -374,14 +362,10 @@ namespace GameFramework.UI.Screens
             {
                 float timeSinceLastClick = Time.unscaledTime - _lastClickTime;
                 
-                Debug.Log($"[{GetType().Name}] Double-click detected, time since last: {timeSinceLastClick}");
-                
                 if (timeSinceLastClick <= DOUBLE_CLICK_THRESHOLD && 
                     _selectedSaveFile != null && 
                     CanPerformDoubleClickAction())
                 {
-                    Debug.Log($"[{GetType().Name}] Performing double-click action on: {_selectedSaveFile.fileName}");
-                    
                     // Delegate to derived class implementation
                     _ = OnDoubleClickAction(_selectedSaveFile);
                     
@@ -397,8 +381,6 @@ namespace GameFramework.UI.Screens
 
         private async void OnDeleteButtonClicked(ClickEvent evt)
         {
-            Debug.Log($"[{GetType().Name}] Delete button clicked");
-
             if (!CanDeleteSelectedFile())
             {
                 Debug.LogWarning($"[{GetType().Name}] Cannot delete - Selected: {_selectedSaveFile != null}, Deleting: {_isDeletingFile}");
@@ -431,8 +413,6 @@ namespace GameFramework.UI.Screens
         {
             _selectedSaveFile = selectedSaveFile;
             UpdateButtonStates();
-
-            Debug.Log($"[{GetType().Name}] Selected save file: {selectedSaveFile?.fileName ?? "None"}");
         }
 
         protected virtual void UpdateButtonStates()
@@ -491,8 +471,6 @@ namespace GameFramework.UI.Screens
 
                 RefreshListView();
                 HandleEmptyListState();
-
-                Debug.Log($"[{GetType().Name}] Loaded {_saveFiles.Length} save files for display");
             }
             catch (Exception ex)
             {
@@ -526,7 +504,6 @@ namespace GameFramework.UI.Screens
 
         private void HandleDataLoadError(Exception ex)
         {
-            Debug.LogError($"[{GetType().Name}] Error loading save files: {ex}");
             SetStatusMessage(ERROR_LOADING_MESSAGE, true);
             _saveFiles = new SaveFileInfo[0];
             RefreshListView();
@@ -544,7 +521,6 @@ namespace GameFramework.UI.Screens
             if (_selectedSaveFile == null) return;
 
             var saveFileToDelete = _selectedSaveFile;
-            Debug.Log($"[{GetType().Name}] Deleting save file: {saveFileToDelete.fileName}");
 
             try
             {
@@ -556,8 +532,6 @@ namespace GameFramework.UI.Screens
 
                 if (deleteSuccess)
                 {
-                    Debug.Log($"[{GetType().Name}] Successfully deleted save file: {saveFileToDelete.fileName}");
-
                     // Clear selection since the file no longer exists
                     _selectedSaveFile = null;
                     _saveFileList?.ClearSelection();
@@ -567,7 +541,6 @@ namespace GameFramework.UI.Screens
                 }
                 else
                 {
-                    Debug.LogError($"[{GetType().Name}] Failed to delete save file: {saveFileToDelete.fileName}");
                     SetStatusMessage(ERROR_DELETING_MESSAGE, true);
 
                     // Clear error message after a delay
