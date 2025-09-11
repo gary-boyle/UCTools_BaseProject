@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class LoadService | UCTools Base Project Documentation </title>
+    <title>Class LoadService | UCTools Base Project </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class LoadService | UCTools Base Project Documentation ">
+    <meta name="title" content="Class LoadService | UCTools Base Project ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -18,8 +18,12 @@
     <meta property="docfx:tocrel" content="toc.html">
   
   <meta property="docfx:rel" content="../../">
+  <meta property="docfx:newtab" content="true">
+
   
-  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+  </head>
+
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
 
@@ -34,7 +38,7 @@
               </button>
 
               <a class="navbar-brand" href="../../index.html">
-                <img id="logo" class="svg" src="../../logo.svg" alt="">
+                <img id="logo" class="svg" src="../../logo.svg" alt="UCTools">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -80,9 +84,9 @@
 
 
   <h1 id="GameFramework_Services_LoadService" data-uid="GameFramework.Services.LoadService" class="text-break">Class LoadService</h1>
-  <div class="markdown level0 summary"><p>Service that orchestrates all game loading operations
-Handles loading workflow: validation -&gt; file loading -&gt; session creation -&gt; state transition
-Integrates with TimeService for proper playtime handling</p>
+  <div class="markdown level0 summary"><p>Service that handles all game loading operations using EventSystem
+Clean separation - only deals with loading files and validation for loading
+All saving operations are handled by SaveService</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -126,15 +130,8 @@ Integrates with TimeService for proper playtime handling</p>
   </div>
   <h3 id="constructors">Constructors
 </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_LoadService__ctor_GameFramework_EventSystem_Interfaces_IEventSystem_GameFramework_Services_Interfaces_ISaveService_GameFramework_Services_Interfaces_IGameDataService_GameFramework_StateMachine_IGameStateMachine_.md&amp;value=---%0Auid%3A%20GameFramework.Services.LoadService.%23ctor(GameFramework.EventSystem.Interfaces.IEventSystem%2CGameFramework.Services.Interfaces.ISaveService%2CGameFramework.Services.Interfaces.IGameDataService%2CGameFramework.StateMachine.IGameStateMachine)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/LoadService.cs/#L39">View Source</a>
-  </span>
   <a id="GameFramework_Services_LoadService__ctor_" data-uid="GameFramework.Services.LoadService.#ctor*"></a>
-  <h4 id="GameFramework_Services_LoadService__ctor_GameFramework_EventSystem_Interfaces_IEventSystem_GameFramework_Services_Interfaces_ISaveService_GameFramework_Services_Interfaces_IGameDataService_GameFramework_StateMachine_IGameStateMachine_" data-uid="GameFramework.Services.LoadService.#ctor(GameFramework.EventSystem.Interfaces.IEventSystem,GameFramework.Services.Interfaces.ISaveService,GameFramework.Services.Interfaces.IGameDataService,GameFramework.StateMachine.IGameStateMachine)">LoadService(IEventSystem, ISaveService, IGameDataService, IGameStateMachine)</h4>
+  <h4 id="GameFramework_Services_LoadService__ctor_GameFramework_EventSystem_Interfaces_IEventSystem_GameFramework_Services_Interfaces_ISaveService_GameFramework_Services_Interfaces_IGameDataService_GameFramework_StateMachine_Interfaces_IGameStateMachine_" data-uid="GameFramework.Services.LoadService.#ctor(GameFramework.EventSystem.Interfaces.IEventSystem,GameFramework.Services.Interfaces.ISaveService,GameFramework.Services.Interfaces.IGameDataService,GameFramework.StateMachine.Interfaces.IGameStateMachine)">LoadService(IEventSystem, ISaveService, IGameDataService, IGameStateMachine)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -167,7 +164,7 @@ Integrates with TimeService for proper playtime handling</p>
         <td></td>
       </tr>
       <tr>
-        <td><a class="xref" href="GameFramework.StateMachine.IGameStateMachine.html">IGameStateMachine</a></td>
+        <td><a class="xref" href="GameFramework.StateMachine.Interfaces.IGameStateMachine.html">IGameStateMachine</a></td>
         <td><span class="parametername">stateMachine</span></td>
         <td></td>
       </tr>
@@ -175,13 +172,6 @@ Integrates with TimeService for proper playtime handling</p>
   </table>
   <h3 id="properties">Properties
 </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_LoadService_IsInitialized.md&amp;value=---%0Auid%3A%20GameFramework.Services.LoadService.IsInitialized%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/LoadService.cs/#L24">View Source</a>
-  </span>
   <a id="GameFramework_Services_LoadService_IsInitialized_" data-uid="GameFramework.Services.LoadService.IsInitialized*"></a>
   <h4 id="GameFramework_Services_LoadService_IsInitialized" data-uid="GameFramework.Services.LoadService.IsInitialized">IsInitialized</h4>
   <div class="markdown level1 summary"></div>
@@ -205,13 +195,6 @@ Integrates with TimeService for proper playtime handling</p>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_LoadService_IsLoading.md&amp;value=---%0Auid%3A%20GameFramework.Services.LoadService.IsLoading%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/LoadService.cs/#L25">View Source</a>
-  </span>
   <a id="GameFramework_Services_LoadService_IsLoading_" data-uid="GameFramework.Services.LoadService.IsLoading*"></a>
   <h4 id="GameFramework_Services_LoadService_IsLoading" data-uid="GameFramework.Services.LoadService.IsLoading">IsLoading</h4>
   <div class="markdown level1 summary"></div>
@@ -237,16 +220,9 @@ Integrates with TimeService for proper playtime handling</p>
   </table>
   <h3 id="methods">Methods
 </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_LoadService_CanLoadGame_GameFramework_DataStructures_SaveFileInfo_.md&amp;value=---%0Auid%3A%20GameFramework.Services.LoadService.CanLoadGame(GameFramework.DataStructures.SaveFileInfo)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/LoadService.cs/#L433">View Source</a>
-  </span>
   <a id="GameFramework_Services_LoadService_CanLoadGame_" data-uid="GameFramework.Services.LoadService.CanLoadGame*"></a>
   <h4 id="GameFramework_Services_LoadService_CanLoadGame_GameFramework_DataStructures_SaveFileInfo_" data-uid="GameFramework.Services.LoadService.CanLoadGame(GameFramework.DataStructures.SaveFileInfo)">CanLoadGame(SaveFileInfo)</h4>
-  <div class="markdown level1 summary"><p>Checks if a save file can be loaded using SaveFileInfo</p>
+  <div class="markdown level1 summary"><p>Determines whether a specific save file can be successfully loaded</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -285,64 +261,9 @@ Integrates with TimeService for proper playtime handling</p>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_LoadService_CanLoadGame_System_String_.md&amp;value=---%0Auid%3A%20GameFramework.Services.LoadService.CanLoadGame(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/LoadService.cs/#L414">View Source</a>
-  </span>
-  <a id="GameFramework_Services_LoadService_CanLoadGame_" data-uid="GameFramework.Services.LoadService.CanLoadGame*"></a>
-  <h4 id="GameFramework_Services_LoadService_CanLoadGame_System_String_" data-uid="GameFramework.Services.LoadService.CanLoadGame(System.String)">CanLoadGame(string)</h4>
-  <div class="markdown level1 summary"><p>Checks if a save file can be loaded</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; CanLoadGame(string saveFileName)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">saveFileName</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_LoadService_GetLoadableSaveFilesAsync.md&amp;value=---%0Auid%3A%20GameFramework.Services.LoadService.GetLoadableSaveFilesAsync%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/LoadService.cs/#L398">View Source</a>
-  </span>
   <a id="GameFramework_Services_LoadService_GetLoadableSaveFilesAsync_" data-uid="GameFramework.Services.LoadService.GetLoadableSaveFilesAsync*"></a>
   <h4 id="GameFramework_Services_LoadService_GetLoadableSaveFilesAsync" data-uid="GameFramework.Services.LoadService.GetLoadableSaveFilesAsync">GetLoadableSaveFilesAsync()</h4>
-  <div class="markdown level1 summary"><p>Gets all save files that can be loaded</p>
+  <div class="markdown level1 summary"><p>Gets all save files that can be successfully loaded, with full display information</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -364,13 +285,6 @@ Integrates with TimeService for proper playtime handling</p>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_LoadService_InitializeAsync.md&amp;value=---%0Auid%3A%20GameFramework.Services.LoadService.InitializeAsync%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/LoadService.cs/#L52">View Source</a>
-  </span>
   <a id="GameFramework_Services_LoadService_InitializeAsync_" data-uid="GameFramework.Services.LoadService.InitializeAsync*"></a>
   <h4 id="GameFramework_Services_LoadService_InitializeAsync" data-uid="GameFramework.Services.LoadService.InitializeAsync">InitializeAsync()</h4>
   <div class="markdown level1 summary"></div>
@@ -394,17 +308,9 @@ Integrates with TimeService for proper playtime handling</p>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_LoadService_LoadGameAsync_GameFramework_DataStructures_SaveFileInfo_.md&amp;value=---%0Auid%3A%20GameFramework.Services.LoadService.LoadGameAsync(GameFramework.DataStructures.SaveFileInfo)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/LoadService.cs/#L166">View Source</a>
-  </span>
   <a id="GameFramework_Services_LoadService_LoadGameAsync_" data-uid="GameFramework.Services.LoadService.LoadGameAsync*"></a>
   <h4 id="GameFramework_Services_LoadService_LoadGameAsync_GameFramework_DataStructures_SaveFileInfo_" data-uid="GameFramework.Services.LoadService.LoadGameAsync(GameFramework.DataStructures.SaveFileInfo)">LoadGameAsync(SaveFileInfo)</h4>
-  <div class="markdown level1 summary"><p>Loads a game using SaveFileInfo (main loading method)
-TimeService will handle playtime restoration automatically</p>
+  <div class="markdown level1 summary"><p>Main entry point for loading a game session from save file information</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -443,21 +349,14 @@ TimeService will handle playtime restoration automatically</p>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_LoadService_LoadGameAsync_System_String_.md&amp;value=---%0Auid%3A%20GameFramework.Services.LoadService.LoadGameAsync(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/LoadService.cs/#L134">View Source</a>
-  </span>
-  <a id="GameFramework_Services_LoadService_LoadGameAsync_" data-uid="GameFramework.Services.LoadService.LoadGameAsync*"></a>
-  <h4 id="GameFramework_Services_LoadService_LoadGameAsync_System_String_" data-uid="GameFramework.Services.LoadService.LoadGameAsync(System.String)">LoadGameAsync(string)</h4>
-  <div class="markdown level1 summary"><p>Loads a game by save file name</p>
+  <a id="GameFramework_Services_LoadService_LoadGameSessionAsync_" data-uid="GameFramework.Services.LoadService.LoadGameSessionAsync*"></a>
+  <h4 id="GameFramework_Services_LoadService_LoadGameSessionAsync_System_String_" data-uid="GameFramework.Services.LoadService.LoadGameSessionAsync(System.String)">LoadGameSessionAsync(string)</h4>
+  <div class="markdown level1 summary"><p>Loads game session from file</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; LoadGameAsync(string saveFileName)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;GameSession&gt; LoadGameSessionAsync(string saveName)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -471,7 +370,7 @@ TimeService will handle playtime restoration automatically</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">saveFileName</span></td>
+        <td><span class="parametername">saveName</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -486,49 +385,11 @@ TimeService will handle playtime restoration automatically</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="GameFramework.DataStructures.GameSession.html">GameSession</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_LoadService_LoadMostRecentGameAsync.md&amp;value=---%0Auid%3A%20GameFramework.Services.LoadService.LoadMostRecentGameAsync%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/LoadService.cs/#L202">View Source</a>
-  </span>
-  <a id="GameFramework_Services_LoadService_LoadMostRecentGameAsync_" data-uid="GameFramework.Services.LoadService.LoadMostRecentGameAsync*"></a>
-  <h4 id="GameFramework_Services_LoadService_LoadMostRecentGameAsync" data-uid="GameFramework.Services.LoadService.LoadMostRecentGameAsync">LoadMostRecentGameAsync()</h4>
-  <div class="markdown level1 summary"><p>Loads the most recently saved game</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; LoadMostRecentGameAsync()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_LoadService_Shutdown.md&amp;value=---%0Auid%3A%20GameFramework.Services.LoadService.Shutdown%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/LoadService.cs/#L67">View Source</a>
-  </span>
   <a id="GameFramework_Services_LoadService_Shutdown_" data-uid="GameFramework.Services.LoadService.Shutdown*"></a>
   <h4 id="GameFramework_Services_LoadService_Shutdown" data-uid="GameFramework.Services.LoadService.Shutdown">Shutdown()</h4>
   <div class="markdown level1 summary"></div>
@@ -537,124 +398,6 @@ TimeService will handle playtime restoration automatically</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Shutdown()</code></pre>
   </div>
-  <h3 id="events">Events
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_LoadService_LoadingCompleted.md&amp;value=---%0Auid%3A%20GameFramework.Services.LoadService.LoadingCompleted%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/LoadService.cs/#L31">View Source</a>
-  </span>
-  <h4 id="GameFramework_Services_LoadService_LoadingCompleted" data-uid="GameFramework.Services.LoadService.LoadingCompleted">LoadingCompleted</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event Action&lt;GameSession&gt; LoadingCompleted</code></pre>
-  </div>
-  <h5 class="eventType">Event Type</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="GameFramework.DataStructures.GameSession.html">GameSession</a>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_LoadService_LoadingFailed.md&amp;value=---%0Auid%3A%20GameFramework.Services.LoadService.LoadingFailed%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/LoadService.cs/#L30">View Source</a>
-  </span>
-  <h4 id="GameFramework_Services_LoadService_LoadingFailed" data-uid="GameFramework.Services.LoadService.LoadingFailed">LoadingFailed</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event Action&lt;Exception&gt; LoadingFailed</code></pre>
-  </div>
-  <h5 class="eventType">Event Type</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_LoadService_LoadingMessageChanged.md&amp;value=---%0Auid%3A%20GameFramework.Services.LoadService.LoadingMessageChanged%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/LoadService.cs/#L29">View Source</a>
-  </span>
-  <h4 id="GameFramework_Services_LoadService_LoadingMessageChanged" data-uid="GameFramework.Services.LoadService.LoadingMessageChanged">LoadingMessageChanged</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event Action&lt;string&gt; LoadingMessageChanged</code></pre>
-  </div>
-  <h5 class="eventType">Event Type</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_LoadService_LoadingProgressChanged.md&amp;value=---%0Auid%3A%20GameFramework.Services.LoadService.LoadingProgressChanged%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/LoadService.cs/#L28">View Source</a>
-  </span>
-  <h4 id="GameFramework_Services_LoadService_LoadingProgressChanged" data-uid="GameFramework.Services.LoadService.LoadingProgressChanged">LoadingProgressChanged</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event Action&lt;string, float&gt; LoadingProgressChanged</code></pre>
-  </div>
-  <h5 class="eventType">Event Type</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-2">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="GameFramework.Services.Interfaces.ILoadService.html">ILoadService</a>
@@ -665,16 +408,6 @@ TimeService will handle playtime restoration automatically</p>
 
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
-              <div class="contribution">
-                <ul class="nav">
-                  <li>
-                    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Services_LoadService.md&amp;value=---%0Auid%3A%20GameFramework.Services.LoadService%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Services/LoadService.cs/#L22" class="contribution-link">View Source</a>
-                  </li>
-                </ul>
-              </div>
               <div class="toggle-mode">
                 <div class="icon">
                   <i aria-hidden="true">☀</i>
@@ -706,7 +439,7 @@ TimeService will handle playtime restoration automatically</p>
               <a href="#top">Back to top</a>
             </span>
             <div class="pull-left">
-        UCTools Base Project Documentation
+        © 2025 UCTools Base Project Documentation
         
             </div>
             <div class="toggle-mode pull-right visible-sm visible-xs">

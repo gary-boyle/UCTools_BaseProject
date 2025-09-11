@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Namespace GameFramework.Services.Interfaces | UCTools Base Project Documentation </title>
+    <title>Namespace GameFramework.Services.Interfaces | UCTools Base Project </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Namespace GameFramework.Services.Interfaces | UCTools Base Project Documentation ">
+    <meta name="title" content="Namespace GameFramework.Services.Interfaces | UCTools Base Project ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -18,8 +18,12 @@
     <meta property="docfx:tocrel" content="toc.html">
   
   <meta property="docfx:rel" content="../../">
+  <meta property="docfx:newtab" content="true">
+
   
-  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+  </head>
+
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
 
@@ -34,7 +38,7 @@
               </button>
 
               <a class="navbar-brand" href="../../index.html">
-                <img id="logo" class="svg" src="../../logo.svg" alt="">
+                <img id="logo" class="svg" src="../../logo.svg" alt="UCTools">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -107,9 +111,13 @@ Handles the business logic of loading games, creating sessions, and managing sta
 Single source of truth for game pause state</p>
 </section>
       <h4><a class="xref" href="GameFramework.Services.Interfaces.ISaveService.html">ISaveService</a></h4>
-      <section><p>Interface for save service that handles both file operations and business logic
-Provides clean separation between low-level file I/O and high-level save operations
-Supports both regular saves and autosaves with automatic file management</p>
+      <section><p>Interface for save service that handles file operations and save file metadata
+Save operations are triggered via event system for clean separation of concerns
+Provides file management and metadata retrieval for UI systems</p>
+<p>INTENT: Minimal interface focused on file operations and metadata
+DESIGN: Save operations moved to event system, interface only exposes what external systems need
+PROS: Clean separation, reduced coupling, focused responsibilities
+CONS: Less direct control for external systems (but that's by design)</p>
 </section>
       <h4><a class="xref" href="GameFramework.Services.Interfaces.ISceneService.html">ISceneService</a></h4>
       <section><p>Interface for scene management service</p>
@@ -128,10 +136,6 @@ with proper pause handling and state awareness</p>
 
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
-              <div class="contribution">
-                <ul class="nav">
-                </ul>
-              </div>
               <div class="toggle-mode">
                 <div class="icon">
                   <i aria-hidden="true">☀</i>
@@ -163,7 +167,7 @@ with proper pause handling and state awareness</p>
               <a href="#top">Back to top</a>
             </span>
             <div class="pull-left">
-        UCTools Base Project Documentation
+        © 2025 UCTools Base Project Documentation
         
             </div>
             <div class="toggle-mode pull-right visible-sm visible-xs">

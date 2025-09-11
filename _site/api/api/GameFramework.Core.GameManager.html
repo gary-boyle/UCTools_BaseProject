@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class GameManager | UCTools Base Project Documentation </title>
+    <title>Class GameManager | UCTools Base Project </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class GameManager | UCTools Base Project Documentation ">
+    <meta name="title" content="Class GameManager | UCTools Base Project ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -18,8 +18,12 @@
     <meta property="docfx:tocrel" content="toc.html">
   
   <meta property="docfx:rel" content="../../">
+  <meta property="docfx:newtab" content="true">
+
   
-  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+  </head>
+
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
 
@@ -34,7 +38,7 @@
               </button>
 
               <a class="navbar-brand" href="../../index.html">
-                <img id="logo" class="svg" src="../../logo.svg" alt="">
+                <img id="logo" class="svg" src="../../logo.svg" alt="UCTools">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -80,7 +84,9 @@
 
 
   <h1 id="GameFramework_Core_GameManager" data-uid="GameFramework.Core.GameManager" class="text-break">Class GameManager</h1>
-  <div class="markdown level0 summary"><p>Main game manager that bootstraps the entire game framework using dependency injection.</p>
+  <div class="markdown level0 summary"><p>Main game manager that bootstraps the entire game framework using dependency injection.
+This singleton class initializes all core services, manages the game state machine,
+and coordinates frame updates across all systems.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -94,18 +100,22 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class GameManager : MonoBehaviour</code></pre>
   </div>
+  <h5 id="GameFramework_Core_GameManager_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>The GameManager follows this initialization sequence:</p>
+<ol>
+<li>Creates DI container and registers all services</li>
+<li>Initializes services in dependency order</li>
+<li>Sets up the game state machine</li>
+<li>Collects updatable systems for frame updates</li>
+<li>Begins normal game operation</li>
+</ol>
+</div>
   <h3 id="properties">Properties
 </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Core_GameManager_Instance.md&amp;value=---%0Auid%3A%20GameFramework.Core.GameManager.Instance%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Core/GameManager.cs/#L46">View Source</a>
-  </span>
   <a id="GameFramework_Core_GameManager_Instance_" data-uid="GameFramework.Core.GameManager.Instance*"></a>
   <h4 id="GameFramework_Core_GameManager_Instance" data-uid="GameFramework.Core.GameManager.Instance">Instance</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the singleton instance of the GameManager.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -122,53 +132,19 @@
     <tbody>
       <tr>
         <td><a class="xref" href="GameFramework.Core.GameManager.html">GameManager</a></td>
-        <td></td>
+        <td><p>The GameManager instance, or null if not yet initialized.</p>
+</td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Core_GameManager_IsReady.md&amp;value=---%0Auid%3A%20GameFramework.Core.GameManager.IsReady%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Core/GameManager.cs/#L499">View Source</a>
-  </span>
-  <a id="GameFramework_Core_GameManager_IsReady_" data-uid="GameFramework.Core.GameManager.IsReady*"></a>
-  <h4 id="GameFramework_Core_GameManager_IsReady" data-uid="GameFramework.Core.GameManager.IsReady">IsReady</h4>
-  <div class="markdown level1 summary"><p>Check if the GameManager is ready</p>
+  <h5 id="GameFramework_Core_GameManager_Instance_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Logs an error if accessed before initialization. Use IsReady to check availability.</p>
 </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool IsReady { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <h3 id="methods">Methods
 </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Core_GameManager_GetServiceAsync__1.md&amp;value=---%0Auid%3A%20GameFramework.Core.GameManager.GetServiceAsync%60%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Core/GameManager.cs/#L482">View Source</a>
-  </span>
   <a id="GameFramework_Core_GameManager_GetServiceAsync_" data-uid="GameFramework.Core.GameManager.GetServiceAsync*"></a>
   <h4 id="GameFramework_Core_GameManager_GetServiceAsync__1" data-uid="GameFramework.Core.GameManager.GetServiceAsync``1">GetServiceAsync&lt;T&gt;()</h4>
-  <div class="markdown level1 summary"><p>Async version for waiting until services are ready</p>
+  <div class="markdown level1 summary"><p>Asynchronously gets a service instance, waiting for initialization to complete if necessary.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -186,7 +162,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;T&gt;</td>
-        <td></td>
+        <td><p>A task that resolves to the service instance, or null if GameManager instance is null.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -201,20 +178,25 @@
     <tbody>
       <tr>
         <td><span class="parametername">T</span></td>
-        <td></td>
+        <td><p>The type of service to retrieve.</p>
+</td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Core_GameManager_GetService__1.md&amp;value=---%0Auid%3A%20GameFramework.Core.GameManager.GetService%60%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Core/GameManager.cs/#L474">View Source</a>
-  </span>
+  <h5 id="GameFramework_Core_GameManager_GetServiceAsync__1_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This method is useful for getting services during early initialization phases where
+you need to wait for the framework to be ready.</p>
+</div>
+  <h5 id="GameFramework_Core_GameManager_GetServiceAsync__1_examples">Examples</h5>
+  <pre><code class="lang-csharp">var audioService = await GameManager.GetServiceAsync&lt;IAudioService&gt;();
+if (audioService != null)
+{
+    audioService.PlaySound("gameStart");
+}</code></pre>
+
   <a id="GameFramework_Core_GameManager_GetService_" data-uid="GameFramework.Core.GameManager.GetService*"></a>
   <h4 id="GameFramework_Core_GameManager_GetService__1" data-uid="GameFramework.Core.GameManager.GetService``1">GetService&lt;T&gt;()</h4>
-  <div class="markdown level1 summary"><p>Get access to a service from anywhere in the game - with proper null checks</p>
+  <div class="markdown level1 summary"><p>Gets a service instance from the dependency injection container.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -232,7 +214,8 @@
     <tbody>
       <tr>
         <td><span class="xref">T</span></td>
-        <td></td>
+        <td><p>The service instance, or null if not found or GameManager not initialized.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -247,26 +230,28 @@
     <tbody>
       <tr>
         <td><span class="parametername">T</span></td>
-        <td></td>
+        <td><p>The type of service to retrieve.</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="GameFramework_Core_GameManager_GetService__1_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This method provides global access to registered services. Use IsReady
+to check if services are available before calling this method.</p>
+</div>
+  <h5 id="GameFramework_Core_GameManager_GetService__1_examples">Examples</h5>
+  <pre><code class="lang-csharp">var audioService = GameManager.GetService&lt;IAudioService&gt;();
+if (audioService != null)
+{
+    audioService.PlaySound("buttonClick");
+}</code></pre>
+
 
 </article>
           </div>
 
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
-              <div class="contribution">
-                <ul class="nav">
-                  <li>
-                    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Core_GameManager.md&amp;value=---%0Auid%3A%20GameFramework.Core.GameManager%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Core/GameManager.cs/#L25" class="contribution-link">View Source</a>
-                  </li>
-                </ul>
-              </div>
               <div class="toggle-mode">
                 <div class="icon">
                   <i aria-hidden="true">☀</i>
@@ -298,7 +283,7 @@
               <a href="#top">Back to top</a>
             </span>
             <div class="pull-left">
-        UCTools Base Project Documentation
+        © 2025 UCTools Base Project Documentation
         
             </div>
             <div class="toggle-mode pull-right visible-sm visible-xs">

@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class VictoryState | UCTools Base Project Documentation </title>
+    <title>Class VictoryState | UCTools Base Project </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class VictoryState | UCTools Base Project Documentation ">
+    <meta name="title" content="Class VictoryState | UCTools Base Project ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -18,8 +18,12 @@
     <meta property="docfx:tocrel" content="toc.html">
   
   <meta property="docfx:rel" content="../../">
+  <meta property="docfx:newtab" content="true">
+
   
-  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+  </head>
+
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
 
@@ -34,7 +38,7 @@
               </button>
 
               <a class="navbar-brand" href="../../index.html">
-                <img id="logo" class="svg" src="../../logo.svg" alt="">
+                <img id="logo" class="svg" src="../../logo.svg" alt="UCTools">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -80,61 +84,57 @@
 
 
   <h1 id="GameFramework_StateMachine_GameStates_VictoryState" data-uid="GameFramework.StateMachine.GameStates.VictoryState" class="text-break">Class VictoryState</h1>
-  <div class="markdown level0 summary"><p>Victory state with constructor injection</p>
+  <div class="markdown level0 summary"><p>Victory state - manages the victory screen and celebrates player success
+Responsible for its UI lifecycle and event handling</p>
+<p>Intent: Celebrate player victory, show achievements, and provide options for continued play
+Design: Event-driven state management with clear separation of concerns
+Pros: Celebratory UX, clear progression options, maintainable, analytics integration
+Cons: Requires careful event subscription management</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><a class="xref" href="BaseGameState.html">BaseGameState</a></div>
+    <div class="level1"><a class="xref" href="GameFramework.StateMachine.BaseGameState.html">BaseGameState</a></div>
     <div class="level2"><span class="xref">VictoryState</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <a class="xref" href="BaseGameState.html#BaseGameState_StateType">BaseGameState.StateType</a>
+      <a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_StateType">BaseGameState.StateType</a>
     </div>
     <div>
-      <a class="xref" href="BaseGameState.html#BaseGameState_Context">BaseGameState.Context</a>
+      <a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_Context">BaseGameState.Context</a>
     </div>
     <div>
-      <a class="xref" href="BaseGameState.html#BaseGameState_IsActive">BaseGameState.IsActive</a>
+      <a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_StateMachine">BaseGameState.StateMachine</a>
     </div>
     <div>
-      <a class="xref" href="BaseGameState.html#BaseGameState_StateMachine">BaseGameState.StateMachine</a>
+      <a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_EventSystem">BaseGameState.EventSystem</a>
     </div>
     <div>
-      <a class="xref" href="BaseGameState.html#BaseGameState_EventSystem">BaseGameState.EventSystem</a>
+      <a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_AudioService">BaseGameState.AudioService</a>
     </div>
     <div>
-      <a class="xref" href="BaseGameState.html#BaseGameState_AudioService">BaseGameState.AudioService</a>
+      <a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_UIService">BaseGameState.UIService</a>
     </div>
     <div>
-      <a class="xref" href="BaseGameState.html#BaseGameState_UIService">BaseGameState.UIService</a>
+      <a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_InputManager">BaseGameState.InputManager</a>
     </div>
     <div>
-      <a class="xref" href="BaseGameState.html#BaseGameState_InputManager">BaseGameState.InputManager</a>
+      <a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_ConsoleService">BaseGameState.ConsoleService</a>
     </div>
     <div>
-      <a class="xref" href="BaseGameState.html#BaseGameState_ConsoleService">BaseGameState.ConsoleService</a>
+      <a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_GameDataService">BaseGameState.GameDataService</a>
     </div>
     <div>
-      <a class="xref" href="BaseGameState.html#BaseGameState_GameDataService">BaseGameState.GameDataService</a>
+      <a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_Update">BaseGameState.Update()</a>
     </div>
     <div>
-      <a class="xref" href="BaseGameState.html#BaseGameState_Update">BaseGameState.Update()</a>
+      <a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_FixedUpdate">BaseGameState.FixedUpdate()</a>
     </div>
     <div>
-      <a class="xref" href="BaseGameState.html#BaseGameState_FixedUpdate">BaseGameState.FixedUpdate()</a>
-    </div>
-    <div>
-      <a class="xref" href="BaseGameState.html#BaseGameState_ExitAsync">BaseGameState.ExitAsync()</a>
-    </div>
-    <div>
-      <a class="xref" href="BaseGameState.html#BaseGameState_HandleInput">BaseGameState.HandleInput()</a>
-    </div>
-    <div>
-      <a class="xref" href="BaseGameState.html#BaseGameState_TransitionToStateAsync_GameFramework_StateMachine_Enum_GameStateType_">BaseGameState.TransitionToStateAsync(GameStateType)</a>
+      <a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_TransitionToStateAsync_GameFramework_StateMachine_Enum_GameStateType_">BaseGameState.TransitionToStateAsync(GameStateType)</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
@@ -166,15 +166,8 @@
   </div>
   <h3 id="constructors">Constructors
 </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_StateMachine_GameStates_VictoryState__ctor_GameFramework_StateMachine_IGameStateMachine_GameFramework_EventSystem_Interfaces_IEventSystem_GameFramework_Services_Interfaces_IAudioService_GameFramework_Services_Interfaces_IUIService_GameFramework_Input_Interfaces_IInputManager_GameFramework_Services_Interfaces_IConsoleService_GameFramework_Services_Interfaces_IGameDataService_.md&amp;value=---%0Auid%3A%20GameFramework.StateMachine.GameStates.VictoryState.%23ctor(GameFramework.StateMachine.IGameStateMachine%2CGameFramework.EventSystem.Interfaces.IEventSystem%2CGameFramework.Services.Interfaces.IAudioService%2CGameFramework.Services.Interfaces.IUIService%2CGameFramework.Input.Interfaces.IInputManager%2CGameFramework.Services.Interfaces.IConsoleService%2CGameFramework.Services.Interfaces.IGameDataService)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/StateMachine/GameStates/VictoryState.cs/#L19">View Source</a>
-  </span>
   <a id="GameFramework_StateMachine_GameStates_VictoryState__ctor_" data-uid="GameFramework.StateMachine.GameStates.VictoryState.#ctor*"></a>
-  <h4 id="GameFramework_StateMachine_GameStates_VictoryState__ctor_GameFramework_StateMachine_IGameStateMachine_GameFramework_EventSystem_Interfaces_IEventSystem_GameFramework_Services_Interfaces_IAudioService_GameFramework_Services_Interfaces_IUIService_GameFramework_Input_Interfaces_IInputManager_GameFramework_Services_Interfaces_IConsoleService_GameFramework_Services_Interfaces_IGameDataService_" data-uid="GameFramework.StateMachine.GameStates.VictoryState.#ctor(GameFramework.StateMachine.IGameStateMachine,GameFramework.EventSystem.Interfaces.IEventSystem,GameFramework.Services.Interfaces.IAudioService,GameFramework.Services.Interfaces.IUIService,GameFramework.Input.Interfaces.IInputManager,GameFramework.Services.Interfaces.IConsoleService,GameFramework.Services.Interfaces.IGameDataService)">VictoryState(IGameStateMachine, IEventSystem, IAudioService, IUIService, IInputManager, IConsoleService, IGameDataService)</h4>
+  <h4 id="GameFramework_StateMachine_GameStates_VictoryState__ctor_GameFramework_StateMachine_Interfaces_IGameStateMachine_GameFramework_EventSystem_Interfaces_IEventSystem_GameFramework_Services_Interfaces_IAudioService_GameFramework_Services_Interfaces_IUIService_GameFramework_Input_Interfaces_IInputManager_GameFramework_Services_Interfaces_IConsoleService_GameFramework_Services_Interfaces_IGameDataService_" data-uid="GameFramework.StateMachine.GameStates.VictoryState.#ctor(GameFramework.StateMachine.Interfaces.IGameStateMachine,GameFramework.EventSystem.Interfaces.IEventSystem,GameFramework.Services.Interfaces.IAudioService,GameFramework.Services.Interfaces.IUIService,GameFramework.Input.Interfaces.IInputManager,GameFramework.Services.Interfaces.IConsoleService,GameFramework.Services.Interfaces.IGameDataService)">VictoryState(IGameStateMachine, IEventSystem, IAudioService, IUIService, IInputManager, IConsoleService, IGameDataService)</h4>
   <div class="markdown level1 summary"><p>Constructor injection - all dependencies provided by DI container</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -193,7 +186,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="GameFramework.StateMachine.IGameStateMachine.html">IGameStateMachine</a></td>
+        <td><a class="xref" href="GameFramework.StateMachine.Interfaces.IGameStateMachine.html">IGameStateMachine</a></td>
         <td><span class="parametername">stateMachine</span></td>
         <td></td>
       </tr>
@@ -231,16 +224,9 @@
   </table>
   <h3 id="methods">Methods
 </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_StateMachine_GameStates_VictoryState_EnterAsync_GameFramework_Core_GameContext_.md&amp;value=---%0Auid%3A%20GameFramework.StateMachine.GameStates.VictoryState.EnterAsync(GameFramework.Core.GameContext)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/StateMachine/GameStates/VictoryState.cs/#L31">View Source</a>
-  </span>
   <a id="GameFramework_StateMachine_GameStates_VictoryState_EnterAsync_" data-uid="GameFramework.StateMachine.GameStates.VictoryState.EnterAsync*"></a>
   <h4 id="GameFramework_StateMachine_GameStates_VictoryState_EnterAsync_GameFramework_Core_GameContext_" data-uid="GameFramework.StateMachine.GameStates.VictoryState.EnterAsync(GameFramework.Core.GameContext)">EnterAsync(GameContext)</h4>
-  <div class="markdown level1 summary"><p>Called when entering this state. Setup UI, subscribe to events, initialize state-specific systems.</p>
+  <div class="markdown level1 summary"><p>Enter victory state - setup UI, audio, input, and event subscriptions</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -280,23 +266,39 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="BaseGameState.html#BaseGameState_EnterAsync_GameFramework_Core_GameContext_">BaseGameState.EnterAsync(GameContext)</a></div>
+  <div><a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_EnterAsync_GameFramework_Core_GameContext_">BaseGameState.EnterAsync(GameContext)</a></div>
+  <a id="GameFramework_StateMachine_GameStates_VictoryState_ExitAsync_" data-uid="GameFramework.StateMachine.GameStates.VictoryState.ExitAsync*"></a>
+  <h4 id="GameFramework_StateMachine_GameStates_VictoryState_ExitAsync" data-uid="GameFramework.StateMachine.GameStates.VictoryState.ExitAsync">ExitAsync()</h4>
+  <div class="markdown level1 summary"><p>Exit victory state - cleanup UI, audio, and unsubscribe from events</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Task ExitAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_ExitAsync">BaseGameState.ExitAsync()</a></div>
 
 </article>
           </div>
 
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
-              <div class="contribution">
-                <ul class="nav">
-                  <li>
-                    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_StateMachine_GameStates_VictoryState.md&amp;value=---%0Auid%3A%20GameFramework.StateMachine.GameStates.VictoryState%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/StateMachine/GameStates/VictoryState.cs/#L14" class="contribution-link">View Source</a>
-                  </li>
-                </ul>
-              </div>
               <div class="toggle-mode">
                 <div class="icon">
                   <i aria-hidden="true">☀</i>
@@ -328,7 +330,7 @@
               <a href="#top">Back to top</a>
             </span>
             <div class="pull-left">
-        UCTools Base Project Documentation
+        © 2025 UCTools Base Project Documentation
         
             </div>
             <div class="toggle-mode pull-right visible-sm visible-xs">

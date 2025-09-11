@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class SaveFileListPopup | UCTools Base Project Documentation </title>
+    <title>Class SaveFileListPopup | UCTools Base Project </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class SaveFileListPopup | UCTools Base Project Documentation ">
+    <meta name="title" content="Class SaveFileListPopup | UCTools Base Project ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -18,8 +18,12 @@
     <meta property="docfx:tocrel" content="toc.html">
   
   <meta property="docfx:rel" content="../../">
+  <meta property="docfx:newtab" content="true">
+
   
-  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+  </head>
+
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
 
@@ -34,7 +38,7 @@
               </button>
 
               <a class="navbar-brand" href="../../index.html">
-                <img id="logo" class="svg" src="../../logo.svg" alt="">
+                <img id="logo" class="svg" src="../../logo.svg" alt="UCTools">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -81,8 +85,12 @@
 
   <h1 id="GameFramework_UI_Screens_SaveFileListPopup" data-uid="GameFramework.UI.Screens.SaveFileListPopup" class="text-break">Class SaveFileListPopup</h1>
   <div class="markdown level0 summary"><p>Base class for popups that display and manage save file lists
-Provides common functionality for save file display, selection, and deletion
+Provides common functionality for save file display, selection, deletion, and double-click handling
 Derived classes implement specific load/save behaviors</p>
+<p>INTENT: Centralized save file list management with extensible interaction patterns
+DESIGN: Template method pattern with double-click infrastructure and proper lifecycle management
+PROS: DRY principle, centralized ListView logic, reusable double-click handling
+CONS: More complex base class, requires careful abstract method implementation</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -107,12 +115,6 @@ Derived classes implement specific load/save behaviors</p>
     </div>
     <div>
       <a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_NeedsFrameUpdates">UIScreen.NeedsFrameUpdates</a>
-    </div>
-    <div>
-      <a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_Show">UIScreen.Show()</a>
-    </div>
-    <div>
-      <a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_Hide">UIScreen.Hide()</a>
     </div>
     <div>
       <a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_EnableFrameUpdates">UIScreen.EnableFrameUpdates()</a>
@@ -159,13 +161,6 @@ Derived classes implement specific load/save behaviors</p>
   </div>
   <h3 id="constructors">Constructors
 </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_SaveFileListPopup__ctor_VisualElement_.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.SaveFileListPopup.%23ctor(VisualElement)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/SaveFileListPopup.cs/#L59">View Source</a>
-  </span>
   <a id="GameFramework_UI_Screens_SaveFileListPopup__ctor_" data-uid="GameFramework.UI.Screens.SaveFileListPopup.#ctor*"></a>
   <h4 id="GameFramework_UI_Screens_SaveFileListPopup__ctor_VisualElement_" data-uid="GameFramework.UI.Screens.SaveFileListPopup.#ctor(VisualElement)">SaveFileListPopup(VisualElement)</h4>
   <div class="markdown level1 summary"></div>
@@ -193,13 +188,6 @@ Derived classes implement specific load/save behaviors</p>
   </table>
   <h3 id="fields">Fields
 </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_SaveFileListPopup_DELETING_SAVE_FILE_MESSAGE.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.SaveFileListPopup.DELETING_SAVE_FILE_MESSAGE%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/SaveFileListPopup.cs/#L53">View Source</a>
-  </span>
   <h4 id="GameFramework_UI_Screens_SaveFileListPopup_DELETING_SAVE_FILE_MESSAGE" data-uid="GameFramework.UI.Screens.SaveFileListPopup.DELETING_SAVE_FILE_MESSAGE">DELETING_SAVE_FILE_MESSAGE</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -222,13 +210,6 @@ Derived classes implement specific load/save behaviors</p>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_SaveFileListPopup_ERROR_DELETING_MESSAGE.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.SaveFileListPopup.ERROR_DELETING_MESSAGE%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/SaveFileListPopup.cs/#L55">View Source</a>
-  </span>
   <h4 id="GameFramework_UI_Screens_SaveFileListPopup_ERROR_DELETING_MESSAGE" data-uid="GameFramework.UI.Screens.SaveFileListPopup.ERROR_DELETING_MESSAGE">ERROR_DELETING_MESSAGE</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -251,13 +232,6 @@ Derived classes implement specific load/save behaviors</p>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_SaveFileListPopup_ERROR_LOADING_MESSAGE.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.SaveFileListPopup.ERROR_LOADING_MESSAGE%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/SaveFileListPopup.cs/#L54">View Source</a>
-  </span>
   <h4 id="GameFramework_UI_Screens_SaveFileListPopup_ERROR_LOADING_MESSAGE" data-uid="GameFramework.UI.Screens.SaveFileListPopup.ERROR_LOADING_MESSAGE">ERROR_LOADING_MESSAGE</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -280,13 +254,6 @@ Derived classes implement specific load/save behaviors</p>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_SaveFileListPopup_LOADING_SAVE_FILES_MESSAGE.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.SaveFileListPopup.LOADING_SAVE_FILES_MESSAGE%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/SaveFileListPopup.cs/#L52">View Source</a>
-  </span>
   <h4 id="GameFramework_UI_Screens_SaveFileListPopup_LOADING_SAVE_FILES_MESSAGE" data-uid="GameFramework.UI.Screens.SaveFileListPopup.LOADING_SAVE_FILES_MESSAGE">LOADING_SAVE_FILES_MESSAGE</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -309,13 +276,6 @@ Derived classes implement specific load/save behaviors</p>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_SaveFileListPopup_NO_SAVE_FILES_MESSAGE.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.SaveFileListPopup.NO_SAVE_FILES_MESSAGE%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/SaveFileListPopup.cs/#L51">View Source</a>
-  </span>
   <h4 id="GameFramework_UI_Screens_SaveFileListPopup_NO_SAVE_FILES_MESSAGE" data-uid="GameFramework.UI.Screens.SaveFileListPopup.NO_SAVE_FILES_MESSAGE">NO_SAVE_FILES_MESSAGE</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -338,13 +298,6 @@ Derived classes implement specific load/save behaviors</p>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_SaveFileListPopup__closeButton.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.SaveFileListPopup._closeButton%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/SaveFileListPopup.cs/#L26">View Source</a>
-  </span>
   <h4 id="GameFramework_UI_Screens_SaveFileListPopup__closeButton" data-uid="GameFramework.UI.Screens.SaveFileListPopup._closeButton">_closeButton</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -367,13 +320,6 @@ Derived classes implement specific load/save behaviors</p>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_SaveFileListPopup__deleteButton.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.SaveFileListPopup._deleteButton%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/SaveFileListPopup.cs/#L25">View Source</a>
-  </span>
   <h4 id="GameFramework_UI_Screens_SaveFileListPopup__deleteButton" data-uid="GameFramework.UI.Screens.SaveFileListPopup._deleteButton">_deleteButton</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -396,13 +342,6 @@ Derived classes implement specific load/save behaviors</p>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_SaveFileListPopup__eventSystem.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.SaveFileListPopup._eventSystem%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/SaveFileListPopup.cs/#L36">View Source</a>
-  </span>
   <h4 id="GameFramework_UI_Screens_SaveFileListPopup__eventSystem" data-uid="GameFramework.UI.Screens.SaveFileListPopup._eventSystem">_eventSystem</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -425,13 +364,6 @@ Derived classes implement specific load/save behaviors</p>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_SaveFileListPopup__isDeletingFile.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.SaveFileListPopup._isDeletingFile%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/SaveFileListPopup.cs/#L45">View Source</a>
-  </span>
   <h4 id="GameFramework_UI_Screens_SaveFileListPopup__isDeletingFile" data-uid="GameFramework.UI.Screens.SaveFileListPopup._isDeletingFile">_isDeletingFile</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -454,13 +386,6 @@ Derived classes implement specific load/save behaviors</p>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_SaveFileListPopup__isLoadingData.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.SaveFileListPopup._isLoadingData%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/SaveFileListPopup.cs/#L44">View Source</a>
-  </span>
   <h4 id="GameFramework_UI_Screens_SaveFileListPopup__isLoadingData" data-uid="GameFramework.UI.Screens.SaveFileListPopup._isLoadingData">_isLoadingData</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -483,13 +408,6 @@ Derived classes implement specific load/save behaviors</p>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_SaveFileListPopup__loadService.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.SaveFileListPopup._loadService%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/SaveFileListPopup.cs/#L34">View Source</a>
-  </span>
   <h4 id="GameFramework_UI_Screens_SaveFileListPopup__loadService" data-uid="GameFramework.UI.Screens.SaveFileListPopup._loadService">_loadService</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -512,13 +430,6 @@ Derived classes implement specific load/save behaviors</p>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_SaveFileListPopup__saveFileList.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.SaveFileListPopup._saveFileList%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/SaveFileListPopup.cs/#L24">View Source</a>
-  </span>
   <h4 id="GameFramework_UI_Screens_SaveFileListPopup__saveFileList" data-uid="GameFramework.UI.Screens.SaveFileListPopup._saveFileList">_saveFileList</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -541,13 +452,6 @@ Derived classes implement specific load/save behaviors</p>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_SaveFileListPopup__saveFiles.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.SaveFileListPopup._saveFiles%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/SaveFileListPopup.cs/#L42">View Source</a>
-  </span>
   <h4 id="GameFramework_UI_Screens_SaveFileListPopup__saveFiles" data-uid="GameFramework.UI.Screens.SaveFileListPopup._saveFiles">_saveFiles</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -570,13 +474,6 @@ Derived classes implement specific load/save behaviors</p>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_SaveFileListPopup__saveService.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.SaveFileListPopup._saveService%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/SaveFileListPopup.cs/#L35">View Source</a>
-  </span>
   <h4 id="GameFramework_UI_Screens_SaveFileListPopup__saveService" data-uid="GameFramework.UI.Screens.SaveFileListPopup._saveService">_saveService</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -599,13 +496,6 @@ Derived classes implement specific load/save behaviors</p>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_SaveFileListPopup__selectedSaveFile.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.SaveFileListPopup._selectedSaveFile%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/SaveFileListPopup.cs/#L43">View Source</a>
-  </span>
   <h4 id="GameFramework_UI_Screens_SaveFileListPopup__selectedSaveFile" data-uid="GameFramework.UI.Screens.SaveFileListPopup._selectedSaveFile">_selectedSaveFile</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -628,13 +518,6 @@ Derived classes implement specific load/save behaviors</p>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_SaveFileListPopup__statusLabel.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.SaveFileListPopup._statusLabel%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/SaveFileListPopup.cs/#L27">View Source</a>
-  </span>
   <h4 id="GameFramework_UI_Screens_SaveFileListPopup__statusLabel" data-uid="GameFramework.UI.Screens.SaveFileListPopup._statusLabel">_statusLabel</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -657,13 +540,6 @@ Derived classes implement specific load/save behaviors</p>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_SaveFileListPopup__uiService.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.SaveFileListPopup._uiService%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/SaveFileListPopup.cs/#L33">View Source</a>
-  </span>
   <h4 id="GameFramework_UI_Screens_SaveFileListPopup__uiService" data-uid="GameFramework.UI.Screens.SaveFileListPopup._uiService">_uiService</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -688,13 +564,6 @@ Derived classes implement specific load/save behaviors</p>
   </table>
   <h3 id="methods">Methods
 </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_SaveFileListPopup_CacheSpecificUIElements.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.SaveFileListPopup.CacheSpecificUIElements%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/SaveFileListPopup.cs/#L72">View Source</a>
-  </span>
   <a id="GameFramework_UI_Screens_SaveFileListPopup_CacheSpecificUIElements_" data-uid="GameFramework.UI.Screens.SaveFileListPopup.CacheSpecificUIElements*"></a>
   <h4 id="GameFramework_UI_Screens_SaveFileListPopup_CacheSpecificUIElements" data-uid="GameFramework.UI.Screens.SaveFileListPopup.CacheSpecificUIElements">CacheSpecificUIElements()</h4>
   <div class="markdown level1 summary"><p>Cache UI elements specific to the derived popup</p>
@@ -704,13 +573,6 @@ Derived classes implement specific load/save behaviors</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">protected abstract void CacheSpecificUIElements()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_SaveFileListPopup_CanDeleteSelectedFile.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.SaveFileListPopup.CanDeleteSelectedFile%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/SaveFileListPopup.cs/#L281">View Source</a>
-  </span>
   <a id="GameFramework_UI_Screens_SaveFileListPopup_CanDeleteSelectedFile_" data-uid="GameFramework.UI.Screens.SaveFileListPopup.CanDeleteSelectedFile*"></a>
   <h4 id="GameFramework_UI_Screens_SaveFileListPopup_CanDeleteSelectedFile" data-uid="GameFramework.UI.Screens.SaveFileListPopup.CanDeleteSelectedFile">CanDeleteSelectedFile()</h4>
   <div class="markdown level1 summary"></div>
@@ -734,13 +596,31 @@ Derived classes implement specific load/save behaviors</p>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_SaveFileListPopup_ClosePopup.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.SaveFileListPopup.ClosePopup%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/SaveFileListPopup.cs/#L440">View Source</a>
-  </span>
+  <a id="GameFramework_UI_Screens_SaveFileListPopup_CanPerformDoubleClickAction_" data-uid="GameFramework.UI.Screens.SaveFileListPopup.CanPerformDoubleClickAction*"></a>
+  <h4 id="GameFramework_UI_Screens_SaveFileListPopup_CanPerformDoubleClickAction" data-uid="GameFramework.UI.Screens.SaveFileListPopup.CanPerformDoubleClickAction">CanPerformDoubleClickAction()</h4>
+  <div class="markdown level1 summary"><p>Check if double-click action can be performed - implemented by derived classes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract bool CanPerformDoubleClickAction()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>True if double-click action is allowed</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <a id="GameFramework_UI_Screens_SaveFileListPopup_ClosePopup_" data-uid="GameFramework.UI.Screens.SaveFileListPopup.ClosePopup*"></a>
   <h4 id="GameFramework_UI_Screens_SaveFileListPopup_ClosePopup" data-uid="GameFramework.UI.Screens.SaveFileListPopup.ClosePopup">ClosePopup()</h4>
   <div class="markdown level1 summary"><p>Abstract method for closing the popup - derived classes implement with their specific type</p>
@@ -765,13 +645,17 @@ Derived classes implement specific load/save behaviors</p>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_SaveFileListPopup_InitializeBaseUI.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.SaveFileListPopup.InitializeBaseUI%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/SaveFileListPopup.cs/#L98">View Source</a>
-  </span>
+  <a id="GameFramework_UI_Screens_SaveFileListPopup_Hide_" data-uid="GameFramework.UI.Screens.SaveFileListPopup.Hide*"></a>
+  <h4 id="GameFramework_UI_Screens_SaveFileListPopup_Hide" data-uid="GameFramework.UI.Screens.SaveFileListPopup.Hide">Hide()</h4>
+  <div class="markdown level1 summary"><p>Override Hide to ensure proper cleanup each time popup is hidden</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Hide()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_Hide">UIScreen.Hide()</a></div>
   <a id="GameFramework_UI_Screens_SaveFileListPopup_InitializeBaseUI_" data-uid="GameFramework.UI.Screens.SaveFileListPopup.InitializeBaseUI*"></a>
   <h4 id="GameFramework_UI_Screens_SaveFileListPopup_InitializeBaseUI" data-uid="GameFramework.UI.Screens.SaveFileListPopup.InitializeBaseUI">InitializeBaseUI()</h4>
   <div class="markdown level1 summary"></div>
@@ -780,13 +664,48 @@ Derived classes implement specific load/save behaviors</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">protected void InitializeBaseUI()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_SaveFileListPopup_OnHide.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.SaveFileListPopup.OnHide%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/SaveFileListPopup.cs/#L208">View Source</a>
-  </span>
+  <a id="GameFramework_UI_Screens_SaveFileListPopup_OnDoubleClickAction_" data-uid="GameFramework.UI.Screens.SaveFileListPopup.OnDoubleClickAction*"></a>
+  <h4 id="GameFramework_UI_Screens_SaveFileListPopup_OnDoubleClickAction_GameFramework_DataStructures_SaveFileInfo_" data-uid="GameFramework.UI.Screens.SaveFileListPopup.OnDoubleClickAction(GameFramework.DataStructures.SaveFileInfo)">OnDoubleClickAction(SaveFileInfo)</h4>
+  <div class="markdown level1 summary"><p>Handle double-click action - implemented by derived classes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract Task OnDoubleClickAction(SaveFileInfo selectedSaveFile)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.DataStructures.SaveFileInfo.html">SaveFileInfo</a></td>
+        <td><span class="parametername">selectedSaveFile</span></td>
+        <td><p>The save file that was double-clicked</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <a id="GameFramework_UI_Screens_SaveFileListPopup_OnHide_" data-uid="GameFramework.UI.Screens.SaveFileListPopup.OnHide*"></a>
   <h4 id="GameFramework_UI_Screens_SaveFileListPopup_OnHide" data-uid="GameFramework.UI.Screens.SaveFileListPopup.OnHide">OnHide()</h4>
   <div class="markdown level1 summary"></div>
@@ -797,13 +716,6 @@ Derived classes implement specific load/save behaviors</p>
   </div>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_OnHide">UIScreen.OnHide()</a></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_SaveFileListPopup_OnShow.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.SaveFileListPopup.OnShow%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/SaveFileListPopup.cs/#L200">View Source</a>
-  </span>
   <a id="GameFramework_UI_Screens_SaveFileListPopup_OnShow_" data-uid="GameFramework.UI.Screens.SaveFileListPopup.OnShow*"></a>
   <h4 id="GameFramework_UI_Screens_SaveFileListPopup_OnShow" data-uid="GameFramework.UI.Screens.SaveFileListPopup.OnShow">OnShow()</h4>
   <div class="markdown level1 summary"></div>
@@ -814,13 +726,6 @@ Derived classes implement specific load/save behaviors</p>
   </div>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_OnShow">UIScreen.OnShow()</a></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_SaveFileListPopup_RefreshSaveFilesList.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.SaveFileListPopup.RefreshSaveFilesList%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/SaveFileListPopup.cs/#L316">View Source</a>
-  </span>
   <a id="GameFramework_UI_Screens_SaveFileListPopup_RefreshSaveFilesList_" data-uid="GameFramework.UI.Screens.SaveFileListPopup.RefreshSaveFilesList*"></a>
   <h4 id="GameFramework_UI_Screens_SaveFileListPopup_RefreshSaveFilesList" data-uid="GameFramework.UI.Screens.SaveFileListPopup.RefreshSaveFilesList">RefreshSaveFilesList()</h4>
   <div class="markdown level1 summary"><p>Refreshes the save files list using LoadService</p>
@@ -845,13 +750,6 @@ Derived classes implement specific load/save behaviors</p>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_SaveFileListPopup_RegisterSpecificEventHandlers.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.SaveFileListPopup.RegisterSpecificEventHandlers%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/SaveFileListPopup.cs/#L82">View Source</a>
-  </span>
   <a id="GameFramework_UI_Screens_SaveFileListPopup_RegisterSpecificEventHandlers_" data-uid="GameFramework.UI.Screens.SaveFileListPopup.RegisterSpecificEventHandlers*"></a>
   <h4 id="GameFramework_UI_Screens_SaveFileListPopup_RegisterSpecificEventHandlers" data-uid="GameFramework.UI.Screens.SaveFileListPopup.RegisterSpecificEventHandlers">RegisterSpecificEventHandlers()</h4>
   <div class="markdown level1 summary"><p>Register event handlers specific to derived class</p>
@@ -861,13 +759,6 @@ Derived classes implement specific load/save behaviors</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">protected abstract void RegisterSpecificEventHandlers()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_SaveFileListPopup_ResetUIState.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.SaveFileListPopup.ResetUIState%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/SaveFileListPopup.cs/#L254">View Source</a>
-  </span>
   <a id="GameFramework_UI_Screens_SaveFileListPopup_ResetUIState_" data-uid="GameFramework.UI.Screens.SaveFileListPopup.ResetUIState*"></a>
   <h4 id="GameFramework_UI_Screens_SaveFileListPopup_ResetUIState" data-uid="GameFramework.UI.Screens.SaveFileListPopup.ResetUIState">ResetUIState()</h4>
   <div class="markdown level1 summary"></div>
@@ -876,13 +767,6 @@ Derived classes implement specific load/save behaviors</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">protected virtual void ResetUIState()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_SaveFileListPopup_SetDataLoadingState_System_Boolean_.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.SaveFileListPopup.SetDataLoadingState(System.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/SaveFileListPopup.cs/#L289">View Source</a>
-  </span>
   <a id="GameFramework_UI_Screens_SaveFileListPopup_SetDataLoadingState_" data-uid="GameFramework.UI.Screens.SaveFileListPopup.SetDataLoadingState*"></a>
   <h4 id="GameFramework_UI_Screens_SaveFileListPopup_SetDataLoadingState_System_Boolean_" data-uid="GameFramework.UI.Screens.SaveFileListPopup.SetDataLoadingState(System.Boolean)">SetDataLoadingState(bool)</h4>
   <div class="markdown level1 summary"></div>
@@ -908,13 +792,6 @@ Derived classes implement specific load/save behaviors</p>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_SaveFileListPopup_SetDeletingState_System_Boolean_.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.SaveFileListPopup.SetDeletingState(System.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/SaveFileListPopup.cs/#L295">View Source</a>
-  </span>
   <a id="GameFramework_UI_Screens_SaveFileListPopup_SetDeletingState_" data-uid="GameFramework.UI.Screens.SaveFileListPopup.SetDeletingState*"></a>
   <h4 id="GameFramework_UI_Screens_SaveFileListPopup_SetDeletingState_System_Boolean_" data-uid="GameFramework.UI.Screens.SaveFileListPopup.SetDeletingState(System.Boolean)">SetDeletingState(bool)</h4>
   <div class="markdown level1 summary"></div>
@@ -940,13 +817,6 @@ Derived classes implement specific load/save behaviors</p>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_SaveFileListPopup_SetStatusMessage_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.SaveFileListPopup.SetStatusMessage(System.String%2CSystem.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/SaveFileListPopup.cs/#L301">View Source</a>
-  </span>
   <a id="GameFramework_UI_Screens_SaveFileListPopup_SetStatusMessage_" data-uid="GameFramework.UI.Screens.SaveFileListPopup.SetStatusMessage*"></a>
   <h4 id="GameFramework_UI_Screens_SaveFileListPopup_SetStatusMessage_System_String_System_Boolean_" data-uid="GameFramework.UI.Screens.SaveFileListPopup.SetStatusMessage(System.String,System.Boolean)">SetStatusMessage(string, bool)</h4>
   <div class="markdown level1 summary"></div>
@@ -977,13 +847,6 @@ Derived classes implement specific load/save behaviors</p>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_SaveFileListPopup_SetupSpecificFunctionality.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.SaveFileListPopup.SetupSpecificFunctionality%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/SaveFileListPopup.cs/#L77">View Source</a>
-  </span>
   <a id="GameFramework_UI_Screens_SaveFileListPopup_SetupSpecificFunctionality_" data-uid="GameFramework.UI.Screens.SaveFileListPopup.SetupSpecificFunctionality*"></a>
   <h4 id="GameFramework_UI_Screens_SaveFileListPopup_SetupSpecificFunctionality" data-uid="GameFramework.UI.Screens.SaveFileListPopup.SetupSpecificFunctionality">SetupSpecificFunctionality()</h4>
   <div class="markdown level1 summary"><p>Setup derived class specific functionality</p>
@@ -993,13 +856,17 @@ Derived classes implement specific load/save behaviors</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">protected abstract void SetupSpecificFunctionality()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_SaveFileListPopup_UnregisterSpecificEventHandlers.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.SaveFileListPopup.UnregisterSpecificEventHandlers%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/SaveFileListPopup.cs/#L87">View Source</a>
-  </span>
+  <a id="GameFramework_UI_Screens_SaveFileListPopup_Show_" data-uid="GameFramework.UI.Screens.SaveFileListPopup.Show*"></a>
+  <h4 id="GameFramework_UI_Screens_SaveFileListPopup_Show" data-uid="GameFramework.UI.Screens.SaveFileListPopup.Show">Show()</h4>
+  <div class="markdown level1 summary"><p>Override Show to ensure proper setup each time popup is displayed</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Show()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_Show">UIScreen.Show()</a></div>
   <a id="GameFramework_UI_Screens_SaveFileListPopup_UnregisterSpecificEventHandlers_" data-uid="GameFramework.UI.Screens.SaveFileListPopup.UnregisterSpecificEventHandlers*"></a>
   <h4 id="GameFramework_UI_Screens_SaveFileListPopup_UnregisterSpecificEventHandlers" data-uid="GameFramework.UI.Screens.SaveFileListPopup.UnregisterSpecificEventHandlers">UnregisterSpecificEventHandlers()</h4>
   <div class="markdown level1 summary"><p>Unregister event handlers specific to derived class</p>
@@ -1009,13 +876,6 @@ Derived classes implement specific load/save behaviors</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">protected abstract void UnregisterSpecificEventHandlers()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_SaveFileListPopup_UpdateButtonStates.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.SaveFileListPopup.UpdateButtonStates%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/SaveFileListPopup.cs/#L272">View Source</a>
-  </span>
   <a id="GameFramework_UI_Screens_SaveFileListPopup_UpdateButtonStates_" data-uid="GameFramework.UI.Screens.SaveFileListPopup.UpdateButtonStates*"></a>
   <h4 id="GameFramework_UI_Screens_SaveFileListPopup_UpdateButtonStates" data-uid="GameFramework.UI.Screens.SaveFileListPopup.UpdateButtonStates">UpdateButtonStates()</h4>
   <div class="markdown level1 summary"></div>
@@ -1024,13 +884,6 @@ Derived classes implement specific load/save behaviors</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">protected virtual void UpdateButtonStates()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_SaveFileListPopup_UpdateSelection_GameFramework_DataStructures_SaveFileInfo_.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.SaveFileListPopup.UpdateSelection(GameFramework.DataStructures.SaveFileInfo)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/SaveFileListPopup.cs/#L264">View Source</a>
-  </span>
   <a id="GameFramework_UI_Screens_SaveFileListPopup_UpdateSelection_" data-uid="GameFramework.UI.Screens.SaveFileListPopup.UpdateSelection*"></a>
   <h4 id="GameFramework_UI_Screens_SaveFileListPopup_UpdateSelection_GameFramework_DataStructures_SaveFileInfo_" data-uid="GameFramework.UI.Screens.SaveFileListPopup.UpdateSelection(GameFramework.DataStructures.SaveFileInfo)">UpdateSelection(SaveFileInfo)</h4>
   <div class="markdown level1 summary"></div>
@@ -1056,13 +909,6 @@ Derived classes implement specific load/save behaviors</p>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_SaveFileListPopup_UpdateSpecificButtonStates.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.SaveFileListPopup.UpdateSpecificButtonStates%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/SaveFileListPopup.cs/#L92">View Source</a>
-  </span>
   <a id="GameFramework_UI_Screens_SaveFileListPopup_UpdateSpecificButtonStates_" data-uid="GameFramework.UI.Screens.SaveFileListPopup.UpdateSpecificButtonStates*"></a>
   <h4 id="GameFramework_UI_Screens_SaveFileListPopup_UpdateSpecificButtonStates" data-uid="GameFramework.UI.Screens.SaveFileListPopup.UpdateSpecificButtonStates">UpdateSpecificButtonStates()</h4>
   <div class="markdown level1 summary"><p>Update button states based on current selection and derived class needs</p>
@@ -1078,16 +924,6 @@ Derived classes implement specific load/save behaviors</p>
 
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
-              <div class="contribution">
-                <ul class="nav">
-                  <li>
-                    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_SaveFileListPopup.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.SaveFileListPopup%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/SaveFileListPopup.cs/#L20" class="contribution-link">View Source</a>
-                  </li>
-                </ul>
-              </div>
               <div class="toggle-mode">
                 <div class="icon">
                   <i aria-hidden="true">☀</i>
@@ -1119,7 +955,7 @@ Derived classes implement specific load/save behaviors</p>
               <a href="#top">Back to top</a>
             </span>
             <div class="pull-left">
-        UCTools Base Project Documentation
+        © 2025 UCTools Base Project Documentation
         
             </div>
             <div class="toggle-mode pull-right visible-sm visible-xs">

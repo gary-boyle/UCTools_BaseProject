@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class GameContext | UCTools Base Project Documentation </title>
+    <title>Class GameContext | UCTools Base Project </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class GameContext | UCTools Base Project Documentation ">
+    <meta name="title" content="Class GameContext | UCTools Base Project ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -18,8 +18,12 @@
     <meta property="docfx:tocrel" content="toc.html">
   
   <meta property="docfx:rel" content="../../">
+  <meta property="docfx:newtab" content="true">
+
   
-  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+  </head>
+
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
 
@@ -34,7 +38,7 @@
               </button>
 
               <a class="navbar-brand" href="../../index.html">
-                <img id="logo" class="svg" src="../../logo.svg" alt="">
+                <img id="logo" class="svg" src="../../logo.svg" alt="UCTools">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -80,9 +84,9 @@
 
 
   <h1 id="GameFramework_Core_GameContext" data-uid="GameFramework.Core.GameContext" class="text-break">Class GameContext</h1>
-  <div class="markdown level0 summary"><p>Context object containing all core game services.
-Uses constructor injection to receive all dependencies.
-Provides centralized access to services for game states and other systems.</p>
+  <div class="markdown level0 summary"><p>Centralized context object that provides access to all core game services through dependency injection.
+This class serves as a service aggregator that collects all essential game systems into a single,
+easily injectable dependency for game states and other complex systems.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -120,18 +124,46 @@ Provides centralized access to services for game states and other systems.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class GameContext</code></pre>
   </div>
+  <h5 id="GameFramework_Core_GameContext_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>
+The GameContext follows the Context Object pattern, providing a clean way to pass multiple
+related services to classes that need access to various game systems. Rather than injecting
+each service individually, classes can inject the GameContext and access all services through it.
+</p>
+<p>
+<strong>Benefits:</strong>
+</p>
+<ul><li>Reduces constructor parameter count in dependent classes</li><li>Provides a stable interface even when service dependencies change</li><li>Centralizes service access for easier testing and mocking</li><li>Maintains clear dependency relationships through constructor injection</li></ul>
+<p>
+All services are validated for null values during construction, ensuring that the GameContext
+is always in a valid state when successfully created.
+</p>
+</div>
+  <h5 id="GameFramework_Core_GameContext_examples"><strong>Examples</strong></h5>
+  <pre><code class="lang-csharp">// In a game state constructor
+public class PlayingState : IGameState
+{
+    private readonly GameContext _context;
+
+    public PlayingState(GameContext context)
+    {
+        _context = context;
+    }
+
+    public void Enter()
+    {
+        _context.AudioService.PlayMusic("gameplay");
+        _context.UIService.ShowScreen("hud");
+        _context.EventSystem.Publish(new GameStartedEvent());
+    }
+}</code></pre>
+
   <h3 id="constructors">Constructors
 </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Core_GameContext__ctor_GameFramework_EventSystem_Interfaces_IEventSystem_GameFramework_Services_Interfaces_ISceneService_GameFramework_Services_Interfaces_IAudioService_GameFramework_Input_Interfaces_IInputManager_GameFramework_Services_Interfaces_IUIService_GameFramework_Services_Interfaces_ISaveService_GameFramework_Services_Interfaces_IConfigService_GameFramework_Services_Interfaces_IGameDataService_.md&amp;value=---%0Auid%3A%20GameFramework.Core.GameContext.%23ctor(GameFramework.EventSystem.Interfaces.IEventSystem%2CGameFramework.Services.Interfaces.ISceneService%2CGameFramework.Services.Interfaces.IAudioService%2CGameFramework.Input.Interfaces.IInputManager%2CGameFramework.Services.Interfaces.IUIService%2CGameFramework.Services.Interfaces.ISaveService%2CGameFramework.Services.Interfaces.IConfigService%2CGameFramework.Services.Interfaces.IGameDataService)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Core/GameContext.cs/#L25">View Source</a>
-  </span>
   <a id="GameFramework_Core_GameContext__ctor_" data-uid="GameFramework.Core.GameContext.#ctor*"></a>
   <h4 id="GameFramework_Core_GameContext__ctor_GameFramework_EventSystem_Interfaces_IEventSystem_GameFramework_Services_Interfaces_ISceneService_GameFramework_Services_Interfaces_IAudioService_GameFramework_Input_Interfaces_IInputManager_GameFramework_Services_Interfaces_IUIService_GameFramework_Services_Interfaces_ISaveService_GameFramework_Services_Interfaces_IConfigService_GameFramework_Services_Interfaces_IGameDataService_" data-uid="GameFramework.Core.GameContext.#ctor(GameFramework.EventSystem.Interfaces.IEventSystem,GameFramework.Services.Interfaces.ISceneService,GameFramework.Services.Interfaces.IAudioService,GameFramework.Input.Interfaces.IInputManager,GameFramework.Services.Interfaces.IUIService,GameFramework.Services.Interfaces.ISaveService,GameFramework.Services.Interfaces.IConfigService,GameFramework.Services.Interfaces.IGameDataService)">GameContext(IEventSystem, ISceneService, IAudioService, IInputManager, IUIService, ISaveService, IConfigService, IGameDataService)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the GameContext with all required game services.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -150,57 +182,94 @@ Provides centralized access to services for game states and other systems.</p>
       <tr>
         <td><a class="xref" href="GameFramework.EventSystem.Interfaces.IEventSystem.html">IEventSystem</a></td>
         <td><span class="parametername">eventSystem</span></td>
-        <td></td>
+        <td><p>The event system for game event management.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="GameFramework.Services.Interfaces.ISceneService.html">ISceneService</a></td>
         <td><span class="parametername">sceneService</span></td>
-        <td></td>
+        <td><p>The scene service for scene loading and management.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="GameFramework.Services.Interfaces.IAudioService.html">IAudioService</a></td>
         <td><span class="parametername">audioService</span></td>
-        <td></td>
+        <td><p>The audio service for sound and music management.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="GameFramework.Input.Interfaces.IInputManager.html">IInputManager</a></td>
         <td><span class="parametername">inputManager</span></td>
-        <td></td>
+        <td><p>The input manager for player input handling.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="GameFramework.Services.Interfaces.IUIService.html">IUIService</a></td>
         <td><span class="parametername">uiService</span></td>
-        <td></td>
+        <td><p>The UI service for user interface management.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="GameFramework.Services.Interfaces.ISaveService.html">ISaveService</a></td>
         <td><span class="parametername">saveService</span></td>
-        <td></td>
+        <td><p>The save service for game data persistence.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="GameFramework.Services.Interfaces.IConfigService.html">IConfigService</a></td>
         <td><span class="parametername">configService</span></td>
-        <td></td>
+        <td><p>The configuration service for settings management.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="GameFramework.Services.Interfaces.IGameDataService.html">IGameDataService</a></td>
         <td><span class="parametername">gameDataService</span></td>
-        <td></td>
+        <td><p>The game data service for runtime game state.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="GameFramework_Core_GameContext__ctor_GameFramework_EventSystem_Interfaces_IEventSystem_GameFramework_Services_Interfaces_ISceneService_GameFramework_Services_Interfaces_IAudioService_GameFramework_Input_Interfaces_IInputManager_GameFramework_Services_Interfaces_IUIService_GameFramework_Services_Interfaces_ISaveService_GameFramework_Services_Interfaces_IConfigService_GameFramework_Services_Interfaces_IGameDataService__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>
+This constructor uses dependency injection to receive all core game services.
+All parameters are validated for null values, ensuring that the GameContext
+is always created in a valid state with all required dependencies.
+</p>
+<p>
+The constructor is designed to be called by the dependency injection container
+during application startup. Manual instantiation is not recommended as it
+requires managing all service dependencies manually.
+</p>
+</div>
+  <h5 id="GameFramework_Core_GameContext__ctor_GameFramework_EventSystem_Interfaces_IEventSystem_GameFramework_Services_Interfaces_ISceneService_GameFramework_Services_Interfaces_IAudioService_GameFramework_Input_Interfaces_IInputManager_GameFramework_Services_Interfaces_IUIService_GameFramework_Services_Interfaces_ISaveService_GameFramework_Services_Interfaces_IConfigService_GameFramework_Services_Interfaces_IGameDataService__examples">Examples</h5>
+  <pre><code class="lang-csharp">// Typically handled by DI container
+container.RegisterSingleton&lt;GameContext&gt;();
+
+// Container automatically provides all dependencies
+var context = container.Resolve&lt;GameContext&gt;();</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p>Thrown when any of the required service parameters is null.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <h3 id="properties">Properties
 </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Core_GameContext_AudioService.md&amp;value=---%0Auid%3A%20GameFramework.Core.GameContext.AudioService%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Core/GameContext.cs/#L18">View Source</a>
-  </span>
   <a id="GameFramework_Core_GameContext_AudioService_" data-uid="GameFramework.Core.GameContext.AudioService*"></a>
   <h4 id="GameFramework_Core_GameContext_AudioService" data-uid="GameFramework.Core.GameContext.AudioService">AudioService</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the audio service for managing music, sound effects, and audio settings.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -217,20 +286,19 @@ Provides centralized access to services for game states and other systems.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="GameFramework.Services.Interfaces.IAudioService.html">IAudioService</a></td>
-        <td></td>
+        <td><p>The audio service instance.</p>
+</td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Core_GameContext_ConfigService.md&amp;value=---%0Auid%3A%20GameFramework.Core.GameContext.ConfigService%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Core/GameContext.cs/#L22">View Source</a>
-  </span>
+  <h5 id="GameFramework_Core_GameContext_AudioService_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Handles audio playback, volume control, audio mixing, and integration
+with the game's configuration system for audio settings.</p>
+</div>
   <a id="GameFramework_Core_GameContext_ConfigService_" data-uid="GameFramework.Core.GameContext.ConfigService*"></a>
   <h4 id="GameFramework_Core_GameContext_ConfigService" data-uid="GameFramework.Core.GameContext.ConfigService">ConfigService</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the configuration service for managing game settings and preferences.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -247,20 +315,19 @@ Provides centralized access to services for game states and other systems.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="GameFramework.Services.Interfaces.IConfigService.html">IConfigService</a></td>
-        <td></td>
+        <td><p>The configuration service instance.</p>
+</td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Core_GameContext_EventSystem.md&amp;value=---%0Auid%3A%20GameFramework.Core.GameContext.EventSystem%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Core/GameContext.cs/#L16">View Source</a>
-  </span>
+  <h5 id="GameFramework_Core_GameContext_ConfigService_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Manages game settings categories like audio, graphics, gameplay, and input preferences.
+Provides persistent storage and validation of configuration values.</p>
+</div>
   <a id="GameFramework_Core_GameContext_EventSystem_" data-uid="GameFramework.Core.GameContext.EventSystem*"></a>
   <h4 id="GameFramework_Core_GameContext_EventSystem" data-uid="GameFramework.Core.GameContext.EventSystem">EventSystem</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the event system for publishing and subscribing to game events.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -277,20 +344,19 @@ Provides centralized access to services for game states and other systems.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="GameFramework.EventSystem.Interfaces.IEventSystem.html">IEventSystem</a></td>
-        <td></td>
+        <td><p>The event system service instance.</p>
+</td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Core_GameContext_GameDataService.md&amp;value=---%0Auid%3A%20GameFramework.Core.GameContext.GameDataService%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Core/GameContext.cs/#L23">View Source</a>
-  </span>
+  <h5 id="GameFramework_Core_GameContext_EventSystem_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Use this service to decouple systems through event-driven communication.
+Supports both synchronous and asynchronous event handling patterns.</p>
+</div>
   <a id="GameFramework_Core_GameContext_GameDataService_" data-uid="GameFramework.Core.GameContext.GameDataService*"></a>
   <h4 id="GameFramework_Core_GameContext_GameDataService" data-uid="GameFramework.Core.GameContext.GameDataService">GameDataService</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the game data service for managing runtime game state and shared data.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -307,20 +373,19 @@ Provides centralized access to services for game states and other systems.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="GameFramework.Services.Interfaces.IGameDataService.html">IGameDataService</a></td>
-        <td></td>
+        <td><p>The game data service instance.</p>
+</td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Core_GameContext_InputManager.md&amp;value=---%0Auid%3A%20GameFramework.Core.GameContext.InputManager%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Core/GameContext.cs/#L19">View Source</a>
-  </span>
+  <h5 id="GameFramework_Core_GameContext_GameDataService_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Handles runtime game state, player progress, session data, and other
+transient game information that needs to be shared across game states.</p>
+</div>
   <a id="GameFramework_Core_GameContext_InputManager_" data-uid="GameFramework.Core.GameContext.InputManager*"></a>
   <h4 id="GameFramework_Core_GameContext_InputManager" data-uid="GameFramework.Core.GameContext.InputManager">InputManager</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the input manager for handling player input across different input systems.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -337,20 +402,19 @@ Provides centralized access to services for game states and other systems.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="GameFramework.Input.Interfaces.IInputManager.html">IInputManager</a></td>
-        <td></td>
+        <td><p>The input manager instance.</p>
+</td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Core_GameContext_SaveService.md&amp;value=---%0Auid%3A%20GameFramework.Core.GameContext.SaveService%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Core/GameContext.cs/#L21">View Source</a>
-  </span>
+  <h5 id="GameFramework_Core_GameContext_InputManager_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Provides unified input handling that supports multiple input methods
+(keyboard, mouse, gamepad) and input contexts (UI, gameplay, console).</p>
+</div>
   <a id="GameFramework_Core_GameContext_SaveService_" data-uid="GameFramework.Core.GameContext.SaveService*"></a>
   <h4 id="GameFramework_Core_GameContext_SaveService" data-uid="GameFramework.Core.GameContext.SaveService">SaveService</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the save service for managing game save data and persistence.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -367,20 +431,19 @@ Provides centralized access to services for game states and other systems.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="GameFramework.Services.Interfaces.ISaveService.html">ISaveService</a></td>
-        <td></td>
+        <td><p>The save service instance.</p>
+</td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Core_GameContext_SceneService.md&amp;value=---%0Auid%3A%20GameFramework.Core.GameContext.SceneService%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Core/GameContext.cs/#L17">View Source</a>
-  </span>
+  <h5 id="GameFramework_Core_GameContext_SaveService_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Provides secure, reliable game save functionality with support for
+multiple save slots, data validation, and cross-platform compatibility.</p>
+</div>
   <a id="GameFramework_Core_GameContext_SceneService_" data-uid="GameFramework.Core.GameContext.SceneService*"></a>
   <h4 id="GameFramework_Core_GameContext_SceneService" data-uid="GameFramework.Core.GameContext.SceneService">SceneService</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the scene management service for loading and transitioning between scenes.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -397,20 +460,19 @@ Provides centralized access to services for game states and other systems.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="GameFramework.Services.Interfaces.ISceneService.html">ISceneService</a></td>
-        <td></td>
+        <td><p>The scene service instance.</p>
+</td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Core_GameContext_UIService.md&amp;value=---%0Auid%3A%20GameFramework.Core.GameContext.UIService%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Core/GameContext.cs/#L20">View Source</a>
-  </span>
+  <h5 id="GameFramework_Core_GameContext_SceneService_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Provides unified scene loading with progress tracking, async operations,
+and integration with the game state system.</p>
+</div>
   <a id="GameFramework_Core_GameContext_UIService_" data-uid="GameFramework.Core.GameContext.UIService*"></a>
   <h4 id="GameFramework_Core_GameContext_UIService" data-uid="GameFramework.Core.GameContext.UIService">UIService</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the UI service for managing user interface elements and screens.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -427,26 +489,21 @@ Provides centralized access to services for game states and other systems.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="GameFramework.Services.Interfaces.IUIService.html">IUIService</a></td>
-        <td></td>
+        <td><p>The UI service instance.</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="GameFramework_Core_GameContext_UIService_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Handles UI screen transitions, element management, and integration
+with Unity's UI Toolkit system for modern UI development.</p>
+</div>
 
 </article>
           </div>
 
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
-              <div class="contribution">
-                <ul class="nav">
-                  <li>
-                    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_Core_GameContext.md&amp;value=---%0Auid%3A%20GameFramework.Core.GameContext%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/Core/GameContext.cs/#L14" class="contribution-link">View Source</a>
-                  </li>
-                </ul>
-              </div>
               <div class="toggle-mode">
                 <div class="icon">
                   <i aria-hidden="true">☀</i>
@@ -478,7 +535,7 @@ Provides centralized access to services for game states and other systems.</p>
               <a href="#top">Back to top</a>
             </span>
             <div class="pull-left">
-        UCTools Base Project Documentation
+        © 2025 UCTools Base Project Documentation
         
             </div>
             <div class="toggle-mode pull-right visible-sm visible-xs">

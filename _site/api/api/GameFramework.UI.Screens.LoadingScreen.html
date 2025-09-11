@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class LoadingScreen | UCTools Base Project Documentation </title>
+    <title>Class LoadingScreen | UCTools Base Project </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class LoadingScreen | UCTools Base Project Documentation ">
+    <meta name="title" content="Class LoadingScreen | UCTools Base Project ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -18,8 +18,12 @@
     <meta property="docfx:tocrel" content="toc.html">
   
   <meta property="docfx:rel" content="../../">
+  <meta property="docfx:newtab" content="true">
+
   
-  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+  </head>
+
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
 
@@ -34,7 +38,7 @@
               </button>
 
               <a class="navbar-brand" href="../../index.html">
-                <img id="logo" class="svg" src="../../logo.svg" alt="">
+                <img id="logo" class="svg" src="../../logo.svg" alt="UCTools">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -80,7 +84,15 @@
 
 
   <h1 id="GameFramework_UI_Screens_LoadingScreen" data-uid="GameFramework.UI.Screens.LoadingScreen" class="text-break">Class LoadingScreen</h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>Loading screen that displays loading progress and messages</p>
+<p>Design:</p>
+<ul>
+<li>Subscribes to loading progress events through EventSystem</li>
+<li>Updates loading text and progress display in real-time</li>
+<li>Handles multiple loading event types for comprehensive coverage</li>
+<li>Manages UI element references and lifecycle properly</li>
+</ul>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
@@ -101,12 +113,6 @@
     </div>
     <div>
       <a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen__eventSystem">UIScreen._eventSystem</a>
-    </div>
-    <div>
-      <a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_Show">UIScreen.Show()</a>
-    </div>
-    <div>
-      <a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_Hide">UIScreen.Hide()</a>
     </div>
     <div>
       <a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_EnableFrameUpdates">UIScreen.EnableFrameUpdates()</a>
@@ -159,13 +165,6 @@
   </div>
   <h3 id="constructors">Constructors
 </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_LoadingScreen__ctor_VisualElement_.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.LoadingScreen.%23ctor(VisualElement)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Screens/LoadingScreen.cs/#L8">View Source</a>
-  </span>
   <a id="GameFramework_UI_Screens_LoadingScreen__ctor_" data-uid="GameFramework.UI.Screens.LoadingScreen.#ctor*"></a>
   <h4 id="GameFramework_UI_Screens_LoadingScreen__ctor_VisualElement_" data-uid="GameFramework.UI.Screens.LoadingScreen.#ctor(VisualElement)">LoadingScreen(VisualElement)</h4>
   <div class="markdown level1 summary"></div>
@@ -191,22 +190,195 @@
       </tr>
     </tbody>
   </table>
+  <h3 id="methods">Methods
+</h3>
+  <a id="GameFramework_UI_Screens_LoadingScreen_Hide_" data-uid="GameFramework.UI.Screens.LoadingScreen.Hide*"></a>
+  <h4 id="GameFramework_UI_Screens_LoadingScreen_Hide" data-uid="GameFramework.UI.Screens.LoadingScreen.Hide">Hide()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Hide()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_Hide">UIScreen.Hide()</a></div>
+  <a id="GameFramework_UI_Screens_LoadingScreen_SetLoadingType_" data-uid="GameFramework.UI.Screens.LoadingScreen.SetLoadingType*"></a>
+  <h4 id="GameFramework_UI_Screens_LoadingScreen_SetLoadingType_GameFramework_StateMachine_Enum_LoadingType_" data-uid="GameFramework.UI.Screens.LoadingScreen.SetLoadingType(GameFramework.StateMachine.Enum.LoadingType)">SetLoadingType(LoadingType)</h4>
+  <div class="markdown level1 summary"><p>Sets the loading type for context-specific messaging</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetLoadingType(LoadingType loadingType)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.StateMachine.Enum.LoadingType.html">LoadingType</a></td>
+        <td><span class="parametername">loadingType</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_UI_Screens_LoadingScreen_Show_" data-uid="GameFramework.UI.Screens.LoadingScreen.Show*"></a>
+  <h4 id="GameFramework_UI_Screens_LoadingScreen_Show" data-uid="GameFramework.UI.Screens.LoadingScreen.Show">Show()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Show()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_Show">UIScreen.Show()</a></div>
+  <a id="GameFramework_UI_Screens_LoadingScreen_ShowError_" data-uid="GameFramework.UI.Screens.LoadingScreen.ShowError*"></a>
+  <h4 id="GameFramework_UI_Screens_LoadingScreen_ShowError_System_String_" data-uid="GameFramework.UI.Screens.LoadingScreen.ShowError(System.String)">ShowError(string)</h4>
+  <div class="markdown level1 summary"><p>Shows an error message on the loading screen</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ShowError(string errorMessage)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">errorMessage</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_UI_Screens_LoadingScreen_UpdateLoadingMessage_" data-uid="GameFramework.UI.Screens.LoadingScreen.UpdateLoadingMessage*"></a>
+  <h4 id="GameFramework_UI_Screens_LoadingScreen_UpdateLoadingMessage_System_String_" data-uid="GameFramework.UI.Screens.LoadingScreen.UpdateLoadingMessage(System.String)">UpdateLoadingMessage(string)</h4>
+  <div class="markdown level1 summary"><p>Updates the loading message (the secondary text)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UpdateLoadingMessage(string message)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">message</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_UI_Screens_LoadingScreen_UpdateLoadingText_" data-uid="GameFramework.UI.Screens.LoadingScreen.UpdateLoadingText*"></a>
+  <h4 id="GameFramework_UI_Screens_LoadingScreen_UpdateLoadingText_System_String_" data-uid="GameFramework.UI.Screens.LoadingScreen.UpdateLoadingText(System.String)">UpdateLoadingText(string)</h4>
+  <div class="markdown level1 summary"><p>Updates the main loading text (the hero text)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UpdateLoadingText(string text)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">text</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_UI_Screens_LoadingScreen_UpdateProgress_" data-uid="GameFramework.UI.Screens.LoadingScreen.UpdateProgress*"></a>
+  <h4 id="GameFramework_UI_Screens_LoadingScreen_UpdateProgress_System_Single_System_String_" data-uid="GameFramework.UI.Screens.LoadingScreen.UpdateProgress(System.Single,System.String)">UpdateProgress(float, string)</h4>
+  <div class="markdown level1 summary"><p>Updates both progress and loading message</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UpdateProgress(float progress, string message)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td><span class="parametername">progress</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">message</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_UI_Screens_LoadingScreen_UpdateProgressBar_" data-uid="GameFramework.UI.Screens.LoadingScreen.UpdateProgressBar*"></a>
+  <h4 id="GameFramework_UI_Screens_LoadingScreen_UpdateProgressBar_System_Single_" data-uid="GameFramework.UI.Screens.LoadingScreen.UpdateProgressBar(System.Single)">UpdateProgressBar(float)</h4>
+  <div class="markdown level1 summary"><p>Updates just the progress bar value</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UpdateProgressBar(float progress)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td><span class="parametername">progress</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
 
 </article>
           </div>
 
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
-              <div class="contribution">
-                <ul class="nav">
-                  <li>
-                    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_LoadingScreen.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.LoadingScreen%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Screens/LoadingScreen.cs/#L6" class="contribution-link">View Source</a>
-                  </li>
-                </ul>
-              </div>
               <div class="toggle-mode">
                 <div class="icon">
                   <i aria-hidden="true">☀</i>
@@ -238,7 +410,7 @@
               <a href="#top">Back to top</a>
             </span>
             <div class="pull-left">
-        UCTools Base Project Documentation
+        © 2025 UCTools Base Project Documentation
         
             </div>
             <div class="toggle-mode pull-right visible-sm visible-xs">

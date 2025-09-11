@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Namespace GameFramework.Core | UCTools Base Project Documentation </title>
+    <title>Namespace GameFramework.Core | UCTools Base Project </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Namespace GameFramework.Core | UCTools Base Project Documentation ">
+    <meta name="title" content="Namespace GameFramework.Core | UCTools Base Project ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -18,8 +18,12 @@
     <meta property="docfx:tocrel" content="toc.html">
   
   <meta property="docfx:rel" content="../../">
+  <meta property="docfx:newtab" content="true">
+
   
-  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+  </head>
+
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
 
@@ -34,7 +38,7 @@
               </button>
 
               <a class="navbar-brand" href="../../index.html">
-                <img id="logo" class="svg" src="../../logo.svg" alt="">
+                <img id="logo" class="svg" src="../../logo.svg" alt="UCTools">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -84,20 +88,19 @@
     <h3 id="classes">
 Classes
 </h3>
-      <h4><a class="xref" href="GameFramework.Core.DIContainer.html">DIContainer</a></h4>
+      <h4><a class="xref" href="GameFramework.Core.DiContainer.html">DiContainer</a></h4>
       <section><p>Enhanced dependency injection container with automatic constructor injection support.
 Supports singleton registration, factory registration, type bindings, and automatic dependency resolution.</p>
-<p>Design: Service container with constructor injection and dependency graph resolution
-Pros: Clean separation of concerns, automatic dependency resolution, easy testing, loose coupling
-Cons: Runtime dependency resolution, potential circular dependencies, reflection overhead</p>
 </section>
       <h4><a class="xref" href="GameFramework.Core.GameContext.html">GameContext</a></h4>
-      <section><p>Context object containing all core game services.
-Uses constructor injection to receive all dependencies.
-Provides centralized access to services for game states and other systems.</p>
+      <section><p>Centralized context object that provides access to all core game services through dependency injection.
+This class serves as a service aggregator that collects all essential game systems into a single,
+easily injectable dependency for game states and other complex systems.</p>
 </section>
       <h4><a class="xref" href="GameFramework.Core.GameManager.html">GameManager</a></h4>
-      <section><p>Main game manager that bootstraps the entire game framework using dependency injection.</p>
+      <section><p>Main game manager that bootstraps the entire game framework using dependency injection.
+This singleton class initializes all core services, manages the game state machine,
+and coordinates frame updates across all systems.</p>
 </section>
 
 
@@ -106,10 +109,6 @@ Provides centralized access to services for game states and other systems.</p>
 
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
-              <div class="contribution">
-                <ul class="nav">
-                </ul>
-              </div>
               <div class="toggle-mode">
                 <div class="icon">
                   <i aria-hidden="true">☀</i>
@@ -141,7 +140,7 @@ Provides centralized access to services for game states and other systems.</p>
               <a href="#top">Back to top</a>
             </span>
             <div class="pull-left">
-        UCTools Base Project Documentation
+        © 2025 UCTools Base Project Documentation
         
             </div>
             <div class="toggle-mode pull-right visible-sm visible-xs">

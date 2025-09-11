@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Namespace GameFramework.StateMachine.GameStates | UCTools Base Project Documentation </title>
+    <title>Namespace GameFramework.StateMachine.GameStates | UCTools Base Project </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Namespace GameFramework.StateMachine.GameStates | UCTools Base Project Documentation ">
+    <meta name="title" content="Namespace GameFramework.StateMachine.GameStates | UCTools Base Project ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -18,8 +18,12 @@
     <meta property="docfx:tocrel" content="toc.html">
   
   <meta property="docfx:rel" content="../../">
+  <meta property="docfx:newtab" content="true">
+
   
-  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+  </head>
+
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
 
@@ -34,7 +38,7 @@
               </button>
 
               <a class="navbar-brand" href="../../index.html">
-                <img id="logo" class="svg" src="../../logo.svg" alt="">
+                <img id="logo" class="svg" src="../../logo.svg" alt="UCTools">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -89,10 +93,20 @@ Classes
 All required services are injected via constructor rather than resolved at runtime.</p>
 </section>
       <h4><a class="xref" href="GameFramework.StateMachine.GameStates.CreditsState.html">CreditsState</a></h4>
-      <section><p>Credits state with constructor injection</p>
+      <section><p>Credits state - manages the credits screen and handles navigation
+Responsible for its UI lifecycle and event handling</p>
+<p>Intent: Display game credits with appropriate audio and handle user navigation
+Design: Event-driven state management with clean separation of concerns
+Pros: Clear responsibility separation, maintainable, follows established patterns
+Cons: Requires careful event subscription management</p>
 </section>
       <h4><a class="xref" href="GameFramework.StateMachine.GameStates.GameOverState.html">GameOverState</a></h4>
-      <section><p>Game over state with constructor injection</p>
+      <section><p>Game Over state - manages the game over screen and handles player choices
+Responsible for its UI lifecycle and event handling</p>
+<p>Intent: Present game over state with options to restart, load game, or return to menu
+Design: Event-driven state management with clear separation of concerns
+Pros: Clear responsibility separation, multiple player options, maintainable
+Cons: Requires careful event subscription management</p>
 </section>
       <h4><a class="xref" href="GameFramework.StateMachine.GameStates.LoadingState.html">LoadingState</a></h4>
       <section><p>Loading state that handles different loading scenarios using unified GameSession system
@@ -100,24 +114,39 @@ Creates or loads GameSession based on loading configuration
 Integrates with TimeService for proper playtime handling</p>
 </section>
       <h4><a class="xref" href="GameFramework.StateMachine.GameStates.MainMenuState.html">MainMenuState</a></h4>
-      <section><p>Main menu state using unified GameSession system for save/load operations</p>
+      <section><p>Main menu state - fully responsible for its UI lifecycle
+Handles all UI transitions based on user interactions reported by the screen</p>
 </section>
       <h4><a class="xref" href="GameFramework.StateMachine.GameStates.NewGameState.html">NewGameState</a></h4>
-      <section><p>Updated NewGameState that properly initializes the central GameDataManager
-Creates unified game session from new game parameters</p>
+      <section><p>New Game state - fully responsible for its UI lifecycle
+Handles all UI transitions based on user interactions reported by the screen</p>
 </section>
       <h4><a class="xref" href="GameFramework.StateMachine.GameStates.PlayingState.html">PlayingState</a></h4>
-      <section><p>Simplified PlayingState - no direct input handling
-Just declares what input context it needs</p>
+      <section><p>Playing state - reacts to pause state changes from PauseService
+Manages UI in response to actual pause/resume events</p>
+<p>Intent: Manage the main gameplay state by reacting to pause state changes
+Design: Reactive event-driven architecture - responds to state changes rather than intercepting requests
+Pros: Cleaner separation, more reactive, simpler flow
+Cons: Less control over when pausing occurs</p>
 </section>
       <h4><a class="xref" href="GameFramework.StateMachine.GameStates.QuitState.html">QuitState</a></h4>
-      <section><p>Quit state with constructor injection</p>
+      <section><p>Quit state - handles graceful application shutdown with progress feedback
+Responsible for saving data, cleaning up resources, and exiting the application</p>
+<p>Intent: Provide graceful shutdown with user feedback and cancellation support
+Design: Progressive shutdown with clear stages and user communication
+Pros: Safe data preservation, clear user feedback, cancellation support
+Cons: More complex than immediate quit, requires careful resource management</p>
 </section>
       <h4><a class="xref" href="GameFramework.StateMachine.GameStates.SplashState.html">SplashState</a></h4>
       <section><p>Splash state with event-driven input handling and constructor injection</p>
 </section>
       <h4><a class="xref" href="GameFramework.StateMachine.GameStates.VictoryState.html">VictoryState</a></h4>
-      <section><p>Victory state with constructor injection</p>
+      <section><p>Victory state - manages the victory screen and celebrates player success
+Responsible for its UI lifecycle and event handling</p>
+<p>Intent: Celebrate player victory, show achievements, and provide options for continued play
+Design: Event-driven state management with clear separation of concerns
+Pros: Celebratory UX, clear progression options, maintainable, analytics integration
+Cons: Requires careful event subscription management</p>
 </section>
 
 
@@ -126,10 +155,6 @@ Just declares what input context it needs</p>
 
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
-              <div class="contribution">
-                <ul class="nav">
-                </ul>
-              </div>
               <div class="toggle-mode">
                 <div class="icon">
                   <i aria-hidden="true">☀</i>
@@ -161,7 +186,7 @@ Just declares what input context it needs</p>
               <a href="#top">Back to top</a>
             </span>
             <div class="pull-left">
-        UCTools Base Project Documentation
+        © 2025 UCTools Base Project Documentation
         
             </div>
             <div class="toggle-mode pull-right visible-sm visible-xs">

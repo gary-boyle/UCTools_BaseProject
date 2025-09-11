@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Namespace GameFramework.UI.Screens | UCTools Base Project Documentation </title>
+    <title>Namespace GameFramework.UI.Screens | UCTools Base Project </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Namespace GameFramework.UI.Screens | UCTools Base Project Documentation ">
+    <meta name="title" content="Namespace GameFramework.UI.Screens | UCTools Base Project ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -18,8 +18,12 @@
     <meta property="docfx:tocrel" content="toc.html">
   
   <meta property="docfx:rel" content="../../">
+  <meta property="docfx:newtab" content="true">
+
   
-  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+  </head>
+
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
 
@@ -34,7 +38,7 @@
               </button>
 
               <a class="navbar-brand" href="../../index.html">
-                <img id="logo" class="svg" src="../../logo.svg" alt="">
+                <img id="logo" class="svg" src="../../logo.svg" alt="UCTools">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -85,42 +89,72 @@
 Classes
 </h3>
       <h4><a class="xref" href="GameFramework.UI.Screens.CreditsScreen.html">CreditsScreen</a></h4>
-      <section></section>
+      <section><p>Credits screen - displays game credits and handles user interactions
+Follows established pattern of publishing events rather than managing state directly</p>
+</section>
       <h4><a class="xref" href="GameFramework.UI.Screens.GameOverScreen.html">GameOverScreen</a></h4>
-      <section></section>
+      <section><p>Game Over screen - displays game over message and provides player options
+Follows established pattern of publishing events rather than managing state directly</p>
+</section>
       <h4><a class="xref" href="GameFramework.UI.Screens.GamePlayScreen.html">GamePlayScreen</a></h4>
-      <section><p>Main gameplay screen with HUD elements and debug information display
-Provides access to game state information and gameplay controls
-Uses TimeService for accurate playtime display with proper pause handling</p>
+      <section><p>Game play screen - pure UI component that reports user interactions and displays game data
+Does not handle its own lifecycle - that's managed by the PlayingState</p>
 </section>
       <h4><a class="xref" href="GameFramework.UI.Screens.LoadGamePopup.html">LoadGamePopup</a></h4>
       <section><p>Load game popup that extends the base save file list functionality
 Provides double-click loading and load button functionality</p>
+<p>INTENT: Specialized popup for loading saved game files with enhanced UX
+DESIGN: Leverages base class double-click infrastructure for consistent UX
+PROS: Minimal code duplication, consistent interaction patterns, clean separation
+CONS: Dependent on base class implementation</p>
 </section>
       <h4><a class="xref" href="GameFramework.UI.Screens.LoadingScreen.html">LoadingScreen</a></h4>
-      <section></section>
+      <section><p>Loading screen that displays loading progress and messages</p>
+<p>Design:</p>
+<ul>
+<li>Subscribes to loading progress events through EventSystem</li>
+<li>Updates loading text and progress display in real-time</li>
+<li>Handles multiple loading event types for comprehensive coverage</li>
+<li>Manages UI element references and lifecycle properly</li>
+</ul>
+</section>
       <h4><a class="xref" href="GameFramework.UI.Screens.MainMenuScreen.html">MainMenuScreen</a></h4>
-      <section><p>Main menu screen implementation with event publishing</p>
+      <section><p>Main menu screen - pure UI component that only reports user interactions
+Does not handle its own lifecycle - that's managed by the MainMenuState</p>
 </section>
       <h4><a class="xref" href="GameFramework.UI.Screens.NewGameScreen.html">NewGameScreen</a></h4>
-      <section><p>New Game Screen that allows players to configure and start a new game
-Handles UI event registration/unregistration properly in OnShow/OnHide</p>
+      <section><p>New Game Screen - pure UI component that only reports user interactions
+Does not handle its own lifecycle - that's managed by the NewGameState</p>
+</section>
+      <h4><a class="xref" href="GameFramework.UI.Screens.QuitScreen.html">QuitScreen</a></h4>
+      <section><p>Quit screen - displays shutdown progress and handles graceful application exit
+Follows established pattern of publishing events rather than managing state directly</p>
 </section>
       <h4><a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html">SaveFileListPopup</a></h4>
       <section><p>Base class for popups that display and manage save file lists
-Provides common functionality for save file display, selection, and deletion
+Provides common functionality for save file display, selection, deletion, and double-click handling
 Derived classes implement specific load/save behaviors</p>
+<p>INTENT: Centralized save file list management with extensible interaction patterns
+DESIGN: Template method pattern with double-click infrastructure and proper lifecycle management
+PROS: DRY principle, centralized ListView logic, reusable double-click handling
+CONS: More complex base class, requires careful abstract method implementation</p>
 </section>
       <h4><a class="xref" href="GameFramework.UI.Screens.SaveGamePopup.html">SaveGamePopup</a></h4>
-      <section><p>Save game popup that extends the base save file list functionality
+      <section><p>Save game popup with enhanced progress indication using ProgressBar and proper popup stack management
 Delegates all business logic to SaveService for clean separation of concerns
-Provides both regular saves and autosaves through simple UI interactions</p>
+Provides both regular saves, autosaves, and quick-save via double-click</p>
+<p>INTENT: Specialized popup for saving game files with comprehensive progress feedback
+DESIGN: Enhanced with modal progress overlay using ProgressBar and proper popup stack management
+PROS: Clear visual feedback with standard ProgressBar, proper pause state management, multiple save options
+CONS: More complex UI state management, additional visual elements</p>
 </section>
       <h4><a class="xref" href="GameFramework.UI.Screens.SplashScreen.html">SplashScreen</a></h4>
       <section><p>Splash screen implementation</p>
 </section>
       <h4><a class="xref" href="GameFramework.UI.Screens.VictoryScreen.html">VictoryScreen</a></h4>
-      <section></section>
+      <section><p>Victory screen - displays victory celebration and provides player options
+Follows established pattern of publishing events rather than managing state directly</p>
+</section>
 
 
 </article>
@@ -128,10 +162,6 @@ Provides both regular saves and autosaves through simple UI interactions</p>
 
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
-              <div class="contribution">
-                <ul class="nav">
-                </ul>
-              </div>
               <div class="toggle-mode">
                 <div class="icon">
                   <i aria-hidden="true">☀</i>
@@ -163,7 +193,7 @@ Provides both regular saves and autosaves through simple UI interactions</p>
               <a href="#top">Back to top</a>
             </span>
             <div class="pull-left">
-        UCTools Base Project Documentation
+        © 2025 UCTools Base Project Documentation
         
             </div>
             <div class="toggle-mode pull-right visible-sm visible-xs">

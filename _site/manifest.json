@@ -194,44 +194,58 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFramework.ConsoleTool.IConsoleCommand.yml",
+      "source_relative_path": "api/GameFramework.ConsoleTool.Interfaces.IConsoleCommand.yml",
       "output": {
         ".html": {
-          "relative_path": "api/api/GameFramework.ConsoleTool.IConsoleCommand.html"
+          "relative_path": "api/api/GameFramework.ConsoleTool.Interfaces.IConsoleCommand.html"
         }
       },
       "version": "",
       "Uid": null,
       "IsMRef": true,
-      "Title": "GameFramework.ConsoleTool.IConsoleCommand",
-      "Summary": "<p sourcefile=\"api/GameFramework.ConsoleTool.IConsoleCommand.yml\" sourcestartlinenumber=\"1\">Interface for console commands that can be executed from the command line\nProvides metadata and execution context for modular command system</p>\n"
+      "Title": "GameFramework.ConsoleTool.Interfaces.IConsoleCommand",
+      "Summary": "<p sourcefile=\"api/GameFramework.ConsoleTool.Interfaces.IConsoleCommand.yml\" sourcestartlinenumber=\"1\">Interface for console commands that can be executed from the command line\nProvides metadata and execution context for modular command system</p>\n"
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFramework.ConsoleTool.IConsoleContext.yml",
+      "source_relative_path": "api/GameFramework.ConsoleTool.Interfaces.IConsoleContext.yml",
       "output": {
         ".html": {
-          "relative_path": "api/api/GameFramework.ConsoleTool.IConsoleContext.html"
+          "relative_path": "api/api/GameFramework.ConsoleTool.Interfaces.IConsoleContext.html"
         }
       },
       "version": "",
       "Uid": null,
       "IsMRef": true,
-      "Title": "GameFramework.ConsoleTool.IConsoleContext",
-      "Summary": "<p sourcefile=\"api/GameFramework.ConsoleTool.IConsoleContext.yml\" sourcestartlinenumber=\"1\">Context interface providing access to console functionality\nAllows commands to interact with the console system safely without direct access to internal state\nActs as a controlled facade that prevents commands from breaking console integrity</p>\n"
+      "Title": "GameFramework.ConsoleTool.Interfaces.IConsoleContext",
+      "Summary": "<p sourcefile=\"api/GameFramework.ConsoleTool.Interfaces.IConsoleContext.yml\" sourcestartlinenumber=\"1\">Context interface providing access to console functionality\nAllows commands to interact with the console system safely without direct access to internal state\nActs as a controlled facade that prevents commands from breaking console integrity</p>\n"
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFramework.ConsoleTool.IConsoleUI.yml",
+      "source_relative_path": "api/GameFramework.ConsoleTool.Interfaces.IConsoleUI.yml",
       "output": {
         ".html": {
-          "relative_path": "api/api/GameFramework.ConsoleTool.IConsoleUI.html"
+          "relative_path": "api/api/GameFramework.ConsoleTool.Interfaces.IConsoleUI.html"
         }
       },
       "version": "",
       "Uid": null,
       "IsMRef": true,
-      "Title": "GameFramework.ConsoleTool.IConsoleUI",
+      "Title": "GameFramework.ConsoleTool.Interfaces.IConsoleUI",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.ConsoleTool.Interfaces.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.ConsoleTool.Interfaces.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.ConsoleTool.Interfaces",
       "Summary": null
     },
     {
@@ -278,17 +292,17 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFramework.Core.DIContainer.yml",
+      "source_relative_path": "api/GameFramework.Core.DiContainer.yml",
       "output": {
         ".html": {
-          "relative_path": "api/api/GameFramework.Core.DIContainer.html"
+          "relative_path": "api/api/GameFramework.Core.DiContainer.html"
         }
       },
       "version": "",
       "Uid": null,
       "IsMRef": true,
-      "Title": "GameFramework.Core.DIContainer",
-      "Summary": "<p sourcefile=\"api/GameFramework.Core.DIContainer.yml\" sourcestartlinenumber=\"1\">Enhanced dependency injection container with automatic constructor injection support.\nSupports singleton registration, factory registration, type bindings, and automatic dependency resolution.</p>\n<p sourcefile=\"api/GameFramework.Core.DIContainer.yml\" sourcestartlinenumber=\"4\">Design: Service container with constructor injection and dependency graph resolution\nPros: Clean separation of concerns, automatic dependency resolution, easy testing, loose coupling\nCons: Runtime dependency resolution, potential circular dependencies, reflection overhead</p>\n"
+      "Title": "GameFramework.Core.DiContainer",
+      "Summary": "<p sourcefile=\"api/GameFramework.Core.DiContainer.yml\" sourcestartlinenumber=\"1\">Enhanced dependency injection container with automatic constructor injection support.\nSupports singleton registration, factory registration, type bindings, and automatic dependency resolution.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -302,7 +316,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.Core.GameContext",
-      "Summary": "<p sourcefile=\"api/GameFramework.Core.GameContext.yml\" sourcestartlinenumber=\"1\">Context object containing all core game services.\nUses constructor injection to receive all dependencies.\nProvides centralized access to services for game states and other systems.</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.Core.GameContext.yml\" sourcestartlinenumber=\"1\">Centralized context object that provides access to all core game services through dependency injection.\nThis class serves as a service aggregator that collects all essential game systems into a single,\neasily injectable dependency for game states and other complex systems.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -316,7 +330,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.Core.GameManager",
-      "Summary": "<p sourcefile=\"api/GameFramework.Core.GameManager.yml\" sourcestartlinenumber=\"1\">Main game manager that bootstraps the entire game framework using dependency injection.</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.Core.GameManager.yml\" sourcestartlinenumber=\"1\">Main game manager that bootstraps the entire game framework using dependency injection.\nThis singleton class initializes all core services, manages the game state machine,\nand coordinates frame updates across all systems.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -359,6 +373,20 @@
       "IsMRef": true,
       "Title": "GameFramework.DataStructures.GameSession",
       "Summary": "<p sourcefile=\"api/GameFramework.DataStructures.GameSession.yml\" sourcestartlinenumber=\"1\">Central game session data - single source of truth for all game state\nStores playtime data in serializable fields while providing TimeService integration\nEnsures playtime persists correctly across save/load operations</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.DataStructures.PlayTimeInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.DataStructures.PlayTimeInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.DataStructures.PlayTimeInfo",
+      "Summary": "<p sourcefile=\"api/GameFramework.DataStructures.PlayTimeInfo.yml\" sourcestartlinenumber=\"1\">Playtime information structure for UI display and debugging</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -415,6 +443,20 @@
       "IsMRef": true,
       "Title": "GameFramework.EventSystem.EventSystem",
       "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.EventSystem.Events.AutoSaveRequestedEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.EventSystem.Events.AutoSaveRequestedEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.EventSystem.Events.AutoSaveRequestedEvent",
+      "Summary": "<p sourcefile=\"api/GameFramework.EventSystem.Events.AutoSaveRequestedEvent.yml\" sourcestartlinenumber=\"1\">Event triggered when the player requests an auto-save operation</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -502,20 +544,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFramework.EventSystem.Events.GameEndedEvent.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/GameFramework.EventSystem.Events.GameEndedEvent.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFramework.EventSystem.Events.GameEndedEvent",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/GameFramework.EventSystem.Events.GameOverEvent.yml",
       "output": {
         ".html": {
@@ -554,20 +582,6 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.EventSystem.Events.GameResumedEvent",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFramework.EventSystem.Events.GameStartedEvent.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/GameFramework.EventSystem.Events.GameStartedEvent.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFramework.EventSystem.Events.GameStartedEvent",
       "Summary": null
     },
     {
@@ -656,6 +670,62 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.EventSystem.Events.LoadingCompletedEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.EventSystem.Events.LoadingCompletedEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.EventSystem.Events.LoadingCompletedEvent",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.EventSystem.Events.LoadingFailedEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.EventSystem.Events.LoadingFailedEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.EventSystem.Events.LoadingFailedEvent",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.EventSystem.Events.LoadingMessageChangedEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.EventSystem.Events.LoadingMessageChangedEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.EventSystem.Events.LoadingMessageChangedEvent",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.EventSystem.Events.LoadingProgressChangedEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.EventSystem.Events.LoadingProgressChangedEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.EventSystem.Events.LoadingProgressChangedEvent",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFramework.EventSystem.Events.LoadingProgressEvent.yml",
       "output": {
         ".html": {
@@ -667,6 +737,20 @@
       "IsMRef": true,
       "Title": "GameFramework.EventSystem.Events.LoadingProgressEvent",
       "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.EventSystem.Events.LoadingStartedEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.EventSystem.Events.LoadingStartedEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.EventSystem.Events.LoadingStartedEvent",
+      "Summary": "<p sourcefile=\"api/GameFramework.EventSystem.Events.LoadingStartedEvent.yml\" sourcestartlinenumber=\"1\">Event published when loading process begins\nAllows UI and other services to prepare for loading</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -723,6 +807,20 @@
       "IsMRef": true,
       "Title": "GameFramework.EventSystem.Events.OptionsRequestedEvent",
       "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.EventSystem.Events.OverwriteSaveRequestedEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.EventSystem.Events.OverwriteSaveRequestedEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.EventSystem.Events.OverwriteSaveRequestedEvent",
+      "Summary": "<p sourcefile=\"api/GameFramework.EventSystem.Events.OverwriteSaveRequestedEvent.yml\" sourcestartlinenumber=\"1\">Event triggered when the player requests to overwrite an existing save file</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -894,6 +992,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.EventSystem.Events.RegularSaveRequestedEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.EventSystem.Events.RegularSaveRequestedEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.EventSystem.Events.RegularSaveRequestedEvent",
+      "Summary": "<p sourcefile=\"api/GameFramework.EventSystem.Events.RegularSaveRequestedEvent.yml\" sourcestartlinenumber=\"1\">Event triggered when the player requests a regular save operation</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFramework.EventSystem.Events.ResumeRequestedEvent.yml",
       "output": {
         ".html": {
@@ -905,6 +1017,34 @@
       "IsMRef": true,
       "Title": "GameFramework.EventSystem.Events.ResumeRequestedEvent",
       "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.EventSystem.Events.SaveCompletedEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.EventSystem.Events.SaveCompletedEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.EventSystem.Events.SaveCompletedEvent",
+      "Summary": "<p sourcefile=\"api/GameFramework.EventSystem.Events.SaveCompletedEvent.yml\" sourcestartlinenumber=\"1\">Event published when a save operation completes successfully</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.EventSystem.Events.SaveFailedEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.EventSystem.Events.SaveFailedEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.EventSystem.Events.SaveFailedEvent",
+      "Summary": "<p sourcefile=\"api/GameFramework.EventSystem.Events.SaveFailedEvent.yml\" sourcestartlinenumber=\"1\">Event published when a save operation fails</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -922,20 +1062,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFramework.EventSystem.Events.SaveGameRequestedEvent.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/GameFramework.EventSystem.Events.SaveGameRequestedEvent.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFramework.EventSystem.Events.SaveGameRequestedEvent",
-      "Summary": "<p sourcefile=\"api/GameFramework.EventSystem.Events.SaveGameRequestedEvent.yml\" sourcestartlinenumber=\"1\">Event triggered when the player requests to save the game</p>\n"
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/GameFramework.EventSystem.Events.SceneLoadedEvent.yml",
       "output": {
         ".html": {
@@ -946,6 +1072,48 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.EventSystem.Events.SceneLoadedEvent",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.EventSystem.Events.SessionClearedEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.EventSystem.Events.SessionClearedEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.EventSystem.Events.SessionClearedEvent",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.EventSystem.Events.SessionCreatedEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.EventSystem.Events.SessionCreatedEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.EventSystem.Events.SessionCreatedEvent",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.EventSystem.Events.SessionLoadedEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.EventSystem.Events.SessionLoadedEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.EventSystem.Events.SessionLoadedEvent",
       "Summary": null
     },
     {
@@ -1062,34 +1230,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFramework.EventSystem.Events.UITrackedDeviceOrientationInputEvent.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/GameFramework.EventSystem.Events.UITrackedDeviceOrientationInputEvent.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFramework.EventSystem.Events.UITrackedDeviceOrientationInputEvent",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFramework.EventSystem.Events.UITrackedDevicePositionInputEvent.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/GameFramework.EventSystem.Events.UITrackedDevicePositionInputEvent.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFramework.EventSystem.Events.UITrackedDevicePositionInputEvent",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/GameFramework.EventSystem.Events.VictoryEvent.yml",
       "output": {
         ".html": {
@@ -1174,6 +1314,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Input.Handlers.InputHandlerBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Input.Handlers.InputHandlerBase.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Input.Handlers.InputHandlerBase",
+      "Summary": "<p sourcefile=\"api/GameFramework.Input.Handlers.InputHandlerBase.yml\" sourcestartlinenumber=\"1\">Base class for all input handlers\nEach handler is responsible for one specific type of input (UI, Player, Console, etc.)</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFramework.Input.Handlers.PlayerInputHandler.yml",
       "output": {
         ".html": {
@@ -1227,20 +1381,6 @@
       "IsMRef": true,
       "Title": "GameFramework.Input.InputContext",
       "Summary": "<p sourcefile=\"api/GameFramework.Input.InputContext.yml\" sourcestartlinenumber=\"1\">Defines the different input contexts for the game</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFramework.Input.InputHandlerBase.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/GameFramework.Input.InputHandlerBase.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFramework.Input.InputHandlerBase",
-      "Summary": "<p sourcefile=\"api/GameFramework.Input.InputHandlerBase.yml\" sourcestartlinenumber=\"1\">Base class for all input handlers\nEach handler is responsible for one specific type of input (UI, Player, Console, etc.)</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1342,6 +1482,34 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Services.Data.TimeStatistics.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Services.Data.TimeStatistics.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Services.Data.TimeStatistics",
+      "Summary": "<p sourcefile=\"api/GameFramework.Services.Data.TimeStatistics.yml\" sourcestartlinenumber=\"1\">Data structure for time statistics</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Services.Data.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Services.Data.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Services.Data",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFramework.Services.GameDataService.yml",
       "output": {
         ".html": {
@@ -1352,7 +1520,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.Services.GameDataService",
-      "Summary": "<p sourcefile=\"api/GameFramework.Services.GameDataService.yml\" sourcestartlinenumber=\"1\">Clean GameDataService that manages unified GameSession data\nSingle source of truth for all game state information\nDelegates all save/load operations to SaveService\nUses TimeService for all playtime tracking - no manual time management</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.Services.GameDataService.yml\" sourcestartlinenumber=\"1\">Clean GameDataService that manages unified GameSession data using EventSystem</p>\n<p sourcefile=\"api/GameFramework.Services.GameDataService.yml\" sourcestartlinenumber=\"3\">Intent: Single source of truth for all game state information with event-driven architecture</p>\n<p sourcefile=\"api/GameFramework.Services.GameDataService.yml\" sourcestartlinenumber=\"5\">Design:</p>\n<ul sourcefile=\"api/GameFramework.Services.GameDataService.yml\" sourcestartlinenumber=\"6\">\n<li sourcefile=\"api/GameFramework.Services.GameDataService.yml\" sourcestartlinenumber=\"6\">Uses EventSystem for all communication instead of direct Action events</li>\n<li sourcefile=\"api/GameFramework.Services.GameDataService.yml\" sourcestartlinenumber=\"7\">Delegates all save/load operations to SaveService</li>\n<li sourcefile=\"api/GameFramework.Services.GameDataService.yml\" sourcestartlinenumber=\"8\">Uses TimeService for all playtime tracking - no manual time management</li>\n<li sourcefile=\"api/GameFramework.Services.GameDataService.yml\" sourcestartlinenumber=\"9\">Publishes session lifecycle events through EventSystem</li>\n</ul>\n<p sourcefile=\"api/GameFramework.Services.GameDataService.yml\" sourcestartlinenumber=\"11\">Pros:</p>\n<ul sourcefile=\"api/GameFramework.Services.GameDataService.yml\" sourcestartlinenumber=\"12\">\n<li sourcefile=\"api/GameFramework.Services.GameDataService.yml\" sourcestartlinenumber=\"12\">Decoupled event handling through EventSystem</li>\n<li sourcefile=\"api/GameFramework.Services.GameDataService.yml\" sourcestartlinenumber=\"13\">Consistent event architecture across the framework</li>\n<li sourcefile=\"api/GameFramework.Services.GameDataService.yml\" sourcestartlinenumber=\"14\">Multiple systems can listen to session events without direct coupling</li>\n<li sourcefile=\"api/GameFramework.Services.GameDataService.yml\" sourcestartlinenumber=\"15\">Easy to add new event listeners without modifying this service</li>\n</ul>\n<p sourcefile=\"api/GameFramework.Services.GameDataService.yml\" sourcestartlinenumber=\"17\">Cons:</p>\n<ul sourcefile=\"api/GameFramework.Services.GameDataService.yml\" sourcestartlinenumber=\"18\">\n<li sourcefile=\"api/GameFramework.Services.GameDataService.yml\" sourcestartlinenumber=\"18\">Slightly more overhead than direct Actions</li>\n<li sourcefile=\"api/GameFramework.Services.GameDataService.yml\" sourcestartlinenumber=\"19\">Event handling requires knowledge of event class structure</li>\n<li sourcefile=\"api/GameFramework.Services.GameDataService.yml\" sourcestartlinenumber=\"20\">Debugging event flow requires EventSystem awareness</li>\n</ul>\n"
     },
     {
       "type": "ManagedReference",
@@ -1464,7 +1632,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.Services.Interfaces.ISaveService",
-      "Summary": "<p sourcefile=\"api/GameFramework.Services.Interfaces.ISaveService.yml\" sourcestartlinenumber=\"1\">Interface for save service that handles both file operations and business logic\nProvides clean separation between low-level file I/O and high-level save operations\nSupports both regular saves and autosaves with automatic file management</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.Services.Interfaces.ISaveService.yml\" sourcestartlinenumber=\"1\">Interface for save service that handles file operations and save file metadata\nSave operations are triggered via event system for clean separation of concerns\nProvides file management and metadata retrieval for UI systems</p>\n<p sourcefile=\"api/GameFramework.Services.Interfaces.ISaveService.yml\" sourcestartlinenumber=\"5\">INTENT: Minimal interface focused on file operations and metadata\nDESIGN: Save operations moved to event system, interface only exposes what external systems need\nPROS: Clean separation, reduced coupling, focused responsibilities\nCONS: Less direct control for external systems (but that's by design)</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1534,7 +1702,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.Services.LoadService",
-      "Summary": "<p sourcefile=\"api/GameFramework.Services.LoadService.yml\" sourcestartlinenumber=\"1\">Service that orchestrates all game loading operations\nHandles loading workflow: validation -&gt; file loading -&gt; session creation -&gt; state transition\nIntegrates with TimeService for proper playtime handling</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.Services.LoadService.yml\" sourcestartlinenumber=\"1\">Service that handles all game loading operations using EventSystem\nClean separation - only deals with loading files and validation for loading\nAll saving operations are handled by SaveService</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1548,7 +1716,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.Services.PauseService",
-      "Summary": "<p sourcefile=\"api/GameFramework.Services.PauseService.yml\" sourcestartlinenumber=\"1\">Simple centralized pause service that manages game pause state\nHandles time scale, audio, and event integration</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.Services.PauseService.yml\" sourcestartlinenumber=\"1\">Simple centralized pause service that manages game pause state\nHandles time scale, audio, and event integration\nUses EventSystem for all event publishing instead of local events</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1562,7 +1730,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.Services.SaveService",
-      "Summary": "<p sourcefile=\"api/GameFramework.Services.SaveService.yml\" sourcestartlinenumber=\"1\">Enhanced save service that handles both file operations and UI support\nProvides clean separation between low-level file I/O and high-level UI operations\nUses timestamp-based naming for all save files with special autosave handling\nAutosaves always overwrite existing autosave files to prevent save directory bloat\nWorks with GameDataService as the single source of session data\nIntegrates with TimeService for accurate playtime tracking</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.Services.SaveService.yml\" sourcestartlinenumber=\"1\">Save service that handles file saving operations and save file metadata via event system\nClean separation - UI triggers saves via events, service handles implementation\nAll loading operations are handled by LoadService</p>\n<p sourcefile=\"api/GameFramework.Services.SaveService.yml\" sourcestartlinenumber=\"5\">Design: Event-driven architecture with caching for performance\nPros: Decoupled, performant metadata caching, player-specific autosaves\nCons: Async complexity, cache invalidation management</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1594,20 +1762,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFramework.Services.TimeStatistics.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/GameFramework.Services.TimeStatistics.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFramework.Services.TimeStatistics",
-      "Summary": "<p sourcefile=\"api/GameFramework.Services.TimeStatistics.yml\" sourcestartlinenumber=\"1\">Data structure for time statistics</p>\n"
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/GameFramework.Services.UIService.yml",
       "output": {
         ".html": {
@@ -1633,6 +1787,20 @@
       "IsMRef": true,
       "Title": "GameFramework.Services",
       "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.StateMachine.BaseGameState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.StateMachine.BaseGameState.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.StateMachine.BaseGameState",
+      "Summary": "<p sourcefile=\"api/GameFramework.StateMachine.BaseGameState.yml\" sourcestartlinenumber=\"1\">Base class for all game states with constructor injection support.\nAll dependencies are provided via constructor rather than service locator pattern.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1744,7 +1912,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.StateMachine.GameStates.CreditsState",
-      "Summary": "<p sourcefile=\"api/GameFramework.StateMachine.GameStates.CreditsState.yml\" sourcestartlinenumber=\"1\">Credits state with constructor injection</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.StateMachine.GameStates.CreditsState.yml\" sourcestartlinenumber=\"1\">Credits state - manages the credits screen and handles navigation\nResponsible for its UI lifecycle and event handling</p>\n<p sourcefile=\"api/GameFramework.StateMachine.GameStates.CreditsState.yml\" sourcestartlinenumber=\"4\">Intent: Display game credits with appropriate audio and handle user navigation\nDesign: Event-driven state management with clean separation of concerns\nPros: Clear responsibility separation, maintainable, follows established patterns\nCons: Requires careful event subscription management</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1758,7 +1926,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.StateMachine.GameStates.GameOverState",
-      "Summary": "<p sourcefile=\"api/GameFramework.StateMachine.GameStates.GameOverState.yml\" sourcestartlinenumber=\"1\">Game over state with constructor injection</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.StateMachine.GameStates.GameOverState.yml\" sourcestartlinenumber=\"1\">Game Over state - manages the game over screen and handles player choices\nResponsible for its UI lifecycle and event handling</p>\n<p sourcefile=\"api/GameFramework.StateMachine.GameStates.GameOverState.yml\" sourcestartlinenumber=\"4\">Intent: Present game over state with options to restart, load game, or return to menu\nDesign: Event-driven state management with clear separation of concerns\nPros: Clear responsibility separation, multiple player options, maintainable\nCons: Requires careful event subscription management</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1786,7 +1954,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.StateMachine.GameStates.MainMenuState",
-      "Summary": "<p sourcefile=\"api/GameFramework.StateMachine.GameStates.MainMenuState.yml\" sourcestartlinenumber=\"1\">Main menu state using unified GameSession system for save/load operations</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.StateMachine.GameStates.MainMenuState.yml\" sourcestartlinenumber=\"1\">Main menu state - fully responsible for its UI lifecycle\nHandles all UI transitions based on user interactions reported by the screen</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1800,7 +1968,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.StateMachine.GameStates.NewGameState",
-      "Summary": "<p sourcefile=\"api/GameFramework.StateMachine.GameStates.NewGameState.yml\" sourcestartlinenumber=\"1\">Updated NewGameState that properly initializes the central GameDataManager\nCreates unified game session from new game parameters</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.StateMachine.GameStates.NewGameState.yml\" sourcestartlinenumber=\"1\">New Game state - fully responsible for its UI lifecycle\nHandles all UI transitions based on user interactions reported by the screen</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1814,7 +1982,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.StateMachine.GameStates.PlayingState",
-      "Summary": "<p sourcefile=\"api/GameFramework.StateMachine.GameStates.PlayingState.yml\" sourcestartlinenumber=\"1\">Simplified PlayingState - no direct input handling\nJust declares what input context it needs</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.StateMachine.GameStates.PlayingState.yml\" sourcestartlinenumber=\"1\">Playing state - reacts to pause state changes from PauseService\nManages UI in response to actual pause/resume events</p>\n<p sourcefile=\"api/GameFramework.StateMachine.GameStates.PlayingState.yml\" sourcestartlinenumber=\"4\">Intent: Manage the main gameplay state by reacting to pause state changes\nDesign: Reactive event-driven architecture - responds to state changes rather than intercepting requests\nPros: Cleaner separation, more reactive, simpler flow\nCons: Less control over when pausing occurs</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1828,7 +1996,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.StateMachine.GameStates.QuitState",
-      "Summary": "<p sourcefile=\"api/GameFramework.StateMachine.GameStates.QuitState.yml\" sourcestartlinenumber=\"1\">Quit state with constructor injection</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.StateMachine.GameStates.QuitState.yml\" sourcestartlinenumber=\"1\">Quit state - handles graceful application shutdown with progress feedback\nResponsible for saving data, cleaning up resources, and exiting the application</p>\n<p sourcefile=\"api/GameFramework.StateMachine.GameStates.QuitState.yml\" sourcestartlinenumber=\"4\">Intent: Provide graceful shutdown with user feedback and cancellation support\nDesign: Progressive shutdown with clear stages and user communication\nPros: Safe data preservation, clear user feedback, cancellation support\nCons: More complex than immediate quit, requires careful resource management</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1856,7 +2024,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.StateMachine.GameStates.VictoryState",
-      "Summary": "<p sourcefile=\"api/GameFramework.StateMachine.GameStates.VictoryState.yml\" sourcestartlinenumber=\"1\">Victory state with constructor injection</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.StateMachine.GameStates.VictoryState.yml\" sourcestartlinenumber=\"1\">Victory state - manages the victory screen and celebrates player success\nResponsible for its UI lifecycle and event handling</p>\n<p sourcefile=\"api/GameFramework.StateMachine.GameStates.VictoryState.yml\" sourcestartlinenumber=\"4\">Intent: Celebrate player victory, show achievements, and provide options for continued play\nDesign: Event-driven state management with clear separation of concerns\nPros: Celebratory UX, clear progression options, maintainable, analytics integration\nCons: Requires careful event subscription management</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1874,20 +2042,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFramework.StateMachine.IGameStateMachine.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/GameFramework.StateMachine.IGameStateMachine.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFramework.StateMachine.IGameStateMachine",
-      "Summary": "<p sourcefile=\"api/GameFramework.StateMachine.IGameStateMachine.yml\" sourcestartlinenumber=\"1\">Advanced state machine with constructor injection support.\nAll dependencies are injected rather than resolved from service locator.\nUses explicit state definitions for maximum Unity compatibility.</p>\n<p sourcefile=\"api/GameFramework.StateMachine.IGameStateMachine.yml\" sourcestartlinenumber=\"5\">Design: State machine pattern with async support and transition validation\nPros: Robust state management, prevents invalid transitions, supports complex state logic, Unity compatible\nCons: More complex than simple state switching, requires careful transition planning, explicit state definitions</p>\n"
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/GameFramework.StateMachine.Interfaces.IFixedUpdatable.yml",
       "output": {
         ".html": {
@@ -1899,6 +2053,20 @@
       "IsMRef": true,
       "Title": "GameFramework.StateMachine.Interfaces.IFixedUpdatable",
       "Summary": "<p sourcefile=\"api/GameFramework.StateMachine.Interfaces.IFixedUpdatable.yml\" sourcestartlinenumber=\"1\">Interface for services that need to update at fixed intervals</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.StateMachine.Interfaces.IGameStateMachine.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.StateMachine.Interfaces.IGameStateMachine.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.StateMachine.Interfaces.IGameStateMachine",
+      "Summary": "<p sourcefile=\"api/GameFramework.StateMachine.Interfaces.IGameStateMachine.yml\" sourcestartlinenumber=\"1\">Advanced state machine with constructor injection support.\nAll dependencies are injected rather than resolved from service locator.\nUses explicit state definitions for maximum Unity compatibility.</p>\n<p sourcefile=\"api/GameFramework.StateMachine.Interfaces.IGameStateMachine.yml\" sourcestartlinenumber=\"5\">Design: State machine pattern with async support and transition validation\nPros: Robust state management, prevents invalid transitions, supports complex state logic, Unity compatible\nCons: More complex than simple state switching, requires careful transition planning, explicit state definitions</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2332,7 +2500,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.UI.Popups.DebugPopup",
-      "Summary": "<p sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"1\">Enhanced debug popup with real-time performance graphs\nDisplays FPS, memory consumption, and historical graphs of both metrics</p>\n<p sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"4\">Design:</p>\n<ul sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"5\">\n<li sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"5\">Integrates custom GraphElement controls for visual data representation</li>\n<li sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"6\">Maintains separate data collection intervals for metrics vs graphs</li>\n<li sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"7\">Uses color-coded indicators for quick performance assessment</li>\n<li sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"8\">Efficient data sampling to prevent performance impact</li>\n</ul>\n<p sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"10\">Pros:</p>\n<ul sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"11\">\n<li sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"11\">Visual trend analysis with historical graphs</li>\n<li sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"12\">Real-time performance monitoring with color coding</li>\n<li sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"13\">Memory efficient circular buffers for data storage</li>\n<li sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"14\">Configurable graph appearance and scaling</li>\n<li sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"15\">Clean separation between text metrics and visual graphs</li>\n<li sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"16\">Can be toggled on/off as overlay popup</li>\n</ul>\n<p sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"18\">Cons:</p>\n<ul sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"19\">\n<li sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"19\">Increased memory usage for graph data storage</li>\n<li sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"20\">Additional rendering overhead for custom graph elements</li>\n<li sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"21\">More complex initialization and cleanup</li>\n</ul>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"1\">Enhanced debug popup with real-time performance graphs\nDisplays FPS, memory consumption, and historical graphs of both metrics</p>\n<p sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"4\">Design:</p>\n<ul sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"5\">\n<li sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"5\">Integrates custom GraphElement controls for visual data representation</li>\n<li sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"6\">Maintains separate data collection intervals for metrics vs graphs</li>\n<li sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"7\">Uses color-coded indicators for quick performance assessment</li>\n<li sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"8\">Efficient data sampling to prevent performance impact</li>\n</ul>\n"
     },
     {
       "type": "ManagedReference",
@@ -2402,7 +2570,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.UI.Screens.CreditsScreen",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/GameFramework.UI.Screens.CreditsScreen.yml\" sourcestartlinenumber=\"1\">Credits screen - displays game credits and handles user interactions\nFollows established pattern of publishing events rather than managing state directly</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2416,7 +2584,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.UI.Screens.GameOverScreen",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/GameFramework.UI.Screens.GameOverScreen.yml\" sourcestartlinenumber=\"1\">Game Over screen - displays game over message and provides player options\nFollows established pattern of publishing events rather than managing state directly</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2430,7 +2598,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.UI.Screens.GamePlayScreen",
-      "Summary": "<p sourcefile=\"api/GameFramework.UI.Screens.GamePlayScreen.yml\" sourcestartlinenumber=\"1\">Main gameplay screen with HUD elements and debug information display\nProvides access to game state information and gameplay controls\nUses TimeService for accurate playtime display with proper pause handling</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.UI.Screens.GamePlayScreen.yml\" sourcestartlinenumber=\"1\">Game play screen - pure UI component that reports user interactions and displays game data\nDoes not handle its own lifecycle - that's managed by the PlayingState</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2444,7 +2612,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.UI.Screens.LoadGamePopup",
-      "Summary": "<p sourcefile=\"api/GameFramework.UI.Screens.LoadGamePopup.yml\" sourcestartlinenumber=\"1\">Load game popup that extends the base save file list functionality\nProvides double-click loading and load button functionality</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.UI.Screens.LoadGamePopup.yml\" sourcestartlinenumber=\"1\">Load game popup that extends the base save file list functionality\nProvides double-click loading and load button functionality</p>\n<p sourcefile=\"api/GameFramework.UI.Screens.LoadGamePopup.yml\" sourcestartlinenumber=\"4\">INTENT: Specialized popup for loading saved game files with enhanced UX\nDESIGN: Leverages base class double-click infrastructure for consistent UX\nPROS: Minimal code duplication, consistent interaction patterns, clean separation\nCONS: Dependent on base class implementation</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2458,7 +2626,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.UI.Screens.LoadingScreen",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/GameFramework.UI.Screens.LoadingScreen.yml\" sourcestartlinenumber=\"1\">Loading screen that displays loading progress and messages</p>\n<p sourcefile=\"api/GameFramework.UI.Screens.LoadingScreen.yml\" sourcestartlinenumber=\"3\">Design:</p>\n<ul sourcefile=\"api/GameFramework.UI.Screens.LoadingScreen.yml\" sourcestartlinenumber=\"4\">\n<li sourcefile=\"api/GameFramework.UI.Screens.LoadingScreen.yml\" sourcestartlinenumber=\"4\">Subscribes to loading progress events through EventSystem</li>\n<li sourcefile=\"api/GameFramework.UI.Screens.LoadingScreen.yml\" sourcestartlinenumber=\"5\">Updates loading text and progress display in real-time</li>\n<li sourcefile=\"api/GameFramework.UI.Screens.LoadingScreen.yml\" sourcestartlinenumber=\"6\">Handles multiple loading event types for comprehensive coverage</li>\n<li sourcefile=\"api/GameFramework.UI.Screens.LoadingScreen.yml\" sourcestartlinenumber=\"7\">Manages UI element references and lifecycle properly</li>\n</ul>\n"
     },
     {
       "type": "ManagedReference",
@@ -2472,7 +2640,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.UI.Screens.MainMenuScreen",
-      "Summary": "<p sourcefile=\"api/GameFramework.UI.Screens.MainMenuScreen.yml\" sourcestartlinenumber=\"1\">Main menu screen implementation with event publishing</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.UI.Screens.MainMenuScreen.yml\" sourcestartlinenumber=\"1\">Main menu screen - pure UI component that only reports user interactions\nDoes not handle its own lifecycle - that's managed by the MainMenuState</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2486,7 +2654,21 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.UI.Screens.NewGameScreen",
-      "Summary": "<p sourcefile=\"api/GameFramework.UI.Screens.NewGameScreen.yml\" sourcestartlinenumber=\"1\">New Game Screen that allows players to configure and start a new game\nHandles UI event registration/unregistration properly in OnShow/OnHide</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.UI.Screens.NewGameScreen.yml\" sourcestartlinenumber=\"1\">New Game Screen - pure UI component that only reports user interactions\nDoes not handle its own lifecycle - that's managed by the NewGameState</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.UI.Screens.QuitScreen.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.UI.Screens.QuitScreen.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.UI.Screens.QuitScreen",
+      "Summary": "<p sourcefile=\"api/GameFramework.UI.Screens.QuitScreen.yml\" sourcestartlinenumber=\"1\">Quit screen - displays shutdown progress and handles graceful application exit\nFollows established pattern of publishing events rather than managing state directly</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2500,7 +2682,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.UI.Screens.SaveFileListPopup",
-      "Summary": "<p sourcefile=\"api/GameFramework.UI.Screens.SaveFileListPopup.yml\" sourcestartlinenumber=\"1\">Base class for popups that display and manage save file lists\nProvides common functionality for save file display, selection, and deletion\nDerived classes implement specific load/save behaviors</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.UI.Screens.SaveFileListPopup.yml\" sourcestartlinenumber=\"1\">Base class for popups that display and manage save file lists\nProvides common functionality for save file display, selection, deletion, and double-click handling\nDerived classes implement specific load/save behaviors</p>\n<p sourcefile=\"api/GameFramework.UI.Screens.SaveFileListPopup.yml\" sourcestartlinenumber=\"5\">INTENT: Centralized save file list management with extensible interaction patterns\nDESIGN: Template method pattern with double-click infrastructure and proper lifecycle management\nPROS: DRY principle, centralized ListView logic, reusable double-click handling\nCONS: More complex base class, requires careful abstract method implementation</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2514,7 +2696,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.UI.Screens.SaveGamePopup",
-      "Summary": "<p sourcefile=\"api/GameFramework.UI.Screens.SaveGamePopup.yml\" sourcestartlinenumber=\"1\">Save game popup that extends the base save file list functionality\nDelegates all business logic to SaveService for clean separation of concerns\nProvides both regular saves and autosaves through simple UI interactions</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.UI.Screens.SaveGamePopup.yml\" sourcestartlinenumber=\"1\">Save game popup with enhanced progress indication using ProgressBar and proper popup stack management\nDelegates all business logic to SaveService for clean separation of concerns\nProvides both regular saves, autosaves, and quick-save via double-click</p>\n<p sourcefile=\"api/GameFramework.UI.Screens.SaveGamePopup.yml\" sourcestartlinenumber=\"5\">INTENT: Specialized popup for saving game files with comprehensive progress feedback\nDESIGN: Enhanced with modal progress overlay using ProgressBar and proper popup stack management\nPROS: Clear visual feedback with standard ProgressBar, proper pause state management, multiple save options\nCONS: More complex UI state management, additional visual elements</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2542,7 +2724,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.UI.Screens.VictoryScreen",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/GameFramework.UI.Screens.VictoryScreen.yml\" sourcestartlinenumber=\"1\">Victory screen - displays victory celebration and provides player options\nFollows established pattern of publishing events rather than managing state directly</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3033,16 +3215,6 @@
       "IsMRef": true,
       "Title": "UCTools_Utilities",
       "Summary": null
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "api/index.md",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/index.html"
-        }
-      },
-      "version": ""
     },
     {
       "type": "Toc",

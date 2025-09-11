@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class LoadGamePopup | UCTools Base Project Documentation </title>
+    <title>Class LoadGamePopup | UCTools Base Project </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class LoadGamePopup | UCTools Base Project Documentation ">
+    <meta name="title" content="Class LoadGamePopup | UCTools Base Project ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -18,8 +18,12 @@
     <meta property="docfx:tocrel" content="toc.html">
   
   <meta property="docfx:rel" content="../../">
+  <meta property="docfx:newtab" content="true">
+
   
-  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+  </head>
+
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
 
@@ -34,7 +38,7 @@
               </button>
 
               <a class="navbar-brand" href="../../index.html">
-                <img id="logo" class="svg" src="../../logo.svg" alt="">
+                <img id="logo" class="svg" src="../../logo.svg" alt="UCTools">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -82,6 +86,10 @@
   <h1 id="GameFramework_UI_Screens_LoadGamePopup" data-uid="GameFramework.UI.Screens.LoadGamePopup" class="text-break">Class LoadGamePopup</h1>
   <div class="markdown level0 summary"><p>Load game popup that extends the base save file list functionality
 Provides double-click loading and load button functionality</p>
+<p>INTENT: Specialized popup for loading saved game files with enhanced UX
+DESIGN: Leverages base class double-click infrastructure for consistent UX
+PROS: Minimal code duplication, consistent interaction patterns, clean separation
+CONS: Dependent on base class implementation</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -146,6 +154,12 @@ Provides double-click loading and load button functionality</p>
       <a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup_ERROR_DELETING_MESSAGE">SaveFileListPopup.ERROR_DELETING_MESSAGE</a>
     </div>
     <div>
+      <a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup_Show">SaveFileListPopup.Show()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup_Hide">SaveFileListPopup.Hide()</a>
+    </div>
+    <div>
       <a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup_InitializeBaseUI">SaveFileListPopup.InitializeBaseUI()</a>
     </div>
     <div>
@@ -189,12 +203,6 @@ Provides double-click loading and load button functionality</p>
     </div>
     <div>
       <a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_NeedsFrameUpdates">UIScreen.NeedsFrameUpdates</a>
-    </div>
-    <div>
-      <a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_Show">UIScreen.Show()</a>
-    </div>
-    <div>
-      <a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_Hide">UIScreen.Hide()</a>
     </div>
     <div>
       <a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_EnableFrameUpdates">UIScreen.EnableFrameUpdates()</a>
@@ -241,13 +249,6 @@ Provides double-click loading and load button functionality</p>
   </div>
   <h3 id="constructors">Constructors
 </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_LoadGamePopup__ctor_VisualElement_.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.LoadGamePopup.%23ctor(VisualElement)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/LoadGamePopup.cs/#L22">View Source</a>
-  </span>
   <a id="GameFramework_UI_Screens_LoadGamePopup__ctor_" data-uid="GameFramework.UI.Screens.LoadGamePopup.#ctor*"></a>
   <h4 id="GameFramework_UI_Screens_LoadGamePopup__ctor_VisualElement_" data-uid="GameFramework.UI.Screens.LoadGamePopup.#ctor(VisualElement)">LoadGamePopup(VisualElement)</h4>
   <div class="markdown level1 summary"></div>
@@ -275,13 +276,6 @@ Provides double-click loading and load button functionality</p>
   </table>
   <h3 id="methods">Methods
 </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_LoadGamePopup_CacheSpecificUIElements.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.LoadGamePopup.CacheSpecificUIElements%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/LoadGamePopup.cs/#L30">View Source</a>
-  </span>
   <a id="GameFramework_UI_Screens_LoadGamePopup_CacheSpecificUIElements_" data-uid="GameFramework.UI.Screens.LoadGamePopup.CacheSpecificUIElements*"></a>
   <h4 id="GameFramework_UI_Screens_LoadGamePopup_CacheSpecificUIElements" data-uid="GameFramework.UI.Screens.LoadGamePopup.CacheSpecificUIElements">CacheSpecificUIElements()</h4>
   <div class="markdown level1 summary"><p>Cache UI elements specific to the derived popup</p>
@@ -293,13 +287,32 @@ Provides double-click loading and load button functionality</p>
   </div>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup_CacheSpecificUIElements">SaveFileListPopup.CacheSpecificUIElements()</a></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_LoadGamePopup_ClosePopup.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.LoadGamePopup.ClosePopup%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/LoadGamePopup.cs/#L57">View Source</a>
-  </span>
+  <a id="GameFramework_UI_Screens_LoadGamePopup_CanPerformDoubleClickAction_" data-uid="GameFramework.UI.Screens.LoadGamePopup.CanPerformDoubleClickAction*"></a>
+  <h4 id="GameFramework_UI_Screens_LoadGamePopup_CanPerformDoubleClickAction" data-uid="GameFramework.UI.Screens.LoadGamePopup.CanPerformDoubleClickAction">CanPerformDoubleClickAction()</h4>
+  <div class="markdown level1 summary"><p>Implements double-click validation - called by base class</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override bool CanPerformDoubleClickAction()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup_CanPerformDoubleClickAction">SaveFileListPopup.CanPerformDoubleClickAction()</a></div>
   <a id="GameFramework_UI_Screens_LoadGamePopup_ClosePopup_" data-uid="GameFramework.UI.Screens.LoadGamePopup.ClosePopup*"></a>
   <h4 id="GameFramework_UI_Screens_LoadGamePopup_ClosePopup" data-uid="GameFramework.UI.Screens.LoadGamePopup.ClosePopup">ClosePopup()</h4>
   <div class="markdown level1 summary"><p>Abstract method for closing the popup - derived classes implement with their specific type</p>
@@ -326,13 +339,49 @@ Provides double-click loading and load button functionality</p>
   </table>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup_ClosePopup">SaveFileListPopup.ClosePopup()</a></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_LoadGamePopup_RegisterSpecificEventHandlers.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.LoadGamePopup.RegisterSpecificEventHandlers%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/LoadGamePopup.cs/#L40">View Source</a>
-  </span>
+  <a id="GameFramework_UI_Screens_LoadGamePopup_OnDoubleClickAction_" data-uid="GameFramework.UI.Screens.LoadGamePopup.OnDoubleClickAction*"></a>
+  <h4 id="GameFramework_UI_Screens_LoadGamePopup_OnDoubleClickAction_GameFramework_DataStructures_SaveFileInfo_" data-uid="GameFramework.UI.Screens.LoadGamePopup.OnDoubleClickAction(GameFramework.DataStructures.SaveFileInfo)">OnDoubleClickAction(SaveFileInfo)</h4>
+  <div class="markdown level1 summary"><p>Implements double-click action for loading - called by base class</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override Task OnDoubleClickAction(SaveFileInfo selectedSaveFile)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.DataStructures.SaveFileInfo.html">SaveFileInfo</a></td>
+        <td><span class="parametername">selectedSaveFile</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup_OnDoubleClickAction_GameFramework_DataStructures_SaveFileInfo_">SaveFileListPopup.OnDoubleClickAction(SaveFileInfo)</a></div>
   <a id="GameFramework_UI_Screens_LoadGamePopup_RegisterSpecificEventHandlers_" data-uid="GameFramework.UI.Screens.LoadGamePopup.RegisterSpecificEventHandlers*"></a>
   <h4 id="GameFramework_UI_Screens_LoadGamePopup_RegisterSpecificEventHandlers" data-uid="GameFramework.UI.Screens.LoadGamePopup.RegisterSpecificEventHandlers">RegisterSpecificEventHandlers()</h4>
   <div class="markdown level1 summary"><p>Register event handlers specific to derived class</p>
@@ -344,13 +393,6 @@ Provides double-click loading and load button functionality</p>
   </div>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup_RegisterSpecificEventHandlers">SaveFileListPopup.RegisterSpecificEventHandlers()</a></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_LoadGamePopup_SetupSpecificFunctionality.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.LoadGamePopup.SetupSpecificFunctionality%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/LoadGamePopup.cs/#L35">View Source</a>
-  </span>
   <a id="GameFramework_UI_Screens_LoadGamePopup_SetupSpecificFunctionality_" data-uid="GameFramework.UI.Screens.LoadGamePopup.SetupSpecificFunctionality*"></a>
   <h4 id="GameFramework_UI_Screens_LoadGamePopup_SetupSpecificFunctionality" data-uid="GameFramework.UI.Screens.LoadGamePopup.SetupSpecificFunctionality">SetupSpecificFunctionality()</h4>
   <div class="markdown level1 summary"><p>Setup derived class specific functionality</p>
@@ -362,13 +404,6 @@ Provides double-click loading and load button functionality</p>
   </div>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup_SetupSpecificFunctionality">SaveFileListPopup.SetupSpecificFunctionality()</a></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_LoadGamePopup_UnregisterSpecificEventHandlers.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.LoadGamePopup.UnregisterSpecificEventHandlers%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/LoadGamePopup.cs/#L45">View Source</a>
-  </span>
   <a id="GameFramework_UI_Screens_LoadGamePopup_UnregisterSpecificEventHandlers_" data-uid="GameFramework.UI.Screens.LoadGamePopup.UnregisterSpecificEventHandlers*"></a>
   <h4 id="GameFramework_UI_Screens_LoadGamePopup_UnregisterSpecificEventHandlers" data-uid="GameFramework.UI.Screens.LoadGamePopup.UnregisterSpecificEventHandlers">UnregisterSpecificEventHandlers()</h4>
   <div class="markdown level1 summary"><p>Unregister event handlers specific to derived class</p>
@@ -380,13 +415,6 @@ Provides double-click loading and load button functionality</p>
   </div>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup_UnregisterSpecificEventHandlers">SaveFileListPopup.UnregisterSpecificEventHandlers()</a></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_LoadGamePopup_UpdateSpecificButtonStates.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.LoadGamePopup.UpdateSpecificButtonStates%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/LoadGamePopup.cs/#L51">View Source</a>
-  </span>
   <a id="GameFramework_UI_Screens_LoadGamePopup_UpdateSpecificButtonStates_" data-uid="GameFramework.UI.Screens.LoadGamePopup.UpdateSpecificButtonStates*"></a>
   <h4 id="GameFramework_UI_Screens_LoadGamePopup_UpdateSpecificButtonStates" data-uid="GameFramework.UI.Screens.LoadGamePopup.UpdateSpecificButtonStates">UpdateSpecificButtonStates()</h4>
   <div class="markdown level1 summary"><p>Update button states based on current selection and derived class needs</p>
@@ -404,16 +432,6 @@ Provides double-click loading and load button functionality</p>
 
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
-              <div class="contribution">
-                <ul class="nav">
-                  <li>
-                    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_UI_Screens_LoadGamePopup.md&amp;value=---%0Auid%3A%20GameFramework.UI.Screens.LoadGamePopup%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/UI/Popups/LoadGamePopup.cs/#L14" class="contribution-link">View Source</a>
-                  </li>
-                </ul>
-              </div>
               <div class="toggle-mode">
                 <div class="icon">
                   <i aria-hidden="true">☀</i>
@@ -445,7 +463,7 @@ Provides double-click loading and load button functionality</p>
               <a href="#top">Back to top</a>
             </span>
             <div class="pull-left">
-        UCTools Base Project Documentation
+        © 2025 UCTools Base Project Documentation
         
             </div>
             <div class="toggle-mode pull-right visible-sm visible-xs">

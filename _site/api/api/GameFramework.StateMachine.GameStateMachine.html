@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class GameStateMachine | UCTools Base Project Documentation </title>
+    <title>Class GameStateMachine | UCTools Base Project </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class GameStateMachine | UCTools Base Project Documentation ">
+    <meta name="title" content="Class GameStateMachine | UCTools Base Project ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -18,8 +18,12 @@
     <meta property="docfx:tocrel" content="toc.html">
   
   <meta property="docfx:rel" content="../../">
+  <meta property="docfx:newtab" content="true">
+
   
-  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+  </head>
+
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
 
@@ -34,7 +38,7 @@
               </button>
 
               <a class="navbar-brand" href="../../index.html">
-                <img id="logo" class="svg" src="../../logo.svg" alt="">
+                <img id="logo" class="svg" src="../../logo.svg" alt="UCTools">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -94,7 +98,7 @@ Cons: Requires all states to be registered in factory</p>
   </div>
   <div class="implements">
     <h5>Implements</h5>
-    <div><a class="xref" href="GameFramework.StateMachine.IGameStateMachine.html">IGameStateMachine</a></div>
+    <div><a class="xref" href="GameFramework.StateMachine.Interfaces.IGameStateMachine.html">IGameStateMachine</a></div>
     <div><a class="xref" href="GameFramework.Services.Interfaces.IGameService.html">IGameService</a></div>
     <div><a class="xref" href="GameFramework.StateMachine.Interfaces.IUpdatable.html">IUpdatable</a></div>
     <div><a class="xref" href="GameFramework.StateMachine.Interfaces.IFixedUpdatable.html">IFixedUpdatable</a></div>
@@ -131,21 +135,14 @@ Cons: Requires all states to be registered in factory</p>
   </div>
   <h3 id="constructors">Constructors
 </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_StateMachine_GameStateMachine__ctor_GameFramework_Core_GameContext_GameFramework_EventSystem_Interfaces_IEventSystem_GameFramework_Core_DIContainer_.md&amp;value=---%0Auid%3A%20GameFramework.StateMachine.GameStateMachine.%23ctor(GameFramework.Core.GameContext%2CGameFramework.EventSystem.Interfaces.IEventSystem%2CGameFramework.Core.DIContainer)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/StateMachine/GameStateMachine.cs/#L59">View Source</a>
-  </span>
   <a id="GameFramework_StateMachine_GameStateMachine__ctor_" data-uid="GameFramework.StateMachine.GameStateMachine.#ctor*"></a>
-  <h4 id="GameFramework_StateMachine_GameStateMachine__ctor_GameFramework_Core_GameContext_GameFramework_EventSystem_Interfaces_IEventSystem_GameFramework_Core_DIContainer_" data-uid="GameFramework.StateMachine.GameStateMachine.#ctor(GameFramework.Core.GameContext,GameFramework.EventSystem.Interfaces.IEventSystem,GameFramework.Core.DIContainer)">GameStateMachine(GameContext, IEventSystem, DIContainer)</h4>
+  <h4 id="GameFramework_StateMachine_GameStateMachine__ctor_GameFramework_Core_GameContext_GameFramework_EventSystem_Interfaces_IEventSystem_GameFramework_Core_DiContainer_" data-uid="GameFramework.StateMachine.GameStateMachine.#ctor(GameFramework.Core.GameContext,GameFramework.EventSystem.Interfaces.IEventSystem,GameFramework.Core.DiContainer)">GameStateMachine(GameContext, IEventSystem, DiContainer)</h4>
   <div class="markdown level1 summary"><p>Constructor injection - all dependencies provided by DI container</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public GameStateMachine(GameContext context, IEventSystem eventSystem, DIContainer container)</code></pre>
+    <pre><code class="lang-csharp hljs">public GameStateMachine(GameContext context, IEventSystem eventSystem, DiContainer container)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -168,7 +165,7 @@ Cons: Requires all states to be registered in factory</p>
         <td></td>
       </tr>
       <tr>
-        <td><a class="xref" href="GameFramework.Core.DIContainer.html">DIContainer</a></td>
+        <td><a class="xref" href="GameFramework.Core.DiContainer.html">DiContainer</a></td>
         <td><span class="parametername">container</span></td>
         <td></td>
       </tr>
@@ -176,13 +173,6 @@ Cons: Requires all states to be registered in factory</p>
   </table>
   <h3 id="properties">Properties
 </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_StateMachine_GameStateMachine_CurrentState.md&amp;value=---%0Auid%3A%20GameFramework.StateMachine.GameStateMachine.CurrentState%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/StateMachine/GameStateMachine.cs/#L27">View Source</a>
-  </span>
   <a id="GameFramework_StateMachine_GameStateMachine_CurrentState_" data-uid="GameFramework.StateMachine.GameStateMachine.CurrentState*"></a>
   <h4 id="GameFramework_StateMachine_GameStateMachine_CurrentState" data-uid="GameFramework.StateMachine.GameStateMachine.CurrentState">CurrentState</h4>
   <div class="markdown level1 summary"></div>
@@ -201,18 +191,11 @@ Cons: Requires all states to be registered in factory</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="BaseGameState.html">BaseGameState</a></td>
+        <td><a class="xref" href="GameFramework.StateMachine.BaseGameState.html">BaseGameState</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_StateMachine_GameStateMachine_CurrentStateType.md&amp;value=---%0Auid%3A%20GameFramework.StateMachine.GameStateMachine.CurrentStateType%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/StateMachine/GameStateMachine.cs/#L26">View Source</a>
-  </span>
   <a id="GameFramework_StateMachine_GameStateMachine_CurrentStateType_" data-uid="GameFramework.StateMachine.GameStateMachine.CurrentStateType*"></a>
   <h4 id="GameFramework_StateMachine_GameStateMachine_CurrentStateType" data-uid="GameFramework.StateMachine.GameStateMachine.CurrentStateType">CurrentStateType</h4>
   <div class="markdown level1 summary"></div>
@@ -236,13 +219,6 @@ Cons: Requires all states to be registered in factory</p>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_StateMachine_GameStateMachine_IsInitialized.md&amp;value=---%0Auid%3A%20GameFramework.StateMachine.GameStateMachine.IsInitialized%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/StateMachine/GameStateMachine.cs/#L28">View Source</a>
-  </span>
   <a id="GameFramework_StateMachine_GameStateMachine_IsInitialized_" data-uid="GameFramework.StateMachine.GameStateMachine.IsInitialized*"></a>
   <h4 id="GameFramework_StateMachine_GameStateMachine_IsInitialized" data-uid="GameFramework.StateMachine.GameStateMachine.IsInitialized">IsInitialized</h4>
   <div class="markdown level1 summary"></div>
@@ -268,13 +244,6 @@ Cons: Requires all states to be registered in factory</p>
   </table>
   <h3 id="methods">Methods
 </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_StateMachine_GameStateMachine_CanTransitionTo_GameFramework_StateMachine_Enum_GameStateType_.md&amp;value=---%0Auid%3A%20GameFramework.StateMachine.GameStateMachine.CanTransitionTo(GameFramework.StateMachine.Enum.GameStateType)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/StateMachine/GameStateMachine.cs/#L170">View Source</a>
-  </span>
   <a id="GameFramework_StateMachine_GameStateMachine_CanTransitionTo_" data-uid="GameFramework.StateMachine.GameStateMachine.CanTransitionTo*"></a>
   <h4 id="GameFramework_StateMachine_GameStateMachine_CanTransitionTo_GameFramework_StateMachine_Enum_GameStateType_" data-uid="GameFramework.StateMachine.GameStateMachine.CanTransitionTo(GameFramework.StateMachine.Enum.GameStateType)">CanTransitionTo(GameStateType)</h4>
   <div class="markdown level1 summary"></div>
@@ -315,13 +284,6 @@ Cons: Requires all states to be registered in factory</p>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_StateMachine_GameStateMachine_ChangeStateAsync_GameFramework_StateMachine_Enum_GameStateType_.md&amp;value=---%0Auid%3A%20GameFramework.StateMachine.GameStateMachine.ChangeStateAsync(GameFramework.StateMachine.Enum.GameStateType)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/StateMachine/GameStateMachine.cs/#L99">View Source</a>
-  </span>
   <a id="GameFramework_StateMachine_GameStateMachine_ChangeStateAsync_" data-uid="GameFramework.StateMachine.GameStateMachine.ChangeStateAsync*"></a>
   <h4 id="GameFramework_StateMachine_GameStateMachine_ChangeStateAsync_GameFramework_StateMachine_Enum_GameStateType_" data-uid="GameFramework.StateMachine.GameStateMachine.ChangeStateAsync(GameFramework.StateMachine.Enum.GameStateType)">ChangeStateAsync(GameStateType)</h4>
   <div class="markdown level1 summary"><p>Changes game state and publishes GameStateChangeEvent for TimeService and other systems
@@ -364,13 +326,6 @@ This is the KEY method that was missing the event publication</p>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_StateMachine_GameStateMachine_ChangeStateAsync__1.md&amp;value=---%0Auid%3A%20GameFramework.StateMachine.GameStateMachine.ChangeStateAsync%60%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/StateMachine/GameStateMachine.cs/#L157">View Source</a>
-  </span>
   <a id="GameFramework_StateMachine_GameStateMachine_ChangeStateAsync_" data-uid="GameFramework.StateMachine.GameStateMachine.ChangeStateAsync*"></a>
   <h4 id="GameFramework_StateMachine_GameStateMachine_ChangeStateAsync__1" data-uid="GameFramework.StateMachine.GameStateMachine.ChangeStateAsync``1">ChangeStateAsync&lt;T&gt;()</h4>
   <div class="markdown level1 summary"></div>
@@ -409,29 +364,6 @@ This is the KEY method that was missing the event publication</p>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_StateMachine_GameStateMachine_ClearStateHistory.md&amp;value=---%0Auid%3A%20GameFramework.StateMachine.GameStateMachine.ClearStateHistory%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/StateMachine/GameStateMachine.cs/#L342">View Source</a>
-  </span>
-  <a id="GameFramework_StateMachine_GameStateMachine_ClearStateHistory_" data-uid="GameFramework.StateMachine.GameStateMachine.ClearStateHistory*"></a>
-  <h4 id="GameFramework_StateMachine_GameStateMachine_ClearStateHistory" data-uid="GameFramework.StateMachine.GameStateMachine.ClearStateHistory">ClearStateHistory()</h4>
-  <div class="markdown level1 summary"><p>Clear the state history (useful when starting a new game)</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void ClearStateHistory()</code></pre>
-  </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_StateMachine_GameStateMachine_FixedUpdate.md&amp;value=---%0Auid%3A%20GameFramework.StateMachine.GameStateMachine.FixedUpdate%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/StateMachine/GameStateMachine.cs/#L187">View Source</a>
-  </span>
   <a id="GameFramework_StateMachine_GameStateMachine_FixedUpdate_" data-uid="GameFramework.StateMachine.GameStateMachine.FixedUpdate*"></a>
   <h4 id="GameFramework_StateMachine_GameStateMachine_FixedUpdate" data-uid="GameFramework.StateMachine.GameStateMachine.FixedUpdate">FixedUpdate()</h4>
   <div class="markdown level1 summary"></div>
@@ -440,295 +372,6 @@ This is the KEY method that was missing the event publication</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void FixedUpdate()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_StateMachine_GameStateMachine_GetPreviousState.md&amp;value=---%0Auid%3A%20GameFramework.StateMachine.GameStateMachine.GetPreviousState%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/StateMachine/GameStateMachine.cs/#L309">View Source</a>
-  </span>
-  <a id="GameFramework_StateMachine_GameStateMachine_GetPreviousState_" data-uid="GameFramework.StateMachine.GameStateMachine.GetPreviousState*"></a>
-  <h4 id="GameFramework_StateMachine_GameStateMachine_GetPreviousState" data-uid="GameFramework.StateMachine.GameStateMachine.GetPreviousState">GetPreviousState()</h4>
-  <div class="markdown level1 summary"><p>Get the previous state from history (for back navigation)</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public GameStateType? GetPreviousState()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="GameFramework.StateMachine.Enum.GameStateType.html">GameStateType</a>?</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_StateMachine_GameStateMachine_GetStateByStateType_GameFramework_StateMachine_Enum_GameStateType_.md&amp;value=---%0Auid%3A%20GameFramework.StateMachine.GameStateMachine.GetStateByStateType(GameFramework.StateMachine.Enum.GameStateType)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/StateMachine/GameStateMachine.cs/#L375">View Source</a>
-  </span>
-  <a id="GameFramework_StateMachine_GameStateMachine_GetStateByStateType_" data-uid="GameFramework.StateMachine.GameStateMachine.GetStateByStateType*"></a>
-  <h4 id="GameFramework_StateMachine_GameStateMachine_GetStateByStateType_GameFramework_StateMachine_Enum_GameStateType_" data-uid="GameFramework.StateMachine.GameStateMachine.GetStateByStateType(GameFramework.StateMachine.Enum.GameStateType)">GetStateByStateType(GameStateType)</h4>
-  <div class="markdown level1 summary"><p>Get state by GameStateType (you already have this via dictionary access)</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public BaseGameState GetStateByStateType(GameStateType stateType)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="GameFramework.StateMachine.Enum.GameStateType.html">GameStateType</a></td>
-        <td><span class="parametername">stateType</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="BaseGameState.html">BaseGameState</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_StateMachine_GameStateMachine_GetStateByType_System_Type_.md&amp;value=---%0Auid%3A%20GameFramework.StateMachine.GameStateMachine.GetStateByType(System.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/StateMachine/GameStateMachine.cs/#L359">View Source</a>
-  </span>
-  <a id="GameFramework_StateMachine_GameStateMachine_GetStateByType_" data-uid="GameFramework.StateMachine.GameStateMachine.GetStateByType*"></a>
-  <h4 id="GameFramework_StateMachine_GameStateMachine_GetStateByType_System_Type_" data-uid="GameFramework.StateMachine.GameStateMachine.GetStateByType(System.Type)">GetStateByType(Type)</h4>
-  <div class="markdown level1 summary"><p>Get a state by its concrete type</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public BaseGameState GetStateByType(Type stateType)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
-        <td><span class="parametername">stateType</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="BaseGameState.html">BaseGameState</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_StateMachine_GameStateMachine_GetState__1.md&amp;value=---%0Auid%3A%20GameFramework.StateMachine.GameStateMachine.GetState%60%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/StateMachine/GameStateMachine.cs/#L351">View Source</a>
-  </span>
-  <a id="GameFramework_StateMachine_GameStateMachine_GetState_" data-uid="GameFramework.StateMachine.GameStateMachine.GetState*"></a>
-  <h4 id="GameFramework_StateMachine_GameStateMachine_GetState__1" data-uid="GameFramework.StateMachine.GameStateMachine.GetState``1">GetState&lt;T&gt;()</h4>
-  <div class="markdown level1 summary"><p>Get a state by its type</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public T GetState&lt;T&gt;() where T : BaseGameState</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">T</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">T</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_StateMachine_GameStateMachine_GetValidTransitionsFromCurrentState.md&amp;value=---%0Auid%3A%20GameFramework.StateMachine.GameStateMachine.GetValidTransitionsFromCurrentState%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/StateMachine/GameStateMachine.cs/#L283">View Source</a>
-  </span>
-  <a id="GameFramework_StateMachine_GameStateMachine_GetValidTransitionsFromCurrentState_" data-uid="GameFramework.StateMachine.GameStateMachine.GetValidTransitionsFromCurrentState*"></a>
-  <h4 id="GameFramework_StateMachine_GameStateMachine_GetValidTransitionsFromCurrentState" data-uid="GameFramework.StateMachine.GameStateMachine.GetValidTransitionsFromCurrentState">GetValidTransitionsFromCurrentState()</h4>
-  <div class="markdown level1 summary"><p>Debug method to get all valid transitions from current state
-Useful for debugging state machine issues</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public GameStateType[] GetValidTransitionsFromCurrentState()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="GameFramework.StateMachine.Enum.GameStateType.html">GameStateType</a>[]</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_StateMachine_GameStateMachine_GoBackToPreviousStateAsync.md&amp;value=---%0Auid%3A%20GameFramework.StateMachine.GameStateMachine.GoBackToPreviousStateAsync%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/StateMachine/GameStateMachine.cs/#L317">View Source</a>
-  </span>
-  <a id="GameFramework_StateMachine_GameStateMachine_GoBackToPreviousStateAsync_" data-uid="GameFramework.StateMachine.GameStateMachine.GoBackToPreviousStateAsync*"></a>
-  <h4 id="GameFramework_StateMachine_GameStateMachine_GoBackToPreviousStateAsync" data-uid="GameFramework.StateMachine.GameStateMachine.GoBackToPreviousStateAsync">GoBackToPreviousStateAsync()</h4>
-  <div class="markdown level1 summary"><p>Go back to the previous state if possible</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task GoBackToPreviousStateAsync()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_StateMachine_GameStateMachine_HasState__1.md&amp;value=---%0Auid%3A%20GameFramework.StateMachine.GameStateMachine.HasState%60%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/StateMachine/GameStateMachine.cs/#L367">View Source</a>
-  </span>
-  <a id="GameFramework_StateMachine_GameStateMachine_HasState_" data-uid="GameFramework.StateMachine.GameStateMachine.HasState*"></a>
-  <h4 id="GameFramework_StateMachine_GameStateMachine_HasState__1" data-uid="GameFramework.StateMachine.GameStateMachine.HasState``1">HasState&lt;T&gt;()</h4>
-  <div class="markdown level1 summary"><p>Check if a state of specific type exists</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool HasState&lt;T&gt;() where T : BaseGameState</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">T</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_StateMachine_GameStateMachine_InitializeAsync.md&amp;value=---%0Auid%3A%20GameFramework.StateMachine.GameStateMachine.InitializeAsync%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/StateMachine/GameStateMachine.cs/#L66">View Source</a>
-  </span>
   <a id="GameFramework_StateMachine_GameStateMachine_InitializeAsync_" data-uid="GameFramework.StateMachine.GameStateMachine.InitializeAsync*"></a>
   <h4 id="GameFramework_StateMachine_GameStateMachine_InitializeAsync" data-uid="GameFramework.StateMachine.GameStateMachine.InitializeAsync">InitializeAsync()</h4>
   <div class="markdown level1 summary"></div>
@@ -752,68 +395,8 @@ Useful for debugging state machine issues</p>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_StateMachine_GameStateMachine_IsTransitionValid_GameFramework_StateMachine_Enum_GameStateType_GameFramework_StateMachine_Enum_GameStateType_.md&amp;value=---%0Auid%3A%20GameFramework.StateMachine.GameStateMachine.IsTransitionValid(GameFramework.StateMachine.Enum.GameStateType%2CGameFramework.StateMachine.Enum.GameStateType)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/StateMachine/GameStateMachine.cs/#L301">View Source</a>
-  </span>
-  <a id="GameFramework_StateMachine_GameStateMachine_IsTransitionValid_" data-uid="GameFramework.StateMachine.GameStateMachine.IsTransitionValid*"></a>
-  <h4 id="GameFramework_StateMachine_GameStateMachine_IsTransitionValid_GameFramework_StateMachine_Enum_GameStateType_GameFramework_StateMachine_Enum_GameStateType_" data-uid="GameFramework.StateMachine.GameStateMachine.IsTransitionValid(GameFramework.StateMachine.Enum.GameStateType,GameFramework.StateMachine.Enum.GameStateType)">IsTransitionValid(GameStateType, GameStateType)</h4>
-  <div class="markdown level1 summary"><p>Debug method to check if a specific transition is valid</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsTransitionValid(GameStateType from, GameStateType to)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="GameFramework.StateMachine.Enum.GameStateType.html">GameStateType</a></td>
-        <td><span class="parametername">from</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GameFramework.StateMachine.Enum.GameStateType.html">GameStateType</a></td>
-        <td><span class="parametername">to</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_StateMachine_GameStateMachine_RegisterState_BaseGameState_.md&amp;value=---%0Auid%3A%20GameFramework.StateMachine.GameStateMachine.RegisterState(BaseGameState)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/StateMachine/GameStateMachine.cs/#L176">View Source</a>
-  </span>
   <a id="GameFramework_StateMachine_GameStateMachine_RegisterState_" data-uid="GameFramework.StateMachine.GameStateMachine.RegisterState*"></a>
-  <h4 id="GameFramework_StateMachine_GameStateMachine_RegisterState_BaseGameState_" data-uid="GameFramework.StateMachine.GameStateMachine.RegisterState(BaseGameState)">RegisterState(BaseGameState)</h4>
+  <h4 id="GameFramework_StateMachine_GameStateMachine_RegisterState_GameFramework_StateMachine_BaseGameState_" data-uid="GameFramework.StateMachine.GameStateMachine.RegisterState(GameFramework.StateMachine.BaseGameState)">RegisterState(BaseGameState)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -831,19 +414,12 @@ Useful for debugging state machine issues</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="BaseGameState.html">BaseGameState</a></td>
+        <td><a class="xref" href="GameFramework.StateMachine.BaseGameState.html">BaseGameState</a></td>
         <td><span class="parametername">state</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_StateMachine_GameStateMachine_Shutdown.md&amp;value=---%0Auid%3A%20GameFramework.StateMachine.GameStateMachine.Shutdown%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/StateMachine/GameStateMachine.cs/#L84">View Source</a>
-  </span>
   <a id="GameFramework_StateMachine_GameStateMachine_Shutdown_" data-uid="GameFramework.StateMachine.GameStateMachine.Shutdown*"></a>
   <h4 id="GameFramework_StateMachine_GameStateMachine_Shutdown" data-uid="GameFramework.StateMachine.GameStateMachine.Shutdown">Shutdown()</h4>
   <div class="markdown level1 summary"></div>
@@ -852,13 +428,6 @@ Useful for debugging state machine issues</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Shutdown()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_StateMachine_GameStateMachine_Update.md&amp;value=---%0Auid%3A%20GameFramework.StateMachine.GameStateMachine.Update%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/StateMachine/GameStateMachine.cs/#L182">View Source</a>
-  </span>
   <a id="GameFramework_StateMachine_GameStateMachine_Update_" data-uid="GameFramework.StateMachine.GameStateMachine.Update*"></a>
   <h4 id="GameFramework_StateMachine_GameStateMachine_Update" data-uid="GameFramework.StateMachine.GameStateMachine.Update">Update()</h4>
   <div class="markdown level1 summary"></div>
@@ -869,7 +438,7 @@ Useful for debugging state machine issues</p>
   </div>
   <h3 id="implements">Implements</h3>
   <div>
-      <a class="xref" href="GameFramework.StateMachine.IGameStateMachine.html">IGameStateMachine</a>
+      <a class="xref" href="GameFramework.StateMachine.Interfaces.IGameStateMachine.html">IGameStateMachine</a>
   </div>
   <div>
       <a class="xref" href="GameFramework.Services.Interfaces.IGameService.html">IGameService</a>
@@ -886,16 +455,6 @@ Useful for debugging state machine issues</p>
 
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
-              <div class="contribution">
-                <ul class="nav">
-                  <li>
-                    <a href="https://github.com/gary-boyle/UCTools_BaseProject/new/main/apiSpec/new?filename=GameFramework_StateMachine_GameStateMachine.md&amp;value=---%0Auid%3A%20GameFramework.StateMachine.GameStateMachine%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/gary-boyle/UCTools_BaseProject/blob/main/Assets/Scripts/GameFramework/StateMachine/GameStateMachine.cs/#L24" class="contribution-link">View Source</a>
-                  </li>
-                </ul>
-              </div>
               <div class="toggle-mode">
                 <div class="icon">
                   <i aria-hidden="true">☀</i>
@@ -927,7 +486,7 @@ Useful for debugging state machine issues</p>
               <a href="#top">Back to top</a>
             </span>
             <div class="pull-left">
-        UCTools Base Project Documentation
+        © 2025 UCTools Base Project Documentation
         
             </div>
             <div class="toggle-mode pull-right visible-sm visible-xs">
