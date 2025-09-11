@@ -8421,6 +8421,19 @@ references:
   commentId: F:GameFramework.StateMachine.BaseGameState.InputManager
   fullName: GameFramework.StateMachine.BaseGameState.InputManager
   nameWithType: BaseGameState.InputManager
+- uid: GameFramework.StateMachine.BaseGameState.IsActive
+  name: IsActive
+  href: api/api/GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_IsActive
+  commentId: P:GameFramework.StateMachine.BaseGameState.IsActive
+  fullName: GameFramework.StateMachine.BaseGameState.IsActive
+  nameWithType: BaseGameState.IsActive
+- uid: GameFramework.StateMachine.BaseGameState.IsActive*
+  name: IsActive
+  href: api/api/GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_IsActive_
+  commentId: Overload:GameFramework.StateMachine.BaseGameState.IsActive
+  isSpec: "True"
+  fullName: GameFramework.StateMachine.BaseGameState.IsActive
+  nameWithType: BaseGameState.IsActive
 - uid: GameFramework.StateMachine.BaseGameState.StateMachine
   name: StateMachine
   href: api/api/GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_StateMachine
