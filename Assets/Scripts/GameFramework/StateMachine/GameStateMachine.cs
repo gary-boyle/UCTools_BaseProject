@@ -28,9 +28,9 @@ namespace GameFramework.StateMachine
         public BaseGameState CurrentState { get; private set; }
         public bool IsInitialized { get; private set; }
         
-        private readonly Dictionary<GameStateType, BaseGameState> _states;
-        private readonly Stack<GameStateType> _stateHistory;
-        private readonly HashSet<(GameStateType from, GameStateType to)> _validTransitions;
+        private readonly Dictionary<GameStateType, BaseGameState> _states = new Dictionary<GameStateType, BaseGameState>();
+        private readonly Stack<GameStateType> _stateHistory = new Stack<GameStateType>();
+        private readonly HashSet<(GameStateType from, GameStateType to)> _validTransitions = new HashSet<(GameStateType, GameStateType)>();
         private readonly GameContext _context;
         private readonly IEventSystem _eventSystem;
         private readonly DiContainer _container;
@@ -158,6 +158,7 @@ namespace GameFramework.StateMachine
         
         public void RegisterState(BaseGameState state)
         {
+            Debug.Log(state.StateType);
             _states[state.StateType] = state;
         }
         

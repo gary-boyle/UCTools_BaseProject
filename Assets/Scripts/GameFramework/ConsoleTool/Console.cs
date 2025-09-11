@@ -31,8 +31,8 @@ namespace GameFramework.ConsoleTool
 
         #region State
 
-        private static readonly List<string> s_PendingCommands;
-        private static readonly object s_CommandLock;
+        private static readonly List<string> s_PendingCommands = new List<string>();
+        private static readonly object s_CommandLock = new object();
         
         private static readonly string[] s_History = new string[HISTORY_COUNT];
         private static int s_HistoryNextIndex;

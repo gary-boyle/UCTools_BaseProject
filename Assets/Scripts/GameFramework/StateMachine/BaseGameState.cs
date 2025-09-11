@@ -17,8 +17,8 @@ namespace GameFramework.StateMachine
     public abstract class BaseGameState
     {
         public GameStateType StateType { get; }
-        protected GameContext Context { get; set; }
-        private bool IsActive { get; set; }
+        public GameContext Context { get; protected set; }
+        public bool IsActive { get; private set; }
     
         // Injected dependencies
         protected readonly IGameStateMachine StateMachine;
@@ -55,7 +55,7 @@ namespace GameFramework.StateMachine
         /// <summary>
         /// Called when entering this state. Setup UI, subscribe to events, initialize state-specific systems.
         /// </summary>
-        public virtual Task EnterAsync(GameContext context)
+        public virtual async Task EnterAsync(GameContext context)
         {
             Context = context ?? throw new ArgumentNullException(nameof(context));
             IsActive = true;
@@ -64,8 +64,6 @@ namespace GameFramework.StateMachine
             {
                 UIService.SetDebugPopupText(StateType.ToString());
             }
-    
-            return Task.CompletedTask;
         }
     
         /// <summary>

@@ -11,10 +11,10 @@ namespace GameFramework.DataStructures
     public class GameProgress
     {
         public int Score = 0;
-        public List<string> CompletedLevels;
-        public List<string> UnlockedLevels;
-        public Dictionary<string, bool> Achievements;
-        public Dictionary<string, float> Statistics;
+        public List<string> CompletedLevels = new List<string>();
+        public List<string> UnlockedLevels = new List<string>();
+        public Dictionary<string, bool> Achievements = new Dictionary<string, bool>();
+        public Dictionary<string, float> Statistics = new Dictionary<string, float>();
 
         public static GameProgress CreateDefault()
         {

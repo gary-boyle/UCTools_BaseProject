@@ -597,6 +597,30 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 7c9f283ee7711594a9e6aef42ddb02ca, type: 2}
     - target: {fileID: 8792417935824281782, guid: 1b656bc6893ad5240b5c37046409510e, type: 3}
+      propertyPath: audioSettingsSo
+      value: 
+      objectReference: {fileID: 11400000, guid: d1a18cfd6a8679c4bb132ef39c829b82, type: 2}
+    - target: {fileID: 8792417935824281782, guid: 1b656bc6893ad5240b5c37046409510e, type: 3}
+      propertyPath: debugSettingsSo
+      value: 
+      objectReference: {fileID: 11400000, guid: ec9ebabf43328ae4a95d119be55c49e2, type: 2}
+    - target: {fileID: 8792417935824281782, guid: 1b656bc6893ad5240b5c37046409510e, type: 3}
+      propertyPath: inputSettingsSo
+      value: 
+      objectReference: {fileID: 11400000, guid: 7c9f283ee7711594a9e6aef42ddb02ca, type: 2}
+    - target: {fileID: 8792417935824281782, guid: 1b656bc6893ad5240b5c37046409510e, type: 3}
+      propertyPath: _audioSettingsSo
+      value: 
+      objectReference: {fileID: 11400000, guid: d1a18cfd6a8679c4bb132ef39c829b82, type: 2}
+    - target: {fileID: 8792417935824281782, guid: 1b656bc6893ad5240b5c37046409510e, type: 3}
+      propertyPath: _debugSettingsSo
+      value: 
+      objectReference: {fileID: 11400000, guid: ec9ebabf43328ae4a95d119be55c49e2, type: 2}
+    - target: {fileID: 8792417935824281782, guid: 1b656bc6893ad5240b5c37046409510e, type: 3}
+      propertyPath: _inputSettingsSo
+      value: 
+      objectReference: {fileID: 11400000, guid: 7c9f283ee7711594a9e6aef42ddb02ca, type: 2}
+    - target: {fileID: 8792417935824281782, guid: 1b656bc6893ad5240b5c37046409510e, type: 3}
       propertyPath: _consoleGUIPrefab
       value: 
       objectReference: {fileID: 1128345073793097708, guid: ec7a5319aefbd7b45aac5be477db403c, type: 3}
@@ -606,6 +630,22 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 099dbaa7c5f073c489c1cbdbafd19ac9, type: 2}
     - target: {fileID: 8792417935824281782, guid: 1b656bc6893ad5240b5c37046409510e, type: 3}
       propertyPath: _graphicsSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: 9ddf5a5ff559bd844afda9a95710ac6f, type: 2}
+    - target: {fileID: 8792417935824281782, guid: 1b656bc6893ad5240b5c37046409510e, type: 3}
+      propertyPath: gameplaySettingsSo
+      value: 
+      objectReference: {fileID: 11400000, guid: 099dbaa7c5f073c489c1cbdbafd19ac9, type: 2}
+    - target: {fileID: 8792417935824281782, guid: 1b656bc6893ad5240b5c37046409510e, type: 3}
+      propertyPath: graphicsSettingsSo
+      value: 
+      objectReference: {fileID: 11400000, guid: 9ddf5a5ff559bd844afda9a95710ac6f, type: 2}
+    - target: {fileID: 8792417935824281782, guid: 1b656bc6893ad5240b5c37046409510e, type: 3}
+      propertyPath: _gameplaySettingsSo
+      value: 
+      objectReference: {fileID: 11400000, guid: 099dbaa7c5f073c489c1cbdbafd19ac9, type: 2}
+    - target: {fileID: 8792417935824281782, guid: 1b656bc6893ad5240b5c37046409510e, type: 3}
+      propertyPath: _graphicsSettingsSo
       value: 
       objectReference: {fileID: 11400000, guid: 9ddf5a5ff559bd844afda9a95710ac6f, type: 2}
     - target: {fileID: 9157005105602446286, guid: 1b656bc6893ad5240b5c37046409510e, type: 3}
