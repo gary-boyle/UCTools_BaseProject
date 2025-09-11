@@ -13,17 +13,17 @@ using UnityEngine;
 namespace GameFramework.StateMachine.GameStates
 {
     /// <summary>
-    /// Playing state - fully responsible for its UI lifecycle
-    /// Handles all UI transitions including pause popup management and state transitions
+    /// Playing state - reacts to pause state changes from PauseService
+    /// Manages UI in response to actual pause/resume events
     /// 
-    /// Intent: Manage the main gameplay state and handle all user-initiated state changes
-    /// Design: Event-driven architecture with clear separation of concerns
-    /// Pros: Centralized state management, clean event handling, maintainable
-    /// Cons: Requires careful event subscription management
+    /// Intent: Manage the main gameplay state by reacting to pause state changes
+    /// Design: Reactive event-driven architecture - responds to state changes rather than intercepting requests
+    /// Pros: Cleaner separation, more reactive, simpler flow
+    /// Cons: Less control over when pausing occurs
     /// </summary>
     public class PlayingState : BaseGameState
     {
-        private readonly IPauseService _pauseService;
+        private readonly IPauseService _pauseService; // Only for read-only state checking
         private readonly IInputManager _inputManager;
         private readonly IEventSystem _eventSystem;
 
@@ -41,7 +41,7 @@ namespace GameFramework.StateMachine.GameStates
             IPauseService pauseService)
             : base(GameStateType.Playing, stateMachine, eventSystem, audioService, uiService, inputManager, consoleService, gameDataService)
         {
-            _pauseService = pauseService;
+            _pauseService = pauseService; // Only for read-only access
             _inputManager = inputManager;
             _eventSystem = eventSystem;
         }
@@ -56,20 +56,23 @@ namespace GameFramework.StateMachine.GameStates
             // Configure input for gameplay
             InputManager.SetInputContext(InputContext.Player);
     
-            // Auto-resume if game is paused when entering
-            if (_pauseService.IsPaused)
-            {
-                _pauseService.ResumeGame();
-            }
-    
-            // Subscribe to all user interaction events from UI
-            _eventSystem.Subscribe<PauseRequestedEvent>(OnPauseRequested);
-            _eventSystem.Subscribe<ResumeRequestedEvent>(OnResumeRequested);
+            // Subscribe to state transition events
             _eventSystem.Subscribe<GameOverEvent>(OnGameOver);
             _eventSystem.Subscribe<VictoryEvent>(OnVictory);
             _eventSystem.Subscribe<CreditsRequestedEvent>(OnCreditsRequested);
             _eventSystem.Subscribe<MainMenuRequestedEvent>(OnMainMenuRequested);
             _eventSystem.Subscribe<QuitRequestedEvent>(OnQuitRequested);
+
+            // Subscribe to pause state change events - this is where the magic happens
+            _eventSystem.Subscribe<GamePausedEvent>(OnGamePaused);
+            _eventSystem.Subscribe<GameResumedEvent>(OnGameResumed);
+
+            // Auto-resume if game is paused when entering (via event)
+            if (_pauseService.IsPaused)
+            {
+                Debug.Log("[PlayingState] Game was paused on entry - requesting resume");
+                _eventSystem.Publish(new ResumeRequestedEvent());
+            }
 
             // State is responsible for showing its UI
             await UIService.ShowScreenAsync<GamePlayScreen>();
@@ -84,60 +87,66 @@ namespace GameFramework.StateMachine.GameStates
             // State handles cleanup of all UI elements it may have shown
             await UIService.CloseAllPopupsAsync();
             
-            // Ensure game is not paused when leaving state
+            // Ensure game is not paused when leaving state (via event)
             if (_pauseService.IsPaused)
             {
-                _pauseService.ResumeGame();
+                Debug.Log("[PlayingState] Requesting resume before state exit");
+                _eventSystem.Publish(new ResumeRequestedEvent());
+                
+                // Wait a frame for the resume to process
+                await Task.Yield();
             }
             
             // Reset input context
             _inputManager.SetInputContext(InputContext.UI);
             
             // Unsubscribe from all events to prevent memory leaks
-            _eventSystem.Unsubscribe<PauseRequestedEvent>(OnPauseRequested);
-            _eventSystem.Unsubscribe<ResumeRequestedEvent>(OnResumeRequested);
             _eventSystem.Unsubscribe<GameOverEvent>(OnGameOver);
             _eventSystem.Unsubscribe<VictoryEvent>(OnVictory);
             _eventSystem.Unsubscribe<CreditsRequestedEvent>(OnCreditsRequested);
             _eventSystem.Unsubscribe<MainMenuRequestedEvent>(OnMainMenuRequested);
             _eventSystem.Unsubscribe<QuitRequestedEvent>(OnQuitRequested);
 
+            // Unsubscribe from pause state change events
+            _eventSystem.Unsubscribe<GamePausedEvent>(OnGamePaused);
+            _eventSystem.Unsubscribe<GameResumedEvent>(OnGameResumed);
+
             // State is responsible for hiding its UI
             await UIService.HideScreenAsync<GamePlayScreen>();
             await base.ExitAsync();
         }
         
-        #region Event Handlers - UI Interaction Responses
+        #region Event Handlers - Reactive to State Changes
         
         /// <summary>
-        /// Handle pause request - state manages showing pause popup
-        /// Only allows pause if not already paused and no popups are open
+        /// React to game being paused - show pause UI if appropriate
+        /// If pause is invalid for current UI state, immediately request resume
         /// </summary>
-        private async void OnPauseRequested(PauseRequestedEvent evt)
+        private async void OnGamePaused(GamePausedEvent evt)
         {
-            if (!_pauseService.IsPaused && !UIService.HasOpenPopups())
+            // Check if pause is valid for current UI state
+            if (UIService.HasOpenPopups())
             {
-                _pauseService.PauseGame("Player requested pause");
-                await UIService.ShowPopupAsync<PausePopup>();
-                _inputManager.SetInputContext(InputContext.Mixed);
+                Debug.Log("[PlayingState] Game paused but popups are open - requesting immediate resume");
+                _eventSystem.Publish(new ResumeRequestedEvent());
+                return;
             }
-            else
-            {
-                Debug.Log("[PlayingState] Cannot pause - game already paused or popups open");
-            }
+            
+            // Pause is valid - show pause UI
+            await UIService.ShowPopupAsync<PausePopup>();
+            _inputManager.SetInputContext(InputContext.Mixed);
         }
 
         /// <summary>
-        /// Handle resume request - state manages hiding pause popup
+        /// React to game being resumed - hide pause UI
         /// </summary>
-        private async void OnResumeRequested(ResumeRequestedEvent evt)
+        private async void OnGameResumed(GameResumedEvent evt)
         {
-            if (_pauseService.IsPaused)
-            {
-                _pauseService.ResumeGame();
-                await UIService.HidePopupAsync<PausePopup>();
-                _inputManager.SetInputContext(InputContext.Player);
-            }
+            Debug.Log("[PlayingState] Game resumed");
+            
+            // Hide pause popup if it's showing
+            await UIService.HidePopupAsync<PausePopup>();
+            _inputManager.SetInputContext(InputContext.Player);
         }
         
         /// <summary>
@@ -148,9 +157,10 @@ namespace GameFramework.StateMachine.GameStates
         {
             Debug.Log("[PlayingState] Game Over triggered - transitioning to GameOver state");
             
+            // Request resume via event if paused
             if (_pauseService.IsPaused)
             {
-                _pauseService.ResumeGame();
+                _eventSystem.Publish(new ResumeRequestedEvent());
             }
             
             await TransitionToStateAsync(GameStateType.GameOver);
@@ -164,9 +174,10 @@ namespace GameFramework.StateMachine.GameStates
         {
             Debug.Log("[PlayingState] Victory triggered - transitioning to Victory state");
             
+            // Request resume via event if paused
             if (_pauseService.IsPaused)
             {
-                _pauseService.ResumeGame();
+                _eventSystem.Publish(new ResumeRequestedEvent());
             }
             
             await TransitionToStateAsync(GameStateType.Victory);
@@ -180,9 +191,10 @@ namespace GameFramework.StateMachine.GameStates
         {
             Debug.Log("[PlayingState] Credits requested - transitioning to Credits state");
             
+            // Request resume via event if paused
             if (_pauseService.IsPaused)
             {
-                _pauseService.ResumeGame();
+                _eventSystem.Publish(new ResumeRequestedEvent());
             }
             
             await TransitionToStateAsync(GameStateType.Credits);
@@ -195,9 +207,10 @@ namespace GameFramework.StateMachine.GameStates
         {
             Debug.Log("[PlayingState] Main Menu requested - transitioning to Main Menu state");
             
+            // Request resume via event if paused
             if (_pauseService.IsPaused)
             {
-                _pauseService.ResumeGame();
+                _eventSystem.Publish(new ResumeRequestedEvent());
             }
             
             await TransitionToStateAsync(GameStateType.MainMenu);

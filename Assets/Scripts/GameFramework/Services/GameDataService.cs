@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using GameFramework.DataStructures;
 using GameFramework.EventSystem.Events;
@@ -210,6 +211,106 @@ namespace GameFramework.Services
             }
             
             return result;
+        }
+        
+        #endregion
+
+        #region GameSession Validation
+
+        /// <summary>
+        /// Validates the integrity and completeness of a GameSession
+        /// Checks all critical fields and data structures for consistency
+        /// </summary>
+        /// <param name="session">The GameSession to validate</param>
+        /// <returns>True if the session is valid and can be safely loaded</returns>
+        public bool IsValidGameSession(GameSession session)
+        {
+            if (session == null)
+            {
+                Debug.LogError("[GameDataService] GameSession is null");
+                return false;
+            }
+
+            // Validate required string fields
+            if (string.IsNullOrEmpty(session.playerName))
+            {
+                Debug.LogError("[GameDataService] GameSession has invalid player name");
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(session.currentScene))
+            {
+                Debug.LogError("[GameDataService] GameSession has invalid current scene");
+                return false;
+            }
+
+            // Validate player state
+            if (session.player == null)
+            {
+                Debug.LogError("[GameDataService] GameSession has null player state");
+                return false;
+            }
+
+            if (session.player.maxHealth <= 0)
+            {
+                Debug.LogError("[GameDataService] GameSession has invalid player max health");
+                return false;
+            }
+
+            if (session.player.health > session.player.maxHealth)
+            {
+                Debug.LogWarning("[GameDataService] GameSession player health exceeds max health - auto-correcting");
+                session.player.health = session.player.maxHealth;
+            }
+
+            if (session.player.level < 1)
+            {
+                Debug.LogError("[GameDataService] GameSession has invalid player level");
+                return false;
+            }
+
+            // Validate progress data
+            if (session.progress == null)
+            {
+                Debug.LogError("[GameDataService] GameSession has null progress data");
+                return false;
+            }
+
+            if (session.progress.score < 0)
+            {
+                Debug.LogWarning("[GameDataService] GameSession has negative score - resetting to 0");
+                session.progress.score = 0;
+            }
+
+            // Validate timestamps
+            if (session.sessionStartTime == default(DateTime))
+            {
+                Debug.LogWarning("[GameDataService] GameSession has invalid start time - using current time");
+                session.sessionStartTime = DateTime.Now;
+            }
+
+            if (session.lastSaveTime == default(DateTime))
+            {
+                Debug.LogWarning("[GameDataService] GameSession has invalid save time - using current time");
+                session.lastSaveTime = DateTime.Now;
+            }
+
+            // Validate custom data container
+            if (session.customData == null)
+            {
+                Debug.LogWarning("[GameDataService] GameSession has null custom data - initializing");
+                session.customData = new Dictionary<string, object>();
+            }
+
+            // Validate playtime data (non-negative)
+            if (session.TotalPlayTimeSeconds < 0)
+            {
+                Debug.LogError("[GameDataService] GameSession has negative total playtime");
+                return false;
+            }
+
+            Debug.Log($"[GameDataService] GameSession validation passed: {session.playerName} - {session.FormattedPlayTime}");
+            return true;
         }
         
         #endregion

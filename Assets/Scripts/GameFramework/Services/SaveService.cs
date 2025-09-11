@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GameFramework.Core;
@@ -11,12 +12,9 @@ using UnityEngine;
 namespace GameFramework.Services
 {
     /// <summary>
-    /// Enhanced save service that handles both file operations and UI support
-    /// Provides clean separation between low-level file I/O and high-level UI operations
-    /// Uses timestamp-based naming for all save files with special autosave handling
-    /// Autosaves always overwrite existing autosave files to prevent save directory bloat
-    /// Works with GameDataService as the single source of session data
-    /// Integrates with TimeService for accurate playtime tracking
+    /// Save service that handles only file saving operations and save file metadata
+    /// Clean separation - only deals with writing files and providing save file information
+    /// All loading operations are handled by LoadService
     /// </summary>
     public class SaveService : ISaveService
     {
@@ -26,6 +24,8 @@ namespace GameFramework.Services
         private readonly string _saveDirectory;
         private const string SAVE_EXTENSION = ".gamesave";
         private const string AUTOSAVE_IDENTIFIER = "[AUTOSAVE]";
+        
+        private readonly Dictionary<string, SaveFileInfo> _saveFileInfoCache = new();
         
         public SaveService(IEventSystem eventSystem)
         {
@@ -52,11 +52,17 @@ namespace GameFramework.Services
         
         public void Shutdown()
         {
+            ClearCaches();
             IsInitialized = false;
+        }
+        
+        private void ClearCaches()
+        {
+            _saveFileInfoCache.Clear();
         }
         #endregion
         
-        #region Business Logic Methods
+        #region Save Operations
         
         /// <summary>
         /// Checks if the game can currently be saved based on session state
@@ -107,57 +113,7 @@ namespace GameFramework.Services
         }
         
         /// <summary>
-        /// Deletes any existing autosave files to ensure only one autosave exists
-        /// </summary>
-        private async Task DeleteExistingAutoSaveAsync()
-        {
-            try
-            {
-                var existingAutoSaves = await GetAutoSaveFilesAsync();
-                foreach (string autoSaveFile in existingAutoSaves)
-                {
-                    await DeleteSaveAsync(autoSaveFile);
-                    Debug.Log($"[SaveService] Deleted existing autosave: {autoSaveFile}");
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.LogWarning($"[SaveService] Error deleting existing autosaves: {ex.Message}");
-            }
-        }
-        
-        /// <summary>
-        /// Gets all autosave file names
-        /// </summary>
-        private async Task<string[]> GetAutoSaveFilesAsync()
-        {
-            var allSaveFiles = await GetSaveFilesAsync();
-            return allSaveFiles.Where(fileName => fileName.Contains(AUTOSAVE_IDENTIFIER)).ToArray();
-        }
-        
-        #endregion
-        
-        #region Core Save/Load Operations
-        
-        /// <summary>
-        /// Legacy method for backward compatibility - now delegates to business logic methods
-        /// </summary>
-        public async Task<bool> SaveGameSessionAsync(GameSession session, string saveName = null, bool isAutoSave = false)
-        {
-            if (session == null) return false;
-            
-            // If no save name provided, generate one
-            if (string.IsNullOrEmpty(saveName))
-            {
-                saveName = GenerateTimestampSaveName(session, isAutoSave);
-            }
-            
-            return await SaveGameSessionInternalAsync(session, saveName, isAutoSave);
-        }
-        
-        /// <summary>
         /// Internal method that performs the actual save operation
-        /// TimeService handles playtime tracking automatically - no manual updates needed
         /// </summary>
         private async Task<bool> SaveGameSessionInternalAsync(GameSession session, string saveName, bool isAutoSave)
         {
@@ -180,6 +136,9 @@ namespace GameFramework.Services
                 
                 await System.IO.File.WriteAllTextAsync(filePath, json);
                 
+                // Clear cache when new save is created
+                InvalidateCache(saveName);
+                
                 _eventSystem.Publish(new SaveGameEvent());
                 
                 Debug.Log($"[SaveService] Game session saved as '{saveName}' (AutoSave: {isAutoSave}) - " +
@@ -194,44 +153,38 @@ namespace GameFramework.Services
             }
         }
         
-        public async Task<GameSession> LoadGameSessionAsync(string saveName)
+        private async Task DeleteExistingAutoSaveAsync()
         {
-            var filePath = GetSaveFilePath(saveName);
-    
-            if (!System.IO.File.Exists(filePath))
-            {
-                Debug.LogWarning($"[SaveService] Save file '{saveName}' not found");
-                return null;
-            }
-    
             try
             {
-                var json = await System.IO.File.ReadAllTextAsync(filePath);
-                var session = JsonUtility.FromJson<GameSession>(json);
-        
-                // Restore time data to services for proper integration
-                session.RestoreTimeDataToService();
-        
-                _eventSystem.Publish(new LoadGameEvent());
-        
-                Debug.Log($"[SaveService] Game session loaded from '{saveName}' - " +
-                          $"Playtime: {session.FormattedPlayTime}");
-        
-                return session;
+                var existingAutoSaves = await GetAutoSaveFilesAsync();
+                foreach (string autoSaveFile in existingAutoSaves)
+                {
+                    await DeleteSaveAsync(autoSaveFile);
+                }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Debug.LogError($"[SaveService] Error loading save '{saveName}': {e}");
-                return null;
+                Debug.LogWarning($"[SaveService] Error deleting existing autosaves: {ex.Message}");
             }
         }
+        
+        private async Task<string[]> GetAutoSaveFilesAsync()
+        {
+            var allSaveFiles = await GetSaveFilesAsync();
+            return allSaveFiles.Where(fileName => fileName.Contains(AUTOSAVE_IDENTIFIER)).ToArray();
+        }
+        
+        #endregion
+        
+        #region File Operations
         
         public async Task<string[]> GetSaveFilesAsync()
         {
             return await Task.Run(() =>
             {
                 if (!System.IO.Directory.Exists(_saveDirectory))
-                    return new string[0];
+                    return Array.Empty<string>();
                     
                 var files = System.IO.Directory.GetFiles(_saveDirectory, "*" + SAVE_EXTENSION);
                 var saveNames = new string[files.Length];
@@ -248,15 +201,17 @@ namespace GameFramework.Services
         public async Task<bool> DeleteSaveAsync(string saveName)
         {
             var filePath = GetSaveFilePath(saveName);
+
+            if (!System.IO.File.Exists(filePath)) return false;
             
-            if (System.IO.File.Exists(filePath))
-            {
-                await Task.Run(() => System.IO.File.Delete(filePath));
-                Debug.Log($"[SaveService] Deleted save '{saveName}'");
-                return true;
-            }
-            
-            return false;
+            await Task.Run(() => System.IO.File.Delete(filePath));
+                
+            // Clear caches for deleted file
+            InvalidateCache(saveName);
+                
+            Debug.Log($"[SaveService] Deleted save '{saveName}' and cleared caches");
+            return true;
+
         }
         
         public bool HasAnySaves()
@@ -268,71 +223,103 @@ namespace GameFramework.Services
             return files.Length > 0;
         }
         
-        public string GetMostRecentSaveName()
+        /// <summary>
+        /// Gets the full file path for a save file name
+        /// </summary>
+        public string GetSaveFilePath(string saveName)
         {
-            if (!System.IO.Directory.Exists(_saveDirectory))
-                return null;
-                
-            var files = System.IO.Directory.GetFiles(_saveDirectory, "*" + SAVE_EXTENSION);
-            if (files.Length == 0)
-                return null;
-                
-            var mostRecentFile = "";
-            var mostRecentTime = DateTime.MinValue;
-            
-            foreach (var file in files)
-            {
-                var writeTime = System.IO.File.GetLastWriteTime(file);
-                if (writeTime > mostRecentTime)
-                {
-                    mostRecentTime = writeTime;
-                    mostRecentFile = file;
-                }
-            }
-            
-            return System.IO.Path.GetFileNameWithoutExtension(mostRecentFile);
+            return _saveDirectory + saveName + SAVE_EXTENSION;
         }
+        
         #endregion
         
-        #region UI Support Operations
+        #region Save File Information (Metadata)
+        
         /// <summary>
-        /// Gets formatted save file information for UI display, sorted by most recent first
-        /// Uses TimeService integration for accurate playtime display
+        /// Gets formatted save file information with intelligent caching
         /// </summary>
         public async Task<SaveFileInfo[]> GetSaveFileInfosAsync()
         {
             try
             {
                 var saveFileNames = await GetSaveFilesAsync();
+                var saveFileInfos = new List<SaveFileInfo>();
                 
-                // Load save file info in parallel for better performance
-                var loadTasks = saveFileNames.Select(CreateSaveFileInfoAsync);
-                var results = await Task.WhenAll(loadTasks);
+                foreach (var fileName in saveFileNames)
+                {
+                    var info = await GetCachedSaveFileInfoAsync(fileName);
+                    if (info != null)
+                    {
+                        saveFileInfos.Add(info);
+                    }
+                }
                 
-                // Filter out nulls and sort by most recent first
-                var validResults = results
-                    .Where(info => info != null)
+                // Sort by most recent first
+                var sortedInfos = saveFileInfos
                     .OrderByDescending(info => info.lastSaveTime)
                     .ToArray();
                 
-                Debug.Log($"[SaveService] Loaded {validResults.Length} save file infos with TimeService integration");
-                return validResults;
+                Debug.Log($"[SaveService] Loaded {sortedInfos.Length} save file infos (cached: {_saveFileInfoCache.Count})");
+                return sortedInfos;
             }
             catch (Exception e)
             {
                 Debug.LogError($"[SaveService] Error loading save file infos: {e}");
-                return new SaveFileInfo[0];
+                return Array.Empty<SaveFileInfo>();
             }
         }
         
         /// <summary>
-        /// Gets formatted save file information for a specific save file
+        /// Gets save file info with caching - only loads from disk if file changed
         /// </summary>
-        public async Task<SaveFileInfo> GetSaveFileInfoAsync(string saveName)
+        private async Task<SaveFileInfo> GetCachedSaveFileInfoAsync(string fileName)
         {
-            return await CreateSaveFileInfoAsync(saveName);
+            var filePath = GetSaveFilePath(fileName);
+            if (!System.IO.File.Exists(filePath))
+                return null;
+            
+            var fileTime = System.IO.File.GetLastWriteTime(filePath);
+            
+            // Check if we have valid cached info
+            if (_saveFileInfoCache.TryGetValue(fileName, out var cached) && 
+                cached.lastSaveTime == fileTime)
+            {
+                return cached;
+            }
+            
+            // Load fresh info - delegate to LoadService for actual loading
+            var loadService = GameManager.GetService<ILoadService>();
+            var info = await CreateSaveFileInfoAsync(fileName, loadService);
+            if (info != null)
+            {
+                _saveFileInfoCache[fileName] = info;
+            }
+            
+            return info;
         }
         
+        /// <summary>
+        /// Creates SaveFileInfo from a save file name using LoadService for loading
+        /// </summary>
+        private static async Task<SaveFileInfo> CreateSaveFileInfoAsync(string fileName, ILoadService loadService)
+        {
+            try
+            {
+                var gameSession = await loadService.LoadGameSessionAsync(fileName);
+                if (gameSession == null) return null;
+                
+                var saveInfo = new SaveFileInfo(fileName, gameSession);
+                Debug.Log($"[SaveService] Created SaveFileInfo for '{fileName}' - " +
+                          $"Game time: {saveInfo.formattedPlayTime}, Session time: {saveInfo.formattedSessionTime}");
+                return saveInfo;
+            }
+            catch (Exception ex)
+            {
+                Debug.LogWarning($"[SaveService] Failed to create SaveFileInfo for '{fileName}': {ex.Message}");
+                return null;
+            }
+        }
+
         /// <summary>
         /// Deletes a save file using SaveFileInfo
         /// </summary>
@@ -342,64 +329,23 @@ namespace GameFramework.Services
             return await DeleteSaveAsync(saveFileInfo.fileName);
         }
         
-        /// <summary>
-        /// Loads a game session using SaveFileInfo
-        /// </summary>
-        public async Task<GameSession> LoadGameSessionByInfoAsync(SaveFileInfo saveFileInfo)
-        {
-            if (saveFileInfo == null) return null;
-            return await LoadGameSessionAsync(saveFileInfo.fileName);
-        }
         #endregion
         
-        #region Private Helper Methods
-        private string GetSaveFilePath(string saveName)
-        {
-            return _saveDirectory + saveName + SAVE_EXTENSION;
-        }
+        #region Helper Methods
         
-        /// <summary>
-        /// Generates a timestamp-based save name
-        /// </summary>
-        private string GenerateTimestampSaveName(GameSession session, bool isAutoSave)
+        private static string GenerateTimestampSaveName(GameSession session, bool isAutoSave)
         {
             string timestamp = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
             string playerName = session.playerName ?? "Player";
             
-            if (isAutoSave)
-            {
-                return $"{playerName}_{AUTOSAVE_IDENTIFIER}_{timestamp}";
-            }
-            else
-            {
-                return $"{playerName}_Save_{timestamp}";
-            }
+            return isAutoSave ? $"{playerName}_{AUTOSAVE_IDENTIFIER}_{timestamp}" : $"{playerName}_Save_{timestamp}";
         }
         
-        /// <summary>
-        /// Creates SaveFileInfo from a save file name, handling errors gracefully
-        /// Now uses TimeService-integrated GameSession for accurate playtime
-        /// </summary>
-        private async Task<SaveFileInfo> CreateSaveFileInfoAsync(string fileName)
+        public void InvalidateCache(string saveName)
         {
-            try
-            {
-                var gameSession = await LoadGameSessionAsync(fileName);
-                if (gameSession != null)
-                {
-                    var saveInfo = new SaveFileInfo(fileName, gameSession);
-                    Debug.Log($"[SaveService] Created SaveFileInfo for '{fileName}' - " +
-                             $"Game time: {saveInfo.formattedPlayTime}, Session time: {saveInfo.formattedSessionTime}");
-                    return saveInfo;
-                }
-                return null;
-            }
-            catch (Exception ex)
-            {
-                Debug.LogWarning($"[SaveService] Failed to create SaveFileInfo for '{fileName}': {ex.Message}");
-                return null;
-            }
+            _saveFileInfoCache.Remove(saveName);
         }
+        
         #endregion
     }
 }

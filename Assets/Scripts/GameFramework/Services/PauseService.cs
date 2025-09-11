@@ -10,6 +10,7 @@ namespace GameFramework.Services
     /// <summary>
     /// Simple centralized pause service that manages game pause state
     /// Handles time scale, audio, and event integration
+    /// Uses EventSystem for all event publishing instead of local events
     /// </summary>
     public class PauseService : IPauseService
     {
@@ -25,10 +26,7 @@ namespace GameFramework.Services
         private float _prePauseTimeScale = 1f;
         private float _prePauseAudioVolume = 1f;
         
-        // Events
-        public event Action<bool> OnPauseStateChanged;
-        public event Action<string> OnGamePaused;
-        public event Action OnGameResumed;
+        // Removed local events - now using EventSystem
         
         #endregion
         
@@ -51,11 +49,8 @@ namespace GameFramework.Services
         {
             if (IsInitialized) return;
             
-            Debug.Log("[PauseService] Initializing pause service...");
-            
             // Subscribe to application focus events
             Application.focusChanged += OnApplicationFocusChanged;
-            //Application.pauseStateChanged += OnApplicationPauseStateChanged;
             
             // Subscribe to pause/resume events
             _eventSystem.Subscribe<PauseRequestedEvent>(OnPauseRequested);
@@ -66,19 +61,14 @@ namespace GameFramework.Services
             
             IsInitialized = true;
             await Task.CompletedTask;
-            
-            Debug.Log("[PauseService] Pause service initialized successfully");
         }
         
         public void Shutdown()
         {
             if (!IsInitialized) return;
             
-            Debug.Log("[PauseService] Shutting down pause service...");
-            
             // Unsubscribe from application events
             Application.focusChanged -= OnApplicationFocusChanged;
-            //Application.pauseStateChanged -= OnApplicationPauseStateChanged;
             
             // Unsubscribe from game events
             _eventSystem?.Unsubscribe<PauseRequestedEvent>(OnPauseRequested);
@@ -106,12 +96,10 @@ namespace GameFramework.Services
         #endregion
         
         #region Pause Control
-        
-        public void PauseGame(string reason = null)
+
+        private void PauseGame()
         {
             if (IsPaused) return; // Already paused
-            
-            Debug.Log($"[PauseService] Pausing game - Reason: {reason ?? "No reason specified"}");
             
             // Store current state before pausing
             _prePauseTimeScale = Time.timeScale;
@@ -122,43 +110,21 @@ namespace GameFramework.Services
             Time.timeScale = 0f;
             _audioService.SetMasterVolume(_prePauseAudioVolume * 0.3f); // Reduce volume
             
-            // Fire events
-            OnPauseStateChanged?.Invoke(true);
-            OnGamePaused?.Invoke(reason ?? "Game paused");
+            // Publish events through EventSystem only
             _eventSystem.Publish(new GamePausedEvent());
-            
-            Debug.Log("[PauseService] Game paused successfully");
         }
         
-        public void ResumeGame()
+        private void ResumeGame()
         {
             if (!IsPaused) return; // Already resumed
-            
-            Debug.Log("[PauseService] Resuming game...");
             
             // Restore pre-pause state
             IsPaused = false;
             Time.timeScale = _prePauseTimeScale;
             _audioService.SetMasterVolume(_prePauseAudioVolume);
             
-            // Fire events
-            OnPauseStateChanged?.Invoke(false);
-            OnGameResumed?.Invoke();
+            // Publish events through EventSystem only
             _eventSystem.Publish(new GameResumedEvent());
-            
-            Debug.Log("[PauseService] Game resumed successfully");
-        }
-        
-        public void TogglePause()
-        {
-            if (IsPaused)
-            {
-                ResumeGame();
-            }
-            else
-            {
-                PauseGame("Player toggle");
-            }
         }
         
         #endregion
@@ -167,7 +133,7 @@ namespace GameFramework.Services
         
         private void OnPauseRequested(PauseRequestedEvent evt)
         {
-            PauseGame("Player requested pause");
+            PauseGame();
         }
         
         private void OnResumeRequested(ResumeRequestedEvent evt)
@@ -177,28 +143,7 @@ namespace GameFramework.Services
         
         private void OnApplicationFocusChanged(bool hasFocus)
         {
-            if (hasFocus)
-            {
-                // Don't automatically resume - let player decide
-                Debug.Log("[PauseService] Application gained focus - game remains in current pause state");
-            }
-            else
-            {
-                PauseGame("Application lost focus");
-            }
-        }
-        
-        private void OnApplicationPauseStateChanged(bool pauseStatus)
-        {
-            if (pauseStatus)
-            {
-                PauseGame("Application paused");
-            }
-            else
-            {
-                // Don't automatically resume - let player decide
-                Debug.Log("[PauseService] Application unpaused - game remains in current pause state");
-            }
+            PauseGame();
         }
         
         #endregion

@@ -13,27 +13,5 @@ namespace GameFramework.Services.Interfaces
         /// Is the game currently paused?
         /// </summary>
         bool IsPaused { get; }
-        
-        /// <summary>
-        /// Pause the game
-        /// </summary>
-        void PauseGame(string reason = null);
-        
-        /// <summary>
-        /// Resume the game
-        /// </summary>
-        void ResumeGame();
-        
-        /// <summary>
-        /// Toggle pause state
-        /// </summary>
-        void TogglePause();
-        
-        /// <summary>
-        /// Events for pause state changes
-        /// </summary>
-        event Action<bool> OnPauseStateChanged;
-        event Action<string> OnGamePaused;
-        event Action OnGameResumed;
     }
 }

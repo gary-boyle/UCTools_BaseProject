@@ -23,7 +23,7 @@ namespace GameFramework.Services.Interfaces
         void LoadGameSession(GameSession session);
         void ClearSession();
         bool HasActiveSession();
-
+        bool IsValidGameSession(GameSession session);
         
         // Data Access
         PlayerState GetPlayerState();

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GameFramework.Core;
+using GameFramework.EventSystem.Events;
 using GameFramework.EventSystem.Interfaces;
 using GameFramework.UI;
 using GameFramework.UI.Interfaces;
@@ -60,6 +61,8 @@ namespace GameFramework.Services
 
             // Initialize all screens and popups
             InitializeScreensAndPopups();
+
+            SubscribeToLoadingEvents();
 
             await ApplyInitialConfigState();
 
@@ -120,6 +123,8 @@ namespace GameFramework.Services
                 popup.Cleanup();
             }
             
+            UnsubscribeFromLoadingEvents();
+
             _screens.Clear();
             _popups.Clear();
             _updatableScreens.Clear();
@@ -539,5 +544,59 @@ namespace GameFramework.Services
             }
         }
 
+        #region Loading Event Management
+        /// <summary>
+        /// Subscribe to loading-related events for proper UI management
+        /// </summary>
+        private void SubscribeToLoadingEvents()
+        {
+            _eventSystem.Subscribe<LoadingStartedEvent>(OnLoadingStarted);
+            _eventSystem.Subscribe<LoadSaveFileEvent>(OnLoadSaveFileRequested);
+        }
+        
+        /// <summary>
+        /// Unsubscribe from loading events
+        /// </summary>
+        private void UnsubscribeFromLoadingEvents()
+        {
+            _eventSystem.Unsubscribe<LoadingStartedEvent>(OnLoadingStarted);
+            _eventSystem.Unsubscribe<LoadSaveFileEvent>(OnLoadSaveFileRequested);
+        }
+        
+        /// <summary>
+        /// Handle loading started event by closing relevant popups
+        /// </summary>
+        private async void OnLoadingStarted(LoadingStartedEvent evt)
+        {
+            await CloseAllPopupsForLoading();
+        }
+        
+        /// <summary>
+        /// Handle load save file event by immediately closing popups
+        /// This provides immediate UI feedback before loading starts
+        /// </summary>
+        private async void OnLoadSaveFileRequested(LoadSaveFileEvent evt)
+        {
+            Debug.Log($"[UIService] Preparing UI for loading: {evt.SaveFileInfo.fileName}");
+            await CloseAllPopupsForLoading();
+        }
+        
+        /// <summary>
+        /// Much cleaner than maintaining a specific list of popups to close
+        /// </summary>
+        public async Task CloseAllPopupsForLoading()
+        {
+            try
+            {
+                await CloseAllPopupsAsync();
+            }
+            catch (Exception ex)
+            {
+                Debug.LogWarning($"[UIService] Error closing popups for loading: {ex.Message}");
+            }
+        }
+        
+        #endregion
+        
     }
 }

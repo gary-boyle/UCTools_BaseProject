@@ -17,6 +17,19 @@ namespace GameFramework.EventSystem.Events
     }
 
     public class GamePausedEvent { }
+    //
+    // /// <summary>
+    // /// Specific pause request from the PlayingState
+    // /// Allows PauseService to distinguish between different pause sources
+    // /// </summary>
+    // public class PlayingStatePauseRequestedEvent { }
+    //
+    // /// <summary>
+    // /// Specific resume request from the PlayingState
+    // /// Allows PauseService to distinguish between different resume sources
+    // /// </summary>
+    // public class PlayingStateResumeRequestedEvent { }
+    //
     public class GameResumedEvent { }
     public class OptionsChangedEvent { }
     public class SaveGameEvent { }
@@ -317,6 +330,22 @@ namespace GameFramework.EventSystem.Events
         }
     }
     
+    /// <summary>
+    /// Event published when loading process begins
+    /// Allows UI and other services to prepare for loading
+    /// </summary>
+    public class LoadingStartedEvent
+    {
+        public SaveFileInfo SaveFileInfo { get; }
+        public string SaveFileName => SaveFileInfo.fileName;
+        public DateTime StartTime { get; }
+
+        public LoadingStartedEvent(SaveFileInfo saveFileInfo)
+        {
+            SaveFileInfo = saveFileInfo ?? throw new ArgumentNullException(nameof(saveFileInfo));
+            StartTime = DateTime.Now;
+        }
+    }
     #endregion
     
     #region Session Management Events
