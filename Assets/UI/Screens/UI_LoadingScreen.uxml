@@ -4,8 +4,10 @@
         <engine:VisualElement class="layout-column layout-center">
             <engine:Label text="Loading..." name="lbl_LoadingText" class="text--hero mb-xl" />
             <engine:VisualElement class="ui-container layout-center p-xl">
-                <engine:VisualElement class="loading-spinner mb-lg" />
-                <engine:Label text="Please wait while the game loads..." class="text--secondary text--center" />
+                <engine:VisualElement name="progress-container" class="progress-container mb-lg" style="width: 300px; height: 20px;">
+                    <engine:ProgressBar name="loading-progress" low-value="0" high-value="1" value="0" class="loading-progress" style="width: 100%; height: 100%;" />
+                </engine:VisualElement>
+                <engine:Label text="Please wait while the game loads..." name="lbl_LoadingMessage" class="text--secondary text--center" />
             </engine:VisualElement>
         </engine:VisualElement>
     </engine:VisualElement>

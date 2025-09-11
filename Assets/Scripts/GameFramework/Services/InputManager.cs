@@ -69,15 +69,11 @@ namespace GameFramework.Input
             _consoleHandler = consoleHandler ?? throw new ArgumentNullException(nameof(consoleHandler));
             _uiHandler = uiHandler ?? throw new ArgumentNullException(nameof(uiHandler));
             _playerHandler = playerHandler ?? throw new ArgumentNullException(nameof(playerHandler));
-            
-            Debug.Log("[InputManager] Created - handles both Unity input AND handler management");
         }
         
         public async Task InitializeAsync()
         {
             if (IsInitialized) return;
-            
-            Debug.Log("[InputManager] Initializing unified input system...");
             
             try
             {
@@ -96,8 +92,6 @@ namespace GameFramework.Input
                 ActivateHandler<ConsoleInputHandler>();
                 
                 IsInitialized = true;
-                Debug.Log("[InputManager] Unified input system initialized");
-                
                 await Task.CompletedTask;
             }
             catch (Exception ex)
@@ -167,15 +161,11 @@ namespace GameFramework.Input
             _inputActions.Console.TabComplete.performed += _onConsoleTabCompleteInput;
             _inputActions.Console.HistoryUp.performed += _onConsoleHistoryUpInput;
             _inputActions.Console.HistoryDown.performed += _onConsoleHistoryDownInput;
-            
-            Debug.Log("[InputManager] Subscribed to all Unity Input System events");
         }
         
         private void UnsubscribeFromUnityInputEvents()
         {
             if (_inputActions == null) return;
-            
-            Debug.Log("[InputManager] Unsubscribing from Unity Input System events...");
             
             // Unsubscribe Player Actions
             if (_onMoveInput != null)
@@ -255,8 +245,6 @@ namespace GameFramework.Input
             _onConsoleTabCompleteInput = null;
             _onConsoleHistoryUpInput = null;
             _onConsoleHistoryDownInput = null;
-            
-            Debug.Log("[InputManager] Unsubscribed from all Unity Input System events");
         }
         
         #endregion
@@ -273,8 +261,6 @@ namespace GameFramework.Input
             
             _handlers.Add(handler);
             _handlers.Sort((a, b) => b.Priority.CompareTo(a.Priority));
-            
-            Debug.Log($"[InputManager] Registered handler: {handler.Name} (Priority: {handler.Priority})");
         }
         
         public void ActivateHandler<T>() where T : InputHandlerBase
@@ -287,8 +273,6 @@ namespace GameFramework.Input
                 handler.Activate();
                 _activeHandlers.Add(handler);
                 _activeHandlers.Sort((a, b) => b.Priority.CompareTo(a.Priority));
-                
-                Debug.Log($"[InputManager] Activated handler: {handler.Name}");
             }
         }
         
@@ -301,16 +285,12 @@ namespace GameFramework.Input
             {
                 handler.Deactivate();
                 _activeHandlers.Remove(handler);
-                
-                Debug.Log($"[InputManager] Deactivated handler: {handler.Name}");
             }
         }
         
         public void SetInputContext(InputContext context)
         {
             if (!IsInitialized || _currentContext == context) return;
-            
-            Debug.Log($"[InputManager] Context: {_currentContext} -> {context}");
             
             _currentContext = context;
             
@@ -333,12 +313,7 @@ namespace GameFramework.Input
                     break;
             }
         }
-        
-        public bool IsHandlerActive<T>() where T : InputHandlerBase
-        {
-            return IsInitialized && _activeHandlers.OfType<T>().Any();
-        }
-        
+
         public InputContext GetCurrentContext() => _currentContext;
         
         #endregion
@@ -352,8 +327,6 @@ namespace GameFramework.Input
         public void Shutdown()
         {
             if (!IsInitialized) return;
-            
-            Debug.Log("[InputManager] Shutting down unified input system...");
             
             // Shutdown handlers
             foreach (var handler in _activeHandlers.ToList())
@@ -371,8 +344,6 @@ namespace GameFramework.Input
             _handlers.Clear();
             _currentContext = InputContext.None;
             IsInitialized = false;
-            
-            Debug.Log("[InputManager] Unified input system shutdown complete");
         }
     }
 }

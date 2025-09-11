@@ -157,7 +157,8 @@ namespace GameFramework.Services
             RegisterScreen(new CreditsScreen(root.Q<VisualElement>("UI_CreditScreen")));
             RegisterScreen(new GameOverScreen(root.Q<VisualElement>("UI_GameOverScreen")));
             RegisterScreen(new VictoryScreen(root.Q<VisualElement>("UI_VictoryScreen")));
-            
+            RegisterScreen(new QuitScreen(root.Q<VisualElement>("UI_QuitScreen")));
+
             // Register popups
             RegisterPopup(new OptionsPopup(root.Q<VisualElement>("UI_OptionsPopup")));
             RegisterPopup(new LoadGamePopup(root.Q<VisualElement>("UI_LoadGamePopup"))); 

@@ -22,12 +22,8 @@ namespace GameFramework.Services.Interfaces
         void CreateNewGameSession(LoadingConfiguration config);
         void LoadGameSession(GameSession session);
         void ClearSession();
-        void UpdateSession();
         bool HasActiveSession();
 
-        
-        // Save/Load Operations
-        Task<bool> LoadSessionAsync(string saveName);
         
         // Data Access
         PlayerState GetPlayerState();
@@ -35,10 +31,5 @@ namespace GameFramework.Services.Interfaces
         T GetCustomData<T>(string key, T defaultValue = default);
         void SetCustomData<T>(string key, T value);
         T GetLoadingData<T>(string key, T defaultValue = default);
-        
-        // Events
-        event Action<GameSession> OnSessionCreated;
-        event Action<GameSession> OnSessionLoaded;
-        event Action OnSessionCleared;
     }
 }

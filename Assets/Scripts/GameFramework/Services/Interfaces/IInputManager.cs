@@ -46,13 +46,6 @@ namespace GameFramework.Input.Interfaces
         void SetInputContext(InputContext context);
         
         /// <summary>
-        /// Check if a specific input handler type is currently active
-        /// </summary>
-        /// <typeparam name="T">Type of input handler to check</typeparam>
-        /// <returns>True if the handler is active</returns>
-        bool IsHandlerActive<T>() where T : InputHandlerBase;
-        
-        /// <summary>
         /// Get the current input context
         /// </summary>
         /// <returns>Current input context</returns>

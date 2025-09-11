@@ -73,6 +73,16 @@ namespace GameFramework.StateMachine.GameStates
         
         private async Task ProcessLoadingConfiguration()
         {
+            // Show loading screen if requested
+            if (_currentConfig.ShowLoadingScreen)
+            {
+                await UIService.ShowScreenAsync<LoadingScreen>();
+                var loadingScreen = UIService.GetScreen<LoadingScreen>();
+                
+                // Set the loading type for context-specific messaging
+                loadingScreen?.SetLoadingType(_currentConfig.Type);
+            }
+            
             try
             {
                 switch (_currentConfig.Type)

@@ -4,10 +4,14 @@
         <engine:VisualElement class="hud-top">
             <engine:VisualElement class="layout-row">
                 <engine:Button text="Debug" name="btn_Test" class="btn btn--small hud-element mr-md" />
-                <engine:Button text="Quick Save" name="btn_Save" class="btn btn--small hud-element" />
+                <engine:Button text="Quick Save" name="btn_Save" class="btn btn--small hud-element mr-md" />
             </engine:VisualElement>
             <engine:VisualElement class="layout-row">
-                <engine:Button text="Pause" name="btn_Pause" class="btn btn--secondary hud-element" />
+                <engine:Button text="Pause" name="btn_Pause" class="btn btn--secondary hud-element mr-md" />
+            </engine:VisualElement>
+            <engine:VisualElement class="layout-row">
+                <engine:Button text="Victory" name="btn_Victory" class="btn btn--success hud-element mr-md" />
+                <engine:Button text="Game Over" name="btn_GameOver" class="btn btn--danger hud-element mr-md" />
             </engine:VisualElement>
         </engine:VisualElement>
         <engine:VisualElement name="VisualElement" class="hud-bottom">

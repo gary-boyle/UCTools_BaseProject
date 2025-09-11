@@ -11,10 +11,26 @@ using UnityEngine;
 namespace GameFramework.Services
 {
     /// <summary>
-    /// Clean GameDataService that manages unified GameSession data
-    /// Single source of truth for all game state information
-    /// Delegates all save/load operations to SaveService
-    /// Uses TimeService for all playtime tracking - no manual time management
+    /// Clean GameDataService that manages unified GameSession data using EventSystem
+    /// 
+    /// Intent: Single source of truth for all game state information with event-driven architecture
+    /// 
+    /// Design:
+    /// - Uses EventSystem for all communication instead of direct Action events
+    /// - Delegates all save/load operations to SaveService
+    /// - Uses TimeService for all playtime tracking - no manual time management
+    /// - Publishes session lifecycle events through EventSystem
+    /// 
+    /// Pros:
+    /// - Decoupled event handling through EventSystem
+    /// - Consistent event architecture across the framework
+    /// - Multiple systems can listen to session events without direct coupling
+    /// - Easy to add new event listeners without modifying this service
+    /// 
+    /// Cons:
+    /// - Slightly more overhead than direct Actions
+    /// - Event handling requires knowledge of event class structure
+    /// - Debugging event flow requires EventSystem awareness
     /// </summary>
     public class GameDataService : IGameDataService, IUpdatable
     {
@@ -28,11 +44,6 @@ namespace GameFramework.Services
         // Auto-save timing
         private DateTime _lastAutoSaveCheck = DateTime.MinValue;
         private const int AUTO_SAVE_INTERVAL_MINUTES = 5;
-        
-        // Events
-        public event Action<GameSession> OnSessionCreated;
-        public event Action<GameSession> OnSessionLoaded;
-        public event Action OnSessionCleared;
 
         public GameDataService(IEventSystem eventSystem, ISaveService saveService)
         {
@@ -43,8 +54,6 @@ namespace GameFramework.Services
         public async Task InitializeAsync()
         {
             if (IsInitialized) return;
-            
-            Debug.Log("[GameDataService] Initializing game data service with TimeService integration...");
             
             // Subscribe to scene events to keep session updated
             _eventSystem.Subscribe<SceneLoadedEvent>(OnSceneLoaded);
@@ -73,6 +82,7 @@ namespace GameFramework.Services
         /// <summary>
         /// Creates a new game session from loading configuration
         /// TimeService will handle playtime tracking automatically
+        /// Publishes SessionCreatedEvent through EventSystem
         /// </summary>
         public void CreateNewGameSession(LoadingConfiguration config)
         {
@@ -91,13 +101,13 @@ namespace GameFramework.Services
             // Reset auto-save timer for new session
             _lastAutoSaveCheck = DateTime.Now;
             
-            Debug.Log($"[GameDataService] Created new game session for player '{CurrentSession.playerName}' - " +
-                     $"TimeService will track playtime");
-            OnSessionCreated?.Invoke(CurrentSession);
+            // Publish session created event through EventSystem
+            _eventSystem.Publish(new SessionCreatedEvent(CurrentSession));
         }
         
         /// <summary>
         /// Loads existing game session - TimeService handles playtime restoration
+        /// Publishes SessionLoadedEvent through EventSystem
         /// </summary>
         public void LoadGameSession(GameSession session)
         {
@@ -108,25 +118,29 @@ namespace GameFramework.Services
     
             // Reset auto-save timer for loaded session
             _lastAutoSaveCheck = DateTime.Now;
-    
-            Debug.Log($"[GameDataService] Loaded game session for player '{CurrentSession.playerName}' - " +
-                     $"TimeService managing playtime: {CurrentSession.FormattedPlayTime}");
-            OnSessionLoaded?.Invoke(CurrentSession);
+            
+            // Publish session loaded event through EventSystem
+            _eventSystem.Publish(new SessionLoadedEvent(CurrentSession));
         }
         
         /// <summary>
         /// Clears the current session
+        /// Publishes SessionClearedEvent through EventSystem
         /// </summary>
         public void ClearSession()
         {
+            string playerName = null;
+            
             if (CurrentSession != null)
             {
-                Debug.Log($"[GameDataService] Clearing session for player '{CurrentSession.playerName}'");
+                playerName = CurrentSession.playerName;
             }
             
             CurrentSession = null;
             _lastAutoSaveCheck = DateTime.MinValue;
-            OnSessionCleared?.Invoke();
+            
+            // Publish session cleared event through EventSystem
+            _eventSystem.Publish(new SessionClearedEvent(playerName));
         }
         
         /// <summary>
@@ -196,36 +210,6 @@ namespace GameFramework.Services
             }
             
             return result;
-        }
-        
-        /// <summary>
-        /// Loads a session from save file using SaveService
-        /// </summary>
-        public async Task<bool> LoadSessionAsync(string saveName)
-        {
-            var session = await _saveService.LoadGameSessionAsync(saveName);
-            if (session != null)
-            {
-                LoadGameSession(session);
-                return true;
-            }
-            return false;
-        }
-        
-        /// <summary>
-        /// Loads a session using SaveFileInfo from SaveService
-        /// </summary>
-        public async Task<bool> LoadSessionAsync(SaveFileInfo saveFileInfo)
-        {
-            if (saveFileInfo == null) return false;
-            
-            var session = await _saveService.LoadGameSessionByInfoAsync(saveFileInfo);
-            if (session != null)
-            {
-                LoadGameSession(session);
-                return true;
-            }
-            return false;
         }
         
         #endregion

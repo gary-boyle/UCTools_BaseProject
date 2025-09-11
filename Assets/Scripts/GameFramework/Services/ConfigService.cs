@@ -93,8 +93,6 @@ namespace GameFramework.Services
             
             // Register all variables from this category
             RegisterVariablesFromCategory(category);
-            
-            Debug.Log($"[ConfigService] Registered ConfigCategory: {categoryType.Name} ({category.name})");
         }
         
         /// <summary>
@@ -144,29 +142,6 @@ namespace GameFramework.Services
             return null;
         }
         
-        /// <summary>
-        /// Get all registered configuration categories
-        /// </summary>
-        public IReadOnlyList<ConfigCategory> GetAllConfigCategories()
-        {
-            return _configCategories.AsReadOnly();
-        }
-        
-        /// <summary>
-        /// Get all configuration categories of a specific type (useful for inheritance scenarios)
-        /// </summary>
-        public IReadOnlyList<T> GetConfigCategoriesOfType<T>() where T : ConfigCategory
-        {
-            return _configCategories.OfType<T>().ToList().AsReadOnly();
-        }
-        
-        /// <summary>
-        /// Check if a configuration category of the specified type is registered
-        /// </summary>
-        public bool HasConfigCategory<T>() where T : ConfigCategory
-        {
-            return HasConfigCategory(typeof(T));
-        }
         
         /// <summary>
         /// Check if a configuration category of the specified type is registered
@@ -377,33 +352,6 @@ namespace GameFramework.Services
                     }
                 }
             }
-        }
-        
-        #endregion
-        
-        #region Debug and Utility Methods
-        
-        /// <summary>
-        /// Get debug information about registered categories and variables
-        /// </summary>
-        public string GetDebugInfo()
-        {
-            var info = $"ConfigService Debug Info:\n";
-            info += $"Categories: {_configCategories.Count}\n";
-            info += $"Variables: {_configVariablesByName.Count}\n\n";
-            
-            foreach (var category in _configCategories)
-            {
-                info += $"Category: {category.GetType().Name} ({category.name})\n";
-                var variables = category.GetAllVariables();
-                foreach (var variable in variables)
-                {
-                    info += $"  - {variable.name}: {variable.GetValueAsString()}\n";
-                }
-                info += "\n";
-            }
-            
-            return info;
         }
         
         #endregion

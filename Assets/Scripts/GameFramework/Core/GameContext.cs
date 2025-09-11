@@ -2,7 +2,6 @@
 using GameFramework.EventSystem.Interfaces;
 using GameFramework.Input.Interfaces;
 using GameFramework.Services.Interfaces;
-using GameFramework.StateMachine.Data;
 
 namespace GameFramework.Core
 {

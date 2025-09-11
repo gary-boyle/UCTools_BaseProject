@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using GameFramework.Core;
 using GameFramework.DataStructures;
 using GameFramework.StateMachine.Enum;
-
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,8 +18,6 @@ namespace GameFramework.EventSystem.Events
 
     public class GamePausedEvent { }
     public class GameResumedEvent { }
-    public class GameStartedEvent { }
-    public class GameEndedEvent { }
     public class OptionsChangedEvent { }
     public class SaveGameEvent { }
     public class LoadGameEvent { }
@@ -109,18 +106,11 @@ namespace GameFramework.EventSystem.Events
         // Jump is typically just performed, no need for phase
         public PlayerJumpInputEvent() { }
     }
-    
-    public class PlayerPreviousInputEvent
-    {
-        // Previous is typically just performed
-        public PlayerPreviousInputEvent() { }
-    }
-    
-    public class PlayerNextInputEvent
-    {
-        // Next is typically just performed
-        public PlayerNextInputEvent() { }
-    }
+
+    public class PlayerPreviousInputEvent { }
+
+
+    public class PlayerNextInputEvent { }
     
     public class PlayerSprintInputEvent
     {
@@ -156,11 +146,7 @@ namespace GameFramework.EventSystem.Events
         }
     }
     
-    public class UISubmitInputEvent
-    {
-        // Submit is typically just performed
-        public UISubmitInputEvent() { }
-    }
+    public class UISubmitInputEvent { }
 
     public class UIPointInputEvent
     {
@@ -182,17 +168,9 @@ namespace GameFramework.EventSystem.Events
         }
     }
     
-    public class UIRightClickInputEvent
-    {
-        // Right click is typically just performed
-        public UIRightClickInputEvent() { }
-    }
+    public class UIRightClickInputEvent { }
     
-    public class UIMiddleClickInputEvent
-    {
-        // Middle click is typically just performed
-        public UIMiddleClickInputEvent() { }
-    }
+    public class UIMiddleClickInputEvent { }
     
     public class UIScrollWheelInputEvent
     {
@@ -203,27 +181,7 @@ namespace GameFramework.EventSystem.Events
             ScrollDelta = scrollDelta;
         }
     }
-    
-    public class UITrackedDevicePositionInputEvent
-    {
-        public Vector3 Position { get; }
-        
-        public UITrackedDevicePositionInputEvent(Vector3 position)
-        {
-            Position = position;
-        }
-    }
-    
-    public class UITrackedDeviceOrientationInputEvent
-    {
-        public Quaternion Orientation { get; }
-        
-        public UITrackedDeviceOrientationInputEvent(Quaternion orientation)
-        {
-            Orientation = orientation;
-        }
-    }
-    
+
     #endregion
     
     #region Console Events
@@ -316,20 +274,82 @@ namespace GameFramework.EventSystem.Events
             SaveFileInfo = saveFileInfo ?? throw new ArgumentNullException(nameof(saveFileInfo));
         }
     }
-    
-    /// <summary>
-    /// Event triggered when the player requests to save the game
-    /// </summary>
-    public class SaveGameRequestedEvent
+    public class LoadingProgressChangedEvent
     {
-        public string SaveName { get; set; }
-        public bool OverwriteExisting { get; set; }
+        public string Message { get; }
+        public float Progress { get; }
     
-        public SaveGameRequestedEvent(string saveName, bool overwriteExisting = false)
+        public LoadingProgressChangedEvent(string message, float progress)
         {
-            SaveName = saveName;
-            OverwriteExisting = overwriteExisting;
+            Message = message;
+            Progress = progress;
         }
     }
+
+    public class LoadingMessageChangedEvent
+    {
+        public string Message { get; }
+    
+        public LoadingMessageChangedEvent(string message)
+        {
+            Message = message;
+        }
+    }
+
+    public class LoadingFailedEvent
+    {
+        public Exception Exception { get; }
+        public string ErrorMessage => Exception?.Message ?? "Unknown loading error";
+    
+        public LoadingFailedEvent(Exception exception)
+        {
+            Exception = exception ?? throw new ArgumentNullException(nameof(exception));
+        }
+    }
+
+    public class LoadingCompletedEvent
+    {
+        public GameSession Session { get; }
+    
+        public LoadingCompletedEvent(GameSession session)
+        {
+            Session = session ?? throw new ArgumentNullException(nameof(session));
+        }
+    }
+    
+    #endregion
+    
+    #region Session Management Events
+
+    public class SessionCreatedEvent
+    {
+        public GameSession Session { get; }
+    
+        public SessionCreatedEvent(GameSession session)
+        {
+            Session = session ?? throw new ArgumentNullException(nameof(session));
+        }
+    }
+
+    public class SessionLoadedEvent
+    {
+        public GameSession Session { get; }
+    
+        public SessionLoadedEvent(GameSession session)
+        {
+            Session = session ?? throw new ArgumentNullException(nameof(session));
+        }
+    }
+
+    public class SessionClearedEvent
+    {
+        public string PlayerName { get; }
+    
+        public SessionClearedEvent(string playerName = null)
+        {
+            PlayerName = playerName;
+        }
+    }
+
     #endregion
 }

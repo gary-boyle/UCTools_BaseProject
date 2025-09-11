@@ -23,7 +23,6 @@ namespace GameFramework.EventSystem
         {
             if (IsInitialized) return;
             
-            Debug.Log("[EventSystem] Initializing event system...");
             IsInitialized = true;
             await Task.CompletedTask;
         }
@@ -119,5 +118,4 @@ namespace GameFramework.EventSystem
             _handlers.Clear();
         }
     }
-
 }

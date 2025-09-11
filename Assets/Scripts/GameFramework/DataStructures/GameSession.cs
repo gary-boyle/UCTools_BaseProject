@@ -138,22 +138,7 @@ namespace GameFramework.DataStructures
                 Debug.Log($"[GameSession] Restored time data to GameDataService - Game: {FormatTimeFromSeconds(_savedGameTime)}, Session: {FormatTimeFromSeconds(_savedSessionTime)}");
             }
         }
-        
-        /// <summary>
-        /// Gets the serialized/saved playtime data (for UI display when TimeService not available)
-        /// </summary>
-        public float SavedGameTime => _savedGameTime;
-        
-        /// <summary>
-        /// Gets the serialized/saved session time data
-        /// </summary>
-        public float SavedSessionTime => _savedSessionTime;
-        
-        /// <summary>
-        /// Checks if this session has saved time data
-        /// </summary>
-        public bool HasSavedTimeData => _hasTimeData;
-        
+          
         /// <summary>
         /// Creates a new game session with specified parameters
         /// </summary>
@@ -179,7 +164,6 @@ namespace GameFramework.DataStructures
                 }
             };
             
-            Debug.Log($"[GameSession] Created new game session for player '{playerName}' on difficulty '{difficulty}'");
             return session;
         }
         
@@ -191,7 +175,6 @@ namespace GameFramework.DataStructures
         {
             lastSaveTime = DateTime.Now;
             UpdateTimeDataFromService(); // Capture current time data
-            Debug.Log($"[GameSession] Updated last save time: {lastSaveTime} with playtime data");
         }
         
         /// <summary>
@@ -242,31 +225,7 @@ namespace GameFramework.DataStructures
         {
             return DateTime.Now - sessionStartTime;
         }
-        
-        /// <summary>
-        /// Gets the time since last save
-        /// </summary>
-        public TimeSpan GetTimeSinceLastSave()
-        {
-            return DateTime.Now - lastSaveTime;
-        }
-        
-        /// <summary>
-        /// Converts session to loading configuration for state transitions
-        /// </summary>
-        public LoadingConfiguration ToLoadingConfiguration()
-        {
-            var config = LoadingConfiguration.LoadSave(currentScene, customData);
-            config.PlayerName = playerName;
-            config.GameData["difficulty"] = difficulty;
-            config.GameData["playerLevel"] = player.level;
-            config.GameData["totalPlayTime"] = TotalPlayTimeSeconds;
-            config.GameData["sessionTime"] = SessionTimeSeconds;
-            config.GameData["sessionAge"] = GetSessionAge().TotalSeconds;
-            
-            Debug.Log($"[GameSession] Created loading configuration - Playtime: {FormattedPlayTime}, Scene: {currentScene}");
-            return config;
-        }
+
         
         /// <summary>
         /// Updates the current scene reference

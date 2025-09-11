@@ -12,13 +12,10 @@ namespace GameFramework.DataStructures
     public class SaveFileInfo
     {
         public string fileName;
-        public string displayName; // Formatted name for display
         public string playerName;
         public string difficulty;
         public string currentScene;
         public DateTime lastSaveTime;
-        public float totalPlayTimeSeconds;
-        public float sessionTimeSeconds;
         public string formattedPlayTime;
         public string formattedSessionTime;
         public string formattedDate;
@@ -40,17 +37,12 @@ namespace GameFramework.DataStructures
             this.score = session.progress.score;
             
             // Use TimeService-based playtime information
-            this.totalPlayTimeSeconds = session.TotalPlayTimeSeconds;
-            this.sessionTimeSeconds = session.SessionTimeSeconds;
             this.formattedPlayTime = session.FormattedPlayTime;
             this.formattedSessionTime = session.FormattedSessionTime;
             this.playTimeInfo = session.GetPlayTimeInfo();
             
             // Check if this is an autosave from both filename and session data
             this.isAutoSave = DetermineIfAutoSave(fileName, session);
-            
-            // Generate display name (clean, without autosave indicator)
-            this.displayName = GenerateDisplayName();
             
             // Format display strings
             formattedDate = lastSaveTime.ToString("yyyy-MM-dd HH:mm");
@@ -80,73 +72,11 @@ namespace GameFramework.DataStructures
         }
 
         /// <summary>
-        /// Generates a clean display name without autosave indicators (those are shown separately)
-        /// </summary>
-        private string GenerateDisplayName()
-        {
-            var parts = fileName.Split('_');
-            
-            // For autosaves: PlayerName_[AUTOSAVE]_yyyy-MM-dd_HH-mm-ss
-            // For regular saves: PlayerName_Save_yyyy-MM-dd_HH-mm-ss
-            if (parts.Length >= 3)
-            {
-                var dateTime = string.Join("_", parts[parts.Length - 2], parts[parts.Length - 1]);
-                var saveType = isAutoSave ? "AutoSave" : "Save";
-                return $"{playerName} {saveType} {dateTime}";
-            }
-            
-            // Fallback to original filename
-            return fileName;
-        }
-        
-        /// <summary>
         /// Gets a short description for the save type
         /// </summary>
         public string GetSaveTypeDescription()
         {
             return isAutoSave ? "Automatic Save" : "Manual Save";
-        }
-        
-        /// <summary>
-        /// Gets a user-friendly save type indicator
-        /// </summary>
-        public string GetSaveTypeIndicator()
-        {
-            return isAutoSave ? "[AUTO]" : "[SAVE]";
-        }
-        
-        /// <summary>
-        /// Gets detailed playtime information for display
-        /// </summary>
-        public string GetDetailedPlayTimeInfo()
-        {
-            if (sessionTimeSeconds > totalPlayTimeSeconds)
-            {
-                return $"Playtime: {formattedPlayTime} (Session: {formattedSessionTime})";
-            }
-            return $"Playtime: {formattedPlayTime}";
-        }
-        
-        /// <summary>
-        /// Gets a comprehensive save file summary for tooltips or detailed views
-        /// </summary>
-        public string GetSaveFileSummary()
-        {
-            return $"{GetSaveTypeDescription()}\n" +
-                   $"Player: {playerName} (Level {playerLevel})\n" +
-                   $"Difficulty: {difficulty}\n" +
-                   $"Scene: {currentScene}\n" +
-                   $"Playtime: {formattedPlayTime}\n" +
-                   $"Score: {score:N0}\n" +
-                   $"Saved: {formattedDate}";
-        }
-        
-        /// <summary>
-        /// Gets time tracking status for debugging
-        /// </summary>
-        public string GetTimeTrackingStatus()
-        {
-            return $"Tracking: {playTimeInfo.IsTracking}, Game: {playTimeInfo.FormattedGameTime}, Session: {playTimeInfo.FormattedSessionTime}";
         }
     }
 }

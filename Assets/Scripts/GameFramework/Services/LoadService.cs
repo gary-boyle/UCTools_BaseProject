@@ -15,20 +15,31 @@ using UnityEngine;
 namespace GameFramework.Services
 {
     /// <summary>
-    /// Service that orchestrates all game loading operations
-    /// Handles loading workflow: validation -> file loading -> session creation -> state transition
-    /// Integrates with TimeService for proper playtime handling
+    /// Service that orchestrates all game loading operations using EventSystem
+    /// 
+    /// Intent: Handles loading workflow: validation -> file loading -> session creation -> state transition
+    /// 
+    /// Design:
+    /// - Uses EventSystem for all communication instead of direct Action events
+    /// - Integrates with TimeService for proper playtime handling
+    /// - Publishes loading progress and completion events through EventSystem
+    /// - Subscribes to load game request events from UI and other systems
+    /// 
+    /// Pros:
+    /// - Decoupled event handling through EventSystem
+    /// - Multiple systems can listen to loading events without direct coupling
+    /// - Consistent event architecture across the framework
+    /// - Easy to add new loading event listeners without modifying this service
+    /// 
+    /// Cons:
+    /// - Slightly more overhead than direct Actions for progress events
+    /// - Event handling requires knowledge of event class structure
+    /// - Debugging loading flow requires EventSystem awareness
     /// </summary>
     public class LoadService : ILoadService
     {
         public bool IsInitialized { get; private set; }
         public bool IsLoading { get; private set; }
-        
-        // Events for loading progress
-        public event Action<string, float> LoadingProgressChanged;
-        public event Action<string> LoadingMessageChanged;
-        public event Action<Exception> LoadingFailed;
-        public event Action<GameSession> LoadingCompleted;
         
         // Dependencies
         private readonly IEventSystem _eventSystem;
@@ -53,22 +64,17 @@ namespace GameFramework.Services
         {
             if (IsInitialized) return;
             
-            Debug.Log("[LoadService] Initializing load service...");
-            
             // Subscribe to load game events
             _eventSystem.Subscribe<LoadGameRequestedEvent>(OnLoadGameRequested);
             _eventSystem.Subscribe<LoadSaveFileEvent>(OnLoadSaveFileRequested);
             
             IsInitialized = true;
-            Debug.Log("[LoadService] Load service initialized and subscribed to events");
             await Task.CompletedTask;
         }
         
         public void Shutdown()
         {
             if (!IsInitialized) return;
-            
-            Debug.Log("[LoadService] Shutting down load service...");
             
             // Unsubscribe from events
             _eventSystem.Unsubscribe<LoadGameRequestedEvent>(OnLoadGameRequested);
@@ -79,12 +85,18 @@ namespace GameFramework.Services
         #endregion
         
         #region Event Handlers
+        /// <summary>
+        /// Handles load game requested events from UI or other systems
+        /// </summary>
         private async void OnLoadGameRequested(LoadGameRequestedEvent evt)
         {
             Debug.Log($"[LoadService] Load game requested: {evt.SaveFileName}");
             await LoadGameAsync(evt.SaveFileInfo);
         }
         
+        /// <summary>
+        /// Handles load save file events with automatic popup cleanup
+        /// </summary>
         private async void OnLoadSaveFileRequested(LoadSaveFileEvent evt)
         {
             Debug.Log($"[LoadService] Load save file requested: {evt.SaveFileInfo.fileName}");
@@ -108,15 +120,11 @@ namespace GameFramework.Services
                 var uiService = GameManager.GetService<IUIService>();
                 if (uiService != null)
                 {
-                    Debug.Log("[LoadService] Closing all popups before loading...");
-                    
                     // Close all popups that might be open
                     await uiService.HidePopupAsync<LoadGamePopup>();
                     await uiService.HidePopupAsync<PausePopup>();
                     await uiService.HidePopupAsync<OptionsPopup>();
                     await uiService.HidePopupAsync<SaveGamePopup>();
-                    
-                    Debug.Log("[LoadService] All popups closed before loading");
                 }
             }
             catch (Exception ex)
@@ -154,7 +162,9 @@ namespace GameFramework.Services
             catch (Exception e)
             {
                 Debug.LogError($"[LoadService] Error loading game by name '{saveFileName}': {e}");
-                LoadingFailed?.Invoke(e);
+                
+                // Publish loading failed event through EventSystem
+                _eventSystem.Publish(new LoadingFailedEvent(e));
                 return false;
             }
         }
@@ -187,7 +197,9 @@ namespace GameFramework.Services
             catch (Exception e)
             {
                 Debug.LogError($"[LoadService] Error loading game '{saveFileInfo.fileName}': {e}");
-                LoadingFailed?.Invoke(e);
+                
+                // Publish loading failed event through EventSystem
+                _eventSystem.Publish(new LoadingFailedEvent(e));
                 return false;
             }
             finally
@@ -196,29 +208,6 @@ namespace GameFramework.Services
             }
         }
         
-        /// <summary>
-        /// Loads the most recently saved game
-        /// </summary>
-        public async Task<bool> LoadMostRecentGameAsync()
-        {
-            try
-            {
-                var mostRecentSave = _saveService.GetMostRecentSaveName();
-                if (string.IsNullOrEmpty(mostRecentSave))
-                {
-                    Debug.LogWarning("[LoadService] No recent save found");
-                    return false;
-                }
-                
-                return await LoadGameAsync(mostRecentSave);
-            }
-            catch (Exception e)
-            {
-                Debug.LogError($"[LoadService] Error loading most recent game: {e}");
-                LoadingFailed?.Invoke(e);
-                return false;
-            }
-        }
         #endregion
         
         #region Loading Workflow
@@ -259,13 +248,18 @@ namespace GameFramework.Services
             
             // Step 6: Complete
             NotifyProgress("Loading complete!", 1.0f);
-            LoadingCompleted?.Invoke(gameSession);
+            
+            // Publish loading completed event through EventSystem
+            _eventSystem.Publish(new LoadingCompletedEvent(gameSession));
             
             Debug.Log($"[LoadService] Successfully loaded game: {saveFileInfo.fileName} - " +
                      $"TimeService will manage playtime from here");
             return true;
         }
         
+        /// <summary>
+        /// Validates save file integrity and compatibility
+        /// </summary>
         private async Task<bool> ValidateSaveFile(SaveFileInfo saveFileInfo)
         {
             try
@@ -288,6 +282,9 @@ namespace GameFramework.Services
             }
         }
         
+        /// <summary>
+        /// Loads game session from save file using SaveService
+        /// </summary>
         private async Task<GameSession> LoadGameSession(SaveFileInfo saveFileInfo)
         {
             try
@@ -299,8 +296,6 @@ namespace GameFramework.Services
                     return null;
                 }
                 
-                Debug.Log($"[LoadService] Game session loaded: Player={gameSession.playerName}, " +
-                         $"Scene={gameSession.currentScene}, Playtime will be handled by TimeService");
                 return gameSession;
             }
             catch (Exception e)
@@ -316,8 +311,6 @@ namespace GameFramework.Services
         /// </summary>
         private LoadingConfiguration CreateLoadSaveConfiguration(GameSession gameSession)
         {
-            Debug.Log($"[LoadService] Creating LoadSave configuration for scene: {gameSession.currentScene}");
-            
             // Create proper LoadSave loading configuration
             var loadingConfig = new LoadingConfiguration
             {
@@ -358,30 +351,27 @@ namespace GameFramework.Services
                 }
             }
             
-            Debug.Log($"[LoadService] LoadSave configuration created with {loadingConfig.GameData.Count} data entries");
             return loadingConfig;
         }
         
+        /// <summary>
+        /// Sets up GameDataService with loaded session configuration
+        /// </summary>
         private void SetupGameDataService(GameSession gameSession, LoadingConfiguration loadingConfig)
         {
-            Debug.Log("[LoadService] Setting up game data service with loaded session");
-            
             // Set up the loading configuration for LoadingState to use
             // TimeService will handle playtime restoration automatically
             _gameDataService.CurrentLoadingConfig = loadingConfig;
-            
-            Debug.Log($"[LoadService] Loading configuration set for: {gameSession.playerName} - " +
-                     $"TimeService will restore playtime tracking");
         }
         
+        /// <summary>
+        /// Initiates state transition to loading state
+        /// </summary>
         private async Task InitiateGameLoading()
         {
-            Debug.Log("[LoadService] Initiating state transition to loading");
-            
             try
             {
                 await _stateMachine.ChangeStateAsync(GameStateType.Loading);
-                Debug.Log("[LoadService] State transition to loading initiated successfully");
             }
             catch (Exception e)
             {
@@ -405,25 +395,6 @@ namespace GameFramework.Services
             {
                 Debug.LogError($"[LoadService] Error getting loadable save files: {e}");
                 return new SaveFileInfo[0];
-            }
-        }
-        
-        /// <summary>
-        /// Checks if a save file can be loaded
-        /// </summary>
-        public async Task<bool> CanLoadGame(string saveFileName)
-        {
-            if (string.IsNullOrEmpty(saveFileName)) return false;
-            
-            try
-            {
-                var saveFileInfo = await _saveService.GetSaveFileInfoAsync(saveFileName);
-                return await CanLoadGame(saveFileInfo);
-            }
-            catch (Exception e)
-            {
-                Debug.LogError($"[LoadService] Error checking if can load '{saveFileName}': {e}");
-                return false;
             }
         }
         
@@ -454,6 +425,9 @@ namespace GameFramework.Services
             }
         }
         
+        /// <summary>
+        /// Validates game session integrity
+        /// </summary>
         private bool IsValidGameSession(GameSession gameSession)
         {
             // Basic validation of game session
@@ -493,14 +467,19 @@ namespace GameFramework.Services
         #endregion
         
         #region Progress Notification
+        /// <summary>
+        /// Notifies loading progress through EventSystem
+        /// Publishes both specific progress events and general loading progress event
+        /// </summary>
         private void NotifyProgress(string message, float progress)
         {
             Debug.Log($"[LoadService] {message} ({progress:P0})");
             
-            LoadingProgressChanged?.Invoke(message, progress);
-            LoadingMessageChanged?.Invoke(message);
+            // Publish loading progress events through EventSystem
+            _eventSystem.Publish(new LoadingProgressChangedEvent(message, progress));
+            _eventSystem.Publish(new LoadingMessageChangedEvent(message));
             
-            // Also publish global loading progress event
+            // Also publish global loading progress event for broader system use
             _eventSystem.Publish(new LoadingProgressEvent
             {
                 Progress = progress,

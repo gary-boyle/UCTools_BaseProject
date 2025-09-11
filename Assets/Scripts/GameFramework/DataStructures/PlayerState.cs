@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameFramework.DataStructures
@@ -16,8 +15,6 @@ namespace GameFramework.DataStructures
         public int maxHealth = 100;
         public Vector3 position = Vector3.zero;
         public Vector3 rotation = Vector3.zero;
-        public Dictionary<string, int> inventory = new Dictionary<string, int>();
-        public List<string> unlockedAbilities = new List<string>();
 
         public static PlayerState CreateDefault(string difficulty)
         {

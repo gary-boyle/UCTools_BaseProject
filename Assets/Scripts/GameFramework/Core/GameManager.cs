@@ -37,7 +37,6 @@ namespace GameFramework.Core
 
         [Header("Debug Settings")]
         [SerializeField] private bool _enableDebugConsole = true;
-        [SerializeField] private bool _enableVerboseLogging = false;
         
         [Header("Prefabs")]
         [SerializeField] private UIDocument _UIPrefab;
@@ -145,7 +144,6 @@ namespace GameFramework.Core
             {
                 _instance = this;
                 DontDestroyOnLoad(gameObject);
-                Debug.Log("[GameManager] Singleton instance created");
                 
                 // Start initialization
                 _ = InitializeFrameworkAsync();
@@ -266,13 +264,10 @@ namespace GameFramework.Core
         {
             if (_isInitialized) return;
             
-            Debug.Log("[GameManager] Initializing game framework with dependency injection...");
-            
             try
             {
                 // Initialize DI container
                 _container = DIContainer.Instance;
-                Debug.Log("[GameManager] DI Container created");
                 
                 // Register all services in dependency order
                 RegisterCoreServices();
@@ -280,7 +275,6 @@ namespace GameFramework.Core
                 RegisterGameStates();
                 
                 _servicesRegistered = true; // Mark that services are registered
-                Debug.Log("[GameManager] Services registered, container ready");
                 
                 // Initialize all services after registration
                 await InitializeServicesAsync();
@@ -319,7 +313,6 @@ namespace GameFramework.Core
             // Initialize services in dependency order
             var eventSystem = _container.Resolve<IEventSystem>();
             await eventSystem.InitializeAsync();
-            Debug.Log("[GameManager] EventSystem initialized");
             
             var audioService = _container.Resolve<IAudioService>();
             await audioService.InitializeAsync();
@@ -340,7 +333,6 @@ namespace GameFramework.Core
             var configService = _container.Resolve<IConfigService>() as ConfigService;
             await configService.InitializeAsync();
             RegisterConfigCategories(configService);
-            Debug.Log("[GameManager] ConfigService initialized and categories registered");
             
             var loadService = _container.Resolve<ILoadService>();
             await loadService.InitializeAsync();
@@ -367,7 +359,7 @@ namespace GameFramework.Core
         /// are registered first, followed by services that depend on them.
         /// Registration order is critical for proper dependency resolution.
         /// </remarks>
-        private void RegisterCoreServices()
+        private void  RegisterCoreServices()
         {
             Debug.Log("[GameManager] Registering core services...");
     
@@ -375,9 +367,7 @@ namespace GameFramework.Core
             _container.RegisterSingleton(_container);
     
             // Register leaf services first (no dependencies)
-            Debug.Log("[GameManager] Registering EventSystem...");
             _container.RegisterSingleton<IEventSystem, EventSystem.EventSystem>();
-            Debug.Log($"[GameManager] EventSystem registered: {_container.IsRegistered<IEventSystem>()}");
     
             // Register services with minimal dependencies
             _container.RegisterSingleton<ITimeService, TimeService>();
@@ -401,7 +391,6 @@ namespace GameFramework.Core
             {
                 RegisterConsoleGUI();
                 _container.RegisterSingleton<IConsoleService, ConsoleService>();
-                Debug.Log("[GameManager] ConsoleGUI and ConsoleService registered");
             }
             
             // Register services that might depend on the above
@@ -429,8 +418,6 @@ namespace GameFramework.Core
         /// </remarks>
         private void RegisterConsoleGUI()
         {
-            Debug.Log("[GameManager] Setting up ConsoleGUI from prefab...");
-
             if (_consoleGUIPrefab == null)
             {
                 Debug.LogError("[GameManager] ConsoleGUI Prefab is not assigned! Please assign it in the inspector.");
@@ -448,8 +435,6 @@ namespace GameFramework.Core
 
                 // Register the ConsoleGUI instance directly in the container
                 _container.RegisterSingleton(consoleInstance);
-
-                Debug.Log("[GameManager] ConsoleGUI registered successfully");
             }
             catch (System.Exception e)
             {
@@ -466,8 +451,6 @@ namespace GameFramework.Core
         /// </remarks>
         private void RegisterUIDocument()
         {
-            Debug.Log("[GameManager] Setting up UI Document from prefab...");
-    
             if (_UIPrefab == null)
             {
                 Debug.LogError("[GameManager] UI Prefab is not assigned! Please assign it in the inspector.");
@@ -485,8 +468,6 @@ namespace GameFramework.Core
         
                 // Register the UIDocument instance directly in the container
                 _container.RegisterSingleton(uiInstance);
-        
-                Debug.Log("[GameManager] UIDocument registered successfully");
             }
             catch (System.Exception e)
             {
@@ -531,8 +512,6 @@ namespace GameFramework.Core
             _container.RegisterTransient<LoadingState, LoadingState>();
             _container.RegisterTransient<NewGameState, NewGameState>();
             _container.RegisterTransient<PlayingState, PlayingState>();
-            //_container.RegisterTransient<PausedState, PausedState>();
-            //_container.RegisterTransient<OptionsState, OptionsState>();
             _container.RegisterTransient<CreditsState, CreditsState>();
             _container.RegisterTransient<GameOverState, GameOverState>();
             _container.RegisterTransient<VictoryState, VictoryState>();

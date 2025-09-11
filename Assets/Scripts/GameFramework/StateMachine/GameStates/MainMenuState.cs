@@ -87,7 +87,6 @@ namespace GameFramework.StateMachine.GameStates
         /// </summary>
         private async void OnQuitRequested(QuitRequestedEvent evt)
         {
-            await UIService.HideScreenAsync<MainMenuScreen>();
             await TransitionToStateAsync(GameStateType.Quit);
         }
         

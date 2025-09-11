@@ -1,10 +1,264 @@
-﻿using UnityEngine.UIElements;
+﻿using System;
+using GameFramework.Core;
+using UnityEngine;
+using UnityEngine.UIElements;
+using GameFramework.EventSystem.Events;
+using GameFramework.EventSystem.Interfaces;
+using GameFramework.StateMachine.Enum;
+using UCTools_Utilities.UI;
 
 namespace GameFramework.UI.Screens
 {
-    // Placeholder implementations for remaining screens
+    /// <summary>
+    /// Loading screen that displays loading progress and messages
+    /// 
+    /// Intent: Provides visual feedback during loading operations
+    /// 
+    /// Design:
+    /// - Subscribes to loading progress events through EventSystem
+    /// - Updates loading text and progress display in real-time
+    /// - Handles multiple loading event types for comprehensive coverage
+    /// - Manages UI element references and lifecycle properly
+    /// 
+    /// Pros:
+    /// - Real-time loading feedback improves user experience
+    /// - Event-driven updates work with any loading source
+    /// - Clean separation of concerns between loading logic and UI
+    /// - Automatic progress updates without manual coordination
+    /// 
+    /// Cons:
+    /// - Requires EventSystem dependency for updates
+    /// - Multiple event subscriptions need careful lifecycle management
+    /// - UI updates happen on potentially different threads
+    /// </summary>
     public class LoadingScreen : UIScreen
     {
-        public LoadingScreen(VisualElement rootElement) : base(rootElement) { }
+        // UI Element References
+        private Label _loadingTextLabel;
+        private Label _loadingMessageLabel;
+        private VisualElement _progressContainer;
+        private ProgressBar _progressBar;
+        
+        // Dependencies
+        private IEventSystem _eventSystem;
+        
+        public LoadingScreen(VisualElement rootElement) : base(rootElement)
+        {
+            _eventSystem = GameManager.GetService<IEventSystem>();
+
+            InitializeUIElements();
+            UIElementValidator.ValidateElementsWithNames(this, UIElementValidator.ValidationMode.ThrowExceptions);
+        }
+
+        /// <summary>
+        /// Initialize references to UI elements from UXML
+        /// </summary>
+        private void InitializeUIElements()
+        {
+            // Get existing elements from UXML
+            _loadingTextLabel = RootElement?.Q<Label>("lbl_LoadingText");
+            _progressContainer = RootElement?.Q<VisualElement>(className: "progress-container");
+            _progressBar = RootElement?.Q<ProgressBar>(className: "loading-progress");
+                // Find the secondary text label (currently shows "Please wait...")
+            _loadingMessageLabel = RootElement?.Q<Label>(className: "text--secondary");
+            
+            SubscribeToLoadingEvents();
+
+            // Set initial state
+            UpdateLoadingText("Loading...");
+            UpdateLoadingMessage("Initializing...");
+        }
+        
+
+        /// <summary>
+        /// Subscribe to loading progress events
+        /// </summary>
+        private void SubscribeToLoadingEvents()
+        {
+            _eventSystem = GameManager.GetService<IEventSystem>();
+
+            // Subscribe to specific loading service events
+            _eventSystem.Subscribe<LoadingProgressChangedEvent>(OnLoadingProgressChanged);
+            _eventSystem.Subscribe<LoadingMessageChangedEvent>(OnLoadingMessageChanged);
+            _eventSystem.Subscribe<LoadingFailedEvent>(OnLoadingFailed);
+            _eventSystem.Subscribe<LoadingCompletedEvent>(OnLoadingCompleted);
+            _eventSystem.Subscribe<LoadingProgressEvent>(OnLoadingProgress);
+        }
+
+        /// <summary>
+        /// Unsubscribe from loading progress events
+        /// </summary>
+        private void UnsubscribeFromLoadingEvents()
+        {
+            _eventSystem = GameManager.GetService<IEventSystem>();
+
+            _eventSystem.Unsubscribe<LoadingProgressChangedEvent>(OnLoadingProgressChanged);
+            _eventSystem.Unsubscribe<LoadingMessageChangedEvent>(OnLoadingMessageChanged);
+            _eventSystem.Unsubscribe<LoadingFailedEvent>(OnLoadingFailed);
+            _eventSystem.Unsubscribe<LoadingCompletedEvent>(OnLoadingCompleted);
+            _eventSystem.Unsubscribe<LoadingProgressEvent>(OnLoadingProgress);
+        }
+
+        #region Event Handlers
+
+        /// <summary>
+        /// Handles loading progress changed events from LoadService
+        /// </summary>
+        private void OnLoadingProgressChanged(LoadingProgressChangedEvent evt)
+        {
+            UpdateProgress(evt.Progress, evt.Message);
+        }
+
+        /// <summary>
+        /// Handles loading message changed events from LoadService
+        /// </summary>
+        private void OnLoadingMessageChanged(LoadingMessageChangedEvent evt)
+        {
+            UpdateLoadingMessage(evt.Message);
+        }
+
+        /// <summary>
+        /// Handles general loading progress events from LoadingState
+        /// </summary>
+        private void OnLoadingProgress(LoadingProgressEvent evt)
+        {
+            UpdateProgress(evt.Progress, evt.Message);
+        }
+
+        /// <summary>
+        /// Handles loading failed events
+        /// </summary>
+        private void OnLoadingFailed(LoadingFailedEvent evt)
+        {
+            ShowError($"Loading failed: {evt.ErrorMessage}");
+        }
+
+        /// <summary>
+        /// Handles loading completed events
+        /// </summary>
+        private void OnLoadingCompleted(LoadingCompletedEvent evt)
+        {
+            UpdateProgress(1.0f, "Loading complete!");
+        }
+
+        #endregion
+
+        #region Public Interface
+
+        /// <summary>
+        /// Updates both progress and loading message
+        /// </summary>
+        public void UpdateProgress(float progress, string message)
+        {
+            UpdateProgressBar(progress);
+            UpdateLoadingMessage(message);
+        }
+
+        /// <summary>
+        /// Updates just the progress bar value
+        /// </summary>
+        public void UpdateProgressBar(float progress)
+        {
+            if (_progressBar != null)
+            {
+                _progressBar.value = Mathf.Clamp01(progress);
+            }
+        }
+
+        /// <summary>
+        /// Updates the main loading text (the hero text)
+        /// </summary>
+        public void UpdateLoadingText(string text)
+        {
+            if (_loadingTextLabel != null)
+            {
+                _loadingTextLabel.text = text;
+            }
+        }
+
+        /// <summary>
+        /// Updates the loading message (the secondary text)
+        /// </summary>
+        public void UpdateLoadingMessage(string message)
+        {
+            if (_loadingMessageLabel != null)
+            {
+                _loadingMessageLabel.text = message;
+            }
+        }
+
+        /// <summary>
+        /// Shows an error message on the loading screen
+        /// </summary>
+        public void ShowError(string errorMessage)
+        {
+            UpdateLoadingText("Loading Failed");
+            UpdateLoadingMessage(errorMessage);
+            
+            // Hide progress bar and spinner on error
+            if (_progressContainer != null)
+            {
+                _progressContainer.style.display = DisplayStyle.None;
+            }
+
+            // Add error styling
+            _loadingTextLabel?.AddToClassList("text--error");
+            _loadingMessageLabel?.AddToClassList("text--error");
+            
+            Debug.LogError($"[LoadingScreen] Error displayed: {errorMessage}");
+        }
+
+        /// <summary>
+        /// Sets the loading type for context-specific messaging
+        /// </summary>
+        public void SetLoadingType(LoadingType loadingType)
+        {
+            string loadingText = loadingType switch
+            {
+                LoadingType.NewGame => "Starting New Game...",
+                LoadingType.LoadSave => "Loading Game...",
+                LoadingType.SceneTransition => "Loading...",
+                LoadingType.GameRestart => "Restarting Game...",
+                _ => "Loading..."
+            };
+            
+            UpdateLoadingText(loadingText);
+        }
+
+        #endregion
+
+        #region Lifecycle
+
+        public override void Show()
+        {
+            base.Show();
+            
+            SubscribeToLoadingEvents();
+            
+            // Reset to initial state when showing
+            UpdateProgressBar(0f);
+            UpdateLoadingText("Loading...");
+            UpdateLoadingMessage("Initializing...");
+    
+            // Show all elements
+            if (_progressContainer != null)
+            {
+                _progressContainer.style.display = DisplayStyle.Flex;
+            }
+            
+            // Remove any error styling
+            _loadingTextLabel?.RemoveFromClassList("text--error");
+            _loadingMessageLabel?.RemoveFromClassList("text--error");
+        }
+
+        public override void Hide()
+        {
+            UnsubscribeFromLoadingEvents();
+            base.Hide();
+            
+            Debug.Log("[LoadingScreen] Loading screen hidden and events unsubscribed");
+        }
+        
+        #endregion
     }
 }

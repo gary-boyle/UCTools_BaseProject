@@ -247,8 +247,6 @@ namespace GameFramework.Services
             var wasInPlayingState = _isInPlayingState;
             _isInPlayingState = evt.NewState == GameStateType.Playing;
             
-            Debug.Log($"[TimeService] Game state changed: {evt.PreviousState} -> {evt.NewState}. Tracking game time: {IsTrackingGameTime}");
-            Debug.Log("!!!!!!!!!!!!!");
             // If we just entered PlayingState, reset level timer
             if (!wasInPlayingState && _isInPlayingState)
             {

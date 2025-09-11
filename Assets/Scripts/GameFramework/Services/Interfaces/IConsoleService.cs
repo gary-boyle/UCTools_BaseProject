@@ -8,7 +8,5 @@ namespace GameFramework.Services.Interfaces
         void Shutdown();
         bool IsConsoleOpen();
         void SetConsoleOpen(bool open);
-        void ExecuteCommand(string command);
-        void WriteLine(string message);
     }
 }

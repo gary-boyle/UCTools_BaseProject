@@ -51,8 +51,6 @@ namespace GameFramework.Services
             _consoleGUI = consoleGUI ?? throw new System.ArgumentNullException(nameof(consoleGUI));
             _eventSystem = eventSystem ?? throw new System.ArgumentNullException(nameof(eventSystem));
             _configService = configService ?? throw new System.ArgumentNullException(nameof(configService));
-            
-            Debug.Log($"{LOG_PREFIX} Created with injected dependencies");
         }
 
         public bool IsInitialized => _isInitialized;
@@ -67,9 +65,7 @@ namespace GameFramework.Services
                 Debug.LogWarning($"{LOG_PREFIX} Already initialized");
                 return;
             }
-
-            Debug.Log($"{LOG_PREFIX} Initializing console service...");
-
+            
             try
             {
                 // Initialize the console system with our GUI
@@ -85,7 +81,6 @@ namespace GameFramework.Services
                 _eventSystem.Subscribe<OptionsChangedEvent>(OnOptionsChanged);
 
                 _isInitialized = true;
-                Debug.Log($"{LOG_PREFIX} Console service initialized successfully");
 
                 await Task.Yield(); // Ensure initialization completes before next frame
             }
@@ -102,8 +97,6 @@ namespace GameFramework.Services
         public void Shutdown()
         {
             if (!_isInitialized) return;
-
-            Debug.Log($"{LOG_PREFIX} Shutting down console service...");
             
             // Unsubscribe from events
             _eventSystem?.Unsubscribe<ConsoleToggleInputEvent>(OnConsoleToggleEvent);
@@ -174,56 +167,15 @@ namespace GameFramework.Services
             // Check if console is enabled before opening
             if (open && !IsConsoleEnabled())
             {
-                Debug.Log($"{LOG_PREFIX} Console toggle ignored - console disabled in settings");
                 return;
             }
             
             if (_isConsoleOpen == open) return; // No change needed
             
-            Debug.Log($"{LOG_PREFIX} Setting console {(open ? "open" : "closed")}");
-            
             _isConsoleOpen = open;
             
             // Update the console UI
             Console.SetOpen(open);
-            
-            // ✅ NO INPUT MANAGER CALLS NEEDED!
-            // The ConsoleInputHandler automatically detects console state changes
-            // via IsConsoleOpen() and manages input conflicts accordingly
-            
-            Debug.Log($"{LOG_PREFIX} Console state updated. ConsoleInputHandler will handle input conflicts automatically.");
-        }
-
-        /// <summary>
-        /// Execute a command programmatically (bypasses input field)
-        /// </summary>
-        /// <param name="command">Command string to execute</param>
-        public void ExecuteCommand(string command)
-        {
-            if (!_isInitialized) 
-            {
-                Debug.LogWarning($"{LOG_PREFIX} Cannot execute command - not initialized");
-                return;
-            }
-            
-            if (string.IsNullOrEmpty(command)) return;
-            
-            Console.EnqueueCommand(command);
-        }
-
-        /// <summary>
-        /// Write a message to the console output
-        /// </summary>
-        /// <param name="message">Message to write</param>
-        public void WriteLine(string message)
-        {
-            if (!_isInitialized) 
-            {
-                Debug.LogWarning($"{LOG_PREFIX} Cannot write to console - not initialized");
-                return;
-            }
-            
-            Console.Write(message ?? string.Empty);
         }
 
         #endregion
@@ -238,11 +190,9 @@ namespace GameFramework.Services
         {
             if (evt.Phase == UnityEngine.InputSystem.InputActionPhase.Performed)
             {
-                Debug.Log($"{LOG_PREFIX} Console toggle event received - checking if console is enabled...");
-                
                 if (!IsConsoleEnabled())
                 {
-                    Debug.Log($"{LOG_PREFIX} Console toggle ignored - console disabled in debug settings");
+                    Debug.LogWarning($"{LOG_PREFIX} Console toggle ignored - console disabled in debug settings");
                     return;
                 }
                 
@@ -258,7 +208,7 @@ namespace GameFramework.Services
             // If console is currently open but gets disabled, close it
             if (_isConsoleOpen && !IsConsoleEnabled())
             {
-                Debug.Log($"{LOG_PREFIX} Console disabled in settings - closing console");
+                Debug.LogWarning($"{LOG_PREFIX} Console disabled in settings - closing console");
                 SetConsoleOpen(false);
             }
         }
@@ -280,8 +230,6 @@ namespace GameFramework.Services
             // - version: Show application version
             // var debugCommand = new DebugCommand();
             // Console.RegisterCommand(debugCommand);
-
-            Debug.Log($"{LOG_PREFIX} Built-in commands registered");
         }
 
         #endregion

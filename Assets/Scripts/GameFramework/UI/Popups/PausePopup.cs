@@ -3,9 +3,7 @@ using System.Threading.Tasks;
 using GameFramework.Core;
 using GameFramework.EventSystem.Events;
 using GameFramework.EventSystem.Interfaces;
-using GameFramework.Services;
 using GameFramework.Services.Interfaces;
-using GameFramework.UI.Popups;
 using GameFramework.UI.Screens;
 using UCTools_Utilities.UI;
 using UnityEngine;
@@ -88,14 +86,11 @@ namespace GameFramework.UI.Popups
         {
             RegisterEventHandlers();
             UpdateButtonStates();
-            
-            Debug.Log("[PausePopup] Pause popup shown - game should already be paused by PlayingState");
         }
 
         protected override void OnHide()
         {
             UnregisterEventHandlers();
-            Debug.Log("[PausePopup] Pause popup hidden");
         }
 
         private void RegisterEventHandlers()
@@ -142,38 +137,32 @@ namespace GameFramework.UI.Popups
                 return;
             }
     
-            Debug.Log("[PausePopup] Resume button clicked");
             RequestResume();
         }
         
         private async void OnLoadButtonClicked(ClickEvent evt)
         {
-            Debug.Log("[PausePopup] Load button clicked");
             await ShowLoadGamePopup();
         }
 
         private async void OnSaveButtonClicked(ClickEvent evt)
         {
-            Debug.Log("[PausePopup] Load button clicked");
             await ShowSaveGamePopup();
         }
         
         private void OnOptionsButtonClicked(ClickEvent evt)
         {
-            Debug.Log("[PausePopup] Options button clicked");
             RequestShowOptions();
         }
 
         private void OnMainMenuButtonClicked(ClickEvent evt)
         {
-            Debug.Log("[PausePopup] Main Menu button clicked");
             RequestReturnToMainMenu();
         }
 
         private void OnQuitButtonClicked(ClickEvent evt)
         {
-            Debug.Log("[PausePopup] Quit button clicked");
-            RequestQuitGame();
+            _eventSystem.Publish(new QuitRequestedEvent());
         }
         #endregion
 
@@ -243,15 +232,6 @@ namespace GameFramework.UI.Popups
         {
             Debug.Log("[PausePopup] Requesting return to main menu");
             _eventSystem.Publish(new MainMenuRequestedEvent());
-        }
-
-        /// <summary>
-        /// Requests to quit the game
-        /// </summary>
-        private void RequestQuitGame()
-        {
-            Debug.Log("[PausePopup] Requesting quit game");
-            _eventSystem.Publish(new QuitRequestedEvent());
         }
         
         #endregion

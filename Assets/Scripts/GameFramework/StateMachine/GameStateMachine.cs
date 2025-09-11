@@ -256,6 +256,7 @@ namespace GameFramework.StateMachine
             _validTransitions.Add((GameStateType.Playing, GameStateType.Victory));
             _validTransitions.Add((GameStateType.Playing, GameStateType.MainMenu));
             _validTransitions.Add((GameStateType.Playing, GameStateType.Loading));
+            _validTransitions.Add((GameStateType.Playing, GameStateType.Quit));
 
             // Credits transitions
             _validTransitions.Add((GameStateType.Credits, GameStateType.MainMenu));

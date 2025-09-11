@@ -1,0 +1,26 @@
+﻿<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/USS/default.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3#default" />
+    <engine:VisualElement name="UI_QuitWindow" class="ui-screen layout-center" style="display: flex; background-color: rgba(0, 0, 0, 0.8);">
+        <engine:VisualElement class="layout-column layout-center">
+            <engine:Label text="Shutting Down..." class="text--hero text--secondary mb-xl" />
+            <engine:VisualElement class="ui-container layout-column layout-center p-xl" style="min-width: 400px;">
+                <engine:Label text="Please wait while the game saves your progress and shuts down safely." name="lbl_ShutdownMessage" class="text--lg text--center text--secondary mb-xl" />
+
+                <!-- Progress Bar Container -->
+                <engine:VisualElement class="layout-column mb-lg" style="width: 100%;">
+                    <engine:Label text="Progress" name="lbl_ProgressLabel" class="text--sm text--secondary mb-sm" />
+                    <engine:VisualElement name="progress_Container" class="progress-bar-container" style="width: 100%; height: 20px; background-color: rgba(128, 128, 128, 0.3); border-radius: 10px;">
+                        <engine:VisualElement name="progress_Bar" class="progress-bar-fill" style="width: 0%; height: 100%; background-color: rgb(76, 175, 80); border-radius: 10px; transition-duration: 0.3s;" />
+                    </engine:VisualElement>
+                    <engine:Label text="0%" name="lbl_ProgressPercent" class="text--xs text--tertiary mt-sm" />
+                </engine:VisualElement>
+
+                <!-- Current Action Label -->
+                <engine:Label text="Initializing shutdown..." name="lbl_CurrentAction" class="text--md text--center text--accent mb-lg" />
+
+                <!-- Cancel Button (optional - can be disabled during critical operations) -->
+                <engine:Button text="Cancel" name="btn_Cancel" class="btn btn--secondary btn--small" />
+            </engine:VisualElement>
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>
