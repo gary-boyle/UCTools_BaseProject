@@ -15,18 +15,10 @@ namespace GameFramework.StateMachine.GameStates
 {
     /// <summary>
     /// Quit state - handles graceful application shutdown with progress feedback
-    /// Responsible for saving data, cleaning up resources, and exiting the application
-    /// 
-    /// Intent: Provide graceful shutdown with user feedback and cancellation support
-    /// Design: Progressive shutdown with clear stages and user communication
-    /// Pros: Safe data preservation, clear user feedback, cancellation support
-    /// Cons: More complex than immediate quit, requires careful resource management
+    /// Responsible for cleaning up resources, and exiting the application
     /// </summary>
     public class QuitState : BaseGameState
     {
-        private readonly ISaveService _saveService;
-        private readonly IEventSystem _eventSystem;
-        
         private QuitScreen _quitScreen;
         private bool _shutdownCancelled = false;
         private bool _criticalShutdownPhase = false;
@@ -35,18 +27,10 @@ namespace GameFramework.StateMachine.GameStates
         /// Constructor injection - all dependencies provided by DI container
         /// </summary>
         public QuitState(
-            IGameStateMachine stateMachine,
-            IEventSystem eventSystem,
-            IAudioService audioService,
-            IUIService uiService,
-            IInputManager inputManager,
-            ISaveService saveService,
-            IConsoleService consoleService,
-            IGameDataService gameDataService)  
-            : base(GameStateType.Quit, stateMachine, eventSystem, audioService, uiService, inputManager, consoleService, gameDataService)
+            GameContext context,
+            IGameStateMachine stateMachine)
+            : base(GameStateType.Quit, context, stateMachine)
         {
-            _saveService = saveService ?? throw new ArgumentNullException(nameof(saveService));
-            _eventSystem = eventSystem;
         }
         
         /// <summary>
@@ -62,7 +46,7 @@ namespace GameFramework.StateMachine.GameStates
             InputManager.SetInputContext(InputContext.UI);
             
             // Subscribe to cancellation events
-            _eventSystem.Subscribe<MainMenuRequestedEvent>(OnShutdownCancelled);
+            EventSystem.Subscribe<MainMenuRequestedEvent>(OnShutdownCancelled);
             
             // Show quit screen with progress
             await UIService.ShowScreenAsync<QuitScreen>();
@@ -79,7 +63,7 @@ namespace GameFramework.StateMachine.GameStates
             Debug.Log("[QuitState] Exiting Quit state");
             
             // Unsubscribe from events
-            _eventSystem.Unsubscribe<MainMenuRequestedEvent>(OnShutdownCancelled);
+            EventSystem.Unsubscribe<MainMenuRequestedEvent>(OnShutdownCancelled);
             
             // Hide quit screen if still visible
             await UIService.HideScreenAsync<QuitScreen>();
@@ -200,9 +184,9 @@ namespace GameFramework.StateMachine.GameStates
         {
             try
             {
-                if (GameDataService.HasActiveSession() && _saveService != null)
+                if (GameDataService.HasActiveSession() && SaveService != null)
                 {
-                    _eventSystem.Publish(new AutoSaveRequestedEvent());
+                    EventSystem.Publish(new AutoSaveRequestedEvent());
                 }
                 
                 // Save any other important data (settings, preferences, etc.)

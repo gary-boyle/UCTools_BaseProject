@@ -13,7 +13,7 @@ namespace GameFramework.Config.ScriptableObjects
     /// Simplified gameplay settings that just manages data and publishes change events
     /// All gameplay application logic moved to relevant services (SaveService, GameplayService, etc.)
     /// </summary>
-    [CreateAssetMenu(fileName = "GameplaySettings", menuName = "Config Variables/Gameplay Settings")]
+    [CreateAssetMenu(fileName = "GameplaySettings", menuName = "Game Framework/Config Variables/Gameplay Settings")]
     public class GameplaySettings_SO : ConfigCategoryBase
     {
         [Header("Difficulty")]

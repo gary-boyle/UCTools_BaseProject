@@ -13,7 +13,7 @@ namespace GameFramework.Config.ScriptableObjects
     /// Simplified input settings that just manages data and publishes change events
     /// All input application logic moved to InputManager or relevant services
     /// </summary>
-    [CreateAssetMenu(fileName = "InputSettings", menuName = "Config Variables/Input Settings")]
+    [CreateAssetMenu(fileName = "InputSettings", menuName = "Game Framework/Config Variables/Input Settings")]
     public class InputSettings_SO : ConfigCategoryBase
     {
         [Header("Mouse Settings")]

@@ -18,7 +18,7 @@ namespace GameFramework.Editor
         /// </summary>
         private static string ConfigFilePath => Path.Combine(Application.persistentDataPath, CONFIG_FILE_NAME);
 
-        [MenuItem("Tools/Config File/Open Config File", priority = 100)]
+        [MenuItem("UCTools/Game Framework/Config File/Open Config File", priority = 100)]
         public static void OpenConfigFile()
         {
             string filePath = ConfigFilePath;
@@ -59,7 +59,7 @@ namespace GameFramework.Editor
             }
         }
 
-        [MenuItem("Tools/Config File/Reveal Config File in Explorer", priority = 101)]
+        [MenuItem("UCTools/Game Framework/Config File/Reveal Config File in Explorer", priority = 101)]
         public static void RevealConfigFileInExplorer()
         {
             string filePath = ConfigFilePath;
@@ -80,7 +80,7 @@ namespace GameFramework.Editor
             UnityEngine.Debug.Log($"[ConfigFileEditorTool] Revealed config location: {folderPath}");
         }
 
-        [MenuItem("Tools/Config File/Copy Config File Path", priority = 102)]
+        [MenuItem("UCTools/Game Framework/Config File/Copy Config File Path", priority = 102)]
         public static void CopyConfigFilePath()
         {
             string filePath = ConfigFilePath;
@@ -91,7 +91,7 @@ namespace GameFramework.Editor
             ShowNotification($"Config path copied to clipboard:\n{Path.GetFileName(filePath)}");
         }
 
-        [MenuItem("Tools/Config File/Delete Config File", priority = 120)]
+        [MenuItem("UCTools/Game Framework/Config File/Delete Config File", priority = 120)]
         public static void DeleteConfigFile()
         {
             string filePath = ConfigFilePath;
@@ -132,7 +132,7 @@ namespace GameFramework.Editor
             }
         }
 
-        [MenuItem("Tools/Config File/Show Config Info", priority = 140)]
+        [MenuItem("UCTools/Game Framework/Config File/Show Config Info", priority = 140)]
         public static void ShowConfigInfo()
         {
             string filePath = ConfigFilePath;
@@ -170,7 +170,7 @@ namespace GameFramework.Editor
         /// <summary>
         /// Validate menu items - disable if not in play mode for some operations
         /// </summary>
-        [MenuItem("Tools/Config File/Open Config File", true)]
+        [MenuItem("UCTools/Game Framework/Config File/Open Config File", true)]
         public static bool ValidateOpenConfigFile()
         {
             return true; // Always available

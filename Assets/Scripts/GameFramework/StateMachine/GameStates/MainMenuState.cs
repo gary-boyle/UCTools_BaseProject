@@ -1,10 +1,7 @@
 ﻿using System.Threading.Tasks;
 using GameFramework.Core;
 using GameFramework.EventSystem.Events;
-using GameFramework.EventSystem.Interfaces;
 using GameFramework.Input;
-using GameFramework.Input.Interfaces;
-using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine.Enum;
 using GameFramework.StateMachine.Interfaces;
 using GameFramework.UI.Screens;
@@ -19,14 +16,9 @@ namespace GameFramework.StateMachine.GameStates
     public class MainMenuState : BaseGameState
     {
         public MainMenuState(
-            IGameStateMachine stateMachine,
-            IEventSystem eventSystem,
-            IAudioService audioService,
-            IUIService uiService,
-            IInputManager inputManager,
-            IConsoleService consoleService,
-            IGameDataService gameDataService)
-            : base(GameStateType.MainMenu, stateMachine, eventSystem, audioService, uiService, inputManager, consoleService, gameDataService)
+            GameContext context,
+            IGameStateMachine stateMachine)
+            : base(GameStateType.MainMenu, context, stateMachine)
         {
         }
         

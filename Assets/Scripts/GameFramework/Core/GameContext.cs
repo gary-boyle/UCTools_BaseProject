@@ -53,6 +53,7 @@ namespace GameFramework.Core
     /// </example>
     public class GameContext
     {
+
         #region Service Properties
 
         /// <summary>
@@ -125,6 +126,19 @@ namespace GameFramework.Core
         /// </remarks>
         public IGameDataService GameDataService { get; }
 
+        public IConsoleService ConsoleService { get; }
+
+        public IGraphicsService GraphicsService { get; }
+        
+        public ILoadService LoadService { get; }
+        
+        public IPauseService PauseService { get; }
+        
+        public ITimeService TimeService { get; }
+        
+        // ILoadService is not listed as it made a circular dependency with GameStateMachine and it doesn't currently seem needed
+        // public ILoadService LoadService { get; }
+        
         #endregion
 
         #region Constructor
@@ -171,7 +185,12 @@ namespace GameFramework.Core
             IInputManager inputManager,
             IUIService uiService,
             ISaveService saveService,
-            IGameDataService gameDataService)
+            IGameDataService gameDataService,
+            IConsoleService consoleService,
+            IGraphicsService graphicsService,
+            IPauseService pauseService,
+            ITimeService timeService
+        )
         {
             EventSystem = eventSystem ?? throw new ArgumentNullException(nameof(eventSystem));
             SceneService = sceneService ?? throw new ArgumentNullException(nameof(sceneService));
@@ -180,6 +199,10 @@ namespace GameFramework.Core
             UIService = uiService ?? throw new ArgumentNullException(nameof(uiService));
             SaveService = saveService ?? throw new ArgumentNullException(nameof(saveService));
             GameDataService = gameDataService ?? throw new ArgumentNullException(nameof(gameDataService));
+            ConsoleService = consoleService ?? throw new ArgumentNullException(nameof(consoleService));
+            GraphicsService = graphicsService ?? throw new ArgumentNullException(nameof(graphicsService));
+            PauseService = pauseService ?? throw new ArgumentNullException(nameof(pauseService));
+            TimeService = timeService ?? throw new ArgumentNullException(nameof(timeService));
         }
 
         #endregion

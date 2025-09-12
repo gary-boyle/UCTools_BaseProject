@@ -1,9 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using GameFramework.Core;
-using GameFramework.EventSystem.Interfaces;
 using GameFramework.Input;
-using GameFramework.Input.Interfaces;
 using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine.Enum;
 using GameFramework.StateMachine.Interfaces;
@@ -20,14 +17,9 @@ namespace GameFramework.StateMachine.GameStates
         /// Constructor injection - all dependencies provided by DI container
         /// </summary>
         public BootstrapState(
-            IGameStateMachine stateMachine,
-            IEventSystem eventSystem,
-            IAudioService audioService,
-            IUIService uiService,
-            IInputManager inputManager,
-            IConsoleService consoleService,
-            IGameDataService gameDataService) 
-            : base(GameStateType.Bootstrap, stateMachine, eventSystem, audioService, uiService, inputManager, consoleService, gameDataService)
+            GameContext context,
+            IGameStateMachine stateMachine)
+            : base(GameStateType.Bootstrap, context, stateMachine)
         {
         }
         

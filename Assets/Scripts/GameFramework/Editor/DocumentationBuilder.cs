@@ -7,7 +7,7 @@ namespace GameFramework.Editor
 {
     public class DocumentationBuilder : UnityEditor.Editor
     {
-        [MenuItem("Tools/Build Documentation")]
+        [MenuItem("UCTools/Game Framework/Documentation/Build Documentation")]
         public static void BuildDocs()
         {
             string projectPath = System.IO.Path.GetDirectoryName(Application.dataPath);
@@ -30,7 +30,7 @@ namespace GameFramework.Editor
             UnityEngine.Debug.Log("Documentation build started!");
         }
     
-        [MenuItem("Tools/Serve Documentation")]
+        [MenuItem("UCTools/Game Framework/Documentation/Serve Documentation")]
         public static void ServeDocs()
         {
             string projectPath = System.IO.Path.GetDirectoryName(Application.dataPath);

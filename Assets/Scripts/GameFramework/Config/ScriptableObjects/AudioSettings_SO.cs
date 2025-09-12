@@ -13,7 +13,7 @@ namespace GameFramework.Config.ScriptableObjects
     /// Simplified audio settings that just manages data and publishes change events
     /// All audio application logic moved to AudioService
     /// </summary>
-    [CreateAssetMenu(fileName = "AudioSettings", menuName = "Config Variables/Audio Settings")]
+    [CreateAssetMenu(fileName = "AudioSettings", menuName = "Game Framework/Config Variables/Audio Settings")]
     public class AudioSettings_SO : ConfigCategoryBase
     {
         [Header("Master Controls")]

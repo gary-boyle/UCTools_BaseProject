@@ -1,11 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using GameFramework.Core;
 using GameFramework.EventSystem.Events;
-using GameFramework.EventSystem.Interfaces;
 using GameFramework.Input;
-using GameFramework.Input.Interfaces;
-using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine.Data;
 using GameFramework.StateMachine.Enum;
 using GameFramework.StateMachine.Interfaces;
@@ -19,19 +15,11 @@ namespace GameFramework.StateMachine.GameStates
     /// </summary>
     public class NewGameState : BaseGameState
     {
-        private readonly IGameDataService GameDataService;
-
         public NewGameState(
-            IGameStateMachine stateMachine,
-            IEventSystem eventSystem,
-            IAudioService audioService,
-            IUIService uiService,
-            IInputManager inputManager,
-            IConsoleService consoleService,
-            IGameDataService gameDataService)  
-            : base(GameStateType.NewGame, stateMachine, eventSystem, audioService, uiService, inputManager, consoleService, gameDataService)
+            GameContext context,
+            IGameStateMachine stateMachine)
+            : base(GameStateType.NewGame, context, stateMachine)
         {
-            GameDataService = gameDataService ?? throw new ArgumentNullException(nameof(gameDataService));
         }
     
         public override async Task EnterAsync(GameContext context)

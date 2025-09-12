@@ -13,7 +13,7 @@ namespace GameFramework.Config.ScriptableObjects
     /// Simplified graphics settings that just manages data and publishes change events
     /// All graphics application logic moved to GraphicsService
     /// </summary>
-    [CreateAssetMenu(fileName = "GraphicsSettings", menuName = "Config Variables/Graphics Settings")]
+    [CreateAssetMenu(fileName = "GraphicsSettings", menuName = "Game Framework/Config Variables/Graphics Settings")]
     public class GraphicsSettings_SO : ConfigCategoryBase
     {
         [Header("Display Settings")]

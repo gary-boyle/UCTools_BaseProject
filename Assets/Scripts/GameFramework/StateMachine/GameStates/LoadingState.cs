@@ -3,10 +3,7 @@ using System.Threading.Tasks;
 using GameFramework.Core;
 using GameFramework.DataStructures;
 using GameFramework.EventSystem.Events;
-using GameFramework.EventSystem.Interfaces;
 using GameFramework.Input;
-using GameFramework.Input.Interfaces;
-using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine.Data;
 using GameFramework.StateMachine.Enum;
 using GameFramework.StateMachine.Interfaces;
@@ -22,23 +19,14 @@ namespace GameFramework.StateMachine.GameStates
     /// </summary>
     public class LoadingState : BaseGameState
     {
-        private readonly IGameDataService GameDataService;
-
         private LoadingConfiguration _currentConfig;
         private float _loadingStartTime;
         
         public LoadingState(
-            IGameStateMachine stateMachine,
-            IEventSystem eventSystem,
-            IAudioService audioService,
-            IUIService uiService,
-            IInputManager inputManager,
-            IConsoleService consoleService,
-            IGameDataService gameDataService,
-            ITimeService timeService)  
-            : base(GameStateType.Loading, stateMachine, eventSystem, audioService, uiService, inputManager, consoleService, gameDataService)
+            GameContext context,
+            IGameStateMachine stateMachine)
+            : base(GameStateType.Loading, context, stateMachine)
         {
-            GameDataService = gameDataService ?? throw new ArgumentNullException(nameof(gameDataService));
         }
     
         public override async Task EnterAsync(GameContext context)

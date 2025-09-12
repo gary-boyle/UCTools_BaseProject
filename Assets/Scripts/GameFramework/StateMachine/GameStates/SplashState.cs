@@ -25,14 +25,9 @@ namespace GameFramework.StateMachine.GameStates
         /// Constructor injection - all dependencies provided by DI container
         /// </summary>
         public SplashState(
-            IGameStateMachine stateMachine,
-            IEventSystem eventSystem,
-            IAudioService audioService,
-            IUIService uiService,
-            IInputManager inputManager,
-            IConsoleService consoleService,
-            IGameDataService gameDataService)  
-            : base(GameStateType.Splash, stateMachine, eventSystem, audioService, uiService, inputManager, consoleService, gameDataService)
+            GameContext context,
+            IGameStateMachine stateMachine)
+            : base(GameStateType.Splash, context, stateMachine)
         {
         }
     

@@ -19,38 +19,37 @@ namespace GameFramework.StateMachine
         public GameStateType StateType { get; }
         public GameContext Context { get; protected set; }
         public bool IsActive { get; private set; }
-    
-        // Injected dependencies
-        protected readonly IGameStateMachine StateMachine;
-        protected readonly IEventSystem EventSystem;
-        protected readonly IAudioService AudioService;
-        protected readonly IUIService UIService;
-        protected readonly IInputManager InputManager;
-        protected readonly IConsoleService ConsoleService;
-        protected readonly IGameDataService GameDataService;
 
-        /// <summary>
-        /// Constructor injection - all dependencies provided by DI container
-        /// </summary>
+        // Keep StateMachine separate since it's not in GameContext
+        protected readonly IGameStateMachine StateMachine;
+    
+        // Optional: Keep ConsoleService separate if not in GameContext
+        //protected readonly IConsoleService ConsoleService;
+
+        protected IAudioService AudioService => Context.AudioService;
+        protected IConsoleService ConsoleService => Context.ConsoleService;
+        protected IEventSystem EventSystem => Context.EventSystem;
+        protected IGameDataService GameDataService => Context.GameDataService;
+        protected IGraphicsService GraphicsService => Context.GraphicsService;
+        protected IInputManager InputManager => Context.InputManager;
+        protected ILoadService LoadService => Context.LoadService;
+        protected IPauseService PauseService => Context.PauseService;
+        protected ISaveService SaveService => Context.SaveService;
+        protected ISceneService SceneService => Context.SceneService;
+        protected ITimeService TimeService => Context.TimeService;
+        protected IUIService UIService => Context.UIService;
+
+        
         protected BaseGameState(
             GameStateType stateType,
-            IGameStateMachine stateMachine,
-            IEventSystem eventSystem,
-            IAudioService audioService,
-            IUIService uiService,
-            IInputManager inputService,
-            IConsoleService consoleService,
-            IGameDataService gameDataService)
+            GameContext context,
+            IGameStateMachine stateMachine) // Optional for when console is disabled
         {
             StateType = stateType;
+            Context = context ?? throw new ArgumentNullException(nameof(context));
             StateMachine = stateMachine ?? throw new ArgumentNullException(nameof(stateMachine));
-            EventSystem = eventSystem ?? throw new ArgumentNullException(nameof(eventSystem));
-            AudioService = audioService ?? throw new ArgumentNullException(nameof(audioService));
-            UIService = uiService ?? throw new ArgumentNullException(nameof(uiService));
-            InputManager = inputService ?? throw new ArgumentNullException(nameof(inputService));
-            ConsoleService = consoleService ?? throw new ArgumentNullException(nameof(consoleService));
-            GameDataService = gameDataService ?? throw new ArgumentNullException(nameof(gameDataService));
         }
+
     
         /// <summary>
         /// Called when entering this state. Setup UI, subscribe to events, initialize state-specific systems.

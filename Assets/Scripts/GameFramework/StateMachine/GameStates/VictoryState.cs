@@ -14,30 +14,17 @@ namespace GameFramework.StateMachine.GameStates
     /// <summary>
     /// Victory state - manages the victory screen and celebrates player success
     /// Responsible for its UI lifecycle and event handling
-    /// 
-    /// Intent: Celebrate player victory, show achievements, and provide options for continued play
-    /// Design: Event-driven state management with clear separation of concerns
-    /// Pros: Celebratory UX, clear progression options, maintainable, analytics integration
-    /// Cons: Requires careful event subscription management
     /// </summary>
     public class VictoryState : BaseGameState
     {
-        private readonly IEventSystem _eventSystem;
-        
         /// <summary>
         /// Constructor injection - all dependencies provided by DI container
         /// </summary>
         public VictoryState(
-            IGameStateMachine stateMachine,
-            IEventSystem eventSystem,
-            IAudioService audioService,
-            IUIService uiService,
-            IInputManager inputManager,
-            IConsoleService consoleService,
-            IGameDataService gameDataService)  
-            : base(GameStateType.Victory, stateMachine, eventSystem, audioService, uiService, inputManager, consoleService, gameDataService)
+            GameContext context,
+            IGameStateMachine stateMachine)
+            : base(GameStateType.Victory, context, stateMachine)
         {
-            _eventSystem = eventSystem;
         }
         
         /// <summary>
@@ -51,8 +38,8 @@ namespace GameFramework.StateMachine.GameStates
             InputManager.SetInputContext(InputContext.UI);
             
             // Subscribe to user interaction events from UI
-            _eventSystem.Subscribe<NewGameRequestedEvent>(OnNewGameRequested);
-            _eventSystem.Subscribe<MainMenuRequestedEvent>(OnMainMenuRequested);
+            EventSystem.Subscribe<NewGameRequestedEvent>(OnNewGameRequested);
+            EventSystem.Subscribe<MainMenuRequestedEvent>(OnMainMenuRequested);
             
             // Show the victory screen
             await UIService.ShowScreenAsync<VictoryScreen>();
@@ -67,8 +54,8 @@ namespace GameFramework.StateMachine.GameStates
         public override async Task ExitAsync()
         {
             // Unsubscribe from events to prevent memory leaks
-            _eventSystem.Unsubscribe<NewGameRequestedEvent>(OnNewGameRequested);
-            _eventSystem.Unsubscribe<MainMenuRequestedEvent>(OnMainMenuRequested);
+            EventSystem.Unsubscribe<NewGameRequestedEvent>(OnNewGameRequested);
+            EventSystem.Unsubscribe<MainMenuRequestedEvent>(OnMainMenuRequested);
             
             // Hide the victory screen
             await UIService.HideScreenAsync<VictoryScreen>();

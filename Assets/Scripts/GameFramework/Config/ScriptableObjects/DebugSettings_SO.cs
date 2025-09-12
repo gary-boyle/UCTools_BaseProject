@@ -13,7 +13,7 @@ namespace GameFramework.Config.ScriptableObjects
     /// Simplified debug settings that just manages data and publishes change events
     /// Debug application logic handled by individual services (ConsoleService, etc.)
     /// </summary>
-    [CreateAssetMenu(fileName = "DebugSettings", menuName = "Config Variables/Debug Settings")]
+    [CreateAssetMenu(fileName = "DebugSettings", menuName = "Game Framework/Config Variables/Debug Settings")]
     public class DebugSettings_SO : ConfigCategoryBase
     {
         [Header("Debug Display")]

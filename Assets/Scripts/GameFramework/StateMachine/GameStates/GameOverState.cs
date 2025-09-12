@@ -1,10 +1,7 @@
 ﻿using System.Threading.Tasks;
 using GameFramework.Core;
 using GameFramework.EventSystem.Events;
-using GameFramework.EventSystem.Interfaces;
 using GameFramework.Input;
-using GameFramework.Input.Interfaces;
-using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine.Enum;
 using GameFramework.StateMachine.Interfaces;
 using GameFramework.UI.Screens;
@@ -14,30 +11,17 @@ namespace GameFramework.StateMachine.GameStates
     /// <summary>
     /// Game Over state - manages the game over screen and handles player choices
     /// Responsible for its UI lifecycle and event handling
-    /// 
-    /// Intent: Present game over state with options to restart, load game, or return to menu
-    /// Design: Event-driven state management with clear separation of concerns
-    /// Pros: Clear responsibility separation, multiple player options, maintainable
-    /// Cons: Requires careful event subscription management
     /// </summary>
     public class GameOverState : BaseGameState
     {
-        private readonly IEventSystem _eventSystem;
-        
         /// <summary>
         /// Constructor injection - all dependencies provided by DI container
         /// </summary>
         public GameOverState(
-            IGameStateMachine stateMachine,
-            IEventSystem eventSystem,
-            IAudioService audioService,
-            IUIService uiService,
-            IInputManager inputManager,
-            IConsoleService consoleService,
-            IGameDataService gameDataService)  
-            : base(GameStateType.GameOver, stateMachine, eventSystem, audioService, uiService, inputManager, consoleService, gameDataService)
+            GameContext context,
+            IGameStateMachine stateMachine)
+            : base(GameStateType.GameOver, context, stateMachine)
         {
-            _eventSystem = eventSystem;
         }
         
         /// <summary>
@@ -51,9 +35,9 @@ namespace GameFramework.StateMachine.GameStates
             InputManager.SetInputContext(InputContext.UI);
             
             // Subscribe to user interaction events from UI
-            _eventSystem.Subscribe<NewGameRequestedEvent>(OnNewGameRequested);
-            _eventSystem.Subscribe<LoadWindowRequestedEvent>(OnLoadWindowRequested);
-            _eventSystem.Subscribe<MainMenuRequestedEvent>(OnMainMenuRequested);
+            EventSystem.Subscribe<NewGameRequestedEvent>(OnNewGameRequested);
+            EventSystem.Subscribe<LoadWindowRequestedEvent>(OnLoadWindowRequested);
+            EventSystem.Subscribe<MainMenuRequestedEvent>(OnMainMenuRequested);
             
             // Show the game over screen
             await UIService.ShowScreenAsync<GameOverScreen>();
@@ -68,9 +52,9 @@ namespace GameFramework.StateMachine.GameStates
         public override async Task ExitAsync()
         {
             // Unsubscribe from events to prevent memory leaks
-            _eventSystem.Unsubscribe<NewGameRequestedEvent>(OnNewGameRequested);
-            _eventSystem.Unsubscribe<LoadWindowRequestedEvent>(OnLoadWindowRequested);
-            _eventSystem.Unsubscribe<MainMenuRequestedEvent>(OnMainMenuRequested);
+            EventSystem.Unsubscribe<NewGameRequestedEvent>(OnNewGameRequested);
+            EventSystem.Unsubscribe<LoadWindowRequestedEvent>(OnLoadWindowRequested);
+            EventSystem.Unsubscribe<MainMenuRequestedEvent>(OnMainMenuRequested);
             
             // Hide the game over screen
             await UIService.HideScreenAsync<GameOverScreen>();

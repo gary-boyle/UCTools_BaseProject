@@ -57,7 +57,7 @@ namespace GameFramework.Editor
         
         #region Unity Editor Menu Integration
         
-        [MenuItem("Tools/Game Framework/Save File Manager")]
+        [MenuItem("UCTools/Game Framework/Save File Manager")]
         public static void ShowWindow()
         {
             var window = GetWindow<SaveFileManagerWindow>("Save File Manager");
