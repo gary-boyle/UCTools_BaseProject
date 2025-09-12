@@ -26,13 +26,6 @@ namespace GameFramework.StateMachine.GameStates
         public override async Task EnterAsync(GameContext context)
         {
             await base.EnterAsync(context);
-            
-            // Initialize all core services
-            await InitializeCoreServices();
-            
-            // Load initial configuration using injected service
-            await SettingsRegistry.LoadAllSettingsAsync();
-            
 
             // Automatically transition to splash screen using injected state machine
             //await Task.Delay(1); // Brief pause for initialization

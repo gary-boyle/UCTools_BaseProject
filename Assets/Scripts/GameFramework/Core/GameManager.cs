@@ -319,6 +319,9 @@ namespace GameFramework.Core
                 return;
             }
             
+            await SettingsRegistry.LoadAllSettingsAsync();
+
+            
             var audioService = _container.Resolve<IAudioService>();
             await audioService.InitializeAsync(RegisterAudioManager());
 
