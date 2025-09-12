@@ -114,17 +114,7 @@ namespace GameFramework.Core
         /// multiple save slots, data validation, and cross-platform compatibility.
         /// </remarks>
         public ISaveService SaveService { get; }
-
-        /// <summary>
-        /// Gets the configuration service for managing game settings and preferences.
-        /// </summary>
-        /// <value>The configuration service instance.</value>
-        /// <remarks>
-        /// Manages game settings categories like audio, graphics, gameplay, and input preferences.
-        /// Provides persistent storage and validation of configuration values.
-        /// </remarks>
-        public IConfigService ConfigService { get; }
-
+        
         /// <summary>
         /// Gets the game data service for managing runtime game state and shared data.
         /// </summary>
@@ -181,7 +171,6 @@ namespace GameFramework.Core
             IInputManager inputManager,
             IUIService uiService,
             ISaveService saveService,
-            IConfigService configService,
             IGameDataService gameDataService)
         {
             EventSystem = eventSystem ?? throw new ArgumentNullException(nameof(eventSystem));
@@ -190,7 +179,6 @@ namespace GameFramework.Core
             InputManager = inputManager ?? throw new ArgumentNullException(nameof(inputManager));
             UIService = uiService ?? throw new ArgumentNullException(nameof(uiService));
             SaveService = saveService ?? throw new ArgumentNullException(nameof(saveService));
-            ConfigService = configService ?? throw new ArgumentNullException(nameof(configService));
             GameDataService = gameDataService ?? throw new ArgumentNullException(nameof(gameDataService));
         }
 

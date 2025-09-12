@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
+using GameFramework.Config.Enums;
+using GameFramework.Config.ScriptableObjects;
+using GameFramework.Core;
 using GameFramework.EventSystem.Events;
 using GameFramework.EventSystem.Interfaces;
 using GameFramework.Services.Interfaces;
-using UCTools_ConfigVariables;
 using UnityEngine;
 
 namespace GameFramework.Services
@@ -22,21 +24,22 @@ namespace GameFramework.Services
         public bool IsInitialized { get; private set; }
         
         private readonly IEventSystem _eventSystem;
-        private readonly IConfigService _configService;
-
+        private GraphicsSettings_SO _graphicsSettings;
+        
         /// <summary>
         /// Constructor injection
         /// </summary>
-        public GraphicsService(IEventSystem eventSystem, IConfigService configService)
+        public GraphicsService(IEventSystem eventSystem)
         {
             _eventSystem = eventSystem ?? throw new ArgumentNullException(nameof(eventSystem));
-            _configService = configService ?? throw new ArgumentNullException(nameof(configService));
         }
 
         public async Task InitializeAsync()
         {
             if (IsInitialized) return;
 
+            _graphicsSettings = SettingsRegistry.Get<GraphicsSettings_SO>();
+            
             // Subscribe to config changes
             _eventSystem.Subscribe<OptionsChangedEvent>(OnOptionsChanged);
             
@@ -68,10 +71,10 @@ namespace GameFramework.Services
         {
             try
             {
-                var fullscreen = _configService.GetConfigValue<bool>("graphics.fullscreen");
-                var resolution = _configService.GetConfigValue<ResolutionOption>("graphics.resolution");
-                var quality = _configService.GetConfigValue<QualityOption>("graphics.quality");
-                var vsync = _configService.GetConfigValue<bool>("graphics.vsync");
+                var fullscreen = _graphicsSettings.Fullscreen.Value;
+                var resolution = _graphicsSettings.Resolution.Value;
+                var quality = _graphicsSettings.Quality.Value;
+                var vsync = _graphicsSettings.Vsync.Value;
 
                 ApplyResolution(resolution, fullscreen);
                 ApplyQuality(quality);

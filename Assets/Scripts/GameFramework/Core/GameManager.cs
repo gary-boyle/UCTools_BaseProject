@@ -12,9 +12,11 @@ using GameFramework.ConsoleTool;
 using GameFramework.Input;
 using GameFramework.Input.Handlers;
 using GameFramework.Input.Interfaces;
-using UCTools_ConfigVariables;
 using UnityEngine;
 using UnityEngine.UIElements;
+using System;
+using GameFramework.Config.Enums;
+using GameFramework.Config.ScriptableObjects;
 
 namespace GameFramework.Core
 {
@@ -305,11 +307,18 @@ namespace GameFramework.Core
         private async Task InitializeServicesAsync()
         {
             Debug.Log("[GameManager] Initializing services...");
-            
+ 
             // Initialize services in dependency order
             var eventSystem = _container.Resolve<IEventSystem>();
             await eventSystem.InitializeAsync();
 
+            SettingsRegistry.Initialize();
+            if (!_servicesRegistered)
+            {
+                Debug.LogError("[GameManager] Cannot initialize services before they are registered!");
+                return;
+            }
+            
             var audioService = _container.Resolve<IAudioService>();
             await audioService.InitializeAsync(RegisterAudioManager());
 
@@ -327,11 +336,6 @@ namespace GameFramework.Core
             
             var pauseService = _container.Resolve<IPauseService>();
             await pauseService.InitializeAsync();
-
-            // Initialize ConfigService and register config categories
-            var configService = _container.Resolve<IConfigService>() as ConfigService;
-            await configService.InitializeAsync();
-            RegisterConfigCategories(configService);
             
             var loadService = _container.Resolve<ILoadService>();
             await loadService.InitializeAsync();
@@ -397,7 +401,6 @@ namespace GameFramework.Core
             _container.RegisterSingleton<IUIService, UIService>();
             _container.RegisterSingleton<ILoadService, LoadService>();
             _container.RegisterSingleton<ISaveService, SaveService>();
-            _container.RegisterSingleton<IConfigService, ConfigService>();
             _container.RegisterSingleton<IGameDataService, GameDataService>();
             
             // Register GameContext (depends on all other services)
@@ -548,47 +551,7 @@ namespace GameFramework.Core
         }
 
         #endregion
-
-        #region Configuration Management
-
-        /// <summary>
-        /// Registers configuration categories with the ConfigService.
-        /// </summary>
-        /// <param name="configService">The ConfigService instance to register categories with.</param>
-        /// <remarks>
-        /// Only non-null configuration ScriptableObject assets assigned in the inspector 
-        /// are registered. Logs a warning if no config categories are assigned.
-        /// </remarks>
-        private void RegisterConfigCategories(ConfigService configService)
-        {
-            if (configService == null)
-            {
-                Debug.LogError("[GameManager] ConfigService is null, cannot register config categories");
-                return;
-            }
-            
-            var categories = new List<ConfigCategory>();
-            
-            // Add non-null config categories
-            if (_audioSettingsSo != null) categories.Add(_audioSettingsSo);
-            if (_graphicsSettingsSo != null) categories.Add(_graphicsSettingsSo);
-            if (_gameplaySettingsSo != null) categories.Add(_gameplaySettingsSo);
-            if (_inputSettingsSo != null) categories.Add(_inputSettingsSo);
-            if (_debugSettingsSo != null) categories.Add(_debugSettingsSo);
-            
-            if (categories.Count > 0)
-            {
-                configService.RegisterConfigCategories(categories.ToArray());
-                Debug.Log($"[GameManager] Registered {categories.Count} config categories");
-            }
-            else
-            {
-                Debug.LogWarning("[GameManager] No config categories assigned! Please assign config assets in the inspector.");
-            }
-        }
-
-        #endregion
-
+        
         #region System Collection
 
         /// <summary>
@@ -710,6 +673,18 @@ namespace GameFramework.Core
             await _instance._initializationComplete.Task;
             
             return GetService<T>();
+        }
+        
+        public Dictionary<Type, ConfigCategoryBase>  GetConfigurationSettings()
+        {
+            return new Dictionary<Type, ConfigCategoryBase> 
+            {
+                { typeof(AudioSettings_SO), _audioSettingsSo },
+                { typeof(GraphicsSettings_SO), _graphicsSettingsSo },
+                { typeof(GameplaySettings_SO), _gameplaySettingsSo },
+                { typeof(InputSettings_SO), _inputSettingsSo },
+                { typeof(DebugSettings_SO), _debugSettingsSo }
+            };
         }
         
         #endregion

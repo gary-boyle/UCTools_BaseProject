@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GameFramework.Config.ScriptableObjects;
 using GameFramework.Core;
 using GameFramework.DataStructures;
 using GameFramework.EventSystem.Events;
@@ -22,9 +22,10 @@ namespace GameFramework.Services
     public class SaveService : ISaveService, IUpdatable
     {
         public bool IsInitialized { get; private set; }
+
+        private GameplaySettings_SO _gameplaySettings;
         
         private readonly IEventSystem _eventSystem;
-        private readonly IConfigService _configService;
         private readonly string _saveDirectory;
         private const string SAVE_EXTENSION = ".gamesave";
         private const string AUTOSAVE_IDENTIFIER = "[AUTOSAVE]";
@@ -38,10 +39,9 @@ namespace GameFramework.Services
         private bool _autoSaveEnabled = true;
         private bool _autoSaveSchedulingActive = false;
 
-        public SaveService(IEventSystem eventSystem, IConfigService configService)
+        public SaveService(IEventSystem eventSystem)
         {
             _eventSystem = eventSystem ?? throw new ArgumentNullException(nameof(eventSystem));
-            _configService = configService ?? throw new ArgumentNullException(nameof(configService));
             _saveDirectory = Application.persistentDataPath + "/Saves/";
         }
         
@@ -50,6 +50,8 @@ namespace GameFramework.Services
         public async Task InitializeAsync()
         {
             if (IsInitialized) return;
+            
+            _gameplaySettings = SettingsRegistry.Get<GameplaySettings_SO>();
             
             // Ensure save directory exists
             if (!System.IO.Directory.Exists(_saveDirectory))
@@ -137,8 +139,8 @@ namespace GameFramework.Services
         {
             try
             {
-                var autoSaveEnabled = _configService.GetConfigValue<bool>("game.auto_save");
-                var autoSaveIntervalMinutes = _configService.GetConfigValue<int>("game.auto_save_interval");
+                var autoSaveEnabled = _gameplaySettings.AutoSave.Value;
+                var autoSaveIntervalMinutes = _gameplaySettings.AutoSaveInterval.Value;
                 
                 SetAutoSaveEnabled(autoSaveEnabled);
                 SetAutoSaveInterval(autoSaveIntervalMinutes * 60); // Convert to seconds

@@ -1,8 +1,10 @@
 ﻿using System.Threading.Tasks;
+using GameFramework.Config.ScriptableObjects;
 using GameFramework.EventSystem.Events;
 using GameFramework.EventSystem.Interfaces;
 using GameFramework.Services.Interfaces;
 using GameFramework.ConsoleTool;
+using GameFramework.Core;
 using GameFramework.StateMachine.Interfaces;
 using UnityEngine;
 
@@ -30,7 +32,6 @@ namespace GameFramework.Services
         #region Dependencies
         private readonly ConsoleGUI _consoleGUI;
         private readonly IEventSystem _eventSystem;
-        private readonly IConfigService _configService;
         #endregion
 
         #region State
@@ -47,11 +48,10 @@ namespace GameFramework.Services
         /// <summary>
         /// Constructor injection - DI container provides all dependencies
         /// </summary>
-        public ConsoleService(ConsoleGUI consoleGUI, IEventSystem eventSystem, IConfigService configService)
+        public ConsoleService(ConsoleGUI consoleGUI, IEventSystem eventSystem)
         {
             _consoleGUI = consoleGUI ?? throw new System.ArgumentNullException(nameof(consoleGUI));
             _eventSystem = eventSystem ?? throw new System.ArgumentNullException(nameof(eventSystem));
-            _configService = configService ?? throw new System.ArgumentNullException(nameof(configService));
         }
 
         public bool IsInitialized => _isInitialized;
@@ -151,7 +151,7 @@ namespace GameFramework.Services
             if (!_isInitialized) return false;
             
             // Check console enabled setting
-            var consoleEnabled = _configService.GetConfigValue<bool>(CONSOLE_ENABLED_CONFIG_KEY);
+            var consoleEnabled = SettingsRegistry.Get<DebugSettings_SO>().ConsoleEnabled.Value;
             
             return consoleEnabled;
         }
@@ -222,8 +222,8 @@ namespace GameFramework.Services
         {
             try
             {
-                var consoleEnabled = _configService.GetConfigValue<bool>(CONSOLE_ENABLED_CONFIG_KEY);
-                var verboseLogging = _configService.GetConfigValue<bool>(VERBOSE_LOGGING_CONFIG_KEY);
+                var consoleEnabled = SettingsRegistry.Get<DebugSettings_SO>().ConsoleEnabled.Value;
+                var verboseLogging = SettingsRegistry.Get<DebugSettings_SO>().VerboseLogging.Value;
                 
                 SetConsoleEnabled(consoleEnabled);
                 SetVerboseLogging(verboseLogging);

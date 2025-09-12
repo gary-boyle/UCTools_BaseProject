@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GameFramework.Config.ScriptableObjects;
 using GameFramework.Core;
 using GameFramework.EventSystem.Events;
 using GameFramework.EventSystem.Interfaces;
@@ -27,7 +28,6 @@ namespace GameFramework.Services
         public UIDocument UIDocument => _uiDocument;
 
         private readonly IEventSystem _eventSystem;
-        private readonly IConfigService _configService;
         private readonly Dictionary<Type, UIScreen> _screens = new();
         private readonly Dictionary<Type, UIPopup> _popups = new();
         private readonly List<UIScreen> _updatableScreens = new();
@@ -43,18 +43,16 @@ namespace GameFramework.Services
         /// <summary>
         /// Constructor injection - receives required dependencies
         /// </summary>
-        public UIService(IEventSystem eventSystem, IConfigService configService, UIDocument uiDocument, IPauseService pauseService)
+        public UIService(IEventSystem eventSystem, UIDocument uiDocument, IPauseService pauseService)
         {
             _eventSystem = eventSystem ?? throw new ArgumentNullException(nameof(eventSystem));
-            _configService = configService ?? throw new ArgumentNullException(nameof(configService));
             _uiDocument = uiDocument ?? throw new ArgumentNullException(nameof(uiDocument));
             _pauseService = pauseService ?? throw new ArgumentNullException(nameof(pauseService));
         }
         
-        public UIService(IEventSystem eventSystem, IConfigService configService, IUIDocumentWrapper uiDocumentWrapper)
+        public UIService(IEventSystem eventSystem, IUIDocumentWrapper uiDocumentWrapper)
         {
             _eventSystem = eventSystem ?? throw new ArgumentNullException(nameof(eventSystem));
-            _configService = configService ?? throw new ArgumentNullException(nameof(configService));
             _uiDocumentWrapper = uiDocumentWrapper ?? throw new ArgumentNullException(nameof(uiDocumentWrapper));
         }
         
@@ -485,9 +483,7 @@ namespace GameFramework.Services
         {
             try
             {
-                var showDebugInfo = _configService.GetConfigValue<bool>("debug.show_debug_info");
-                
-                if (showDebugInfo)
+                if (SettingsRegistry.Get<DebugSettings_SO>().ShowDebugInfo.Value)
                 {
                     // Show debug popup if not already visible
                     if (!IsCurrentPopup<DebugPopup>())
@@ -530,8 +526,6 @@ namespace GameFramework.Services
         /// </summary>
         private async Task ApplyInitialConfigState()
         {
-            if (_configService == null) return;
-    
             try
             {
                 // Apply debug settings on startup

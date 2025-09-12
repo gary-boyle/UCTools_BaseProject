@@ -1,9 +1,8 @@
 ﻿using System;
 using GameFramework.Core;
 using GameFramework.Services.Interfaces;
-using GameFramework.Config;
+using GameFramework.Config.ScriptableObjects;
 using GameFramework.Input.Interfaces;
-using GameFramework.ConsoleTool;
 using GameFramework.ConsoleTool.Enums;
 using GameFramework.ConsoleTool.Interfaces;
 
@@ -32,7 +31,6 @@ namespace GameFramework.ConsoleTool.Commands
 
         #region Services
         
-        private IConfigService _configService;
         private IInputManager _inputManager;
         private InputSettings_SO _inputSettings;
         
@@ -89,22 +87,15 @@ namespace GameFramework.ConsoleTool.Commands
         {
             try
             {
-                _configService = GameManager.GetService<IConfigService>();
                 _inputManager = GameManager.GetService<IInputManager>();
-                
-                if (_configService == null)
-                {
-                    context.WriteError("ConfigService not available");
-                    return false;
-                }
-                
+
                 if (_inputManager == null)
                 {
                     context.WriteError("InputManager not available");
                     return false;
                 }
 
-                _inputSettings = _configService.GetConfigCategory<InputSettings_SO>();
+                _inputSettings = SettingsRegistry.Get<InputSettings_SO>();
                 if (_inputSettings == null)
                 {
                     context.WriteError("InputSettings not found in ConfigService");
@@ -233,7 +224,7 @@ namespace GameFramework.ConsoleTool.Commands
         {
             try
             {
-                await _configService.SaveConfigAsync();
+                await SettingsRegistry.SaveAllSettingsAsync();
             }
             catch (Exception e)
             {

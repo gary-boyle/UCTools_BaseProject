@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Linq;
 using GameFramework.Core;
 using GameFramework.Services.Interfaces;
-using GameFramework.Config;
-using GameFramework.ConsoleTool;
+using GameFramework.Config.ScriptableObjects;
 using GameFramework.ConsoleTool.Enums;
 using GameFramework.ConsoleTool.Interfaces;
 
@@ -33,7 +31,6 @@ namespace GameFramework.ConsoleTool.Commands
 
         #region Services
         
-        private IConfigService _configService;
         private GraphicsSettings_SO _graphicsSettings;
         
         #endregion
@@ -92,15 +89,7 @@ namespace GameFramework.ConsoleTool.Commands
         {
             try
             {
-                _configService = GameManager.GetService<IConfigService>();
-                
-                if (_configService == null)
-                {
-                    context.WriteError("ConfigService not available");
-                    return false;
-                }
-
-                _graphicsSettings = _configService.GetConfigCategory<GraphicsSettings_SO>();
+                _graphicsSettings = SettingsRegistry.Get<GraphicsSettings_SO>();
                 if (_graphicsSettings == null)
                 {
                     context.WriteError("GraphicsSettings not found in ConfigService");
@@ -254,8 +243,8 @@ namespace GameFramework.ConsoleTool.Commands
             try
             {
                 context.WriteLine("Graphics Status:");
-                context.WriteLine($"  Fullscreen: {(_graphicsSettings.fullscreen.Value ? "Yes" : "No")}");
-                context.WriteLine($"  VSync: {(_graphicsSettings.vsync.Value ? "Enabled" : "Disabled")}");
+                context.WriteLine($"  Fullscreen: {(_graphicsSettings.Fullscreen.Value ? "Yes" : "No")}");
+                context.WriteLine($"  VSync: {(_graphicsSettings.Vsync.Value ? "Enabled" : "Disabled")}");
                 
                 var resChoices = _graphicsSettings.GetResolutionChoices();
                 var currentResIndex = _graphicsSettings.GetResolutionIndex();
@@ -319,7 +308,7 @@ namespace GameFramework.ConsoleTool.Commands
         {
             try
             {
-                await _configService.SaveConfigAsync();
+                await SettingsRegistry.SaveAllSettingsAsync();
             }
             catch (Exception e)
             {

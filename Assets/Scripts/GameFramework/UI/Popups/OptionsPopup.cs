@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Linq;
-using GameFramework.Config;
+using GameFramework.Config.ScriptableObjects;
 using GameFramework.Core;
 using GameFramework.Services.Interfaces;
-using UCTools_ConfigVariables;
 using UCTools_Utilities.UI;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -47,7 +46,6 @@ namespace GameFramework.UI.Popups
         #endregion
 
         #region Services
-        private readonly IConfigService _configService;
         private readonly IUIService _uiService;
         
         // Cached ScriptableObject references from ConfigService
@@ -63,7 +61,6 @@ namespace GameFramework.UI.Popups
         
         public OptionsPopup(VisualElement rootElement) : base(rootElement)
         {
-            _configService = GameManager.GetService<IConfigService>() ?? throw new ArgumentNullException(nameof(_configService));
             _uiService = GameManager.GetService<IUIService>() ?? throw new ArgumentNullException(nameof(_uiService));
             
             LoadScriptableObjectsFromConfigService();
@@ -76,11 +73,11 @@ namespace GameFramework.UI.Popups
         /// </summary>
         private void LoadScriptableObjectsFromConfigService()
         {
-            _audioSettings = _configService.GetConfigCategory<AudioSettings_SO>();
-            _graphicsSettings = _configService.GetConfigCategory<GraphicsSettings_SO>();
-            _gameplaySettings = _configService.GetConfigCategory<GameplaySettings_SO>();
-            _inputSettings = _configService.GetConfigCategory<InputSettings_SO>();
-            _debugSettings = _configService.GetConfigCategory<DebugSettings_SO>();
+            _audioSettings = SettingsRegistry.Get<AudioSettings_SO>();
+            _graphicsSettings = SettingsRegistry.Get<GraphicsSettings_SO>();
+            _gameplaySettings = SettingsRegistry.Get<GameplaySettings_SO>();
+            _inputSettings = SettingsRegistry.Get<InputSettings_SO>();
+            _debugSettings = SettingsRegistry.Get<DebugSettings_SO>();
             
             ValidateScriptableObjects();
         }
@@ -290,7 +287,7 @@ namespace GameFramework.UI.Popups
             {
                 if (_audioSettings != null)
                 {
-                    if (_toggleAudio != null) _toggleAudio.value = _audioSettings.audioEnabled.Value;
+                    if (_toggleAudio != null) _toggleAudio.value = _audioSettings.AudioEnabled.Value;
                     if (_masterVolumeSlider != null) _masterVolumeSlider.value = _audioSettings.GetMasterVolumeAsPercentage();
                     if (_musicVolumeSlider != null) _musicVolumeSlider.value = _audioSettings.GetMusicVolumeAsPercentage();
                     if (_sfxVolumeSlider != null) _sfxVolumeSlider.value = _audioSettings.GetSfxVolumeAsPercentage();
@@ -300,25 +297,25 @@ namespace GameFramework.UI.Popups
                 // Graphics
                 if (_graphicsSettings != null)
                 {
-                    if (_toggleFullscreen != null) _toggleFullscreen.value = _graphicsSettings.fullscreen.Value;
-                    if (_toggleVSync != null) _toggleVSync.value = _graphicsSettings.vsync.Value;
+                    if (_toggleFullscreen != null) _toggleFullscreen.value = _graphicsSettings.Fullscreen.Value;
+                    if (_toggleVSync != null) _toggleVSync.value = _graphicsSettings.Vsync.Value;
                     if (_qualityDropdown != null) _qualityDropdown.index = _graphicsSettings.GetQualityIndex();
                     if (_resolutionDropdown != null) _resolutionDropdown.index = _graphicsSettings.GetResolutionIndex();
                 }   
                 
                 // Gameplay
-                if (_difficultyDropdown != null) _difficultyDropdown.index = _configService.GetConfigValue<int>("game.difficulty");
-                if (_toggleAutoSave != null) _toggleAutoSave.value = _configService.GetConfigValue<bool>("game.auto_save");
-                if (_autoSaveIntervalSlider != null) _autoSaveIntervalSlider.value = _configService.GetConfigValue<int>("game.auto_save_interval");
+                if (_difficultyDropdown != null) _difficultyDropdown.index = _gameplaySettings.Difficulty.Value;
+                if (_toggleAutoSave != null) _toggleAutoSave.value = _gameplaySettings.AutoSave.Value;
+                if (_autoSaveIntervalSlider != null) _autoSaveIntervalSlider.value = _gameplaySettings.AutoSaveInterval.Value;
                 
                 // Input
-                if (_mouseSensitivitySlider != null) _mouseSensitivitySlider.value = _configService.GetConfigValue<float>("input.mouse_sensitivity");
-                if (_toggleInvertYAxis != null) _toggleInvertYAxis.value = _configService.GetConfigValue<bool>("input.invert_y_axis");
+                if (_mouseSensitivitySlider != null) _mouseSensitivitySlider.value = _inputSettings.MouseSensitivity.Value;
+                if (_toggleInvertYAxis != null) _toggleInvertYAxis.value = _inputSettings.InvertYAxis.Value;
                 
                 // Debug - Updated config key
-                if (_toggleShowDebugInfo != null) _toggleShowDebugInfo.value = _configService.GetConfigValue<bool>("debug.show_debug_info");
-                if (_toggleVerboseLogging != null) _toggleVerboseLogging.value = _configService.GetConfigValue<bool>("debug.verbose_logging");
-                if (_toggleConsoleEnabled != null) _toggleConsoleEnabled.value = _configService.GetConfigValue<bool>("debug.console_enabled");
+                if (_toggleShowDebugInfo != null) _toggleShowDebugInfo.value = _debugSettings.ShowDebugInfo.Value;
+                if (_toggleVerboseLogging != null) _toggleVerboseLogging.value = _debugSettings.VerboseLogging.Value;
+                if (_toggleConsoleEnabled != null) _toggleConsoleEnabled.value = _debugSettings.ConsoleEnabled.Value;
             }
             finally
             {
@@ -375,20 +372,20 @@ namespace GameFramework.UI.Popups
             }
         }
         
-        private void OnResetDefaultsClicked(ClickEvent evt)
+        private async void OnResetDefaultsClicked(ClickEvent evt)
         {
-            _configService?.ResetToDefaults();
+            await SettingsRegistry.ResetAllToDefaults();
             RefreshUI();
         }
         
         private async void OnApplyClicked(ClickEvent evt)
         {
-            await _configService?.SaveConfigAsync();
+            await SettingsRegistry.SaveAllSettingsAsync();
         }
         
         private async void OnCloseClicked(ClickEvent evt)
         {
-            await _configService?.SaveConfigAsync();
+            await SettingsRegistry.SaveAllSettingsAsync();
             await _uiService?.HidePopupAsync<OptionsPopup>();
         }
         #endregion

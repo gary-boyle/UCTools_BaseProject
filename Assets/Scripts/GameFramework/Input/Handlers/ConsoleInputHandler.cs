@@ -1,4 +1,6 @@
-﻿using GameFramework.EventSystem.Events;
+﻿using GameFramework.Config.ScriptableObjects;
+using GameFramework.Core;
+using GameFramework.EventSystem.Events;
 using GameFramework.EventSystem.Interfaces;
 using GameFramework.Services.Interfaces;
 
@@ -11,13 +13,11 @@ namespace GameFramework.Input.Handlers
     public class ConsoleInputHandler : InputHandlerBase
     {
         private readonly IConsoleService _consoleService;
-        private readonly IConfigService _configService;
         
-        public ConsoleInputHandler(IEventSystem eventSystem, IConsoleService consoleService, IConfigService configService)
+        public ConsoleInputHandler(IEventSystem eventSystem, IConsoleService consoleService)
             : base("Console", 1000, eventSystem) // Highest priority
         {
             _consoleService = consoleService;
-            _configService = configService;
         }
         
         protected override void SubscribeToEvents()
@@ -50,7 +50,7 @@ namespace GameFramework.Input.Handlers
         
         private void OnConsoleToggle(ConsoleToggleInputEvent evt)
         {
-            if (_configService.GetConfigValue<bool>("debug.console_enabled"))
+            if(SettingsRegistry.Get<DebugSettings_SO>().ConsoleEnabled.Value)
             {
                 _consoleService.SetConsoleOpen(!_consoleService.IsConsoleOpen());
             }

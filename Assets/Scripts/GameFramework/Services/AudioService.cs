@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Threading.Tasks;
 using GameFramework.Audio;
+using GameFramework.Config.ScriptableObjects;
+using GameFramework.Core;
 using GameFramework.EventSystem.Events;
 using GameFramework.EventSystem.Interfaces;
 using GameFramework.StateMachine.Interfaces;
 using UnityEngine;
 using UnityEngine.Audio;
 using IAudioService = GameFramework.Services.Interfaces.IAudioService;
-using IConfigService = GameFramework.Services.Interfaces.IConfigService;
 
 namespace GameFramework.Services
 {
@@ -25,7 +26,6 @@ namespace GameFramework.Services
         public bool IsInitialized { get; private set; }
         
         private readonly IEventSystem _eventSystem;
-        private readonly IConfigService _configService;
         
         // Audio components
         private AudioSource _musicSource;
@@ -35,6 +35,7 @@ namespace GameFramework.Services
         // Asset management
         private AudioDatabase_SO _audioDatabase;
         private AudioManager _audioManager;
+        private AudioSettings_SO _audioSettings;
         
         // Mixer parameter names
         private const string MASTER_VOLUME_PARAM = "MasterVolume";
@@ -61,10 +62,9 @@ namespace GameFramework.Services
             FadeOut
         }
 
-        public AudioService(IEventSystem eventSystem, IConfigService configService)
+        public AudioService(IEventSystem eventSystem)
         {
             _eventSystem = eventSystem ?? throw new ArgumentNullException(nameof(eventSystem));
-            _configService = configService ?? throw new ArgumentNullException(nameof(configService));
         }
         
         public async Task InitializeAsync()
@@ -75,6 +75,8 @@ namespace GameFramework.Services
         public async Task InitializeAsync(AudioManager audioManager)
         {
             if (IsInitialized) return;
+
+            _audioSettings = SettingsRegistry.Get<AudioSettings_SO>();
 
             _audioManager = audioManager;
             
@@ -513,12 +515,12 @@ namespace GameFramework.Services
         /// </summary>
         private void ApplyAudioSettings()
         {
-            var audioEnabled = _configService.GetConfigValue<bool>("audio.enabled");
-            var masterVolume = _configService.GetConfigValue<float>("audio.master_volume");
-            var musicVolume = _configService.GetConfigValue<float>("audio.music_volume");
-            var sfxVolume = _configService.GetConfigValue<float>("audio.sfx_volume");
-            var uiVolume = _configService.GetConfigValue<float>("audio.ui_volume");
-    
+            var audioEnabled = _audioSettings.AudioEnabled.Value;
+            var masterVolume = _audioSettings.MasterVolume.Value;
+            var musicVolume = _audioSettings.MusicVolume.Value;
+            var sfxVolume = _audioSettings.SFXVolume.Value;
+            var uiVolume = _audioSettings.UIVolume.Value;
+            
             // Apply audio enabled state first
             if (audioEnabled)
             {
@@ -564,30 +566,26 @@ namespace GameFramework.Services
         
         public float GetMasterVolume()
         {
-            var audioEnabled = _configService.GetConfigValue<bool>("audio.enabled");
-            var masterVolume = _configService.GetConfigValue<float>("audio.master_volume");
-            return audioEnabled ? masterVolume : 0f;
+            var masterVolume = _audioSettings.MasterVolume.Value;
+            return _audioSettings.AudioEnabled.Value ? masterVolume : 0f;
         }
 
         public float GetMusicVolume()
         {
-            var audioEnabled = _configService.GetConfigValue<bool>("audio.enabled");
-            var musicVolume = _configService.GetConfigValue<float>("audio.music_volume");
-            return audioEnabled ? musicVolume : 0f;
+            var musicVolume = _audioSettings.MusicVolume.Value;
+            return _audioSettings.AudioEnabled.Value ? musicVolume : 0f;
         }
 
         public float GetSFXVolume()
         {
-            var audioEnabled = _configService.GetConfigValue<bool>("audio.enabled");
-            var sfxVolume = _configService.GetConfigValue<float>("audio.sfx_volume");
-            return audioEnabled ? sfxVolume : 0f;
+            var sfxVolume = _audioSettings.SFXVolume.Value;
+            return _audioSettings.AudioEnabled.Value ? sfxVolume : 0f;
         }
 
         public float GetUIVolume()
         {
-            var audioEnabled = _configService.GetConfigValue<bool>("audio.enabled");
-            var uiVolume = _configService.GetConfigValue<float>("audio.ui_volume");
-            return audioEnabled ? uiVolume : 0f;
+            var uiVolume = _audioSettings.UIVolume.Value;
+            return _audioSettings.AudioEnabled.Value ? uiVolume : 0f;
         }
     }
 }

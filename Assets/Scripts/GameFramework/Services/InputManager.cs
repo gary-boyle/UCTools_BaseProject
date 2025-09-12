@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GameFramework.Config.ScriptableObjects;
+using GameFramework.Core;
 using GameFramework.EventSystem.Interfaces;
 using GameFramework.Input.Handlers;
 using GameFramework.Input.Interfaces;
 using GameFramework.EventSystem.Events;
-using GameFramework.Services.Interfaces;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -47,11 +48,12 @@ namespace GameFramework.Input
         private System.Action<InputAction.CallbackContext> _onConsoleHistoryDownInput;
         
         public bool IsInitialized { get; private set; }
+
+        private InputSettings_SO _inputSettings;
         
         private readonly List<InputHandlerBase> _handlers = new();
         private readonly List<InputHandlerBase> _activeHandlers = new();
         private readonly IEventSystem _eventSystem;
-        private readonly IConfigService _configService;
         private InputContext _currentContext = InputContext.None;
         
         // Unity Input System
@@ -68,13 +70,11 @@ namespace GameFramework.Input
         
         public InputManager(
             IEventSystem eventSystem,
-            IConfigService configService,
             ConsoleInputHandler consoleHandler,
             UIInputHandler uiHandler,
             PlayerInputHandler playerHandler)
         {
             _eventSystem = eventSystem ?? throw new ArgumentNullException(nameof(eventSystem));
-            _configService = configService ?? throw new ArgumentNullException(nameof(configService));
             _consoleHandler = consoleHandler ?? throw new ArgumentNullException(nameof(consoleHandler));
             _uiHandler = uiHandler ?? throw new ArgumentNullException(nameof(uiHandler));
             _playerHandler = playerHandler ?? throw new ArgumentNullException(nameof(playerHandler));
@@ -83,6 +83,8 @@ namespace GameFramework.Input
         public async Task InitializeAsync()
         {
             if (IsInitialized) return;
+            
+            _inputSettings = SettingsRegistry.Get<InputSettings_SO>();
             
             try
             {
@@ -133,8 +135,8 @@ namespace GameFramework.Input
         {
             try
             {
-                _mouseSensitivity = _configService.GetConfigValue<float>("input.mouse_sensitivity");
-                _invertYAxis = _configService.GetConfigValue<bool>("input.invert_y_axis");
+                _mouseSensitivity = _inputSettings.MouseSensitivity.Value;
+                _invertYAxis = _inputSettings.InvertYAxis.Value;
             }
             catch (Exception ex)
             {

@@ -45,4 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameFramework.GameManager
   _enableDebugConsole: 1
-  _enableVerboseLogging: 0
+  _UIPrefab: {fileID: 4665962162709938052, guid: 068e7dab6cffd33438bae48c28f6101c, type: 3}
+  _consoleGUIPrefab: {fileID: 1128345073793097708, guid: ec7a5319aefbd7b45aac5be477db403c, type: 3}
+  _audioManagerPrefab: {fileID: 5759517096930060208, guid: a9eebbc1fda2f4c40a555b26aa6fa498, type: 3}

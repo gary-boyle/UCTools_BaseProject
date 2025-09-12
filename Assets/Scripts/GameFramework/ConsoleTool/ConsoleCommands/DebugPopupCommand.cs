@@ -1,9 +1,8 @@
 ﻿using System;
 using GameFramework.Core;
 using GameFramework.Services.Interfaces;
-using GameFramework.Config;
+using GameFramework.Config.ScriptableObjects;
 using GameFramework.UI.Popups;
-using GameFramework.ConsoleTool;
 using GameFramework.ConsoleTool.Enums;
 using GameFramework.ConsoleTool.Interfaces;
 
@@ -32,7 +31,6 @@ namespace GameFramework.ConsoleTool.Commands
 
         #region Services
         
-        private IConfigService _configService;
         private IUIService _uiService;
         private DebugSettings_SO _debugSettings;
         
@@ -100,14 +98,7 @@ namespace GameFramework.ConsoleTool.Commands
         {
             try
             {
-                _configService = GameManager.GetService<IConfigService>();
                 _uiService = GameManager.GetService<IUIService>();
-                
-                if (_configService == null)
-                {
-                    context.WriteError("ConfigService not available");
-                    return false;
-                }
                 
                 if (_uiService == null)
                 {
@@ -116,7 +107,7 @@ namespace GameFramework.ConsoleTool.Commands
                 }
 
                 // Get the debug settings ScriptableObject
-                _debugSettings = _configService.GetConfigCategory<DebugSettings_SO>();
+                _debugSettings = SettingsRegistry.Get<DebugSettings_SO>();
                 if (_debugSettings == null)
                 {
                     context.WriteError("DebugSettings not found in ConfigService");
@@ -140,7 +131,7 @@ namespace GameFramework.ConsoleTool.Commands
             try
             {
                 // Get current state from settings
-                bool currentState = _debugSettings.showDebugInfo.Value;
+                bool currentState = _debugSettings.ShowDebugInfo.Value;
                 bool newState = !currentState;
         
                 // Update settings - UIService will handle the popup automatically
@@ -185,7 +176,7 @@ namespace GameFramework.ConsoleTool.Commands
         {
             try
             {
-                bool configEnabled = _debugSettings.showDebugInfo.Value;
+                bool configEnabled = _debugSettings.ShowDebugInfo.Value;
                 bool popupVisible = _uiService.IsPopupOpen<DebugPopup>();
                 
                 context.WriteLine("Debug Popup Status:");
@@ -224,7 +215,7 @@ namespace GameFramework.ConsoleTool.Commands
         {
             try
             {
-                await _configService.SaveConfigAsync();
+                await SettingsRegistry.SaveAllSettingsAsync();
             }
             catch (Exception e)
             {

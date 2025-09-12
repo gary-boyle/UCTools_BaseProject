@@ -1,8 +1,8 @@
 ﻿using System;
+using GameFramework.Config.Enums;
 using GameFramework.Core;
 using GameFramework.Services.Interfaces;
-using GameFramework.Config;
-using GameFramework.ConsoleTool;
+using GameFramework.Config.ScriptableObjects;
 using GameFramework.ConsoleTool.Enums;
 using GameFramework.ConsoleTool.Interfaces;
 
@@ -33,7 +33,6 @@ namespace GameFramework.ConsoleTool.Commands
 
         #region Services
         
-        private IConfigService _configService;
         private AudioSettings_SO _audioSettings;
         
         #endregion
@@ -104,16 +103,8 @@ namespace GameFramework.ConsoleTool.Commands
         private bool TryGetServices(IConsoleContext context)
         {
             try
-            {
-                _configService = GameManager.GetService<IConfigService>();
-                
-                if (_configService == null)
-                {
-                    context.WriteError("ConfigService not available");
-                    return false;
-                }
-
-                _audioSettings = _configService.GetConfigCategory<AudioSettings_SO>();
+            { 
+                _audioSettings = SettingsRegistry.Get<AudioSettings_SO>();
                 if (_audioSettings == null)
                 {
                     context.WriteError("AudioSettings not found in ConfigService");
@@ -191,7 +182,7 @@ namespace GameFramework.ConsoleTool.Commands
         {
             try
             {
-                bool enabled = _audioSettings.audioEnabled.Value;
+                bool enabled = _audioSettings.AudioEnabled.Value;
                 
                 context.WriteLine("Audio Status:");
                 context.WriteLine($"  Enabled: {(enabled ? "Yes" : "No")}");
@@ -210,7 +201,7 @@ namespace GameFramework.ConsoleTool.Commands
         {
             try
             {
-                await _configService.SaveConfigAsync();
+                await SettingsRegistry.SaveAllSettingsAsync();
             }
             catch (Exception e)
             {

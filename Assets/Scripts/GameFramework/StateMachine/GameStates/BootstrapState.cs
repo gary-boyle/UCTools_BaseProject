@@ -16,8 +16,6 @@ namespace GameFramework.StateMachine.GameStates
     /// </summary>
     public class BootstrapState : BaseGameState
     {
-        private readonly IConfigService _configService;
-        
         /// <summary>
         /// Constructor injection - all dependencies provided by DI container
         /// </summary>
@@ -27,12 +25,10 @@ namespace GameFramework.StateMachine.GameStates
             IAudioService audioService,
             IUIService uiService,
             IInputManager inputManager,
-            IConfigService configService,
             IConsoleService consoleService,
             IGameDataService gameDataService) 
             : base(GameStateType.Bootstrap, stateMachine, eventSystem, audioService, uiService, inputManager, consoleService, gameDataService)
         {
-            _configService = configService ?? throw new ArgumentNullException(nameof(configService));
         }
         
         public override async Task EnterAsync(GameContext context)
@@ -43,7 +39,7 @@ namespace GameFramework.StateMachine.GameStates
             await InitializeCoreServices();
             
             // Load initial configuration using injected service
-            await _configService.LoadConfigAsync();
+            await SettingsRegistry.LoadAllSettingsAsync();
             
 
             // Automatically transition to splash screen using injected state machine
@@ -62,7 +58,6 @@ namespace GameFramework.StateMachine.GameStates
                 UIService,
                 ConsoleService, 
                 Context.SaveService,
-                _configService,
                 Context.SceneService
             };
             
