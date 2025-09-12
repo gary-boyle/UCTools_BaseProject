@@ -45,7 +45,7 @@ namespace GameFramework.StateMachine.GameStates
             await UIService.ShowScreenAsync<SplashScreen>();
         
             // Start background music using injected audio service
-            AudioService.PlayMusic("splash_music");
+            //AudioService.PlayMusic("splash_music");
         
             _timer = 0f;
             _skipRequested = false;

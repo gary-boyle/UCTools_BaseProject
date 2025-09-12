@@ -19,6 +19,7 @@ namespace GameFramework.Services
     /// <summary>
     /// UI service implementation with constructor injection and centralized screen updates
     /// Implements IUpdatable to manage frame-based updates for screens that need them
+    /// Now handles debug settings integration for automatic debug popup management
     /// </summary>
     public class UIService : IUIService, IUpdatable
     {
@@ -26,6 +27,7 @@ namespace GameFramework.Services
         public UIDocument UIDocument => _uiDocument;
 
         private readonly IEventSystem _eventSystem;
+        private readonly IConfigService _configService;
         private readonly Dictionary<Type, UIScreen> _screens = new();
         private readonly Dictionary<Type, UIPopup> _popups = new();
         private readonly List<UIScreen> _updatableScreens = new();
@@ -37,19 +39,22 @@ namespace GameFramework.Services
         private readonly Stack<UIPopup> _popupStack = new Stack<UIPopup>();
 
         private IPauseService _pauseService;
+
         /// <summary>
         /// Constructor injection - receives required dependencies
         /// </summary>
-        public UIService(IEventSystem eventSystem, UIDocument uiDocument, IPauseService pauseService)
+        public UIService(IEventSystem eventSystem, IConfigService configService, UIDocument uiDocument, IPauseService pauseService)
         {
             _eventSystem = eventSystem ?? throw new ArgumentNullException(nameof(eventSystem));
+            _configService = configService ?? throw new ArgumentNullException(nameof(configService));
             _uiDocument = uiDocument ?? throw new ArgumentNullException(nameof(uiDocument));
             _pauseService = pauseService ?? throw new ArgumentNullException(nameof(pauseService));
         }
         
-        public UIService(IEventSystem eventSystem, IUIDocumentWrapper uiDocumentWrapper)
+        public UIService(IEventSystem eventSystem, IConfigService configService, IUIDocumentWrapper uiDocumentWrapper)
         {
             _eventSystem = eventSystem ?? throw new ArgumentNullException(nameof(eventSystem));
+            _configService = configService ?? throw new ArgumentNullException(nameof(configService));
             _uiDocumentWrapper = uiDocumentWrapper ?? throw new ArgumentNullException(nameof(uiDocumentWrapper));
         }
         
@@ -62,8 +67,11 @@ namespace GameFramework.Services
             // Initialize all screens and popups
             InitializeScreensAndPopups();
 
+            // Subscribe to events
             SubscribeToLoadingEvents();
+            SubscribeToDebugEvents();
 
+            // Apply initial config state (including debug popup)
             await ApplyInitialConfigState();
 
             IsInitialized = true;
@@ -89,7 +97,7 @@ namespace GameFramework.Services
                 var screen = _updatableScreens[i];
                 if (screen != null && screen.IsVisible && screen.NeedsFrameUpdates)
                 {
-                    // **UPDATED:** Only update screen if not paused (unless it's a special pause-immune screen)
+                    // Only update screen if not paused (unless it's a special pause-immune screen)
                     if (!isPaused || screen.ShouldUpdateWhenPaused())
                     {
                         screen.InternalUpdate(deltaTime);
@@ -112,6 +120,10 @@ namespace GameFramework.Services
         
         public void Shutdown()
         {
+            // Unsubscribe from events
+            UnsubscribeFromLoadingEvents();
+            UnsubscribeFromDebugEvents();
+
             // Clean up all screens
             foreach (var screen in _screens.Values)
             {
@@ -123,8 +135,6 @@ namespace GameFramework.Services
                 popup.Cleanup();
             }
             
-            UnsubscribeFromLoadingEvents();
-
             _screens.Clear();
             _popups.Clear();
             _updatableScreens.Clear();
@@ -170,7 +180,6 @@ namespace GameFramework.Services
             RegisterPopup(new SaveGamePopup(root.Q<VisualElement>("UI_SaveGamePopup")));
             RegisterPopup(new PausePopup(root.Q<VisualElement>("UI_PausePopup")));
             RegisterPopup(new DebugPopup(root.Q<VisualElement>("UI_DebugPopup"))); 
-
         }
 
         public async Task ShowScreenAsync<T>() where T : UIScreen
@@ -201,21 +210,18 @@ namespace GameFramework.Services
         
         public async Task ShowPopupAsync<T>() where T : UIPopup
         {
-            Debug.Log("Trying to show a popup");
             if (_popups.TryGetValue(typeof(T), out var popup))
             {
                 // Push current popup to stack if exists
                 if (_currentPopup != null)
                 {
                     _popupStack.Push(_currentPopup);
-                    Debug.Log($"[UIService] Pushed {_currentPopup.GetType().Name} to popup stack");
                 }
 
                 // Show new popup
                 _currentPopup = popup;
                 popup.Show();
                 
-                Debug.Log($"[UIService] Showing popup: {typeof(T).Name} (Stack depth: {_popupStack.Count})");
                 await Task.CompletedTask;
             }
             else
@@ -237,22 +243,15 @@ namespace GameFramework.Services
                     {
                         _currentPopup = _popupStack.Pop();
                         _currentPopup.Show();
-                        Debug.Log($"[UIService] Restored popup: {_currentPopup.GetType().Name} (Stack depth: {_popupStack.Count})");
                     }
                     else
                     {
                         _currentPopup = null;
-                        Debug.Log($"[UIService] No more popups in stack");
                     }
-
-                    Debug.Log($"[UIService] Hidden current popup: {typeof(T).Name}");
                 }
                 else if (_popupStack.Contains(popup))
                 {
-                    // ✅ NEW: Handle popup in stack
-                    Debug.Log($"[UIService] Hiding stacked popup: {typeof(T).Name}");
-            
-                    // Remove from stack and hide
+                    // Handle popup in stack
                     var stackList = _popupStack.ToList();
                     stackList.Remove(popup);
                     _popupStack.Clear();
@@ -264,11 +263,10 @@ namespace GameFramework.Services
                     }
             
                     popup.Hide();
-                    Debug.Log($"[UIService] Removed {typeof(T).Name} from popup stack (New stack depth: {_popupStack.Count})");
                 }
                 else
                 {
-                    // ✅ NEW: Popup exists but not open
+                    // Popup exists but not open
                     Debug.LogWarning($"[UIService] Popup {typeof(T).Name} is not currently open");
                 }
 
@@ -280,7 +278,6 @@ namespace GameFramework.Services
             }
         }
 
-        
         public void RegisterScreen<T>(T screen) where T : UIScreen
         {
             _screens[typeof(T)] = screen;
@@ -289,7 +286,6 @@ namespace GameFramework.Services
             if (screen.NeedsFrameUpdates && !_updatableScreens.Contains(screen))
             {
                 _updatableScreens.Add(screen);
-                Debug.Log($"[UIService] Registered {typeof(T).Name} for frame updates");
             }
         }
         
@@ -310,12 +306,11 @@ namespace GameFramework.Services
         
         public void SetDebugPopupText(string text)
         {
-            GetPopup<DebugPopup>().SetText(text);
+            GetPopup<DebugPopup>()?.SetText(text);
         }
         
         /// <summary>
         /// Internal method to register a screen for updates after it's created
-        /// Called by screens when they enable frame updates
         /// </summary>
         internal void RegisterScreenForUpdates(UIScreen screen)
         {
@@ -327,7 +322,6 @@ namespace GameFramework.Services
         
         /// <summary>
         /// Internal method to unregister a screen from updates
-        /// Called by screens when they disable frame updates or are destroyed
         /// </summary>
         internal void UnregisterScreenFromUpdates(UIScreen screen)
         {
@@ -337,35 +331,12 @@ namespace GameFramework.Services
             }
         }
         
-        #region NEW POPUP MANAGEMENT METHODS
+        #region Popup Management Methods
         
-        /// <summary>
-        /// Gets the currently visible popup (null if none)
-        /// </summary>
-        public UIPopup GetCurrentPopup()
-        {
-            return _currentPopup;
-        }
+        public UIPopup GetCurrentPopup() => _currentPopup;
+        public Type GetCurrentPopupType() => _currentPopup?.GetType();
+        public bool IsCurrentPopup<T>() where T : UIPopup => _currentPopup != null && _currentPopup.GetType() == typeof(T);
 
-        /// <summary>
-        /// Gets the type of the currently visible popup (null if none)
-        /// </summary>
-        public Type GetCurrentPopupType()
-        {
-            return _currentPopup?.GetType();
-        }
-
-        /// <summary>
-        /// Checks if a specific popup type is currently the active popup
-        /// </summary>
-        public bool IsCurrentPopup<T>() where T : UIPopup
-        {
-            return _currentPopup != null && _currentPopup.GetType() == typeof(T);
-        }
-
-        /// <summary>
-        /// Check if a specific popup is currently open (either current or in stack)
-        /// </summary>
         public bool IsPopupOpen<T>() where T : UIPopup
         {
             if (!_popups.TryGetValue(typeof(T), out var popup))
@@ -374,10 +345,6 @@ namespace GameFramework.Services
             return _currentPopup == popup || _popupStack.Contains(popup);
         }
 
-        /// <summary>
-        /// Get the position of a popup in the stack (0 = current, 1 = top of stack, etc.)
-        /// Returns -1 if popup is not open
-        /// </summary>
         public int GetPopupStackPosition<T>() where T : UIPopup
         {
             if (!_popups.TryGetValue(typeof(T), out var popup))
@@ -396,18 +363,12 @@ namespace GameFramework.Services
             return -1;
         }
         
-        /// <summary>
-        /// Closes all currently open popups and clears the popup stack
-        /// </summary>
         public async Task CloseAllPopupsAsync()
         {
-            Debug.Log($"[UIService] Closing all popups... (Current: {_currentPopup?.GetType().Name}, Stack: {_popupStack.Count})");
-            
             // Hide current popup if any
             if (_currentPopup != null)
             {
                 _currentPopup.Hide();
-                Debug.Log($"[UIService] Closed current popup: {_currentPopup.GetType().Name}");
                 _currentPopup = null;
             }
             
@@ -416,30 +377,19 @@ namespace GameFramework.Services
             {
                 var popup = _popupStack.Pop();
                 popup.Hide();
-                Debug.Log($"[UIService] Closed stacked popup: {popup.GetType().Name}");
             }
             
-            Debug.Log("[UIService] All popups closed, stack cleared");
             await Task.CompletedTask;
         }
 
-        /// <summary>
-        /// Checks if any popups are currently open
-        /// </summary>
         public bool HasOpenPopups()
         {
-            // Check current popup
             if (_currentPopup != null && _currentPopup.CountsAsGameBlockingPopup)
                 return true;
     
-            // Check stacked popups
             return _popupStack.Any(popup => popup.CountsAsGameBlockingPopup);
         }
 
-
-        /// <summary>
-        /// Gets the number of open popups (current + stacked)
-        /// </summary>
         public int GetOpenPopupCount()
         {
             int count = 0;
@@ -451,17 +401,8 @@ namespace GameFramework.Services
             return count;
         }
 
-        /// <summary>
-        /// Gets all popups in the current stack (excluding current popup)
-        /// </summary>
-        public UIPopup[] GetPopupStack()
-        {
-            return _popupStack.ToArray();
-        }
+        public UIPopup[] GetPopupStack() => _popupStack.ToArray();
 
-        /// <summary>
-        /// Enhanced hide popup method that can optionally close all popups
-        /// </summary>
         public async Task HidePopupAsync<T>(bool closeAll = false) where T : UIPopup
         {
             if (closeAll)
@@ -470,43 +411,9 @@ namespace GameFramework.Services
                 return;
             }
             
-            // Use the existing HidePopupAsync method
             await HidePopupAsync<T>();
         }
         
-        /// <summary>
-        /// Apply initial UI state based on current configuration values
-        /// </summary>
-        private async Task ApplyInitialConfigState()
-        {
-            var configService = GameManager.GetService<IConfigService>();
-            if (configService == null) return;
-    
-            try
-            {
-                // Check debug popup state
-                bool showDebugInfo = configService.GetConfigValue<bool>("debug.show_debug_info");
-                if (showDebugInfo)
-                {
-                    Debug.Log("[UIService] Showing debug popup on startup due to config setting");
-                    await ShowPopupAsync<DebugPopup>();
-                }
-        
-                // You can add other initial UI state checks here in the future
-                // For example, showing certain screens based on game state, etc.
-            }
-            catch (Exception ex)
-            {
-                Debug.LogError($"[UIService] Error applying initial config state: {ex.Message}");
-            }
-        }
-        
-        #endregion
-        
-        /// <summary>
-        /// Force close a specific popup type regardless of stack position
-        /// Use this for cleanup when transitions get stuck
-        /// </summary>
         public async Task ForceClosePopupAsync<T>() where T : UIPopup
         {
             if (_popups.TryGetValue(typeof(T), out var popup))
@@ -539,12 +446,109 @@ namespace GameFramework.Services
                     _currentPopup.Show();
                 }
         
-                Debug.Log($"[UIService] Force closed popup: {typeof(T).Name}");
                 await Task.CompletedTask;
             }
         }
+        
+        #endregion
+
+        #region Debug Settings Integration
+
+        /// <summary>
+        /// Subscribe to debug-related events
+        /// </summary>
+        private void SubscribeToDebugEvents()
+        {
+            _eventSystem.Subscribe<OptionsChangedEvent>(OnOptionsChanged);
+        }
+
+        /// <summary>
+        /// Unsubscribe from debug events
+        /// </summary>
+        private void UnsubscribeFromDebugEvents()
+        {
+            _eventSystem.Unsubscribe<OptionsChangedEvent>(OnOptionsChanged);
+        }
+
+        /// <summary>
+        /// Handle options changed events for debug UI
+        /// </summary>
+        private async void OnOptionsChanged(OptionsChangedEvent evt)
+        {
+            await ApplyDebugSettings();
+        }
+
+        /// <summary>
+        /// Apply debug display settings
+        /// </summary>
+        private async Task ApplyDebugSettings()
+        {
+            try
+            {
+                var showDebugInfo = _configService.GetConfigValue<bool>("debug.show_debug_info");
+                
+                if (showDebugInfo)
+                {
+                    // Show debug popup if not already visible
+                    if (!IsCurrentPopup<DebugPopup>())
+                    {
+                        await ShowPopupAsync<DebugPopup>();
+                    }
+                }
+                else
+                {
+                    // Hide debug popup if visible
+                    await HideDebugPopupSafely();
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"[UIService] Error applying debug display settings: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Safely hide the debug popup regardless of its current position
+        /// </summary>
+        private async Task HideDebugPopupSafely()
+        {
+            if (IsCurrentPopup<DebugPopup>())
+            {
+                await HidePopupAsync<DebugPopup>();
+                return;
+            }
+            
+            var debugPopup = GetPopup<DebugPopup>();
+            if (debugPopup != null && debugPopup.IsVisible)
+            {
+                debugPopup.Hide();
+            }
+        }
+
+        /// <summary>
+        /// Apply initial UI state based on current configuration values
+        /// </summary>
+        private async Task ApplyInitialConfigState()
+        {
+            if (_configService == null) return;
+    
+            try
+            {
+                // Apply debug settings on startup
+                await ApplyDebugSettings();
+                
+                // You can add other initial UI state checks here in the future
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"[UIService] Error applying initial config state: {ex.Message}");
+            }
+        }
+
+        #endregion
 
         #region Loading Event Management
+
         /// <summary>
         /// Subscribe to loading-related events for proper UI management
         /// </summary>
@@ -573,16 +577,14 @@ namespace GameFramework.Services
         
         /// <summary>
         /// Handle load save file event by immediately closing popups
-        /// This provides immediate UI feedback before loading starts
         /// </summary>
         private async void OnLoadSaveFileRequested(LoadSaveFileEvent evt)
         {
-            Debug.Log($"[UIService] Preparing UI for loading: {evt.SaveFileInfo.FileName}");
             await CloseAllPopupsForLoading();
         }
         
         /// <summary>
-        /// Much cleaner than maintaining a specific list of popups to close
+        /// Close all popups for loading operations
         /// </summary>
         public async Task CloseAllPopupsForLoading()
         {
@@ -597,6 +599,5 @@ namespace GameFramework.Services
         }
         
         #endregion
-        
     }
 }

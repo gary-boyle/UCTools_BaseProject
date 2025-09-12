@@ -59,7 +59,7 @@ namespace GameFramework.StateMachine.GameStates
             await UIService.ShowScreenAsync<GameOverScreen>();
             
             // Play appropriate music/sound for game over
-            AudioService.PlayMusic("gameover");
+            //AudioService.PlayMusic("gameover");
         }
         
         /// <summary>
@@ -76,7 +76,7 @@ namespace GameFramework.StateMachine.GameStates
             await UIService.HideScreenAsync<GameOverScreen>();
             
             // Stop game over music
-            AudioService.StopMusic();
+            //AudioService.StopMusic();
             
             await base.ExitAsync();
         }

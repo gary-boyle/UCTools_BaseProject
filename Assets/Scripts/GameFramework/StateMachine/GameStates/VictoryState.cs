@@ -74,7 +74,7 @@ namespace GameFramework.StateMachine.GameStates
             await UIService.HideScreenAsync<VictoryScreen>();
             
             // Fade out victory music
-            AudioService.StopMusic();
+            //AudioService.StopMusic();
             
             await base.ExitAsync();
         }

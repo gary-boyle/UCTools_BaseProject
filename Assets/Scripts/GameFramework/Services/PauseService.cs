@@ -103,12 +103,10 @@ namespace GameFramework.Services
             
             // Store current state before pausing
             _prePauseTimeScale = Time.timeScale;
-            _prePauseAudioVolume = _audioService.GetMasterVolume();
             
             // Apply pause effects
             IsPaused = true;
             Time.timeScale = 0f;
-            _audioService.SetMasterVolume(_prePauseAudioVolume * 0.3f); // Reduce volume
             
             // Publish events through EventSystem only
             _eventSystem.Publish(new GamePausedEvent());
@@ -121,7 +119,6 @@ namespace GameFramework.Services
             // Restore pre-pause state
             IsPaused = false;
             Time.timeScale = _prePauseTimeScale;
-            _audioService.SetMasterVolume(_prePauseAudioVolume);
             
             // Publish events through EventSystem only
             _eventSystem.Publish(new GameResumedEvent());

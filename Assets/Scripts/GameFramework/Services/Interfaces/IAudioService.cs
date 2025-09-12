@@ -1,19 +1,16 @@
-﻿namespace GameFramework.Services.Interfaces
+﻿using System.Threading.Tasks;
+using GameFramework.Audio;
+using UnityEngine.Audio;
+
+namespace GameFramework.Services.Interfaces
 {
     /// <summary>
     /// Interface for audio management service
     /// </summary>
     public interface IAudioService : IGameService
     {
-        void PlayMusic(string musicName);
-        void PlaySound(string soundName);
-        void StopMusic();
-        void StopSound(string soundName);
-        void SetMasterVolume(float volume);
-        void SetMusicVolume(float volume);
-        void SetSFXVolume(float volume);
-        float GetMasterVolume();
-        float GetMusicVolume();
-        float GetSFXVolume();
+        Task InitializeAsync(AudioManager audioManager);
+        AudioDatabase_SO GetAudioDatabase();
+        AudioMixerGroup GetSFXMixerGroup();
     }
 }

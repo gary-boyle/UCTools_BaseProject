@@ -1,4 +1,5 @@
-﻿using GameFramework.Core;
+﻿using GameFramework.Audio.Data;
+using GameFramework.Core;
 using GameFramework.EventSystem.Events;
 using GameFramework.Services.Interfaces;
 using UCTools_Utilities.UI;
@@ -48,6 +49,7 @@ namespace GameFramework.UI.Screens
         private void OnNewGameClicked(ClickEvent evt)
         {
             _eventSystem?.Publish(new NewGameRequestedEvent());
+            _eventSystem?.Publish(new AudioEvents.UIAudioEvent(UIAudioType.ScreenOpen));
         }
         
         /// <summary>

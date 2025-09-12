@@ -1,9 +1,16 @@
 ﻿using System.Collections.Generic;
+using GameFramework.EventSystem.Events;
+using GameFramework.EventSystem.Interfaces;
+using GameFramework.Core;
 using UCTools_ConfigVariables;
 using UnityEngine;
 
-namespace GrameFramework.Config
+namespace GameFramework.Config
 {
+    /// <summary>
+    /// Simplified gameplay settings that just manages data and publishes change events
+    /// All gameplay application logic moved to relevant services (SaveService, GameplayService, etc.)
+    /// </summary>
     [CreateAssetMenu(fileName = "GameplaySettings", menuName = "Config Variables/Gameplay Settings")]
     public class GameplaySettings_SO : ConfigCategory
     {
@@ -25,11 +32,11 @@ namespace GrameFramework.Config
             
         public IntConfigVariable autoSaveInterval = new IntConfigVariable(
             "game.auto_save_interval", 
-            "Auto-save interval in seconds", 
-            300, 
+            "Auto-save interval in minutes", 
+            5, 
             ConfigFlags.Save,
-            minValue: 30,
-            maxValue: 3600);
+            minValue: 1,
+            maxValue: 60);
         
         private readonly string[] _difficultyNames = { "Easy", "Normal", "Hard" };
         
@@ -44,44 +51,50 @@ namespace GrameFramework.Config
         }
 
         /// <summary>
-        /// Apply difficulty setting with game logic
+        /// Set difficulty and publish change event
         /// </summary>
         public void SetDifficulty(int difficultyLevel)
         {
             difficultyLevel = Mathf.Clamp(difficultyLevel, 0, 2);
-            difficulty.Value = difficultyLevel;
-            
-            // Apply difficulty-specific game logic here
-            ApplyDifficultySettings(difficultyLevel);
-            
-            Debug.Log($"[GameplaySettings] Difficulty: {_difficultyNames[difficultyLevel]}");
+            if (difficulty.Value != difficultyLevel)
+            {
+                difficulty.Value = difficultyLevel;
+                PublishOptionsChangedEvent();
+            }
         }
 
         /// <summary>
-        /// Apply auto-save setting
+        /// Set auto-save enabled and publish change event
         /// </summary>
         public void SetAutoSave(bool enabled)
         {
-            autoSave.Value = enabled;
-            
-            // Enable/disable auto-save system
-            // Example: AutoSaveManager.Instance.SetEnabled(enabled);
-            
-            Debug.Log($"[GameplaySettings] Auto-save: {enabled}");
+            if (autoSave.Value != enabled)
+            {
+                autoSave.Value = enabled;
+                PublishOptionsChangedEvent();
+            }
         }
 
         /// <summary>
-        /// Apply auto-save interval setting
+        /// Set auto-save interval (in minutes) and publish change event
         /// </summary>
-        public void SetAutoSaveInterval(int intervalSeconds)
+        public void SetAutoSaveInterval(int intervalMinutes)
         {
-            intervalSeconds = Mathf.Clamp(intervalSeconds, 30, 3600);
-            autoSaveInterval.Value = intervalSeconds;
-            
-            // Update auto-save timer
-            // Example: AutoSaveManager.Instance.SetInterval(intervalSeconds);
-            
-            Debug.Log($"[GameplaySettings] Auto-save interval: {intervalSeconds}s");
+            intervalMinutes = Mathf.Clamp(intervalMinutes, 1, 60);
+            if (autoSaveInterval.Value != intervalMinutes)
+            {
+                autoSaveInterval.Value = intervalMinutes;
+                PublishOptionsChangedEvent();
+            }
+        }
+
+        /// <summary>
+        /// Publish options changed event to notify relevant services
+        /// </summary>
+        private void PublishOptionsChangedEvent()
+        {
+            var eventSystem = GameManager.GetService<IEventSystem>();
+            eventSystem?.Publish(new OptionsChangedEvent());
         }
 
         /// <summary>
@@ -93,25 +106,48 @@ namespace GrameFramework.Config
         }
 
         /// <summary>
-        /// Apply difficulty-specific settings to game systems
+        /// Get current difficulty as index for UI dropdowns
         /// </summary>
-        private void ApplyDifficultySettings(int difficultyLevel)
+        public int GetDifficultyIndex()
         {
-            switch (difficultyLevel)
+            return difficulty.Value;
+        }
+
+        /// <summary>
+        /// Get current difficulty name for display
+        /// </summary>
+        public string GetDifficultyName()
+        {
+            int index = Mathf.Clamp(difficulty.Value, 0, _difficultyNames.Length - 1);
+            return _difficultyNames[index];
+        }
+
+        /// <summary>
+        /// Set difficulty from dropdown index
+        /// </summary>
+        public void SetDifficultyFromIndex(int index)
+        {
+            if (index >= 0 && index < _difficultyNames.Length)
             {
-                case 0: // Easy
-                    // Example: EnemyManager.SetDamageMultiplier(0.7f);
-                    // Example: PlayerManager.SetHealthMultiplier(1.5f);
-                    break;
-                case 1: // Normal
-                    // Example: EnemyManager.SetDamageMultiplier(1.0f);
-                    // Example: PlayerManager.SetHealthMultiplier(1.0f);
-                    break;
-                case 2: // Hard
-                    // Example: EnemyManager.SetDamageMultiplier(1.5f);
-                    // Example: PlayerManager.SetHealthMultiplier(0.7f);
-                    break;
+                SetDifficulty(index);
             }
+        }
+
+        /// <summary>
+        /// Get auto-save interval in seconds for services that need it
+        /// </summary>
+        public int GetAutoSaveIntervalInSeconds()
+        {
+            return autoSaveInterval.Value * 60;
+        }
+
+        /// <summary>
+        /// Set auto-save interval from seconds (for backward compatibility)
+        /// </summary>
+        public void SetAutoSaveIntervalFromSeconds(int seconds)
+        {
+            int minutes = Mathf.Max(1, seconds / 60);
+            SetAutoSaveInterval(minutes);
         }
     }
 }

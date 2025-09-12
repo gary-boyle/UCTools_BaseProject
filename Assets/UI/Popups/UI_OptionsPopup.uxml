@@ -11,6 +11,7 @@
                         <engine:SliderInt label="Master Volume" value="100" high-value="100" name="slider_MasterVolume" fill="true" class="slider mb-md" />
                         <engine:SliderInt label="Music Volume" value="80" high-value="100" fill="true" name="slider_MusicVolume" class="slider mb-md" />
                         <engine:SliderInt label="SFX Volume" value="90" high-value="100" name="slider_SFXVolume" fill="true" class="slider mb-md" />
+                        <engine:SliderInt label="UI Volume" value="90" high-value="100" name="slider_UIVolume" fill="true" class="slider mb-md" />
                     </engine:VisualElement>
                 </engine:Tab>
                 <engine:Tab label="Graphics" name="GraphicsTab" class="tab-header">

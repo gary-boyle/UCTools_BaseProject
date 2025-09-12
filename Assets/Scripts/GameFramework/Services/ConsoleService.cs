@@ -10,19 +10,20 @@ namespace GameFramework.Services
 {
     /// <summary>
     /// Service that orchestrates the debug console system using dependency injection.
+    /// Now integrates with debug settings for console and logging control.
     /// 
     /// Architecture:
-    /// - Manages console state (open/closed)
+    /// - Manages console state (open/closed) based on debug.console_enabled setting
+    /// - Manages verbose logging based on debug.verbose_logging setting
     /// - Provides public API for other systems to interact with console
-    /// - Respects debug settings from configuration
     /// - Input conflict management is handled by ConsoleInputHandler
     /// 
     /// Flow:
     /// 1. Receives toggle input events from InputManager
     /// 2. Checks if console is enabled in debug settings
     /// 3. Updates console open/closed state only if enabled
-    /// 4. ConsoleInputHandler automatically manages input conflicts by checking IsConsoleOpen()
-    /// 5. Delegates UI updates to ConsoleGUI via Console static class
+    /// 4. Applies logging settings when configuration changes
+    /// 5. ConsoleInputHandler automatically manages input conflicts by checking IsConsoleOpen()
     /// </summary>
     public class ConsoleService : IConsoleService, IUpdatable, ILateUpdatable
     {
@@ -30,7 +31,6 @@ namespace GameFramework.Services
         private readonly ConsoleGUI _consoleGUI;
         private readonly IEventSystem _eventSystem;
         private readonly IConfigService _configService;
-        // ✅ REMOVED: IInputManager dependency - not needed!
         #endregion
 
         #region State
@@ -41,6 +41,7 @@ namespace GameFramework.Services
         #region Constants
         private const string LOG_PREFIX = "[ConsoleService]";
         private const string CONSOLE_ENABLED_CONFIG_KEY = "debug.console_enabled";
+        private const string VERBOSE_LOGGING_CONFIG_KEY = "debug.verbose_logging";
         #endregion
 
         /// <summary>
@@ -79,6 +80,9 @@ namespace GameFramework.Services
 
                 // Subscribe to configuration changes to react to debug setting changes
                 _eventSystem.Subscribe<OptionsChangedEvent>(OnOptionsChanged);
+
+                // Apply initial debug settings (console enabled/disabled, verbose logging)
+                ApplyDebugSettings();
 
                 _isInitialized = true;
 
@@ -192,7 +196,6 @@ namespace GameFramework.Services
             {
                 if (!IsConsoleEnabled())
                 {
-                    Debug.LogWarning($"{LOG_PREFIX} Console toggle ignored - console disabled in debug settings");
                     return;
                 }
                 
@@ -201,15 +204,76 @@ namespace GameFramework.Services
         }
 
         /// <summary>
-        /// Handle configuration changes - close console if it gets disabled
+        /// Handle configuration changes - apply new debug settings
         /// </summary>
         private void OnOptionsChanged(OptionsChangedEvent evt)
         {
-            // If console is currently open but gets disabled, close it
-            if (_isConsoleOpen && !IsConsoleEnabled())
+            ApplyDebugSettings();
+        }
+
+        #endregion
+
+        #region Debug Settings Integration
+
+        /// <summary>
+        /// Apply current debug settings from config
+        /// </summary>
+        private void ApplyDebugSettings()
+        {
+            try
             {
-                Debug.LogWarning($"{LOG_PREFIX} Console disabled in settings - closing console");
+                var consoleEnabled = _configService.GetConfigValue<bool>(CONSOLE_ENABLED_CONFIG_KEY);
+                var verboseLogging = _configService.GetConfigValue<bool>(VERBOSE_LOGGING_CONFIG_KEY);
+                
+                SetConsoleEnabled(consoleEnabled);
+                SetVerboseLogging(verboseLogging);
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogError($"{LOG_PREFIX} Error applying debug settings: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Enable or disable the console system
+        /// </summary>
+        private void SetConsoleEnabled(bool enabled)
+        {
+            // If console is currently open but gets disabled, close it
+            if (_isConsoleOpen && !enabled)
+            {
                 SetConsoleOpen(false);
+            }
+            
+            // Note: We don't need to store console enabled state separately
+            // since we always check the config service in IsConsoleEnabled()
+        }
+
+        /// <summary>
+        /// Set verbose logging level
+        /// </summary>
+        private void SetVerboseLogging(bool verbose)
+        {
+            try
+            {
+                // Apply logging level changes
+                Debug.unityLogger.logEnabled = verbose;
+                
+                // Set filter levels for different log types
+                if (verbose)
+                {
+                    // Enable all log types in verbose mode
+                    Debug.unityLogger.filterLogType = LogType.Log;
+                }
+                else
+                {
+                    // Only show warnings and errors in non-verbose mode
+                    Debug.unityLogger.filterLogType = LogType.Warning;
+                }
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogError($"{LOG_PREFIX} Error setting verbose logging: {ex.Message}");
             }
         }
 
@@ -228,10 +292,14 @@ namespace GameFramework.Services
             // - clear: Clear console output
             // - quit: Quit application
             // - version: Show application version
-            // var debugCommand = new DebugCommand();
-            // Console.RegisterCommand(debugCommand);
+            // - config: Show/set configuration values
+            
+            // Example implementation:
+            // Console.RegisterCommand("help", "Show available commands", ShowHelp);
+            // Console.RegisterCommand("clear", "Clear console output", ClearConsole);
+            // Console.RegisterCommand("quit", "Quit application", QuitApplication);
         }
-
+        
         #endregion
     }
 }

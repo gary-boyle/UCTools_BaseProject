@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,24 +8,23 @@ using GameFramework.DataStructures;
 using GameFramework.EventSystem.Events;
 using GameFramework.EventSystem.Interfaces;
 using GameFramework.Services.Interfaces;
+using GameFramework.StateMachine.Interfaces;
 using UnityEngine;
 
 namespace GameFramework.Services
 {
     /// <summary>
     /// Save service that handles file saving operations and save file metadata via event system
+    /// Now includes auto-save scheduling based on gameplay settings
     /// Clean separation - UI triggers saves via events, service handles implementation
     /// All loading operations are handled by LoadService
-    /// 
-    /// Design: Event-driven architecture with caching for performance
-    /// Pros: Decoupled, performant metadata caching, player-specific autosaves
-    /// Cons: Async complexity, cache invalidation management
     /// </summary>
-    public class SaveService : ISaveService
+    public class SaveService : ISaveService, IUpdatable
     {
         public bool IsInitialized { get; private set; }
         
         private readonly IEventSystem _eventSystem;
+        private readonly IConfigService _configService;
         private readonly string _saveDirectory;
         private const string SAVE_EXTENSION = ".gamesave";
         private const string AUTOSAVE_IDENTIFIER = "[AUTOSAVE]";
@@ -32,9 +32,16 @@ namespace GameFramework.Services
         // Cache for save file metadata to avoid repeated file I/O
         private readonly Dictionary<string, SaveFileInfo> _saveFileInfoCache = new();
         
-        public SaveService(IEventSystem eventSystem)
+        // Auto-save scheduling
+        private float _autoSaveTimer = 0f;
+        private float _autoSaveInterval = 300f; // Default 5 minutes in seconds
+        private bool _autoSaveEnabled = true;
+        private bool _autoSaveSchedulingActive = false;
+
+        public SaveService(IEventSystem eventSystem, IConfigService configService)
         {
             _eventSystem = eventSystem ?? throw new ArgumentNullException(nameof(eventSystem));
+            _configService = configService ?? throw new ArgumentNullException(nameof(configService));
             _saveDirectory = Application.persistentDataPath + "/Saves/";
         }
         
@@ -43,8 +50,6 @@ namespace GameFramework.Services
         public async Task InitializeAsync()
         {
             if (IsInitialized) return;
-            
-            Debug.Log("[SaveService] Initializing save system...");
             
             // Ensure save directory exists
             if (!System.IO.Directory.Exists(_saveDirectory))
@@ -57,6 +62,12 @@ namespace GameFramework.Services
             _eventSystem.Subscribe<AutoSaveRequestedEvent>(OnAutoSaveRequested);
             _eventSystem.Subscribe<OverwriteSaveRequestedEvent>(OnOverwriteSaveRequested);
             
+            // Subscribe to config changes for gameplay settings
+            _eventSystem.Subscribe<OptionsChangedEvent>(OnOptionsChanged);
+            
+            // Apply initial gameplay settings
+            ApplyGameplaySettings();
+            
             IsInitialized = true;
             await Task.CompletedTask;
         }
@@ -67,9 +78,36 @@ namespace GameFramework.Services
             _eventSystem.Unsubscribe<RegularSaveRequestedEvent>(OnRegularSaveRequested);
             _eventSystem.Unsubscribe<AutoSaveRequestedEvent>(OnAutoSaveRequested);
             _eventSystem.Unsubscribe<OverwriteSaveRequestedEvent>(OnOverwriteSaveRequested);
+            _eventSystem.Unsubscribe<OptionsChangedEvent>(OnOptionsChanged);
+            
+            // Stop auto-save scheduling
+            SetAutoSaveSchedulingActive(false);
             
             ClearCaches();
             IsInitialized = false;
+        }
+
+        /// <summary>
+        /// IUpdatable implementation - handles auto-save timer
+        /// </summary>
+        public void Update()
+        {
+            if (!IsInitialized || !_autoSaveSchedulingActive || !_autoSaveEnabled)
+                return;
+
+            _autoSaveTimer += Time.deltaTime;
+
+            if (_autoSaveTimer >= _autoSaveInterval)
+            {
+                _autoSaveTimer = 0f;
+                
+                // Only auto-save if there's an active game session
+                if (CanSaveGame())
+                {
+                    Debug.Log($"[SaveService] Triggering scheduled auto-save (interval: {_autoSaveInterval / 60f:F1} minutes)");
+                    _eventSystem.Publish(new AutoSaveRequestedEvent());
+                }
+            }
         }
         
         /// <summary>
@@ -80,6 +118,94 @@ namespace GameFramework.Services
             _saveFileInfoCache.Clear();
         }
         
+        #endregion
+        
+        #region Gameplay Settings Integration
+
+        /// <summary>
+        /// Handle options changed events for gameplay settings
+        /// </summary>
+        private void OnOptionsChanged(OptionsChangedEvent evt)
+        {
+            ApplyGameplaySettings();
+        }
+
+        /// <summary>
+        /// Apply current gameplay settings from config
+        /// </summary>
+        private void ApplyGameplaySettings()
+        {
+            try
+            {
+                var autoSaveEnabled = _configService.GetConfigValue<bool>("game.auto_save");
+                var autoSaveIntervalMinutes = _configService.GetConfigValue<int>("game.auto_save_interval");
+                
+                SetAutoSaveEnabled(autoSaveEnabled);
+                SetAutoSaveInterval(autoSaveIntervalMinutes * 60); // Convert to seconds
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"[SaveService] Error applying gameplay settings: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Enable or disable auto-save system
+        /// </summary>
+        private void SetAutoSaveEnabled(bool enabled)
+        {
+            if (_autoSaveEnabled == enabled) return;
+            
+            _autoSaveEnabled = enabled;
+            
+            if (enabled)
+            {
+                Debug.Log("[SaveService] Auto-save enabled");
+                // Reset timer when re-enabling
+                _autoSaveTimer = 0f;
+            }
+            else
+            {
+                Debug.Log("[SaveService] Auto-save disabled");
+            }
+        }
+
+        /// <summary>
+        /// Set auto-save interval in seconds
+        /// </summary>
+        private void SetAutoSaveInterval(int intervalSeconds)
+        {
+            if (Mathf.Abs(_autoSaveInterval - intervalSeconds) < 0.1f) return;
+            
+            _autoSaveInterval = intervalSeconds;
+            
+            // Reset timer to prevent immediate save after interval change
+            _autoSaveTimer = 0f;
+            
+            Debug.Log($"[SaveService] Auto-save interval set to {intervalSeconds / 60f:F1} minutes");
+        }
+
+        /// <summary>
+        /// Control auto-save scheduling (typically called when game session starts/ends)
+        /// </summary>
+        public void SetAutoSaveSchedulingActive(bool active)
+        {
+            if (_autoSaveSchedulingActive == active) return;
+            
+            _autoSaveSchedulingActive = active;
+            _autoSaveTimer = 0f; // Reset timer
+            
+            Debug.Log($"[SaveService] Auto-save scheduling {(active ? "activated" : "deactivated")}");
+        }
+
+        /// <summary>
+        /// Get current auto-save settings for debugging/display
+        /// </summary>
+        public (bool enabled, float intervalMinutes, bool scheduling) GetAutoSaveStatus()
+        {
+            return (_autoSaveEnabled, _autoSaveInterval / 60f, _autoSaveSchedulingActive);
+        }
+
         #endregion
         
         #region Public Interface - Save Validation

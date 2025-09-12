@@ -1,19 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using GameFramework.Audio;
+using GameFramework.Config;
 using GameFramework.EventSystem.Interfaces;
 using GameFramework.Services;
 using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine;
 using GameFramework.StateMachine.GameStates;
 using GameFramework.StateMachine.Interfaces;
-using GrameFramework.Config;
 using GameFramework.ConsoleTool;
 using GameFramework.Input;
 using GameFramework.Input.Handlers;
 using GameFramework.Input.Interfaces;
 using UCTools_ConfigVariables;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 
 namespace GameFramework.Core
@@ -41,7 +41,8 @@ namespace GameFramework.Core
         [Header("Prefabs")]
         [SerializeField] private UIDocument _UIPrefab;
         [SerializeField] private ConsoleGUI _consoleGUIPrefab;
-        
+        [SerializeField] private AudioManager _audioManagerPrefab;
+
         [Header("Configuration Settings")]
         [SerializeField] private AudioSettings_SO _audioSettingsSo;
         [SerializeField] private GraphicsSettings_SO _graphicsSettingsSo;
@@ -308,10 +309,13 @@ namespace GameFramework.Core
             // Initialize services in dependency order
             var eventSystem = _container.Resolve<IEventSystem>();
             await eventSystem.InitializeAsync();
-            
-            var audioService = _container.Resolve<IAudioService>();
-            await audioService.InitializeAsync();
 
+            var audioService = _container.Resolve<IAudioService>();
+            await audioService.InitializeAsync(RegisterAudioManager());
+
+            var graphicsService = _container.Resolve<IGraphicsService>();
+            await graphicsService.InitializeAsync();
+            
             var timeService = _container.Resolve<ITimeService>();
             await timeService.InitializeAsync();
             
@@ -363,10 +367,11 @@ namespace GameFramework.Core
     
             // Register leaf services first (no dependencies)
             _container.RegisterSingleton<IEventSystem, EventSystem.EventSystem>();
-    
+            
             // Register services with minimal dependencies
             _container.RegisterSingleton<ITimeService, TimeService>();
             _container.RegisterSingleton<IAudioService, AudioService>();
+            _container.RegisterSingleton<IGraphicsService, GraphicsService>();
             _container.RegisterSingleton<ISceneService, SceneService>();
             _container.RegisterSingleton<IPauseService, PauseService>();
 
@@ -380,7 +385,7 @@ namespace GameFramework.Core
             
             // Create and register UI document before UI service
             RegisterUIDocument();
-    
+            
             // Create and register console GUI before console service (if debug console is enabled)
             if (_enableDebugConsole)
             {
@@ -467,6 +472,35 @@ namespace GameFramework.Core
             catch (System.Exception e)
             {
                 Debug.LogError($"[GameManager] Failed to create UIDocument from prefab: {e.Message}");
+            }
+        }
+        
+        private AudioManager RegisterAudioManager()
+        {
+            if (_audioManagerPrefab == null)
+            {
+                Debug.LogError("[GameManager] AudioManager Prefab is not assigned! Please assign it in the inspector.");
+                return null;
+            }
+    
+            try
+            {
+                // Instantiate the Audio prefab
+                var audioManager = Instantiate(_audioManagerPrefab);
+                audioManager.name = "Audio Manager (Runtime)";
+        
+                // Make it persist across scene loads
+                DontDestroyOnLoad(audioManager.gameObject);
+        
+                // Register the UIDocument instance directly in the container
+                _container.RegisterSingleton(audioManager);
+
+                return audioManager;
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError($"[GameManager] Failed to create AudioManager from prefab: {e.Message}");
+                return null;
             }
         }
         
@@ -580,6 +614,11 @@ namespace GameFramework.Core
             var gameDataService = _container.Resolve<IGameDataService>();
             if (gameDataService is IUpdatable gameDataServiceUpdatable)
                 _updatables.Add(gameDataServiceUpdatable);
+
+            // Add AudioService for FadeIn/FadeOut
+            var audioService = _container.Resolve<IAudioService>();
+            if (audioService is IUpdatable audioServiceUpdatable)
+                _updatables.Add(audioServiceUpdatable);
 
             var timeService = _container.Resolve<ITimeService>();
             if (timeService is IUpdatable timeUpdatable)

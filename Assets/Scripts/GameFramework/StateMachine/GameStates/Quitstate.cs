@@ -188,7 +188,7 @@ namespace GameFramework.StateMachine.GameStates
             }
             
             // Stop any background processes
-            AudioService.StopMusic();
+            //AudioService.StopMusic();
             
             await Task.Delay(500); // Simulate preparation time
         }

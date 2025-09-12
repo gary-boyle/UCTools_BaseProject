@@ -45,7 +45,7 @@ namespace GameFramework.StateMachine.GameStates
             
             // State is responsible for showing its UI
             await UIService.ShowScreenAsync<MainMenuScreen>();
-            AudioService.PlayMusic("main_menu");
+            EventSystem?.Publish(new AudioEvents.PlayMusicEvent("MainMenu", fadeIn: false, fadeTime: 1f));
         }
         
         /// <summary>

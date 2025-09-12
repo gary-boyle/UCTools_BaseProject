@@ -26,10 +26,12 @@ namespace GameFramework.Input.Interfaces
         /// </summary>
         /// <param name="context">Input context to set</param>
         void SetInputContext(InputContext context);
-
-        /// <summary>
-        /// Clean shutdown of the input manager
-        /// </summary>
+        
         void Shutdown();
+        
+        float GetMouseSensitivity() ;
+
+        bool GetInvertYAxis();
+
     }
 }

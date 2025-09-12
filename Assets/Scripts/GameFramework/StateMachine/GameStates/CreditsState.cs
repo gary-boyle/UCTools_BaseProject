@@ -56,7 +56,7 @@ namespace GameFramework.StateMachine.GameStates
             await UIService.ShowScreenAsync<CreditsScreen>();
             
             // Play appropriate music for credits
-            AudioService.PlayMusic("credits");
+            //AudioService.PlayMusic("credits");
         }
         
         /// <summary>
@@ -71,7 +71,7 @@ namespace GameFramework.StateMachine.GameStates
             await UIService.HideScreenAsync<CreditsScreen>();
             
             // Stop credits music
-            AudioService.StopMusic();
+            //AudioService.StopMusic();
             
             await base.ExitAsync();
         }

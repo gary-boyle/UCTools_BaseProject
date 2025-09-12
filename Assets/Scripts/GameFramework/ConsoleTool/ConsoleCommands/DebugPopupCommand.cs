@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Threading.Tasks;
 using GameFramework.Core;
 using GameFramework.Services.Interfaces;
+using GameFramework.Config;
 using GameFramework.UI.Popups;
 using GameFramework.ConsoleTool;
 using GameFramework.ConsoleTool.Enums;
@@ -10,7 +10,8 @@ using GameFramework.ConsoleTool.Interfaces;
 namespace GameFramework.ConsoleTool.Commands
 {
     /// <summary>
-    /// Console command for controlling the DebugPopup visibility
+    /// Console command for controlling the DebugPopup visibility via debug settings
+    /// Uses the clean event-driven architecture - updates settings, services handle the rest
     /// 
     /// Usage Examples:
     /// > debug                    - Toggle debug popup on/off
@@ -33,6 +34,7 @@ namespace GameFramework.ConsoleTool.Commands
         
         private IConfigService _configService;
         private IUIService _uiService;
+        private DebugSettings_SO _debugSettings;
         
         #endregion
 
@@ -40,7 +42,7 @@ namespace GameFramework.ConsoleTool.Commands
         
         public override void Execute(string[] args, IConsoleContext context)
         {
-            // Get services
+            // Get services and settings
             if (!TryGetServices(context))
                 return;
 
@@ -91,6 +93,9 @@ namespace GameFramework.ConsoleTool.Commands
 
         #region Helper Methods
         
+        /// <summary>
+        /// Get required services and validate they're available
+        /// </summary>
         private bool TryGetServices(IConsoleContext context)
         {
             try
@@ -109,6 +114,14 @@ namespace GameFramework.ConsoleTool.Commands
                     context.WriteError("UIService not available");
                     return false;
                 }
+
+                // Get the debug settings ScriptableObject
+                _debugSettings = _configService.GetConfigCategory<DebugSettings_SO>();
+                if (_debugSettings == null)
+                {
+                    context.WriteError("DebugSettings not found in ConfigService");
+                    return false;
+                }
                 
                 return true;
             }
@@ -119,16 +132,24 @@ namespace GameFramework.ConsoleTool.Commands
             }
         }
         
-        private async void ToggleDebugPopup(IConsoleContext context)
+        /// <summary>
+        /// Toggle debug popup state - much simpler now!
+        /// </summary>
+        private void ToggleDebugPopup(IConsoleContext context)
         {
             try
             {
-                // ✅ Check actual UI state, not just config
-                bool isCurrentlyVisible = _uiService.IsPopupOpen<DebugPopup>();
-                bool newState = !isCurrentlyVisible;
+                // Get current state from settings
+                bool currentState = _debugSettings.showDebugInfo.Value;
+                bool newState = !currentState;
         
-                await SetDebugPopupState(newState, context);
+                // Update settings - UIService will handle the popup automatically
+                _debugSettings.SetShowDebugInfo(newState);
+                
                 context.WriteLine($"Debug popup {(newState ? "enabled" : "disabled")}");
+                
+                // Save config to persist changes
+                SaveConfigAsync(context);
             }
             catch (Exception e)
             {
@@ -136,12 +157,20 @@ namespace GameFramework.ConsoleTool.Commands
             }
         }
         
-        private async void SetDebugPopup(bool enabled, IConsoleContext context)
+        /// <summary>
+        /// Set debug popup to specific state
+        /// </summary>
+        private void SetDebugPopup(bool enabled, IConsoleContext context)
         {
             try
             {
-                await SetDebugPopupState(enabled, context);
+                // Update settings - UIService handles the rest via events
+                _debugSettings.SetShowDebugInfo(enabled);
+                
                 context.WriteLine($"Debug popup {(enabled ? "enabled" : "disabled")}");
+                
+                // Save config to persist changes
+                SaveConfigAsync(context);
             }
             catch (Exception e)
             {
@@ -149,63 +178,57 @@ namespace GameFramework.ConsoleTool.Commands
             }
         }
         
-        private async Task SetDebugPopupState(bool enabled, IConsoleContext context)
-        {
-            // Update the config setting
-            _configService.SetConfigValue("debug.show_debug_info", enabled);
-            
-            if (enabled)
-            {
-                if (!_uiService.IsCurrentPopup<DebugPopup>())
-                {
-                    await _uiService.ShowPopupAsync<DebugPopup>();
-                }
-            }
-            else
-            {
-                await HideDebugPopupSafely();
-            }
-            
-            // Save the config to persist the change
-            await _configService.SaveConfigAsync();
-        }
-        
-        private async Task HideDebugPopupSafely()
-        {
-            if (_uiService.IsCurrentPopup<DebugPopup>())
-            {
-                await _uiService.HidePopupAsync<DebugPopup>();
-                return;
-            }
-            
-            var debugPopup = _uiService.GetPopup<DebugPopup>();
-            if (debugPopup != null && debugPopup.IsVisible)
-            {
-                debugPopup.Hide();
-            }
-        }
-        
+        /// <summary>
+        /// Show current debug popup status
+        /// </summary>
         private void ShowDebugPopupStatus(IConsoleContext context)
         {
             try
             {
-                bool configEnabled = _configService.GetConfigValue<bool>("debug.show_debug_info");
+                bool configEnabled = _debugSettings.showDebugInfo.Value;
                 bool popupVisible = _uiService.IsPopupOpen<DebugPopup>();
                 
-                context.WriteLine($"Debug Popup Status:");
+                context.WriteLine("Debug Popup Status:");
                 context.WriteLine($"  Config Setting: {(configEnabled ? "Enabled" : "Disabled")}");
                 context.WriteLine($"  Currently Visible: {(popupVisible ? "Yes" : "No")}");
                 
+                // Show additional UI state info if popup is visible
                 if (popupVisible)
                 {
                     bool isCurrent = _uiService.IsCurrentPopup<DebugPopup>();
-                    int stackPosition = _uiService.GetPopupStackPosition<DebugPopup>();
-                    context.WriteLine($"  Stack Position: {(isCurrent ? "Current (top)" : $"Position {stackPosition}")}");
+                    context.WriteLine($"  Position: {(isCurrent ? "Current (top)" : "In stack")}");
+                    
+                    if (!isCurrent)
+                    {
+                        int stackPosition = _uiService.GetPopupStackPosition<DebugPopup>();
+                        context.WriteLine($"  Stack Position: {stackPosition}");
+                    }
+                }
+                
+                // Show state consistency
+                if (configEnabled != popupVisible)
+                {
+                    context.WriteWarning("  Note: Config and UI state are inconsistent - this may resolve automatically");
                 }
             }
             catch (Exception e)
             {
                 context.WriteError($"Failed to get debug popup status: {e.Message}");
+            }
+        }
+        
+        /// <summary>
+        /// Save config asynchronously with error handling
+        /// </summary>
+        private async void SaveConfigAsync(IConsoleContext context)
+        {
+            try
+            {
+                await _configService.SaveConfigAsync();
+            }
+            catch (Exception e)
+            {
+                context.WriteWarning($"Settings updated but failed to save to disk: {e.Message}");
             }
         }
         
@@ -225,7 +248,8 @@ namespace GameFramework.ConsoleTool.Commands
                    "  on:  enable, true, 1\n" +
                    "  off: disable, false, 0\n" +
                    "\n" +
-                   "Note: Changes are automatically saved to configuration";
+                   "Note: Changes are automatically saved to configuration.\n" +
+                   "      The UIService handles popup display automatically.";
         }
         
         public override bool ValidateArgs(string[] args)

@@ -1,9 +1,16 @@
 ﻿using System.Collections.Generic;
+using GameFramework.EventSystem.Events;
+using GameFramework.EventSystem.Interfaces;
+using GameFramework.Core;
 using UCTools_ConfigVariables;
 using UnityEngine;
 
-namespace GrameFramework.Config
+namespace GameFramework.Config
 {
+    /// <summary>
+    /// Simplified debug settings that just manages data and publishes change events
+    /// Debug application logic handled by individual services (ConsoleService, etc.)
+    /// </summary>
     [CreateAssetMenu(fileName = "DebugSettings", menuName = "Config Variables/Debug Settings")]
     public class DebugSettings_SO : ConfigCategory
     {
@@ -37,38 +44,48 @@ namespace GrameFramework.Config
         }
 
         /// <summary>
-        /// Apply debug info display setting
+        /// Set debug info display and publish change event
         /// </summary>
         public void SetShowDebugInfo(bool show)
         {
-            showDebugInfo.Value = show;
-            Debug.Log($"[DebugSettings] Show debug info: {show}");
+            if (showDebugInfo.Value != show)
+            {
+                showDebugInfo.Value = show;
+                PublishOptionsChangedEvent();
+            }
         }
 
         /// <summary>
-        /// Apply verbose logging setting
+        /// Set verbose logging and publish change event
         /// </summary>
         public void SetVerboseLogging(bool verbose)
         {
-            verboseLogging.Value = verbose;
-            
-            // Set logging level
-            Debug.unityLogger.logEnabled = verbose;
-            
-            Debug.Log($"[DebugSettings] Verbose logging: {verbose}");
+            if (verboseLogging.Value != verbose)
+            {
+                verboseLogging.Value = verbose;
+                PublishOptionsChangedEvent();
+            }
         }
 
         /// <summary>
-        /// Apply console enabled setting
+        /// Set console enabled and publish change event
         /// </summary>
         public void SetConsoleEnabled(bool enabled)
         {
-            consoleEnabled.Value = enabled;
-            
-            // Enable/disable debug console
-            // Example: DebugConsole.Instance.SetEnabled(enabled);
-            
-            Debug.Log($"[DebugSettings] Console enabled: {enabled}");
+            if (consoleEnabled.Value != enabled)
+            {
+                consoleEnabled.Value = enabled;
+                PublishOptionsChangedEvent();
+            }
+        }
+
+        /// <summary>
+        /// Publish options changed event to notify relevant services
+        /// </summary>
+        private void PublishOptionsChangedEvent()
+        {
+            var eventSystem = GameManager.GetService<IEventSystem>();
+            eventSystem?.Publish(new OptionsChangedEvent());
         }
     }
 }

@@ -641,6 +641,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 9ddf5a5ff559bd844afda9a95710ac6f, type: 2}
     - target: {fileID: 8792417935824281782, guid: 1b656bc6893ad5240b5c37046409510e, type: 3}
+      propertyPath: _audioManagerPrefab
+      value: 
+      objectReference: {fileID: 5759517096930060208, guid: a9eebbc1fda2f4c40a555b26aa6fa498, type: 3}
+    - target: {fileID: 8792417935824281782, guid: 1b656bc6893ad5240b5c37046409510e, type: 3}
       propertyPath: _gameplaySettingsSo
       value: 
       objectReference: {fileID: 11400000, guid: 099dbaa7c5f073c489c1cbdbafd19ac9, type: 2}

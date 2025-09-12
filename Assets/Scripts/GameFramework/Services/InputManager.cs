@@ -6,6 +6,7 @@ using GameFramework.EventSystem.Interfaces;
 using GameFramework.Input.Handlers;
 using GameFramework.Input.Interfaces;
 using GameFramework.EventSystem.Events;
+using GameFramework.Services.Interfaces;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,6 +14,7 @@ namespace GameFramework.Input
 {
     /// <summary>
     /// Unified Input Manager - handles both Unity Input System integration AND input handler management
+    /// Now includes input settings integration for mouse sensitivity and Y-axis inversion
     /// Replaces both InputService and the old InputManager concept
     /// </summary>
     public class InputManager : IInputManager
@@ -49,6 +51,7 @@ namespace GameFramework.Input
         private readonly List<InputHandlerBase> _handlers = new();
         private readonly List<InputHandlerBase> _activeHandlers = new();
         private readonly IEventSystem _eventSystem;
+        private readonly IConfigService _configService;
         private InputContext _currentContext = InputContext.None;
         
         // Unity Input System
@@ -59,13 +62,19 @@ namespace GameFramework.Input
         private readonly UIInputHandler _uiHandler;
         private readonly PlayerInputHandler _playerHandler;
         
+        // Input settings state
+        private float _mouseSensitivity = 1.0f;
+        private bool _invertYAxis = false;
+        
         public InputManager(
             IEventSystem eventSystem,
+            IConfigService configService,
             ConsoleInputHandler consoleHandler,
             UIInputHandler uiHandler,
             PlayerInputHandler playerHandler)
         {
             _eventSystem = eventSystem ?? throw new ArgumentNullException(nameof(eventSystem));
+            _configService = configService ?? throw new ArgumentNullException(nameof(configService));
             _consoleHandler = consoleHandler ?? throw new ArgumentNullException(nameof(consoleHandler));
             _uiHandler = uiHandler ?? throw new ArgumentNullException(nameof(uiHandler));
             _playerHandler = playerHandler ?? throw new ArgumentNullException(nameof(playerHandler));
@@ -87,6 +96,12 @@ namespace GameFramework.Input
                 RegisterHandler(_uiHandler);
                 RegisterHandler(_playerHandler);
                 
+                // Subscribe to config changes for input settings
+                _eventSystem.Subscribe<OptionsChangedEvent>(OnOptionsChanged);
+                
+                // Apply initial input settings
+                ApplyInputSettings();
+                
                 // Set initial context (console always active)
                 SetInputContext(InputContext.None);
                 ActivateHandler<ConsoleInputHandler>();
@@ -101,13 +116,77 @@ namespace GameFramework.Input
             }
         }
         
+        #region Input Settings Integration
+
+        /// <summary>
+        /// Handle options changed events for input settings
+        /// </summary>
+        private void OnOptionsChanged(OptionsChangedEvent evt)
+        {
+            ApplyInputSettings();
+        }
+
+        /// <summary>
+        /// Apply current input settings from config
+        /// </summary>
+        private void ApplyInputSettings()
+        {
+            try
+            {
+                _mouseSensitivity = _configService.GetConfigValue<float>("input.mouse_sensitivity");
+                _invertYAxis = _configService.GetConfigValue<bool>("input.invert_y_axis");
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"[InputManager] Error applying input settings: {ex.Message}");
+                
+                // Use default values on error
+                _mouseSensitivity = 1.0f;
+                _invertYAxis = false;
+            }
+        }
+
+        /// <summary>
+        /// Apply mouse sensitivity and Y-axis inversion to look input
+        /// </summary>
+        private Vector2 ProcessLookInput(Vector2 rawInput)
+        {
+            // Apply mouse sensitivity
+            Vector2 processedInput = rawInput * _mouseSensitivity;
+            
+            // Apply Y-axis inversion
+            if (_invertYAxis)
+            {
+                processedInput.y = -processedInput.y;
+            }
+            
+            return processedInput;
+        }
+
+        /// <summary>
+        /// Get current mouse sensitivity setting
+        /// </summary>
+        public float GetMouseSensitivity() => _mouseSensitivity;
+
+        /// <summary>
+        /// Get current Y-axis inversion setting
+        /// </summary>
+        public bool GetInvertYAxis() => _invertYAxis;
+
+        #endregion
+        
         #region Unity Input System Integration
         
- private void SubscribeToUnityInputEvents()
+        private void SubscribeToUnityInputEvents()
         {
             // Create delegate references
             _onMoveInput = ctx => _eventSystem.Publish(new PlayerMoveInputEvent(ctx.ReadValue<Vector2>(), ctx.phase));
-            _onLookInput = ctx => _eventSystem.Publish(new PlayerLookInputEvent(ctx.ReadValue<Vector2>(), ctx.phase));
+            _onLookInput = ctx => {
+                // Apply input settings to look input
+                Vector2 rawInput = ctx.ReadValue<Vector2>();
+                Vector2 processedInput = ProcessLookInput(rawInput);
+                _eventSystem.Publish(new PlayerLookInputEvent(processedInput, ctx.phase));
+            };
             _onAttackInput = ctx => _eventSystem.Publish(new PlayerAttackInputEvent(ctx.phase));
             _onJumpInput = ctx => _eventSystem.Publish(new PlayerJumpInputEvent());
             _onPauseInput = ctx => _eventSystem.Publish(new PlayerPauseInputEvent(ctx.phase));
@@ -328,6 +407,9 @@ namespace GameFramework.Input
         {
             if (!IsInitialized) return;
             
+            // Unsubscribe from config changes
+            _eventSystem.Unsubscribe<OptionsChangedEvent>(OnOptionsChanged);
+            
             // Shutdown handlers
             foreach (var handler in _activeHandlers.ToList())
             {
@@ -343,6 +425,11 @@ namespace GameFramework.Input
             _activeHandlers.Clear();
             _handlers.Clear();
             _currentContext = InputContext.None;
+            
+            // Reset input settings
+            _mouseSensitivity = 1.0f;
+            _invertYAxis = false;
+            
             IsInitialized = false;
         }
     }

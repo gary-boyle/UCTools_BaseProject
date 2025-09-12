@@ -49,7 +49,7 @@ namespace GameFramework.Tests.UI
             // Setup the mock UI document wrapper
             _mockUIDocumentWrapper.SetRootElement(rootElement);
             
-            _uiService = new UIService(_mockEventSystem, _mockUIDocumentWrapper);
+            // _uiService = new UIService(_mockEventSystem, _mockUIDocumentWrapper);
         }
 
         [TearDown]

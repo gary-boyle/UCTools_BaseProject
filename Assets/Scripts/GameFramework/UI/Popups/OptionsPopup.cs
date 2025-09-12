@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Linq;
+using GameFramework.Config;
 using GameFramework.Core;
 using GameFramework.Services.Interfaces;
-using GameFramework.UI.Popups;
-using GrameFramework.Config;
 using UCTools_ConfigVariables;
 using UCTools_Utilities.UI;
 using UnityEngine;
@@ -19,7 +18,8 @@ namespace GameFramework.UI.Popups
         private SliderInt _masterVolumeSlider;
         private SliderInt _musicVolumeSlider;
         private SliderInt _sfxVolumeSlider;
-        
+
+        private SliderInt _uiVolumeSlider;
         // Graphics
         private Toggle _toggleFullscreen;
         private Toggle _toggleVSync;
@@ -122,7 +122,8 @@ namespace GameFramework.UI.Popups
             _masterVolumeSlider = RootElement?.Q<SliderInt>("slider_MasterVolume");
             _musicVolumeSlider = RootElement?.Q<SliderInt>("slider_MusicVolume");
             _sfxVolumeSlider = RootElement?.Q<SliderInt>("slider_SFXVolume");
-            
+            _uiVolumeSlider = RootElement?.Q<SliderInt>("slider_UIVolume");
+
             // Graphics
             _toggleFullscreen = RootElement?.Q<Toggle>("tgl_FullScreen");
             _toggleVSync = RootElement?.Q<Toggle>("tgl_Vsync");
@@ -175,40 +176,61 @@ namespace GameFramework.UI.Popups
         /// </summary>
         private void RegisterCallbacks()
         {
-            // Audio callbacks
+            // Audio callbacks - just update settings, AudioService handles the rest
             _toggleAudio?.RegisterCallback<ChangeEvent<bool>>(evt => {
-                if (!_isRefreshingUI) _audioSettings?.SetAudioEnabled(evt.newValue);
-            });
-            _masterVolumeSlider?.RegisterCallback<ChangeEvent<int>>(evt => {
-                if (!_isRefreshingUI) _audioSettings?.SetMasterVolume(evt.newValue);
-            });
-            _musicVolumeSlider?.RegisterCallback<ChangeEvent<int>>(evt => {
-                if (!_isRefreshingUI) _audioSettings?.SetMusicVolume(evt.newValue);
-            });
-            _sfxVolumeSlider?.RegisterCallback<ChangeEvent<int>>(evt => {
-                if (!_isRefreshingUI) _audioSettings?.SetSfxVolume(evt.newValue);
+                if (!_isRefreshingUI) 
+                    _audioSettings?.SetAudioEnabled(evt.newValue);
             });
             
-            // Graphics callbacks
+            _masterVolumeSlider?.RegisterCallback<ChangeEvent<int>>(evt => {
+                if (!_isRefreshingUI) 
+                    _audioSettings?.SetMasterVolumeFromPercentage(evt.newValue);
+            });
+            
+            _musicVolumeSlider?.RegisterCallback<ChangeEvent<int>>(evt => {
+                if (!_isRefreshingUI) 
+                    _audioSettings?.SetMusicVolumeFromPercentage(evt.newValue);
+            });
+            
+            _sfxVolumeSlider?.RegisterCallback<ChangeEvent<int>>(evt => {
+                if (!_isRefreshingUI) 
+                    _audioSettings?.SetSfxVolumeFromPercentage(evt.newValue);
+            });
+            
+            _uiVolumeSlider?.RegisterCallback<ChangeEvent<int>>(evt => {
+                if (!_isRefreshingUI) 
+                    _audioSettings?.SetUIVolumeFromPercentage(evt.newValue);
+            });
+            
+            // Graphics callbacks 
             _toggleFullscreen?.RegisterCallback<ChangeEvent<bool>>(evt => {
-                if (!_isRefreshingUI) _graphicsSettings?.SetFullscreen(evt.newValue);
+                if (!_isRefreshingUI) 
+                    _graphicsSettings?.SetFullscreen(evt.newValue);
             });
+    
             _toggleVSync?.RegisterCallback<ChangeEvent<bool>>(evt => {
-                if (!_isRefreshingUI) _graphicsSettings?.SetVSync(evt.newValue);
+                if (!_isRefreshingUI) 
+                    _graphicsSettings?.SetVSync(evt.newValue);
             });
+    
             _qualityDropdown?.RegisterValueChangedCallback(evt => {
-                if (_isRefreshingUI) return;
-                var choices = _graphicsSettings?.GetQualityChoices();
-                var index = Array.IndexOf(choices, evt.newValue);
-                if (index >= 0 && Enum.IsDefined(typeof(QualityOption), index))
-                    _graphicsSettings?.SetQuality((QualityOption)index);
+                if (!_isRefreshingUI)
+                {
+                    var choices = _graphicsSettings?.GetQualityChoices();
+                    var index = Array.IndexOf(choices, evt.newValue);
+                    if (index >= 0)
+                        _graphicsSettings?.SetQualityFromIndex(index);
+                }
             });
+    
             _resolutionDropdown?.RegisterValueChangedCallback(evt => {
-                if (_isRefreshingUI) return;
-                var choices = _graphicsSettings?.GetResolutionChoices();
-                var index = Array.IndexOf(choices, evt.newValue);
-                if (index >= 0 && Enum.IsDefined(typeof(ResolutionOption), index))
-                    _graphicsSettings?.SetResolution((ResolutionOption)index);
+                if (!_isRefreshingUI)
+                {
+                    var choices = _graphicsSettings?.GetResolutionChoices();
+                    var index = Array.IndexOf(choices, evt.newValue);
+                    if (index >= 0)
+                        _graphicsSettings?.SetResolutionFromIndex(index);
+                }
             });
             
             // Gameplay callbacks
@@ -233,13 +255,15 @@ namespace GameFramework.UI.Popups
                 if (!_isRefreshingUI) _inputSettings?.SetInvertYAxis(evt.newValue);
             });
             
-            // Debug callbacks - Updated to handle DebugPopup with refresh guard
+            // Debug callbacks
             _toggleShowDebugInfo?.RegisterCallback<ChangeEvent<bool>>(evt => {
-                if (!_isRefreshingUI) OnShowDebugInfoChanged(evt);
+                if (!_isRefreshingUI) _debugSettings?.SetShowDebugInfo(evt.newValue);
             });
+    
             _toggleVerboseLogging?.RegisterCallback<ChangeEvent<bool>>(evt => {
                 if (!_isRefreshingUI) _debugSettings?.SetVerboseLogging(evt.newValue);
             });
+    
             _toggleConsoleEnabled?.RegisterCallback<ChangeEvent<bool>>(evt => {
                 if (!_isRefreshingUI) _debugSettings?.SetConsoleEnabled(evt.newValue);
             });
@@ -264,17 +288,23 @@ namespace GameFramework.UI.Popups
             
             try
             {
-                // Audio
-                if (_toggleAudio != null) _toggleAudio.value = _configService.GetConfigValue<bool>("audio.enabled");
-                if (_masterVolumeSlider != null) _masterVolumeSlider.value = _configService.GetConfigValue<int>("audio.master_volume");
-                if (_musicVolumeSlider != null) _musicVolumeSlider.value = _configService.GetConfigValue<int>("audio.music_volume");
-                if (_sfxVolumeSlider != null) _sfxVolumeSlider.value = _configService.GetConfigValue<int>("audio.sfx_volume");
+                if (_audioSettings != null)
+                {
+                    if (_toggleAudio != null) _toggleAudio.value = _audioSettings.audioEnabled.Value;
+                    if (_masterVolumeSlider != null) _masterVolumeSlider.value = _audioSettings.GetMasterVolumeAsPercentage();
+                    if (_musicVolumeSlider != null) _musicVolumeSlider.value = _audioSettings.GetMusicVolumeAsPercentage();
+                    if (_sfxVolumeSlider != null) _sfxVolumeSlider.value = _audioSettings.GetSfxVolumeAsPercentage();
+                    if (_uiVolumeSlider != null) _uiVolumeSlider.value = _audioSettings.GetUIVolumeAsPercentage();
+                }
                 
                 // Graphics
-                if (_toggleFullscreen != null) _toggleFullscreen.value = _configService.GetConfigValue<bool>("graphics.fullscreen");
-                if (_toggleVSync != null) _toggleVSync.value = _configService.GetConfigValue<bool>("graphics.vsync");
-                if (_qualityDropdown != null) _qualityDropdown.index = (int)_configService.GetConfigValue<QualityOption>("graphics.quality");
-                if (_resolutionDropdown != null) _resolutionDropdown.index = (int)_configService.GetConfigValue<ResolutionOption>("graphics.resolution");
+                if (_graphicsSettings != null)
+                {
+                    if (_toggleFullscreen != null) _toggleFullscreen.value = _graphicsSettings.fullscreen.Value;
+                    if (_toggleVSync != null) _toggleVSync.value = _graphicsSettings.vsync.Value;
+                    if (_qualityDropdown != null) _qualityDropdown.index = _graphicsSettings.GetQualityIndex();
+                    if (_resolutionDropdown != null) _resolutionDropdown.index = _graphicsSettings.GetResolutionIndex();
+                }   
                 
                 // Gameplay
                 if (_difficultyDropdown != null) _difficultyDropdown.index = _configService.GetConfigValue<int>("game.difficulty");
@@ -315,15 +345,10 @@ namespace GameFramework.UI.Popups
                     Debug.Log("[OptionsPopup] Showing debug popup");
                     await _uiService.ShowPopupAsync<DebugPopup>();
                 }
-                else
-                {
-                    Debug.Log("[OptionsPopup] Debug popup already visible");
-                }
             }
             else
             {
                 // Hide the debug popup - use improved method to ensure it gets hidden
-                Debug.Log("[OptionsPopup] Hiding debug popup");
                 await HideDebugPopupSafely();
             }
         }

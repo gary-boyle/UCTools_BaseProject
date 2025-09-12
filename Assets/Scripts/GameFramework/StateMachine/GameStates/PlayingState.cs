@@ -77,7 +77,7 @@ namespace GameFramework.StateMachine.GameStates
 
             // State is responsible for showing its UI
             await UIService.ShowScreenAsync<GamePlayScreen>();
-            AudioService.PlayMusic("gameplay");
+            EventSystem?.Publish(new AudioEvents.PlayMusicEvent("GamePlay", fadeIn: false, fadeTime: 1f));
         }        
         
         /// <summary>

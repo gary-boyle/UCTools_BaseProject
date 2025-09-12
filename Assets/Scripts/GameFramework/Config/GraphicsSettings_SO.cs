@@ -1,9 +1,16 @@
 ﻿using System.Collections.Generic;
+using GameFramework.EventSystem.Events;
+using GameFramework.EventSystem.Interfaces;
+using GameFramework.Core;
 using UCTools_ConfigVariables;
 using UnityEngine;
 
-namespace GrameFramework.Config
+namespace GameFramework.Config
 {
+    /// <summary>
+    /// Simplified graphics settings that just manages data and publishes change events
+    /// All graphics application logic moved to GraphicsService
+    /// </summary>
     [CreateAssetMenu(fileName = "GraphicsSettings", menuName = "Config Variables/Graphics Settings")]
     public class GraphicsSettings_SO : ConfigCategory
     {
@@ -45,51 +52,60 @@ namespace GrameFramework.Config
         }
 
         /// <summary>
-        /// Apply fullscreen setting with immediate effect
+        /// Set fullscreen and publish change event
         /// </summary>
         public void SetFullscreen(bool isFullscreen)
         {
-            fullscreen.Value = isFullscreen;
-            
-            var (width, height) = resolution.Value.GetResolution();
-            Screen.SetResolution(width, height, isFullscreen);
-            
-            Debug.Log($"[GraphicsSettings] Fullscreen: {isFullscreen}");
+            if (fullscreen.Value != isFullscreen)
+            {
+                fullscreen.Value = isFullscreen;
+                PublishOptionsChangedEvent();
+            }
         }
 
         /// <summary>
-        /// Apply VSync setting with immediate effect
+        /// Set VSync and publish change event
         /// </summary>
         public void SetVSync(bool enableVSync)
         {
-            vsync.Value = enableVSync;
-            QualitySettings.vSyncCount = enableVSync ? 1 : 0;
-            
-            Debug.Log($"[GraphicsSettings] VSync: {enableVSync}");
+            if (vsync.Value != enableVSync)
+            {
+                vsync.Value = enableVSync;
+                PublishOptionsChangedEvent();
+            }
         }
 
         /// <summary>
-        /// Apply quality setting with immediate effect
+        /// Set quality and publish change event
         /// </summary>
         public void SetQuality(QualityOption qualityOption)
         {
-            quality.Value = qualityOption;
-            QualitySettings.SetQualityLevel(quality.QualityLevel);
-            
-            Debug.Log($"[GraphicsSettings] Quality: {quality.DisplayName}");
+            if (quality.Value != qualityOption)
+            {
+                quality.Value = qualityOption;
+                PublishOptionsChangedEvent();
+            }
         }
 
         /// <summary>
-        /// Apply resolution setting with immediate effect
+        /// Set resolution and publish change event
         /// </summary>
         public void SetResolution(ResolutionOption resolutionOption)
         {
-            resolution.Value = resolutionOption;
-            
-            var (width, height) = resolutionOption.GetResolution();
-            Screen.SetResolution(width, height, fullscreen.Value);
-            
-            Debug.Log($"[GraphicsSettings] Resolution: {width}x{height}");
+            if (resolution.Value != resolutionOption)
+            {
+                resolution.Value = resolutionOption;
+                PublishOptionsChangedEvent();
+            }
+        }
+
+        /// <summary>
+        /// Publish options changed event to notify GraphicsService
+        /// </summary>
+        private void PublishOptionsChangedEvent()
+        {
+            var eventSystem = GameManager.GetService<IEventSystem>();
+            eventSystem?.Publish(new OptionsChangedEvent());
         }
 
         /// <summary>
@@ -106,6 +122,44 @@ namespace GrameFramework.Config
         public string[] GetResolutionChoices()
         {
             return ResolutionOptionExtensions.GetAllDisplayNames();
+        }
+
+        /// <summary>
+        /// Get current quality as index for UI dropdowns
+        /// </summary>
+        public int GetQualityIndex()
+        {
+            return (int)quality.Value;
+        }
+
+        /// <summary>
+        /// Get current resolution as index for UI dropdowns
+        /// </summary>
+        public int GetResolutionIndex()
+        {
+            return (int)resolution.Value;
+        }
+
+        /// <summary>
+        /// Set quality from dropdown index
+        /// </summary>
+        public void SetQualityFromIndex(int index)
+        {
+            if (System.Enum.IsDefined(typeof(QualityOption), index))
+            {
+                SetQuality((QualityOption)index);
+            }
+        }
+
+        /// <summary>
+        /// Set resolution from dropdown index
+        /// </summary>
+        public void SetResolutionFromIndex(int index)
+        {
+            if (System.Enum.IsDefined(typeof(ResolutionOption), index))
+            {
+                SetResolution((ResolutionOption)index);
+            }
         }
     }
 }
