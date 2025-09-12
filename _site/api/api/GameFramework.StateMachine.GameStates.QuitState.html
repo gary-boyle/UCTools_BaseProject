@@ -85,11 +85,7 @@
 
   <h1 id="GameFramework_StateMachine_GameStates_QuitState" data-uid="GameFramework.StateMachine.GameStates.QuitState" class="text-break">Class QuitState</h1>
   <div class="markdown level0 summary"><p>Quit state - handles graceful application shutdown with progress feedback
-Responsible for saving data, cleaning up resources, and exiting the application</p>
-<p>Intent: Provide graceful shutdown with user feedback and cancellation support
-Design: Progressive shutdown with clear stages and user communication
-Pros: Safe data preservation, clear user feedback, cancellation support
-Cons: More complex than immediate quit, requires careful resource management</p>
+Responsible for cleaning up resources, and exiting the application</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -113,22 +109,40 @@ Cons: More complex than immediate quit, requires careful resource management</p>
       <a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_StateMachine">BaseGameState.StateMachine</a>
     </div>
     <div>
-      <a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_EventSystem">BaseGameState.EventSystem</a>
-    </div>
-    <div>
       <a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_AudioService">BaseGameState.AudioService</a>
-    </div>
-    <div>
-      <a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_UIService">BaseGameState.UIService</a>
-    </div>
-    <div>
-      <a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_InputManager">BaseGameState.InputManager</a>
     </div>
     <div>
       <a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_ConsoleService">BaseGameState.ConsoleService</a>
     </div>
     <div>
+      <a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_EventSystem">BaseGameState.EventSystem</a>
+    </div>
+    <div>
       <a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_GameDataService">BaseGameState.GameDataService</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_GraphicsService">BaseGameState.GraphicsService</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_InputManager">BaseGameState.InputManager</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_LoadService">BaseGameState.LoadService</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_PauseService">BaseGameState.PauseService</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_SaveService">BaseGameState.SaveService</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_SceneService">BaseGameState.SceneService</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_TimeService">BaseGameState.TimeService</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_UIService">BaseGameState.UIService</a>
     </div>
     <div>
       <a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_Update">BaseGameState.Update()</a>
@@ -170,13 +184,13 @@ Cons: More complex than immediate quit, requires careful resource management</p>
   <h3 id="constructors">Constructors
 </h3>
   <a id="GameFramework_StateMachine_GameStates_QuitState__ctor_" data-uid="GameFramework.StateMachine.GameStates.QuitState.#ctor*"></a>
-  <h4 id="GameFramework_StateMachine_GameStates_QuitState__ctor_GameFramework_StateMachine_Interfaces_IGameStateMachine_GameFramework_EventSystem_Interfaces_IEventSystem_GameFramework_Services_Interfaces_IAudioService_GameFramework_Services_Interfaces_IUIService_GameFramework_Input_Interfaces_IInputManager_GameFramework_Services_Interfaces_ISaveService_GameFramework_Services_Interfaces_IConsoleService_GameFramework_Services_Interfaces_IGameDataService_" data-uid="GameFramework.StateMachine.GameStates.QuitState.#ctor(GameFramework.StateMachine.Interfaces.IGameStateMachine,GameFramework.EventSystem.Interfaces.IEventSystem,GameFramework.Services.Interfaces.IAudioService,GameFramework.Services.Interfaces.IUIService,GameFramework.Input.Interfaces.IInputManager,GameFramework.Services.Interfaces.ISaveService,GameFramework.Services.Interfaces.IConsoleService,GameFramework.Services.Interfaces.IGameDataService)">QuitState(IGameStateMachine, IEventSystem, IAudioService, IUIService, IInputManager, ISaveService, IConsoleService, IGameDataService)</h4>
+  <h4 id="GameFramework_StateMachine_GameStates_QuitState__ctor_GameFramework_Core_GameContext_GameFramework_StateMachine_Interfaces_IGameStateMachine_" data-uid="GameFramework.StateMachine.GameStates.QuitState.#ctor(GameFramework.Core.GameContext,GameFramework.StateMachine.Interfaces.IGameStateMachine)">QuitState(GameContext, IGameStateMachine)</h4>
   <div class="markdown level1 summary"><p>Constructor injection - all dependencies provided by DI container</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public QuitState(IGameStateMachine stateMachine, IEventSystem eventSystem, IAudioService audioService, IUIService uiService, IInputManager inputManager, ISaveService saveService, IConsoleService consoleService, IGameDataService gameDataService)</code></pre>
+    <pre><code class="lang-csharp hljs">public QuitState(GameContext context, IGameStateMachine stateMachine)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -189,43 +203,13 @@ Cons: More complex than immediate quit, requires careful resource management</p>
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="GameFramework.Core.GameContext.html">GameContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+      <tr>
         <td><a class="xref" href="GameFramework.StateMachine.Interfaces.IGameStateMachine.html">IGameStateMachine</a></td>
         <td><span class="parametername">stateMachine</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GameFramework.EventSystem.Interfaces.IEventSystem.html">IEventSystem</a></td>
-        <td><span class="parametername">eventSystem</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GameFramework.Services.Interfaces.IAudioService.html">IAudioService</a></td>
-        <td><span class="parametername">audioService</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GameFramework.Services.Interfaces.IUIService.html">IUIService</a></td>
-        <td><span class="parametername">uiService</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GameFramework.Input.Interfaces.IInputManager.html">IInputManager</a></td>
-        <td><span class="parametername">inputManager</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GameFramework.Services.Interfaces.ISaveService.html">ISaveService</a></td>
-        <td><span class="parametername">saveService</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GameFramework.Services.Interfaces.IConsoleService.html">IConsoleService</a></td>
-        <td><span class="parametername">consoleService</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GameFramework.Services.Interfaces.IGameDataService.html">IGameDataService</a></td>
-        <td><span class="parametername">gameDataService</span></td>
         <td></td>
       </tr>
     </tbody>

@@ -85,11 +85,9 @@
 
   <h1 id="GameFramework_Services_SaveService" data-uid="GameFramework.Services.SaveService" class="text-break">Class SaveService</h1>
   <div class="markdown level0 summary"><p>Save service that handles file saving operations and save file metadata via event system
+Now includes auto-save scheduling based on gameplay settings
 Clean separation - UI triggers saves via events, service handles implementation
 All loading operations are handled by LoadService</p>
-<p>Design: Event-driven architecture with caching for performance
-Pros: Decoupled, performant metadata caching, player-specific autosaves
-Cons: Async complexity, cache invalidation management</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -101,6 +99,7 @@ Cons: Async complexity, cache invalidation management</p>
     <h5>Implements</h5>
     <div><a class="xref" href="GameFramework.Services.Interfaces.ISaveService.html">ISaveService</a></div>
     <div><a class="xref" href="GameFramework.Services.Interfaces.IGameService.html">IGameService</a></div>
+    <div><a class="xref" href="GameFramework.StateMachine.Interfaces.IUpdatable.html">IUpdatable</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -130,7 +129,7 @@ Cons: Async complexity, cache invalidation management</p>
   <h6><strong>Assembly</strong>: .dll</h6>
   <h5 id="GameFramework_Services_SaveService_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class SaveService : ISaveService, IGameService</code></pre>
+    <pre><code class="lang-csharp hljs">public class SaveService : ISaveService, IGameService, IUpdatable</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
@@ -288,6 +287,30 @@ Cons: Async complexity, cache invalidation management</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Services_SaveService_GetAutoSaveStatus_" data-uid="GameFramework.Services.SaveService.GetAutoSaveStatus*"></a>
+  <h4 id="GameFramework_Services_SaveService_GetAutoSaveStatus" data-uid="GameFramework.Services.SaveService.GetAutoSaveStatus">GetAutoSaveStatus()</h4>
+  <div class="markdown level1 summary"><p>Get current auto-save settings for debugging/display</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public (bool enabled, float intervalMinutes, bool scheduling) GetAutoSaveStatus()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>(<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.boolean,system.single,system.boolean-.enabled">enabled</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.boolean,system.single,system.boolean-.intervalminutes">intervalMinutes</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.boolean,system.single,system.boolean-.scheduling">scheduling</a>)</td>
         <td></td>
       </tr>
     </tbody>
@@ -454,6 +477,32 @@ Cons: Async complexity, cache invalidation management</p>
       </tr>
     </tbody>
   </table>
+  <a id="GameFramework_Services_SaveService_SetAutoSaveSchedulingActive_" data-uid="GameFramework.Services.SaveService.SetAutoSaveSchedulingActive*"></a>
+  <h4 id="GameFramework_Services_SaveService_SetAutoSaveSchedulingActive_System_Boolean_" data-uid="GameFramework.Services.SaveService.SetAutoSaveSchedulingActive(System.Boolean)">SetAutoSaveSchedulingActive(bool)</h4>
+  <div class="markdown level1 summary"><p>Control auto-save scheduling (typically called when game session starts/ends)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetAutoSaveSchedulingActive(bool active)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">active</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <a id="GameFramework_Services_SaveService_Shutdown_" data-uid="GameFramework.Services.SaveService.Shutdown*"></a>
   <h4 id="GameFramework_Services_SaveService_Shutdown" data-uid="GameFramework.Services.SaveService.Shutdown">Shutdown()</h4>
   <div class="markdown level1 summary"></div>
@@ -462,12 +511,24 @@ Cons: Async complexity, cache invalidation management</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Shutdown()</code></pre>
   </div>
+  <a id="GameFramework_Services_SaveService_Update_" data-uid="GameFramework.Services.SaveService.Update*"></a>
+  <h4 id="GameFramework_Services_SaveService_Update" data-uid="GameFramework.Services.SaveService.Update">Update()</h4>
+  <div class="markdown level1 summary"><p>IUpdatable implementation - handles auto-save timer</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Update()</code></pre>
+  </div>
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="GameFramework.Services.Interfaces.ISaveService.html">ISaveService</a>
   </div>
   <div>
       <a class="xref" href="GameFramework.Services.Interfaces.IGameService.html">IGameService</a>
+  </div>
+  <div>
+      <a class="xref" href="GameFramework.StateMachine.Interfaces.IUpdatable.html">IUpdatable</a>
   </div>
 
 </article>

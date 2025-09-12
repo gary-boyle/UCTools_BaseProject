@@ -110,13 +110,10 @@ CONS: Dependent on base class implementation</p>
 </section>
       <h4><a class="xref" href="GameFramework.UI.Screens.LoadingScreen.html">LoadingScreen</a></h4>
       <section><p>Loading screen that displays loading progress and messages</p>
-<p>Design:</p>
-<ul>
-<li>Subscribes to loading progress events through EventSystem</li>
-<li>Updates loading text and progress display in real-time</li>
-<li>Handles multiple loading event types for comprehensive coverage</li>
-<li>Manages UI element references and lifecycle properly</li>
-</ul>
+<p>INTENT: Real-time loading progress display with event-driven updates
+DESIGN: Event-driven architecture using consolidated LoadingProgressEvent
+PROS: Single event subscription, clean separation of concerns, responsive UI
+CONS: Dependent on EventSystem for all updates</p>
 </section>
       <h4><a class="xref" href="GameFramework.UI.Screens.MainMenuScreen.html">MainMenuScreen</a></h4>
       <section><p>Main menu screen - pure UI component that only reports user interactions

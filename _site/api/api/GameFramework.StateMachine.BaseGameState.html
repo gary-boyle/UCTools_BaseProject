@@ -136,13 +136,12 @@ All dependencies are provided via constructor rather than service locator patter
   <h3 id="constructors">Constructors
 </h3>
   <a id="GameFramework_StateMachine_BaseGameState__ctor_" data-uid="GameFramework.StateMachine.BaseGameState.#ctor*"></a>
-  <h4 id="GameFramework_StateMachine_BaseGameState__ctor_GameFramework_StateMachine_Enum_GameStateType_GameFramework_StateMachine_Interfaces_IGameStateMachine_GameFramework_EventSystem_Interfaces_IEventSystem_GameFramework_Services_Interfaces_IAudioService_GameFramework_Services_Interfaces_IUIService_GameFramework_Input_Interfaces_IInputManager_GameFramework_Services_Interfaces_IConsoleService_GameFramework_Services_Interfaces_IGameDataService_" data-uid="GameFramework.StateMachine.BaseGameState.#ctor(GameFramework.StateMachine.Enum.GameStateType,GameFramework.StateMachine.Interfaces.IGameStateMachine,GameFramework.EventSystem.Interfaces.IEventSystem,GameFramework.Services.Interfaces.IAudioService,GameFramework.Services.Interfaces.IUIService,GameFramework.Input.Interfaces.IInputManager,GameFramework.Services.Interfaces.IConsoleService,GameFramework.Services.Interfaces.IGameDataService)">BaseGameState(GameStateType, IGameStateMachine, IEventSystem, IAudioService, IUIService, IInputManager, IConsoleService, IGameDataService)</h4>
-  <div class="markdown level1 summary"><p>Constructor injection - all dependencies provided by DI container</p>
-</div>
+  <h4 id="GameFramework_StateMachine_BaseGameState__ctor_GameFramework_StateMachine_Enum_GameStateType_GameFramework_Core_GameContext_GameFramework_StateMachine_Interfaces_IGameStateMachine_" data-uid="GameFramework.StateMachine.BaseGameState.#ctor(GameFramework.StateMachine.Enum.GameStateType,GameFramework.Core.GameContext,GameFramework.StateMachine.Interfaces.IGameStateMachine)">BaseGameState(GameStateType, GameContext, IGameStateMachine)</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected BaseGameState(GameStateType stateType, IGameStateMachine stateMachine, IEventSystem eventSystem, IAudioService audioService, IUIService uiService, IInputManager inputService, IConsoleService consoleService, IGameDataService gameDataService)</code></pre>
+    <pre><code class="lang-csharp hljs">protected BaseGameState(GameStateType stateType, GameContext context, IGameStateMachine stateMachine)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -160,154 +159,19 @@ All dependencies are provided via constructor rather than service locator patter
         <td></td>
       </tr>
       <tr>
+        <td><a class="xref" href="GameFramework.Core.GameContext.html">GameContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+      <tr>
         <td><a class="xref" href="GameFramework.StateMachine.Interfaces.IGameStateMachine.html">IGameStateMachine</a></td>
         <td><span class="parametername">stateMachine</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GameFramework.EventSystem.Interfaces.IEventSystem.html">IEventSystem</a></td>
-        <td><span class="parametername">eventSystem</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GameFramework.Services.Interfaces.IAudioService.html">IAudioService</a></td>
-        <td><span class="parametername">audioService</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GameFramework.Services.Interfaces.IUIService.html">IUIService</a></td>
-        <td><span class="parametername">uiService</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GameFramework.Input.Interfaces.IInputManager.html">IInputManager</a></td>
-        <td><span class="parametername">inputService</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GameFramework.Services.Interfaces.IConsoleService.html">IConsoleService</a></td>
-        <td><span class="parametername">consoleService</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GameFramework.Services.Interfaces.IGameDataService.html">IGameDataService</a></td>
-        <td><span class="parametername">gameDataService</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h3 id="fields">Fields
 </h3>
-  <h4 id="GameFramework_StateMachine_BaseGameState_AudioService" data-uid="GameFramework.StateMachine.BaseGameState.AudioService">AudioService</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected readonly IAudioService AudioService</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="GameFramework.Services.Interfaces.IAudioService.html">IAudioService</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h4 id="GameFramework_StateMachine_BaseGameState_ConsoleService" data-uid="GameFramework.StateMachine.BaseGameState.ConsoleService">ConsoleService</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected readonly IConsoleService ConsoleService</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="GameFramework.Services.Interfaces.IConsoleService.html">IConsoleService</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h4 id="GameFramework_StateMachine_BaseGameState_EventSystem" data-uid="GameFramework.StateMachine.BaseGameState.EventSystem">EventSystem</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected readonly IEventSystem EventSystem</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="GameFramework.EventSystem.Interfaces.IEventSystem.html">IEventSystem</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h4 id="GameFramework_StateMachine_BaseGameState_GameDataService" data-uid="GameFramework.StateMachine.BaseGameState.GameDataService">GameDataService</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected readonly IGameDataService GameDataService</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="GameFramework.Services.Interfaces.IGameDataService.html">IGameDataService</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h4 id="GameFramework_StateMachine_BaseGameState_InputManager" data-uid="GameFramework.StateMachine.BaseGameState.InputManager">InputManager</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected readonly IInputManager InputManager</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="GameFramework.Input.Interfaces.IInputManager.html">IInputManager</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <h4 id="GameFramework_StateMachine_BaseGameState_StateMachine" data-uid="GameFramework.StateMachine.BaseGameState.StateMachine">StateMachine</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -330,14 +194,17 @@ All dependencies are provided via constructor rather than service locator patter
       </tr>
     </tbody>
   </table>
-  <h4 id="GameFramework_StateMachine_BaseGameState_UIService" data-uid="GameFramework.StateMachine.BaseGameState.UIService">UIService</h4>
+  <h3 id="properties">Properties
+</h3>
+  <a id="GameFramework_StateMachine_BaseGameState_AudioService_" data-uid="GameFramework.StateMachine.BaseGameState.AudioService*"></a>
+  <h4 id="GameFramework_StateMachine_BaseGameState_AudioService" data-uid="GameFramework.StateMachine.BaseGameState.AudioService">AudioService</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected readonly IUIService UIService</code></pre>
+    <pre><code class="lang-csharp hljs">protected IAudioService AudioService { get; }</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
+  <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
@@ -347,13 +214,34 @@ All dependencies are provided via constructor rather than service locator patter
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="GameFramework.Services.Interfaces.IUIService.html">IUIService</a></td>
+        <td><a class="xref" href="GameFramework.Services.Interfaces.IAudioService.html">IAudioService</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <h3 id="properties">Properties
-</h3>
+  <a id="GameFramework_StateMachine_BaseGameState_ConsoleService_" data-uid="GameFramework.StateMachine.BaseGameState.ConsoleService*"></a>
+  <h4 id="GameFramework_StateMachine_BaseGameState_ConsoleService" data-uid="GameFramework.StateMachine.BaseGameState.ConsoleService">ConsoleService</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected IConsoleService ConsoleService { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Services.Interfaces.IConsoleService.html">IConsoleService</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <a id="GameFramework_StateMachine_BaseGameState_Context_" data-uid="GameFramework.StateMachine.BaseGameState.Context*"></a>
   <h4 id="GameFramework_StateMachine_BaseGameState_Context" data-uid="GameFramework.StateMachine.BaseGameState.Context">Context</h4>
   <div class="markdown level1 summary"></div>
@@ -373,6 +261,98 @@ All dependencies are provided via constructor rather than service locator patter
     <tbody>
       <tr>
         <td><a class="xref" href="GameFramework.Core.GameContext.html">GameContext</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_StateMachine_BaseGameState_EventSystem_" data-uid="GameFramework.StateMachine.BaseGameState.EventSystem*"></a>
+  <h4 id="GameFramework_StateMachine_BaseGameState_EventSystem" data-uid="GameFramework.StateMachine.BaseGameState.EventSystem">EventSystem</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected IEventSystem EventSystem { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.EventSystem.Interfaces.IEventSystem.html">IEventSystem</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_StateMachine_BaseGameState_GameDataService_" data-uid="GameFramework.StateMachine.BaseGameState.GameDataService*"></a>
+  <h4 id="GameFramework_StateMachine_BaseGameState_GameDataService" data-uid="GameFramework.StateMachine.BaseGameState.GameDataService">GameDataService</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected IGameDataService GameDataService { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Services.Interfaces.IGameDataService.html">IGameDataService</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_StateMachine_BaseGameState_GraphicsService_" data-uid="GameFramework.StateMachine.BaseGameState.GraphicsService*"></a>
+  <h4 id="GameFramework_StateMachine_BaseGameState_GraphicsService" data-uid="GameFramework.StateMachine.BaseGameState.GraphicsService">GraphicsService</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected IGraphicsService GraphicsService { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Services.Interfaces.IGraphicsService.html">IGraphicsService</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_StateMachine_BaseGameState_InputManager_" data-uid="GameFramework.StateMachine.BaseGameState.InputManager*"></a>
+  <h4 id="GameFramework_StateMachine_BaseGameState_InputManager" data-uid="GameFramework.StateMachine.BaseGameState.InputManager">InputManager</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected IInputManager InputManager { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Input.Interfaces.IInputManager.html">IInputManager</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -400,6 +380,98 @@ All dependencies are provided via constructor rather than service locator patter
       </tr>
     </tbody>
   </table>
+  <a id="GameFramework_StateMachine_BaseGameState_LoadService_" data-uid="GameFramework.StateMachine.BaseGameState.LoadService*"></a>
+  <h4 id="GameFramework_StateMachine_BaseGameState_LoadService" data-uid="GameFramework.StateMachine.BaseGameState.LoadService">LoadService</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ILoadService LoadService { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Services.Interfaces.ILoadService.html">ILoadService</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_StateMachine_BaseGameState_PauseService_" data-uid="GameFramework.StateMachine.BaseGameState.PauseService*"></a>
+  <h4 id="GameFramework_StateMachine_BaseGameState_PauseService" data-uid="GameFramework.StateMachine.BaseGameState.PauseService">PauseService</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected IPauseService PauseService { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Services.Interfaces.IPauseService.html">IPauseService</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_StateMachine_BaseGameState_SaveService_" data-uid="GameFramework.StateMachine.BaseGameState.SaveService*"></a>
+  <h4 id="GameFramework_StateMachine_BaseGameState_SaveService" data-uid="GameFramework.StateMachine.BaseGameState.SaveService">SaveService</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ISaveService SaveService { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Services.Interfaces.ISaveService.html">ISaveService</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_StateMachine_BaseGameState_SceneService_" data-uid="GameFramework.StateMachine.BaseGameState.SceneService*"></a>
+  <h4 id="GameFramework_StateMachine_BaseGameState_SceneService" data-uid="GameFramework.StateMachine.BaseGameState.SceneService">SceneService</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ISceneService SceneService { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Services.Interfaces.ISceneService.html">ISceneService</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <a id="GameFramework_StateMachine_BaseGameState_StateType_" data-uid="GameFramework.StateMachine.BaseGameState.StateType*"></a>
   <h4 id="GameFramework_StateMachine_BaseGameState_StateType" data-uid="GameFramework.StateMachine.BaseGameState.StateType">StateType</h4>
   <div class="markdown level1 summary"></div>
@@ -419,6 +491,52 @@ All dependencies are provided via constructor rather than service locator patter
     <tbody>
       <tr>
         <td><a class="xref" href="GameFramework.StateMachine.Enum.GameStateType.html">GameStateType</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_StateMachine_BaseGameState_TimeService_" data-uid="GameFramework.StateMachine.BaseGameState.TimeService*"></a>
+  <h4 id="GameFramework_StateMachine_BaseGameState_TimeService" data-uid="GameFramework.StateMachine.BaseGameState.TimeService">TimeService</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ITimeService TimeService { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Services.Interfaces.ITimeService.html">ITimeService</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_StateMachine_BaseGameState_UIService_" data-uid="GameFramework.StateMachine.BaseGameState.UIService*"></a>
+  <h4 id="GameFramework_StateMachine_BaseGameState_UIService" data-uid="GameFramework.StateMachine.BaseGameState.UIService">UIService</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected IUIService UIService { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Services.Interfaces.IUIService.html">IUIService</a></td>
         <td></td>
       </tr>
     </tbody>

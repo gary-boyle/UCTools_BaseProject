@@ -89,30 +89,21 @@
 Classes
 </h3>
       <h4><a class="xref" href="GameFramework.Services.AudioService.html">AudioService</a></h4>
-      <section><p>Audio service implementation with constructor injection</p>
-</section>
-      <h4><a class="xref" href="GameFramework.Services.ConfigService.html">ConfigService</a></h4>
-      <section><p>Configuration service implementation with typed ScriptableObject ConfigCategory integration and query support</p>
-<p>Intent: Centralized configuration management with ScriptableObject registry and query capabilities
-Design: Service locator pattern with type-based lookup for ScriptableObjects
-Pros:</p>
-<ul>
-<li>Centralized ScriptableObject management</li>
-<li>Type-safe querying</li>
-<li>Clean separation of concerns</li>
-<li>Easy testing and mocking
-Cons:</li>
-<li>Additional complexity for ScriptableObject management</li>
-<li>Memory overhead for type dictionaries</li>
-</ul>
+      <section><p>AudioService with intelligent music management
+Compares requested clips against currently playing clips to avoid unnecessary restarts</p>
+<p>INTENT: Centralize all audio intelligence in the service layer
+DESIGN: Compare actual AudioClips rather than relying on external state checks
+PROS: Clean separation of concerns, states stay simple, centralized audio logic
+CONS: Requires clip comparison overhead (minimal)</p>
 </section>
       <h4><a class="xref" href="GameFramework.Services.ConsoleService.html">ConsoleService</a></h4>
-      <section><p>Service that orchestrates the debug console system using dependency injection.</p>
+      <section><p>Service that orchestrates the debug console system using dependency injection.
+Now integrates with debug settings for console and logging control.</p>
 <p>Architecture:</p>
 <ul>
-<li>Manages console state (open/closed)</li>
+<li>Manages console state (open/closed) based on debug.console_enabled setting</li>
+<li>Manages verbose logging based on debug.verbose_logging setting</li>
 <li>Provides public API for other systems to interact with console</li>
-<li>Respects debug settings from configuration</li>
 <li>Input conflict management is handled by ConsoleInputHandler</li>
 </ul>
 <p>Flow:</p>
@@ -120,8 +111,8 @@ Cons:</li>
 <li>Receives toggle input events from InputManager</li>
 <li>Checks if console is enabled in debug settings</li>
 <li>Updates console open/closed state only if enabled</li>
+<li>Applies logging settings when configuration changes</li>
 <li>ConsoleInputHandler automatically manages input conflicts by checking IsConsoleOpen()</li>
-<li>Delegates UI updates to ConsoleGUI via Console static class</li>
 </ol>
 </section>
       <h4><a class="xref" href="GameFramework.Services.GameDataService.html">GameDataService</a></h4>
@@ -148,6 +139,14 @@ Cons:</li>
 <li>Debugging event flow requires EventSystem awareness</li>
 </ul>
 </section>
+      <h4><a class="xref" href="GameFramework.Services.GraphicsService.html">GraphicsService</a></h4>
+      <section><p>Graphics service that handles all Unity graphics API calls
+Responds to configuration changes via events</p>
+<p>INTENT: Centralize all graphics settings application
+DESIGN: Event-driven graphics management, single responsibility
+PROS: Clean separation, all graphics logic in one place, easily testable
+CONS: Additional service complexity</p>
+</section>
       <h4><a class="xref" href="GameFramework.Services.LoadService.html">LoadService</a></h4>
       <section><p>Service that handles all game loading operations using EventSystem
 Clean separation - only deals with loading files and validation for loading
@@ -160,11 +159,9 @@ Uses EventSystem for all event publishing instead of local events</p>
 </section>
       <h4><a class="xref" href="GameFramework.Services.SaveService.html">SaveService</a></h4>
       <section><p>Save service that handles file saving operations and save file metadata via event system
+Now includes auto-save scheduling based on gameplay settings
 Clean separation - UI triggers saves via events, service handles implementation
 All loading operations are handled by LoadService</p>
-<p>Design: Event-driven architecture with caching for performance
-Pros: Decoupled, performant metadata caching, player-specific autosaves
-Cons: Async complexity, cache invalidation management</p>
 </section>
       <h4><a class="xref" href="GameFramework.Services.SceneService.html">SceneService</a></h4>
       <section><p>Scene service implementation with constructor injection</p>
@@ -179,7 +176,8 @@ Cons: Depends on proper event firing from other systems</p>
 </section>
       <h4><a class="xref" href="GameFramework.Services.UIService.html">UIService</a></h4>
       <section><p>UI service implementation with constructor injection and centralized screen updates
-Implements IUpdatable to manage frame-based updates for screens that need them</p>
+Implements IUpdatable to manage frame-based updates for screens that need them
+Now handles debug settings integration for automatic debug popup management</p>
 </section>
 
 

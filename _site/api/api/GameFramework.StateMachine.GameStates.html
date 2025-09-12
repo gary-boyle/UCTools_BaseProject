@@ -95,18 +95,10 @@ All required services are injected via constructor rather than resolved at runti
       <h4><a class="xref" href="GameFramework.StateMachine.GameStates.CreditsState.html">CreditsState</a></h4>
       <section><p>Credits state - manages the credits screen and handles navigation
 Responsible for its UI lifecycle and event handling</p>
-<p>Intent: Display game credits with appropriate audio and handle user navigation
-Design: Event-driven state management with clean separation of concerns
-Pros: Clear responsibility separation, maintainable, follows established patterns
-Cons: Requires careful event subscription management</p>
 </section>
       <h4><a class="xref" href="GameFramework.StateMachine.GameStates.GameOverState.html">GameOverState</a></h4>
       <section><p>Game Over state - manages the game over screen and handles player choices
 Responsible for its UI lifecycle and event handling</p>
-<p>Intent: Present game over state with options to restart, load game, or return to menu
-Design: Event-driven state management with clear separation of concerns
-Pros: Clear responsibility separation, multiple player options, maintainable
-Cons: Requires careful event subscription management</p>
 </section>
       <h4><a class="xref" href="GameFramework.StateMachine.GameStates.LoadingState.html">LoadingState</a></h4>
       <section><p>Loading state that handles different loading scenarios using unified GameSession system
@@ -124,18 +116,10 @@ Handles all UI transitions based on user interactions reported by the screen</p>
       <h4><a class="xref" href="GameFramework.StateMachine.GameStates.PlayingState.html">PlayingState</a></h4>
       <section><p>Playing state - reacts to pause state changes from PauseService
 Manages UI in response to actual pause/resume events</p>
-<p>Intent: Manage the main gameplay state by reacting to pause state changes
-Design: Reactive event-driven architecture - responds to state changes rather than intercepting requests
-Pros: Cleaner separation, more reactive, simpler flow
-Cons: Less control over when pausing occurs</p>
 </section>
       <h4><a class="xref" href="GameFramework.StateMachine.GameStates.QuitState.html">QuitState</a></h4>
       <section><p>Quit state - handles graceful application shutdown with progress feedback
-Responsible for saving data, cleaning up resources, and exiting the application</p>
-<p>Intent: Provide graceful shutdown with user feedback and cancellation support
-Design: Progressive shutdown with clear stages and user communication
-Pros: Safe data preservation, clear user feedback, cancellation support
-Cons: More complex than immediate quit, requires careful resource management</p>
+Responsible for cleaning up resources, and exiting the application</p>
 </section>
       <h4><a class="xref" href="GameFramework.StateMachine.GameStates.SplashState.html">SplashState</a></h4>
       <section><p>Splash state with event-driven input handling and constructor injection</p>
@@ -143,10 +127,6 @@ Cons: More complex than immediate quit, requires careful resource management</p>
       <h4><a class="xref" href="GameFramework.StateMachine.GameStates.VictoryState.html">VictoryState</a></h4>
       <section><p>Victory state - manages the victory screen and celebrates player success
 Responsible for its UI lifecycle and event handling</p>
-<p>Intent: Celebrate player victory, show achievements, and provide options for continued play
-Design: Event-driven state management with clear separation of concerns
-Pros: Celebratory UX, clear progression options, maintainable, analytics integration
-Cons: Requires careful event subscription management</p>
 </section>
 
 

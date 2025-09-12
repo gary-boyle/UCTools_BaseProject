@@ -84,7 +84,12 @@
 
 
   <h1 id="GameFramework_Services_AudioService" data-uid="GameFramework.Services.AudioService" class="text-break">Class AudioService</h1>
-  <div class="markdown level0 summary"><p>Audio service implementation with constructor injection</p>
+  <div class="markdown level0 summary"><p>AudioService with intelligent music management
+Compares requested clips against currently playing clips to avoid unnecessary restarts</p>
+<p>INTENT: Centralize all audio intelligence in the service layer
+DESIGN: Compare actual AudioClips rather than relying on external state checks
+PROS: Clean separation of concerns, states stay simple, centralized audio logic
+CONS: Requires clip comparison overhead (minimal)</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -96,6 +101,7 @@
     <h5>Implements</h5>
     <div><a class="xref" href="GameFramework.Services.Interfaces.IAudioService.html">IAudioService</a></div>
     <div><a class="xref" href="GameFramework.Services.Interfaces.IGameService.html">IGameService</a></div>
+    <div><a class="xref" href="GameFramework.StateMachine.Interfaces.IUpdatable.html">IUpdatable</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -125,18 +131,17 @@
   <h6><strong>Assembly</strong>: .dll</h6>
   <h5 id="GameFramework_Services_AudioService_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class AudioService : IAudioService, IGameService</code></pre>
+    <pre><code class="lang-csharp hljs">public class AudioService : IAudioService, IGameService, IUpdatable</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
   <a id="GameFramework_Services_AudioService__ctor_" data-uid="GameFramework.Services.AudioService.#ctor*"></a>
-  <h4 id="GameFramework_Services_AudioService__ctor_GameFramework_EventSystem_Interfaces_IEventSystem_GameFramework_Services_Interfaces_IConfigService_" data-uid="GameFramework.Services.AudioService.#ctor(GameFramework.EventSystem.Interfaces.IEventSystem,GameFramework.Services.Interfaces.IConfigService)">AudioService(IEventSystem, IConfigService)</h4>
-  <div class="markdown level1 summary"><p>Constructor injection - receives required dependencies</p>
-</div>
+  <h4 id="GameFramework_Services_AudioService__ctor_GameFramework_EventSystem_Interfaces_IEventSystem_" data-uid="GameFramework.Services.AudioService.#ctor(GameFramework.EventSystem.Interfaces.IEventSystem)">AudioService(IEventSystem)</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public AudioService(IEventSystem eventSystem, IConfigService configService)</code></pre>
+    <pre><code class="lang-csharp hljs">public AudioService(IEventSystem eventSystem)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -151,11 +156,6 @@
       <tr>
         <td><a class="xref" href="GameFramework.EventSystem.Interfaces.IEventSystem.html">IEventSystem</a></td>
         <td><span class="parametername">eventSystem</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GameFramework.Services.Interfaces.IConfigService.html">IConfigService</a></td>
-        <td><span class="parametername">configService</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -187,6 +187,30 @@
   </table>
   <h3 id="methods">Methods
 </h3>
+  <a id="GameFramework_Services_AudioService_GetAudioDatabase_" data-uid="GameFramework.Services.AudioService.GetAudioDatabase*"></a>
+  <h4 id="GameFramework_Services_AudioService_GetAudioDatabase" data-uid="GameFramework.Services.AudioService.GetAudioDatabase">GetAudioDatabase()</h4>
+  <div class="markdown level1 summary"><p>Provide access to the audio database for individual GameObjects</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AudioDatabase_SO GetAudioDatabase()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Audio.AudioDatabase_SO.html">AudioDatabase_SO</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <a id="GameFramework_Services_AudioService_GetMasterVolume_" data-uid="GameFramework.Services.AudioService.GetMasterVolume*"></a>
   <h4 id="GameFramework_Services_AudioService_GetMasterVolume" data-uid="GameFramework.Services.AudioService.GetMasterVolume">GetMasterVolume()</h4>
   <div class="markdown level1 summary"></div>
@@ -233,6 +257,30 @@
       </tr>
     </tbody>
   </table>
+  <a id="GameFramework_Services_AudioService_GetSFXMixerGroup_" data-uid="GameFramework.Services.AudioService.GetSFXMixerGroup*"></a>
+  <h4 id="GameFramework_Services_AudioService_GetSFXMixerGroup" data-uid="GameFramework.Services.AudioService.GetSFXMixerGroup">GetSFXMixerGroup()</h4>
+  <div class="markdown level1 summary"><p>Provide access to mixer groups for GameObjects</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AudioMixerGroup GetSFXMixerGroup()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">AudioMixerGroup</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <a id="GameFramework_Services_AudioService_GetSFXVolume_" data-uid="GameFramework.Services.AudioService.GetSFXVolume*"></a>
   <h4 id="GameFramework_Services_AudioService_GetSFXVolume" data-uid="GameFramework.Services.AudioService.GetSFXVolume">GetSFXVolume()</h4>
   <div class="markdown level1 summary"></div>
@@ -240,6 +288,29 @@
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public float GetSFXVolume()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Services_AudioService_GetUIVolume_" data-uid="GameFramework.Services.AudioService.GetUIVolume*"></a>
+  <h4 id="GameFramework_Services_AudioService_GetUIVolume" data-uid="GameFramework.Services.AudioService.GetUIVolume">GetUIVolume()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float GetUIVolume()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-condensed">
@@ -279,13 +350,13 @@
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_Services_AudioService_PlayMusic_" data-uid="GameFramework.Services.AudioService.PlayMusic*"></a>
-  <h4 id="GameFramework_Services_AudioService_PlayMusic_System_String_" data-uid="GameFramework.Services.AudioService.PlayMusic(System.String)">PlayMusic(string)</h4>
+  <a id="GameFramework_Services_AudioService_InitializeAsync_" data-uid="GameFramework.Services.AudioService.InitializeAsync*"></a>
+  <h4 id="GameFramework_Services_AudioService_InitializeAsync_GameFramework_Audio_AudioManager_" data-uid="GameFramework.Services.AudioService.InitializeAsync(GameFramework.Audio.AudioManager)">InitializeAsync(AudioManager)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void PlayMusic(string musicName)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task InitializeAsync(AudioManager audioManager)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -298,33 +369,23 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">musicName</span></td>
+        <td><a class="xref" href="GameFramework.Audio.AudioManager.html">AudioManager</a></td>
+        <td><span class="parametername">audioManager</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_Services_AudioService_PlaySound_" data-uid="GameFramework.Services.AudioService.PlaySound*"></a>
-  <h4 id="GameFramework_Services_AudioService_PlaySound_System_String_" data-uid="GameFramework.Services.AudioService.PlaySound(System.String)">PlaySound(string)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void PlaySound(string soundName)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
+  <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Name</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">soundName</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -404,29 +465,13 @@
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_Services_AudioService_Shutdown_" data-uid="GameFramework.Services.AudioService.Shutdown*"></a>
-  <h4 id="GameFramework_Services_AudioService_Shutdown" data-uid="GameFramework.Services.AudioService.Shutdown">Shutdown()</h4>
+  <a id="GameFramework_Services_AudioService_SetUIVolume_" data-uid="GameFramework.Services.AudioService.SetUIVolume*"></a>
+  <h4 id="GameFramework_Services_AudioService_SetUIVolume_System_Single_" data-uid="GameFramework.Services.AudioService.SetUIVolume(System.Single)">SetUIVolume(float)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Shutdown()</code></pre>
-  </div>
-  <a id="GameFramework_Services_AudioService_StopMusic_" data-uid="GameFramework.Services.AudioService.StopMusic*"></a>
-  <h4 id="GameFramework_Services_AudioService_StopMusic" data-uid="GameFramework.Services.AudioService.StopMusic">StopMusic()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void StopMusic()</code></pre>
-  </div>
-  <a id="GameFramework_Services_AudioService_StopSound_" data-uid="GameFramework.Services.AudioService.StopSound*"></a>
-  <h4 id="GameFramework_Services_AudioService_StopSound_System_String_" data-uid="GameFramework.Services.AudioService.StopSound(System.String)">StopSound(string)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void StopSound(string soundName)</code></pre>
+    <pre><code class="lang-csharp hljs">public void SetUIVolume(float volume)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -439,18 +484,38 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">soundName</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td><span class="parametername">volume</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
+  <a id="GameFramework_Services_AudioService_Shutdown_" data-uid="GameFramework.Services.AudioService.Shutdown*"></a>
+  <h4 id="GameFramework_Services_AudioService_Shutdown" data-uid="GameFramework.Services.AudioService.Shutdown">Shutdown()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Shutdown()</code></pre>
+  </div>
+  <a id="GameFramework_Services_AudioService_Update_" data-uid="GameFramework.Services.AudioService.Update*"></a>
+  <h4 id="GameFramework_Services_AudioService_Update" data-uid="GameFramework.Services.AudioService.Update">Update()</h4>
+  <div class="markdown level1 summary"><p>Update method handles music fade operations</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Update()</code></pre>
+  </div>
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="GameFramework.Services.Interfaces.IAudioService.html">IAudioService</a>
   </div>
   <div>
       <a class="xref" href="GameFramework.Services.Interfaces.IGameService.html">IGameService</a>
+  </div>
+  <div>
+      <a class="xref" href="GameFramework.StateMachine.Interfaces.IUpdatable.html">IUpdatable</a>
   </div>
 
 </article>

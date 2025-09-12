@@ -85,7 +85,8 @@
 
   <h1 id="GameFramework_Services_UIService" data-uid="GameFramework.Services.UIService" class="text-break">Class UIService</h1>
   <div class="markdown level0 summary"><p>UI service implementation with constructor injection and centralized screen updates
-Implements IUpdatable to manage frame-based updates for screens that need them</p>
+Implements IUpdatable to manage frame-based updates for screens that need them
+Now handles debug settings integration for automatic debug popup management</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -249,8 +250,7 @@ Implements IUpdatable to manage frame-based updates for screens that need them</
 </h3>
   <a id="GameFramework_Services_UIService_CloseAllPopupsAsync_" data-uid="GameFramework.Services.UIService.CloseAllPopupsAsync*"></a>
   <h4 id="GameFramework_Services_UIService_CloseAllPopupsAsync" data-uid="GameFramework.Services.UIService.CloseAllPopupsAsync">CloseAllPopupsAsync()</h4>
-  <div class="markdown level1 summary"><p>Closes all currently open popups and clears the popup stack</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -273,7 +273,7 @@ Implements IUpdatable to manage frame-based updates for screens that need them</
   </table>
   <a id="GameFramework_Services_UIService_CloseAllPopupsForLoading_" data-uid="GameFramework.Services.UIService.CloseAllPopupsForLoading*"></a>
   <h4 id="GameFramework_Services_UIService_CloseAllPopupsForLoading" data-uid="GameFramework.Services.UIService.CloseAllPopupsForLoading">CloseAllPopupsForLoading()</h4>
-  <div class="markdown level1 summary"><p>Much cleaner than maintaining a specific list of popups to close</p>
+  <div class="markdown level1 summary"><p>Close all popups for loading operations</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -297,9 +297,7 @@ Implements IUpdatable to manage frame-based updates for screens that need them</
   </table>
   <a id="GameFramework_Services_UIService_ForceClosePopupAsync_" data-uid="GameFramework.Services.UIService.ForceClosePopupAsync*"></a>
   <h4 id="GameFramework_Services_UIService_ForceClosePopupAsync__1" data-uid="GameFramework.Services.UIService.ForceClosePopupAsync``1">ForceClosePopupAsync&lt;T&gt;()</h4>
-  <div class="markdown level1 summary"><p>Force close a specific popup type regardless of stack position
-Use this for cleanup when transitions get stuck</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -337,8 +335,7 @@ Use this for cleanup when transitions get stuck</p>
   </table>
   <a id="GameFramework_Services_UIService_GetCurrentPopup_" data-uid="GameFramework.Services.UIService.GetCurrentPopup*"></a>
   <h4 id="GameFramework_Services_UIService_GetCurrentPopup" data-uid="GameFramework.Services.UIService.GetCurrentPopup">GetCurrentPopup()</h4>
-  <div class="markdown level1 summary"><p>Gets the currently visible popup (null if none)</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -361,8 +358,7 @@ Use this for cleanup when transitions get stuck</p>
   </table>
   <a id="GameFramework_Services_UIService_GetCurrentPopupType_" data-uid="GameFramework.Services.UIService.GetCurrentPopupType*"></a>
   <h4 id="GameFramework_Services_UIService_GetCurrentPopupType" data-uid="GameFramework.Services.UIService.GetCurrentPopupType">GetCurrentPopupType()</h4>
-  <div class="markdown level1 summary"><p>Gets the type of the currently visible popup (null if none)</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -385,8 +381,7 @@ Use this for cleanup when transitions get stuck</p>
   </table>
   <a id="GameFramework_Services_UIService_GetOpenPopupCount_" data-uid="GameFramework.Services.UIService.GetOpenPopupCount*"></a>
   <h4 id="GameFramework_Services_UIService_GetOpenPopupCount" data-uid="GameFramework.Services.UIService.GetOpenPopupCount">GetOpenPopupCount()</h4>
-  <div class="markdown level1 summary"><p>Gets the number of open popups (current + stacked)</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -409,8 +404,7 @@ Use this for cleanup when transitions get stuck</p>
   </table>
   <a id="GameFramework_Services_UIService_GetPopupStack_" data-uid="GameFramework.Services.UIService.GetPopupStack*"></a>
   <h4 id="GameFramework_Services_UIService_GetPopupStack" data-uid="GameFramework.Services.UIService.GetPopupStack">GetPopupStack()</h4>
-  <div class="markdown level1 summary"><p>Gets all popups in the current stack (excluding current popup)</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -433,9 +427,7 @@ Use this for cleanup when transitions get stuck</p>
   </table>
   <a id="GameFramework_Services_UIService_GetPopupStackPosition_" data-uid="GameFramework.Services.UIService.GetPopupStackPosition*"></a>
   <h4 id="GameFramework_Services_UIService_GetPopupStackPosition__1" data-uid="GameFramework.Services.UIService.GetPopupStackPosition``1">GetPopupStackPosition&lt;T&gt;()</h4>
-  <div class="markdown level1 summary"><p>Get the position of a popup in the stack (0 = current, 1 = top of stack, etc.)
-Returns -1 if popup is not open</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -549,8 +541,7 @@ Returns -1 if popup is not open</p>
   </table>
   <a id="GameFramework_Services_UIService_HasOpenPopups_" data-uid="GameFramework.Services.UIService.HasOpenPopups*"></a>
   <h4 id="GameFramework_Services_UIService_HasOpenPopups" data-uid="GameFramework.Services.UIService.HasOpenPopups">HasOpenPopups()</h4>
-  <div class="markdown level1 summary"><p>Checks if any popups are currently open</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -611,8 +602,7 @@ Returns -1 if popup is not open</p>
   </table>
   <a id="GameFramework_Services_UIService_HidePopupAsync_" data-uid="GameFramework.Services.UIService.HidePopupAsync*"></a>
   <h4 id="GameFramework_Services_UIService_HidePopupAsync__1_System_Boolean_" data-uid="GameFramework.Services.UIService.HidePopupAsync``1(System.Boolean)">HidePopupAsync&lt;T&gt;(bool)</h4>
-  <div class="markdown level1 summary"><p>Enhanced hide popup method that can optionally close all popups</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -728,8 +718,7 @@ Returns -1 if popup is not open</p>
   </table>
   <a id="GameFramework_Services_UIService_IsCurrentPopup_" data-uid="GameFramework.Services.UIService.IsCurrentPopup*"></a>
   <h4 id="GameFramework_Services_UIService_IsCurrentPopup__1" data-uid="GameFramework.Services.UIService.IsCurrentPopup``1">IsCurrentPopup&lt;T&gt;()</h4>
-  <div class="markdown level1 summary"><p>Checks if a specific popup type is currently the active popup</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -767,8 +756,7 @@ Returns -1 if popup is not open</p>
   </table>
   <a id="GameFramework_Services_UIService_IsPopupOpen_" data-uid="GameFramework.Services.UIService.IsPopupOpen*"></a>
   <h4 id="GameFramework_Services_UIService_IsPopupOpen__1" data-uid="GameFramework.Services.UIService.IsPopupOpen``1">IsPopupOpen&lt;T&gt;()</h4>
-  <div class="markdown level1 summary"><p>Check if a specific popup is currently open (either current or in stack)</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">

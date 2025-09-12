@@ -161,13 +161,13 @@ public class PlayingState : IGameState
   <h3 id="constructors">Constructors
 </h3>
   <a id="GameFramework_Core_GameContext__ctor_" data-uid="GameFramework.Core.GameContext.#ctor*"></a>
-  <h4 id="GameFramework_Core_GameContext__ctor_GameFramework_EventSystem_Interfaces_IEventSystem_GameFramework_Services_Interfaces_ISceneService_GameFramework_Services_Interfaces_IAudioService_GameFramework_Input_Interfaces_IInputManager_GameFramework_Services_Interfaces_IUIService_GameFramework_Services_Interfaces_ISaveService_GameFramework_Services_Interfaces_IConfigService_GameFramework_Services_Interfaces_IGameDataService_" data-uid="GameFramework.Core.GameContext.#ctor(GameFramework.EventSystem.Interfaces.IEventSystem,GameFramework.Services.Interfaces.ISceneService,GameFramework.Services.Interfaces.IAudioService,GameFramework.Input.Interfaces.IInputManager,GameFramework.Services.Interfaces.IUIService,GameFramework.Services.Interfaces.ISaveService,GameFramework.Services.Interfaces.IConfigService,GameFramework.Services.Interfaces.IGameDataService)">GameContext(IEventSystem, ISceneService, IAudioService, IInputManager, IUIService, ISaveService, IConfigService, IGameDataService)</h4>
+  <h4 id="GameFramework_Core_GameContext__ctor_GameFramework_EventSystem_Interfaces_IEventSystem_GameFramework_Services_Interfaces_ISceneService_GameFramework_Services_Interfaces_IAudioService_GameFramework_Input_Interfaces_IInputManager_GameFramework_Services_Interfaces_IUIService_GameFramework_Services_Interfaces_ISaveService_GameFramework_Services_Interfaces_IGameDataService_GameFramework_Services_Interfaces_IConsoleService_GameFramework_Services_Interfaces_IGraphicsService_GameFramework_Services_Interfaces_IPauseService_GameFramework_Services_Interfaces_ITimeService_" data-uid="GameFramework.Core.GameContext.#ctor(GameFramework.EventSystem.Interfaces.IEventSystem,GameFramework.Services.Interfaces.ISceneService,GameFramework.Services.Interfaces.IAudioService,GameFramework.Input.Interfaces.IInputManager,GameFramework.Services.Interfaces.IUIService,GameFramework.Services.Interfaces.ISaveService,GameFramework.Services.Interfaces.IGameDataService,GameFramework.Services.Interfaces.IConsoleService,GameFramework.Services.Interfaces.IGraphicsService,GameFramework.Services.Interfaces.IPauseService,GameFramework.Services.Interfaces.ITimeService)">GameContext(IEventSystem, ISceneService, IAudioService, IInputManager, IUIService, ISaveService, IGameDataService, IConsoleService, IGraphicsService, IPauseService, ITimeService)</h4>
   <div class="markdown level1 summary"><p>Initializes a new instance of the GameContext with all required game services.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public GameContext(IEventSystem eventSystem, ISceneService sceneService, IAudioService audioService, IInputManager inputManager, IUIService uiService, ISaveService saveService, IConfigService configService, IGameDataService gameDataService)</code></pre>
+    <pre><code class="lang-csharp hljs">public GameContext(IEventSystem eventSystem, ISceneService sceneService, IAudioService audioService, IInputManager inputManager, IUIService uiService, ISaveService saveService, IGameDataService gameDataService, IConsoleService consoleService, IGraphicsService graphicsService, IPauseService pauseService, ITimeService timeService)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -216,20 +216,34 @@ public class PlayingState : IGameState
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="GameFramework.Services.Interfaces.IConfigService.html">IConfigService</a></td>
-        <td><span class="parametername">configService</span></td>
-        <td><p>The configuration service for settings management.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="GameFramework.Services.Interfaces.IGameDataService.html">IGameDataService</a></td>
         <td><span class="parametername">gameDataService</span></td>
         <td><p>The game data service for runtime game state.</p>
 </td>
       </tr>
+      <tr>
+        <td><a class="xref" href="GameFramework.Services.Interfaces.IConsoleService.html">IConsoleService</a></td>
+        <td><span class="parametername">consoleService</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="GameFramework.Services.Interfaces.IGraphicsService.html">IGraphicsService</a></td>
+        <td><span class="parametername">graphicsService</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="GameFramework.Services.Interfaces.IPauseService.html">IPauseService</a></td>
+        <td><span class="parametername">pauseService</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="GameFramework.Services.Interfaces.ITimeService.html">ITimeService</a></td>
+        <td><span class="parametername">timeService</span></td>
+        <td></td>
+      </tr>
     </tbody>
   </table>
-  <h5 id="GameFramework_Core_GameContext__ctor_GameFramework_EventSystem_Interfaces_IEventSystem_GameFramework_Services_Interfaces_ISceneService_GameFramework_Services_Interfaces_IAudioService_GameFramework_Input_Interfaces_IInputManager_GameFramework_Services_Interfaces_IUIService_GameFramework_Services_Interfaces_ISaveService_GameFramework_Services_Interfaces_IConfigService_GameFramework_Services_Interfaces_IGameDataService__remarks">Remarks</h5>
+  <h5 id="GameFramework_Core_GameContext__ctor_GameFramework_EventSystem_Interfaces_IEventSystem_GameFramework_Services_Interfaces_ISceneService_GameFramework_Services_Interfaces_IAudioService_GameFramework_Input_Interfaces_IInputManager_GameFramework_Services_Interfaces_IUIService_GameFramework_Services_Interfaces_ISaveService_GameFramework_Services_Interfaces_IGameDataService_GameFramework_Services_Interfaces_IConsoleService_GameFramework_Services_Interfaces_IGraphicsService_GameFramework_Services_Interfaces_IPauseService_GameFramework_Services_Interfaces_ITimeService__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>
 This constructor uses dependency injection to receive all core game services.
 All parameters are validated for null values, ensuring that the GameContext
@@ -241,7 +255,7 @@ during application startup. Manual instantiation is not recommended as it
 requires managing all service dependencies manually.
 </p>
 </div>
-  <h5 id="GameFramework_Core_GameContext__ctor_GameFramework_EventSystem_Interfaces_IEventSystem_GameFramework_Services_Interfaces_ISceneService_GameFramework_Services_Interfaces_IAudioService_GameFramework_Input_Interfaces_IInputManager_GameFramework_Services_Interfaces_IUIService_GameFramework_Services_Interfaces_ISaveService_GameFramework_Services_Interfaces_IConfigService_GameFramework_Services_Interfaces_IGameDataService__examples">Examples</h5>
+  <h5 id="GameFramework_Core_GameContext__ctor_GameFramework_EventSystem_Interfaces_IEventSystem_GameFramework_Services_Interfaces_ISceneService_GameFramework_Services_Interfaces_IAudioService_GameFramework_Input_Interfaces_IInputManager_GameFramework_Services_Interfaces_IUIService_GameFramework_Services_Interfaces_ISaveService_GameFramework_Services_Interfaces_IGameDataService_GameFramework_Services_Interfaces_IConsoleService_GameFramework_Services_Interfaces_IGraphicsService_GameFramework_Services_Interfaces_IPauseService_GameFramework_Services_Interfaces_ITimeService__examples">Examples</h5>
   <pre><code class="lang-csharp">// Typically handled by DI container
 container.RegisterSingleton&lt;GameContext&gt;();
 
@@ -295,14 +309,13 @@ var context = container.Resolve&lt;GameContext&gt;();</code></pre>
   <div class="markdown level1 remarks"><p>Handles audio playback, volume control, audio mixing, and integration
 with the game's configuration system for audio settings.</p>
 </div>
-  <a id="GameFramework_Core_GameContext_ConfigService_" data-uid="GameFramework.Core.GameContext.ConfigService*"></a>
-  <h4 id="GameFramework_Core_GameContext_ConfigService" data-uid="GameFramework.Core.GameContext.ConfigService">ConfigService</h4>
-  <div class="markdown level1 summary"><p>Gets the configuration service for managing game settings and preferences.</p>
-</div>
+  <a id="GameFramework_Core_GameContext_ConsoleService_" data-uid="GameFramework.Core.GameContext.ConsoleService*"></a>
+  <h4 id="GameFramework_Core_GameContext_ConsoleService" data-uid="GameFramework.Core.GameContext.ConsoleService">ConsoleService</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IConfigService ConfigService { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public IConsoleService ConsoleService { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
@@ -314,16 +327,11 @@ with the game's configuration system for audio settings.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="GameFramework.Services.Interfaces.IConfigService.html">IConfigService</a></td>
-        <td><p>The configuration service instance.</p>
-</td>
+        <td><a class="xref" href="GameFramework.Services.Interfaces.IConsoleService.html">IConsoleService</a></td>
+        <td></td>
       </tr>
     </tbody>
   </table>
-  <h5 id="GameFramework_Core_GameContext_ConfigService_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Manages game settings categories like audio, graphics, gameplay, and input preferences.
-Provides persistent storage and validation of configuration values.</p>
-</div>
   <a id="GameFramework_Core_GameContext_EventSystem_" data-uid="GameFramework.Core.GameContext.EventSystem*"></a>
   <h4 id="GameFramework_Core_GameContext_EventSystem" data-uid="GameFramework.Core.GameContext.EventSystem">EventSystem</h4>
   <div class="markdown level1 summary"><p>Gets the event system for publishing and subscribing to game events.</p>
@@ -382,6 +390,29 @@ Supports both synchronous and asynchronous event handling patterns.</p>
   <div class="markdown level1 remarks"><p>Handles runtime game state, player progress, session data, and other
 transient game information that needs to be shared across game states.</p>
 </div>
+  <a id="GameFramework_Core_GameContext_GraphicsService_" data-uid="GameFramework.Core.GameContext.GraphicsService*"></a>
+  <h4 id="GameFramework_Core_GameContext_GraphicsService" data-uid="GameFramework.Core.GameContext.GraphicsService">GraphicsService</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IGraphicsService GraphicsService { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Services.Interfaces.IGraphicsService.html">IGraphicsService</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <a id="GameFramework_Core_GameContext_InputManager_" data-uid="GameFramework.Core.GameContext.InputManager*"></a>
   <h4 id="GameFramework_Core_GameContext_InputManager" data-uid="GameFramework.Core.GameContext.InputManager">InputManager</h4>
   <div class="markdown level1 summary"><p>Gets the input manager for handling player input across different input systems.</p>
@@ -411,6 +442,52 @@ transient game information that needs to be shared across game states.</p>
   <div class="markdown level1 remarks"><p>Provides unified input handling that supports multiple input methods
 (keyboard, mouse, gamepad) and input contexts (UI, gameplay, console).</p>
 </div>
+  <a id="GameFramework_Core_GameContext_LoadService_" data-uid="GameFramework.Core.GameContext.LoadService*"></a>
+  <h4 id="GameFramework_Core_GameContext_LoadService" data-uid="GameFramework.Core.GameContext.LoadService">LoadService</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ILoadService LoadService { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Services.Interfaces.ILoadService.html">ILoadService</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Core_GameContext_PauseService_" data-uid="GameFramework.Core.GameContext.PauseService*"></a>
+  <h4 id="GameFramework_Core_GameContext_PauseService" data-uid="GameFramework.Core.GameContext.PauseService">PauseService</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IPauseService PauseService { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Services.Interfaces.IPauseService.html">IPauseService</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <a id="GameFramework_Core_GameContext_SaveService_" data-uid="GameFramework.Core.GameContext.SaveService*"></a>
   <h4 id="GameFramework_Core_GameContext_SaveService" data-uid="GameFramework.Core.GameContext.SaveService">SaveService</h4>
   <div class="markdown level1 summary"><p>Gets the save service for managing game save data and persistence.</p>
@@ -469,6 +546,29 @@ multiple save slots, data validation, and cross-platform compatibility.</p>
   <div class="markdown level1 remarks"><p>Provides unified scene loading with progress tracking, async operations,
 and integration with the game state system.</p>
 </div>
+  <a id="GameFramework_Core_GameContext_TimeService_" data-uid="GameFramework.Core.GameContext.TimeService*"></a>
+  <h4 id="GameFramework_Core_GameContext_TimeService" data-uid="GameFramework.Core.GameContext.TimeService">TimeService</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ITimeService TimeService { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Services.Interfaces.ITimeService.html">ITimeService</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <a id="GameFramework_Core_GameContext_UIService_" data-uid="GameFramework.Core.GameContext.UIService*"></a>
   <h4 id="GameFramework_Core_GameContext_UIService" data-uid="GameFramework.Core.GameContext.UIService">UIService</h4>
   <div class="markdown level1 summary"><p>Gets the UI service for managing user interface elements and screens.</p>

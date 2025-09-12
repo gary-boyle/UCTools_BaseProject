@@ -12,6 +12,510 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Audio.AudioDatabase_SO.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Audio.AudioDatabase_SO.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Audio.AudioDatabase_SO",
+      "Summary": "<p sourcefile=\"api/GameFramework.Audio.AudioDatabase_SO.yml\" sourcestartlinenumber=\"1\">ScriptableObject database for managing audio assets\nProvides centralized audio clip management without MonoBehaviour dependencies</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Audio.AudioManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Audio.AudioManager.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Audio.AudioManager",
+      "Summary": "<p sourcefile=\"api/GameFramework.Audio.AudioManager.yml\" sourcestartlinenumber=\"1\">MonoBehaviour that manages audio components and mixer references\nProvides the physical audio setup for the AudioService</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Audio.Data.AudioEntry.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Audio.Data.AudioEntry.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Audio.Data.AudioEntry",
+      "Summary": "<p sourcefile=\"api/GameFramework.Audio.Data.AudioEntry.yml\" sourcestartlinenumber=\"1\">Represents an audio clip with metadata</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Audio.Data.UIAudioEntry.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Audio.Data.UIAudioEntry.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Audio.Data.UIAudioEntry",
+      "Summary": "<p sourcefile=\"api/GameFramework.Audio.Data.UIAudioEntry.yml\" sourcestartlinenumber=\"1\">UI-specific audio entry that maps to UI interaction types</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Audio.Data.UIAudioType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Audio.Data.UIAudioType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Audio.Data.UIAudioType",
+      "Summary": "<p sourcefile=\"api/GameFramework.Audio.Data.UIAudioType.yml\" sourcestartlinenumber=\"1\">Common UI audio types - can be mapped to specific sounds in configuration</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Audio.Data.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Audio.Data.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Audio.Data",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Audio.GameObjectAudio.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Audio.GameObjectAudio.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Audio.GameObjectAudio",
+      "Summary": "<p sourcefile=\"api/GameFramework.Audio.GameObjectAudio.yml\" sourcestartlinenumber=\"1\">GameObject audio component that integrates with the master audio mixer\nAutomatically uses the SFX mixer group for proper volume control</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Audio.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Audio.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Audio",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Config.Data.ConfigData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Config.Data.ConfigData.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Config.Data.ConfigData",
+      "Summary": "<p sourcefile=\"api/GameFramework.Config.Data.ConfigData.yml\" sourcestartlinenumber=\"1\">Data structure for JSON serialization of all config values\nUses List instead of Dictionary for Unity JsonUtility compatibility</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Config.Data.ConfigEntry.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Config.Data.ConfigEntry.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Config.Data.ConfigEntry",
+      "Summary": "<p sourcefile=\"api/GameFramework.Config.Data.ConfigEntry.yml\" sourcestartlinenumber=\"1\">Serializable key-value pair for config entries</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Config.Data.ConfigValue.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Config.Data.ConfigValue.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Config.Data.ConfigValue",
+      "Summary": "<p sourcefile=\"api/GameFramework.Config.Data.ConfigValue.yml\" sourcestartlinenumber=\"1\">Serializable container for config values with type information</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Config.Data.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Config.Data.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Config.Data",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Config.Enums.ConfigFlags.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Config.Enums.ConfigFlags.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Config.Enums.ConfigFlags",
+      "Summary": "<p sourcefile=\"api/GameFramework.Config.Enums.ConfigFlags.yml\" sourcestartlinenumber=\"1\">Behavioral flags that control how configuration variables are handled\nCan be combined using bitwise OR to give variables multiple behaviors</p>\n<p sourcefile=\"api/GameFramework.Config.Enums.ConfigFlags.yml\" sourcestartlinenumber=\"4\">Usage Examples:</p>\n<ul sourcefile=\"api/GameFramework.Config.Enums.ConfigFlags.yml\" sourcestartlinenumber=\"5\">\n<li sourcefile=\"api/GameFramework.Config.Enums.ConfigFlags.yml\" sourcestartlinenumber=\"5\">Flags.Save: Variable persists between sessions</li>\n<li sourcefile=\"api/GameFramework.Config.Enums.ConfigFlags.yml\" sourcestartlinenumber=\"6\">Flags.Save | Flags.ServerInfo: Variable persists AND is sent to clients</li>\n<li sourcefile=\"api/GameFramework.Config.Enums.ConfigFlags.yml\" sourcestartlinenumber=\"7\">Flags.Cheat: Variable can only be modified when cheats are enabled</li>\n</ul>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Config.Enums.ConfigTypes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Config.Enums.ConfigTypes.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Config.Enums.ConfigTypes",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Config.Enums.QualityOption.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Config.Enums.QualityOption.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Config.Enums.QualityOption",
+      "Summary": "<p sourcefile=\"api/GameFramework.Config.Enums.QualityOption.yml\" sourcestartlinenumber=\"1\">Predefined quality options for dropdown selection</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Config.Enums.QualityOptionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Config.Enums.QualityOptionExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Config.Enums.QualityOptionExtensions",
+      "Summary": "<p sourcefile=\"api/GameFramework.Config.Enums.QualityOptionExtensions.yml\" sourcestartlinenumber=\"1\">Extension methods for QualityOption enum</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Config.Enums.ResolutionOption.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Config.Enums.ResolutionOption.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Config.Enums.ResolutionOption",
+      "Summary": "<p sourcefile=\"api/GameFramework.Config.Enums.ResolutionOption.yml\" sourcestartlinenumber=\"1\">Predefined resolution options for dropdown selection</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Config.Enums.ResolutionOptionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Config.Enums.ResolutionOptionExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Config.Enums.ResolutionOptionExtensions",
+      "Summary": "<p sourcefile=\"api/GameFramework.Config.Enums.ResolutionOptionExtensions.yml\" sourcestartlinenumber=\"1\">Extension methods for ResolutionOption enum</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Config.Enums.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Config.Enums.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Config.Enums",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Config.ScriptableObjects.AudioSettings_SO.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Config.ScriptableObjects.AudioSettings_SO.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Config.ScriptableObjects.AudioSettings_SO",
+      "Summary": "<p sourcefile=\"api/GameFramework.Config.ScriptableObjects.AudioSettings_SO.yml\" sourcestartlinenumber=\"1\">Simplified audio settings that just manages data and publishes change events\nAll audio application logic moved to AudioService</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Config.ScriptableObjects.ConfigCategoryBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Config.ScriptableObjects.ConfigCategoryBase.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Config.ScriptableObjects.ConfigCategoryBase",
+      "Summary": "<p sourcefile=\"api/GameFramework.Config.ScriptableObjects.ConfigCategoryBase.yml\" sourcestartlinenumber=\"1\">Base class for configuration category ScriptableObjects\nProvides common functionality for all config categories</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Config.ScriptableObjects.DebugSettings_SO.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Config.ScriptableObjects.DebugSettings_SO.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Config.ScriptableObjects.DebugSettings_SO",
+      "Summary": "<p sourcefile=\"api/GameFramework.Config.ScriptableObjects.DebugSettings_SO.yml\" sourcestartlinenumber=\"1\">Simplified debug settings that just manages data and publishes change events\nDebug application logic handled by individual services (ConsoleService, etc.)</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Config.ScriptableObjects.GameplaySettings_SO.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Config.ScriptableObjects.GameplaySettings_SO.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Config.ScriptableObjects.GameplaySettings_SO",
+      "Summary": "<p sourcefile=\"api/GameFramework.Config.ScriptableObjects.GameplaySettings_SO.yml\" sourcestartlinenumber=\"1\">Simplified gameplay settings that just manages data and publishes change events\nAll gameplay application logic moved to relevant services (SaveService, GameplayService, etc.)</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Config.ScriptableObjects.GraphicsSettings_SO.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Config.ScriptableObjects.GraphicsSettings_SO.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Config.ScriptableObjects.GraphicsSettings_SO",
+      "Summary": "<p sourcefile=\"api/GameFramework.Config.ScriptableObjects.GraphicsSettings_SO.yml\" sourcestartlinenumber=\"1\">Simplified graphics settings that just manages data and publishes change events\nAll graphics application logic moved to GraphicsService</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Config.ScriptableObjects.InputSettings_SO.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Config.ScriptableObjects.InputSettings_SO.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Config.ScriptableObjects.InputSettings_SO",
+      "Summary": "<p sourcefile=\"api/GameFramework.Config.ScriptableObjects.InputSettings_SO.yml\" sourcestartlinenumber=\"1\">Simplified input settings that just manages data and publishes change events\nAll input application logic moved to InputManager or relevant services</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Config.ScriptableObjects.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Config.ScriptableObjects.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Config.ScriptableObjects",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Config.Variables.BoolConfigVariable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Config.Variables.BoolConfigVariable.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Config.Variables.BoolConfigVariable",
+      "Summary": "<p sourcefile=\"api/GameFramework.Config.Variables.BoolConfigVariable.yml\" sourcestartlinenumber=\"1\">Boolean configuration variable</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Config.Variables.ConfigVariableBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Config.Variables.ConfigVariableBase.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Config.Variables.ConfigVariableBase",
+      "Summary": "<p sourcefile=\"api/GameFramework.Config.Variables.ConfigVariableBase.yml\" sourcestartlinenumber=\"1\">Abstract base class for all typed configuration variables</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Config.Variables.EnumConfigVariable-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Config.Variables.EnumConfigVariable-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Config.Variables.EnumConfigVariable<T>",
+      "Summary": "<p sourcefile=\"api/GameFramework.Config.Variables.EnumConfigVariable-1.yml\" sourcestartlinenumber=\"1\">Configuration variable for enum values with dropdown support</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Config.Variables.FloatConfigVariable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Config.Variables.FloatConfigVariable.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Config.Variables.FloatConfigVariable",
+      "Summary": "<p sourcefile=\"api/GameFramework.Config.Variables.FloatConfigVariable.yml\" sourcestartlinenumber=\"1\">Float configuration variable with optional min/max constraints</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Config.Variables.IntConfigVariable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Config.Variables.IntConfigVariable.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Config.Variables.IntConfigVariable",
+      "Summary": "<p sourcefile=\"api/GameFramework.Config.Variables.IntConfigVariable.yml\" sourcestartlinenumber=\"1\">Integer configuration variable with optional min/max constraints</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Config.Variables.QualityConfigVariable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Config.Variables.QualityConfigVariable.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Config.Variables.QualityConfigVariable",
+      "Summary": "<p sourcefile=\"api/GameFramework.Config.Variables.QualityConfigVariable.yml\" sourcestartlinenumber=\"1\">Specific quality config variable for cleaner usage</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Config.Variables.ResolutionConfigVariable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Config.Variables.ResolutionConfigVariable.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Config.Variables.ResolutionConfigVariable",
+      "Summary": "<p sourcefile=\"api/GameFramework.Config.Variables.ResolutionConfigVariable.yml\" sourcestartlinenumber=\"1\">Specific resolution config variable for cleaner usage</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Config.Variables.StringConfigVariable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Config.Variables.StringConfigVariable.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Config.Variables.StringConfigVariable",
+      "Summary": "<p sourcefile=\"api/GameFramework.Config.Variables.StringConfigVariable.yml\" sourcestartlinenumber=\"1\">String configuration variable</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Config.Variables.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Config.Variables.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Config.Variables",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.ConsoleTool.Commands.AudioCommand.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.ConsoleTool.Commands.AudioCommand.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.ConsoleTool.Commands.AudioCommand",
+      "Summary": "<p sourcefile=\"api/GameFramework.ConsoleTool.Commands.AudioCommand.yml\" sourcestartlinenumber=\"1\">Console command for controlling audio settings\nUses the clean event-driven architecture via AudioSettings_SO</p>\n<p sourcefile=\"api/GameFramework.ConsoleTool.Commands.AudioCommand.yml\" sourcestartlinenumber=\"4\">Usage Examples:</p>\n<blockquote sourcefile=\"api/GameFramework.ConsoleTool.Commands.AudioCommand.yml\" sourcestartlinenumber=\"5\">\n<p sourcefile=\"api/GameFramework.ConsoleTool.Commands.AudioCommand.yml\" sourcestartlinenumber=\"5\">audio                    - Show current audio status\naudio on/off             - Enable/disable all audio\naudio master 80          - Set master volume to 80%\naudio music 60           - Set music volume to 60%\naudio sfx 90             - Set SFX volume to 90%\naudio ui 100             - Set UI volume to 100%</p>\n</blockquote>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFramework.ConsoleTool.Commands.ConsoleCommandBase.yml",
       "output": {
         ".html": {
@@ -50,7 +554,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.ConsoleTool.Commands.DebugCommand",
-      "Summary": "<p sourcefile=\"api/GameFramework.ConsoleTool.Commands.DebugCommand.yml\" sourcestartlinenumber=\"1\">Console command for controlling the DebugPopup visibility</p>\n<p sourcefile=\"api/GameFramework.ConsoleTool.Commands.DebugCommand.yml\" sourcestartlinenumber=\"3\">Usage Examples:</p>\n<blockquote sourcefile=\"api/GameFramework.ConsoleTool.Commands.DebugCommand.yml\" sourcestartlinenumber=\"4\">\n<p sourcefile=\"api/GameFramework.ConsoleTool.Commands.DebugCommand.yml\" sourcestartlinenumber=\"4\">debug                    - Toggle debug popup on/off\ndebug on                 - Enable debug popup\ndebug off                - Disable debug popup\ndebug status             - Show current debug popup state</p>\n</blockquote>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.ConsoleTool.Commands.DebugCommand.yml\" sourcestartlinenumber=\"1\">Console command for controlling the DebugPopup visibility via debug settings\nUses the clean event-driven architecture - updates settings, services handle the rest</p>\n<p sourcefile=\"api/GameFramework.ConsoleTool.Commands.DebugCommand.yml\" sourcestartlinenumber=\"4\">Usage Examples:</p>\n<blockquote sourcefile=\"api/GameFramework.ConsoleTool.Commands.DebugCommand.yml\" sourcestartlinenumber=\"5\">\n<p sourcefile=\"api/GameFramework.ConsoleTool.Commands.DebugCommand.yml\" sourcestartlinenumber=\"5\">debug                    - Toggle debug popup on/off\ndebug on                 - Enable debug popup\ndebug off                - Disable debug popup\ndebug status             - Show current debug popup state</p>\n</blockquote>\n"
     },
     {
       "type": "ManagedReference",
@@ -82,6 +586,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.ConsoleTool.Commands.GraphicsCommand.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.ConsoleTool.Commands.GraphicsCommand.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.ConsoleTool.Commands.GraphicsCommand",
+      "Summary": "<p sourcefile=\"api/GameFramework.ConsoleTool.Commands.GraphicsCommand.yml\" sourcestartlinenumber=\"1\">Console command for controlling graphics settings\nUses the clean event-driven architecture via GraphicsSettings_SO</p>\n<p sourcefile=\"api/GameFramework.ConsoleTool.Commands.GraphicsCommand.yml\" sourcestartlinenumber=\"4\">Usage Examples:</p>\n<blockquote sourcefile=\"api/GameFramework.ConsoleTool.Commands.GraphicsCommand.yml\" sourcestartlinenumber=\"5\">\n<p sourcefile=\"api/GameFramework.ConsoleTool.Commands.GraphicsCommand.yml\" sourcestartlinenumber=\"5\">graphics                 - Show current graphics status\ngraphics vsync on/off    - Enable/disable VSync\ngraphics fullscreen on   - Enable fullscreen\ngraphics resolution 2    - Set resolution by index\ngraphics quality 1       - Set quality by index</p>\n</blockquote>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFramework.ConsoleTool.Commands.HelpCommand.yml",
       "output": {
         ".html": {
@@ -93,6 +611,20 @@
       "IsMRef": true,
       "Title": "GameFramework.ConsoleTool.Commands.HelpCommand",
       "Summary": "<p sourcefile=\"api/GameFramework.ConsoleTool.Commands.HelpCommand.yml\" sourcestartlinenumber=\"1\">Help command that displays available commands and their descriptions\nSupports filtering by category and detailed command information</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.ConsoleTool.Commands.InputCommand.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.ConsoleTool.Commands.InputCommand.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.ConsoleTool.Commands.InputCommand",
+      "Summary": "<p sourcefile=\"api/GameFramework.ConsoleTool.Commands.InputCommand.yml\" sourcestartlinenumber=\"1\">Console command for controlling input settings\nUses the clean event-driven architecture via InputSettings_SO</p>\n<p sourcefile=\"api/GameFramework.ConsoleTool.Commands.InputCommand.yml\" sourcestartlinenumber=\"4\">Usage Examples:</p>\n<blockquote sourcefile=\"api/GameFramework.ConsoleTool.Commands.InputCommand.yml\" sourcestartlinenumber=\"5\">\n<p sourcefile=\"api/GameFramework.ConsoleTool.Commands.InputCommand.yml\" sourcestartlinenumber=\"5\">input                        - Show current input status\ninput sensitivity 150        - Set mouse sensitivity to 150%\ninput invert on/off          - Enable/disable Y-axis inversion\ninput reset                  - Reset all input settings to defaults</p>\n</blockquote>\n"
     },
     {
       "type": "ManagedReference",
@@ -334,6 +866,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Core.SettingsRegistry.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Core.SettingsRegistry.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Core.SettingsRegistry",
+      "Summary": "<p sourcefile=\"api/GameFramework.Core.SettingsRegistry.yml\" sourcestartlinenumber=\"1\">Simple static registry for settings ScriptableObjects\nGets references from GameManager and handles unified JSON persistence</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFramework.Core.yml",
       "output": {
         ".html": {
@@ -432,6 +978,90 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Editor.ConfigFileEditorTool.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Editor.ConfigFileEditorTool.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Editor.ConfigFileEditorTool",
+      "Summary": "<p sourcefile=\"api/GameFramework.Editor.ConfigFileEditorTool.yml\" sourcestartlinenumber=\"1\">Editor tool for quick access to the game's config file\nProvides menu items to open, reveal, and manage the config.json file</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Editor.SaveFileDisplayConfig.FieldDisplayConfig.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Editor.SaveFileDisplayConfig.FieldDisplayConfig.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Editor.SaveFileDisplayConfig.FieldDisplayConfig",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Editor.SaveFileDisplayConfig.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Editor.SaveFileDisplayConfig.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Editor.SaveFileDisplayConfig",
+      "Summary": "<p sourcefile=\"api/GameFramework.Editor.SaveFileDisplayConfig.yml\" sourcestartlinenumber=\"1\">Configuration ScriptableObject for customizing save file display\nAllows adding new fields without modifying the editor code</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Editor.SaveFileDisplayConfigWindow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Editor.SaveFileDisplayConfigWindow.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Editor.SaveFileDisplayConfigWindow",
+      "Summary": "<p sourcefile=\"api/GameFramework.Editor.SaveFileDisplayConfigWindow.yml\" sourcestartlinenumber=\"1\">Configuration window for editing save file display settings</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Editor.SaveFileManagerWindow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Editor.SaveFileManagerWindow.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Editor.SaveFileManagerWindow",
+      "Summary": "<p sourcefile=\"api/GameFramework.Editor.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"1\">Unity Editor tool for inspecting and managing save files</p>\n<p sourcefile=\"api/GameFramework.Editor.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"3\">Intent: Provide developers with a comprehensive interface for save file management</p>\n<p sourcefile=\"api/GameFramework.Editor.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"5\">Design:</p>\n<ul sourcefile=\"api/GameFramework.Editor.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"6\">\n<li sourcefile=\"api/GameFramework.Editor.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"6\">Uses reflection-based field display for flexibility with changing save structures</li>\n<li sourcefile=\"api/GameFramework.Editor.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"7\">Configurable display properties through ScriptableObject settings</li>\n<li sourcefile=\"api/GameFramework.Editor.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"8\">Handles both runtime and edit-mode operations safely</li>\n<li sourcefile=\"api/GameFramework.Editor.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"9\">Provides basic CRUD operations (View, Load, Delete) for save files</li>\n</ul>\n<p sourcefile=\"api/GameFramework.Editor.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"11\">Pros:</p>\n<ul sourcefile=\"api/GameFramework.Editor.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"12\">\n<li sourcefile=\"api/GameFramework.Editor.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"12\">Adapts automatically to changes in save file structure</li>\n<li sourcefile=\"api/GameFramework.Editor.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"13\">Configurable display without code changes</li>\n<li sourcefile=\"api/GameFramework.Editor.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"14\">Safe operation in both play and edit modes</li>\n<li sourcefile=\"api/GameFramework.Editor.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"15\">Comprehensive error handling and validation</li>\n</ul>\n<p sourcefile=\"api/GameFramework.Editor.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"17\">Cons:</p>\n<ul sourcefile=\"api/GameFramework.Editor.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"18\">\n<li sourcefile=\"api/GameFramework.Editor.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"18\">Reflection usage has slight performance overhead</li>\n<li sourcefile=\"api/GameFramework.Editor.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"19\">Requires understanding of save file structure for configuration</li>\n<li sourcefile=\"api/GameFramework.Editor.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"20\">Some operations only available during play mode</li>\n</ul>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Editor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Editor.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Editor",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFramework.EventSystem.EventSystem.yml",
       "output": {
         ".html": {
@@ -442,6 +1072,90 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.EventSystem.EventSystem",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.EventSystem.Events.AudioEvents.PlayMusicEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.EventSystem.Events.AudioEvents.PlayMusicEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.EventSystem.Events.AudioEvents.PlayMusicEvent",
+      "Summary": "<p sourcefile=\"api/GameFramework.EventSystem.Events.AudioEvents.PlayMusicEvent.yml\" sourcestartlinenumber=\"1\">Request to play background music</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.EventSystem.Events.AudioEvents.PlaySoundEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.EventSystem.Events.AudioEvents.PlaySoundEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.EventSystem.Events.AudioEvents.PlaySoundEvent",
+      "Summary": "<p sourcefile=\"api/GameFramework.EventSystem.Events.AudioEvents.PlaySoundEvent.yml\" sourcestartlinenumber=\"1\">Request to play a sound effect</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.EventSystem.Events.AudioEvents.StopMusicEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.EventSystem.Events.AudioEvents.StopMusicEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.EventSystem.Events.AudioEvents.StopMusicEvent",
+      "Summary": "<p sourcefile=\"api/GameFramework.EventSystem.Events.AudioEvents.StopMusicEvent.yml\" sourcestartlinenumber=\"1\">Request to stop currently playing music</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.EventSystem.Events.AudioEvents.StopSoundEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.EventSystem.Events.AudioEvents.StopSoundEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.EventSystem.Events.AudioEvents.StopSoundEvent",
+      "Summary": "<p sourcefile=\"api/GameFramework.EventSystem.Events.AudioEvents.StopSoundEvent.yml\" sourcestartlinenumber=\"1\">Request to stop a specific sound effect</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.EventSystem.Events.AudioEvents.UIAudioEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.EventSystem.Events.AudioEvents.UIAudioEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.EventSystem.Events.AudioEvents.UIAudioEvent",
+      "Summary": "<p sourcefile=\"api/GameFramework.EventSystem.Events.AudioEvents.UIAudioEvent.yml\" sourcestartlinenumber=\"1\">UI-specific audio events for common interactions</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.EventSystem.Events.AudioEvents.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.EventSystem.Events.AudioEvents.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.EventSystem.Events.AudioEvents",
       "Summary": null
     },
     {
@@ -526,7 +1240,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.EventSystem.Events.ConsoleToggleInputEvent",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/GameFramework.EventSystem.Events.ConsoleToggleInputEvent.yml\" sourcestartlinenumber=\"1\">Console and debug system events\nHandles developer console input and interaction</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -596,7 +1310,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.EventSystem.Events.GameStateChangeEvent",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/GameFramework.EventSystem.Events.GameStateChangeEvent.yml\" sourcestartlinenumber=\"1\">Core game state and lifecycle events\nHandles game state transitions, pause/resume, and basic game flow</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -712,20 +1426,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFramework.EventSystem.Events.LoadingProgressChangedEvent.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/GameFramework.EventSystem.Events.LoadingProgressChangedEvent.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFramework.EventSystem.Events.LoadingProgressChangedEvent",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/GameFramework.EventSystem.Events.LoadingProgressEvent.yml",
       "output": {
         ".html": {
@@ -736,7 +1436,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.EventSystem.Events.LoadingProgressEvent",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/GameFramework.EventSystem.Events.LoadingProgressEvent.yml\" sourcestartlinenumber=\"1\">Loading system events for game data loading and progress tracking\nHandles load requests, progress updates, and completion states</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -918,7 +1618,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.EventSystem.Events.PlayerMoveInputEvent",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/GameFramework.EventSystem.Events.PlayerMoveInputEvent.yml\" sourcestartlinenumber=\"1\">Player input events for game mechanics\nHandles movement, combat, and player interaction inputs</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1002,7 +1702,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.EventSystem.Events.RegularSaveRequestedEvent",
-      "Summary": "<p sourcefile=\"api/GameFramework.EventSystem.Events.RegularSaveRequestedEvent.yml\" sourcestartlinenumber=\"1\">Event triggered when the player requests a regular save operation</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.EventSystem.Events.RegularSaveRequestedEvent.yml\" sourcestartlinenumber=\"1\">Save system events for game persistence\nHandles save requests, completion, and error states</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1100,7 +1800,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.EventSystem.Events.SessionCreatedEvent",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/GameFramework.EventSystem.Events.SessionCreatedEvent.yml\" sourcestartlinenumber=\"1\">Session lifecycle events for game session management\nHandles session creation, loading, and cleanup</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1170,7 +1870,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.EventSystem.Events.UINavigateInputEvent",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/GameFramework.EventSystem.Events.UINavigateInputEvent.yml\" sourcestartlinenumber=\"1\">UI input events for menu navigation and interface interaction\nHandles mouse, keyboard, and controller input for UI systems</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1394,7 +2094,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.Input.InputManager",
-      "Summary": "<p sourcefile=\"api/GameFramework.Input.InputManager.yml\" sourcestartlinenumber=\"1\">Unified Input Manager - handles both Unity Input System integration AND input handler management\nReplaces both InputService and the old InputManager concept</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.Input.InputManager.yml\" sourcestartlinenumber=\"1\">Unified Input Manager - handles both Unity Input System integration AND input handler management\nNow includes input settings integration for mouse sensitivity and Y-axis inversion\nReplaces both InputService and the old InputManager concept</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1450,21 +2150,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.Services.AudioService",
-      "Summary": "<p sourcefile=\"api/GameFramework.Services.AudioService.yml\" sourcestartlinenumber=\"1\">Audio service implementation with constructor injection</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFramework.Services.ConfigService.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/GameFramework.Services.ConfigService.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFramework.Services.ConfigService",
-      "Summary": "<p sourcefile=\"api/GameFramework.Services.ConfigService.yml\" sourcestartlinenumber=\"1\">Configuration service implementation with typed ScriptableObject ConfigCategory integration and query support</p>\n<p sourcefile=\"api/GameFramework.Services.ConfigService.yml\" sourcestartlinenumber=\"3\">Intent: Centralized configuration management with ScriptableObject registry and query capabilities\nDesign: Service locator pattern with type-based lookup for ScriptableObjects\nPros:</p>\n<ul sourcefile=\"api/GameFramework.Services.ConfigService.yml\" sourcestartlinenumber=\"6\">\n<li sourcefile=\"api/GameFramework.Services.ConfigService.yml\" sourcestartlinenumber=\"6\">Centralized ScriptableObject management</li>\n<li sourcefile=\"api/GameFramework.Services.ConfigService.yml\" sourcestartlinenumber=\"7\">Type-safe querying</li>\n<li sourcefile=\"api/GameFramework.Services.ConfigService.yml\" sourcestartlinenumber=\"8\">Clean separation of concerns</li>\n<li sourcefile=\"api/GameFramework.Services.ConfigService.yml\" sourcestartlinenumber=\"9\">Easy testing and mocking\nCons:</li>\n<li sourcefile=\"api/GameFramework.Services.ConfigService.yml\" sourcestartlinenumber=\"11\">Additional complexity for ScriptableObject management</li>\n<li sourcefile=\"api/GameFramework.Services.ConfigService.yml\" sourcestartlinenumber=\"12\">Memory overhead for type dictionaries</li>\n</ul>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.Services.AudioService.yml\" sourcestartlinenumber=\"1\">AudioService with intelligent music management\nCompares requested clips against currently playing clips to avoid unnecessary restarts</p>\n<p sourcefile=\"api/GameFramework.Services.AudioService.yml\" sourcestartlinenumber=\"4\">INTENT: Centralize all audio intelligence in the service layer\nDESIGN: Compare actual AudioClips rather than relying on external state checks\nPROS: Clean separation of concerns, states stay simple, centralized audio logic\nCONS: Requires clip comparison overhead (minimal)</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1478,7 +2164,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.Services.ConsoleService",
-      "Summary": "<p sourcefile=\"api/GameFramework.Services.ConsoleService.yml\" sourcestartlinenumber=\"1\">Service that orchestrates the debug console system using dependency injection.</p>\n<p sourcefile=\"api/GameFramework.Services.ConsoleService.yml\" sourcestartlinenumber=\"3\">Architecture:</p>\n<ul sourcefile=\"api/GameFramework.Services.ConsoleService.yml\" sourcestartlinenumber=\"4\">\n<li sourcefile=\"api/GameFramework.Services.ConsoleService.yml\" sourcestartlinenumber=\"4\">Manages console state (open/closed)</li>\n<li sourcefile=\"api/GameFramework.Services.ConsoleService.yml\" sourcestartlinenumber=\"5\">Provides public API for other systems to interact with console</li>\n<li sourcefile=\"api/GameFramework.Services.ConsoleService.yml\" sourcestartlinenumber=\"6\">Respects debug settings from configuration</li>\n<li sourcefile=\"api/GameFramework.Services.ConsoleService.yml\" sourcestartlinenumber=\"7\">Input conflict management is handled by ConsoleInputHandler</li>\n</ul>\n<p sourcefile=\"api/GameFramework.Services.ConsoleService.yml\" sourcestartlinenumber=\"9\">Flow:</p>\n<ol sourcefile=\"api/GameFramework.Services.ConsoleService.yml\" sourcestartlinenumber=\"10\">\n<li sourcefile=\"api/GameFramework.Services.ConsoleService.yml\" sourcestartlinenumber=\"10\">Receives toggle input events from InputManager</li>\n<li sourcefile=\"api/GameFramework.Services.ConsoleService.yml\" sourcestartlinenumber=\"11\">Checks if console is enabled in debug settings</li>\n<li sourcefile=\"api/GameFramework.Services.ConsoleService.yml\" sourcestartlinenumber=\"12\">Updates console open/closed state only if enabled</li>\n<li sourcefile=\"api/GameFramework.Services.ConsoleService.yml\" sourcestartlinenumber=\"13\">ConsoleInputHandler automatically manages input conflicts by checking IsConsoleOpen()</li>\n<li sourcefile=\"api/GameFramework.Services.ConsoleService.yml\" sourcestartlinenumber=\"14\">Delegates UI updates to ConsoleGUI via Console static class</li>\n</ol>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.Services.ConsoleService.yml\" sourcestartlinenumber=\"1\">Service that orchestrates the debug console system using dependency injection.\nNow integrates with debug settings for console and logging control.</p>\n<p sourcefile=\"api/GameFramework.Services.ConsoleService.yml\" sourcestartlinenumber=\"4\">Architecture:</p>\n<ul sourcefile=\"api/GameFramework.Services.ConsoleService.yml\" sourcestartlinenumber=\"5\">\n<li sourcefile=\"api/GameFramework.Services.ConsoleService.yml\" sourcestartlinenumber=\"5\">Manages console state (open/closed) based on debug.console_enabled setting</li>\n<li sourcefile=\"api/GameFramework.Services.ConsoleService.yml\" sourcestartlinenumber=\"6\">Manages verbose logging based on debug.verbose_logging setting</li>\n<li sourcefile=\"api/GameFramework.Services.ConsoleService.yml\" sourcestartlinenumber=\"7\">Provides public API for other systems to interact with console</li>\n<li sourcefile=\"api/GameFramework.Services.ConsoleService.yml\" sourcestartlinenumber=\"8\">Input conflict management is handled by ConsoleInputHandler</li>\n</ul>\n<p sourcefile=\"api/GameFramework.Services.ConsoleService.yml\" sourcestartlinenumber=\"10\">Flow:</p>\n<ol sourcefile=\"api/GameFramework.Services.ConsoleService.yml\" sourcestartlinenumber=\"11\">\n<li sourcefile=\"api/GameFramework.Services.ConsoleService.yml\" sourcestartlinenumber=\"11\">Receives toggle input events from InputManager</li>\n<li sourcefile=\"api/GameFramework.Services.ConsoleService.yml\" sourcestartlinenumber=\"12\">Checks if console is enabled in debug settings</li>\n<li sourcefile=\"api/GameFramework.Services.ConsoleService.yml\" sourcestartlinenumber=\"13\">Updates console open/closed state only if enabled</li>\n<li sourcefile=\"api/GameFramework.Services.ConsoleService.yml\" sourcestartlinenumber=\"14\">Applies logging settings when configuration changes</li>\n<li sourcefile=\"api/GameFramework.Services.ConsoleService.yml\" sourcestartlinenumber=\"15\">ConsoleInputHandler automatically manages input conflicts by checking IsConsoleOpen()</li>\n</ol>\n"
     },
     {
       "type": "ManagedReference",
@@ -1524,6 +2210,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Services.GraphicsService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Services.GraphicsService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Services.GraphicsService",
+      "Summary": "<p sourcefile=\"api/GameFramework.Services.GraphicsService.yml\" sourcestartlinenumber=\"1\">Graphics service that handles all Unity graphics API calls\nResponds to configuration changes via events</p>\n<p sourcefile=\"api/GameFramework.Services.GraphicsService.yml\" sourcestartlinenumber=\"4\">INTENT: Centralize all graphics settings application\nDESIGN: Event-driven graphics management, single responsibility\nPROS: Clean separation, all graphics logic in one place, easily testable\nCONS: Additional service complexity</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFramework.Services.Interfaces.IAudioService.yml",
       "output": {
         ".html": {
@@ -1535,20 +2235,6 @@
       "IsMRef": true,
       "Title": "GameFramework.Services.Interfaces.IAudioService",
       "Summary": "<p sourcefile=\"api/GameFramework.Services.Interfaces.IAudioService.yml\" sourcestartlinenumber=\"1\">Interface for audio management service</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFramework.Services.Interfaces.IConfigService.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/GameFramework.Services.Interfaces.IConfigService.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFramework.Services.Interfaces.IConfigService",
-      "Summary": "<p sourcefile=\"api/GameFramework.Services.Interfaces.IConfigService.yml\" sourcestartlinenumber=\"1\">Interface for configuration management service with ConfigVar integration and ScriptableObject queries</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1591,6 +2277,20 @@
       "IsMRef": true,
       "Title": "GameFramework.Services.Interfaces.IGameService",
       "Summary": "<p sourcefile=\"api/GameFramework.Services.Interfaces.IGameService.yml\" sourcestartlinenumber=\"1\">Base interface for all game services that can be initialized and shut down</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Services.Interfaces.IGraphicsService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Services.Interfaces.IGraphicsService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Services.Interfaces.IGraphicsService",
+      "Summary": "<p sourcefile=\"api/GameFramework.Services.Interfaces.IGraphicsService.yml\" sourcestartlinenumber=\"1\">Interface for graphics service</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1730,7 +2430,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.Services.SaveService",
-      "Summary": "<p sourcefile=\"api/GameFramework.Services.SaveService.yml\" sourcestartlinenumber=\"1\">Save service that handles file saving operations and save file metadata via event system\nClean separation - UI triggers saves via events, service handles implementation\nAll loading operations are handled by LoadService</p>\n<p sourcefile=\"api/GameFramework.Services.SaveService.yml\" sourcestartlinenumber=\"5\">Design: Event-driven architecture with caching for performance\nPros: Decoupled, performant metadata caching, player-specific autosaves\nCons: Async complexity, cache invalidation management</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.Services.SaveService.yml\" sourcestartlinenumber=\"1\">Save service that handles file saving operations and save file metadata via event system\nNow includes auto-save scheduling based on gameplay settings\nClean separation - UI triggers saves via events, service handles implementation\nAll loading operations are handled by LoadService</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1772,7 +2472,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.Services.UIService",
-      "Summary": "<p sourcefile=\"api/GameFramework.Services.UIService.yml\" sourcestartlinenumber=\"1\">UI service implementation with constructor injection and centralized screen updates\nImplements IUpdatable to manage frame-based updates for screens that need them</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.Services.UIService.yml\" sourcestartlinenumber=\"1\">UI service implementation with constructor injection and centralized screen updates\nImplements IUpdatable to manage frame-based updates for screens that need them\nNow handles debug settings integration for automatic debug popup management</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1912,7 +2612,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.StateMachine.GameStates.CreditsState",
-      "Summary": "<p sourcefile=\"api/GameFramework.StateMachine.GameStates.CreditsState.yml\" sourcestartlinenumber=\"1\">Credits state - manages the credits screen and handles navigation\nResponsible for its UI lifecycle and event handling</p>\n<p sourcefile=\"api/GameFramework.StateMachine.GameStates.CreditsState.yml\" sourcestartlinenumber=\"4\">Intent: Display game credits with appropriate audio and handle user navigation\nDesign: Event-driven state management with clean separation of concerns\nPros: Clear responsibility separation, maintainable, follows established patterns\nCons: Requires careful event subscription management</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.StateMachine.GameStates.CreditsState.yml\" sourcestartlinenumber=\"1\">Credits state - manages the credits screen and handles navigation\nResponsible for its UI lifecycle and event handling</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1926,7 +2626,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.StateMachine.GameStates.GameOverState",
-      "Summary": "<p sourcefile=\"api/GameFramework.StateMachine.GameStates.GameOverState.yml\" sourcestartlinenumber=\"1\">Game Over state - manages the game over screen and handles player choices\nResponsible for its UI lifecycle and event handling</p>\n<p sourcefile=\"api/GameFramework.StateMachine.GameStates.GameOverState.yml\" sourcestartlinenumber=\"4\">Intent: Present game over state with options to restart, load game, or return to menu\nDesign: Event-driven state management with clear separation of concerns\nPros: Clear responsibility separation, multiple player options, maintainable\nCons: Requires careful event subscription management</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.StateMachine.GameStates.GameOverState.yml\" sourcestartlinenumber=\"1\">Game Over state - manages the game over screen and handles player choices\nResponsible for its UI lifecycle and event handling</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1982,7 +2682,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.StateMachine.GameStates.PlayingState",
-      "Summary": "<p sourcefile=\"api/GameFramework.StateMachine.GameStates.PlayingState.yml\" sourcestartlinenumber=\"1\">Playing state - reacts to pause state changes from PauseService\nManages UI in response to actual pause/resume events</p>\n<p sourcefile=\"api/GameFramework.StateMachine.GameStates.PlayingState.yml\" sourcestartlinenumber=\"4\">Intent: Manage the main gameplay state by reacting to pause state changes\nDesign: Reactive event-driven architecture - responds to state changes rather than intercepting requests\nPros: Cleaner separation, more reactive, simpler flow\nCons: Less control over when pausing occurs</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.StateMachine.GameStates.PlayingState.yml\" sourcestartlinenumber=\"1\">Playing state - reacts to pause state changes from PauseService\nManages UI in response to actual pause/resume events</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1996,7 +2696,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.StateMachine.GameStates.QuitState",
-      "Summary": "<p sourcefile=\"api/GameFramework.StateMachine.GameStates.QuitState.yml\" sourcestartlinenumber=\"1\">Quit state - handles graceful application shutdown with progress feedback\nResponsible for saving data, cleaning up resources, and exiting the application</p>\n<p sourcefile=\"api/GameFramework.StateMachine.GameStates.QuitState.yml\" sourcestartlinenumber=\"4\">Intent: Provide graceful shutdown with user feedback and cancellation support\nDesign: Progressive shutdown with clear stages and user communication\nPros: Safe data preservation, clear user feedback, cancellation support\nCons: More complex than immediate quit, requires careful resource management</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.StateMachine.GameStates.QuitState.yml\" sourcestartlinenumber=\"1\">Quit state - handles graceful application shutdown with progress feedback\nResponsible for cleaning up resources, and exiting the application</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2024,7 +2724,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.StateMachine.GameStates.VictoryState",
-      "Summary": "<p sourcefile=\"api/GameFramework.StateMachine.GameStates.VictoryState.yml\" sourcestartlinenumber=\"1\">Victory state - manages the victory screen and celebrates player success\nResponsible for its UI lifecycle and event handling</p>\n<p sourcefile=\"api/GameFramework.StateMachine.GameStates.VictoryState.yml\" sourcestartlinenumber=\"4\">Intent: Celebrate player victory, show achievements, and provide options for continued play\nDesign: Event-driven state management with clear separation of concerns\nPros: Celebratory UX, clear progression options, maintainable, analytics integration\nCons: Requires careful event subscription management</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.StateMachine.GameStates.VictoryState.yml\" sourcestartlinenumber=\"1\">Victory state - manages the victory screen and celebrates player success\nResponsible for its UI lifecycle and event handling</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2626,7 +3326,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.UI.Screens.LoadingScreen",
-      "Summary": "<p sourcefile=\"api/GameFramework.UI.Screens.LoadingScreen.yml\" sourcestartlinenumber=\"1\">Loading screen that displays loading progress and messages</p>\n<p sourcefile=\"api/GameFramework.UI.Screens.LoadingScreen.yml\" sourcestartlinenumber=\"3\">Design:</p>\n<ul sourcefile=\"api/GameFramework.UI.Screens.LoadingScreen.yml\" sourcestartlinenumber=\"4\">\n<li sourcefile=\"api/GameFramework.UI.Screens.LoadingScreen.yml\" sourcestartlinenumber=\"4\">Subscribes to loading progress events through EventSystem</li>\n<li sourcefile=\"api/GameFramework.UI.Screens.LoadingScreen.yml\" sourcestartlinenumber=\"5\">Updates loading text and progress display in real-time</li>\n<li sourcefile=\"api/GameFramework.UI.Screens.LoadingScreen.yml\" sourcestartlinenumber=\"6\">Handles multiple loading event types for comprehensive coverage</li>\n<li sourcefile=\"api/GameFramework.UI.Screens.LoadingScreen.yml\" sourcestartlinenumber=\"7\">Manages UI element references and lifecycle properly</li>\n</ul>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.UI.Screens.LoadingScreen.yml\" sourcestartlinenumber=\"1\">Loading screen that displays loading progress and messages</p>\n<p sourcefile=\"api/GameFramework.UI.Screens.LoadingScreen.yml\" sourcestartlinenumber=\"3\">INTENT: Real-time loading progress display with event-driven updates\nDESIGN: Event-driven architecture using consolidated LoadingProgressEvent\nPROS: Single event subscription, clean separation of concerns, responsive UI\nCONS: Dependent on EventSystem for all updates</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2822,300 +3522,6 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.UI",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GrameFramework.Config.AudioSettings_SO.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/GrameFramework.Config.AudioSettings_SO.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GrameFramework.Config.AudioSettings_SO",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GrameFramework.Config.DebugSettings_SO.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/GrameFramework.Config.DebugSettings_SO.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GrameFramework.Config.DebugSettings_SO",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GrameFramework.Config.GameplaySettings_SO.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/GrameFramework.Config.GameplaySettings_SO.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GrameFramework.Config.GameplaySettings_SO",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GrameFramework.Config.GraphicsSettings_SO.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/GrameFramework.Config.GraphicsSettings_SO.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GrameFramework.Config.GraphicsSettings_SO",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GrameFramework.Config.InputSettings_SO.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/GrameFramework.Config.InputSettings_SO.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GrameFramework.Config.InputSettings_SO",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GrameFramework.Config.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/GrameFramework.Config.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GrameFramework.Config",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/UCTools_ConfigVariables.BoolConfigVariable.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/UCTools_ConfigVariables.BoolConfigVariable.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "UCTools_ConfigVariables.BoolConfigVariable",
-      "Summary": "<p sourcefile=\"api/UCTools_ConfigVariables.BoolConfigVariable.yml\" sourcestartlinenumber=\"1\">Boolean configuration variable</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/UCTools_ConfigVariables.ConfigCategory.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/UCTools_ConfigVariables.ConfigCategory.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "UCTools_ConfigVariables.ConfigCategory",
-      "Summary": "<p sourcefile=\"api/UCTools_ConfigVariables.ConfigCategory.yml\" sourcestartlinenumber=\"1\">Base class for configuration category ScriptableObjects\nProvides common functionality for all config categories</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/UCTools_ConfigVariables.ConfigFlags.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/UCTools_ConfigVariables.ConfigFlags.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "UCTools_ConfigVariables.ConfigFlags",
-      "Summary": "<p sourcefile=\"api/UCTools_ConfigVariables.ConfigFlags.yml\" sourcestartlinenumber=\"1\">Behavioral flags that control how configuration variables are handled\nCan be combined using bitwise OR to give variables multiple behaviors</p>\n<p sourcefile=\"api/UCTools_ConfigVariables.ConfigFlags.yml\" sourcestartlinenumber=\"4\">Usage Examples:</p>\n<ul sourcefile=\"api/UCTools_ConfigVariables.ConfigFlags.yml\" sourcestartlinenumber=\"5\">\n<li sourcefile=\"api/UCTools_ConfigVariables.ConfigFlags.yml\" sourcestartlinenumber=\"5\">Flags.Save: Variable persists between sessions</li>\n<li sourcefile=\"api/UCTools_ConfigVariables.ConfigFlags.yml\" sourcestartlinenumber=\"6\">Flags.Save | Flags.ServerInfo: Variable persists AND is sent to clients</li>\n<li sourcefile=\"api/UCTools_ConfigVariables.ConfigFlags.yml\" sourcestartlinenumber=\"7\">Flags.Cheat: Variable can only be modified when cheats are enabled</li>\n</ul>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/UCTools_ConfigVariables.ConfigVariableBase.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/UCTools_ConfigVariables.ConfigVariableBase.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "UCTools_ConfigVariables.ConfigVariableBase",
-      "Summary": "<p sourcefile=\"api/UCTools_ConfigVariables.ConfigVariableBase.yml\" sourcestartlinenumber=\"1\">Abstract base class for all typed configuration variables</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/UCTools_ConfigVariables.EnumConfigVariable-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/UCTools_ConfigVariables.EnumConfigVariable-1.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "UCTools_ConfigVariables.EnumConfigVariable<T>",
-      "Summary": "<p sourcefile=\"api/UCTools_ConfigVariables.EnumConfigVariable-1.yml\" sourcestartlinenumber=\"1\">Configuration variable for enum values with dropdown support</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/UCTools_ConfigVariables.FloatConfigVariable.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/UCTools_ConfigVariables.FloatConfigVariable.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "UCTools_ConfigVariables.FloatConfigVariable",
-      "Summary": "<p sourcefile=\"api/UCTools_ConfigVariables.FloatConfigVariable.yml\" sourcestartlinenumber=\"1\">Float configuration variable with optional min/max constraints</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/UCTools_ConfigVariables.IntConfigVariable.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/UCTools_ConfigVariables.IntConfigVariable.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "UCTools_ConfigVariables.IntConfigVariable",
-      "Summary": "<p sourcefile=\"api/UCTools_ConfigVariables.IntConfigVariable.yml\" sourcestartlinenumber=\"1\">Integer configuration variable with optional min/max constraints</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/UCTools_ConfigVariables.QualityConfigVariable.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/UCTools_ConfigVariables.QualityConfigVariable.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "UCTools_ConfigVariables.QualityConfigVariable",
-      "Summary": "<p sourcefile=\"api/UCTools_ConfigVariables.QualityConfigVariable.yml\" sourcestartlinenumber=\"1\">Specific quality config variable for cleaner usage</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/UCTools_ConfigVariables.QualityOption.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/UCTools_ConfigVariables.QualityOption.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "UCTools_ConfigVariables.QualityOption",
-      "Summary": "<p sourcefile=\"api/UCTools_ConfigVariables.QualityOption.yml\" sourcestartlinenumber=\"1\">Predefined quality options for dropdown selection</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/UCTools_ConfigVariables.QualityOptionExtensions.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/UCTools_ConfigVariables.QualityOptionExtensions.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "UCTools_ConfigVariables.QualityOptionExtensions",
-      "Summary": "<p sourcefile=\"api/UCTools_ConfigVariables.QualityOptionExtensions.yml\" sourcestartlinenumber=\"1\">Extension methods for QualityOption enum</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/UCTools_ConfigVariables.ResolutionConfigVariable.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/UCTools_ConfigVariables.ResolutionConfigVariable.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "UCTools_ConfigVariables.ResolutionConfigVariable",
-      "Summary": "<p sourcefile=\"api/UCTools_ConfigVariables.ResolutionConfigVariable.yml\" sourcestartlinenumber=\"1\">Specific resolution config variable for cleaner usage</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/UCTools_ConfigVariables.ResolutionOption.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/UCTools_ConfigVariables.ResolutionOption.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "UCTools_ConfigVariables.ResolutionOption",
-      "Summary": "<p sourcefile=\"api/UCTools_ConfigVariables.ResolutionOption.yml\" sourcestartlinenumber=\"1\">Predefined resolution options for dropdown selection</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/UCTools_ConfigVariables.ResolutionOptionExtensions.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/UCTools_ConfigVariables.ResolutionOptionExtensions.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "UCTools_ConfigVariables.ResolutionOptionExtensions",
-      "Summary": "<p sourcefile=\"api/UCTools_ConfigVariables.ResolutionOptionExtensions.yml\" sourcestartlinenumber=\"1\">Extension methods for ResolutionOption enum</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/UCTools_ConfigVariables.StringConfigVariable.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/UCTools_ConfigVariables.StringConfigVariable.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "UCTools_ConfigVariables.StringConfigVariable",
-      "Summary": "<p sourcefile=\"api/UCTools_ConfigVariables.StringConfigVariable.yml\" sourcestartlinenumber=\"1\">String configuration variable</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/UCTools_ConfigVariables.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/UCTools_ConfigVariables.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "UCTools_ConfigVariables",
       "Summary": null
     },
     {

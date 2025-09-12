@@ -88,6 +88,19 @@
     <h3 id="classes">
 Classes
 </h3>
+      <h4><a class="xref" href="GameFramework.ConsoleTool.Commands.AudioCommand.html">AudioCommand</a></h4>
+      <section><p>Console command for controlling audio settings
+Uses the clean event-driven architecture via AudioSettings_SO</p>
+<p>Usage Examples:</p>
+<blockquote>
+<p>audio                    - Show current audio status
+audio on/off             - Enable/disable all audio
+audio master 80          - Set master volume to 80%
+audio music 60           - Set music volume to 60%
+audio sfx 90             - Set SFX volume to 90%
+audio ui 100             - Set UI volume to 100%</p>
+</blockquote>
+</section>
       <h4><a class="xref" href="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.html">ConsoleCommandBase</a></h4>
       <section><p>Base class for console commands providing common functionality
 Handles basic validation and provides utility methods</p>
@@ -97,7 +110,8 @@ Handles basic validation and provides utility methods</p>
 Handles command lifecycle and provides efficient lookup mechanisms</p>
 </section>
       <h4><a class="xref" href="GameFramework.ConsoleTool.Commands.DebugCommand.html">DebugCommand</a></h4>
-      <section><p>Console command for controlling the DebugPopup visibility</p>
+      <section><p>Console command for controlling the DebugPopup visibility via debug settings
+Uses the clean event-driven architecture - updates settings, services handle the rest</p>
 <p>Usage Examples:</p>
 <blockquote>
 <p>debug                    - Toggle debug popup on/off
@@ -123,9 +137,32 @@ Copy this file and modify it to create new functionality</p>
       <section><p>Execute command that runs console commands from a text file
 Supports silent execution and error handling for batch operations</p>
 </section>
+      <h4><a class="xref" href="GameFramework.ConsoleTool.Commands.GraphicsCommand.html">GraphicsCommand</a></h4>
+      <section><p>Console command for controlling graphics settings
+Uses the clean event-driven architecture via GraphicsSettings_SO</p>
+<p>Usage Examples:</p>
+<blockquote>
+<p>graphics                 - Show current graphics status
+graphics vsync on/off    - Enable/disable VSync
+graphics fullscreen on   - Enable fullscreen
+graphics resolution 2    - Set resolution by index
+graphics quality 1       - Set quality by index</p>
+</blockquote>
+</section>
       <h4><a class="xref" href="GameFramework.ConsoleTool.Commands.HelpCommand.html">HelpCommand</a></h4>
       <section><p>Help command that displays available commands and their descriptions
 Supports filtering by category and detailed command information</p>
+</section>
+      <h4><a class="xref" href="GameFramework.ConsoleTool.Commands.InputCommand.html">InputCommand</a></h4>
+      <section><p>Console command for controlling input settings
+Uses the clean event-driven architecture via InputSettings_SO</p>
+<p>Usage Examples:</p>
+<blockquote>
+<p>input                        - Show current input status
+input sensitivity 150        - Set mouse sensitivity to 150%
+input invert on/off          - Enable/disable Y-axis inversion
+input reset                  - Reset all input settings to defaults</p>
+</blockquote>
 </section>
       <h4><a class="xref" href="GameFramework.ConsoleTool.Commands.WaitCommand.html">WaitCommand</a></h4>
       <section><p>Wait command that pauses command execution for specified number of frames

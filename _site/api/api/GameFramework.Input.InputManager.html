@@ -85,6 +85,7 @@
 
   <h1 id="GameFramework_Input_InputManager" data-uid="GameFramework.Input.InputManager" class="text-break">Class InputManager</h1>
   <div class="markdown level0 summary"><p>Unified Input Manager - handles both Unity Input System integration AND input handler management
+Now includes input settings integration for mouse sensitivity and Y-axis inversion
 Replaces both InputService and the old InputManager concept</p>
 </div>
   <div class="markdown level0 conceptual"></div>
@@ -268,6 +269,54 @@ Replaces both InputService and the old InputManager concept</p>
       </tr>
     </tbody>
   </table>
+  <a id="GameFramework_Input_InputManager_GetInvertYAxis_" data-uid="GameFramework.Input.InputManager.GetInvertYAxis*"></a>
+  <h4 id="GameFramework_Input_InputManager_GetInvertYAxis" data-uid="GameFramework.Input.InputManager.GetInvertYAxis">GetInvertYAxis()</h4>
+  <div class="markdown level1 summary"><p>Get current Y-axis inversion setting</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool GetInvertYAxis()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Input_InputManager_GetMouseSensitivity_" data-uid="GameFramework.Input.InputManager.GetMouseSensitivity*"></a>
+  <h4 id="GameFramework_Input_InputManager_GetMouseSensitivity" data-uid="GameFramework.Input.InputManager.GetMouseSensitivity">GetMouseSensitivity()</h4>
+  <div class="markdown level1 summary"><p>Get current mouse sensitivity setting</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float GetMouseSensitivity()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <a id="GameFramework_Input_InputManager_InitializeAsync_" data-uid="GameFramework.Input.InputManager.InitializeAsync*"></a>
   <h4 id="GameFramework_Input_InputManager_InitializeAsync" data-uid="GameFramework.Input.InputManager.InitializeAsync">InitializeAsync()</h4>
   <div class="markdown level1 summary"><p>Initialize the input manager and all registered handlers</p>
@@ -347,8 +396,7 @@ This will automatically activate/deactivate appropriate handlers</p>
   </table>
   <a id="GameFramework_Input_InputManager_Shutdown_" data-uid="GameFramework.Input.InputManager.Shutdown*"></a>
   <h4 id="GameFramework_Input_InputManager_Shutdown" data-uid="GameFramework.Input.InputManager.Shutdown">Shutdown()</h4>
-  <div class="markdown level1 summary"><p>Clean shutdown of the input manager</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">

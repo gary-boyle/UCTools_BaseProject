@@ -84,12 +84,13 @@
 
 
   <h1 id="GameFramework_Services_ConsoleService" data-uid="GameFramework.Services.ConsoleService" class="text-break">Class ConsoleService</h1>
-  <div class="markdown level0 summary"><p>Service that orchestrates the debug console system using dependency injection.</p>
+  <div class="markdown level0 summary"><p>Service that orchestrates the debug console system using dependency injection.
+Now integrates with debug settings for console and logging control.</p>
 <p>Architecture:</p>
 <ul>
-<li>Manages console state (open/closed)</li>
+<li>Manages console state (open/closed) based on debug.console_enabled setting</li>
+<li>Manages verbose logging based on debug.verbose_logging setting</li>
 <li>Provides public API for other systems to interact with console</li>
-<li>Respects debug settings from configuration</li>
 <li>Input conflict management is handled by ConsoleInputHandler</li>
 </ul>
 <p>Flow:</p>
@@ -97,8 +98,8 @@
 <li>Receives toggle input events from InputManager</li>
 <li>Checks if console is enabled in debug settings</li>
 <li>Updates console open/closed state only if enabled</li>
+<li>Applies logging settings when configuration changes</li>
 <li>ConsoleInputHandler automatically manages input conflicts by checking IsConsoleOpen()</li>
-<li>Delegates UI updates to ConsoleGUI via Console static class</li>
 </ol>
 </div>
   <div class="markdown level0 conceptual"></div>
@@ -147,13 +148,13 @@
   <h3 id="constructors">Constructors
 </h3>
   <a id="GameFramework_Services_ConsoleService__ctor_" data-uid="GameFramework.Services.ConsoleService.#ctor*"></a>
-  <h4 id="GameFramework_Services_ConsoleService__ctor_GameFramework_ConsoleTool_ConsoleGUI_GameFramework_EventSystem_Interfaces_IEventSystem_GameFramework_Services_Interfaces_IConfigService_" data-uid="GameFramework.Services.ConsoleService.#ctor(GameFramework.ConsoleTool.ConsoleGUI,GameFramework.EventSystem.Interfaces.IEventSystem,GameFramework.Services.Interfaces.IConfigService)">ConsoleService(ConsoleGUI, IEventSystem, IConfigService)</h4>
+  <h4 id="GameFramework_Services_ConsoleService__ctor_GameFramework_ConsoleTool_ConsoleGUI_GameFramework_EventSystem_Interfaces_IEventSystem_" data-uid="GameFramework.Services.ConsoleService.#ctor(GameFramework.ConsoleTool.ConsoleGUI,GameFramework.EventSystem.Interfaces.IEventSystem)">ConsoleService(ConsoleGUI, IEventSystem)</h4>
   <div class="markdown level1 summary"><p>Constructor injection - DI container provides all dependencies</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ConsoleService(ConsoleGUI consoleGUI, IEventSystem eventSystem, IConfigService configService)</code></pre>
+    <pre><code class="lang-csharp hljs">public ConsoleService(ConsoleGUI consoleGUI, IEventSystem eventSystem)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -173,11 +174,6 @@
       <tr>
         <td><a class="xref" href="GameFramework.EventSystem.Interfaces.IEventSystem.html">IEventSystem</a></td>
         <td><span class="parametername">eventSystem</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GameFramework.Services.Interfaces.IConfigService.html">IConfigService</a></td>
-        <td><span class="parametername">configService</span></td>
         <td></td>
       </tr>
     </tbody>
