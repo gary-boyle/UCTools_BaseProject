@@ -158,7 +158,6 @@ namespace GameFramework.StateMachine
         
         public void RegisterState(BaseGameState state)
         {
-            Debug.Log(state.StateType);
             _states[state.StateType] = state;
         }
         

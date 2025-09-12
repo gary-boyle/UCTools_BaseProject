@@ -3,12 +3,12 @@
 namespace GameFramework.Config.Data
 {
     /// <summary>
-    /// Individual config value for JSON serialization
+    /// Serializable container for config values with type information
     /// </summary>
     [Serializable]
     public class ConfigValue
     {
         public string Value;
-        public string Type; // For debugging/validation
+        public string Type;
     }
 }

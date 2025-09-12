@@ -60,8 +60,6 @@ namespace GameFramework.Services
         {
             if (IsInitialized) return;
             
-            Debug.Log("[UIService] Initializing UI system...");
-
             // Initialize all screens and popups
             InitializeScreensAndPopups();
 

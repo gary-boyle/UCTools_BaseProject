@@ -12,39 +12,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f339e02589ba4bb89226164d22b059e9, type: 3}
   m_Name: AudioSettings
   m_EditorClassIdentifier: GameFramework::GrameFramework.Config.AudioSettings
-  audioEnabled:
+  AudioEnabled:
     name: audio.enabled
     description: Master control to enable or disable all audio
     flags: 1
     defaultValue: 1
     currentValue: 1
-  masterVolume:
+  MasterVolume:
     name: audio.master_volume
     description: Master volume level (0.0 - 1.0)
     flags: 1
-    defaultValue: 100
-    currentValue: 100
-    hasMinValue: 1
+    defaultValue: 1
+    currentValue: 1
+    hasMinValue: 0
     minValue: 0
-    hasMaxValue: 1
-    maxValue: 100
-  musicVolume:
+    hasMaxValue: 0
+    maxValue: 1
+  MusicVolume:
     name: audio.music_volume
     description: Music volume level (0.0 - 1.0)
     flags: 1
-    defaultValue: 100
-    currentValue: 100
-    hasMinValue: 1
+    defaultValue: 0.8
+    currentValue: 1
+    hasMinValue: 0
     minValue: 0
-    hasMaxValue: 1
-    maxValue: 100
-  sfxVolume:
+    hasMaxValue: 0
+    maxValue: 1
+  SFXVolume:
     name: audio.sfx_volume
     description: SFX volume level (0.0 - 1.0)
     flags: 1
-    defaultValue: 100
-    currentValue: 100
-    hasMinValue: 1
+    defaultValue: 0.9
+    currentValue: 1
+    hasMinValue: 0
     minValue: 0
-    hasMaxValue: 1
-    maxValue: 100
+    hasMaxValue: 0
+    maxValue: 1
+  UIVolume:
+    name: audio.ui_volume
+    description: UI volume level (0.0 - 1.0)
+    flags: 1
+    defaultValue: 1
+    currentValue: 1
+    hasMinValue: 0
+    minValue: 0
+    hasMaxValue: 0
+    maxValue: 1

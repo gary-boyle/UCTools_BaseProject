@@ -27,7 +27,6 @@ namespace GameFramework.Services
         {
             if (IsInitialized) return;
             
-            Debug.Log("[SceneService] Initializing scene management system...");
             IsInitialized = true;
             await Task.CompletedTask;
         }

@@ -77,8 +77,6 @@ namespace GameFramework.Services
         {
             if (IsInitialized) return;
             
-            Debug.Log("[TimeService] Initializing time service...");
-            
             // Subscribe to game state changes
             _eventSystem.Subscribe<GameStateChangeEvent>(OnGameStateChanged);
             

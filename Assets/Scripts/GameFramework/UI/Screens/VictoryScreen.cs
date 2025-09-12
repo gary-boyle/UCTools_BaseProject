@@ -113,7 +113,6 @@ namespace GameFramework.UI.Screens
         private void StopCelebrationEffects()
         {
             // Placeholder for stopping celebration effects
-            Debug.Log("[VictoryScreen] Stopping celebration effects");
         }
         
         #endregion

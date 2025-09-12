@@ -58,6 +58,7 @@ namespace GameFramework.Core
             try
             {
                 var configData = new ConfigData();
+                var valuesToSave = new Dictionary<string, ConfigValue>();
 
                 // Collect all saveable config variables from all categories
                 foreach (var category in _settings.Values)
@@ -65,9 +66,9 @@ namespace GameFramework.Core
                     var variables = category.GetAllVariables();
                     foreach (var variable in variables)
                     {
-                        if ((variable.flags & ConfigFlags.Save) == ConfigFlags.Save)
+                        if (variable.flags == ConfigFlags.Save)
                         {
-                            configData.Values[variable.name] = new ConfigValue
+                            valuesToSave[variable.name] = new ConfigValue
                             {
                                 Value = variable.GetValueAsString(),
                                 Type = variable.ValueType.Name
@@ -76,15 +77,19 @@ namespace GameFramework.Core
                     }
                 }
 
+                // Assign to ConfigData (this will convert Dictionary to List)
+                configData.Values = valuesToSave;
+
                 // Save as JSON
                 var json = JsonUtility.ToJson(configData, true);
                 Directory.CreateDirectory(Path.GetDirectoryName(_configFilePath));
+        
                 using (var writer = new StreamWriter(_configFilePath, false))
                 {
                     await writer.WriteAsync(json);
                 }
 
-                Debug.Log($"[SettingsRegistry] Saved {configData.Values.Count} config values to {_configFilePath}");
+                Debug.Log($"[SettingsRegistry] Saved {valuesToSave.Count} config values to {_configFilePath}");
             }
             catch (Exception e)
             {

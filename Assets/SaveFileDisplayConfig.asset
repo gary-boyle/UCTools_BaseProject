@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: SaveFileDisplayConfig
+  m_EditorClassIdentifier: GameFramework:GameFramework.Editor:SaveFileDisplayConfig
+  DisplayFields:
+  - FieldName: FileName
+    DisplayName: File Name
+    IsReadOnly: 1
+  - FieldName: PlayerName
+    DisplayName: Player Name
+    IsReadOnly: 1
+  - FieldName: Difficulty
+    DisplayName: Difficulty
+    IsReadOnly: 1
+  - FieldName: CurrentScene
+    DisplayName: Current Scene
+    IsReadOnly: 1
+  - FieldName: PlayerLevel
+    DisplayName: Player Level
+    IsReadOnly: 1
+  - FieldName: Score
+    DisplayName: Score
+    IsReadOnly: 1
+  - FieldName: FormattedPlayTime
+    DisplayName: Play Time
+    IsReadOnly: 1
+  - FieldName: FormattedDate
+    DisplayName: Last Save
+    IsReadOnly: 1
+  - FieldName: IsAutoSave
+    DisplayName: Auto Save
+    IsReadOnly: 1

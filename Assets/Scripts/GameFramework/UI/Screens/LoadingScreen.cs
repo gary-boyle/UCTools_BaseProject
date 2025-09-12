@@ -242,8 +242,6 @@ namespace GameFramework.UI.Screens
         {
             UnsubscribeFromLoadingEvents();
             base.Hide();
-            
-            Debug.Log("[LoadingScreen] Loading screen hidden and events unsubscribed");
         }
         
         #endregion

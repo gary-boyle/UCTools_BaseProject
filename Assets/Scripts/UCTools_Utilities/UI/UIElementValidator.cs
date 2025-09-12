@@ -114,11 +114,6 @@ namespace UCTools_Utilities.UI
                 return false;
             }
             
-            if (mode != ValidationMode.Silent)
-            {
-                Debug.Log($"[{type.Name}] All {fields.Count} UI elements validated successfully");
-            }
-            
             return true;
         }
     }

@@ -122,7 +122,6 @@ namespace GameFramework.UI.Popups
         
         protected override void OnHide()
         {
-            Debug.Log("[DebugPopup] Hiding Debug popup");
         }
         
         private void ResetCounters()
