@@ -32,8 +32,6 @@ namespace GameFramework.UI.Screens
         
         // Services for data display
         private IGameDataService _gameDataService;
-        private ISaveService _saveService;
-        private IPauseService _pauseService;
         private ITimeService _timeService;
 
         /// <summary>
@@ -43,8 +41,6 @@ namespace GameFramework.UI.Screens
         {
             // Get services for data display
             _gameDataService = GameManager.GetService<IGameDataService>();
-            _saveService = GameManager.GetService<ISaveService>();
-            _pauseService = GameManager.GetService<IPauseService>();
             _timeService = GameManager.GetService<ITimeService>();
 
             EnableFrameUpdates();

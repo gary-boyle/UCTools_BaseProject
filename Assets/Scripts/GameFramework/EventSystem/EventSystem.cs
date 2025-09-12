@@ -22,7 +22,6 @@ namespace GameFramework.EventSystem
         public async Task InitializeAsync()
         {
             if (IsInitialized) return;
-            
             IsInitialized = true;
             await Task.CompletedTask;
         }

@@ -2,6 +2,7 @@
 using UnityEngine.UIElements;
 using UnityEngine.Profiling;
 using GameFramework.UI.Utilities;
+using UCTools_Utilities.UI;
 
 namespace GameFramework.UI.Popups
 {
@@ -45,6 +46,11 @@ namespace GameFramework.UI.Popups
         private float _graphUpdateTimer = 0f;
         private float _graphUpdateInterval = 2f; // Update graphs every 2 seconds
         
+        /// <summary>
+        /// Debug popup doesn't block game operations
+        /// </summary>
+        public override bool CountsAsGameBlockingPopup => false;
+
         public DebugPopup(VisualElement rootElement) : base(rootElement)
         {
             _root = rootElement;
@@ -64,14 +70,10 @@ namespace GameFramework.UI.Popups
             _buildLabel = _root?.Q<Label>("lbl_Build");
             
             // Cache graph containers
-            _fpsGraphContainer = _root?.Q<VisualElement>("graph_FPS");
-            _memoryGraphContainer = _root?.Q<VisualElement>("graph_Memory");
+            _fpsGraphContainer = _root?.Q<VisualElement>("container_FPSGraph");
+            _memoryGraphContainer = _root?.Q<VisualElement>("container_MemoryGraph");
             
-            if (_debugLabel == null)
-            {
-                _debugLabel = new Label("Debug Information") { name = "lbl_Debug" };
-                _root?.Add(_debugLabel);
-            }
+            //UIElementValidator.ValidateElementsWithNames(this, UIElementValidator.ValidationMode.ThrowExceptions);
         }
         
         /// <summary>
@@ -114,8 +116,6 @@ namespace GameFramework.UI.Popups
 
         protected override void OnShow()
         {
-            Debug.Log("[DebugPopup] Showing Debug popup with performance graphs");
-            
             // Reset all counters when popup becomes visible
             ResetCounters();
         }
@@ -131,82 +131,69 @@ namespace GameFramework.UI.Popups
             _memoryUpdateTimer = 0f;
             _graphUpdateTimer = 0f;
         }
-        
+                
         protected override void OnUpdate(float deltaTime)
         {
             UpdateFPS(deltaTime);
             UpdateMemoryUsage(deltaTime);
             UpdateGraphs(deltaTime);
         }
-        
+
         private void UpdateFPS(float deltaTime)
         {
             _deltaTimeAccumulator += deltaTime;
             _frameCount++;
-            
+    
             if (_deltaTimeAccumulator >= _updateInterval)
             {
                 _currentFps = _frameCount / _deltaTimeAccumulator;
-                
+        
                 if (_fpsLabel != null)
                 {
-                    _fpsLabel.text = $"FPS: {_currentFps:F0}";
-                    
+                    // More efficient than string interpolation, less complex than caching
+                    _fpsLabel.text = "FPS: " + Mathf.RoundToInt(_currentFps).ToString();
+            
                     // Color coding based on FPS ranges
                     if (_currentFps >= 50f)
-                    {
                         _fpsLabel.style.color = Color.green;
-                    }
                     else if (_currentFps >= 30f)
-                    {
                         _fpsLabel.style.color = Color.yellow;
-                    }
                     else
-                    {
                         _fpsLabel.style.color = Color.red;
-                    }
                 }
-                
+        
                 _deltaTimeAccumulator = 0f;
                 _frameCount = 0;
             }
         }
-        
+
         private void UpdateMemoryUsage(float deltaTime)
         {
             _memoryUpdateTimer += deltaTime;
-            
+    
             if (_memoryUpdateTimer >= _memoryUpdateInterval)
             {
                 _currentMemoryUsage = Profiler.GetTotalAllocatedMemoryLong();
-                
+        
                 if (_memoryLabel != null)
                 {
                     float memoryMB = _currentMemoryUsage / (1024f * 1024f);
-                    _memoryLabel.text = $"Memory: {memoryMB:F1}MB";
-                    
+                    _memoryLabel.text = "Memory: " + memoryMB.ToString("F1") + "MB";
+            
                     // Color coding for memory usage
                     if (memoryMB > 500f)
-                    {
                         _memoryLabel.style.color = Color.red;
-                    }
                     else if (memoryMB > 250f)
-                    {
                         _memoryLabel.style.color = Color.yellow;
-                    }
                     else
-                    {
                         _memoryLabel.style.color = Color.green;
-                    }
                 }
-                
+        
                 _memoryUpdateTimer = 0f;
             }
         }
-        
-        /// <summary>
-        /// Update graph data points at a slower interval to maintain history without performance impact
-        /// </summary>
+
+
         private void UpdateGraphs(float deltaTime)
         {
             _graphUpdateTimer += deltaTime;
@@ -216,33 +203,42 @@ namespace GameFramework.UI.Popups
                 // Add current FPS to graph
                 if (_fpsGraph != null && _currentFps > 0)
                 {
-                    _fpsGraph.AddDataPoint(_currentFps);
-                    
-                    // Update graph color based on current FPS
-                    if (_currentFps >= 50f)
+                    try
                     {
-                        _fpsGraph.SetLineColor(Color.green);
+                        _fpsGraph.AddDataPoint(_currentFps);
+                        
+                        // Update graph color based on current FPS
+                        if (_currentFps >= 50f)
+                            _fpsGraph.SetLineColor(Color.green);
+                        else if (_currentFps >= 30f)
+                            _fpsGraph.SetLineColor(Color.yellow);
+                        else
+                            _fpsGraph.SetLineColor(Color.red);
                     }
-                    else if (_currentFps >= 30f)
+                    catch (System.Exception e)
                     {
-                        _fpsGraph.SetLineColor(Color.yellow);
-                    }
-                    else
-                    {
-                        _fpsGraph.SetLineColor(Color.red);
+                        Debug.LogError($"[DebugPopup] Error updating FPS graph: {e.Message}");
                     }
                 }
                 
                 // Add current memory usage to graph
                 if (_memoryGraph != null && _currentMemoryUsage > 0)
                 {
-                    float memoryMB = _currentMemoryUsage / (1024f * 1024f);
-                    _memoryGraph.AddDataPoint(memoryMB);
+                    try
+                    {
+                        float memoryMB = _currentMemoryUsage / (1024f * 1024f);
+                        _memoryGraph.AddDataPoint(memoryMB);
+                    }
+                    catch (System.Exception e)
+                    {
+                        Debug.LogError($"[DebugPopup] Error updating Memory graph: {e.Message}");
+                    }
                 }
                 
                 _graphUpdateTimer = 0f;
             }
         }
+
         
         /// <summary>
         /// Clear all graph data (useful for testing or resetting)
@@ -252,14 +248,6 @@ namespace GameFramework.UI.Popups
             _fpsGraph?.Clear();
             _memoryGraph?.Clear();
         }
-        
-        /// <summary>
-        /// Configure graph update intervals
-        /// </summary>
-        public void SetGraphUpdateInterval(float intervalSeconds)
-        {
-            _graphUpdateInterval = Mathf.Max(0.5f, intervalSeconds); // Minimum 0.5 seconds
-        }
 
         public void SetText(string text)
         {
@@ -268,19 +256,7 @@ namespace GameFramework.UI.Popups
                 _debugLabel.text = text;
             }
         }
-        
-        public void SetRichText(string richText)
-        {
-            if (_debugLabel != null)
-            {
-                _debugLabel.enableRichText = true;
-                _debugLabel.text = richText;
-            }
-        }
-        
-        public float GetCurrentFPS() => _currentFps;
-        public long GetCurrentMemoryUsage() => _currentMemoryUsage;
-        
+
         public override void Cleanup()
         {
             // Clear graph data
@@ -290,10 +266,6 @@ namespace GameFramework.UI.Popups
             base.Cleanup();
         }
         
-        /// <summary>
-        /// Debug popup doesn't block game operations
-        /// </summary>
-        public override bool CountsAsGameBlockingPopup => false;
 
     }
 }

@@ -31,6 +31,7 @@ namespace GameFramework.Services
         private readonly Dictionary<Type, UIScreen> _screens = new();
         private readonly Dictionary<Type, UIPopup> _popups = new();
         private readonly List<UIScreen> _updatableScreens = new();
+        private readonly List<UIPopup> _updatablePopups = new(); // Add this new list
         private readonly UIDocument _uiDocument;
         private readonly IUIDocumentWrapper _uiDocumentWrapper;
 
@@ -73,19 +74,21 @@ namespace GameFramework.Services
             IsInitialized = true;
             await Task.CompletedTask;
         }
-        
+                
         /// <summary>
         /// IUpdatable implementation - called every frame by GameManager
-        /// Updates all screens that need frame-based updates and are currently visible
-        /// Now respects global pause state from PauseService
+        /// Updates all screens and popups that need frame-based updates
+        /// Uses unscaled time for popups to work during pause
         /// </summary>
         public void Update()
         {
             if (!IsInitialized) return;
 
             bool isPaused = _pauseService?.IsPaused ?? false;
-
-            float deltaTime = Time.deltaTime;
+            
+            // Use different deltaTime sources based on pause state and element type
+            float scaledDeltaTime = Time.deltaTime;        // Affected by timeScale (becomes 0 when paused)
+            float unscaledDeltaTime = Time.unscaledDeltaTime; // Not affected by timeScale
 
             // Update only visible screens that need frame updates
             for (int i = _updatableScreens.Count - 1; i >= 0; i--)
@@ -93,24 +96,40 @@ namespace GameFramework.Services
                 var screen = _updatableScreens[i];
                 if (screen != null && screen.IsVisible && screen.NeedsFrameUpdates)
                 {
-                    // Only update screen if not paused (unless it's a special pause-immune screen)
                     if (!isPaused || screen.ShouldUpdateWhenPaused())
                     {
-                        screen.InternalUpdate(deltaTime);
+                        // Use unscaled time if screen should update when paused, otherwise use scaled
+                        float deltaTimeToUse = screen.ShouldUpdateWhenPaused() ? unscaledDeltaTime : scaledDeltaTime;
+                        screen.InternalUpdate(deltaTimeToUse);
                     }
                 }
                 else if (screen == null)
                 {
-                    // Remove null references
                     _updatableScreens.RemoveAt(i);
                 }
             }
 
-            // Update current popup if it needs updates
-            // Popups generally should update even when paused (for animations, etc.)
-            if (_currentPopup != null && _currentPopup.IsVisible && _currentPopup.NeedsFrameUpdates)
+            // Update all visible popups that need frame updates
+            // Popups should generally work even when paused (especially debug/utility popups)
+            for (int i = _updatablePopups.Count - 1; i >= 0; i--)
             {
-                _currentPopup.InternalUpdate(deltaTime);
+                var popup = _updatablePopups[i];
+                if (popup != null && popup.IsVisible && popup.NeedsFrameUpdates)
+                {
+                    // Use unscaled delta time for popups so they work when paused
+                    popup.InternalUpdate(unscaledDeltaTime);
+                    
+                    // Debug logging for DebugPopup specifically
+                    if (popup is DebugPopup && unscaledDeltaTime > 0)
+                    {
+                        // Uncomment for debugging
+                        // Debug.Log($"[UIService] Updating DebugPopup with unscaledDeltaTime: {unscaledDeltaTime:F4}");
+                    }
+                }
+                else if (popup == null)
+                {
+                    _updatablePopups.RemoveAt(i);
+                }
             }
         }
         
@@ -134,7 +153,8 @@ namespace GameFramework.Services
             _screens.Clear();
             _popups.Clear();
             _updatableScreens.Clear();
-            
+            _updatablePopups.Clear(); 
+
             // Clear popup management
             _currentPopup = null;
             _popupStack.Clear();
@@ -288,7 +308,14 @@ namespace GameFramework.Services
         public void RegisterPopup<T>(T popup) where T : UIPopup
         {
             _popups[typeof(T)] = popup;
+        
+            // Add to updatable list if the popup needs frame updates
+            if (popup.NeedsFrameUpdates && !_updatablePopups.Contains(popup))
+            {
+                _updatablePopups.Add(popup);
+            }
         }
+        
         
         public T GetScreen<T>() where T : UIScreen
         {

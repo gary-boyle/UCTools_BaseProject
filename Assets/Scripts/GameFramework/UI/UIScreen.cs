@@ -14,8 +14,8 @@ namespace GameFramework.UI
     {
         protected VisualElement RootElement { get; private set; }
         public bool IsVisible { get; protected set; }
-        public bool NeedsFrameUpdates { get; private set; }
-
+        public bool NeedsFrameUpdates { get; protected set; }
+        
         protected IEventSystem _eventSystem;
 
         protected UIScreen(VisualElement rootElement)
