@@ -12,11 +12,10 @@ namespace GameFramework.UI.Screens
     /// <summary>
     /// Loading screen that displays loading progress and messages
     /// 
-    /// Design:
-    /// - Subscribes to loading progress events through EventSystem
-    /// - Updates loading text and progress display in real-time
-    /// - Handles multiple loading event types for comprehensive coverage
-    /// - Manages UI element references and lifecycle properly
+    /// INTENT: Real-time loading progress display with event-driven updates
+    /// DESIGN: Event-driven architecture using consolidated LoadingProgressEvent
+    /// PROS: Single event subscription, clean separation of concerns, responsive UI
+    /// CONS: Dependent on EventSystem for all updates
     /// </summary>
     public class LoadingScreen : UIScreen
     {
@@ -46,11 +45,9 @@ namespace GameFramework.UI.Screens
             _loadingTextLabel = RootElement?.Q<Label>("lbl_LoadingText");
             _progressContainer = RootElement?.Q<VisualElement>(className: "progress-container");
             _progressBar = RootElement?.Q<ProgressBar>(className: "loading-progress");
-                // Find the secondary text label (currently shows "Please wait...")
+            // Find the secondary text label (currently shows "Please wait...")
             _loadingMessageLabel = RootElement?.Q<Label>(className: "text--secondary");
             
-            SubscribeToLoadingEvents();
-
             // Set initial state
             UpdateLoadingText("Loading...");
             UpdateLoadingMessage("Initializing...");
@@ -64,12 +61,11 @@ namespace GameFramework.UI.Screens
         {
             _eventSystem = GameManager.GetService<IEventSystem>();
 
-            // Subscribe to specific loading service events
-            _eventSystem.Subscribe<LoadingProgressChangedEvent>(OnLoadingProgressChanged);
+            // Subscribe to consolidated loading events
+            _eventSystem.Subscribe<LoadingProgressEvent>(OnLoadingProgress);
             _eventSystem.Subscribe<LoadingMessageChangedEvent>(OnLoadingMessageChanged);
             _eventSystem.Subscribe<LoadingFailedEvent>(OnLoadingFailed);
             _eventSystem.Subscribe<LoadingCompletedEvent>(OnLoadingCompleted);
-            _eventSystem.Subscribe<LoadingProgressEvent>(OnLoadingProgress);
         }
 
         /// <summary>
@@ -77,39 +73,30 @@ namespace GameFramework.UI.Screens
         /// </summary>
         private void UnsubscribeFromLoadingEvents()
         {
-            _eventSystem = GameManager.GetService<IEventSystem>();
+            if (_eventSystem == null) return;
 
-            _eventSystem.Unsubscribe<LoadingProgressChangedEvent>(OnLoadingProgressChanged);
+            _eventSystem.Unsubscribe<LoadingProgressEvent>(OnLoadingProgress);
             _eventSystem.Unsubscribe<LoadingMessageChangedEvent>(OnLoadingMessageChanged);
             _eventSystem.Unsubscribe<LoadingFailedEvent>(OnLoadingFailed);
             _eventSystem.Unsubscribe<LoadingCompletedEvent>(OnLoadingCompleted);
-            _eventSystem.Unsubscribe<LoadingProgressEvent>(OnLoadingProgress);
         }
 
         #region Event Handlers
 
         /// <summary>
-        /// Handles loading progress changed events from LoadService
-        /// </summary>
-        private void OnLoadingProgressChanged(LoadingProgressChangedEvent evt)
-        {
-            UpdateProgress(evt.Progress, evt.Message);
-        }
-
-        /// <summary>
-        /// Handles loading message changed events from LoadService
-        /// </summary>
-        private void OnLoadingMessageChanged(LoadingMessageChangedEvent evt)
-        {
-            UpdateLoadingMessage(evt.Message);
-        }
-
-        /// <summary>
-        /// Handles general loading progress events from LoadingState
+        /// Handles consolidated loading progress events from both LoadService and LoadingState
         /// </summary>
         private void OnLoadingProgress(LoadingProgressEvent evt)
         {
             UpdateProgress(evt.Progress, evt.Message);
+        }
+
+        /// <summary>
+        /// Handles standalone loading message changed events
+        /// </summary>
+        private void OnLoadingMessageChanged(LoadingMessageChangedEvent evt)
+        {
+            UpdateLoadingMessage(evt.Message);
         }
 
         /// <summary>

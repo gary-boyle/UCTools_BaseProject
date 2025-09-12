@@ -455,24 +455,15 @@ namespace GameFramework.Services
         #endregion
         
         #region Progress Notification
-        
+
         /// <summary>
         /// Publishes loading progress events to notify UI and other systems of loading status
         /// </summary>
         private void NotifyProgress(string message, float progress)
         {
-            Debug.Log($"[LoadService] {message} ({progress:P0})");
-            
-            var progressEvent = new LoadingProgressEvent
-            {
-                Progress = progress,
-                Message = message
-            };
-            
-            _eventSystem.Publish(progressEvent);
-            _eventSystem.Publish(new LoadingProgressChangedEvent(message, progress));
+            _eventSystem.Publish(new LoadingProgressEvent(message, progress));
         }
-        
+
         #endregion
     }
 }

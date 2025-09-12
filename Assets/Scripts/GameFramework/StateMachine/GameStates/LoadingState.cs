@@ -273,19 +273,13 @@ namespace GameFramework.StateMachine.GameStates
         
         private async Task UpdateLoadingProgress(string message, float progress)
         {
-            Debug.Log($"[LoadingState] {message} ({progress:P0})");
-            
             // Update loading screen if it exists
             var loadingScreen = UIService.GetScreen<LoadingScreen>();
             loadingScreen?.UpdateProgress(progress, message);
-            
-            // Publish loading progress event
-            EventSystem.Publish(new LoadingProgressEvent
-            {
-                Progress = progress,
-                Message = message
-            });
-            
+    
+            // Publish single consolidated loading progress event
+            EventSystem.Publish(new LoadingProgressEvent(message, progress));
+    
             // Small delay for visual feedback
             await Task.Delay(100);
         }
@@ -297,7 +291,6 @@ namespace GameFramework.StateMachine.GameStates
             
             if (remaining > 0)
             {
-                Debug.Log($"[LoadingState] Waiting {remaining:F1}s for minimum loading time");
                 await Task.Delay((int)(remaining * 1000));
             }
         }
