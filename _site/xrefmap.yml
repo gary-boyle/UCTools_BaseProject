@@ -14802,32 +14802,6 @@ references:
   isSpec: "True"
   fullName: GameFramework.UI.Popups.DebugPopup.CountsAsGameBlockingPopup
   nameWithType: DebugPopup.CountsAsGameBlockingPopup
-- uid: GameFramework.UI.Popups.DebugPopup.GetCurrentFPS
-  name: GetCurrentFPS()
-  href: api/api/GameFramework.UI.Popups.DebugPopup.html#GameFramework_UI_Popups_DebugPopup_GetCurrentFPS
-  commentId: M:GameFramework.UI.Popups.DebugPopup.GetCurrentFPS
-  fullName: GameFramework.UI.Popups.DebugPopup.GetCurrentFPS()
-  nameWithType: DebugPopup.GetCurrentFPS()
-- uid: GameFramework.UI.Popups.DebugPopup.GetCurrentFPS*
-  name: GetCurrentFPS
-  href: api/api/GameFramework.UI.Popups.DebugPopup.html#GameFramework_UI_Popups_DebugPopup_GetCurrentFPS_
-  commentId: Overload:GameFramework.UI.Popups.DebugPopup.GetCurrentFPS
-  isSpec: "True"
-  fullName: GameFramework.UI.Popups.DebugPopup.GetCurrentFPS
-  nameWithType: DebugPopup.GetCurrentFPS
-- uid: GameFramework.UI.Popups.DebugPopup.GetCurrentMemoryUsage
-  name: GetCurrentMemoryUsage()
-  href: api/api/GameFramework.UI.Popups.DebugPopup.html#GameFramework_UI_Popups_DebugPopup_GetCurrentMemoryUsage
-  commentId: M:GameFramework.UI.Popups.DebugPopup.GetCurrentMemoryUsage
-  fullName: GameFramework.UI.Popups.DebugPopup.GetCurrentMemoryUsage()
-  nameWithType: DebugPopup.GetCurrentMemoryUsage()
-- uid: GameFramework.UI.Popups.DebugPopup.GetCurrentMemoryUsage*
-  name: GetCurrentMemoryUsage
-  href: api/api/GameFramework.UI.Popups.DebugPopup.html#GameFramework_UI_Popups_DebugPopup_GetCurrentMemoryUsage_
-  commentId: Overload:GameFramework.UI.Popups.DebugPopup.GetCurrentMemoryUsage
-  isSpec: "True"
-  fullName: GameFramework.UI.Popups.DebugPopup.GetCurrentMemoryUsage
-  nameWithType: DebugPopup.GetCurrentMemoryUsage
 - uid: GameFramework.UI.Popups.DebugPopup.OnHide
   name: OnHide()
   href: api/api/GameFramework.UI.Popups.DebugPopup.html#GameFramework_UI_Popups_DebugPopup_OnHide
@@ -14870,38 +14844,6 @@ references:
   isSpec: "True"
   fullName: GameFramework.UI.Popups.DebugPopup.OnUpdate
   nameWithType: DebugPopup.OnUpdate
-- uid: GameFramework.UI.Popups.DebugPopup.SetGraphUpdateInterval(System.Single)
-  name: SetGraphUpdateInterval(float)
-  href: api/api/GameFramework.UI.Popups.DebugPopup.html#GameFramework_UI_Popups_DebugPopup_SetGraphUpdateInterval_System_Single_
-  commentId: M:GameFramework.UI.Popups.DebugPopup.SetGraphUpdateInterval(System.Single)
-  name.vb: SetGraphUpdateInterval(Single)
-  fullName: GameFramework.UI.Popups.DebugPopup.SetGraphUpdateInterval(float)
-  fullName.vb: GameFramework.UI.Popups.DebugPopup.SetGraphUpdateInterval(Single)
-  nameWithType: DebugPopup.SetGraphUpdateInterval(float)
-  nameWithType.vb: DebugPopup.SetGraphUpdateInterval(Single)
-- uid: GameFramework.UI.Popups.DebugPopup.SetGraphUpdateInterval*
-  name: SetGraphUpdateInterval
-  href: api/api/GameFramework.UI.Popups.DebugPopup.html#GameFramework_UI_Popups_DebugPopup_SetGraphUpdateInterval_
-  commentId: Overload:GameFramework.UI.Popups.DebugPopup.SetGraphUpdateInterval
-  isSpec: "True"
-  fullName: GameFramework.UI.Popups.DebugPopup.SetGraphUpdateInterval
-  nameWithType: DebugPopup.SetGraphUpdateInterval
-- uid: GameFramework.UI.Popups.DebugPopup.SetRichText(System.String)
-  name: SetRichText(string)
-  href: api/api/GameFramework.UI.Popups.DebugPopup.html#GameFramework_UI_Popups_DebugPopup_SetRichText_System_String_
-  commentId: M:GameFramework.UI.Popups.DebugPopup.SetRichText(System.String)
-  name.vb: SetRichText(String)
-  fullName: GameFramework.UI.Popups.DebugPopup.SetRichText(string)
-  fullName.vb: GameFramework.UI.Popups.DebugPopup.SetRichText(String)
-  nameWithType: DebugPopup.SetRichText(string)
-  nameWithType.vb: DebugPopup.SetRichText(String)
-- uid: GameFramework.UI.Popups.DebugPopup.SetRichText*
-  name: SetRichText
-  href: api/api/GameFramework.UI.Popups.DebugPopup.html#GameFramework_UI_Popups_DebugPopup_SetRichText_
-  commentId: Overload:GameFramework.UI.Popups.DebugPopup.SetRichText
-  isSpec: "True"
-  fullName: GameFramework.UI.Popups.DebugPopup.SetRichText
-  nameWithType: DebugPopup.SetRichText
 - uid: GameFramework.UI.Popups.DebugPopup.SetText(System.String)
   name: SetText(string)
   href: api/api/GameFramework.UI.Popups.DebugPopup.html#GameFramework_UI_Popups_DebugPopup_SetText_System_String_
