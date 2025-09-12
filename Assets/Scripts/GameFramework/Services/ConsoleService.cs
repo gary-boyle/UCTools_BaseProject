@@ -66,17 +66,17 @@ namespace GameFramework.Services
                 Debug.LogWarning($"{LOG_PREFIX} Already initialized");
                 return;
             }
-            
+    
             try
             {
                 // Initialize the console system with our GUI
                 Console.Init(_consoleGUI);
-                
+        
                 // Register built-in commands
                 RegisterBuiltInCommands();
 
-                // Subscribe to console toggle events from input system
-                _eventSystem.Subscribe<ConsoleToggleInputEvent>(OnConsoleToggleEvent);
+                // NOTE: Removed ConsoleToggleInputEvent subscription - now handled by ConsoleInputHandler
+                // This prevents duplicate event handling conflicts
 
                 // Subscribe to configuration changes to react to debug setting changes
                 _eventSystem.Subscribe<OptionsChangedEvent>(OnOptionsChanged);
@@ -85,6 +85,8 @@ namespace GameFramework.Services
                 ApplyDebugSettings();
 
                 _isInitialized = true;
+        
+                Debug.Log($"{LOG_PREFIX} Successfully initialized");
 
                 await Task.Yield(); // Ensure initialization completes before next frame
             }
@@ -94,6 +96,7 @@ namespace GameFramework.Services
                 throw;
             }
         }
+
 
         /// <summary>
         /// Clean shutdown of console service
@@ -192,6 +195,7 @@ namespace GameFramework.Services
         /// </summary>
         private void OnConsoleToggleEvent(ConsoleToggleInputEvent evt)
         {
+            Debug.Log("!!!!");
             if (evt.Phase == UnityEngine.InputSystem.InputActionPhase.Performed)
             {
                 if (!IsConsoleEnabled())

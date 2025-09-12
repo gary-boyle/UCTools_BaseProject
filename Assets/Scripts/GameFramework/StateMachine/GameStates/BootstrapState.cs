@@ -31,30 +31,6 @@ namespace GameFramework.StateMachine.GameStates
             //await Task.Delay(1); // Brief pause for initialization
             await TransitionToStateAsync(GameStateType.Splash);
         }
-        
-        private async Task InitializeCoreServices()
-        {
-            // Services should already be registered, just ensure they're initialized
-            var services = new IGameService[]
-            {
-                EventSystem,
-                AudioService,
-                InputManager,
-                UIService,
-                ConsoleService, 
-                Context.SaveService,
-                Context.SceneService
-            };
-            
-            foreach (var service in services)
-            {
-                if (!service.IsInitialized)
-                    await service.InitializeAsync();
-            }
-            
-            InputManager.SetInputContext(InputContext.UI);
-
-        }
     }
 
 }

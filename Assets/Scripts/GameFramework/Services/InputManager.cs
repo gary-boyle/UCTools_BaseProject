@@ -21,31 +21,31 @@ namespace GameFramework.Input
     public class InputManager : IInputManager
     {
         // Store delegate references for proper unsubscription
-        private System.Action<InputAction.CallbackContext> _onMoveInput;
-        private System.Action<InputAction.CallbackContext> _onLookInput;
-        private System.Action<InputAction.CallbackContext> _onAttackInput;
-        private System.Action<InputAction.CallbackContext> _onJumpInput;
-        private System.Action<InputAction.CallbackContext> _onPauseInput;
-        private System.Action<InputAction.CallbackContext> _onInteractInput;
-        private System.Action<InputAction.CallbackContext> _onCrouchInput;
-        private System.Action<InputAction.CallbackContext> _onSprintInput;
-        private System.Action<InputAction.CallbackContext> _onPreviousInput;
-        private System.Action<InputAction.CallbackContext> _onNextInput;
+        private Action<InputAction.CallbackContext> _onMoveInput;
+        private Action<InputAction.CallbackContext> _onLookInput;
+        private Action<InputAction.CallbackContext> _onAttackInput;
+        private Action<InputAction.CallbackContext> _onJumpInput;
+        private Action<InputAction.CallbackContext> _onPauseInput;
+        private Action<InputAction.CallbackContext> _onInteractInput;
+        private Action<InputAction.CallbackContext> _onCrouchInput;
+        private Action<InputAction.CallbackContext> _onSprintInput;
+        private Action<InputAction.CallbackContext> _onPreviousInput;
+        private Action<InputAction.CallbackContext> _onNextInput;
         
-        private System.Action<InputAction.CallbackContext> _onUINavigateInput;
-        private System.Action<InputAction.CallbackContext> _onUISubmitInput;
-        private System.Action<InputAction.CallbackContext> _onUICancelInput;
-        private System.Action<InputAction.CallbackContext> _onUIClickInput;
-        private System.Action<InputAction.CallbackContext> _onUIPointInput;
-        private System.Action<InputAction.CallbackContext> _onUIRightClickInput;
-        private System.Action<InputAction.CallbackContext> _onUIMiddleClickInput;
-        private System.Action<InputAction.CallbackContext> _onUIScrollWheelInput;
+        private Action<InputAction.CallbackContext> _onUINavigateInput;
+        private Action<InputAction.CallbackContext> _onUISubmitInput;
+        private Action<InputAction.CallbackContext> _onUICancelInput;
+        private Action<InputAction.CallbackContext> _onUIClickInput;
+        private Action<InputAction.CallbackContext> _onUIPointInput;
+        private Action<InputAction.CallbackContext> _onUIRightClickInput;
+        private Action<InputAction.CallbackContext> _onUIMiddleClickInput;
+        private Action<InputAction.CallbackContext> _onUIScrollWheelInput;
         
-        private System.Action<InputAction.CallbackContext> _onConsoleToggleInput;
-        private System.Action<InputAction.CallbackContext> _onConsoleSubmitInput;
-        private System.Action<InputAction.CallbackContext> _onConsoleTabCompleteInput;
-        private System.Action<InputAction.CallbackContext> _onConsoleHistoryUpInput;
-        private System.Action<InputAction.CallbackContext> _onConsoleHistoryDownInput;
+        private Action<InputAction.CallbackContext> _onConsoleToggleInput;
+        private Action<InputAction.CallbackContext> _onConsoleSubmitInput;
+        private Action<InputAction.CallbackContext> _onConsoleTabCompleteInput;
+        private Action<InputAction.CallbackContext> _onConsoleHistoryUpInput;
+        private Action<InputAction.CallbackContext> _onConsoleHistoryDownInput;
         
         public bool IsInitialized { get; private set; }
 
@@ -83,32 +83,34 @@ namespace GameFramework.Input
         public async Task InitializeAsync()
         {
             if (IsInitialized) return;
-            
+    
             _inputSettings = SettingsRegistry.Get<InputSettings_SO>();
-            
+    
             try
             {
                 // Initialize Unity Input System
                 _inputActions = new InputSystem_Actions();
                 SubscribeToUnityInputEvents();
                 _inputActions.Enable(); // Enable all - handlers will decide what to process
-                
+        
                 // Register input handlers
                 RegisterHandler(_consoleHandler);
                 RegisterHandler(_uiHandler);
                 RegisterHandler(_playerHandler);
-                
+        
                 // Subscribe to config changes for input settings
                 _eventSystem.Subscribe<OptionsChangedEvent>(OnOptionsChanged);
-                
+        
                 // Apply initial input settings
                 ApplyInputSettings();
-                
+        
+                // Set initialization flag BEFORE activating handlers
+                IsInitialized = true;
+        
                 // Set initial context (console always active)
                 SetInputContext(InputContext.None);
                 ActivateHandler<ConsoleInputHandler>();
-                
-                IsInitialized = true;
+        
                 await Task.CompletedTask;
             }
             catch (Exception ex)
@@ -117,6 +119,7 @@ namespace GameFramework.Input
                 throw;
             }
         }
+
         
         #region Input Settings Integration
 
@@ -207,7 +210,12 @@ namespace GameFramework.Input
             _onUIMiddleClickInput = ctx => _eventSystem.Publish(new UIMiddleClickInputEvent());
             _onUIScrollWheelInput = ctx => _eventSystem.Publish(new UIScrollWheelInputEvent(ctx.ReadValue<Vector2>()));
             
-            _onConsoleToggleInput = ctx => _eventSystem.Publish(new ConsoleToggleInputEvent(ctx.phase));
+            _onConsoleToggleInput = ctx => Debug.Log("Console Toggle Input Received");
+
+            _onConsoleToggleInput = ctx => {
+                Debug.Log($"[InputManager] Console Toggle Input Received - Phase: {ctx.phase}");
+                _eventSystem.Publish(new ConsoleToggleInputEvent(ctx.phase));
+            };
             _onConsoleSubmitInput = ctx => _eventSystem.Publish(new ConsoleSubmitInputEvent(ctx.phase));
             _onConsoleTabCompleteInput = ctx => _eventSystem.Publish(new ConsoleTabCompleteInputEvent(ctx.phase));
             _onConsoleHistoryUpInput = ctx => _eventSystem.Publish(new ConsoleHistoryUpInputEvent(ctx.phase));

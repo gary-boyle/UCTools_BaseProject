@@ -2,10 +2,7 @@
 using System.Threading.Tasks;
 using GameFramework.Core;
 using GameFramework.EventSystem.Events;
-using GameFramework.EventSystem.Interfaces;
 using GameFramework.Input;
-using GameFramework.Input.Interfaces;
-using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine.Enum;
 using GameFramework.StateMachine.Interfaces;
 using GameFramework.UI.Screens;
@@ -209,8 +206,8 @@ namespace GameFramework.StateMachine.GameStates
                 await UIService.CloseAllPopupsAsync();
                 
                 // Shutdown services
-                ConsoleService?.Shutdown();
-                AudioService?.Shutdown();
+                ConsoleService.Shutdown();
+                Context.AudioService?.Shutdown();
                 
                 // Cleanup any other resources
                 await Task.Delay(800); // Simulate cleanup time

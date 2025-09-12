@@ -2,6 +2,7 @@
 using GameFramework.Core;
 using GameFramework.EventSystem.Events;
 using GameFramework.Input;
+using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine.Enum;
 using GameFramework.StateMachine.Interfaces;
 using GameFramework.UI.Screens;

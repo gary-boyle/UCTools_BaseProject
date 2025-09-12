@@ -22,11 +22,12 @@ namespace GameFramework.StateMachine
 
         // Keep StateMachine separate since it's not in GameContext
         protected readonly IGameStateMachine StateMachine;
-    
+        //protected readonly IConsoleService ConsoleService;
+
         // Optional: Keep ConsoleService separate if not in GameContext
         //protected readonly IConsoleService ConsoleService;
 
-        protected IAudioService AudioService => Context.AudioService;
+        //protected IAudioService AudioService => Context.AudioService;
         protected IConsoleService ConsoleService => Context.ConsoleService;
         protected IEventSystem EventSystem => Context.EventSystem;
         protected IGameDataService GameDataService => Context.GameDataService;
@@ -48,6 +49,8 @@ namespace GameFramework.StateMachine
             StateType = stateType;
             Context = context ?? throw new ArgumentNullException(nameof(context));
             StateMachine = stateMachine ?? throw new ArgumentNullException(nameof(stateMachine));
+            //ConsoleService = consoleService ?? throw new ArgumentNullException(nameof(consoleService));
+
         }
 
     

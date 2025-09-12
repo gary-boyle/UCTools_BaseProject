@@ -320,8 +320,8 @@ namespace GameFramework.Core
             }
             
             await SettingsRegistry.LoadAllSettingsAsync();
+          
 
-            
             var audioService = _container.Resolve<IAudioService>();
             await audioService.InitializeAsync(RegisterAudioManager());
 
@@ -334,6 +334,13 @@ namespace GameFramework.Core
             var inputManager = _container.Resolve<IInputManager>();
             await inputManager.InitializeAsync();
             
+            if (_container.IsRegistered<IConsoleService>())
+            {
+                var consoleService = _container.Resolve<IConsoleService>();
+                await consoleService.InitializeAsync();
+                Debug.Log("[GameManager] Console service initialized");
+            }
+            
             var sceneService = _container.Resolve<ISceneService>();
             await sceneService.InitializeAsync();
             
@@ -344,7 +351,7 @@ namespace GameFramework.Core
             await loadService.InitializeAsync();
             
             var saveService = _container.Resolve<ISaveService>();
-            await saveService.InitializeAsync(); 
+            await saveService.InitializeAsync();
             
             // Initialize UI service LAST since it depends on other services
             var uiService = _container.Resolve<IUIService>();
@@ -393,11 +400,13 @@ namespace GameFramework.Core
             // Create and register UI document before UI service
             RegisterUIDocument();
             
-            // Create and register console GUI before console service (if debug console is enabled)
+            // Create and register console-related services (if debug console is enabled)
             if (_enableDebugConsole)
             {
                 RegisterConsoleGUI();
                 _container.RegisterSingleton<IConsoleService, ConsoleService>();
+                _container.RegisterSingleton<ConsoleInputHandler>(); // Only register if console service exists
+                Debug.Log("[GameManager] Console services registered");
             }
             
             // Register services that might depend on the above

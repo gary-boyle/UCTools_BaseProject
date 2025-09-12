@@ -5,14 +5,27 @@
             <ui:VisualElement picking-mode="Ignore" class="layout-column">
                 <ui:VisualElement picking-mode="Ignore" class="layout-row layout-space-between" style="margin-bottom: 10px; flex-direction: column; align-items: flex-start;">
                     <ui:Label name="lbl_Debug" enable-rich-text="true" text="Debug Information" picking-mode="Ignore" class="debug-text text--xl" />
+
+                    <!-- FPS Section -->
                     <ui:Label name="lbl_FPS" text="FPS: 60" picking-mode="Ignore" class="debug-text" />
                     <ui:VisualElement name="container_FPSGraph" picking-mode="Ignore" style="flex-direction: column; align-items: center;">
                         <ui:VisualElement name="graph_FPS" picking-mode="Ignore" style="width: 180px; height: 50px;" />
                     </ui:VisualElement>
+
+                    <!-- Memory Section -->
                     <ui:Label name="lbl_Memory" text="Memory: 256MB" picking-mode="Ignore" class="debug-text" />
                     <ui:VisualElement name="container_MemoryGraph" picking-mode="Ignore" style="flex-direction: column; align-items: center;">
                         <ui:VisualElement name="graph_Memory" picking-mode="Ignore" style="width: 180px; height: 50px;" />
                     </ui:VisualElement>
+
+                    <!-- Draw Calls Section -->
+                    <ui:Label name="lbl_DrawCalls" text="Draw Calls: 0" picking-mode="Ignore" class="debug-text" />
+                    <ui:VisualElement name="container_DrawCallsGraph" picking-mode="Ignore" style="flex-direction: column; align-items: center;">
+                        <ui:VisualElement name="graph_DrawCalls" picking-mode="Ignore" style="width: 180px; height: 50px;" />
+                    </ui:VisualElement>
+
+                    <!-- Rendering Details Section -->
+                    <ui:Label name="lbl_Batches" text="Batches: 0 | Tris: 0 | Verts: 0" picking-mode="Ignore" class="debug-text text--sm" />
                 </ui:VisualElement>
                 <ui:VisualElement picking-mode="Ignore" class="layout-row layout-space-between" style="margin-bottom: 20px;" />
             </ui:VisualElement>
