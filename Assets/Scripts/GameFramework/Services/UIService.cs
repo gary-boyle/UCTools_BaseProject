@@ -502,7 +502,7 @@ namespace GameFramework.Services
         }
 
         /// <summary>
-        /// Apply debug display settings
+        /// Apply debug display settings with proper lifecycle management
         /// </summary>
         private async Task ApplyDebugSettings()
         {
@@ -510,15 +510,21 @@ namespace GameFramework.Services
             {
                 if (SettingsRegistry.Get<DebugSettings_SO>().ShowDebugInfo.Value)
                 {
-                    // Show debug popup if not already visible
-                    if (!IsCurrentPopup<DebugPopup>())
+                    var debugPopup = GetPopup<DebugPopup>();
+            
+                    // Show debug popup if not already visible, but don't interfere with popup stack
+                    if (debugPopup != null && !debugPopup.IsVisible)
                     {
-                        await ShowPopupAsync<DebugPopup>();
+                        // Show directly without going through popup stack management
+                        debugPopup.Show();
+                
+                        // Ensure it's not counted in game-blocking popup checks
+                        Debug.Log("[UIService] DebugPopup shown (non-blocking)");
                     }
                 }
                 else
                 {
-                    // Hide debug popup if visible
+                    // Hide debug popup safely
                     await HideDebugPopupSafely();
                 }
             }
@@ -529,21 +535,33 @@ namespace GameFramework.Services
         }
 
         /// <summary>
-        /// Safely hide the debug popup regardless of its current position
+        /// Safely hide the debug popup without affecting popup stack
         /// </summary>
         private async Task HideDebugPopupSafely()
         {
-            if (IsCurrentPopup<DebugPopup>())
-            {
-                await HidePopupAsync<DebugPopup>();
-                return;
-            }
-            
             var debugPopup = GetPopup<DebugPopup>();
             if (debugPopup != null && debugPopup.IsVisible)
             {
+                // Hide directly without popup stack management since it's non-blocking
                 debugPopup.Hide();
+        
+                // Clean up any references in popup management if somehow they exist
+                if (_currentPopup == debugPopup)
+                {
+                    _currentPopup = null;
+            
+                    // Restore next popup from stack if available
+                    if (_popupStack.Count > 0)
+                    {
+                        _currentPopup = _popupStack.Pop();
+                        _currentPopup.Show();
+                    }
+                }
+        
+                Debug.Log("[UIService] DebugPopup hidden safely");
             }
+    
+            await Task.CompletedTask;
         }
 
         /// <summary>
@@ -603,19 +621,62 @@ namespace GameFramework.Services
         }
         
         /// <summary>
-        /// Close all popups for loading operations
+        /// Close only game-blocking popups for loading operations
+        /// Preserves utility popups like DebugPopup that should persist across loading
         /// </summary>
         public async Task CloseAllPopupsForLoading()
         {
             try
             {
-                await CloseAllPopupsAsync();
+                await CloseGameBlockingPopupsAsync();
             }
             catch (Exception ex)
             {
                 Debug.LogWarning($"[UIService] Error closing popups for loading: {ex.Message}");
             }
         }
+        
+        /// <summary>
+        /// Close only popups that block game flow, preserving utility popups
+        /// </summary>
+        public async Task CloseGameBlockingPopupsAsync()
+        {
+            // Handle current popup if it's game-blocking
+            if (_currentPopup != null && _currentPopup.CountsAsGameBlockingPopup)
+            {
+                _currentPopup.Hide();
+                _currentPopup = null;
+            }
+    
+            // Close only game-blocking popups from the stack
+            var gameBlockingPopups = _popupStack.Where(popup => popup.CountsAsGameBlockingPopup).ToList();
+    
+            // Remove game-blocking popups from stack
+            var remainingPopups = _popupStack.Where(popup => !popup.CountsAsGameBlockingPopup).ToList();
+            _popupStack.Clear();
+    
+            // Hide all game-blocking popups
+            foreach (var popup in gameBlockingPopups)
+            {
+                popup.Hide();
+            }
+    
+            // Rebuild stack with only non-game-blocking popups
+            foreach (var popup in remainingPopups.AsEnumerable().Reverse())
+            {
+                _popupStack.Push(popup);
+            }
+    
+            // If no current popup and we have non-game-blocking popups, restore the top one
+            if (_currentPopup == null && _popupStack.Count > 0)
+            {
+                _currentPopup = _popupStack.Pop();
+                // Don't call Show() here as the popup should already be visible
+            }
+    
+            await Task.CompletedTask;
+        }
+
         
         #endregion
     }

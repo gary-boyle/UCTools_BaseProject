@@ -171,6 +171,28 @@ namespace GameFramework.UI.Popups
             }
         }
 
+        /// <summary>
+        /// Override Show to ensure proper state management
+        /// </summary>
+        public override void Show()
+        {
+            if (!IsVisible)
+            {
+                base.Show();
+            }
+        }
+        
+        /// <summary>
+        /// Override Hide to ensure proper cleanup
+        /// </summary>
+        public override void Hide()
+        {
+            if (IsVisible)
+            {
+                base.Hide();
+            }
+        }
+
         protected override void OnShow()
         {
             // Reset all counters when popup becomes visible
