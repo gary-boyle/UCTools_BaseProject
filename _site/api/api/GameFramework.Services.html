@@ -157,6 +157,29 @@ All saving operations are handled by SaveService</p>
 Handles time scale, audio, and event integration
 Uses EventSystem for all event publishing instead of local events</p>
 </section>
+      <h4><a class="xref" href="GameFramework.Services.ProfilingService.html">ProfilingService</a></h4>
+      <section><p>Simplified profiling service that monitors performance metrics and manages frame-based profiling sessions.</p>
+<p>Design:</p>
+<ul>
+<li>Frame-based profiling with simple progress tracking</li>
+<li>Circular buffers for efficient memory management</li>
+<li>Event-driven architecture for UI updates</li>
+<li>Direct Unity Profiler integration for accurate metrics</li>
+</ul>
+<p>Pros:</p>
+<ul>
+<li>Clean separation of concerns</li>
+<li>Efficient memory usage</li>
+<li>Simple session management</li>
+<li>Comprehensive performance monitoring</li>
+</ul>
+<p>Cons:</p>
+<ul>
+<li>Memory overhead for data storage</li>
+<li>Dependency on EventSystem</li>
+<li>Performance impact during sessions</li>
+</ul>
+</section>
       <h4><a class="xref" href="GameFramework.Services.SaveService.html">SaveService</a></h4>
       <section><p>Save service that handles file saving operations and save file metadata via event system
 Now includes auto-save scheduling based on gameplay settings
@@ -178,6 +201,12 @@ Cons: Depends on proper event firing from other systems</p>
       <section><p>UI service implementation with constructor injection and centralized screen updates
 Implements IUpdatable to manage frame-based updates for screens that need them
 Now handles debug settings integration for automatic debug popup management</p>
+</section>
+    <h3 id="structs">
+Structs
+</h3>
+      <h4><a class="xref" href="GameFramework.Services.PerformanceSnapshot.html">PerformanceSnapshot</a></h4>
+      <section><p>Single performance data point captured at a specific moment</p>
 </section>
 
 

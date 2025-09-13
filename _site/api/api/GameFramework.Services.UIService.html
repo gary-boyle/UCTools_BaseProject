@@ -273,12 +273,37 @@ Now handles debug settings integration for automatic debug popup management</p>
   </table>
   <a id="GameFramework_Services_UIService_CloseAllPopupsForLoading_" data-uid="GameFramework.Services.UIService.CloseAllPopupsForLoading*"></a>
   <h4 id="GameFramework_Services_UIService_CloseAllPopupsForLoading" data-uid="GameFramework.Services.UIService.CloseAllPopupsForLoading">CloseAllPopupsForLoading()</h4>
-  <div class="markdown level1 summary"><p>Close all popups for loading operations</p>
+  <div class="markdown level1 summary"><p>Close only game-blocking popups for loading operations
+Preserves utility popups like DebugPopup that should persist across loading</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task CloseAllPopupsForLoading()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Services_UIService_CloseGameBlockingPopupsAsync_" data-uid="GameFramework.Services.UIService.CloseGameBlockingPopupsAsync*"></a>
+  <h4 id="GameFramework_Services_UIService_CloseGameBlockingPopupsAsync" data-uid="GameFramework.Services.UIService.CloseGameBlockingPopupsAsync">CloseGameBlockingPopupsAsync()</h4>
+  <div class="markdown level1 summary"><p>Close only popups that block game flow, preserving utility popups</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task CloseGameBlockingPopupsAsync()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-condensed">

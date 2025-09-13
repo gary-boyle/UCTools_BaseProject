@@ -110,6 +110,25 @@ Handles the business logic of loading games, creating sessions, and managing sta
       <section><p>Simple centralized pause service interface
 Single source of truth for game pause state</p>
 </section>
+      <h4><a class="xref" href="GameFramework.Services.Interfaces.IProfilingService.html">IProfilingService</a></h4>
+      <section><p>Service interface for handling frame-based performance profiling and monitoring.</p>
+<p>Design:</p>
+<ul>
+<li>Clean separation between real-time data access and session management</li>
+<li>Simple configuration methods for service customization</li>
+<li>Implements IUpdatable for frame-by-frame data collection</li>
+</ul>
+<p>Pros:</p>
+<ul>
+<li>Clear API contract for profiling operations</li>
+<li>Minimal interface surface area</li>
+<li>Consistent naming and organization</li>
+</ul>
+<p>Cons:</p>
+<ul>
+<li>Requires implementing service to handle all functionality</li>
+</ul>
+</section>
       <h4><a class="xref" href="GameFramework.Services.Interfaces.ISaveService.html">ISaveService</a></h4>
       <section><p>Interface for save service that handles file operations and save file metadata
 Save operations are triggered via event system for clean separation of concerns

@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class ConsoleInputHandler | UCTools Base Project </title>
+    <title>Class ProfilingSessionStartedEvent | UCTools Base Project </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class ConsoleInputHandler | UCTools Base Project ">
+    <meta name="title" content="Class ProfilingSessionStartedEvent | UCTools Base Project ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -79,41 +79,21 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="GameFramework.Input.Handlers.ConsoleInputHandler">
+            <article class="content wrap" id="_content" data-uid="GameFramework.Events.ProfilingSessionStartedEvent">
 
 
 
-  <h1 id="GameFramework_Input_Handlers_ConsoleInputHandler" data-uid="GameFramework.Input.Handlers.ConsoleInputHandler" class="text-break">Class ConsoleInputHandler</h1>
-  <div class="markdown level0 summary"><p>Handles console input - always active, highest priority
-When console is open, consumes most input to prevent conflicts</p>
+  <h1 id="GameFramework_Events_ProfilingSessionStartedEvent" data-uid="GameFramework.Events.ProfilingSessionStartedEvent" class="text-break">Class ProfilingSessionStartedEvent</h1>
+  <div class="markdown level0 summary"><p>Event published when a profiling session starts.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><a class="xref" href="GameFramework.Input.Handlers.InputHandlerBase.html">InputHandlerBase</a></div>
-    <div class="level2"><span class="xref">ConsoleInputHandler</span></div>
+    <div class="level1"><span class="xref">ProfilingSessionStartedEvent</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
-    <div>
-      <a class="xref" href="GameFramework.Input.Handlers.InputHandlerBase.html#GameFramework_Input_Handlers_InputHandlerBase_Priority">InputHandlerBase.Priority</a>
-    </div>
-    <div>
-      <a class="xref" href="GameFramework.Input.Handlers.InputHandlerBase.html#GameFramework_Input_Handlers_InputHandlerBase__eventSystem">InputHandlerBase._eventSystem</a>
-    </div>
-    <div>
-      <a class="xref" href="GameFramework.Input.Handlers.InputHandlerBase.html#GameFramework_Input_Handlers_InputHandlerBase_Activate">InputHandlerBase.Activate()</a>
-    </div>
-    <div>
-      <a class="xref" href="GameFramework.Input.Handlers.InputHandlerBase.html#GameFramework_Input_Handlers_InputHandlerBase_Deactivate">InputHandlerBase.Deactivate()</a>
-    </div>
-    <div>
-      <a class="xref" href="GameFramework.Input.Handlers.InputHandlerBase.html#GameFramework_Input_Handlers_InputHandlerBase_OnActivate">InputHandlerBase.OnActivate()</a>
-    </div>
-    <div>
-      <a class="xref" href="GameFramework.Input.Handlers.InputHandlerBase.html#GameFramework_Input_Handlers_InputHandlerBase_OnDeactivate">InputHandlerBase.OnDeactivate()</a>
-    </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
     </div>
@@ -136,21 +116,21 @@ When console is open, consumes most input to prevent conflicts</p>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
     </div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.Input.html">Input</a>.<a class="xref" href="GameFramework.Input.Handlers.html">Handlers</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.Events.html">Events</a></h6>
   <h6><strong>Assembly</strong>: .dll</h6>
-  <h5 id="GameFramework_Input_Handlers_ConsoleInputHandler_syntax">Syntax</h5>
+  <h5 id="GameFramework_Events_ProfilingSessionStartedEvent_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class ConsoleInputHandler : InputHandlerBase</code></pre>
+    <pre><code class="lang-csharp hljs">public class ProfilingSessionStartedEvent</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
-  <a id="GameFramework_Input_Handlers_ConsoleInputHandler__ctor_" data-uid="GameFramework.Input.Handlers.ConsoleInputHandler.#ctor*"></a>
-  <h4 id="GameFramework_Input_Handlers_ConsoleInputHandler__ctor_GameFramework_EventSystem_Interfaces_IEventSystem_GameFramework_Services_Interfaces_IConsoleService_" data-uid="GameFramework.Input.Handlers.ConsoleInputHandler.#ctor(GameFramework.EventSystem.Interfaces.IEventSystem,GameFramework.Services.Interfaces.IConsoleService)">ConsoleInputHandler(IEventSystem, IConsoleService)</h4>
+  <a id="GameFramework_Events_ProfilingSessionStartedEvent__ctor_" data-uid="GameFramework.Events.ProfilingSessionStartedEvent.#ctor*"></a>
+  <h4 id="GameFramework_Events_ProfilingSessionStartedEvent__ctor_System_String_System_Boolean_System_Int32_System_Single_" data-uid="GameFramework.Events.ProfilingSessionStartedEvent.#ctor(System.String,System.Boolean,System.Int32,System.Single)">ProfilingSessionStartedEvent(string, bool, int, float)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ConsoleInputHandler(IEventSystem eventSystem, IConsoleService consoleService)</code></pre>
+    <pre><code class="lang-csharp hljs">public ProfilingSessionStartedEvent(string sessionName, bool isFrameBased, int targetFrames = 0, float targetDuration = 0)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -163,46 +143,38 @@ When console is open, consumes most input to prevent conflicts</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="GameFramework.EventSystem.Interfaces.IEventSystem.html">IEventSystem</a></td>
-        <td><span class="parametername">eventSystem</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">sessionName</span></td>
         <td></td>
       </tr>
       <tr>
-        <td><a class="xref" href="GameFramework.Services.Interfaces.IConsoleService.html">IConsoleService</a></td>
-        <td><span class="parametername">consoleService</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">isFrameBased</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">targetFrames</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td><span class="parametername">targetDuration</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <h3 id="methods">Methods
+  <h3 id="properties">Properties
 </h3>
-  <a id="GameFramework_Input_Handlers_ConsoleInputHandler_HandleInput_" data-uid="GameFramework.Input.Handlers.ConsoleInputHandler.HandleInput*"></a>
-  <h4 id="GameFramework_Input_Handlers_ConsoleInputHandler_HandleInput__1___0_" data-uid="GameFramework.Input.Handlers.ConsoleInputHandler.HandleInput``1(``0)">HandleInput&lt;T&gt;(T)</h4>
-  <div class="markdown level1 summary"><p>Handle an input event. Return true if the event was consumed and should not propagate to lower priority handlers.</p>
-</div>
+  <a id="GameFramework_Events_ProfilingSessionStartedEvent_IsFrameBased_" data-uid="GameFramework.Events.ProfilingSessionStartedEvent.IsFrameBased*"></a>
+  <h4 id="GameFramework_Events_ProfilingSessionStartedEvent_IsFrameBased" data-uid="GameFramework.Events.ProfilingSessionStartedEvent.IsFrameBased">IsFrameBased</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override bool HandleInput&lt;T&gt;(T inputEvent) where T : class</code></pre>
+    <pre><code class="lang-csharp hljs">public bool IsFrameBased { get; }</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">T</span></td>
-        <td><span class="parametername">inputEvent</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
+  <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
@@ -217,43 +189,75 @@ When console is open, consumes most input to prevent conflicts</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="typeParameters">Type Parameters</h5>
+  <a id="GameFramework_Events_ProfilingSessionStartedEvent_SessionName_" data-uid="GameFramework.Events.ProfilingSessionStartedEvent.SessionName*"></a>
+  <h4 id="GameFramework_Events_ProfilingSessionStartedEvent_SessionName" data-uid="GameFramework.Events.ProfilingSessionStartedEvent.SessionName">SessionName</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string SessionName { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
-        <th>Name</th>
+        <th>Type</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><span class="parametername">T</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="GameFramework.Input.Handlers.InputHandlerBase.html#GameFramework_Input_Handlers_InputHandlerBase_HandleInput__1___0_">InputHandlerBase.HandleInput&lt;T&gt;(T)</a></div>
-  <a id="GameFramework_Input_Handlers_ConsoleInputHandler_SubscribeToEvents_" data-uid="GameFramework.Input.Handlers.ConsoleInputHandler.SubscribeToEvents*"></a>
-  <h4 id="GameFramework_Input_Handlers_ConsoleInputHandler_SubscribeToEvents" data-uid="GameFramework.Input.Handlers.ConsoleInputHandler.SubscribeToEvents">SubscribeToEvents()</h4>
+  <a id="GameFramework_Events_ProfilingSessionStartedEvent_TargetDuration_" data-uid="GameFramework.Events.ProfilingSessionStartedEvent.TargetDuration*"></a>
+  <h4 id="GameFramework_Events_ProfilingSessionStartedEvent_TargetDuration" data-uid="GameFramework.Events.ProfilingSessionStartedEvent.TargetDuration">TargetDuration</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void SubscribeToEvents()</code></pre>
+    <pre><code class="lang-csharp hljs">public float TargetDuration { get; }</code></pre>
   </div>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="GameFramework.Input.Handlers.InputHandlerBase.html#GameFramework_Input_Handlers_InputHandlerBase_SubscribeToEvents">InputHandlerBase.SubscribeToEvents()</a></div>
-  <a id="GameFramework_Input_Handlers_ConsoleInputHandler_UnsubscribeFromEvents_" data-uid="GameFramework.Input.Handlers.ConsoleInputHandler.UnsubscribeFromEvents*"></a>
-  <h4 id="GameFramework_Input_Handlers_ConsoleInputHandler_UnsubscribeFromEvents" data-uid="GameFramework.Input.Handlers.ConsoleInputHandler.UnsubscribeFromEvents">UnsubscribeFromEvents()</h4>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Events_ProfilingSessionStartedEvent_TargetFrames_" data-uid="GameFramework.Events.ProfilingSessionStartedEvent.TargetFrames*"></a>
+  <h4 id="GameFramework_Events_ProfilingSessionStartedEvent_TargetFrames" data-uid="GameFramework.Events.ProfilingSessionStartedEvent.TargetFrames">TargetFrames</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void UnsubscribeFromEvents()</code></pre>
+    <pre><code class="lang-csharp hljs">public int TargetFrames { get; }</code></pre>
   </div>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="GameFramework.Input.Handlers.InputHandlerBase.html#GameFramework_Input_Handlers_InputHandlerBase_UnsubscribeFromEvents">InputHandlerBase.UnsubscribeFromEvents()</a></div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
 
 </article>
           </div>

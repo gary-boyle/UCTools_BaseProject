@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class UIServiceIntegrationTests | UCTools Base Project </title>
+    <title>Struct PerformanceStats | UCTools Base Project </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class UIServiceIntegrationTests | UCTools Base Project ">
+    <meta name="title" content="Struct PerformanceStats | UCTools Base Project ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -79,59 +79,99 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="GameFramework.Tests.UI.UIServiceIntegrationTests">
+            <article class="content wrap" id="_content" data-uid="GameFramework.Services.Data.PerformanceStats">
 
 
 
-  <h1 id="GameFramework_Tests_UI_UIServiceIntegrationTests" data-uid="GameFramework.Tests.UI.UIServiceIntegrationTests" class="text-break">Class UIServiceIntegrationTests</h1>
-  <div class="markdown level0 summary"></div>
+  <h1 id="GameFramework_Services_Data_PerformanceStats" data-uid="GameFramework.Services.Data.PerformanceStats" class="text-break">Struct PerformanceStats</h1>
+  <div class="markdown level0 summary"><p>Aggregated statistics for a performance metric</p>
+</div>
   <div class="markdown level0 conceptual"></div>
-  <div class="inheritance">
-    <h5>Inheritance</h5>
-    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><span class="xref">UIServiceIntegrationTests</span></div>
-  </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.equals">ValueType.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode">ValueType.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.tostring">ValueType.ToString()</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
-    </div>
-    <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
     </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
-    </div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.Tests.html">Tests</a>.<a class="xref" href="GameFramework.Tests.UI.html">UI</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.Services.html">Services</a>.<a class="xref" href="GameFramework.Services.Data.html">Data</a></h6>
   <h6><strong>Assembly</strong>: .dll</h6>
-  <h5 id="GameFramework_Tests_UI_UIServiceIntegrationTests_syntax">Syntax</h5>
+  <h5 id="GameFramework_Services_Data_PerformanceStats_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class UIServiceIntegrationTests</code></pre>
+    <pre><code class="lang-csharp hljs">[Serializable]
+public struct PerformanceStats</code></pre>
   </div>
-  <h3 id="methods">Methods
+  <h3 id="constructors">Constructors
 </h3>
-  <a id="GameFramework_Tests_UI_UIServiceIntegrationTests_EventSystem_ShouldBeProperlyInitialized_" data-uid="GameFramework.Tests.UI.UIServiceIntegrationTests.EventSystem_ShouldBeProperlyInitialized*"></a>
-  <h4 id="GameFramework_Tests_UI_UIServiceIntegrationTests_EventSystem_ShouldBeProperlyInitialized" data-uid="GameFramework.Tests.UI.UIServiceIntegrationTests.EventSystem_ShouldBeProperlyInitialized">EventSystem_ShouldBeProperlyInitialized()</h4>
+  <a id="GameFramework_Services_Data_PerformanceStats__ctor_" data-uid="GameFramework.Services.Data.PerformanceStats.#ctor*"></a>
+  <h4 id="GameFramework_Services_Data_PerformanceStats__ctor_System_Single_System_Single_System_Single_System_Single_System_Int32_" data-uid="GameFramework.Services.Data.PerformanceStats.#ctor(System.Single,System.Single,System.Single,System.Single,System.Int32)">PerformanceStats(float, float, float, float, int)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task EventSystem_ShouldBeProperlyInitialized()</code></pre>
+    <pre><code class="lang-csharp hljs">public PerformanceStats(float min, float max, float average, float median, int sampleCount)</code></pre>
   </div>
-  <h5 class="returns">Returns</h5>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td><span class="parametername">min</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td><span class="parametername">max</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td><span class="parametername">average</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td><span class="parametername">median</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">sampleCount</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+</h3>
+  <h4 id="GameFramework_Services_Data_PerformanceStats_average" data-uid="GameFramework.Services.Data.PerformanceStats.average">average</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float average</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
@@ -141,20 +181,19 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_Tests_UI_UIServiceIntegrationTests_FullWorkflow_InitializeShowHideShutdown_ShouldWorkCorrectly_" data-uid="GameFramework.Tests.UI.UIServiceIntegrationTests.FullWorkflow_InitializeShowHideShutdown_ShouldWorkCorrectly*"></a>
-  <h4 id="GameFramework_Tests_UI_UIServiceIntegrationTests_FullWorkflow_InitializeShowHideShutdown_ShouldWorkCorrectly" data-uid="GameFramework.Tests.UI.UIServiceIntegrationTests.FullWorkflow_InitializeShowHideShutdown_ShouldWorkCorrectly">FullWorkflow_InitializeShowHideShutdown_ShouldWorkCorrectly()</h4>
+  <h4 id="GameFramework_Services_Data_PerformanceStats_max" data-uid="GameFramework.Services.Data.PerformanceStats.max">max</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task FullWorkflow_InitializeShowHideShutdown_ShouldWorkCorrectly()</code></pre>
+    <pre><code class="lang-csharp hljs">public float max</code></pre>
   </div>
-  <h5 class="returns">Returns</h5>
+  <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
@@ -164,20 +203,19 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_Tests_UI_UIServiceIntegrationTests_MultipleScreensVisible_ShouldAllBeVisible_" data-uid="GameFramework.Tests.UI.UIServiceIntegrationTests.MultipleScreensVisible_ShouldAllBeVisible*"></a>
-  <h4 id="GameFramework_Tests_UI_UIServiceIntegrationTests_MultipleScreensVisible_ShouldAllBeVisible" data-uid="GameFramework.Tests.UI.UIServiceIntegrationTests.MultipleScreensVisible_ShouldAllBeVisible">MultipleScreensVisible_ShouldAllBeVisible()</h4>
+  <h4 id="GameFramework_Services_Data_PerformanceStats_median" data-uid="GameFramework.Services.Data.PerformanceStats.median">median</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task MultipleScreensVisible_ShouldAllBeVisible()</code></pre>
+    <pre><code class="lang-csharp hljs">public float median</code></pre>
   </div>
-  <h5 class="returns">Returns</h5>
+  <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
@@ -187,27 +225,55 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_Tests_UI_UIServiceIntegrationTests_SetUp_" data-uid="GameFramework.Tests.UI.UIServiceIntegrationTests.SetUp*"></a>
-  <h4 id="GameFramework_Tests_UI_UIServiceIntegrationTests_SetUp" data-uid="GameFramework.Tests.UI.UIServiceIntegrationTests.SetUp">SetUp()</h4>
+  <h4 id="GameFramework_Services_Data_PerformanceStats_min" data-uid="GameFramework.Services.Data.PerformanceStats.min">min</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void SetUp()</code></pre>
+    <pre><code class="lang-csharp hljs">public float min</code></pre>
   </div>
-  <a id="GameFramework_Tests_UI_UIServiceIntegrationTests_TearDown_" data-uid="GameFramework.Tests.UI.UIServiceIntegrationTests.TearDown*"></a>
-  <h4 id="GameFramework_Tests_UI_UIServiceIntegrationTests_TearDown" data-uid="GameFramework.Tests.UI.UIServiceIntegrationTests.TearDown">TearDown()</h4>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Services_Data_PerformanceStats_sampleCount" data-uid="GameFramework.Services.Data.PerformanceStats.sampleCount">sampleCount</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void TearDown()</code></pre>
+    <pre><code class="lang-csharp hljs">public int sampleCount</code></pre>
   </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
 
 </article>
           </div>

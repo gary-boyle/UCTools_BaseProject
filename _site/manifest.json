@@ -628,6 +628,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.ConsoleTool.Commands.ProfilingCommand.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.ConsoleTool.Commands.ProfilingCommand.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.ConsoleTool.Commands.ProfilingCommand",
+      "Summary": "<p sourcefile=\"api/GameFramework.ConsoleTool.Commands.ProfilingCommand.yml\" sourcestartlinenumber=\"1\">Console command for controlling frame-based profiling sessions and monitoring performance.</p>\n<p sourcefile=\"api/GameFramework.ConsoleTool.Commands.ProfilingCommand.yml\" sourcestartlinenumber=\"3\">Design:</p>\n<ul sourcefile=\"api/GameFramework.ConsoleTool.Commands.ProfilingCommand.yml\" sourcestartlinenumber=\"4\">\n<li sourcefile=\"api/GameFramework.ConsoleTool.Commands.ProfilingCommand.yml\" sourcestartlinenumber=\"4\">Simple command structure with clear subcommand handlers</li>\n<li sourcefile=\"api/GameFramework.ConsoleTool.Commands.ProfilingCommand.yml\" sourcestartlinenumber=\"5\">Direct service interaction without static state</li>\n<li sourcefile=\"api/GameFramework.ConsoleTool.Commands.ProfilingCommand.yml\" sourcestartlinenumber=\"6\">Clean separation between command parsing and execution</li>\n</ul>\n<p sourcefile=\"api/GameFramework.ConsoleTool.Commands.ProfilingCommand.yml\" sourcestartlinenumber=\"8\">Pros:</p>\n<ul sourcefile=\"api/GameFramework.ConsoleTool.Commands.ProfilingCommand.yml\" sourcestartlinenumber=\"9\">\n<li sourcefile=\"api/GameFramework.ConsoleTool.Commands.ProfilingCommand.yml\" sourcestartlinenumber=\"9\">Stateless design prevents threading issues</li>\n<li sourcefile=\"api/GameFramework.ConsoleTool.Commands.ProfilingCommand.yml\" sourcestartlinenumber=\"10\">Clear command structure with consistent error handling</li>\n<li sourcefile=\"api/GameFramework.ConsoleTool.Commands.ProfilingCommand.yml\" sourcestartlinenumber=\"11\">Direct service calls for real-time feedback</li>\n</ul>\n<p sourcefile=\"api/GameFramework.ConsoleTool.Commands.ProfilingCommand.yml\" sourcestartlinenumber=\"13\">Cons:</p>\n<ul sourcefile=\"api/GameFramework.ConsoleTool.Commands.ProfilingCommand.yml\" sourcestartlinenumber=\"14\">\n<li sourcefile=\"api/GameFramework.ConsoleTool.Commands.ProfilingCommand.yml\" sourcestartlinenumber=\"14\">Requires ProfilingService to be available</li>\n<li sourcefile=\"api/GameFramework.ConsoleTool.Commands.ProfilingCommand.yml\" sourcestartlinenumber=\"15\">No offline command caching</li>\n</ul>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFramework.ConsoleTool.Commands.WaitCommand.yml",
       "output": {
         ".html": {
@@ -2000,17 +2014,59 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFramework.Input.Handlers.ConsoleInputHandler.yml",
+      "source_relative_path": "api/GameFramework.Events.PerformanceDataUpdatedEvent.yml",
       "output": {
         ".html": {
-          "relative_path": "api/api/GameFramework.Input.Handlers.ConsoleInputHandler.html"
+          "relative_path": "api/api/GameFramework.Events.PerformanceDataUpdatedEvent.html"
         }
       },
       "version": "",
       "Uid": null,
       "IsMRef": true,
-      "Title": "GameFramework.Input.Handlers.ConsoleInputHandler",
-      "Summary": "<p sourcefile=\"api/GameFramework.Input.Handlers.ConsoleInputHandler.yml\" sourcestartlinenumber=\"1\">Handles console input - always active, highest priority\nWhen console is open, consumes most input to prevent conflicts</p>\n"
+      "Title": "GameFramework.Events.PerformanceDataUpdatedEvent",
+      "Summary": "<p sourcefile=\"api/GameFramework.Events.PerformanceDataUpdatedEvent.yml\" sourcestartlinenumber=\"1\">Event published when new performance data is available from the profiling service.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Events.ProfilingSessionCompletedEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Events.ProfilingSessionCompletedEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Events.ProfilingSessionCompletedEvent",
+      "Summary": "<p sourcefile=\"api/GameFramework.Events.ProfilingSessionCompletedEvent.yml\" sourcestartlinenumber=\"1\">Event published when a profiling session is completed.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Events.ProfilingSessionStartedEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Events.ProfilingSessionStartedEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Events.ProfilingSessionStartedEvent",
+      "Summary": "<p sourcefile=\"api/GameFramework.Events.ProfilingSessionStartedEvent.yml\" sourcestartlinenumber=\"1\">Event published when a profiling session starts.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Events.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Events.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Events",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -2168,6 +2224,62 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Services.Data.FPSStats.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Services.Data.FPSStats.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Services.Data.FPSStats",
+      "Summary": "<p sourcefile=\"api/GameFramework.Services.Data.FPSStats.yml\" sourcestartlinenumber=\"1\">FPS statistics data structure</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Services.Data.PerformanceData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Services.Data.PerformanceData.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Services.Data.PerformanceData",
+      "Summary": "<p sourcefile=\"api/GameFramework.Services.Data.PerformanceData.yml\" sourcestartlinenumber=\"1\">Performance data optimized for graph display</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Services.Data.PerformanceStats.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Services.Data.PerformanceStats.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Services.Data.PerformanceStats",
+      "Summary": "<p sourcefile=\"api/GameFramework.Services.Data.PerformanceStats.yml\" sourcestartlinenumber=\"1\">Aggregated statistics for a performance metric</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Services.Data.ProfilingSession.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Services.Data.ProfilingSession.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Services.Data.ProfilingSession",
+      "Summary": "<p sourcefile=\"api/GameFramework.Services.Data.ProfilingSession.yml\" sourcestartlinenumber=\"1\">Complete profiling session results with aggregated statistics</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFramework.Services.Data.TimeStatistics.yml",
       "output": {
         ".html": {
@@ -2322,6 +2434,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Services.Interfaces.IProfilingService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Services.Interfaces.IProfilingService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Services.Interfaces.IProfilingService",
+      "Summary": "<p sourcefile=\"api/GameFramework.Services.Interfaces.IProfilingService.yml\" sourcestartlinenumber=\"1\">Service interface for handling frame-based performance profiling and monitoring.</p>\n<p sourcefile=\"api/GameFramework.Services.Interfaces.IProfilingService.yml\" sourcestartlinenumber=\"3\">Design:</p>\n<ul sourcefile=\"api/GameFramework.Services.Interfaces.IProfilingService.yml\" sourcestartlinenumber=\"4\">\n<li sourcefile=\"api/GameFramework.Services.Interfaces.IProfilingService.yml\" sourcestartlinenumber=\"4\">Clean separation between real-time data access and session management</li>\n<li sourcefile=\"api/GameFramework.Services.Interfaces.IProfilingService.yml\" sourcestartlinenumber=\"5\">Simple configuration methods for service customization</li>\n<li sourcefile=\"api/GameFramework.Services.Interfaces.IProfilingService.yml\" sourcestartlinenumber=\"6\">Implements IUpdatable for frame-by-frame data collection</li>\n</ul>\n<p sourcefile=\"api/GameFramework.Services.Interfaces.IProfilingService.yml\" sourcestartlinenumber=\"8\">Pros:</p>\n<ul sourcefile=\"api/GameFramework.Services.Interfaces.IProfilingService.yml\" sourcestartlinenumber=\"9\">\n<li sourcefile=\"api/GameFramework.Services.Interfaces.IProfilingService.yml\" sourcestartlinenumber=\"9\">Clear API contract for profiling operations</li>\n<li sourcefile=\"api/GameFramework.Services.Interfaces.IProfilingService.yml\" sourcestartlinenumber=\"10\">Minimal interface surface area</li>\n<li sourcefile=\"api/GameFramework.Services.Interfaces.IProfilingService.yml\" sourcestartlinenumber=\"11\">Consistent naming and organization</li>\n</ul>\n<p sourcefile=\"api/GameFramework.Services.Interfaces.IProfilingService.yml\" sourcestartlinenumber=\"13\">Cons:</p>\n<ul sourcefile=\"api/GameFramework.Services.Interfaces.IProfilingService.yml\" sourcestartlinenumber=\"14\">\n<li sourcefile=\"api/GameFramework.Services.Interfaces.IProfilingService.yml\" sourcestartlinenumber=\"14\">Requires implementing service to handle all functionality</li>\n</ul>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFramework.Services.Interfaces.ISaveService.yml",
       "output": {
         ".html": {
@@ -2417,6 +2543,34 @@
       "IsMRef": true,
       "Title": "GameFramework.Services.PauseService",
       "Summary": "<p sourcefile=\"api/GameFramework.Services.PauseService.yml\" sourcestartlinenumber=\"1\">Simple centralized pause service that manages game pause state\nHandles time scale, audio, and event integration\nUses EventSystem for all event publishing instead of local events</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Services.PerformanceSnapshot.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Services.PerformanceSnapshot.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Services.PerformanceSnapshot",
+      "Summary": "<p sourcefile=\"api/GameFramework.Services.PerformanceSnapshot.yml\" sourcestartlinenumber=\"1\">Single performance data point captured at a specific moment</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Services.ProfilingService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Services.ProfilingService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Services.ProfilingService",
+      "Summary": "<p sourcefile=\"api/GameFramework.Services.ProfilingService.yml\" sourcestartlinenumber=\"1\">Simplified profiling service that monitors performance metrics and manages frame-based profiling sessions.</p>\n<p sourcefile=\"api/GameFramework.Services.ProfilingService.yml\" sourcestartlinenumber=\"3\">Design:</p>\n<ul sourcefile=\"api/GameFramework.Services.ProfilingService.yml\" sourcestartlinenumber=\"4\">\n<li sourcefile=\"api/GameFramework.Services.ProfilingService.yml\" sourcestartlinenumber=\"4\">Frame-based profiling with simple progress tracking</li>\n<li sourcefile=\"api/GameFramework.Services.ProfilingService.yml\" sourcestartlinenumber=\"5\">Circular buffers for efficient memory management</li>\n<li sourcefile=\"api/GameFramework.Services.ProfilingService.yml\" sourcestartlinenumber=\"6\">Event-driven architecture for UI updates</li>\n<li sourcefile=\"api/GameFramework.Services.ProfilingService.yml\" sourcestartlinenumber=\"7\">Direct Unity Profiler integration for accurate metrics</li>\n</ul>\n<p sourcefile=\"api/GameFramework.Services.ProfilingService.yml\" sourcestartlinenumber=\"9\">Pros:</p>\n<ul sourcefile=\"api/GameFramework.Services.ProfilingService.yml\" sourcestartlinenumber=\"10\">\n<li sourcefile=\"api/GameFramework.Services.ProfilingService.yml\" sourcestartlinenumber=\"10\">Clean separation of concerns</li>\n<li sourcefile=\"api/GameFramework.Services.ProfilingService.yml\" sourcestartlinenumber=\"11\">Efficient memory usage</li>\n<li sourcefile=\"api/GameFramework.Services.ProfilingService.yml\" sourcestartlinenumber=\"12\">Simple session management</li>\n<li sourcefile=\"api/GameFramework.Services.ProfilingService.yml\" sourcestartlinenumber=\"13\">Comprehensive performance monitoring</li>\n</ul>\n<p sourcefile=\"api/GameFramework.Services.ProfilingService.yml\" sourcestartlinenumber=\"15\">Cons:</p>\n<ul sourcefile=\"api/GameFramework.Services.ProfilingService.yml\" sourcestartlinenumber=\"16\">\n<li sourcefile=\"api/GameFramework.Services.ProfilingService.yml\" sourcestartlinenumber=\"16\">Memory overhead for data storage</li>\n<li sourcefile=\"api/GameFramework.Services.ProfilingService.yml\" sourcestartlinenumber=\"17\">Dependency on EventSystem</li>\n<li sourcefile=\"api/GameFramework.Services.ProfilingService.yml\" sourcestartlinenumber=\"18\">Performance impact during sessions</li>\n</ul>\n"
     },
     {
       "type": "ManagedReference",
@@ -2826,34 +2980,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFramework.Tests.DIContainerTests.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/GameFramework.Tests.DIContainerTests.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFramework.Tests.DIContainerTests",
-      "Summary": "<p sourcefile=\"api/GameFramework.Tests.DIContainerTests.yml\" sourcestartlinenumber=\"1\">Comprehensive test suite for DIContainer class.\nTests singleton registration, factory registration, dependency resolution,\ncircular dependency detection, and error handling.</p>\n<p sourcefile=\"api/GameFramework.Tests.DIContainerTests.yml\" sourcestartlinenumber=\"5\">Design: Isolated unit tests with proper setup/teardown and dependency management\nPros: Thorough coverage, edge case testing, clear test structure, proper DI testing\nCons: Requires mock objects, potential test maintenance overhead</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFramework.Tests.EventSystemTests.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/GameFramework.Tests.EventSystemTests.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFramework.Tests.EventSystemTests",
-      "Summary": "<p sourcefile=\"api/GameFramework.Tests.EventSystemTests.yml\" sourcestartlinenumber=\"1\">Comprehensive test suite for EventSystem class.\nTests event subscription, publishing, error handling, and lifecycle management.</p>\n<p sourcefile=\"api/GameFramework.Tests.EventSystemTests.yml\" sourcestartlinenumber=\"4\">Design: Isolated tests with event handler validation\nPros: Covers all event system functionality, tests error scenarios\nCons: Async testing complexity, event handler timing considerations</p>\n"
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/GameFramework.Tests.HelperClasses.CircularDependencyA.yml",
       "output": {
         ".html": {
@@ -3092,62 +3218,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFramework.Tests.UI.UIScreenBaseTests.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/GameFramework.Tests.UI.UIScreenBaseTests.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFramework.Tests.UI.UIScreenBaseTests",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFramework.Tests.UI.UIServiceIntegrationTests.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/GameFramework.Tests.UI.UIServiceIntegrationTests.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFramework.Tests.UI.UIServiceIntegrationTests",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFramework.Tests.UI.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/GameFramework.Tests.UI.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFramework.Tests.UI",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFramework.Tests.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/GameFramework.Tests.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFramework.Tests",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/GameFramework.UI.Interfaces.IUIDocumentWrapper.yml",
       "output": {
         ".html": {
@@ -3200,7 +3270,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.UI.Popups.DebugPopup",
-      "Summary": "<p sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"1\">Enhanced debug popup with real-time performance graphs\nDisplays FPS, memory consumption, and historical graphs of both metrics</p>\n<p sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"4\">Design:</p>\n<ul sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"5\">\n<li sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"5\">Integrates custom GraphElement controls for visual data representation</li>\n<li sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"6\">Maintains separate data collection intervals for metrics vs graphs</li>\n<li sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"7\">Uses color-coded indicators for quick performance assessment</li>\n<li sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"8\">Efficient data sampling to prevent performance impact</li>\n</ul>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"1\">Simplified debug popup that displays real-time performance metrics with minimal allocations.</p>\n<p sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"3\">Design:</p>\n<ul sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"4\">\n<li sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"4\">Clean separation of UI element caching and updates</li>\n<li sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"5\">Event-driven updates to minimize polling</li>\n<li sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"6\">Efficient change detection to prevent redundant UI updates</li>\n<li sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"7\">Simple graph integration for historical data visualization</li>\n</ul>\n<p sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"9\">Pros:</p>\n<ul sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"10\">\n<li sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"10\">Zero-allocation UI updates during normal operation</li>\n<li sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"11\">Event-driven architecture reduces CPU overhead</li>\n<li sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"12\">Clear separation of concerns</li>\n<li sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"13\">Robust service connection handling</li>\n</ul>\n<p sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"15\">Cons:</p>\n<ul sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"16\">\n<li sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"16\">Requires UXML structure to match expected element names</li>\n<li sourcefile=\"api/GameFramework.UI.Popups.DebugPopup.yml\" sourcestartlinenumber=\"17\">Dependency on EventSystem for real-time updates</li>\n</ul>\n"
     },
     {
       "type": "ManagedReference",

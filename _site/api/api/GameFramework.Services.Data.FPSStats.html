@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class UIScreenBaseTests | UCTools Base Project </title>
+    <title>Struct FPSStats | UCTools Base Project </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class UIScreenBaseTests | UCTools Base Project ">
+    <meta name="title" content="Struct FPSStats | UCTools Base Project ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -79,106 +79,180 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="GameFramework.Tests.UI.UIScreenBaseTests">
+            <article class="content wrap" id="_content" data-uid="GameFramework.Services.Data.FPSStats">
 
 
 
-  <h1 id="GameFramework_Tests_UI_UIScreenBaseTests" data-uid="GameFramework.Tests.UI.UIScreenBaseTests" class="text-break">Class UIScreenBaseTests</h1>
-  <div class="markdown level0 summary"></div>
+  <h1 id="GameFramework_Services_Data_FPSStats" data-uid="GameFramework.Services.Data.FPSStats" class="text-break">Struct FPSStats</h1>
+  <div class="markdown level0 summary"><p>FPS statistics data structure</p>
+</div>
   <div class="markdown level0 conceptual"></div>
-  <div class="inheritance">
-    <h5>Inheritance</h5>
-    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><span class="xref">UIScreenBaseTests</span></div>
-  </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.equals">ValueType.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode">ValueType.GetHashCode()</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
-    </div>
-    <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
     </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
-    </div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.Tests.html">Tests</a>.<a class="xref" href="GameFramework.Tests.UI.html">UI</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.Services.html">Services</a>.<a class="xref" href="GameFramework.Services.Data.html">Data</a></h6>
   <h6><strong>Assembly</strong>: .dll</h6>
-  <h5 id="GameFramework_Tests_UI_UIScreenBaseTests_syntax">Syntax</h5>
+  <h5 id="GameFramework_Services_Data_FPSStats_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class UIScreenBaseTests</code></pre>
+    <pre><code class="lang-csharp hljs">[Serializable]
+public struct FPSStats</code></pre>
   </div>
+  <h3 id="fields">Fields
+</h3>
+  <h4 id="GameFramework_Services_Data_FPSStats_Average" data-uid="GameFramework.Services.Data.FPSStats.Average">Average</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float Average</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Services_Data_FPSStats_Current" data-uid="GameFramework.Services.Data.FPSStats.Current">Current</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float Current</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Services_Data_FPSStats_Max" data-uid="GameFramework.Services.Data.FPSStats.Max">Max</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float Max</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Services_Data_FPSStats_Min" data-uid="GameFramework.Services.Data.FPSStats.Min">Min</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float Min</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Services_Data_FPSStats_SampleCount" data-uid="GameFramework.Services.Data.FPSStats.SampleCount">SampleCount</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int SampleCount</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="methods">Methods
 </h3>
-  <a id="GameFramework_Tests_UI_UIScreenBaseTests_Constructor_WithNullRootElement_ShouldThrowArgumentNullException_" data-uid="GameFramework.Tests.UI.UIScreenBaseTests.Constructor_WithNullRootElement_ShouldThrowArgumentNullException*"></a>
-  <h4 id="GameFramework_Tests_UI_UIScreenBaseTests_Constructor_WithNullRootElement_ShouldThrowArgumentNullException" data-uid="GameFramework.Tests.UI.UIScreenBaseTests.Constructor_WithNullRootElement_ShouldThrowArgumentNullException">Constructor_WithNullRootElement_ShouldThrowArgumentNullException()</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="GameFramework_Services_Data_FPSStats_ToString_" data-uid="GameFramework.Services.Data.FPSStats.ToString*"></a>
+  <h4 id="GameFramework_Services_Data_FPSStats_ToString" data-uid="GameFramework.Services.Data.FPSStats.ToString">ToString()</h4>
+  <div class="markdown level1 summary"><p>Returns the fully qualified type name of this instance.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Constructor_WithNullRootElement_ShouldThrowArgumentNullException()</code></pre>
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
   </div>
-  <a id="GameFramework_Tests_UI_UIScreenBaseTests_Constructor_WithValidRootElement_ShouldCreateScreen_" data-uid="GameFramework.Tests.UI.UIScreenBaseTests.Constructor_WithValidRootElement_ShouldCreateScreen*"></a>
-  <h4 id="GameFramework_Tests_UI_UIScreenBaseTests_Constructor_WithValidRootElement_ShouldCreateScreen" data-uid="GameFramework.Tests.UI.UIScreenBaseTests.Constructor_WithValidRootElement_ShouldCreateScreen">Constructor_WithValidRootElement_ShouldCreateScreen()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Constructor_WithValidRootElement_ShouldCreateScreen()</code></pre>
-  </div>
-  <a id="GameFramework_Tests_UI_UIScreenBaseTests_Hide_MultipleCallsShouldBeIdempotent_" data-uid="GameFramework.Tests.UI.UIScreenBaseTests.Hide_MultipleCallsShouldBeIdempotent*"></a>
-  <h4 id="GameFramework_Tests_UI_UIScreenBaseTests_Hide_MultipleCallsShouldBeIdempotent" data-uid="GameFramework.Tests.UI.UIScreenBaseTests.Hide_MultipleCallsShouldBeIdempotent">Hide_MultipleCallsShouldBeIdempotent()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Hide_MultipleCallsShouldBeIdempotent()</code></pre>
-  </div>
-  <a id="GameFramework_Tests_UI_UIScreenBaseTests_Hide_ShouldSetVisibilityToFalse_" data-uid="GameFramework.Tests.UI.UIScreenBaseTests.Hide_ShouldSetVisibilityToFalse*"></a>
-  <h4 id="GameFramework_Tests_UI_UIScreenBaseTests_Hide_ShouldSetVisibilityToFalse" data-uid="GameFramework.Tests.UI.UIScreenBaseTests.Hide_ShouldSetVisibilityToFalse">Hide_ShouldSetVisibilityToFalse()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Hide_ShouldSetVisibilityToFalse()</code></pre>
-  </div>
-  <a id="GameFramework_Tests_UI_UIScreenBaseTests_SetUp_" data-uid="GameFramework.Tests.UI.UIScreenBaseTests.SetUp*"></a>
-  <h4 id="GameFramework_Tests_UI_UIScreenBaseTests_SetUp" data-uid="GameFramework.Tests.UI.UIScreenBaseTests.SetUp">SetUp()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void SetUp()</code></pre>
-  </div>
-  <a id="GameFramework_Tests_UI_UIScreenBaseTests_Show_MultipleCallsShouldBeIdempotent_" data-uid="GameFramework.Tests.UI.UIScreenBaseTests.Show_MultipleCallsShouldBeIdempotent*"></a>
-  <h4 id="GameFramework_Tests_UI_UIScreenBaseTests_Show_MultipleCallsShouldBeIdempotent" data-uid="GameFramework.Tests.UI.UIScreenBaseTests.Show_MultipleCallsShouldBeIdempotent">Show_MultipleCallsShouldBeIdempotent()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Show_MultipleCallsShouldBeIdempotent()</code></pre>
-  </div>
-  <a id="GameFramework_Tests_UI_UIScreenBaseTests_Show_ShouldSetVisibilityToTrue_" data-uid="GameFramework.Tests.UI.UIScreenBaseTests.Show_ShouldSetVisibilityToTrue*"></a>
-  <h4 id="GameFramework_Tests_UI_UIScreenBaseTests_Show_ShouldSetVisibilityToTrue" data-uid="GameFramework.Tests.UI.UIScreenBaseTests.Show_ShouldSetVisibilityToTrue">Show_ShouldSetVisibilityToTrue()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Show_ShouldSetVisibilityToTrue()</code></pre>
-  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><p>The fully qualified type name.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.tostring">ValueType.ToString()</a></div>
 
 </article>
           </div>

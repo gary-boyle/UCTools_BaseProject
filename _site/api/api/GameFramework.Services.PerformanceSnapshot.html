@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class InputHandlerBase | UCTools Base Project </title>
+    <title>Struct PerformanceSnapshot | UCTools Base Project </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class InputHandlerBase | UCTools Base Project ">
+    <meta name="title" content="Struct PerformanceSnapshot | UCTools Base Project ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -79,61 +79,51 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="GameFramework.Input.Handlers.InputHandlerBase">
+            <article class="content wrap" id="_content" data-uid="GameFramework.Services.PerformanceSnapshot">
 
 
 
-  <h1 id="GameFramework_Input_Handlers_InputHandlerBase" data-uid="GameFramework.Input.Handlers.InputHandlerBase" class="text-break">Class InputHandlerBase</h1>
-  <div class="markdown level0 summary"><p>Base class for all input handlers
-Each handler is responsible for one specific type of input (UI, Player, Console, etc.)</p>
+  <h1 id="GameFramework_Services_PerformanceSnapshot" data-uid="GameFramework.Services.PerformanceSnapshot" class="text-break">Struct PerformanceSnapshot</h1>
+  <div class="markdown level0 summary"><p>Single performance data point captured at a specific moment</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  <div class="inheritance">
-    <h5>Inheritance</h5>
-    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><span class="xref">InputHandlerBase</span></div>
-      <div class="level2"><a class="xref" href="GameFramework.Input.Handlers.PlayerInputHandler.html">PlayerInputHandler</a></div>
-      <div class="level2"><a class="xref" href="GameFramework.Input.Handlers.UIInputHandler.html">UIInputHandler</a></div>
-  </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.equals">ValueType.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode">ValueType.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.tostring">ValueType.ToString()</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
-    </div>
-    <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
     </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
-    </div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.Input.html">Input</a>.<a class="xref" href="GameFramework.Input.Handlers.html">Handlers</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.Services.html">Services</a></h6>
   <h6><strong>Assembly</strong>: .dll</h6>
-  <h5 id="GameFramework_Input_Handlers_InputHandlerBase_syntax">Syntax</h5>
+  <h5 id="GameFramework_Services_PerformanceSnapshot_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class InputHandlerBase</code></pre>
+    <pre><code class="lang-csharp hljs">[Serializable]
+public struct PerformanceSnapshot</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
-  <a id="GameFramework_Input_Handlers_InputHandlerBase__ctor_" data-uid="GameFramework.Input.Handlers.InputHandlerBase.#ctor*"></a>
-  <h4 id="GameFramework_Input_Handlers_InputHandlerBase__ctor_System_String_System_Int32_GameFramework_EventSystem_Interfaces_IEventSystem_System_Boolean_" data-uid="GameFramework.Input.Handlers.InputHandlerBase.#ctor(System.String,System.Int32,GameFramework.EventSystem.Interfaces.IEventSystem,System.Boolean)">InputHandlerBase(string, int, IEventSystem, bool)</h4>
+  <a id="GameFramework_Services_PerformanceSnapshot__ctor_" data-uid="GameFramework.Services.PerformanceSnapshot.#ctor*"></a>
+  <h4 id="GameFramework_Services_PerformanceSnapshot__ctor_System_Single_System_Single_System_Int64_System_Int32_System_Int32_System_Int32_System_Int32_System_Single_" data-uid="GameFramework.Services.PerformanceSnapshot.#ctor(System.Single,System.Single,System.Int64,System.Int32,System.Int32,System.Int32,System.Int32,System.Single)">PerformanceSnapshot(float, float, long, int, int, int, int, float)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected InputHandlerBase(string name, int priority, IEventSystem eventSystem, bool consumeInput = true)</code></pre>
+    <pre><code class="lang-csharp hljs">public PerformanceSnapshot(float timestamp, float fps, long memoryBytes, int drawCalls, int batches, int triangles, int vertices, float deltaTime)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -146,35 +136,55 @@ Each handler is responsible for one specific type of input (UI, Player, Console,
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">name</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td><span class="parametername">timestamp</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td><span class="parametername">fps</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
+        <td><span class="parametername">memoryBytes</span></td>
         <td></td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">priority</span></td>
+        <td><span class="parametername">drawCalls</span></td>
         <td></td>
       </tr>
       <tr>
-        <td><a class="xref" href="GameFramework.EventSystem.Interfaces.IEventSystem.html">IEventSystem</a></td>
-        <td><span class="parametername">eventSystem</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">batches</span></td>
         <td></td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><span class="parametername">consumeInput</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">triangles</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">vertices</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td><span class="parametername">deltaTime</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h3 id="fields">Fields
 </h3>
-  <h4 id="GameFramework_Input_Handlers_InputHandlerBase__eventSystem" data-uid="GameFramework.Input.Handlers.InputHandlerBase._eventSystem">_eventSystem</h4>
+  <h4 id="GameFramework_Services_PerformanceSnapshot_batches" data-uid="GameFramework.Services.PerformanceSnapshot.batches">batches</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected readonly IEventSystem _eventSystem</code></pre>
+    <pre><code class="lang-csharp hljs">public int batches</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-condensed">
@@ -186,22 +196,41 @@ Each handler is responsible for one specific type of input (UI, Player, Console,
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="GameFramework.EventSystem.Interfaces.IEventSystem.html">IEventSystem</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <h3 id="properties">Properties
-</h3>
-  <a id="GameFramework_Input_Handlers_InputHandlerBase_Priority_" data-uid="GameFramework.Input.Handlers.InputHandlerBase.Priority*"></a>
-  <h4 id="GameFramework_Input_Handlers_InputHandlerBase_Priority" data-uid="GameFramework.Input.Handlers.InputHandlerBase.Priority">Priority</h4>
+  <h4 id="GameFramework_Services_PerformanceSnapshot_deltaTime" data-uid="GameFramework.Services.PerformanceSnapshot.deltaTime">deltaTime</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int Priority { get; protected set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public float deltaTime</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Services_PerformanceSnapshot_drawCalls" data-uid="GameFramework.Services.PerformanceSnapshot.drawCalls">drawCalls</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int drawCalls</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
@@ -216,51 +245,128 @@ Each handler is responsible for one specific type of input (UI, Player, Console,
       </tr>
     </tbody>
   </table>
-  <h3 id="methods">Methods
+  <h4 id="GameFramework_Services_PerformanceSnapshot_fps" data-uid="GameFramework.Services.PerformanceSnapshot.fps">fps</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float fps</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Services_PerformanceSnapshot_memoryBytes" data-uid="GameFramework.Services.PerformanceSnapshot.memoryBytes">memoryBytes</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long memoryBytes</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Services_PerformanceSnapshot_timestamp" data-uid="GameFramework.Services.PerformanceSnapshot.timestamp">timestamp</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float timestamp</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Services_PerformanceSnapshot_triangles" data-uid="GameFramework.Services.PerformanceSnapshot.triangles">triangles</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int triangles</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Services_PerformanceSnapshot_vertices" data-uid="GameFramework.Services.PerformanceSnapshot.vertices">vertices</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int vertices</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
 </h3>
-  <a id="GameFramework_Input_Handlers_InputHandlerBase_Activate_" data-uid="GameFramework.Input.Handlers.InputHandlerBase.Activate*"></a>
-  <h4 id="GameFramework_Input_Handlers_InputHandlerBase_Activate" data-uid="GameFramework.Input.Handlers.InputHandlerBase.Activate">Activate()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Activate()</code></pre>
-  </div>
-  <a id="GameFramework_Input_Handlers_InputHandlerBase_Deactivate_" data-uid="GameFramework.Input.Handlers.InputHandlerBase.Deactivate*"></a>
-  <h4 id="GameFramework_Input_Handlers_InputHandlerBase_Deactivate" data-uid="GameFramework.Input.Handlers.InputHandlerBase.Deactivate">Deactivate()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Deactivate()</code></pre>
-  </div>
-  <a id="GameFramework_Input_Handlers_InputHandlerBase_HandleInput_" data-uid="GameFramework.Input.Handlers.InputHandlerBase.HandleInput*"></a>
-  <h4 id="GameFramework_Input_Handlers_InputHandlerBase_HandleInput__1___0_" data-uid="GameFramework.Input.Handlers.InputHandlerBase.HandleInput``1(``0)">HandleInput&lt;T&gt;(T)</h4>
-  <div class="markdown level1 summary"><p>Handle an input event. Return true if the event was consumed and should not propagate to lower priority handlers.</p>
+  <a id="GameFramework_Services_PerformanceSnapshot_MemoryMB_" data-uid="GameFramework.Services.PerformanceSnapshot.MemoryMB*"></a>
+  <h4 id="GameFramework_Services_PerformanceSnapshot_MemoryMB" data-uid="GameFramework.Services.PerformanceSnapshot.MemoryMB">MemoryMB</h4>
+  <div class="markdown level1 summary"><p>Get memory usage in megabytes</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract bool HandleInput&lt;T&gt;(T inputEvent) where T : class</code></pre>
+    <pre><code class="lang-csharp hljs">public float MemoryMB { get; }</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">T</span></td>
-        <td><span class="parametername">inputEvent</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
+  <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
@@ -270,58 +376,11 @@ Each handler is responsible for one specific type of input (UI, Player, Console,
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">T</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_Input_Handlers_InputHandlerBase_OnActivate_" data-uid="GameFramework.Input.Handlers.InputHandlerBase.OnActivate*"></a>
-  <h4 id="GameFramework_Input_Handlers_InputHandlerBase_OnActivate" data-uid="GameFramework.Input.Handlers.InputHandlerBase.OnActivate">OnActivate()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void OnActivate()</code></pre>
-  </div>
-  <a id="GameFramework_Input_Handlers_InputHandlerBase_OnDeactivate_" data-uid="GameFramework.Input.Handlers.InputHandlerBase.OnDeactivate*"></a>
-  <h4 id="GameFramework_Input_Handlers_InputHandlerBase_OnDeactivate" data-uid="GameFramework.Input.Handlers.InputHandlerBase.OnDeactivate">OnDeactivate()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void OnDeactivate()</code></pre>
-  </div>
-  <a id="GameFramework_Input_Handlers_InputHandlerBase_SubscribeToEvents_" data-uid="GameFramework.Input.Handlers.InputHandlerBase.SubscribeToEvents*"></a>
-  <h4 id="GameFramework_Input_Handlers_InputHandlerBase_SubscribeToEvents" data-uid="GameFramework.Input.Handlers.InputHandlerBase.SubscribeToEvents">SubscribeToEvents()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected abstract void SubscribeToEvents()</code></pre>
-  </div>
-  <a id="GameFramework_Input_Handlers_InputHandlerBase_UnsubscribeFromEvents_" data-uid="GameFramework.Input.Handlers.InputHandlerBase.UnsubscribeFromEvents*"></a>
-  <h4 id="GameFramework_Input_Handlers_InputHandlerBase_UnsubscribeFromEvents" data-uid="GameFramework.Input.Handlers.InputHandlerBase.UnsubscribeFromEvents">UnsubscribeFromEvents()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected abstract void UnsubscribeFromEvents()</code></pre>
-  </div>
 
 </article>
           </div>

@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class ConsoleCommandBase | UCTools Base Project </title>
+    <title>Class ProfilingCommand | UCTools Base Project </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class ConsoleCommandBase | UCTools Base Project ">
+    <meta name="title" content="Class ProfilingCommand | UCTools Base Project ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -79,28 +79,36 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="GameFramework.ConsoleTool.Commands.ConsoleCommandBase">
+            <article class="content wrap" id="_content" data-uid="GameFramework.ConsoleTool.Commands.ProfilingCommand">
 
 
 
-  <h1 id="GameFramework_ConsoleTool_Commands_ConsoleCommandBase" data-uid="GameFramework.ConsoleTool.Commands.ConsoleCommandBase" class="text-break">Class ConsoleCommandBase</h1>
-  <div class="markdown level0 summary"><p>Base class for console commands providing common functionality
-Handles basic validation and provides utility methods</p>
+  <h1 id="GameFramework_ConsoleTool_Commands_ProfilingCommand" data-uid="GameFramework.ConsoleTool.Commands.ProfilingCommand" class="text-break">Class ProfilingCommand</h1>
+  <div class="markdown level0 summary"><p>Console command for controlling frame-based profiling sessions and monitoring performance.</p>
+<p>Design:</p>
+<ul>
+<li>Simple command structure with clear subcommand handlers</li>
+<li>Direct service interaction without static state</li>
+<li>Clean separation between command parsing and execution</li>
+</ul>
+<p>Pros:</p>
+<ul>
+<li>Stateless design prevents threading issues</li>
+<li>Clear command structure with consistent error handling</li>
+<li>Direct service calls for real-time feedback</li>
+</ul>
+<p>Cons:</p>
+<ul>
+<li>Requires ProfilingService to be available</li>
+<li>No offline command caching</li>
+</ul>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><span class="xref">ConsoleCommandBase</span></div>
-      <div class="level2"><a class="xref" href="GameFramework.ConsoleTool.Commands.AudioCommand.html">AudioCommand</a></div>
-      <div class="level2"><a class="xref" href="GameFramework.ConsoleTool.Commands.DebugCommand.html">DebugCommand</a></div>
-      <div class="level2"><a class="xref" href="GameFramework.ConsoleTool.Commands.ExampleCommand.html">ExampleCommand</a></div>
-      <div class="level2"><a class="xref" href="GameFramework.ConsoleTool.Commands.ExecCommand.html">ExecCommand</a></div>
-      <div class="level2"><a class="xref" href="GameFramework.ConsoleTool.Commands.GraphicsCommand.html">GraphicsCommand</a></div>
-      <div class="level2"><a class="xref" href="GameFramework.ConsoleTool.Commands.HelpCommand.html">HelpCommand</a></div>
-      <div class="level2"><a class="xref" href="GameFramework.ConsoleTool.Commands.InputCommand.html">InputCommand</a></div>
-      <div class="level2"><a class="xref" href="GameFramework.ConsoleTool.Commands.ProfilingCommand.html">ProfilingCommand</a></div>
-      <div class="level2"><a class="xref" href="GameFramework.ConsoleTool.Commands.WaitCommand.html">WaitCommand</a></div>
+    <div class="level1"><a class="xref" href="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.html">ConsoleCommandBase</a></div>
+    <div class="level2"><span class="xref">ProfilingCommand</span></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
@@ -108,6 +116,15 @@ Handles basic validation and provides utility methods</p>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.html#GameFramework_ConsoleTool_Commands_ConsoleCommandBase_TryParseInt_System_String_System_Int32__GameFramework_ConsoleTool_Interfaces_IConsoleContext_System_String_">ConsoleCommandBase.TryParseInt(string, out int, IConsoleContext, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.html#GameFramework_ConsoleTool_Commands_ConsoleCommandBase_ValidateArgumentCount_System_String___System_Int32_GameFramework_ConsoleTool_Interfaces_IConsoleContext_">ConsoleCommandBase.ValidateArgumentCount(string[], int, IConsoleContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.html#GameFramework_ConsoleTool_Commands_ConsoleCommandBase_ValidateArgumentCount_System_String___System_Int32_System_Int32_GameFramework_ConsoleTool_Interfaces_IConsoleContext_">ConsoleCommandBase.ValidateArgumentCount(string[], int, int, IConsoleContext)</a>
+    </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
     </div>
@@ -132,20 +149,20 @@ Handles basic validation and provides utility methods</p>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.ConsoleTool.html">ConsoleTool</a>.<a class="xref" href="GameFramework.ConsoleTool.Commands.html">Commands</a></h6>
   <h6><strong>Assembly</strong>: .dll</h6>
-  <h5 id="GameFramework_ConsoleTool_Commands_ConsoleCommandBase_syntax">Syntax</h5>
+  <h5 id="GameFramework_ConsoleTool_Commands_ProfilingCommand_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class ConsoleCommandBase : IConsoleCommand</code></pre>
+    <pre><code class="lang-csharp hljs">public class ProfilingCommand : ConsoleCommandBase, IConsoleCommand</code></pre>
   </div>
   <h3 id="properties">Properties
 </h3>
-  <a id="GameFramework_ConsoleTool_Commands_ConsoleCommandBase_Category_" data-uid="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.Category*"></a>
-  <h4 id="GameFramework_ConsoleTool_Commands_ConsoleCommandBase_Category" data-uid="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.Category">Category</h4>
+  <a id="GameFramework_ConsoleTool_Commands_ProfilingCommand_Category_" data-uid="GameFramework.ConsoleTool.Commands.ProfilingCommand.Category*"></a>
+  <h4 id="GameFramework_ConsoleTool_Commands_ProfilingCommand_Category" data-uid="GameFramework.ConsoleTool.Commands.ProfilingCommand.Category">Category</h4>
   <div class="markdown level1 summary"><p>Command category for organization</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual CategoryEnum Category { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public override CategoryEnum Category { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
@@ -162,14 +179,16 @@ Handles basic validation and provides utility methods</p>
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_ConsoleTool_Commands_ConsoleCommandBase_CommandName_" data-uid="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.CommandName*"></a>
-  <h4 id="GameFramework_ConsoleTool_Commands_ConsoleCommandBase_CommandName" data-uid="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.CommandName">CommandName</h4>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.html#GameFramework_ConsoleTool_Commands_ConsoleCommandBase_Category">ConsoleCommandBase.Category</a></div>
+  <a id="GameFramework_ConsoleTool_Commands_ProfilingCommand_CommandName_" data-uid="GameFramework.ConsoleTool.Commands.ProfilingCommand.CommandName*"></a>
+  <h4 id="GameFramework_ConsoleTool_Commands_ProfilingCommand_CommandName" data-uid="GameFramework.ConsoleTool.Commands.ProfilingCommand.CommandName">CommandName</h4>
   <div class="markdown level1 summary"><p>The command name (without prefix)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract string CommandName { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public override string CommandName { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
@@ -186,14 +205,16 @@ Handles basic validation and provides utility methods</p>
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_ConsoleTool_Commands_ConsoleCommandBase_Description_" data-uid="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.Description*"></a>
-  <h4 id="GameFramework_ConsoleTool_Commands_ConsoleCommandBase_Description" data-uid="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.Description">Description</h4>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.html#GameFramework_ConsoleTool_Commands_ConsoleCommandBase_CommandName">ConsoleCommandBase.CommandName</a></div>
+  <a id="GameFramework_ConsoleTool_Commands_ProfilingCommand_Description_" data-uid="GameFramework.ConsoleTool.Commands.ProfilingCommand.Description*"></a>
+  <h4 id="GameFramework_ConsoleTool_Commands_ProfilingCommand_Description" data-uid="GameFramework.ConsoleTool.Commands.ProfilingCommand.Description">Description</h4>
   <div class="markdown level1 summary"><p>Description shown in help</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract string Description { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public override string Description { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
@@ -210,14 +231,16 @@ Handles basic validation and provides utility methods</p>
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_ConsoleTool_Commands_ConsoleCommandBase_Tag_" data-uid="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.Tag*"></a>
-  <h4 id="GameFramework_ConsoleTool_Commands_ConsoleCommandBase_Tag" data-uid="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.Tag">Tag</h4>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.html#GameFramework_ConsoleTool_Commands_ConsoleCommandBase_Description">ConsoleCommandBase.Description</a></div>
+  <a id="GameFramework_ConsoleTool_Commands_ProfilingCommand_Tag_" data-uid="GameFramework.ConsoleTool.Commands.ProfilingCommand.Tag*"></a>
+  <h4 id="GameFramework_ConsoleTool_Commands_ProfilingCommand_Tag" data-uid="GameFramework.ConsoleTool.Commands.ProfilingCommand.Tag">Tag</h4>
   <div class="markdown level1 summary"><p>Tag for bulk operations (removal, filtering)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual int Tag { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public override int Tag { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
@@ -234,16 +257,18 @@ Handles basic validation and provides utility methods</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.html#GameFramework_ConsoleTool_Commands_ConsoleCommandBase_Tag">ConsoleCommandBase.Tag</a></div>
   <h3 id="methods">Methods
 </h3>
-  <a id="GameFramework_ConsoleTool_Commands_ConsoleCommandBase_Execute_" data-uid="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.Execute*"></a>
-  <h4 id="GameFramework_ConsoleTool_Commands_ConsoleCommandBase_Execute_System_String___GameFramework_ConsoleTool_Interfaces_IConsoleContext_" data-uid="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.Execute(System.String[],GameFramework.ConsoleTool.Interfaces.IConsoleContext)">Execute(string[], IConsoleContext)</h4>
+  <a id="GameFramework_ConsoleTool_Commands_ProfilingCommand_Execute_" data-uid="GameFramework.ConsoleTool.Commands.ProfilingCommand.Execute*"></a>
+  <h4 id="GameFramework_ConsoleTool_Commands_ProfilingCommand_Execute_System_String___GameFramework_ConsoleTool_Interfaces_IConsoleContext_" data-uid="GameFramework.ConsoleTool.Commands.ProfilingCommand.Execute(System.String[],GameFramework.ConsoleTool.Interfaces.IConsoleContext)">Execute(string[], IConsoleContext)</h4>
   <div class="markdown level1 summary"><p>Execute the command with given arguments</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract void Execute(string[] args, IConsoleContext context)</code></pre>
+    <pre><code class="lang-csharp hljs">public override void Execute(string[] args, IConsoleContext context)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -269,14 +294,16 @@ Handles basic validation and provides utility methods</p>
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_ConsoleTool_Commands_ConsoleCommandBase_GetUsage_" data-uid="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.GetUsage*"></a>
-  <h4 id="GameFramework_ConsoleTool_Commands_ConsoleCommandBase_GetUsage" data-uid="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.GetUsage">GetUsage()</h4>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.html#GameFramework_ConsoleTool_Commands_ConsoleCommandBase_Execute_System_String___GameFramework_ConsoleTool_Interfaces_IConsoleContext_">ConsoleCommandBase.Execute(string[], IConsoleContext)</a></div>
+  <a id="GameFramework_ConsoleTool_Commands_ProfilingCommand_GetUsage_" data-uid="GameFramework.ConsoleTool.Commands.ProfilingCommand.GetUsage*"></a>
+  <h4 id="GameFramework_ConsoleTool_Commands_ProfilingCommand_GetUsage" data-uid="GameFramework.ConsoleTool.Commands.ProfilingCommand.GetUsage">GetUsage()</h4>
   <div class="markdown level1 summary"><p>Get usage information for the command</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract string GetUsage()</code></pre>
+    <pre><code class="lang-csharp hljs">public override string GetUsage()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-condensed">
@@ -293,70 +320,16 @@ Handles basic validation and provides utility methods</p>
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_ConsoleTool_Commands_ConsoleCommandBase_TryParseInt_" data-uid="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.TryParseInt*"></a>
-  <h4 id="GameFramework_ConsoleTool_Commands_ConsoleCommandBase_TryParseInt_System_String_System_Int32__GameFramework_ConsoleTool_Interfaces_IConsoleContext_System_String_" data-uid="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.TryParseInt(System.String,System.Int32@,GameFramework.ConsoleTool.Interfaces.IConsoleContext,System.String)">TryParseInt(string, out int, IConsoleContext, string)</h4>
-  <div class="markdown level1 summary"><p>Utility method to parse integer arguments safely</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected bool TryParseInt(string arg, out int result, IConsoleContext context, string paramName = &quot;value&quot;)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">arg</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">result</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GameFramework.ConsoleTool.Interfaces.IConsoleContext.html">IConsoleContext</a></td>
-        <td><span class="parametername">context</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">paramName</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_ConsoleTool_Commands_ConsoleCommandBase_ValidateArgs_" data-uid="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.ValidateArgs*"></a>
-  <h4 id="GameFramework_ConsoleTool_Commands_ConsoleCommandBase_ValidateArgs_System_String___" data-uid="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.ValidateArgs(System.String[])">ValidateArgs(string[])</h4>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.html#GameFramework_ConsoleTool_Commands_ConsoleCommandBase_GetUsage">ConsoleCommandBase.GetUsage()</a></div>
+  <a id="GameFramework_ConsoleTool_Commands_ProfilingCommand_ValidateArgs_" data-uid="GameFramework.ConsoleTool.Commands.ProfilingCommand.ValidateArgs*"></a>
+  <h4 id="GameFramework_ConsoleTool_Commands_ProfilingCommand_ValidateArgs_System_String___" data-uid="GameFramework.ConsoleTool.Commands.ProfilingCommand.ValidateArgs(System.String[])">ValidateArgs(string[])</h4>
   <div class="markdown level1 summary"><p>Validate if command can execute with given arguments</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual bool ValidateArgs(string[] args)</code></pre>
+    <pre><code class="lang-csharp hljs">public override bool ValidateArgs(string[] args)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -390,113 +363,8 @@ Handles basic validation and provides utility methods</p>
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_ConsoleTool_Commands_ConsoleCommandBase_ValidateArgumentCount_" data-uid="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.ValidateArgumentCount*"></a>
-  <h4 id="GameFramework_ConsoleTool_Commands_ConsoleCommandBase_ValidateArgumentCount_System_String___System_Int32_GameFramework_ConsoleTool_Interfaces_IConsoleContext_" data-uid="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.ValidateArgumentCount(System.String[],System.Int32,GameFramework.ConsoleTool.Interfaces.IConsoleContext)">ValidateArgumentCount(string[], int, IConsoleContext)</h4>
-  <div class="markdown level1 summary"><p>Utility method to validate argument count</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected bool ValidateArgumentCount(string[] args, int expected, IConsoleContext context)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</td>
-        <td><span class="parametername">args</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">expected</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GameFramework.ConsoleTool.Interfaces.IConsoleContext.html">IConsoleContext</a></td>
-        <td><span class="parametername">context</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_ConsoleTool_Commands_ConsoleCommandBase_ValidateArgumentCount_" data-uid="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.ValidateArgumentCount*"></a>
-  <h4 id="GameFramework_ConsoleTool_Commands_ConsoleCommandBase_ValidateArgumentCount_System_String___System_Int32_System_Int32_GameFramework_ConsoleTool_Interfaces_IConsoleContext_" data-uid="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.ValidateArgumentCount(System.String[],System.Int32,System.Int32,GameFramework.ConsoleTool.Interfaces.IConsoleContext)">ValidateArgumentCount(string[], int, int, IConsoleContext)</h4>
-  <div class="markdown level1 summary"><p>Utility method to validate argument count within range</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected bool ValidateArgumentCount(string[] args, int min, int max, IConsoleContext context)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</td>
-        <td><span class="parametername">args</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">min</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">max</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GameFramework.ConsoleTool.Interfaces.IConsoleContext.html">IConsoleContext</a></td>
-        <td><span class="parametername">context</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.html#GameFramework_ConsoleTool_Commands_ConsoleCommandBase_ValidateArgs_System_String___">ConsoleCommandBase.ValidateArgs(string[])</a></div>
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="GameFramework.ConsoleTool.Interfaces.IConsoleCommand.html">IConsoleCommand</a>

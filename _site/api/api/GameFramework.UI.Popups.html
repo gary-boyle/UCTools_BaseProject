@@ -91,14 +91,25 @@ Classes
       <h4><a class="xref" href="GameFramework.UI.Popups.ConfirmationPopup.html">ConfirmationPopup</a></h4>
       <section></section>
       <h4><a class="xref" href="GameFramework.UI.Popups.DebugPopup.html">DebugPopup</a></h4>
-      <section><p>Enhanced debug popup with real-time performance graphs
-Displays FPS, memory consumption, and historical graphs of both metrics</p>
+      <section><p>Simplified debug popup that displays real-time performance metrics with minimal allocations.</p>
 <p>Design:</p>
 <ul>
-<li>Integrates custom GraphElement controls for visual data representation</li>
-<li>Maintains separate data collection intervals for metrics vs graphs</li>
-<li>Uses color-coded indicators for quick performance assessment</li>
-<li>Efficient data sampling to prevent performance impact</li>
+<li>Clean separation of UI element caching and updates</li>
+<li>Event-driven updates to minimize polling</li>
+<li>Efficient change detection to prevent redundant UI updates</li>
+<li>Simple graph integration for historical data visualization</li>
+</ul>
+<p>Pros:</p>
+<ul>
+<li>Zero-allocation UI updates during normal operation</li>
+<li>Event-driven architecture reduces CPU overhead</li>
+<li>Clear separation of concerns</li>
+<li>Robust service connection handling</li>
+</ul>
+<p>Cons:</p>
+<ul>
+<li>Requires UXML structure to match expected element names</li>
+<li>Dependency on EventSystem for real-time updates</li>
 </ul>
 </section>
       <h4><a class="xref" href="GameFramework.UI.Popups.ErrorPopup.html">ErrorPopup</a></h4>

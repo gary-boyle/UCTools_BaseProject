@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class InputManager | UCTools Base Project </title>
+    <title>Class ProfilingSession | UCTools Base Project </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class InputManager | UCTools Base Project ">
+    <meta name="title" content="Class ProfilingSession | UCTools Base Project ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -79,26 +79,18 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="GameFramework.Input.InputManager">
+            <article class="content wrap" id="_content" data-uid="GameFramework.Services.Data.ProfilingSession">
 
 
 
-  <h1 id="GameFramework_Input_InputManager" data-uid="GameFramework.Input.InputManager" class="text-break">Class InputManager</h1>
-  <div class="markdown level0 summary"><p>Unified Input Manager - handles both Unity Input System integration AND input handler management
-Now includes input settings integration for mouse sensitivity and Y-axis inversion
-Replaces both InputService and the old InputManager concept</p>
+  <h1 id="GameFramework_Services_Data_ProfilingSession" data-uid="GameFramework.Services.Data.ProfilingSession" class="text-break">Class ProfilingSession</h1>
+  <div class="markdown level0 summary"><p>Complete profiling session results with aggregated statistics</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><span class="xref">InputManager</span></div>
-  </div>
-  <div class="implements">
-    <h5>Implements</h5>
-    <div><a class="xref" href="GameFramework.Input.Interfaces.IInputManager.html">IInputManager</a></div>
-    <div><a class="xref" href="GameFramework.StateMachine.Interfaces.IUpdatable.html">IUpdatable</a></div>
-    <div><a class="xref" href="GameFramework.Services.Interfaces.IGameService.html">IGameService</a></div>
+    <div class="level1"><span class="xref">ProfilingSession</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -124,21 +116,22 @@ Replaces both InputService and the old InputManager concept</p>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
     </div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.Input.html">Input</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.Services.html">Services</a>.<a class="xref" href="GameFramework.Services.Data.html">Data</a></h6>
   <h6><strong>Assembly</strong>: .dll</h6>
-  <h5 id="GameFramework_Input_InputManager_syntax">Syntax</h5>
+  <h5 id="GameFramework_Services_Data_ProfilingSession_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class InputManager : IInputManager, IUpdatable, IGameService</code></pre>
+    <pre><code class="lang-csharp hljs">[Serializable]
+public class ProfilingSession</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
-  <a id="GameFramework_Input_InputManager__ctor_" data-uid="GameFramework.Input.InputManager.#ctor*"></a>
-  <h4 id="GameFramework_Input_InputManager__ctor_GameFramework_EventSystem_Interfaces_IEventSystem_ConsoleInputHandler_GameFramework_Input_Handlers_UIInputHandler_GameFramework_Input_Handlers_PlayerInputHandler_" data-uid="GameFramework.Input.InputManager.#ctor(GameFramework.EventSystem.Interfaces.IEventSystem,ConsoleInputHandler,GameFramework.Input.Handlers.UIInputHandler,GameFramework.Input.Handlers.PlayerInputHandler)">InputManager(IEventSystem, ConsoleInputHandler, UIInputHandler, PlayerInputHandler)</h4>
+  <a id="GameFramework_Services_Data_ProfilingSession__ctor_" data-uid="GameFramework.Services.Data.ProfilingSession.#ctor*"></a>
+  <h4 id="GameFramework_Services_Data_ProfilingSession__ctor_System_String_" data-uid="GameFramework.Services.Data.ProfilingSession.#ctor(System.String)">ProfilingSession(string)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public InputManager(IEventSystem eventSystem, ConsoleInputHandler consoleHandler, UIInputHandler uiHandler, PlayerInputHandler playerHandler)</code></pre>
+    <pre><code class="lang-csharp hljs">public ProfilingSession(string name)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -151,39 +144,22 @@ Replaces both InputService and the old InputManager concept</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="GameFramework.EventSystem.Interfaces.IEventSystem.html">IEventSystem</a></td>
-        <td><span class="parametername">eventSystem</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="ConsoleInputHandler.html">ConsoleInputHandler</a></td>
-        <td><span class="parametername">consoleHandler</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GameFramework.Input.Handlers.UIInputHandler.html">UIInputHandler</a></td>
-        <td><span class="parametername">uiHandler</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GameFramework.Input.Handlers.PlayerInputHandler.html">PlayerInputHandler</a></td>
-        <td><span class="parametername">playerHandler</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">name</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <h3 id="properties">Properties
+  <h3 id="fields">Fields
 </h3>
-  <a id="GameFramework_Input_InputManager_IsInitialized_" data-uid="GameFramework.Input.InputManager.IsInitialized*"></a>
-  <h4 id="GameFramework_Input_InputManager_IsInitialized" data-uid="GameFramework.Input.InputManager.IsInitialized">IsInitialized</h4>
-  <div class="markdown level1 summary"><p>Gets whether the input manager has been initialized</p>
-</div>
+  <h4 id="GameFramework_Services_Data_ProfilingSession_batchStats" data-uid="GameFramework.Services.Data.ProfilingSession.batchStats">batchStats</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsInitialized { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public PerformanceStats batchStats</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
+  <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
@@ -193,68 +169,19 @@ Replaces both InputService and the old InputManager concept</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><a class="xref" href="GameFramework.Services.Data.PerformanceStats.html">PerformanceStats</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <h3 id="methods">Methods
-</h3>
-  <a id="GameFramework_Input_InputManager_ActivateHandler_" data-uid="GameFramework.Input.InputManager.ActivateHandler*"></a>
-  <h4 id="GameFramework_Input_InputManager_ActivateHandler__1" data-uid="GameFramework.Input.InputManager.ActivateHandler``1">ActivateHandler&lt;T&gt;()</h4>
+  <h4 id="GameFramework_Services_Data_ProfilingSession_buildConfiguration" data-uid="GameFramework.Services.Data.ProfilingSession.buildConfiguration">buildConfiguration</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void ActivateHandler&lt;T&gt;() where T : InputHandlerBase</code></pre>
+    <pre><code class="lang-csharp hljs">public string buildConfiguration</code></pre>
   </div>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">T</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_Input_InputManager_DeactivateHandler_" data-uid="GameFramework.Input.InputManager.DeactivateHandler*"></a>
-  <h4 id="GameFramework_Input_InputManager_DeactivateHandler__1" data-uid="GameFramework.Input.InputManager.DeactivateHandler``1">DeactivateHandler&lt;T&gt;()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void DeactivateHandler&lt;T&gt;() where T : InputHandlerBase</code></pre>
-  </div>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">T</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_Input_InputManager_GetCurrentContext_" data-uid="GameFramework.Input.InputManager.GetCurrentContext*"></a>
-  <h4 id="GameFramework_Input_InputManager_GetCurrentContext" data-uid="GameFramework.Input.InputManager.GetCurrentContext">GetCurrentContext()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public InputContext GetCurrentContext()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
+  <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
@@ -264,21 +191,19 @@ Replaces both InputService and the old InputManager concept</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="GameFramework.Input.InputContext.html">InputContext</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_Input_InputManager_GetInvertYAxis_" data-uid="GameFramework.Input.InputManager.GetInvertYAxis*"></a>
-  <h4 id="GameFramework_Input_InputManager_GetInvertYAxis" data-uid="GameFramework.Input.InputManager.GetInvertYAxis">GetInvertYAxis()</h4>
-  <div class="markdown level1 summary"><p>Get current Y-axis inversion setting</p>
-</div>
+  <h4 id="GameFramework_Services_Data_ProfilingSession_deviceInfo" data-uid="GameFramework.Services.Data.ProfilingSession.deviceInfo">deviceInfo</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool GetInvertYAxis()</code></pre>
+    <pre><code class="lang-csharp hljs">public string deviceInfo</code></pre>
   </div>
-  <h5 class="returns">Returns</h5>
+  <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
@@ -288,21 +213,41 @@ Replaces both InputService and the old InputManager concept</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_Input_InputManager_GetMouseSensitivity_" data-uid="GameFramework.Input.InputManager.GetMouseSensitivity*"></a>
-  <h4 id="GameFramework_Input_InputManager_GetMouseSensitivity" data-uid="GameFramework.Input.InputManager.GetMouseSensitivity">GetMouseSensitivity()</h4>
-  <div class="markdown level1 summary"><p>Get current mouse sensitivity setting</p>
-</div>
+  <h4 id="GameFramework_Services_Data_ProfilingSession_drawCallStats" data-uid="GameFramework.Services.Data.ProfilingSession.drawCallStats">drawCallStats</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public float GetMouseSensitivity()</code></pre>
+    <pre><code class="lang-csharp hljs">public PerformanceStats drawCallStats</code></pre>
   </div>
-  <h5 class="returns">Returns</h5>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Services.Data.PerformanceStats.html">PerformanceStats</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Services_Data_ProfilingSession_durationSeconds" data-uid="GameFramework.Services.Data.ProfilingSession.durationSeconds">durationSeconds</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float durationSeconds</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
@@ -317,16 +262,14 @@ Replaces both InputService and the old InputManager concept</p>
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_Input_InputManager_InitializeAsync_" data-uid="GameFramework.Input.InputManager.InitializeAsync*"></a>
-  <h4 id="GameFramework_Input_InputManager_InitializeAsync" data-uid="GameFramework.Input.InputManager.InitializeAsync">InitializeAsync()</h4>
-  <div class="markdown level1 summary"><p>Initialize the input manager and all registered handlers</p>
-</div>
+  <h4 id="GameFramework_Services_Data_ProfilingSession_endTime" data-uid="GameFramework.Services.Data.ProfilingSession.endTime">endTime</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task InitializeAsync()</code></pre>
+    <pre><code class="lang-csharp hljs">public DateTime endTime</code></pre>
   </div>
-  <h5 class="returns">Returns</h5>
+  <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
@@ -336,90 +279,231 @@ Replaces both InputService and the old InputManager concept</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_Input_InputManager_RegisterHandler_" data-uid="GameFramework.Input.InputManager.RegisterHandler*"></a>
-  <h4 id="GameFramework_Input_InputManager_RegisterHandler_GameFramework_Input_Handlers_InputHandlerBase_" data-uid="GameFramework.Input.InputManager.RegisterHandler(GameFramework.Input.Handlers.InputHandlerBase)">RegisterHandler(InputHandlerBase)</h4>
+  <h4 id="GameFramework_Services_Data_ProfilingSession_fpsStats" data-uid="GameFramework.Services.Data.ProfilingSession.fpsStats">fpsStats</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void RegisterHandler(InputHandlerBase handler)</code></pre>
+    <pre><code class="lang-csharp hljs">public PerformanceStats fpsStats</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
+  <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Name</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="GameFramework.Input.Handlers.InputHandlerBase.html">InputHandlerBase</a></td>
-        <td><span class="parametername">handler</span></td>
+        <td><a class="xref" href="GameFramework.Services.Data.PerformanceStats.html">PerformanceStats</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_Input_InputManager_SetInputContext_" data-uid="GameFramework.Input.InputManager.SetInputContext*"></a>
-  <h4 id="GameFramework_Input_InputManager_SetInputContext_GameFramework_Input_InputContext_" data-uid="GameFramework.Input.InputManager.SetInputContext(GameFramework.Input.InputContext)">SetInputContext(InputContext)</h4>
-  <div class="markdown level1 summary"><p>Set the input context for the current game state
-This will automatically activate/deactivate appropriate handlers</p>
-</div>
+  <h4 id="GameFramework_Services_Data_ProfilingSession_gameVersion" data-uid="GameFramework.Services.Data.ProfilingSession.gameVersion">gameVersion</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void SetInputContext(InputContext context)</code></pre>
+    <pre><code class="lang-csharp hljs">public string gameVersion</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
+  <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Name</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="GameFramework.Input.InputContext.html">InputContext</a></td>
-        <td><span class="parametername">context</span></td>
-        <td><p>Input context to set</p>
-</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td></td>
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_Input_InputManager_Shutdown_" data-uid="GameFramework.Input.InputManager.Shutdown*"></a>
-  <h4 id="GameFramework_Input_InputManager_Shutdown" data-uid="GameFramework.Input.InputManager.Shutdown">Shutdown()</h4>
+  <h4 id="GameFramework_Services_Data_ProfilingSession_memoryStats" data-uid="GameFramework.Services.Data.ProfilingSession.memoryStats">memoryStats</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Shutdown()</code></pre>
+    <pre><code class="lang-csharp hljs">public PerformanceStats memoryStats</code></pre>
   </div>
-  <a id="GameFramework_Input_InputManager_Update_" data-uid="GameFramework.Input.InputManager.Update*"></a>
-  <h4 id="GameFramework_Input_InputManager_Update" data-uid="GameFramework.Input.InputManager.Update">Update()</h4>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Services.Data.PerformanceStats.html">PerformanceStats</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Services_Data_ProfilingSession_sessionName" data-uid="GameFramework.Services.Data.ProfilingSession.sessionName">sessionName</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Update()</code></pre>
+    <pre><code class="lang-csharp hljs">public string sessionName</code></pre>
   </div>
-  <h3 id="implements">Implements</h3>
-  <div>
-      <a class="xref" href="GameFramework.Input.Interfaces.IInputManager.html">IInputManager</a>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Services_Data_ProfilingSession_snapshots" data-uid="GameFramework.Services.Data.ProfilingSession.snapshots">snapshots</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PerformanceSnapshot[] snapshots</code></pre>
   </div>
-  <div>
-      <a class="xref" href="GameFramework.StateMachine.Interfaces.IUpdatable.html">IUpdatable</a>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Services.PerformanceSnapshot.html">PerformanceSnapshot</a>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Services_Data_ProfilingSession_startTime" data-uid="GameFramework.Services.Data.ProfilingSession.startTime">startTime</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateTime startTime</code></pre>
   </div>
-  <div>
-      <a class="xref" href="GameFramework.Services.Interfaces.IGameService.html">IGameService</a>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Services_Data_ProfilingSession_totalFrames" data-uid="GameFramework.Services.Data.ProfilingSession.totalFrames">totalFrames</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int totalFrames</code></pre>
   </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Services_Data_ProfilingSession_triangleStats" data-uid="GameFramework.Services.Data.ProfilingSession.triangleStats">triangleStats</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PerformanceStats triangleStats</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Services.Data.PerformanceStats.html">PerformanceStats</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Services_Data_ProfilingSession_unityVersion" data-uid="GameFramework.Services.Data.ProfilingSession.unityVersion">unityVersion</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string unityVersion</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Services_Data_ProfilingSession_vertexStats" data-uid="GameFramework.Services.Data.ProfilingSession.vertexStats">vertexStats</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PerformanceStats vertexStats</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Services.Data.PerformanceStats.html">PerformanceStats</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
 
 </article>
           </div>
