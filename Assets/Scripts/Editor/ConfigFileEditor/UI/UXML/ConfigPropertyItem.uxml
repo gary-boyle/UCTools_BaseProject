@@ -1,0 +1,19 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Scripts/Editor/ConfigFileEditor/UI/USS/ConfigFileEditor.uss?fileID=7433441132597879392&amp;guid=b1eceb32057341ab993651669640398d&amp;type=3#ConfigFileEditor" />
+    <ui:VisualElement name="property-item" class="property-item">
+        <ui:VisualElement name="property-header" class="property-header">
+            <ui:Button text="▼" display-tooltip-when-elided="true" name="expand-button" class="expand-button" />
+            <ui:TextField name="key-field" class="key-field" />
+            <ui:Label text=":" display-tooltip-when-elided="true" class="property-separator" />
+            <ui:VisualElement name="value-container" class="value-container" style="color: rgb(255, 255, 255);">
+                <ui:TextField name="string-field" class="value-field string-field" />
+                <ui:IntegerField name="int-field" class="value-field int-field" />
+                <ui:FloatField name="float-field" class="value-field float-field" />
+                <ui:Toggle name="bool-field" class="value-field bool-field" />
+                <uie:EnumField name="type-dropdown" class="value-field type-dropdown" />
+            </ui:VisualElement>
+            <ui:Button text="×" display-tooltip-when-elided="true" name="delete-button" tooltip="Delete this property" class="delete-button" />
+        </ui:VisualElement>
+        <ui:VisualElement name="property-children" class="property-children" />
+    </ui:VisualElement>
+</ui:UXML>

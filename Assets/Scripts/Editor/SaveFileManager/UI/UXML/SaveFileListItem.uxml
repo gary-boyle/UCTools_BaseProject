@@ -1,0 +1,23 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Scripts/Editor/SaveFileManager/UI/USS/SaveFileManager.uss?fileID=7433441132597879392&amp;guid=c1fd077cb2bd42d4a1318bbe8829d5f4&amp;type=3#SaveFileManager" />
+    <ui:VisualElement name="save-item" class="save-item">
+        <ui:VisualElement name="save-header" class="save-header">
+            <ui:Label text="Save File Name" display-tooltip-when-elided="true" name="file-name" class="file-name" />
+            <ui:Label text="[AUTO]" display-tooltip-when-elided="true" name="auto-save-badge" class="auto-save-badge" />
+        </ui:VisualElement>
+        <ui:VisualElement name="save-info" class="save-info">
+            <ui:VisualElement name="left-info" class="left-info">
+                <ui:Label text="Player Name" display-tooltip-when-elided="true" name="player-name" class="save-info-text" />
+                <ui:Label text="Lv. 1" display-tooltip-when-elided="true" name="player-level" class="save-info-text" />
+            </ui:VisualElement>
+            <ui:VisualElement name="right-info" class="right-info">
+                <ui:Label text="Jan 01, 2024" display-tooltip-when-elided="true" name="save-date" class="save-info-text" />
+                <ui:Label text="0h 0m" display-tooltip-when-elided="true" name="play-time" class="save-info-text" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="additional-info" class="additional-info">
+            <ui:Label text="Scene: MainMenu" display-tooltip-when-elided="true" name="current-scene" class="additional-info-text" />
+            <ui:Label text="Score: 0" display-tooltip-when-elided="true" name="score" class="additional-info-text" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

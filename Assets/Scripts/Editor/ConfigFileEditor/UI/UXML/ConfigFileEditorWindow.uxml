@@ -1,0 +1,93 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Scripts/Editor/ConfigFileEditor/UI/USS/ConfigFileEditor.uss?fileID=7433441132597879392&amp;guid=b1eceb32057341ab993651669640398d&amp;type=3#ConfigFileEditor" />
+    <ui:VisualElement name="root" class="window-root">
+        <uie:Toolbar name="toolbar" class="main-toolbar">
+            <uie:ToolbarButton text="Refresh" display-tooltip-when-elided="true" name="refresh-button" tooltip="Refresh config file content" class="toolbar-button" />
+            <uie:ToolbarSpacer style="width: 10px;" />
+            <uie:ToolbarButton text="Save" display-tooltip-when-elided="true" name="save-button" tooltip="Save changes to config file" class="toolbar-button primary-button" />
+            <uie:ToolbarSpacer style="width: 10px;" />
+            <uie:ToolbarButton text="Revert" display-tooltip-when-elided="true" name="revert-button" tooltip="Revert unsaved changes" class="toolbar-button" />
+            <uie:ToolbarSpacer />
+            <uie:ToolbarToggle text="Auto-Save" name="auto-save-toggle" tooltip="Automatically save changes" class="toolbar-toggle" />
+            <uie:ToolbarSpacer style="width: 10px;" />
+            <uie:ToolbarToggle text="Raw JSON" name="raw-json-toggle" tooltip="Show raw JSON editor" class="toolbar-toggle" />
+            <uie:ToolbarSpacer />
+            <uie:ToolbarButton text="⚙" display-tooltip-when-elided="true" name="actions-button" tooltip="File actions menu" class="toolbar-button" />
+        </uie:Toolbar>
+        <ui:VisualElement name="content-area" class="content-area">
+            <ui:VisualElement name="left-panel" class="left-panel">
+                <ui:Label text="Config File" display-tooltip-when-elided="true" name="config-title" class="panel-title" />
+                <ui:VisualElement name="file-info-section" class="info-section">
+                    <ui:Label text="File Information" display-tooltip-when-elided="true" name="file-info-title" class="section-title" />
+                    <ui:VisualElement name="file-status" class="file-status">
+                        <ui:Label text="●" display-tooltip-when-elided="true" name="status-indicator" class="status-indicator" />
+                        <ui:Label text="File not found" display-tooltip-when-elided="true" name="status-text" class="status-text" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="file-details" class="file-details">
+                        <ui:VisualElement name="size-row" class="detail-row">
+                            <ui:Label text="Size:" display-tooltip-when-elided="true" class="detail-label" />
+                            <ui:Label text="N/A" display-tooltip-when-elided="true" name="file-size" class="detail-value" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="modified-row" class="detail-row">
+                            <ui:Label text="Modified:" display-tooltip-when-elided="true" class="detail-label" />
+                            <ui:Label text="N/A" display-tooltip-when-elided="true" name="file-modified" class="detail-value" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="entries-row" class="detail-row">
+                            <ui:Label text="Entries:" display-tooltip-when-elided="true" class="detail-label" />
+                            <ui:Label text="0" display-tooltip-when-elided="true" name="entry-count" class="detail-value" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="file-actions-section" class="info-section">
+                    <ui:Label text="File Actions" display-tooltip-when-elided="true" name="actions-title" class="section-title" />
+                    <ui:VisualElement name="actions-container" class="actions-container">
+                        <ui:Button text="Open in Editor" display-tooltip-when-elided="true" name="open-external-button" tooltip="Open config file in external editor" class="action-button" />
+                        <ui:Button text="Show in Explorer" display-tooltip-when-elided="true" name="reveal-button" tooltip="Show config file in file explorer" class="action-button" />
+                        <ui:Button text="Copy Path" display-tooltip-when-elided="true" name="copy-path-button" tooltip="Copy config file path to clipboard" class="action-button" />
+                        <ui:Button text="Create File" display-tooltip-when-elided="true" name="create-file-button" tooltip="Create empty config file" class="action-button primary-button" />
+                        <ui:Button text="Delete File" display-tooltip-when-elided="true" name="delete-file-button" tooltip="Delete config file permanently" class="action-button delete-button" style="width: 50%;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="validation-section" class="info-section">
+                    <ui:Label text="Validation" display-tooltip-when-elided="true" name="validation-title" class="section-title" />
+                    <ui:VisualElement name="validation-status" class="validation-status">
+                        <ui:Label text="●" display-tooltip-when-elided="true" name="validation-indicator" class="validation-indicator" />
+                        <ui:Label text="No validation performed" display-tooltip-when-elided="true" name="validation-text" class="validation-text" />
+                    </ui:VisualElement>
+                    <ui:Button text="Validate JSON" display-tooltip-when-elided="true" name="validate-button" tooltip="Validate JSON structure" class="action-button" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="right-container" class="right-container">
+                <ui:VisualElement name="no-file-message" class="no-file-message">
+                    <ui:Label text="No Config File Found" display-tooltip-when-elided="true" name="no-file-title" class="no-file-title" />
+                    <ui:Label text="Create a config file to get started" display-tooltip-when-elided="true" name="no-file-subtitle" class="no-file-subtitle" />
+                    <ui:Button text="Create Config File" display-tooltip-when-elided="true" name="create-file-prompt-button" class="create-file-button" />
+                </ui:VisualElement>
+                <ui:VisualElement name="config-content" class="config-content">
+                    <ui:VisualElement name="structured-editor" class="structured-editor">
+                        <ui:VisualElement name="editor-header" class="editor-header">
+                            <ui:Label text="Config Properties" display-tooltip-when-elided="true" name="editor-title" class="editor-title" />
+                            <ui:Button text="+ Add Entry" display-tooltip-when-elided="true" name="add-entry-button" class="add-entry-button" />
+                        </ui:VisualElement>
+                        <ui:ScrollView name="config-properties-container" class="config-properties-container" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="raw-json-editor" class="raw-json-editor">
+                        <ui:VisualElement name="json-header" class="editor-header">
+                            <ui:Label text="Raw JSON" display-tooltip-when-elided="true" name="json-title" class="editor-title" />
+                            <ui:Button text="Format JSON" display-tooltip-when-elided="true" name="format-json-button" class="format-json-button" />
+                        </ui:VisualElement>
+                        <ui:ScrollView name="json-editor-container" class="json-editor-container">
+                            <ui:TextField multiline="true" name="json-text-field" class="json-text-field" />
+                        </ui:ScrollView>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <uie:Toolbar name="status-bar" class="status-bar">
+            <ui:Label text="Ready" display-tooltip-when-elided="true" name="status-message" class="status-message" />
+            <uie:ToolbarSpacer />
+            <ui:Label display-tooltip-when-elided="true" name="changes-indicator" class="changes-indicator" />
+            <ui:Label display-tooltip-when-elided="true" name="save-indicator" class="save-indicator" />
+        </uie:Toolbar>
+    </ui:VisualElement>
+</ui:UXML>

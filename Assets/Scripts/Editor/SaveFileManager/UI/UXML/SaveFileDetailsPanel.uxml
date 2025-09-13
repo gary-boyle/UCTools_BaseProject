@@ -1,0 +1,31 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Scripts/Editor/SaveFileManager/UI/USS/SaveFileManager.uss?fileID=7433441132597879392&amp;guid=c1fd077cb2bd42d4a1318bbe8829d5f4&amp;type=3#SaveFileManager" />
+    <ui:VisualElement name="details-panel" class="details-panel">
+        <ui:VisualElement name="no-selection" class="no-selection-message">
+            <ui:Label text="Select a save file to view details" display-tooltip-when-elided="true" name="no-selection-label" class="no-data-label" />
+        </ui:VisualElement>
+        <ui:VisualElement name="details-content" class="details-content">
+            <ui:Label text="Save File Details" display-tooltip-when-elided="true" name="title" class="panel-title" />
+            <ui:VisualElement name="actions-section" class="actions-section">
+                <ui:VisualElement name="actions-container" class="actions-container">
+                    <ui:Button text="Load Game" display-tooltip-when-elided="true" name="load-button" tooltip="Load this save file (Play mode only)" class="action-button primary-button" />
+                    <ui:Button text="Delete" display-tooltip-when-elided="true" name="delete-button" tooltip="Delete this save file permanently" class="action-button delete-button" />
+                    <ui:Button text="Show in Explorer" display-tooltip-when-elided="true" name="show-explorer-button" tooltip="Open save file location in file explorer" class="action-button secondary-button" />
+                </ui:VisualElement>
+                <ui:VisualElement name="play-mode-warning" class="play-mode-warning">
+                    <ui:Label text="⚠ Enter Play Mode to load save files" display-tooltip-when-elided="true" name="play-mode-label" class="warning-label" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="basic-info-section" class="info-section">
+                <ui:Label text="Basic Information" display-tooltip-when-elided="true" name="basic-info-title" class="section-title" />
+                <ui:ScrollView name="fields-container" class="fields-container" style="max-height: 350px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="raw-data-section">
+                <ui:Label text="Raw Save Data" display-tooltip-when-elided="true" name="raw-data-title" class="section-title" />
+                <ui:ScrollView class="raw-data-container" style="max-height: 320px;">
+                    <ui:Label text="No data" display-tooltip-when-elided="true" name="raw-data-content" class="raw-data-content" />
+                </ui:ScrollView>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

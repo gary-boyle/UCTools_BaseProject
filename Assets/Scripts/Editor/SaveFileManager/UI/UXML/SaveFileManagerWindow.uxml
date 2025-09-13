@@ -1,0 +1,32 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Scripts/Editor/SaveFileManager/UI/USS/SaveFileManager.uss?fileID=7433441132597879392&amp;guid=c1fd077cb2bd42d4a1318bbe8829d5f4&amp;type=3#SaveFileManager" />
+    <ui:VisualElement name="root" class="window-root">
+        <uie:Toolbar name="toolbar" class="main-toolbar">
+            <uie:ToolbarButton text="Refresh" display-tooltip-when-elided="true" name="refresh-button" tooltip="Refresh save file list" class="toolbar-button" />
+            <uie:ToolbarSpacer style="width: 10px;" />
+            <uie:ToolbarToggle text="Auto Refresh" name="auto-refresh-toggle" tooltip="Automatically refresh save files every few seconds" class="toolbar-toggle" />
+            <uie:ToolbarSpacer style="width: 10px;" />
+            <uie:ToolbarToggle text="Show Raw Data" name="show-raw-toggle" tooltip="Show raw JSON data for selected save file" class="toolbar-toggle" />
+            <uie:ToolbarSpacer />
+            <uie:ToolbarButton text="Config" display-tooltip-when-elided="true" name="config-button" tooltip="Open display configuration" class="toolbar-button" />
+            <uie:ToolbarButton text="Files: 0" display-tooltip-when-elided="true" name="file-count-button" enable-rich-text="false" class="toolbar-button file-count" />
+        </uie:Toolbar>
+        <ui:VisualElement name="content-area" class="content-area">
+            <ui:VisualElement name="left-panel" class="left-panel">
+                <ui:Label text="Save Files" display-tooltip-when-elided="true" name="saves-title" class="panel-title" />
+                <ui:ListView focusable="true" name="saves-list" class="saves-list" />
+                <ui:VisualElement name="no-saves-message" class="no-data-message">
+                    <ui:Label text="No save files found" display-tooltip-when-elided="true" name="no-saves-label" class="no-data-label" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="right-container" class="right-container">
+                <ui:VisualElement name="details-container" class="details-container" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <uie:Toolbar name="status-bar" class="status-bar">
+            <ui:Label text="Ready" display-tooltip-when-elided="true" name="status-message" class="status-message" />
+            <uie:ToolbarSpacer />
+            <ui:Label display-tooltip-when-elided="true" name="refresh-indicator" class="refresh-indicator" />
+        </uie:Toolbar>
+    </ui:VisualElement>
+</ui:UXML>
