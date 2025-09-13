@@ -37,18 +37,38 @@ namespace GameFramework.UI.Utilities
         private float _fixedMinValue = 0f;
         private float _fixedMaxValue = 100f;
         
-        public int MaxDataPoints { get; private set; }
+        public int MaxDataPoints { get; set; }
         public float MinDisplayValue => _autoScale ? _minValue : _fixedMinValue;
         public float MaxDisplayValue => _autoScale ? _maxValue : _fixedMaxValue;
 
+        public float Width
+        {
+            get => style.width.value.value;
+            set
+            {
+                style.width = value;
+                MarkDirtyRepaint();
+            }
+        }
+
+        public float Height
+        {
+            get => style.height.value.value;
+            set
+            {
+                style.height = value;
+                MarkDirtyRepaint();
+            }
+        }
+        
         public GraphElement(int maxDataPoints = 60)
         {
             MaxDataPoints = maxDataPoints;
             _dataPoints = new CircularBuffer<float>(maxDataPoints);
             
             // Set default styling
-            style.width = 200;
-            style.height = 60;
+            style.width = 600;
+            style.height = 180;
             style.borderTopWidth = 1;
             style.borderBottomWidth = 1;
             style.borderLeftWidth = 1;

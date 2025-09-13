@@ -1,0 +1,63 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Scripts/Editor/ProfilerSessionsManager/UI/USS/ProfilingSessionViewer.uss?fileID=7433441132597879392&amp;guid=a01fbb9addbb40e8a1b57be7913c2f3c&amp;type=3#ProfilingSessionViewer" />
+    <ui:VisualElement name="details-panel" class="details-panel" style="align-items: flex-start;">
+        <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+            <ui:Label text="Session Details" display-tooltip-when-elided="true" name="title" class="panel-title" />
+            <ui:VisualElement name="actions-section" class="info-section">
+                <ui:VisualElement name="actions-container" class="actions-container">
+                    <ui:Button text="Open File" display-tooltip-when-elided="true" name="open-file-button" class="action-button" />
+                    <ui:Button text="Export CSV" display-tooltip-when-elided="true" name="export-button" class="action-button" />
+                    <ui:Button text="Delete" display-tooltip-when-elided="true" name="delete-button" class="action-button delete-button" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+            <ui:VisualElement name="basic-info-section" class="info-section">
+                <ui:Label text="Basic Information" display-tooltip-when-elided="true" name="basic-info-title" class="section-title" />
+                <ui:VisualElement name="session-name-row" class="info-row">
+                    <ui:Label text="Session:" display-tooltip-when-elided="true" name="session-name-label" class="info-label" />
+                    <ui:Label text="No data" display-tooltip-when-elided="true" name="session-name-value" class="info-value" />
+                </ui:VisualElement>
+                <ui:VisualElement name="duration-row" class="info-row">
+                    <ui:Label text="Duration:" display-tooltip-when-elided="true" name="duration-label" class="info-label" />
+                    <ui:Label text="No data" display-tooltip-when-elided="true" name="duration-value" class="info-value" />
+                </ui:VisualElement>
+                <ui:VisualElement name="frames-row" class="info-row">
+                    <ui:Label text="Total Frames:" display-tooltip-when-elided="true" name="frames-label" class="info-label" />
+                    <ui:Label text="No data" display-tooltip-when-elided="true" name="frames-value" class="info-value" />
+                </ui:VisualElement>
+                <ui:VisualElement name="fps-row" class="info-row">
+                    <ui:Label text="Average FPS:" display-tooltip-when-elided="true" name="fps-label" class="info-label" />
+                    <ui:Label text="No data" display-tooltip-when-elided="true" name="fps-value" class="info-value" />
+                </ui:VisualElement>
+                <ui:VisualElement name="filesize-row" class="info-row">
+                    <ui:Label text="File Size:" display-tooltip-when-elided="true" name="filesize-label" class="info-label" />
+                    <ui:Label text="No data" display-tooltip-when-elided="true" name="filesize-value" class="info-value" />
+                </ui:VisualElement>
+                <ui:VisualElement name="creation-row" class="info-row">
+                    <ui:Label text="Created:" display-tooltip-when-elided="true" name="creation-label" class="info-label" />
+                    <ui:Label text="No data" display-tooltip-when-elided="true" name="creation-value" class="info-value" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="stats-section" class="info-section">
+                <ui:Label text="Performance Statistics" display-tooltip-when-elided="true" name="stats-title" class="section-title" />
+                <ui:ScrollView name="stats-container" class="stats-container" />
+            </ui:VisualElement>
+            <ui:VisualElement name="device-info-section" class="info-section" style="align-items: flex-start;">
+                <ui:Label text="System Information" display-tooltip-when-elided="true" name="device-info-title" class="section-title" />
+                <ui:VisualElement name="device-row" class="info-row">
+                    <ui:Label text="Device:" display-tooltip-when-elided="true" name="device-label" class="info-label" />
+                    <ui:Label text="No data" display-tooltip-when-elided="true" name="device-value" class="info-value" />
+                </ui:VisualElement>
+                <ui:VisualElement name="unity-version-row" class="info-row">
+                    <ui:Label text="Unity Version:" display-tooltip-when-elided="true" name="unity-version-label" class="info-label" />
+                    <ui:Label text="No data" display-tooltip-when-elided="true" name="unity-version-value" class="info-value" />
+                </ui:VisualElement>
+                <ui:VisualElement name="build-config-row" class="info-row">
+                    <ui:Label text="Build Config:" display-tooltip-when-elided="true" name="build-config-label" class="info-label" />
+                    <ui:Label text="No data" display-tooltip-when-elided="true" name="build-config-value" class="info-value" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

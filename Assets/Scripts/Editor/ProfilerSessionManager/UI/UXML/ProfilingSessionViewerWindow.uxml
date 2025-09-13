@@ -1,0 +1,22 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Scripts/Editor/ProfilerSessionsManager/UI/USS/ProfilingSessionViewer.uss?fileID=7433441132597879392&amp;guid=a01fbb9addbb40e8a1b57be7913c2f3c&amp;type=3#ProfilingSessionViewer" />
+    <ui:VisualElement name="root" class="window-root">
+        <uie:Toolbar name="toolbar" class="main-toolbar">
+            <uie:ToolbarSearchField focusable="true" name="search-field" class="search-field" />
+            <uie:ToolbarSpacer />
+            <uie:ToolbarButton text="Import" display-tooltip-when-elided="true" name="import-button" class="toolbar-button" />
+            <uie:ToolbarButton text="Refresh" display-tooltip-when-elided="true" name="refresh-button" class="toolbar-button" />
+            <uie:ToolbarButton text="Open Folder" display-tooltip-when-elided="true" name="open-folder-button" class="toolbar-button" />
+        </uie:Toolbar>
+        <ui:VisualElement name="content-area" class="content-area">
+            <ui:VisualElement name="left-panel" class="left-panel">
+                <ui:Label text="Profiling Sessions" display-tooltip-when-elided="true" name="sessions-title" class="panel-title" />
+                <ui:ListView focusable="true" name="sessions-list" class="sessions-list" />
+            </ui:VisualElement>
+            <ui:VisualElement name="right-container" class="right-container">
+                <ui:VisualElement name="details-container" class="details-container" />
+                <ui:VisualElement name="graphs-container" class="graphs-container" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,15 @@
+﻿<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:VisualElement name="session-item" class="session-item">
+        <ui:Label text="Session Name" display-tooltip-when-elided="true" name="session-name" class="session-name" />
+        <ui:VisualElement name="info-container" class="info-container">
+            <ui:VisualElement name="left-info" class="left-info">
+                <ui:Label text="Duration: 0.0s" display-tooltip-when-elided="true" name="duration" class="session-info" />
+                <ui:Label text="Frames: 0" display-tooltip-when-elided="true" name="frames" class="session-info" />
+            </ui:VisualElement>
+            <ui:VisualElement name="right-info" class="right-info">
+                <ui:Label text="0 B" display-tooltip-when-elided="true" name="file-size" class="session-info" />
+                <ui:Label text="Jan 01, 00:00" display-tooltip-when-elided="true" name="creation-date" class="session-info" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,42 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Scripts/Editor/ProfilerSessionManager/UI/USS/ProfilingSessionViewer.uss?fileID=7433441132597879392&amp;guid=a01fbb9addbb40e8a1b57be7913c2f3c&amp;type=3#ProfilingSessionViewer" />
+    <ui:VisualElement name="graphs-panel" class="graphs-panel">
+        <ui:VisualElement name="options-section" class="options-section" style="margin-bottom: 6px;">
+            <ui:VisualElement name="options-container" class="options-container">
+                <ui:VisualElement style="flex-grow: 1; flex-direction: row; min-height: 30px;">
+                    <ui:Label text="Max Points:" display-tooltip-when-elided="true" name="max-points-label" class="option-label" />
+                    <ui:Label text="100" display-tooltip-when-elided="true" name="max-points-value" class="option-value" />
+                    <ui:SliderInt picking-mode="Ignore" value="100" high-value="500" name="max-points-slider" low-value="50" class="option-slider" style="flex-grow: 1;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="fps-section" class="graph-section">
+            <ui:VisualElement name="fps-header" class="graph-header" style="flex-direction: row;">
+                <ui:Label text="FPS" display-tooltip-when-elided="true" name="fps-title" class="graph-title" />
+                <ui:Label text="No data" display-tooltip-when-elided="true" name="fps-stats" class="graph-stats" />
+            </ui:VisualElement>
+            <ui:VisualElement name="fps-graph-container" class="graph-container" />
+        </ui:VisualElement>
+        <ui:VisualElement name="memory-section" class="graph-section">
+            <ui:VisualElement name="memory-header" class="graph-header" style="flex-direction: row;">
+                <ui:Label text="Memory (MB)" display-tooltip-when-elided="true" name="memory-title" class="graph-title" />
+                <ui:Label text="No data" display-tooltip-when-elided="true" name="memory-stats" class="graph-stats" />
+            </ui:VisualElement>
+            <ui:VisualElement name="memory-graph-container" class="graph-container" />
+        </ui:VisualElement>
+        <ui:VisualElement name="drawcalls-section" class="graph-section" style="flex-direction: column;">
+            <ui:VisualElement name="drawcalls-header" class="graph-header" style="flex-direction: row;">
+                <ui:Label text="Draw Calls" display-tooltip-when-elided="true" name="drawcalls-title" class="graph-title" />
+                <ui:Label text="No data" display-tooltip-when-elided="true" name="drawcalls-stats" class="graph-stats" />
+            </ui:VisualElement>
+            <ui:VisualElement name="drawcalls-graph-container" class="graph-container" />
+        </ui:VisualElement>
+        <ui:VisualElement name="batches-section" class="graph-section">
+            <ui:VisualElement name="batches-header" class="graph-header" style="flex-direction: row;">
+                <ui:Label text="Batches" display-tooltip-when-elided="true" name="batches-title" class="graph-title" />
+                <ui:Label text="No data" display-tooltip-when-elided="true" name="batches-stats" class="graph-stats" />
+            </ui:VisualElement>
+            <ui:VisualElement name="batches-graph-container" class="graph-container" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
