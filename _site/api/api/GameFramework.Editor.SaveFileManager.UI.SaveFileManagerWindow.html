@@ -79,32 +79,31 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="GameFramework.Editor.SaveFileManagerWindow">
+            <article class="content wrap" id="_content" data-uid="GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow">
 
 
 
-  <h1 id="GameFramework_Editor_SaveFileManagerWindow" data-uid="GameFramework.Editor.SaveFileManagerWindow" class="text-break">Class SaveFileManagerWindow</h1>
-  <div class="markdown level0 summary"><p>Unity Editor tool for inspecting and managing save files</p>
-<p>Intent: Provide developers with a comprehensive interface for save file management</p>
+  <h1 id="GameFramework_Editor_SaveFileManager_UI_SaveFileManagerWindow" data-uid="GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow" class="text-break">Class SaveFileManagerWindow</h1>
+  <div class="markdown level0 summary"><p>Unity Editor tool for inspecting and managing save files
+Now uses UIToolkit for modern, flexible UI</p>
 <p>Design:</p>
 <ul>
-<li>Uses reflection-based field display for flexibility with changing save structures</li>
-<li>Configurable display properties through ScriptableObject settings</li>
-<li>Handles both runtime and edit-mode operations safely</li>
-<li>Provides basic CRUD operations (View, Load, Delete) for save files</li>
+<li>UIToolkit-based interface with UXML/USS styling</li>
+<li>Three-panel layout similar to profiling session viewer</li>
+<li>Reflection-based field display for flexibility</li>
+<li>Configurable through ScriptableObject settings</li>
 </ul>
 <p>Pros:</p>
 <ul>
-<li>Adapts automatically to changes in save file structure</li>
-<li>Configurable display without code changes</li>
-<li>Safe operation in both play and edit modes</li>
-<li>Comprehensive error handling and validation</li>
+<li>Modern, responsive UI with UIToolkit</li>
+<li>Consistent styling with other editor tools</li>
+<li>Flexible field display system</li>
+<li>Better performance than IMGUI</li>
 </ul>
 <p>Cons:</p>
 <ul>
-<li>Reflection usage has slight performance overhead</li>
-<li>Requires understanding of save file structure for configuration</li>
-<li>Some operations only available during play mode</li>
+<li>More complex setup with UXML/USS files</li>
+<li>Requires UIToolkit knowledge for customization</li>
 </ul>
 </div>
   <div class="markdown level0 conceptual"></div>
@@ -113,16 +112,24 @@
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
     <div class="level1"><span class="xref">SaveFileManagerWindow</span></div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.Editor.html">Editor</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.Editor.html">Editor</a>.<a class="xref" href="GameFramework.Editor.SaveFileManager.html">SaveFileManager</a>.<a class="xref" href="GameFramework.Editor.SaveFileManager.UI.html">UI</a></h6>
   <h6><strong>Assembly</strong>: .dll</h6>
-  <h5 id="GameFramework_Editor_SaveFileManagerWindow_syntax">Syntax</h5>
+  <h5 id="GameFramework_Editor_SaveFileManager_UI_SaveFileManagerWindow_syntax">Syntax</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class SaveFileManagerWindow : EditorWindow</code></pre>
   </div>
   <h3 id="methods">Methods
 </h3>
-  <a id="GameFramework_Editor_SaveFileManagerWindow_ShowWindow_" data-uid="GameFramework.Editor.SaveFileManagerWindow.ShowWindow*"></a>
-  <h4 id="GameFramework_Editor_SaveFileManagerWindow_ShowWindow" data-uid="GameFramework.Editor.SaveFileManagerWindow.ShowWindow">ShowWindow()</h4>
+  <a id="GameFramework_Editor_SaveFileManager_UI_SaveFileManagerWindow_CreateGUI_" data-uid="GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.CreateGUI*"></a>
+  <h4 id="GameFramework_Editor_SaveFileManager_UI_SaveFileManagerWindow_CreateGUI" data-uid="GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.CreateGUI">CreateGUI()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CreateGUI()</code></pre>
+  </div>
+  <a id="GameFramework_Editor_SaveFileManager_UI_SaveFileManagerWindow_ShowWindow_" data-uid="GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.ShowWindow*"></a>
+  <h4 id="GameFramework_Editor_SaveFileManager_UI_SaveFileManagerWindow_ShowWindow" data-uid="GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.ShowWindow">ShowWindow()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>

@@ -6189,6 +6189,80 @@ references:
   isSpec: "True"
   fullName: GameFramework.Editor.ConfigFileEditorTool.ValidateOpenConfigFile
   nameWithType: ConfigFileEditorTool.ValidateOpenConfigFile
+- uid: GameFramework.Editor.ConfigFileEditorWindow
+  name: ConfigFileEditorWindow
+  href: api/api/GameFramework.Editor.ConfigFileEditorWindow.html
+  commentId: T:GameFramework.Editor.ConfigFileEditorWindow
+  fullName: GameFramework.Editor.ConfigFileEditorWindow
+  nameWithType: ConfigFileEditorWindow
+- uid: GameFramework.Editor.ConfigFileEditorWindow.ConfigValueType
+  name: ConfigFileEditorWindow.ConfigValueType
+  href: api/api/GameFramework.Editor.ConfigFileEditorWindow.ConfigValueType.html
+  commentId: T:GameFramework.Editor.ConfigFileEditorWindow.ConfigValueType
+  fullName: GameFramework.Editor.ConfigFileEditorWindow.ConfigValueType
+  nameWithType: ConfigFileEditorWindow.ConfigValueType
+- uid: GameFramework.Editor.ConfigFileEditorWindow.ConfigValueType.Boolean
+  name: Boolean
+  href: api/api/GameFramework.Editor.ConfigFileEditorWindow.ConfigValueType.html#GameFramework_Editor_ConfigFileEditorWindow_ConfigValueType_Boolean
+  commentId: F:GameFramework.Editor.ConfigFileEditorWindow.ConfigValueType.Boolean
+  fullName: GameFramework.Editor.ConfigFileEditorWindow.ConfigValueType.Boolean
+  nameWithType: ConfigFileEditorWindow.ConfigValueType.Boolean
+- uid: GameFramework.Editor.ConfigFileEditorWindow.ConfigValueType.Int32
+  name: Int32
+  href: api/api/GameFramework.Editor.ConfigFileEditorWindow.ConfigValueType.html#GameFramework_Editor_ConfigFileEditorWindow_ConfigValueType_Int32
+  commentId: F:GameFramework.Editor.ConfigFileEditorWindow.ConfigValueType.Int32
+  fullName: GameFramework.Editor.ConfigFileEditorWindow.ConfigValueType.Int32
+  nameWithType: ConfigFileEditorWindow.ConfigValueType.Int32
+- uid: GameFramework.Editor.ConfigFileEditorWindow.ConfigValueType.QualityOption
+  name: QualityOption
+  href: api/api/GameFramework.Editor.ConfigFileEditorWindow.ConfigValueType.html#GameFramework_Editor_ConfigFileEditorWindow_ConfigValueType_QualityOption
+  commentId: F:GameFramework.Editor.ConfigFileEditorWindow.ConfigValueType.QualityOption
+  fullName: GameFramework.Editor.ConfigFileEditorWindow.ConfigValueType.QualityOption
+  nameWithType: ConfigFileEditorWindow.ConfigValueType.QualityOption
+- uid: GameFramework.Editor.ConfigFileEditorWindow.ConfigValueType.ResolutionOption
+  name: ResolutionOption
+  href: api/api/GameFramework.Editor.ConfigFileEditorWindow.ConfigValueType.html#GameFramework_Editor_ConfigFileEditorWindow_ConfigValueType_ResolutionOption
+  commentId: F:GameFramework.Editor.ConfigFileEditorWindow.ConfigValueType.ResolutionOption
+  fullName: GameFramework.Editor.ConfigFileEditorWindow.ConfigValueType.ResolutionOption
+  nameWithType: ConfigFileEditorWindow.ConfigValueType.ResolutionOption
+- uid: GameFramework.Editor.ConfigFileEditorWindow.ConfigValueType.Single
+  name: Single
+  href: api/api/GameFramework.Editor.ConfigFileEditorWindow.ConfigValueType.html#GameFramework_Editor_ConfigFileEditorWindow_ConfigValueType_Single
+  commentId: F:GameFramework.Editor.ConfigFileEditorWindow.ConfigValueType.Single
+  fullName: GameFramework.Editor.ConfigFileEditorWindow.ConfigValueType.Single
+  nameWithType: ConfigFileEditorWindow.ConfigValueType.Single
+- uid: GameFramework.Editor.ConfigFileEditorWindow.ConfigValueType.String
+  name: String
+  href: api/api/GameFramework.Editor.ConfigFileEditorWindow.ConfigValueType.html#GameFramework_Editor_ConfigFileEditorWindow_ConfigValueType_String
+  commentId: F:GameFramework.Editor.ConfigFileEditorWindow.ConfigValueType.String
+  fullName: GameFramework.Editor.ConfigFileEditorWindow.ConfigValueType.String
+  nameWithType: ConfigFileEditorWindow.ConfigValueType.String
+- uid: GameFramework.Editor.ConfigFileEditorWindow.CreateGUI
+  name: CreateGUI()
+  href: api/api/GameFramework.Editor.ConfigFileEditorWindow.html#GameFramework_Editor_ConfigFileEditorWindow_CreateGUI
+  commentId: M:GameFramework.Editor.ConfigFileEditorWindow.CreateGUI
+  fullName: GameFramework.Editor.ConfigFileEditorWindow.CreateGUI()
+  nameWithType: ConfigFileEditorWindow.CreateGUI()
+- uid: GameFramework.Editor.ConfigFileEditorWindow.CreateGUI*
+  name: CreateGUI
+  href: api/api/GameFramework.Editor.ConfigFileEditorWindow.html#GameFramework_Editor_ConfigFileEditorWindow_CreateGUI_
+  commentId: Overload:GameFramework.Editor.ConfigFileEditorWindow.CreateGUI
+  isSpec: "True"
+  fullName: GameFramework.Editor.ConfigFileEditorWindow.CreateGUI
+  nameWithType: ConfigFileEditorWindow.CreateGUI
+- uid: GameFramework.Editor.ConfigFileEditorWindow.ShowWindow
+  name: ShowWindow()
+  href: api/api/GameFramework.Editor.ConfigFileEditorWindow.html#GameFramework_Editor_ConfigFileEditorWindow_ShowWindow
+  commentId: M:GameFramework.Editor.ConfigFileEditorWindow.ShowWindow
+  fullName: GameFramework.Editor.ConfigFileEditorWindow.ShowWindow()
+  nameWithType: ConfigFileEditorWindow.ShowWindow()
+- uid: GameFramework.Editor.ConfigFileEditorWindow.ShowWindow*
+  name: ShowWindow
+  href: api/api/GameFramework.Editor.ConfigFileEditorWindow.html#GameFramework_Editor_ConfigFileEditorWindow_ShowWindow_
+  commentId: Overload:GameFramework.Editor.ConfigFileEditorWindow.ShowWindow
+  isSpec: "True"
+  fullName: GameFramework.Editor.ConfigFileEditorWindow.ShowWindow
+  nameWithType: ConfigFileEditorWindow.ShowWindow
 - uid: GameFramework.Editor.ProfilerSessionManager
   name: GameFramework.Editor.ProfilerSessionManager
   href: api/api/GameFramework.Editor.ProfilerSessionManager.html
@@ -6637,98 +6711,163 @@ references:
   commentId: E:GameFramework.Editor.ProfilerSessionManager.UI.SessionDetailsPanel.OnOpenFileRequested
   fullName: GameFramework.Editor.ProfilerSessionManager.UI.SessionDetailsPanel.OnOpenFileRequested
   nameWithType: SessionDetailsPanel.OnOpenFileRequested
-- uid: GameFramework.Editor.SaveFileDisplayConfig
+- uid: GameFramework.Editor.SaveFileManager.ScriptableObjects
+  name: GameFramework.Editor.SaveFileManager.ScriptableObjects
+  href: api/api/GameFramework.Editor.SaveFileManager.ScriptableObjects.html
+  commentId: N:GameFramework.Editor.SaveFileManager.ScriptableObjects
+  fullName: GameFramework.Editor.SaveFileManager.ScriptableObjects
+  nameWithType: GameFramework.Editor.SaveFileManager.ScriptableObjects
+- uid: GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig
   name: SaveFileDisplayConfig
-  href: api/api/GameFramework.Editor.SaveFileDisplayConfig.html
-  commentId: T:GameFramework.Editor.SaveFileDisplayConfig
-  fullName: GameFramework.Editor.SaveFileDisplayConfig
+  href: api/api/GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.html
+  commentId: T:GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig
+  fullName: GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig
   nameWithType: SaveFileDisplayConfig
-- uid: GameFramework.Editor.SaveFileDisplayConfig.DisplayFields
+- uid: GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.DisplayFields
   name: DisplayFields
-  href: api/api/GameFramework.Editor.SaveFileDisplayConfig.html#GameFramework_Editor_SaveFileDisplayConfig_DisplayFields
-  commentId: F:GameFramework.Editor.SaveFileDisplayConfig.DisplayFields
-  fullName: GameFramework.Editor.SaveFileDisplayConfig.DisplayFields
+  href: api/api/GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.html#GameFramework_Editor_SaveFileManager_ScriptableObjects_SaveFileDisplayConfig_DisplayFields
+  commentId: F:GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.DisplayFields
+  fullName: GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.DisplayFields
   nameWithType: SaveFileDisplayConfig.DisplayFields
-- uid: GameFramework.Editor.SaveFileDisplayConfig.FieldDisplayConfig
+- uid: GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.FieldDisplayConfig
   name: SaveFileDisplayConfig.FieldDisplayConfig
-  href: api/api/GameFramework.Editor.SaveFileDisplayConfig.FieldDisplayConfig.html
-  commentId: T:GameFramework.Editor.SaveFileDisplayConfig.FieldDisplayConfig
-  fullName: GameFramework.Editor.SaveFileDisplayConfig.FieldDisplayConfig
+  href: api/api/GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.FieldDisplayConfig.html
+  commentId: T:GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.FieldDisplayConfig
+  fullName: GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.FieldDisplayConfig
   nameWithType: SaveFileDisplayConfig.FieldDisplayConfig
-- uid: GameFramework.Editor.SaveFileDisplayConfig.FieldDisplayConfig.#ctor(System.String,System.String,System.Boolean)
+- uid: GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.FieldDisplayConfig.#ctor(System.String,System.String,System.Boolean)
   name: FieldDisplayConfig(string, string, bool)
-  href: api/api/GameFramework.Editor.SaveFileDisplayConfig.FieldDisplayConfig.html#GameFramework_Editor_SaveFileDisplayConfig_FieldDisplayConfig__ctor_System_String_System_String_System_Boolean_
-  commentId: M:GameFramework.Editor.SaveFileDisplayConfig.FieldDisplayConfig.#ctor(System.String,System.String,System.Boolean)
+  href: api/api/GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.FieldDisplayConfig.html#GameFramework_Editor_SaveFileManager_ScriptableObjects_SaveFileDisplayConfig_FieldDisplayConfig__ctor_System_String_System_String_System_Boolean_
+  commentId: M:GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.FieldDisplayConfig.#ctor(System.String,System.String,System.Boolean)
   name.vb: New(String, String, Boolean)
-  fullName: GameFramework.Editor.SaveFileDisplayConfig.FieldDisplayConfig.FieldDisplayConfig(string, string, bool)
-  fullName.vb: GameFramework.Editor.SaveFileDisplayConfig.FieldDisplayConfig.New(String, String, Boolean)
+  fullName: GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.FieldDisplayConfig.FieldDisplayConfig(string, string, bool)
+  fullName.vb: GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.FieldDisplayConfig.New(String, String, Boolean)
   nameWithType: SaveFileDisplayConfig.FieldDisplayConfig.FieldDisplayConfig(string, string, bool)
   nameWithType.vb: SaveFileDisplayConfig.FieldDisplayConfig.New(String, String, Boolean)
-- uid: GameFramework.Editor.SaveFileDisplayConfig.FieldDisplayConfig.#ctor*
+- uid: GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.FieldDisplayConfig.#ctor*
   name: FieldDisplayConfig
-  href: api/api/GameFramework.Editor.SaveFileDisplayConfig.FieldDisplayConfig.html#GameFramework_Editor_SaveFileDisplayConfig_FieldDisplayConfig__ctor_
-  commentId: Overload:GameFramework.Editor.SaveFileDisplayConfig.FieldDisplayConfig.#ctor
+  href: api/api/GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.FieldDisplayConfig.html#GameFramework_Editor_SaveFileManager_ScriptableObjects_SaveFileDisplayConfig_FieldDisplayConfig__ctor_
+  commentId: Overload:GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.FieldDisplayConfig.#ctor
   isSpec: "True"
   name.vb: New
-  fullName: GameFramework.Editor.SaveFileDisplayConfig.FieldDisplayConfig.FieldDisplayConfig
-  fullName.vb: GameFramework.Editor.SaveFileDisplayConfig.FieldDisplayConfig.New
+  fullName: GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.FieldDisplayConfig.FieldDisplayConfig
+  fullName.vb: GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.FieldDisplayConfig.New
   nameWithType: SaveFileDisplayConfig.FieldDisplayConfig.FieldDisplayConfig
   nameWithType.vb: SaveFileDisplayConfig.FieldDisplayConfig.New
-- uid: GameFramework.Editor.SaveFileDisplayConfig.FieldDisplayConfig.DisplayName
+- uid: GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.FieldDisplayConfig.DisplayName
   name: DisplayName
-  href: api/api/GameFramework.Editor.SaveFileDisplayConfig.FieldDisplayConfig.html#GameFramework_Editor_SaveFileDisplayConfig_FieldDisplayConfig_DisplayName
-  commentId: F:GameFramework.Editor.SaveFileDisplayConfig.FieldDisplayConfig.DisplayName
-  fullName: GameFramework.Editor.SaveFileDisplayConfig.FieldDisplayConfig.DisplayName
+  href: api/api/GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.FieldDisplayConfig.html#GameFramework_Editor_SaveFileManager_ScriptableObjects_SaveFileDisplayConfig_FieldDisplayConfig_DisplayName
+  commentId: F:GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.FieldDisplayConfig.DisplayName
+  fullName: GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.FieldDisplayConfig.DisplayName
   nameWithType: SaveFileDisplayConfig.FieldDisplayConfig.DisplayName
-- uid: GameFramework.Editor.SaveFileDisplayConfig.FieldDisplayConfig.FieldName
+- uid: GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.FieldDisplayConfig.FieldName
   name: FieldName
-  href: api/api/GameFramework.Editor.SaveFileDisplayConfig.FieldDisplayConfig.html#GameFramework_Editor_SaveFileDisplayConfig_FieldDisplayConfig_FieldName
-  commentId: F:GameFramework.Editor.SaveFileDisplayConfig.FieldDisplayConfig.FieldName
-  fullName: GameFramework.Editor.SaveFileDisplayConfig.FieldDisplayConfig.FieldName
+  href: api/api/GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.FieldDisplayConfig.html#GameFramework_Editor_SaveFileManager_ScriptableObjects_SaveFileDisplayConfig_FieldDisplayConfig_FieldName
+  commentId: F:GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.FieldDisplayConfig.FieldName
+  fullName: GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.FieldDisplayConfig.FieldName
   nameWithType: SaveFileDisplayConfig.FieldDisplayConfig.FieldName
-- uid: GameFramework.Editor.SaveFileDisplayConfig.FieldDisplayConfig.IsReadOnly
+- uid: GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.FieldDisplayConfig.IsReadOnly
   name: IsReadOnly
-  href: api/api/GameFramework.Editor.SaveFileDisplayConfig.FieldDisplayConfig.html#GameFramework_Editor_SaveFileDisplayConfig_FieldDisplayConfig_IsReadOnly
-  commentId: F:GameFramework.Editor.SaveFileDisplayConfig.FieldDisplayConfig.IsReadOnly
-  fullName: GameFramework.Editor.SaveFileDisplayConfig.FieldDisplayConfig.IsReadOnly
+  href: api/api/GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.FieldDisplayConfig.html#GameFramework_Editor_SaveFileManager_ScriptableObjects_SaveFileDisplayConfig_FieldDisplayConfig_IsReadOnly
+  commentId: F:GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.FieldDisplayConfig.IsReadOnly
+  fullName: GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.FieldDisplayConfig.IsReadOnly
   nameWithType: SaveFileDisplayConfig.FieldDisplayConfig.IsReadOnly
-- uid: GameFramework.Editor.SaveFileDisplayConfigWindow
-  name: SaveFileDisplayConfigWindow
-  href: api/api/GameFramework.Editor.SaveFileDisplayConfigWindow.html
-  commentId: T:GameFramework.Editor.SaveFileDisplayConfigWindow
-  fullName: GameFramework.Editor.SaveFileDisplayConfigWindow
-  nameWithType: SaveFileDisplayConfigWindow
-- uid: GameFramework.Editor.SaveFileDisplayConfigWindow.ShowWindow
-  name: ShowWindow()
-  href: api/api/GameFramework.Editor.SaveFileDisplayConfigWindow.html#GameFramework_Editor_SaveFileDisplayConfigWindow_ShowWindow
-  commentId: M:GameFramework.Editor.SaveFileDisplayConfigWindow.ShowWindow
-  fullName: GameFramework.Editor.SaveFileDisplayConfigWindow.ShowWindow()
-  nameWithType: SaveFileDisplayConfigWindow.ShowWindow()
-- uid: GameFramework.Editor.SaveFileDisplayConfigWindow.ShowWindow*
-  name: ShowWindow
-  href: api/api/GameFramework.Editor.SaveFileDisplayConfigWindow.html#GameFramework_Editor_SaveFileDisplayConfigWindow_ShowWindow_
-  commentId: Overload:GameFramework.Editor.SaveFileDisplayConfigWindow.ShowWindow
+- uid: GameFramework.Editor.SaveFileManager.UI
+  name: GameFramework.Editor.SaveFileManager.UI
+  href: api/api/GameFramework.Editor.SaveFileManager.UI.html
+  commentId: N:GameFramework.Editor.SaveFileManager.UI
+  fullName: GameFramework.Editor.SaveFileManager.UI
+  nameWithType: GameFramework.Editor.SaveFileManager.UI
+- uid: GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel
+  name: SaveFileDetailsPanel
+  href: api/api/GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.html
+  commentId: T:GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel
+  fullName: GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel
+  nameWithType: SaveFileDetailsPanel
+- uid: GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.#ctor
+  name: SaveFileDetailsPanel()
+  href: api/api/GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.html#GameFramework_Editor_SaveFileManager_UI_SaveFileDetailsPanel__ctor
+  commentId: M:GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.#ctor
+  name.vb: New()
+  fullName: GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.SaveFileDetailsPanel()
+  fullName.vb: GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.New()
+  nameWithType: SaveFileDetailsPanel.SaveFileDetailsPanel()
+  nameWithType.vb: SaveFileDetailsPanel.New()
+- uid: GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.#ctor*
+  name: SaveFileDetailsPanel
+  href: api/api/GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.html#GameFramework_Editor_SaveFileManager_UI_SaveFileDetailsPanel__ctor_
+  commentId: Overload:GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.#ctor
   isSpec: "True"
-  fullName: GameFramework.Editor.SaveFileDisplayConfigWindow.ShowWindow
-  nameWithType: SaveFileDisplayConfigWindow.ShowWindow
-- uid: GameFramework.Editor.SaveFileManagerWindow
+  name.vb: New
+  fullName: GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.SaveFileDetailsPanel
+  fullName.vb: GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.New
+  nameWithType: SaveFileDetailsPanel.SaveFileDetailsPanel
+  nameWithType.vb: SaveFileDetailsPanel.New
+- uid: GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.LoadSaveFile(GameFramework.DataStructures.SaveFileInfo,GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig,System.Boolean)
+  name: LoadSaveFile(SaveFileInfo, SaveFileDisplayConfig, bool)
+  href: api/api/GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.html#GameFramework_Editor_SaveFileManager_UI_SaveFileDetailsPanel_LoadSaveFile_GameFramework_DataStructures_SaveFileInfo_GameFramework_Editor_SaveFileManager_ScriptableObjects_SaveFileDisplayConfig_System_Boolean_
+  commentId: M:GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.LoadSaveFile(GameFramework.DataStructures.SaveFileInfo,GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig,System.Boolean)
+  name.vb: LoadSaveFile(SaveFileInfo, SaveFileDisplayConfig, Boolean)
+  fullName: GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.LoadSaveFile(GameFramework.DataStructures.SaveFileInfo, GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig, bool)
+  fullName.vb: GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.LoadSaveFile(GameFramework.DataStructures.SaveFileInfo, GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig, Boolean)
+  nameWithType: SaveFileDetailsPanel.LoadSaveFile(SaveFileInfo, SaveFileDisplayConfig, bool)
+  nameWithType.vb: SaveFileDetailsPanel.LoadSaveFile(SaveFileInfo, SaveFileDisplayConfig, Boolean)
+- uid: GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.LoadSaveFile*
+  name: LoadSaveFile
+  href: api/api/GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.html#GameFramework_Editor_SaveFileManager_UI_SaveFileDetailsPanel_LoadSaveFile_
+  commentId: Overload:GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.LoadSaveFile
+  isSpec: "True"
+  fullName: GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.LoadSaveFile
+  nameWithType: SaveFileDetailsPanel.LoadSaveFile
+- uid: GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.OnDeleteRequested
+  name: OnDeleteRequested
+  href: api/api/GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.html#GameFramework_Editor_SaveFileManager_UI_SaveFileDetailsPanel_OnDeleteRequested
+  commentId: E:GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.OnDeleteRequested
+  fullName: GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.OnDeleteRequested
+  nameWithType: SaveFileDetailsPanel.OnDeleteRequested
+- uid: GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.OnLoadRequested
+  name: OnLoadRequested
+  href: api/api/GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.html#GameFramework_Editor_SaveFileManager_UI_SaveFileDetailsPanel_OnLoadRequested
+  commentId: E:GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.OnLoadRequested
+  fullName: GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.OnLoadRequested
+  nameWithType: SaveFileDetailsPanel.OnLoadRequested
+- uid: GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.OnShowInExplorerRequested
+  name: OnShowInExplorerRequested
+  href: api/api/GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.html#GameFramework_Editor_SaveFileManager_UI_SaveFileDetailsPanel_OnShowInExplorerRequested
+  commentId: E:GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.OnShowInExplorerRequested
+  fullName: GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.OnShowInExplorerRequested
+  nameWithType: SaveFileDetailsPanel.OnShowInExplorerRequested
+- uid: GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow
   name: SaveFileManagerWindow
-  href: api/api/GameFramework.Editor.SaveFileManagerWindow.html
-  commentId: T:GameFramework.Editor.SaveFileManagerWindow
-  fullName: GameFramework.Editor.SaveFileManagerWindow
+  href: api/api/GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.html
+  commentId: T:GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow
+  fullName: GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow
   nameWithType: SaveFileManagerWindow
-- uid: GameFramework.Editor.SaveFileManagerWindow.ShowWindow
-  name: ShowWindow()
-  href: api/api/GameFramework.Editor.SaveFileManagerWindow.html#GameFramework_Editor_SaveFileManagerWindow_ShowWindow
-  commentId: M:GameFramework.Editor.SaveFileManagerWindow.ShowWindow
-  fullName: GameFramework.Editor.SaveFileManagerWindow.ShowWindow()
-  nameWithType: SaveFileManagerWindow.ShowWindow()
-- uid: GameFramework.Editor.SaveFileManagerWindow.ShowWindow*
-  name: ShowWindow
-  href: api/api/GameFramework.Editor.SaveFileManagerWindow.html#GameFramework_Editor_SaveFileManagerWindow_ShowWindow_
-  commentId: Overload:GameFramework.Editor.SaveFileManagerWindow.ShowWindow
+- uid: GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.CreateGUI
+  name: CreateGUI()
+  href: api/api/GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.html#GameFramework_Editor_SaveFileManager_UI_SaveFileManagerWindow_CreateGUI
+  commentId: M:GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.CreateGUI
+  fullName: GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.CreateGUI()
+  nameWithType: SaveFileManagerWindow.CreateGUI()
+- uid: GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.CreateGUI*
+  name: CreateGUI
+  href: api/api/GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.html#GameFramework_Editor_SaveFileManager_UI_SaveFileManagerWindow_CreateGUI_
+  commentId: Overload:GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.CreateGUI
   isSpec: "True"
-  fullName: GameFramework.Editor.SaveFileManagerWindow.ShowWindow
+  fullName: GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.CreateGUI
+  nameWithType: SaveFileManagerWindow.CreateGUI
+- uid: GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.ShowWindow
+  name: ShowWindow()
+  href: api/api/GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.html#GameFramework_Editor_SaveFileManager_UI_SaveFileManagerWindow_ShowWindow
+  commentId: M:GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.ShowWindow
+  fullName: GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.ShowWindow()
+  nameWithType: SaveFileManagerWindow.ShowWindow()
+- uid: GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.ShowWindow*
+  name: ShowWindow
+  href: api/api/GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.html#GameFramework_Editor_SaveFileManager_UI_SaveFileManagerWindow_ShowWindow_
+  commentId: Overload:GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.ShowWindow
+  isSpec: "True"
+  fullName: GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.ShowWindow
   nameWithType: SaveFileManagerWindow.ShowWindow
 - uid: GameFramework.EventSystem
   name: GameFramework.EventSystem

@@ -1006,6 +1006,34 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Editor.ConfigFileEditorWindow.ConfigValueType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Editor.ConfigFileEditorWindow.ConfigValueType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Editor.ConfigFileEditorWindow.ConfigValueType",
+      "Summary": "<p sourcefile=\"api/GameFramework.Editor.ConfigFileEditorWindow.ConfigValueType.yml\" sourcestartlinenumber=\"1\">Supported configuration value types for the dropdown</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Editor.ConfigFileEditorWindow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Editor.ConfigFileEditorWindow.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Editor.ConfigFileEditorWindow",
+      "Summary": "<p sourcefile=\"api/GameFramework.Editor.ConfigFileEditorWindow.yml\" sourcestartlinenumber=\"1\">Advanced Unity Editor tool for viewing and editing JSON config files</p>\n<p sourcefile=\"api/GameFramework.Editor.ConfigFileEditorWindow.yml\" sourcestartlinenumber=\"3\">Design:</p>\n<ul sourcefile=\"api/GameFramework.Editor.ConfigFileEditorWindow.yml\" sourcestartlinenumber=\"4\">\n<li sourcefile=\"api/GameFramework.Editor.ConfigFileEditorWindow.yml\" sourcestartlinenumber=\"4\">UIToolkit-based interface with dynamic JSON property display</li>\n<li sourcefile=\"api/GameFramework.Editor.ConfigFileEditorWindow.yml\" sourcestartlinenumber=\"5\">Supports both structured editing and raw JSON editing</li>\n<li sourcefile=\"api/GameFramework.Editor.ConfigFileEditorWindow.yml\" sourcestartlinenumber=\"6\">Real-time validation and auto-save capabilities</li>\n<li sourcefile=\"api/GameFramework.Editor.ConfigFileEditorWindow.yml\" sourcestartlinenumber=\"7\">File management operations (create, delete, open externally)</li>\n</ul>\n<p sourcefile=\"api/GameFramework.Editor.ConfigFileEditorWindow.yml\" sourcestartlinenumber=\"9\">Pros:</p>\n<ul sourcefile=\"api/GameFramework.Editor.ConfigFileEditorWindow.yml\" sourcestartlinenumber=\"10\">\n<li sourcefile=\"api/GameFramework.Editor.ConfigFileEditorWindow.yml\" sourcestartlinenumber=\"10\">Dual editing modes (structured/raw JSON)</li>\n<li sourcefile=\"api/GameFramework.Editor.ConfigFileEditorWindow.yml\" sourcestartlinenumber=\"11\">Deferred value updates for better performance</li>\n<li sourcefile=\"api/GameFramework.Editor.ConfigFileEditorWindow.yml\" sourcestartlinenumber=\"12\">Comprehensive validation and error handling</li>\n<li sourcefile=\"api/GameFramework.Editor.ConfigFileEditorWindow.yml\" sourcestartlinenumber=\"13\">Auto-save functionality</li>\n<li sourcefile=\"api/GameFramework.Editor.ConfigFileEditorWindow.yml\" sourcestartlinenumber=\"14\">File management integration</li>\n</ul>\n<p sourcefile=\"api/GameFramework.Editor.ConfigFileEditorWindow.yml\" sourcestartlinenumber=\"16\">Cons:</p>\n<ul sourcefile=\"api/GameFramework.Editor.ConfigFileEditorWindow.yml\" sourcestartlinenumber=\"17\">\n<li sourcefile=\"api/GameFramework.Editor.ConfigFileEditorWindow.yml\" sourcestartlinenumber=\"17\">Complex UI state management</li>\n<li sourcefile=\"api/GameFramework.Editor.ConfigFileEditorWindow.yml\" sourcestartlinenumber=\"18\">Requires specific JSON structure for config entries</li>\n<li sourcefile=\"api/GameFramework.Editor.ConfigFileEditorWindow.yml\" sourcestartlinenumber=\"19\">Heavy dependency on UIToolkit assets</li>\n</ul>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFramework.Editor.ProfilerSessionManager.ProfilingSessionData.yml",
       "output": {
         ".html": {
@@ -1118,59 +1146,87 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFramework.Editor.SaveFileDisplayConfig.FieldDisplayConfig.yml",
+      "source_relative_path": "api/GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.FieldDisplayConfig.yml",
       "output": {
         ".html": {
-          "relative_path": "api/api/GameFramework.Editor.SaveFileDisplayConfig.FieldDisplayConfig.html"
+          "relative_path": "api/api/GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.FieldDisplayConfig.html"
         }
       },
       "version": "",
       "Uid": null,
       "IsMRef": true,
-      "Title": "GameFramework.Editor.SaveFileDisplayConfig.FieldDisplayConfig",
+      "Title": "GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.FieldDisplayConfig",
       "Summary": null
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFramework.Editor.SaveFileDisplayConfig.yml",
+      "source_relative_path": "api/GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.yml",
       "output": {
         ".html": {
-          "relative_path": "api/api/GameFramework.Editor.SaveFileDisplayConfig.html"
+          "relative_path": "api/api/GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.html"
         }
       },
       "version": "",
       "Uid": null,
       "IsMRef": true,
-      "Title": "GameFramework.Editor.SaveFileDisplayConfig",
-      "Summary": "<p sourcefile=\"api/GameFramework.Editor.SaveFileDisplayConfig.yml\" sourcestartlinenumber=\"1\">Configuration ScriptableObject for customizing save file display\nAllows adding new fields without modifying the editor code</p>\n"
+      "Title": "GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig",
+      "Summary": "<p sourcefile=\"api/GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.yml\" sourcestartlinenumber=\"1\">Configuration ScriptableObject for customizing save file display\nAllows adding new fields without modifying the editor code</p>\n"
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFramework.Editor.SaveFileDisplayConfigWindow.yml",
+      "source_relative_path": "api/GameFramework.Editor.SaveFileManager.ScriptableObjects.yml",
       "output": {
         ".html": {
-          "relative_path": "api/api/GameFramework.Editor.SaveFileDisplayConfigWindow.html"
+          "relative_path": "api/api/GameFramework.Editor.SaveFileManager.ScriptableObjects.html"
         }
       },
       "version": "",
       "Uid": null,
       "IsMRef": true,
-      "Title": "GameFramework.Editor.SaveFileDisplayConfigWindow",
-      "Summary": "<p sourcefile=\"api/GameFramework.Editor.SaveFileDisplayConfigWindow.yml\" sourcestartlinenumber=\"1\">Configuration window for editing save file display settings</p>\n"
+      "Title": "GameFramework.Editor.SaveFileManager.ScriptableObjects",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFramework.Editor.SaveFileManagerWindow.yml",
+      "source_relative_path": "api/GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.yml",
       "output": {
         ".html": {
-          "relative_path": "api/api/GameFramework.Editor.SaveFileManagerWindow.html"
+          "relative_path": "api/api/GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.html"
         }
       },
       "version": "",
       "Uid": null,
       "IsMRef": true,
-      "Title": "GameFramework.Editor.SaveFileManagerWindow",
-      "Summary": "<p sourcefile=\"api/GameFramework.Editor.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"1\">Unity Editor tool for inspecting and managing save files</p>\n<p sourcefile=\"api/GameFramework.Editor.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"3\">Intent: Provide developers with a comprehensive interface for save file management</p>\n<p sourcefile=\"api/GameFramework.Editor.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"5\">Design:</p>\n<ul sourcefile=\"api/GameFramework.Editor.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"6\">\n<li sourcefile=\"api/GameFramework.Editor.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"6\">Uses reflection-based field display for flexibility with changing save structures</li>\n<li sourcefile=\"api/GameFramework.Editor.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"7\">Configurable display properties through ScriptableObject settings</li>\n<li sourcefile=\"api/GameFramework.Editor.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"8\">Handles both runtime and edit-mode operations safely</li>\n<li sourcefile=\"api/GameFramework.Editor.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"9\">Provides basic CRUD operations (View, Load, Delete) for save files</li>\n</ul>\n<p sourcefile=\"api/GameFramework.Editor.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"11\">Pros:</p>\n<ul sourcefile=\"api/GameFramework.Editor.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"12\">\n<li sourcefile=\"api/GameFramework.Editor.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"12\">Adapts automatically to changes in save file structure</li>\n<li sourcefile=\"api/GameFramework.Editor.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"13\">Configurable display without code changes</li>\n<li sourcefile=\"api/GameFramework.Editor.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"14\">Safe operation in both play and edit modes</li>\n<li sourcefile=\"api/GameFramework.Editor.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"15\">Comprehensive error handling and validation</li>\n</ul>\n<p sourcefile=\"api/GameFramework.Editor.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"17\">Cons:</p>\n<ul sourcefile=\"api/GameFramework.Editor.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"18\">\n<li sourcefile=\"api/GameFramework.Editor.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"18\">Reflection usage has slight performance overhead</li>\n<li sourcefile=\"api/GameFramework.Editor.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"19\">Requires understanding of save file structure for configuration</li>\n<li sourcefile=\"api/GameFramework.Editor.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"20\">Some operations only available during play mode</li>\n</ul>\n"
+      "Title": "GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel",
+      "Summary": "<p sourcefile=\"api/GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.yml\" sourcestartlinenumber=\"1\">Panel for displaying detailed information about a selected save file\nUses reflection-based field display for flexibility with changing save structures</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow",
+      "Summary": "<p sourcefile=\"api/GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"1\">Unity Editor tool for inspecting and managing save files\nNow uses UIToolkit for modern, flexible UI</p>\n<p sourcefile=\"api/GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"4\">Design:</p>\n<ul sourcefile=\"api/GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"5\">\n<li sourcefile=\"api/GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"5\">UIToolkit-based interface with UXML/USS styling</li>\n<li sourcefile=\"api/GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"6\">Three-panel layout similar to profiling session viewer</li>\n<li sourcefile=\"api/GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"7\">Reflection-based field display for flexibility</li>\n<li sourcefile=\"api/GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"8\">Configurable through ScriptableObject settings</li>\n</ul>\n<p sourcefile=\"api/GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"10\">Pros:</p>\n<ul sourcefile=\"api/GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"11\">\n<li sourcefile=\"api/GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"11\">Modern, responsive UI with UIToolkit</li>\n<li sourcefile=\"api/GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"12\">Consistent styling with other editor tools</li>\n<li sourcefile=\"api/GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"13\">Flexible field display system</li>\n<li sourcefile=\"api/GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"14\">Better performance than IMGUI</li>\n</ul>\n<p sourcefile=\"api/GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"16\">Cons:</p>\n<ul sourcefile=\"api/GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"17\">\n<li sourcefile=\"api/GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"17\">More complex setup with UXML/USS files</li>\n<li sourcefile=\"api/GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.yml\" sourcestartlinenumber=\"18\">Requires UIToolkit knowledge for customization</li>\n</ul>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Editor.SaveFileManager.UI.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Editor.SaveFileManager.UI.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Editor.SaveFileManager.UI",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
