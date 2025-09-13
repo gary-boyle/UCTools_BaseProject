@@ -148,8 +148,8 @@ namespace GameFramework.Core
             }
             else if (_instance != this)
             {
-                Debug.LogWarning("[GameManager] Another instance detected, destroying duplicate");
                 Destroy(gameObject);
+                return; // Exit early since we're destroying this object
             }
         }
         
@@ -347,6 +347,9 @@ namespace GameFramework.Core
             var pauseService = _container.Resolve<IPauseService>();
             await pauseService.InitializeAsync();
             
+            var profilingService = _container.Resolve<IProfilingService>();
+            await profilingService.InitializeAsync();
+
             var loadService = _container.Resolve<ILoadService>();
             await loadService.InitializeAsync();
             
@@ -381,7 +384,8 @@ namespace GameFramework.Core
     
             // Register leaf services first (no dependencies)
             _container.RegisterSingleton<IEventSystem, EventSystem.EventSystem>();
-            
+            _container.RegisterSingleton<IProfilingService, ProfilingService>();
+
             // Register services with minimal dependencies
             _container.RegisterSingleton<ITimeService, TimeService>();
             _container.RegisterSingleton<IAudioService, AudioService>();
@@ -414,10 +418,11 @@ namespace GameFramework.Core
             _container.RegisterSingleton<ILoadService, LoadService>();
             _container.RegisterSingleton<ISaveService, SaveService>();
             _container.RegisterSingleton<IGameDataService, GameDataService>();
-            
+
             // Register GameContext (depends on all other services)
             _container.RegisterSingleton<GameContext>();
     
+            
             // Register state machine (depends on GameContext)
             _container.RegisterSingleton<IGameStateMachine, GameStateMachine>();
     
@@ -578,6 +583,8 @@ namespace GameFramework.Core
         {
             Debug.Log("[GameManager] Collecting updatable systems...");
 
+
+
             // Add state machine to updatables
             if (_stateMachine is IUpdatable updatable)
                 _updatables.Add(updatable);
@@ -598,7 +605,11 @@ namespace GameFramework.Core
             var timeService = _container.Resolve<ITimeService>();
             if (timeService is IUpdatable timeUpdatable)
                 _updatables.Add(timeUpdatable);
-
+            
+            var profilingService = _container.Resolve<IProfilingService>();
+            if (profilingService is IUpdatable profilingUpdatable)
+                _updatables.Add(profilingUpdatable);
+            
             // Add InputManager for updates
             var inputManager = _container.Resolve<IInputManager>();
             if (inputManager is IUpdatable inputManagerUpdatable)
@@ -607,6 +618,8 @@ namespace GameFramework.Core
             var pauseService = _container.Resolve<IPauseService>();
             if (pauseService is IUpdatable pauseUpdatable)
                 _updatables.Add(pauseUpdatable);
+            
+
             
             // Add UI service for screen updates
             var uiService = _container.Resolve<IUIService>();

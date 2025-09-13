@@ -1,398 +1,523 @@
 ﻿using UnityEngine;
 using UnityEngine.UIElements;
-using UnityEngine.Profiling;
 using GameFramework.UI.Utilities;
-using Unity.Profiling; // Add this for ProfilerRecorder
+using GameFramework.Services.Interfaces;
+using GameFramework.EventSystem.Interfaces;
+using GameFramework.Core;
+using GameFramework.Events;
+using System.Threading.Tasks;
+using GameFramework.Services;
 
 namespace GameFramework.UI.Popups
 {
     /// <summary>
-    /// Enhanced debug popup with real-time performance graphs
-    /// Displays FPS, memory consumption, draw calls, and historical graphs
+    /// Simplified debug popup that displays real-time performance metrics with minimal allocations.
     /// 
     /// Design:
-    /// - Integrates custom GraphElement controls for visual data representation
-    /// - Maintains separate data collection intervals for metrics vs graphs
-    /// - Uses color-coded indicators for quick performance assessment
-    /// - Efficient data sampling to prevent performance impact
-    /// - Tracks rendering statistics via ProfilerRecorder
+    /// - Clean separation of UI element caching and updates
+    /// - Event-driven updates to minimize polling
+    /// - Efficient change detection to prevent redundant UI updates
+    /// - Simple graph integration for historical data visualization
+    /// 
+    /// Pros:
+    /// - Zero-allocation UI updates during normal operation
+    /// - Event-driven architecture reduces CPU overhead
+    /// - Clear separation of concerns
+    /// - Robust service connection handling
+    /// 
+    /// Cons:
+    /// - Requires UXML structure to match expected element names
+    /// - Dependency on EventSystem for real-time updates
     /// </summary>
     public class DebugPopup : UIPopup
     {
-        private VisualElement _root;
-        private Label _debugLabel;
-        private Label _fpsLabel;
-        private Label _memoryLabel;
-        private Label _drawCallsLabel; // Add draw calls label
-        private Label _batchesLabel;   // Add batches label
-        private Label _versionLabel;
-        private Label _buildLabel;
+        #region Private Fields
         
-        // Graph elements
+        private VisualElement _root;
+        private IProfilingService _profilingService;
+        private IEventSystem _eventSystem;
+        private bool _servicesReady = false;
+        
+        // UI Element Cache - matching your UXML structure
+        private Label _debugLabel;
+        
+        // FPS Labels
+        private Label _fpsCurrentLabel;
+        private Label _fpsAvgLabel;
+        private Label _fpsMinLabel;
+        private Label _fpsMaxLabel;
+        
+        // Other Metric Labels
+        private Label _memoryValueLabel;
+        private Label _drawCallsValueLabel;
+        private Label _batchesValueLabel;
+        private Label _trianglesValueLabel;
+        private Label _trianglesUnitLabel;
+        private Label _verticesValueLabel;
+        private Label _verticesUnitLabel;
+        private Label _sessionStatusLabel;
+        private Label _versionValueLabel;
+        private Label _buildValueLabel;
+        
+        // Graph Elements
         private GraphElement _fpsGraph;
         private GraphElement _memoryGraph;
-        private GraphElement _drawCallsGraph; // Add draw calls graph
-        private VisualElement _fpsGraphContainer;
-        private VisualElement _memoryGraphContainer;
-        private VisualElement _drawCallsGraphContainer; // Add draw calls graph container
+        private GraphElement _drawCallsGraph;
         
-        // FPS calculation variables
-        private float _deltaTimeAccumulator = 0f;
-        private int _frameCount = 0;
-        private float _updateInterval = 0.5f;
-        private float _currentFps = 0f;
+        // Cached Values (for change detection)
+        private float _lastFPSCurrent = -1f;
+        private float _lastFPSAvg = -1f;
+        private float _lastFPSMin = -1f;
+        private float _lastFPSMax = -1f;
+        private float _lastMemory = -1f;
+        private int _lastDrawCalls = -1;
+        private int _lastBatches = -1;
+        private int _lastTriangles = -1;
+        private int _lastVertices = -1;
         
-        // Memory tracking
-        private float _memoryUpdateTimer = 0f;
-        private float _memoryUpdateInterval = 1f;
-        private long _currentMemoryUsage = 0;
-        
-        // Draw call tracking
-        private ProfilerRecorder _drawCallsRecorder;
-        private ProfilerRecorder _batchesRecorder;
-        private ProfilerRecorder _trianglesRecorder;
-        private ProfilerRecorder _verticesRecorder;
-        private float _renderingUpdateTimer = 0f;
-        private float _renderingUpdateInterval = 0.5f; // Update rendering stats every 0.5s
-        private int _currentDrawCalls = 0;
-        private int _currentBatches = 0;
-        private int _currentTriangles = 0;
-        private int _currentVertices = 0;
-        
-        // Graph update timing
+        // Update Timers
+        private float _uiUpdateTimer = 0f;
         private float _graphUpdateTimer = 0f;
-        private float _graphUpdateInterval = 2f; // Update graphs every 2 seconds
+        private const float UI_UPDATE_INTERVAL = 0.5f;
+        private const float GRAPH_UPDATE_INTERVAL = 2f;
         
-        // String optimization for rendering stats
-        private readonly System.Text.StringBuilder _stringBuilder = new(64);
+        #endregion
+
+        #region Constructor and Initialization
         
         public DebugPopup(VisualElement rootElement) : base(rootElement)
         {
             _root = rootElement;
             
-            InitializeProfilerRecorders();
             CacheUIElements();
+            InitializeStaticContent();
             InitializeGraphs();
-            InitializeStaticInfo();
+            
             EnableFrameUpdates();
+            _ = InitializeServicesAsync();
         }
         
         /// <summary>
-        /// Initialize profiler recorders for rendering statistics
+        /// Asynchronously initializes service connections
         /// </summary>
-        private void InitializeProfilerRecorders()
+        private async Task InitializeServicesAsync()
         {
-            // Initialize profiler recorders for rendering stats
-            _drawCallsRecorder = ProfilerRecorder.StartNew(ProfilerCategory.Render, "Draw Calls Count");
-            _batchesRecorder = ProfilerRecorder.StartNew(ProfilerCategory.Render, "Batches Count");
-            _trianglesRecorder = ProfilerRecorder.StartNew(ProfilerCategory.Render, "Triangles Count");
-            _verticesRecorder = ProfilerRecorder.StartNew(ProfilerCategory.Render, "Vertices Count");
-            
-            Debug.Log("[DebugPopup] Profiler recorders initialized for rendering stats");
-        }
-        
-        private void CacheUIElements()
-        {
-            _fpsLabel = _root?.Q<Label>("lbl_FPS");
-            _memoryLabel = _root?.Q<Label>("lbl_Memory");
-            _drawCallsLabel = _root?.Q<Label>("lbl_DrawCalls"); // Add this to your UXML
-            _batchesLabel = _root?.Q<Label>("lbl_Batches");     // Add this to your UXML
-            _debugLabel = _root?.Q<Label>("lbl_Debug");
-            _versionLabel = _root?.Q<Label>("lbl_Version");
-            _buildLabel = _root?.Q<Label>("lbl_Build");
-            
-            // Cache graph containers
-            _fpsGraphContainer = _root?.Q<VisualElement>("graph_FPS");
-            _memoryGraphContainer = _root?.Q<VisualElement>("graph_Memory");
-            _drawCallsGraphContainer = _root?.Q<VisualElement>("graph_DrawCalls"); // Add this to your UXML
-            
-            // Debug validation
-            Debug.Log($"[DebugPopup] UI Elements found:");
-            Debug.Log($"  - Draw Calls Label: {(_drawCallsLabel != null ? "✓" : "✗ NULL")}");
-            Debug.Log($"  - Batches Label: {(_batchesLabel != null ? "✓" : "✗ NULL")}");
-            Debug.Log($"  - Draw Calls Graph Container: {(_drawCallsGraphContainer != null ? "✓" : "✗ NULL")}");
-            
-            if (_debugLabel == null)
+            try
             {
-                _debugLabel = new Label("Debug Information") { name = "lbl_Debug" };
-                _root?.Add(_debugLabel);
+                _eventSystem = await GameManager.GetServiceAsync<IEventSystem>();
+                _profilingService = await GameManager.GetServiceAsync<IProfilingService>();
+                
+                if (_eventSystem != null && _profilingService != null)
+                {
+                    SubscribeToEvents();
+                    _servicesReady = true;
+                    UpdateStatus("Services Connected", Color.green);
+                    
+                    // Initial data load
+                    if (_profilingService.IsInitialized)
+                    {
+                        var snapshot = _profilingService.GetCurrentSnapshot();
+                        UpdateMetricsDisplay(snapshot);
+                    }
+                }
+                else
+                {
+                    UpdateStatus("Services Unavailable", Color.red);
+                }
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError($"[DebugPopup] Service initialization failed: {e.Message}");
+                UpdateStatus("Service Error", Color.red);
             }
         }
         
+        #endregion
+
+        #region UI Element Management
+        
         /// <summary>
-        /// Initialize the graph elements and add them to their containers
+        /// Caches UI elements for efficient access - matches your UXML structure
+        /// </summary>
+        private void CacheUIElements()
+        {
+            _debugLabel = _root?.Q<Label>("lbl_Debug");
+            
+            // FPS labels
+            _fpsCurrentLabel = _root?.Q<Label>("lbl_FPS_Current");
+            _fpsAvgLabel = _root?.Q<Label>("lbl_FPS_Avg");
+            _fpsMinLabel = _root?.Q<Label>("lbl_FPS_Min");
+            _fpsMaxLabel = _root?.Q<Label>("lbl_FPS_Max");
+            
+            // Memory labels
+            _memoryValueLabel = _root?.Q<Label>("lbl_Memory_Value");
+            
+            // Draw calls labels
+            _drawCallsValueLabel = _root?.Q<Label>("lbl_DrawCalls_Value");
+            
+            // Rendering details labels
+            _batchesValueLabel = _root?.Q<Label>("lbl_Batches_Value");
+            _trianglesValueLabel = _root?.Q<Label>("lbl_Triangles_Value");
+            _trianglesUnitLabel = _root?.Q<Label>("lbl_Triangles_Unit");
+            _verticesValueLabel = _root?.Q<Label>("lbl_Vertices_Value");
+            _verticesUnitLabel = _root?.Q<Label>("lbl_Vertices_Unit");
+            
+            // Status and version labels
+            _sessionStatusLabel = _root?.Q<Label>("lbl_Session_Status");
+            _versionValueLabel = _root?.Q<Label>("lbl_Version_Value");
+            _buildValueLabel = _root?.Q<Label>("lbl_Build_Value");
+            
+            // Debug: Log which elements were found
+            Debug.Log($"[DebugPopup] Cached elements - FPS Current: {_fpsCurrentLabel != null}, Memory: {_memoryValueLabel != null}, Draw Calls: {_drawCallsValueLabel != null}, Status: {_sessionStatusLabel != null}");
+        }
+        
+        /// <summary>
+        /// Initializes static content that doesn't change
+        /// </summary>
+        private void InitializeStaticContent()
+        {
+            if (_versionValueLabel != null)
+                _versionValueLabel.text = Application.version;
+            
+            if (_buildValueLabel != null)
+                _buildValueLabel.text = Debug.isDebugBuild ? "Debug" : "Release";
+            
+            UpdateStatus("Initializing...", Color.yellow);
+        }
+        
+        /// <summary>
+        /// Initializes performance graphs
         /// </summary>
         private void InitializeGraphs()
         {
-            // Initialize FPS graph
-            if (_fpsGraphContainer != null)
+            var fpsGraphContainer = _root?.Q<VisualElement>("graph_FPS");
+            var memoryGraphContainer = _root?.Q<VisualElement>("graph_Memory");
+            var drawCallsGraphContainer = _root?.Q<VisualElement>("graph_DrawCalls");
+            
+            if (fpsGraphContainer != null)
             {
                 _fpsGraph = new GraphElement(60);
                 _fpsGraph.SetLineColor(Color.green);
                 _fpsGraph.EnableAutoScale();
-                _fpsGraphContainer.Add(_fpsGraph);
+                fpsGraphContainer.Add(_fpsGraph);
             }
             
-            // Initialize Memory graph
-            if (_memoryGraphContainer != null)
+            if (memoryGraphContainer != null)
             {
                 _memoryGraph = new GraphElement(60);
                 _memoryGraph.SetLineColor(Color.cyan);
                 _memoryGraph.EnableAutoScale();
-                _memoryGraphContainer.Add(_memoryGraph);
+                memoryGraphContainer.Add(_memoryGraph);
             }
             
-            // Initialize Draw Calls graph
-            if (_drawCallsGraphContainer != null)
+            if (drawCallsGraphContainer != null)
             {
                 _drawCallsGraph = new GraphElement(60);
                 _drawCallsGraph.SetLineColor(Color.magenta);
                 _drawCallsGraph.EnableAutoScale();
-                _drawCallsGraphContainer.Add(_drawCallsGraph);
-                Debug.Log("[DebugPopup] ✓ Draw Calls Graph initialized successfully");
-            }
-            else
-            {
-                Debug.LogWarning("[DebugPopup] ✗ Draw Calls Graph container is null");
+                drawCallsGraphContainer.Add(_drawCallsGraph);
             }
         }
         
-        private void InitializeStaticInfo()
+        #endregion
+
+        #region Event Handling
+        
+        /// <summary>
+        /// Subscribes to profiling service events
+        /// </summary>
+        private void SubscribeToEvents()
         {
-            if (_versionLabel != null)
-            {
-                _versionLabel.text = $"Version: {Application.version}";
-            }
+            _eventSystem.Subscribe<PerformanceDataUpdatedEvent>(OnPerformanceDataUpdated);
+            _eventSystem.Subscribe<ProfilingSessionStartedEvent>(OnSessionStarted);
+            _eventSystem.Subscribe<ProfilingSessionCompletedEvent>(OnSessionCompleted);
+        }
+        
+        /// <summary>
+        /// Handles performance data updates
+        /// </summary>
+        private void OnPerformanceDataUpdated(PerformanceDataUpdatedEvent eventData)
+        {
+            UpdateMetricsDisplay(eventData.Snapshot);
             
-            if (_buildLabel != null)
+            if (eventData.HasSessionInfo)
             {
-                string buildType = Debug.isDebugBuild ? "Debug" : "Release";
-                _buildLabel.text = $"Build: {buildType}";
-            }
-        }
-
-        /// <summary>
-        /// Override Show to ensure proper state management
-        /// </summary>
-        public override void Show()
-        {
-            if (!IsVisible)
-            {
-                base.Show();
+                if (eventData.IsSessionComplete)
+                {
+                    UpdateStatus("Session Complete - 100%", Color.green);
+                }
+                else
+                {
+                    UpdateStatus($"Session Active - {eventData.SessionProgressPercent}%", Color.yellow);
+                }
             }
         }
         
         /// <summary>
-        /// Override Hide to ensure proper cleanup
+        /// Handles session start events
         /// </summary>
-        public override void Hide()
+        private void OnSessionStarted(ProfilingSessionStartedEvent eventData)
         {
-            if (IsVisible)
-            {
-                base.Hide();
-            }
+            string sessionInfo = eventData.IsFrameBased ? $"{eventData.TargetFrames}f" : $"{eventData.TargetDuration:F1}s";
+            UpdateStatus($"Session: {eventData.SessionName} ({sessionInfo})", Color.cyan);
         }
+        
+        /// <summary>
+        /// Handles session completion events
+        /// </summary>
+        private void OnSessionCompleted(ProfilingSessionCompletedEvent eventData)
+        {
+            UpdateStatus($"Completed: {eventData.Session.sessionName} ({eventData.Session.totalFrames}f)", Color.green);
+        }
+        
+        #endregion
 
-        protected override void OnShow()
-        {
-            // Reset all counters when popup becomes visible
-            ResetCounters();
-        }
-        
-        protected override void OnHide()
-        {
-        }
-        
-        private void ResetCounters()
-        {
-            _deltaTimeAccumulator = 0f;
-            _frameCount = 0;
-            _memoryUpdateTimer = 0f;
-            _renderingUpdateTimer = 0f;
-            _graphUpdateTimer = 0f;
-        }
+        #region UI Updates
         
         protected override void OnUpdate(float deltaTime)
         {
-            UpdateFPS(deltaTime);
-            UpdateMemoryUsage(deltaTime);
-            UpdateRenderingStats(deltaTime);
+            if (!_servicesReady)
+            {
+                TryDirectServiceAccess(deltaTime);
+                return;
+            }
+            
             UpdateGraphs(deltaTime);
+            UpdateFallbackData(deltaTime);
         }
         
-        private void UpdateFPS(float deltaTime)
+        /// <summary>
+        /// Attempts direct service access when event system isn't ready
+        /// </summary>
+        private void TryDirectServiceAccess(float deltaTime)
         {
-            _deltaTimeAccumulator += deltaTime;
-            _frameCount++;
+            _uiUpdateTimer += deltaTime;
             
-            if (_deltaTimeAccumulator >= _updateInterval)
+            if (_uiUpdateTimer >= UI_UPDATE_INTERVAL)
             {
-                _currentFps = _frameCount / _deltaTimeAccumulator;
+                if (_profilingService == null)
+                    _profilingService = GameManager.GetService<IProfilingService>();
                 
-                if (_fpsLabel != null)
+                if (_profilingService != null && _profilingService.IsInitialized)
                 {
-                    // Optimized string building
-                    _fpsLabel.text = "FPS: " + Mathf.RoundToInt(_currentFps).ToString();
-                    
-                    // Color coding based on FPS ranges
-                    if (_currentFps >= 50f)
-                        _fpsLabel.style.color = Color.green;
-                    else if (_currentFps >= 30f)
-                        _fpsLabel.style.color = Color.yellow;
-                    else
-                        _fpsLabel.style.color = Color.red;
+                    var snapshot = _profilingService.GetCurrentSnapshot();
+                    UpdateMetricsDisplay(snapshot);
+                    UpdateSessionStatus();
                 }
                 
-                _deltaTimeAccumulator = 0f;
-                _frameCount = 0;
-            }
-        }
-        
-        private void UpdateMemoryUsage(float deltaTime)
-        {
-            _memoryUpdateTimer += deltaTime;
-            
-            if (_memoryUpdateTimer >= _memoryUpdateInterval)
-            {
-                _currentMemoryUsage = Profiler.GetTotalAllocatedMemoryLong();
-                
-                if (_memoryLabel != null)
-                {
-                    float memoryMB = _currentMemoryUsage / (1024f * 1024f);
-                    _memoryLabel.text = "Memory: " + memoryMB.ToString("F1") + "MB";
-                    
-                    // Color coding for memory usage
-                    if (memoryMB > 500f)
-                        _memoryLabel.style.color = Color.red;
-                    else if (memoryMB > 250f)
-                        _memoryLabel.style.color = Color.yellow;
-                    else
-                        _memoryLabel.style.color = Color.green;
-                }
-                
-                _memoryUpdateTimer = 0f;
+                _uiUpdateTimer = 0f;
             }
         }
         
         /// <summary>
-        /// Update rendering statistics including draw calls and batches
+        /// Updates performance metrics display with change detection
         /// </summary>
-        private void UpdateRenderingStats(float deltaTime)
+        private void UpdateMetricsDisplay(PerformanceSnapshot snapshot)
         {
-            _renderingUpdateTimer += deltaTime;
-            
-            if (_renderingUpdateTimer >= _renderingUpdateInterval)
+            // Update FPS values
+            if (Mathf.Abs(snapshot.fps - _lastFPSCurrent) > 0.5f)
             {
-                // Get current frame's rendering stats
-                if (_drawCallsRecorder.Valid)
-                    _currentDrawCalls = (int)_drawCallsRecorder.LastValue;
+                UpdateFPSCurrentDisplay(snapshot.fps);
+                _lastFPSCurrent = snapshot.fps;
+            }
+            
+            // Update FPS statistics if available
+            if (_profilingService != null)
+            {
+                var fpsStats = _profilingService.GetFPSStats();
                 
-                if (_batchesRecorder.Valid)
-                    _currentBatches = (int)_batchesRecorder.LastValue;
-                
-                if (_trianglesRecorder.Valid)
-                    _currentTriangles = (int)_trianglesRecorder.LastValue;
-                
-                if (_verticesRecorder.Valid)
-                    _currentVertices = (int)_verticesRecorder.LastValue;
-                
-                // Update draw calls label
-                if (_drawCallsLabel != null)
+                if (Mathf.Abs(fpsStats.Average - _lastFPSAvg) > 0.5f)
                 {
-                    _stringBuilder.Clear();
-                    _stringBuilder.Append("Draw Calls: ");
-                    _stringBuilder.Append(_currentDrawCalls);
-                    _drawCallsLabel.text = _stringBuilder.ToString();
-                    
-                    // Color coding for draw calls (adjust thresholds based on your target platform)
-                    if (_currentDrawCalls > 1000)
-                        _drawCallsLabel.style.color = Color.red;
-                    else if (_currentDrawCalls > 500)
-                        _drawCallsLabel.style.color = Color.yellow;
-                    else
-                        _drawCallsLabel.style.color = Color.green;
+                    UpdateFPSAvgDisplay(fpsStats.Average);
+                    _lastFPSAvg = fpsStats.Average;
                 }
                 
-                // Update batches label
-                if (_batchesLabel != null)
+                if (Mathf.Abs(fpsStats.Min - _lastFPSMin) > 0.5f)
                 {
-                    _stringBuilder.Clear();
-                    _stringBuilder.Append("Batches: ");
-                    _stringBuilder.Append(_currentBatches);
-                    _stringBuilder.Append(" | Tris: ");
-                    _stringBuilder.Append(FormatLargeNumber(_currentTriangles));
-                    _stringBuilder.Append(" | Verts: ");
-                    _stringBuilder.Append(FormatLargeNumber(_currentVertices));
-                    _batchesLabel.text = _stringBuilder.ToString();
-                    
-                    // Color coding for batches
-                    if (_currentBatches > 500)
-                        _batchesLabel.style.color = Color.red;
-                    else if (_currentBatches > 250)
-                        _batchesLabel.style.color = Color.yellow;
-                    else
-                        _batchesLabel.style.color = Color.green;
+                    UpdateFPSMinDisplay(fpsStats.Min);
+                    _lastFPSMin = fpsStats.Min;
                 }
                 
-                _renderingUpdateTimer = 0f;
+                if (Mathf.Abs(fpsStats.Max - _lastFPSMax) > 0.5f)
+                {
+                    UpdateFPSMaxDisplay(fpsStats.Max);
+                    _lastFPSMax = fpsStats.Max;
+                }
+            }
+            
+            // Update Memory
+            float memoryMB = snapshot.MemoryMB;
+            if (Mathf.Abs(memoryMB - _lastMemory) > 1f)
+            {
+                UpdateMemoryDisplay(memoryMB);
+                _lastMemory = memoryMB;
+            }
+            
+            // Update Draw Calls
+            if (Mathf.Abs(snapshot.drawCalls - _lastDrawCalls) > 5)
+            {
+                UpdateDrawCallsDisplay(snapshot.drawCalls);
+                _lastDrawCalls = snapshot.drawCalls;
+            }
+            
+            // Update Rendering Stats
+            bool renderingChanged = 
+                Mathf.Abs(snapshot.batches - _lastBatches) > 5 ||
+                Mathf.Abs(snapshot.triangles - _lastTriangles) > 100 ||
+                Mathf.Abs(snapshot.vertices - _lastVertices) > 100;
+                
+            if (renderingChanged)
+            {
+                UpdateRenderingStats(snapshot.batches, snapshot.triangles, snapshot.vertices);
+                _lastBatches = snapshot.batches;
+                _lastTriangles = snapshot.triangles;
+                _lastVertices = snapshot.vertices;
             }
         }
         
         /// <summary>
-        /// Format large numbers with K/M suffixes for better readability
+        /// Updates FPS current display with color coding
         /// </summary>
-        private string FormatLargeNumber(int number)
+        private void UpdateFPSCurrentDisplay(float fps)
         {
-            if (number >= 1000000)
-                return (number / 1000000f).ToString("F1") + "M";
-            else if (number >= 1000)
-                return (number / 1000f).ToString("F1") + "K";
+            if (_fpsCurrentLabel == null) return;
+            
+            _fpsCurrentLabel.text = fps.ToString("F1");
+            
+            Color fpsColor = fps >= 50f ? Color.green : fps >= 30f ? Color.yellow : Color.red;
+            _fpsCurrentLabel.style.color = fpsColor;
+        }
+        
+        /// <summary>
+        /// Updates FPS average display
+        /// </summary>
+        private void UpdateFPSAvgDisplay(float fpsAvg)
+        {
+            if (_fpsAvgLabel != null)
+                _fpsAvgLabel.text = fpsAvg.ToString("F1");
+        }
+        
+        /// <summary>
+        /// Updates FPS minimum display
+        /// </summary>
+        private void UpdateFPSMinDisplay(float fpsMin)
+        {
+            if (_fpsMinLabel != null)
+                _fpsMinLabel.text = fpsMin.ToString("F1");
+        }
+        
+        /// <summary>
+        /// Updates FPS maximum display
+        /// </summary>
+        private void UpdateFPSMaxDisplay(float fpsMax)
+        {
+            if (_fpsMaxLabel != null)
+                _fpsMaxLabel.text = fpsMax.ToString("F1");
+        }
+        
+        /// <summary>
+        /// Updates memory display with color coding
+        /// </summary>
+        private void UpdateMemoryDisplay(float memoryMB)
+        {
+            if (_memoryValueLabel == null) return;
+            
+            _memoryValueLabel.text = memoryMB.ToString("F1");
+            
+            Color memoryColor = memoryMB > 500f ? Color.red : memoryMB > 250f ? Color.yellow : Color.green;
+            _memoryValueLabel.style.color = memoryColor;
+        }
+        
+        /// <summary>
+        /// Updates draw calls display with color coding
+        /// </summary>
+        private void UpdateDrawCallsDisplay(int drawCalls)
+        {
+            if (_drawCallsValueLabel == null) return;
+            
+            _drawCallsValueLabel.text = drawCalls.ToString();
+            
+            Color drawCallColor = drawCalls > 1000 ? Color.red : drawCalls > 500 ? Color.yellow : Color.green;
+            _drawCallsValueLabel.style.color = drawCallColor;
+        }
+        
+        /// <summary>
+        /// Updates rendering statistics display
+        /// </summary>
+        private void UpdateRenderingStats(int batches, int triangles, int vertices)
+        {
+            if (_batchesValueLabel != null)
+            {
+                _batchesValueLabel.text = batches.ToString();
+                
+                Color batchColor = batches > 500 ? Color.red : batches > 250 ? Color.yellow : Color.green;
+                _batchesValueLabel.style.color = batchColor;
+            }
+            
+            if (_trianglesValueLabel != null && _trianglesUnitLabel != null)
+            {
+                var (value, unit) = FormatLargeNumber(triangles);
+                _trianglesValueLabel.text = value;
+                _trianglesUnitLabel.text = unit;
+            }
+            
+            if (_verticesValueLabel != null && _verticesUnitLabel != null)
+            {
+                var (value, unit) = FormatLargeNumber(vertices);
+                _verticesValueLabel.text = value;
+                _verticesUnitLabel.text = unit;
+            }
+        }
+        
+        /// <summary>
+        /// Updates session status display
+        /// </summary>
+        private void UpdateSessionStatus()
+        {
+            if (_sessionStatusLabel == null || _profilingService == null) return;
+            
+            if (_profilingService.IsSessionActive)
+            {
+                float progress = _profilingService.SessionProgress;
+                int progressPercent = Mathf.RoundToInt(progress * 100f);
+                UpdateStatus($"Session Active - {progressPercent}%", Color.yellow);
+            }
             else
-                return number.ToString();
+            {
+                UpdateStatus("Real-time Monitoring", Color.green);
+            }
         }
         
         /// <summary>
-        /// Update graph data points at a slower interval to maintain history without performance impact
+        /// Updates status label with color
+        /// </summary>
+        private void UpdateStatus(string message, Color color)
+        {
+            if (_sessionStatusLabel != null)
+            {
+                _sessionStatusLabel.text = message;
+                _sessionStatusLabel.style.color = color;
+            }
+        }
+        
+        /// <summary>
+        /// Updates graphs with historical data
         /// </summary>
         private void UpdateGraphs(float deltaTime)
         {
             _graphUpdateTimer += deltaTime;
             
-            if (_graphUpdateTimer >= _graphUpdateInterval)
+            if (_graphUpdateTimer >= GRAPH_UPDATE_INTERVAL && _profilingService != null)
             {
-                // Add current FPS to graph
-                if (_fpsGraph != null && _currentFps > 0)
-                {
-                    _fpsGraph.AddDataPoint(_currentFps);
-                    
-                    // Update graph color based on current FPS
-                    if (_currentFps >= 50f)
-                        _fpsGraph.SetLineColor(Color.green);
-                    else if (_currentFps >= 30f)
-                        _fpsGraph.SetLineColor(Color.yellow);
-                    else
-                        _fpsGraph.SetLineColor(Color.red);
-                }
+                var historicalData = _profilingService.GetHistoricalData(60);
                 
-                // Add current memory usage to graph
-                if (_memoryGraph != null && _currentMemoryUsage > 0)
+                if (historicalData.Length > 0)
                 {
-                    float memoryMB = _currentMemoryUsage / (1024f * 1024f);
-                    _memoryGraph.AddDataPoint(memoryMB);
-                }
-                
-                // Add current draw calls to graph
-                if (_drawCallsGraph != null && _currentDrawCalls > 0)
-                {
-                    _drawCallsGraph.AddDataPoint(_currentDrawCalls);
+                    var latestData = historicalData[historicalData.Length - 1];
                     
-                    // Update graph color based on draw call count
-                    if (_currentDrawCalls > 1000)
-                        _drawCallsGraph.SetLineColor(Color.red);
-                    else if (_currentDrawCalls > 500)
-                        _drawCallsGraph.SetLineColor(Color.yellow);
-                    else
-                        _drawCallsGraph.SetLineColor(Color.green);
+                    _fpsGraph?.AddDataPoint(latestData.fps);
+                    _memoryGraph?.AddDataPoint(latestData.memoryMB);
+                    _drawCallsGraph?.AddDataPoint(latestData.drawCalls);
                 }
                 
                 _graphUpdateTimer = 0f;
@@ -400,79 +525,76 @@ namespace GameFramework.UI.Popups
         }
         
         /// <summary>
-        /// Clear all graph data (useful for testing or resetting)
+        /// Fallback data update when events aren't working
         /// </summary>
+        private void UpdateFallbackData(float deltaTime)
+        {
+            _uiUpdateTimer += deltaTime;
+            
+            if (_uiUpdateTimer >= UI_UPDATE_INTERVAL && _profilingService != null)
+            {
+                var snapshot = _profilingService.GetCurrentSnapshot();
+                UpdateMetricsDisplay(snapshot);
+                _uiUpdateTimer = 0f;
+            }
+        }
+        
+        #endregion
+
+        #region Helper Methods
+        
+        /// <summary>
+        /// Formats large numbers into value and unit pairs without string concatenation
+        /// </summary>
+        private (string value, string unit) FormatLargeNumber(int number)
+        {
+            if (number >= 1000000)
+                return ((number / 1000000f).ToString("F1"), "M");
+            else if (number >= 1000)
+                return ((number / 1000f).ToString("F1"), "K");
+            else
+                return (number.ToString(), "");
+        }
+        
+        #endregion
+
+        #region Public API
+        
+        public void SetText(string text)
+        {
+            if (_debugLabel != null)
+                _debugLabel.text = text;
+        }
+        
         public void ClearGraphs()
         {
             _fpsGraph?.Clear();
             _memoryGraph?.Clear();
-            _drawCallsGraph?.Clear(); // Clear draw calls graph
+            _drawCallsGraph?.Clear();
         }
         
-        /// <summary>
-        /// Configure graph update intervals
-        /// </summary>
-        public void SetGraphUpdateInterval(float intervalSeconds)
-        {
-            _graphUpdateInterval = Mathf.Max(0.5f, intervalSeconds); // Minimum 0.5 seconds
-        }
+        public bool AreServicesReady => _servicesReady;
         
-        /// <summary>
-        /// Get current rendering statistics for external access
-        /// </summary>
-        public (int drawCalls, int batches, int triangles, int vertices) GetRenderingStats()
-        {
-            return (_currentDrawCalls, _currentBatches, _currentTriangles, _currentVertices);
-        }
-        
-        /// <summary>
-        /// Configure draw call warning thresholds based on target platform
-        /// </summary>
-        public void SetDrawCallThresholds(int warningThreshold = 500, int criticalThreshold = 1000)
-        {
-            // Store thresholds for dynamic color coding
-            // This allows different thresholds for mobile vs desktop
-        }
+        #endregion
 
-        public void SetText(string text)
-        {
-            if (_debugLabel != null)
-            {
-                _debugLabel.text = text;
-            }
-        }
-        
-        public void SetRichText(string richText)
-        {
-            if (_debugLabel != null)
-            {
-                _debugLabel.enableRichText = true;
-                _debugLabel.text = richText;
-            }
-        }
-        
-        public float GetCurrentFPS() => _currentFps;
-        public long GetCurrentMemoryUsage() => _currentMemoryUsage;
-        public int GetCurrentDrawCalls() => _currentDrawCalls; // Add getter for draw calls
+        #region Lifecycle Management
         
         public override void Cleanup()
         {
-            // Dispose profiler recorders
-            _drawCallsRecorder.Dispose();
-            _batchesRecorder.Dispose();
-            _trianglesRecorder.Dispose();
-            _verticesRecorder.Dispose();
+            if (_servicesReady && _eventSystem != null)
+            {
+                _eventSystem.Unsubscribe<PerformanceDataUpdatedEvent>(OnPerformanceDataUpdated);
+                _eventSystem.Unsubscribe<ProfilingSessionStartedEvent>(OnSessionStarted);
+                _eventSystem.Unsubscribe<ProfilingSessionCompletedEvent>(OnSessionCompleted);
+            }
             
-            // Clear graph data
             ClearGraphs();
-            
             DisableFrameUpdates();
             base.Cleanup();
         }
         
-        /// <summary>
-        /// Debug popup doesn't block game operations and should use unscaled time
-        /// </summary>
         public override bool CountsAsGameBlockingPopup => false;
+        
+        #endregion
     }
 }

@@ -9,7 +9,7 @@ namespace GameFramework.Editor
     /// Editor tool for quick access to the game's config file
     /// Provides menu items to open, reveal, and manage the config.json file
     /// </summary>
-    public static class ConfigFileEditorTool
+    public static class ConfigFileEditorTool 
     {
         private const string CONFIG_FILE_NAME = "config.json";
         

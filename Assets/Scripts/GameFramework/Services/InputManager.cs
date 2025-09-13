@@ -212,10 +212,7 @@ namespace GameFramework.Input
             
             _onConsoleToggleInput = ctx => Debug.Log("Console Toggle Input Received");
 
-            _onConsoleToggleInput = ctx => {
-                Debug.Log($"[InputManager] Console Toggle Input Received - Phase: {ctx.phase}");
-                _eventSystem.Publish(new ConsoleToggleInputEvent(ctx.phase));
-            };
+            _onConsoleToggleInput = ctx => _eventSystem.Publish(new ConsoleToggleInputEvent(ctx.phase));
             _onConsoleSubmitInput = ctx => _eventSystem.Publish(new ConsoleSubmitInputEvent(ctx.phase));
             _onConsoleTabCompleteInput = ctx => _eventSystem.Publish(new ConsoleTabCompleteInputEvent(ctx.phase));
             _onConsoleHistoryUpInput = ctx => _eventSystem.Publish(new ConsoleHistoryUpInputEvent(ctx.phase));

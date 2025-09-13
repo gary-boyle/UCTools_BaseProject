@@ -4,35 +4,69 @@
         <ui:VisualElement picking-mode="Ignore" class="layout-column layout-space-between layout-grow">
             <ui:VisualElement picking-mode="Ignore" class="layout-column">
                 <ui:VisualElement picking-mode="Ignore" class="layout-row layout-space-between" style="margin-bottom: 10px; flex-direction: column; align-items: flex-start;">
-                    <ui:Label name="lbl_Debug" enable-rich-text="true" text="Debug Information" picking-mode="Ignore" class="debug-text text--xl" />
-
-                    <!-- FPS Section -->
-                    <ui:Label name="lbl_FPS" text="FPS: 60" picking-mode="Ignore" class="debug-text" />
+                    <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+                        <ui:Label name="lbl_Debug" enable-rich-text="true" text="Debug Information" picking-mode="Ignore" class="debug-text text--xl" />
+                        <ui:VisualElement picking-mode="Ignore" class="layout-row">
+                            <ui:Label text="Status:" picking-mode="Ignore" class="debug-text text--sm metric-label" />
+                            <ui:Label name="lbl_Session_Status" text="Initializing..." picking-mode="Ignore" class="debug-text text--sm metric-value" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="layout-row" style="flex-wrap: wrap;">
+                        <ui:Label text="FPS:" picking-mode="Ignore" class="debug-text metric-label" />
+                        <ui:Label name="lbl_FPS_Current" text="60.0" picking-mode="Ignore" class="debug-text metric-value" />
+                        <ui:Label text="|" picking-mode="Ignore" class="debug-text text--sm metric-label" style="margin-left: 8px; margin-right: 8px;" />
+                        <ui:Label text="Avg:" picking-mode="Ignore" class="debug-text metric-label" />
+                        <ui:Label name="lbl_FPS_Avg" text="60.0" picking-mode="Ignore" class="debug-text metric-value" />
+                        <ui:Label text="|" picking-mode="Ignore" class="debug-text text--sm metric-label" style="margin-left: 8px; margin-right: 8px;" />
+                        <ui:Label text="Min:" picking-mode="Ignore" class="debug-text metric-label" />
+                        <ui:Label name="lbl_FPS_Min" text="60.0" picking-mode="Ignore" class="debug-text metric-value" />
+                        <ui:Label text="|" picking-mode="Ignore" class="debug-text text--sm metric-label" style="margin-left: 8px; margin-right: 8px;" />
+                        <ui:Label text="Max:" picking-mode="Ignore" class="debug-text metric-label" />
+                        <ui:Label name="lbl_FPS_Max" text="60.0" picking-mode="Ignore" class="debug-text metric-value" />
+                    </ui:VisualElement>
                     <ui:VisualElement name="container_FPSGraph" picking-mode="Ignore" style="flex-direction: column; align-items: center;">
                         <ui:VisualElement name="graph_FPS" picking-mode="Ignore" style="width: 180px; height: 50px;" />
                     </ui:VisualElement>
-
-                    <!-- Memory Section -->
-                    <ui:Label name="lbl_Memory" text="Memory: 256MB" picking-mode="Ignore" class="debug-text" />
+                    <ui:VisualElement picking-mode="Ignore" class="layout-row" style="align-items: flex-end;">
+                        <ui:Label text="Memory:" picking-mode="Ignore" class="debug-text metric-label" />
+                        <ui:Label name="lbl_Memory_Value" text="256.0" picking-mode="Ignore" class="debug-text" style="margin-right: 0;" />
+                        <ui:Label text="MB" picking-mode="Ignore" class="debug-text metric-label" style="font-size: 15px;" />
+                    </ui:VisualElement>
                     <ui:VisualElement name="container_MemoryGraph" picking-mode="Ignore" style="flex-direction: column; align-items: center;">
                         <ui:VisualElement name="graph_Memory" picking-mode="Ignore" style="width: 180px; height: 50px;" />
                     </ui:VisualElement>
-
-                    <!-- Draw Calls Section -->
-                    <ui:Label name="lbl_DrawCalls" text="Draw Calls: 0" picking-mode="Ignore" class="debug-text" />
+                    <ui:VisualElement picking-mode="Ignore" class="layout-row">
+                        <ui:Label text="Draw Calls:" picking-mode="Ignore" class="debug-text metric-label" />
+                        <ui:Label name="lbl_DrawCalls_Value" text="0" picking-mode="Ignore" class="debug-text metric-value" />
+                    </ui:VisualElement>
                     <ui:VisualElement name="container_DrawCallsGraph" picking-mode="Ignore" style="flex-direction: column; align-items: center;">
                         <ui:VisualElement name="graph_DrawCalls" picking-mode="Ignore" style="width: 180px; height: 50px;" />
                     </ui:VisualElement>
-
-                    <!-- Rendering Details Section -->
-                    <ui:Label name="lbl_Batches" text="Batches: 0 | Tris: 0 | Verts: 0" picking-mode="Ignore" class="debug-text text--sm" />
+                    <ui:VisualElement picking-mode="Ignore" class="layout-row" style="flex-wrap: wrap; align-items: flex-end;">
+                        <ui:Label text="Batches:" picking-mode="Ignore" class="debug-text text--sm metric-label" />
+                        <ui:Label name="lbl_Batches_Value" text="0" picking-mode="Ignore" class="debug-text text--sm metric-value" />
+                        <ui:Label text="|" picking-mode="Ignore" class="debug-text text--sm metric-label" style="margin-left: 8px; margin-right: 8px;" />
+                        <ui:Label text="Tris:" picking-mode="Ignore" class="debug-text text--sm metric-label" />
+                        <ui:Label name="lbl_Triangles_Value" text="0" picking-mode="Ignore" class="debug-text" style="margin-right: 0;" />
+                        <ui:Label name="lbl_Triangles_Unit" text="K" picking-mode="Ignore" class="debug-text text--sm metric-label" style="margin-left: 0; font-size: 15px;" />
+                        <ui:Label text="|" picking-mode="Ignore" class="debug-text text--sm metric-label" style="margin-left: 8px; margin-right: 8px;" />
+                        <ui:Label text="Verts:" picking-mode="Ignore" class="debug-text text--sm metric-label" />
+                        <ui:Label name="lbl_Vertices_Value" text="0" picking-mode="Ignore" class="debug-text" style="margin-right: 0;" />
+                        <ui:Label name="lbl_Vertices_Unit" text="K" picking-mode="Ignore" class="debug-text text--sm metric-label" style="margin-left: 0; font-size: 15px;" />
+                    </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement picking-mode="Ignore" class="layout-row layout-space-between" style="margin-bottom: 20px;" />
             </ui:VisualElement>
             <ui:VisualElement picking-mode="Ignore" class="layout-center" />
             <ui:VisualElement picking-mode="Ignore" class="layout-row layout-space-between">
-                <ui:Label name="lbl_Version" text="Version: 1.0.0" picking-mode="Ignore" class="debug-text text--sm" />
-                <ui:Label name="lbl_Build" text="Build: Debug" picking-mode="Ignore" class="debug-text text--sm" />
+                <ui:VisualElement picking-mode="Ignore" class="layout-row">
+                    <ui:Label text="Version:" picking-mode="Ignore" class="debug-text text--sm metric-label" />
+                    <ui:Label name="lbl_Version_Value" text="1.0.0" picking-mode="Ignore" class="debug-text text--sm metric-value" />
+                </ui:VisualElement>
+                <ui:VisualElement picking-mode="Ignore" class="layout-row">
+                    <ui:Label text="Build:" picking-mode="Ignore" class="debug-text text--sm metric-label" />
+                    <ui:Label name="lbl_Build_Value" text="Debug" picking-mode="Ignore" class="debug-text text--sm metric-value" />
+                </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

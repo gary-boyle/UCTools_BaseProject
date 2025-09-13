@@ -923,3 +923,12 @@
 .hidden {
     display: none;
 }
+
+.metric-label {
+    margin-right: 4px;
+}
+
+.metric-value {
+    margin-right: 8px;
+    font-weight: bold;
+}
