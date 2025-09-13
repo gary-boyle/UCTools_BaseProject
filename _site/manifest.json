@@ -1006,6 +1006,118 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Editor.ProfilerSessionManager.ProfilingSessionData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Editor.ProfilerSessionManager.ProfilingSessionData.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Editor.ProfilerSessionManager.ProfilingSessionData",
+      "Summary": "<p sourcefile=\"api/GameFramework.Editor.ProfilerSessionManager.ProfilingSessionData.yml\" sourcestartlinenumber=\"1\">Complete profiling session data structure for JSON serialization</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Editor.ProfilerSessionManager.ProfilingSessionInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Editor.ProfilerSessionManager.ProfilingSessionInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Editor.ProfilerSessionManager.ProfilingSessionInfo",
+      "Summary": "<p sourcefile=\"api/GameFramework.Editor.ProfilerSessionManager.ProfilingSessionInfo.yml\" sourcestartlinenumber=\"1\">Lightweight session information for list display</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Editor.ProfilerSessionManager.ProfilingSessionManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Editor.ProfilerSessionManager.ProfilingSessionManager.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Editor.ProfilerSessionManager.ProfilingSessionManager",
+      "Summary": "<p sourcefile=\"api/GameFramework.Editor.ProfilerSessionManager.ProfilingSessionManager.yml\" sourcestartlinenumber=\"1\">Manages loading, saving, and organizing profiling session data</p>\n<p sourcefile=\"api/GameFramework.Editor.ProfilerSessionManager.ProfilingSessionManager.yml\" sourcestartlinenumber=\"3\">Design:</p>\n<ul sourcefile=\"api/GameFramework.Editor.ProfilerSessionManager.ProfilingSessionManager.yml\" sourcestartlinenumber=\"4\">\n<li sourcefile=\"api/GameFramework.Editor.ProfilerSessionManager.ProfilingSessionManager.yml\" sourcestartlinenumber=\"4\">Centralized file management for profiling sessions</li>\n<li sourcefile=\"api/GameFramework.Editor.ProfilerSessionManager.ProfilingSessionManager.yml\" sourcestartlinenumber=\"5\">JSON serialization with Unity's JsonUtility</li>\n<li sourcefile=\"api/GameFramework.Editor.ProfilerSessionManager.ProfilingSessionManager.yml\" sourcestartlinenumber=\"6\">Automatic discovery of existing session files</li>\n<li sourcefile=\"api/GameFramework.Editor.ProfilerSessionManager.ProfilingSessionManager.yml\" sourcestartlinenumber=\"7\">Thread-safe file operations</li>\n</ul>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Editor.ProfilerSessionManager.UI.PerformanceGraphsPanel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Editor.ProfilerSessionManager.UI.PerformanceGraphsPanel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Editor.ProfilerSessionManager.UI.PerformanceGraphsPanel",
+      "Summary": "<p sourcefile=\"api/GameFramework.Editor.ProfilerSessionManager.UI.PerformanceGraphsPanel.yml\" sourcestartlinenumber=\"1\">UI component that displays performance graphs using UXML layout</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Editor.ProfilerSessionManager.UI.ProfilingSessionViewerWindow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Editor.ProfilerSessionManager.UI.ProfilingSessionViewerWindow.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Editor.ProfilerSessionManager.UI.ProfilingSessionViewerWindow",
+      "Summary": "<p sourcefile=\"api/GameFramework.Editor.ProfilerSessionManager.UI.ProfilingSessionViewerWindow.yml\" sourcestartlinenumber=\"1\">Main editor window for viewing and managing profiling sessions</p>\n<p sourcefile=\"api/GameFramework.Editor.ProfilerSessionManager.UI.ProfilingSessionViewerWindow.yml\" sourcestartlinenumber=\"3\">Design:</p>\n<ul sourcefile=\"api/GameFramework.Editor.ProfilerSessionManager.UI.ProfilingSessionViewerWindow.yml\" sourcestartlinenumber=\"4\">\n<li sourcefile=\"api/GameFramework.Editor.ProfilerSessionManager.UI.ProfilingSessionViewerWindow.yml\" sourcestartlinenumber=\"4\">Three-panel layout: Session list, details, and graphs</li>\n<li sourcefile=\"api/GameFramework.Editor.ProfilerSessionManager.UI.ProfilingSessionViewerWindow.yml\" sourcestartlinenumber=\"5\">Resizable panels with splitter controls</li>\n<li sourcefile=\"api/GameFramework.Editor.ProfilerSessionManager.UI.ProfilingSessionViewerWindow.yml\" sourcestartlinenumber=\"6\">Toolbar with common actions</li>\n<li sourcefile=\"api/GameFramework.Editor.ProfilerSessionManager.UI.ProfilingSessionViewerWindow.yml\" sourcestartlinenumber=\"7\">Responsive layout that adapts to window size</li>\n</ul>\n<p sourcefile=\"api/GameFramework.Editor.ProfilerSessionManager.UI.ProfilingSessionViewerWindow.yml\" sourcestartlinenumber=\"9\">Pros:</p>\n<ul sourcefile=\"api/GameFramework.Editor.ProfilerSessionManager.UI.ProfilingSessionViewerWindow.yml\" sourcestartlinenumber=\"10\">\n<li sourcefile=\"api/GameFramework.Editor.ProfilerSessionManager.UI.ProfilingSessionViewerWindow.yml\" sourcestartlinenumber=\"10\">Comprehensive session management in one window</li>\n<li sourcefile=\"api/GameFramework.Editor.ProfilerSessionManager.UI.ProfilingSessionViewerWindow.yml\" sourcestartlinenumber=\"11\">Intuitive three-pane interface</li>\n<li sourcefile=\"api/GameFramework.Editor.ProfilerSessionManager.UI.ProfilingSessionViewerWindow.yml\" sourcestartlinenumber=\"12\">Rich visualization with graphs</li>\n<li sourcefile=\"api/GameFramework.Editor.ProfilerSessionManager.UI.ProfilingSessionViewerWindow.yml\" sourcestartlinenumber=\"13\">Full file management capabilities</li>\n</ul>\n<p sourcefile=\"api/GameFramework.Editor.ProfilerSessionManager.UI.ProfilingSessionViewerWindow.yml\" sourcestartlinenumber=\"15\">Cons:</p>\n<ul sourcefile=\"api/GameFramework.Editor.ProfilerSessionManager.UI.ProfilingSessionViewerWindow.yml\" sourcestartlinenumber=\"16\">\n<li sourcefile=\"api/GameFramework.Editor.ProfilerSessionManager.UI.ProfilingSessionViewerWindow.yml\" sourcestartlinenumber=\"16\">Complex UI layout may be overwhelming</li>\n<li sourcefile=\"api/GameFramework.Editor.ProfilerSessionManager.UI.ProfilingSessionViewerWindow.yml\" sourcestartlinenumber=\"17\">Requires significant screen real estate</li>\n<li sourcefile=\"api/GameFramework.Editor.ProfilerSessionManager.UI.ProfilingSessionViewerWindow.yml\" sourcestartlinenumber=\"18\">Memory usage grows with large sessions</li>\n</ul>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Editor.ProfilerSessionManager.UI.SessionDetailsPanel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Editor.ProfilerSessionManager.UI.SessionDetailsPanel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Editor.ProfilerSessionManager.UI.SessionDetailsPanel",
+      "Summary": "<p sourcefile=\"api/GameFramework.Editor.ProfilerSessionManager.UI.SessionDetailsPanel.yml\" sourcestartlinenumber=\"1\">Panel displaying detailed information about a selected profiling session\nNow uses UXML for UI definition</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Editor.ProfilerSessionManager.UI.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Editor.ProfilerSessionManager.UI.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Editor.ProfilerSessionManager.UI",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Editor.ProfilerSessionManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Editor.ProfilerSessionManager.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Editor.ProfilerSessionManager",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFramework.Editor.SaveFileDisplayConfig.FieldDisplayConfig.yml",
       "output": {
         ".html": {
