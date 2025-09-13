@@ -7,7 +7,7 @@
             <engine:VisualElement class="layout-column layout-center">
                 <engine:VisualElement class="layout-row layout-center mb-lg" style="width: 100%;">
                     <engine:Label text="Player Name:" name="lbl_Name" class="text mr-md" />
-                    <engine:TextField placeholder-text="Enter your name" name="txt_PlayerName" class="input" />
+                    <engine:TextField placeholder-text="Enter your name" name="txt_PlayerName" class="input" style="height: 100px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 4px; padding-right: 4px; padding-bottom: 4px; padding-left: 4px; align-items: center;" />
                 </engine:VisualElement>
                 <engine:VisualElement class="layout-row layout-center mb-xl" style="width: 100%;">
                     <engine:Label text="Difficulty:" class="text mr-md" />

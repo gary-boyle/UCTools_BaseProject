@@ -20,12 +20,8 @@
     border-width: 2px;
     border-color: rgb(68, 68, 68);
     position: absolute;
-    top: auto;
-    left: auto;
     width: 75%;
     height: 90%;
-    right: auto;
-    bottom: auto;
     align-self: center;
     justify-content: center;
 }
@@ -93,9 +89,24 @@
     margin-bottom: 48px;
 }
 
+.text--success {
+    color: rgb(74, 255, 107);
+}
+
+.text--danger {
+    color: rgb(255, 74, 107);
+}
+
+.text--warning {
+    color: rgb(255, 184, 74);
+}
+
+.text--accent {
+    color: rgb(74, 255, 158);
+}
+
 .btn {
     height: 48px;
-    min-width: 120px;
     border-radius: 8px;
     font-size: 20px;
     margin: 8px;
@@ -103,56 +114,76 @@
     border-width: 2px;
     transition-duration: 0.2s;
     cursor: link;
-}
-
-.btn--primary {
-    background-color: rgb(74, 158, 255);
-    color: rgb(255, 255, 255);
-    border-color: rgb(46, 124, 214);
-}
-
-.btn--primary:hover {
-    background-color: rgb(107, 179, 255);
-    scale: 1.05;
-}
-
-.btn--primary:active {
-    background-color: rgb(46, 124, 214);
-    scale: 0.95;
-}
-
-.btn--secondary {
     background-color: rgb(58, 58, 58);
     color: rgb(255, 255, 255);
     border-color: rgb(68, 68, 68);
 }
 
-.btn--secondary:hover {
-    background-color: rgb(42, 42, 42);
+.unity-button {
+    height: 48px;
+    border-radius: 8px;
+    font-size: 20px;
+    margin: 8px;
+    padding: 16px;
+    border-width: 2px;
+    transition-duration: 0.2s;
+    cursor: link;
+    background-color: rgb(58, 58, 58);
+    color: rgb(255, 255, 255);
+    border-color: rgb(68, 68, 68);
+}
+
+.btn:hover {
+    background-color: rgb(74, 74, 74);
     border-color: rgb(74, 158, 255);
     scale: 1.05;
 }
 
+.unity-button:hover {
+    background-color: rgb(74, 74, 74);
+    border-color: rgb(74, 158, 255);
+    scale: 1.05;
+}
+
+.btn:active {
+    background-color: rgb(42, 42, 42);
+    scale: 0.95;
+}
+
+.unity-button:active {
+    background-color: rgb(42, 42, 42);
+    scale: 0.95;
+}
+
+.btn--primary {
+    background-color: rgb(74, 158, 255);
+    border-color: rgb(46, 124, 214);
+}
+
+.btn--primary:hover {
+    background-color: rgb(107, 179, 255);
+}
+
+.btn--primary:active {
+    background-color: rgb(46, 124, 214);
+}
+
 .btn--danger {
     background-color: rgb(255, 74, 107);
-    color: rgb(255, 255, 255);
     border-color: rgb(229, 74, 46);
 }
 
 .btn--danger:hover {
     background-color: rgb(255, 138, 107);
-    scale: 1.05;
 }
 
 .btn--success {
     background-color: rgb(74, 255, 107);
-    color: rgb(255, 255, 255);
     border-color: rgb(46, 229, 124);
 }
 
 .btn--success:hover {
     background-color: rgb(107, 255, 179);
-    scale: 1.05;
 }
 
 .btn--large {
@@ -168,19 +199,14 @@
     padding: 8px;
 }
 
-.btn--disabled {
-    opacity: 0.5;
-}
-
 .btn--close {
     position: absolute;
     top: 24px;
     right: 24px;
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
+    width: 75px;
+    height: 75px;
     border-radius: 20px;
-    color: rgb(255, 255, 255);
+    align-items: flex-end;
 }
 
 .input {
@@ -191,15 +217,30 @@
     border-color: rgb(68, 68, 68);
     color: rgb(255, 255, 255);
     font-size: 16px;
-    padding-left: 16px;
-    padding-right: 16px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding: 8px 16px;
+    margin: 8px;
+    flex-grow: 1;
+}
+
+.unity-text-field__input {
+    height: 60px;
+    background-color: rgb(58, 58, 58);
+    border-radius: 4px;
+    border-width: 2px;
+    border-color: rgb(68, 68, 68);
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    padding: 8px 16px;
     margin: 8px;
     flex-grow: 1;
 }
 
 .input:focus {
+    border-color: rgb(74, 158, 255);
+    background-color: rgb(42, 42, 42);
+}
+
+.unity-text-field__input:focus {
     border-color: rgb(74, 158, 255);
     background-color: rgb(42, 42, 42);
 }
@@ -210,16 +251,29 @@
     border-radius: 4px;
     border-width: 2px;
     border-color: rgb(68, 68, 68);
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     font-size: 16px;
     margin: 8px;
-    padding-left: 16px;
-    padding-right: 16px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding: 8px 16px;
+}
+
+.unity-dropdown {
+    height: 60px;
+    background-color: rgb(58, 58, 58);
+    border-radius: 4px;
+    border-width: 2px;
+    border-color: rgb(68, 68, 68);
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    margin: 8px;
+    padding: 8px 16px;
 }
 
 .dropdown:focus {
+    border-color: rgb(74, 158, 255);
+}
+
+.unity-dropdown:hover {
     border-color: rgb(74, 158, 255);
 }
 
@@ -228,6 +282,15 @@
     color: rgb(255, 255, 255);
     font-size: 16px;
     align-self: flex-start;
+}
+
+.unity-toggle__input {
+    background-color: rgb(0, 0, 0);
+    border-color: rgb(68, 68, 68);
+}
+
+.unity-toggle__input:checked {
+    border-color: rgb(107, 179, 255);
 }
 
 .slider {
@@ -273,10 +336,6 @@
     flex-grow: 1;
 }
 
-.m-xs {
-    margin: 4px;
-}
-
 .m-sm {
     margin: 8px;
 }
@@ -293,10 +352,6 @@
     margin: 32px;
 }
 
-.mt-xs {
-    margin-top: 4px;
-}
-
 .mt-sm {
     margin-top: 8px;
 }
@@ -311,10 +366,6 @@
 
 .mt-xl {
     margin-top: 32px;
-}
-
-.mb-xs {
-    margin-bottom: 4px;
 }
 
 .mb-sm {
@@ -337,52 +388,8 @@
     margin-bottom: 48px;
 }
 
-.mr-xs {
-    margin-right: 4px;
-}
-
-.mr-sm {
-    margin-right: 8px;
-}
-
 .mr-md {
     margin-right: 16px;
-}
-
-.mr-lg {
-    margin-right: 24px;
-}
-
-.mr-xl {
-    margin-right: 32px;
-}
-
-.ml-xs {
-    margin-left: 4px;
-}
-
-.ml-sm {
-    margin-left: 8px;
-}
-
-.ml-md {
-    margin-left: 16px;
-}
-
-.ml-lg {
-    margin-left: 24px;
-}
-
-.ml-xl {
-    margin-left: 32px;
-}
-
-.p-xs {
-    padding: 4px;
-}
-
-.p-sm {
-    padding: 8px;
 }
 
 .p-md {
@@ -397,47 +404,16 @@
     padding: 32px;
 }
 
-.pt-xs {
-    padding-top: 4px;
-}
-
-.pt-sm {
-    padding-top: 8px;
-}
-
-.pt-md {
-    padding-top: 16px;
-}
-
-.pt-lg {
-    padding-top: 24px;
-}
-
-.pt-xl {
-    padding-top: 32px;
-}
-
-.pb-xs {
-    padding-bottom: 4px;
-}
-
-.pb-sm {
-    padding-bottom: 8px;
-}
-
-.pb-md {
-    padding-bottom: 16px;
-}
-
-.pb-lg {
-    padding-bottom: 24px;
-}
-
-.pb-xl {
-    padding-bottom: 32px;
-}
-
 .list {
+    background-color: rgb(42, 42, 42);
+    border-radius: 16px;
+    border-width: 2px;
+    border-color: rgb(68, 68, 68);
+    min-height: 200px;
+    margin: 16px;
+}
+
+.unity-list-view {
     background-color: rgb(42, 42, 42);
     border-radius: 16px;
     border-width: 2px;
@@ -454,45 +430,46 @@
     border-width: 1px;
     border-color: rgb(68, 68, 68);
     transition-duration: 0.2s;
+    color: rgb(255, 255, 255);
+}
+
+.unity-list-view__item {
+    background-color: rgb(58, 58, 58);
+    border-radius: 4px;
+    margin: 4px;
+    padding: 16px;
+    border-width: 1px;
+    border-color: rgb(68, 68, 68);
+    transition-duration: 0.2s;
+    color: rgb(255, 255, 255);
 }
 
 .list-item:hover {
-    background-color: rgb(42, 42, 42);
+    background-color: rgb(74, 74, 74);
     border-color: rgb(74, 158, 255);
 }
 
-.list-item--selected {
+.unity-list-view__item:hover {
+    background-color: rgb(74, 74, 74);
+    border-color: rgb(74, 158, 255);
+}
+
+.unity-list-view__item:selected {
     background-color: rgb(74, 158, 255);
     border-color: rgb(107, 179, 255);
 }
 
-.tab-view {
-    background-color: rgb(42, 42, 42);
-    border-radius: 16px;
-    padding: 24px;
-}
-
-.tab-header {
-    background-color: rgb(58, 58, 58);
-    border-radius: 8px;
-    border-width: 2px;
-    border-color: rgb(68, 68, 68);
-    margin: 4px;
-    padding: 16px;
-    color: rgb(204, 204, 204);
-}
-
-.tab-header--active {
+.unity-list-view__item--selected {
     background-color: rgb(74, 158, 255);
+    border-color: rgb(107, 179, 255);
+}
+
+.unity-list-view__item:selected * {
     color: rgb(255, 255, 255);
-    border-color: rgb(107, 179, 255);
 }
 
-.tab-content {
-    background-color: rgb(26, 26, 26);
-    border-radius: 8px;
-    padding: 24px;
-    margin-top: 16px;
+.unity-list-view__item--selected * {
+    color: rgb(255, 255, 255);
 }
 
 .save-file-header {
@@ -539,6 +516,100 @@
     justify-content: space-between;
 }
 
+.save-status-label {
+    min-height: 20px;
+}
+
+.tab-view {
+    background-color: rgb(42, 42, 42);
+    border-radius: 16px;
+    padding: 24px;
+}
+
+.tab-header {
+    background-color: rgb(58, 58, 58);
+    border-radius: 8px;
+    border-width: 2px;
+    border-color: rgb(68, 68, 68);
+    margin: 4px;
+    padding: 16px;
+    color: rgb(204, 204, 204);
+}
+
+.unity-tab__header {
+    background-color: rgb(58, 58, 58);
+    border-radius: 8px;
+    border-width: 2px;
+    border-color: rgb(68, 68, 68);
+    margin: 4px;
+    padding: 16px;
+    color: rgb(204, 204, 204);
+}
+
+.unity-tab__header--checked {
+    background-color: rgb(74, 158, 255);
+    color: rgb(255, 255, 255);
+    border-color: rgb(107, 179, 255);
+}
+
+.tab-content {
+    background-color: rgb(26, 26, 26);
+    border-radius: 8px;
+    padding: 24px;
+    margin-top: 16px;
+}
+
+.unity-tab__content-container {
+    background-color: rgb(26, 26, 26);
+    border-radius: 8px;
+    padding: 24px;
+    margin-top: 16px;
+}
+
+.loading-progress {
+    height: 12px;
+    background-color: rgb(58, 58, 58);
+    border-radius: 6px;
+    border-width: 1px;
+    border-color: rgb(68, 68, 68);
+}
+
+.saving-progress {
+    height: 12px;
+    background-color: rgb(58, 58, 58);
+    border-radius: 6px;
+    border-width: 1px;
+    border-color: rgb(68, 68, 68);
+}
+
+.loading-progress .unity-progress-bar__background {
+    background-color: rgb(58, 58, 58);
+    border-radius: 6px;
+}
+
+.saving-progress .unity-progress-bar__background {
+    background-color: rgb(58, 58, 58);
+    border-radius: 6px;
+}
+
+.loading-progress .unity-progress-bar__progress {
+    background-color: rgb(74, 158, 255);
+    border-radius: 6px;
+}
+
+.saving-progress .unity-progress-bar__progress {
+    background-color: rgb(74, 158, 255);
+    border-radius: 6px;
+}
+
+.progress-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    margin: 20px 0;
+}
+
 .debug-overlay {
     position: absolute;
     top: 0;
@@ -556,10 +627,6 @@
     font-size: 20px;
     padding: 8px;
     border-radius: 4px;
-    picking-mode: Ignore;
-}
-
-.debug-overlay * {
     picking-mode: Ignore;
 }
 
@@ -589,286 +656,6 @@
     justify-content: space-between;
 }
 
-.hud-element {
-}
-
-.fade-in {
-    transition-duration: 0.3s;
-    transition-property: opacity;
-}
-
-.scale-on-hover:hover {
-    scale: 1.05;
-    transition-duration: 0.2s;
-}
-
-.hidden {
-    display: none;
-}
-
-.visible {
-    display: flex;
-}
-
-.opacity-50 {
-    opacity: 0.5;
-}
-
-.opacity-75 {
-    opacity: 0.75;
-}
-
-.defaultText {
-    color: rgb(255, 255, 255);
-    font-size: 16px;
-}
-
-.defaultButton {
-    background-color: rgb(74, 158, 255);
-    color: rgb(255, 255, 255);
-    border-radius: 8px;
-    font-size: 20px;
-    height: 48px;
-    min-width: 120px;
-    margin: 8px;
-    border-width: 2px;
-    border-color: rgb(46, 124, 214);
-}
-
-.defaultButton:hover {
-    background-color: rgb(107, 179, 255);
-    scale: 1.05;
-}
-
-.screenBackground {
-    background-color: rgb(26, 26, 26);
-    flex-grow: 1;
-    align-items: center;
-    justify-content: center;
-}
-
-.closeButtonPosition {
-    position: absolute;
-    top: 24px;
-    right: 24px;
-}
-
-.popup {
-    position: absolute;
-    align-self: center;
-    background-color: rgba(0, 0, 0, 0.85);
-    border-radius: 24px;
-    padding: 32px;
-    border-width: 2px;
-    border-color: rgb(68, 68, 68);
-}
-
-.primary-button {
-    background-color: rgb(74, 158, 255);
-    color: rgb(255, 255, 255);
-}
-
-.primary-button:hover {
-    background-color: rgb(107, 179, 255);
-}
-
-.disabledButton {
-    opacity: 0.4;
-}
-
-.unity-button {
-    background-color: rgb(58, 58, 58);
-    border-color: rgb(68, 68, 68);
-    color: rgb(255, 255, 255);
-    border-radius: 8px;
-    border-width: 2px;
-}
-
-.unity-button:hover {
-    background-color: rgb(74, 74, 74);
-    border-color: rgb(74, 158, 255);
-}
-
-.unity-button:active {
-    background-color: rgb(42, 42, 42);
-}
-
-.unity-text-field__input {
-    background-color: rgb(58, 58, 58);
-    border-color: rgb(68, 68, 68);
-    color: rgb(255, 255, 255);
-}
-
-.unity-text-field__input:focus {
-    border-color: rgb(74, 158, 255);
-}
-
-.unity-dropdown {
-    background-color: rgb(58, 58, 58);
-    border-color: rgb(68, 68, 68);
-    color: rgb(255, 255, 255);
-}
-
-.unity-dropdown:hover {
-    border-color: rgb(74, 158, 255);
-}
-
-.unity-toggle__input {
-    background-color: rgb(0, 0, 0);
-    border-color: rgb(68, 68, 68);
-}
-
-.unity-toggle__input:checked {
-    background-color: rgb(0, 0, 0);
-    border-color: rgb(107, 179, 255);
-    border-left-color: rgb(63, 63, 63);
-    border-right-color: rgb(63, 63, 63);
-    border-top-color: rgb(63, 63, 63);
-    border-bottom-color: rgb(63, 63, 63);
-}
-
-.unity-list-view {
-    background-color: rgb(42, 42, 42);
-    border-color: rgb(68, 68, 68);
-}
-
-.unity-list-view__item {
-    background-color: rgb(58, 58, 58);
-    border-color: rgb(68, 68, 68);
-    color: rgb(255, 255, 255);
-}
-
-.unity-list-view__item:hover {
-    background-color: rgb(74, 74, 74);
-}
-
-.unity-list-view__item--selected {
-    background-color: rgb(74, 158, 255);
-}
-
-.unity-tab__header {
-    background-color: rgb(58, 58, 58);
-    border-color: rgb(68, 68, 68);
-    color: rgb(204, 204, 204);
-}
-
-.unity-tab__header--checked {
-    background-color: rgb(74, 158, 255);
-    color: rgb(255, 255, 255);
-}
-
-.unity-tab__content-container {
-    background-color: rgb(42, 42, 42);
-}
-
-.text--success {
-    color: rgb(74, 255, 107);
-}
-
-.text--danger {
-    color: rgb(255, 74, 107);
-}
-
-.text--warning {
-    color: rgb(255, 184, 74);
-}
-
-.text--accent {
-    color: rgb(74, 255, 158);
-}
-
-.text--primary-light {
-    color: rgb(107, 179, 255);
-}
-
-.loading-spinner {
-    width: 60px;
-    height: 60px;
-    border-radius: 30px;
-    border-width: 4px;
-    border-color: rgb(74, 158, 255);
-    border-top-color: transparent;
-    margin-bottom: 24px;
-}
-
-.bg-success {
-    background-color: rgb(74, 255, 107);
-}
-
-.bg-danger {
-    background-color: rgb(255, 74, 107);
-}
-
-.bg-warning {
-    background-color: rgb(255, 184, 74);
-}
-
-.bg-primary {
-    background-color: rgb(74, 158, 255);
-}
-
-.border-primary {
-    border-color: rgb(74, 158, 255);
-}
-
-.border-success {
-    border-color: rgb(74, 255, 107);
-}
-
-.border-danger {
-    border-color: rgb(255, 74, 107);
-}
-
-
-.progress-container {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 80%;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.loading-progress {
-    width: 100%;
-    height: 8px;
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
-}
-
-.loading-progress .unity-progress-bar__background {
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
-}
-
-.loading-progress .unity-progress-bar__progress {
-    background-color: #4CAF50;
-    border-radius: 4px;
-}
-
-.text--error {
-    color: #f44336;
-}
-
-.unity-list-view__item:selected,
-.unity-list-view__item--selected {
-    background-color: rgb(74, 158, 255) !important;
-    border-color: rgb(107, 179, 255) !important;
-}
-
-/* Also target the content within selected items */
-.unity-list-view__item:selected *,
-.unity-list-view__item--selected * {
-    color: rgb(255, 255, 255) !important;
-}
-
-/* Ensure hover doesn't override selection */
-.unity-list-view__item:selected:hover,
-.unity-list-view__item--selected:hover {
-    background-color: rgb(107, 179, 255) !important;
-    border-color: rgb(140, 200, 255) !important;
-}
-/* Modal Overlay System */
 .ui-modal-overlay {
     position: absolute;
     top: 0;
@@ -890,38 +677,22 @@
     min-width: 350px;
 }
 
-/* Save Progress Bar - Based on existing loading-progress */
-.saving-progress {
-    width: 250px;
-    height: 12px;
-    background-color: rgb(58, 58, 58);
-    border-radius: 6px;
-    border-width: 1px;
-    border-color: rgb(68, 68, 68);
+.hidden {
+    display: none;
 }
 
-.saving-progress .unity-progress-bar__background {
-    background-color: rgb(58, 58, 58);
-    border-radius: 6px;
-}
-
-.saving-progress .unity-progress-bar__progress {
-    background-color: rgb(74, 158, 255);
-    border-radius: 6px;
-}
-
-/* Save Status Label */
-.save-status-label {
-    min-height: 20px;
-}
-
-/* Show/Hide utilities if not already present */
 .visible {
     display: flex;
 }
 
-.hidden {
-    display: none;
+.fade-in {
+    transition-duration: 0.3s;
+    transition-property: opacity;
+}
+
+.scale-on-hover:hover {
+    scale: 1.05;
+    transition-duration: 0.2s;
 }
 
 .metric-label {
@@ -931,4 +702,8 @@
 .metric-value {
     margin-right: 8px;
     font-weight: bold;
+}
+
+.unity-popup-field__input {
+    background-color: rgb(36, 36, 36);
 }
