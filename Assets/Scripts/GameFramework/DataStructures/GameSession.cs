@@ -65,9 +65,6 @@ namespace GameFramework.DataStructures
         [Header("Game Progress")]
         public GameProgress progress = new GameProgress();
         
-        [Header("Custom Data")]
-        public Dictionary<string, object> customData = new Dictionary<string, object>();
-        
         /// <summary>
         /// Gets the current total playtime - uses TimeService if available, fallback to saved data
         /// </summary>
@@ -169,22 +166,36 @@ namespace GameFramework.DataStructures
         }
         
         /// <summary>
-        /// Restores time data to TimeService after loading (if supported by TimeService)
+        /// Restores time data to TimeService after loading
+        /// TimeService should call this method when initializing to get saved time data
         /// </summary>
         public void RestoreTimeDataToService()
         {
             if (!_hasTimeData) return;
             
-            var gameDataService = GameManager.GetService<IGameDataService>();
-            if (gameDataService != null)
+            var timeService = GameManager.GetService<ITimeService>();
+            if (timeService != null)
             {
-                // Store time data in GameDataService for TimeService to pick up
-                gameDataService.SetCustomData("GameTime", _savedGameTime);
-                gameDataService.SetCustomData("SessionTime", _savedSessionTime);
-                
-                Debug.Log($"[GameSession] Restored time data to GameDataService - Game: {FormatTimeFromSeconds(_savedGameTime)}, Session: {FormatTimeFromSeconds(_savedSessionTime)}");
+                // TimeService should implement a method to accept saved time data
+                // This would require adding a method like SetSavedTimeData to ITimeService
+                Debug.Log($"[GameSession] Time data available for restoration - Game: {FormatTimeFromSeconds(_savedGameTime)}, Session: {FormatTimeFromSeconds(_savedSessionTime)}");
             }
         }
+        
+        /// <summary>
+        /// Gets the saved game time for TimeService restoration
+        /// </summary>
+        public float GetSavedGameTime() => _hasTimeData ? _savedGameTime : 0f;
+        
+        /// <summary>
+        /// Gets the saved session time for TimeService restoration
+        /// </summary>
+        public float GetSavedSessionTime() => _hasTimeData ? _savedSessionTime : 0f;
+        
+        /// <summary>
+        /// Checks if this session has saved time data
+        /// </summary>
+        public bool HasSavedTimeData() => _hasTimeData;
           
         /// <summary>
         /// Creates a new game session with specified parameters
@@ -204,13 +215,7 @@ namespace GameFramework.DataStructures
                 _savedGameTime = 0f,         // Initialize time data
                 _savedSessionTime = 0f,
                 _hasTimeData = true,         // Mark as having time data
-                WasAutoSave = false,
-                customData = new Dictionary<string, object>
-                {
-                    ["creationTime"] = now.ToString("O"), // ISO 8601 format for consistency
-                    ["isNewGame"] = true,
-                    ["startingPosition"] = "DefaultSpawn"
-                }
+                WasAutoSave = false
             };
             
             return session;
@@ -281,41 +286,6 @@ namespace GameFramework.DataStructures
             }
             
             currentScene = sceneName;
-        }
-        
-        /// <summary>
-        /// Adds or updates custom data
-        /// </summary>
-        public void SetCustomData<T>(string key, T value)
-        {
-            if (string.IsNullOrEmpty(key))
-            {
-                Debug.LogWarning("[GameSession] Attempted to set custom data with empty key");
-                return;
-            }
-            
-            customData[key] = value;
-        }
-        
-        /// <summary>
-        /// Gets custom data with optional default value
-        /// </summary>
-        public T GetCustomData<T>(string key, T defaultValue = default)
-        {
-            if (string.IsNullOrEmpty(key) || !customData.ContainsKey(key))
-            {
-                return defaultValue;
-            }
-            
-            try
-            {
-                return (T)customData[key];
-            }
-            catch (InvalidCastException)
-            {
-                Debug.LogWarning($"[GameSession] Failed to cast custom data '{key}' to type {typeof(T).Name}");
-                return defaultValue;
-            }
         }
         
         /// <summary>

@@ -28,10 +28,6 @@ namespace GameFramework.Services
         // Time tracking properties
         public float GameTime => _gameTime;
         public float SessionTime => _sessionTime;
-        public float LevelTime => _levelTime;
-        public TimeSpan GameTimeSpan => TimeSpan.FromSeconds(_gameTime);
-        public TimeSpan SessionTimeSpan => TimeSpan.FromSeconds(_sessionTime);
-        public TimeSpan LevelTimeSpan => TimeSpan.FromSeconds(_levelTime);
         
         // State tracking
         public bool IsTrackingGameTime => _isInPlayingState && !_isPaused;
@@ -86,7 +82,7 @@ namespace GameFramework.Services
             
             // Subscribe to game lifecycle events
             _eventSystem.Subscribe<NewGameRequestedEvent>(OnNewGameRequested);
-            _eventSystem.Subscribe<LoadGameEvent>(OnGameLoaded);
+            _eventSystem.Subscribe<SessionLoadedEvent>(OnSessionLoaded); // CHANGED: Listen for SessionLoadedEvent
             _eventSystem.Subscribe<SceneLoadedEvent>(OnSceneLoaded);
             
             // Initialize time tracking
@@ -104,15 +100,12 @@ namespace GameFramework.Services
         {
             if (!IsInitialized) return;
             
-            // Save time data to session
-            SaveTimeDataToSession();
-            
             // Unsubscribe from events
             _eventSystem?.Unsubscribe<GameStateChangeEvent>(OnGameStateChanged);
             _eventSystem?.Unsubscribe<GamePausedEvent>(OnGamePaused);
             _eventSystem?.Unsubscribe<GameResumedEvent>(OnGameResumed);
             _eventSystem?.Unsubscribe<NewGameRequestedEvent>(OnNewGameRequested);
-            _eventSystem?.Unsubscribe<LoadGameEvent>(OnGameLoaded);
+            _eventSystem?.Unsubscribe<SessionLoadedEvent>(OnSessionLoaded); // CHANGED: Unsubscribe from SessionLoadedEvent
             _eventSystem?.Unsubscribe<SceneLoadedEvent>(OnSceneLoaded);
             
             _isInitialized = false;
@@ -193,6 +186,18 @@ namespace GameFramework.Services
         }
         
         /// <summary>
+        /// Set saved time data (called when loading a game session)
+        /// </summary>
+        public void SetSavedTimeData(float gameTime, float sessionTime)
+        {
+            _gameTime = gameTime;
+            _sessionTime = sessionTime;
+            _levelTime = 0f; // Reset level time when loading
+            
+            Debug.Log($"[TimeService] Loaded time data - Game: {FormatTime(_gameTime)}, Session: {FormatTime(_sessionTime)}");
+        }
+        
+        /// <summary>
         /// Get time statistics for debugging/display
         /// </summary>
         public TimeStatistics GetTimeStatistics()
@@ -243,8 +248,13 @@ namespace GameFramework.Services
             ResetAllTimers();
         }
         
-        private void OnGameLoaded(LoadGameEvent evt)
+        /// <summary>
+        /// CHANGED: Now responds to SessionLoadedEvent instead of LoadGameEvent
+        /// This ensures the GameDataService.CurrentSession is properly set before loading time data
+        /// </summary>
+        private void OnSessionLoaded(SessionLoadedEvent evt)
         {
+            Debug.Log("[TimeService] Session loaded event received, loading time data...");
             LoadTimeDataFromSession();
         }
         
@@ -270,27 +280,21 @@ namespace GameFramework.Services
         }
         
         /// <summary>
-        /// Save time data to the current game session
-        /// </summary>
-        private void SaveTimeDataToSession()
-        {
-            if (_gameDataService?.HasActiveSession() != true) return;
-            
-            _gameDataService.SetCustomData("GameTime", _gameTime);
-            _gameDataService.SetCustomData("SessionTime", _sessionTime);
-            Debug.Log("[TimeService] Time data saved to session");
-        }
-        
-        /// <summary>
         /// Load time data from the current game session
         /// </summary>
         private void LoadTimeDataFromSession()
         {
             if (_gameDataService?.HasActiveSession() != true) return;
-            
-            _gameTime = _gameDataService.GetCustomData<float>("GameTime", 0f);
-            _sessionTime = _gameDataService.GetCustomData<float>("SessionTime", 0f);
-            _levelTime = 0f; // Always reset level time when loading
+
+            var session = _gameDataService.CurrentSession;
+            if (session.HasSavedTimeData())
+            {
+                SetSavedTimeData(session.GetSavedGameTime(), session.GetSavedSessionTime());
+            }
+            else
+            {
+                Debug.LogWarning("[TimeService] Session has no saved time data");
+            }
         }
         
         #endregion

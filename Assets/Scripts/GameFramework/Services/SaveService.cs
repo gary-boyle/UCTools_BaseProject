@@ -6,16 +6,18 @@ using GameFramework.Config.ScriptableObjects;
 using GameFramework.Core;
 using GameFramework.DataStructures;
 using GameFramework.EventSystem.Events;
+using GameFramework.EventSystem.Events.Enums;
 using GameFramework.EventSystem.Interfaces;
 using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine.Interfaces;
+using GameFramework.Utilities;
 using UnityEngine;
 
 namespace GameFramework.Services
 {
     /// <summary>
     /// Save service that handles file saving operations and save file metadata via event system
-    /// Now includes auto-save scheduling based on gameplay settings
+    /// Now uses unified save event handling for cleaner code and better maintainability
     /// Clean separation - UI triggers saves via events, service handles implementation
     /// All loading operations are handled by LoadService
     /// </summary>
@@ -26,9 +28,6 @@ namespace GameFramework.Services
         private GameplaySettings_SO _gameplaySettings;
         
         private readonly IEventSystem _eventSystem;
-        private readonly string _saveDirectory;
-        private const string SAVE_EXTENSION = ".gamesave";
-        private const string AUTOSAVE_IDENTIFIER = "[AUTOSAVE]";
         
         // Cache for save file metadata to avoid repeated file I/O
         private readonly Dictionary<string, SaveFileInfo> _saveFileInfoCache = new();
@@ -42,7 +41,6 @@ namespace GameFramework.Services
         public SaveService(IEventSystem eventSystem)
         {
             _eventSystem = eventSystem ?? throw new ArgumentNullException(nameof(eventSystem));
-            _saveDirectory = Application.persistentDataPath + "/Saves/";
         }
         
         #region Initialization
@@ -52,17 +50,11 @@ namespace GameFramework.Services
             if (IsInitialized) return;
             
             _gameplaySettings = SettingsRegistry.Get<GameplaySettings_SO>();
+            SaveFileUtilities.SaveDirectory = Application.persistentDataPath + "/Saves/";
+            SaveFileUtilities.EnsureSaveDirectoryExists();
             
-            // Ensure save directory exists
-            if (!System.IO.Directory.Exists(_saveDirectory))
-            {
-                System.IO.Directory.CreateDirectory(_saveDirectory);
-            }
-            
-            // Subscribe to save request events
-            _eventSystem.Subscribe<RegularSaveRequestedEvent>(OnRegularSaveRequested);
-            _eventSystem.Subscribe<AutoSaveRequestedEvent>(OnAutoSaveRequested);
-            _eventSystem.Subscribe<OverwriteSaveRequestedEvent>(OnOverwriteSaveRequested);
+            // Subscribe to unified save request event
+            _eventSystem.Subscribe<SaveRequestedEvent>(OnSaveRequested);
             
             // Subscribe to config changes for gameplay settings
             _eventSystem.Subscribe<OptionsChangedEvent>(OnOptionsChanged);
@@ -77,9 +69,7 @@ namespace GameFramework.Services
         public void Shutdown()
         {
             // Unsubscribe from events
-            _eventSystem.Unsubscribe<RegularSaveRequestedEvent>(OnRegularSaveRequested);
-            _eventSystem.Unsubscribe<AutoSaveRequestedEvent>(OnAutoSaveRequested);
-            _eventSystem.Unsubscribe<OverwriteSaveRequestedEvent>(OnOverwriteSaveRequested);
+            _eventSystem.Unsubscribe<SaveRequestedEvent>(OnSaveRequested);
             _eventSystem.Unsubscribe<OptionsChangedEvent>(OnOptionsChanged);
             
             // Stop auto-save scheduling
@@ -107,7 +97,7 @@ namespace GameFramework.Services
                 if (CanSaveGame())
                 {
                     Debug.Log($"[SaveService] Triggering scheduled auto-save (interval: {_autoSaveInterval / 60f:F1} minutes)");
-                    _eventSystem.Publish(new AutoSaveRequestedEvent());
+                    _eventSystem.Publish(SaveRequestedEvent.CreateAutoSave());
                 }
             }
         }
@@ -230,21 +220,7 @@ namespace GameFramework.Services
         /// </summary>
         public async Task<string[]> GetSaveFilesAsync()
         {
-            return await Task.Run(() =>
-            {
-                if (!System.IO.Directory.Exists(_saveDirectory))
-                    return Array.Empty<string>();
-                    
-                var files = System.IO.Directory.GetFiles(_saveDirectory, "*" + SAVE_EXTENSION);
-                var saveNames = new string[files.Length];
-                
-                for (int i = 0; i < files.Length; i++)
-                {
-                    saveNames[i] = System.IO.Path.GetFileNameWithoutExtension(files[i]);
-                }
-                
-                return saveNames;
-            });
+            return await SaveFileUtilities.GetSaveFileNamesAsync();
         }
         
         /// <summary>
@@ -252,17 +228,13 @@ namespace GameFramework.Services
         /// </summary>
         public async Task<bool> DeleteSaveAsync(string saveName)
         {
-            var filePath = GetSaveFilePath(saveName);
-
-            if (!System.IO.File.Exists(filePath)) return false;
-            
-            await Task.Run(() => System.IO.File.Delete(filePath));
-                
-            // Clear caches for deleted file
-            InvalidateCache(saveName);
-                
-            Debug.Log($"[SaveService] Deleted save '{saveName}' and cleared caches");
-            return true;
+            var success = await SaveFileUtilities.DeleteSaveFileAsync(saveName);
+            if (success)
+            {
+                InvalidateCache(saveName);
+                Debug.Log($"[SaveService] Deleted save '{saveName}' and cleared caches");
+            }
+            return success;
         }
         
         /// <summary>
@@ -316,11 +288,7 @@ namespace GameFramework.Services
         /// </summary>
         public bool HasAnySaves()
         {
-            if (!System.IO.Directory.Exists(_saveDirectory))
-                return false;
-                
-            var files = System.IO.Directory.GetFiles(_saveDirectory, "*" + SAVE_EXTENSION);
-            return files.Length > 0;
+            return SaveFileUtilities.HasAnySaveFiles();
         }
         
         /// <summary>
@@ -328,7 +296,7 @@ namespace GameFramework.Services
         /// </summary>
         public string GetSaveFilePath(string saveName)
         {
-            return _saveDirectory + saveName + SAVE_EXTENSION;
+            return SaveFileUtilities.GetSaveFilePath(saveName);
         }
         
         /// <summary>
@@ -341,11 +309,10 @@ namespace GameFramework.Services
         
         #endregion
         
-        #region Private Save Operations (Event-Driven)
+        #region Private Save Operations
         
         /// <summary>
         /// Performs a regular save with automatic timestamp-based naming
-        /// Called internally via event system
         /// </summary>
         private async Task<(bool success, string saveName)> PerformRegularSaveAsync()
         {
@@ -356,7 +323,7 @@ namespace GameFramework.Services
                 return (false, null);
             }
 
-            string saveName = GenerateTimestampSaveName(gameDataService.CurrentSession, false);
+            string saveName = SaveFileUtilities.GenerateTimestampSaveName(gameDataService.CurrentSession, false);
             bool success = await SaveGameSessionInternalAsync(gameDataService.CurrentSession, saveName, false);
             
             return (success, saveName);
@@ -364,7 +331,6 @@ namespace GameFramework.Services
         
         /// <summary>
         /// Performs an autosave, only overwriting existing autosaves for the current player
-        /// Uses consistent naming instead of timestamps for autosaves
         /// </summary>
         private async Task<(bool success, string saveName)> PerformAutoSaveAsync()
         {
@@ -379,7 +345,7 @@ namespace GameFramework.Services
             await DeleteCurrentPlayerAutoSaveAsync(gameDataService.CurrentSession.playerName);
             
             // Use consistent autosave naming (no timestamp) for each player
-            string saveName = GenerateAutoSaveName(gameDataService.CurrentSession);
+            string saveName = SaveFileUtilities.GenerateAutoSaveName(gameDataService.CurrentSession);
             bool success = await SaveGameSessionInternalAsync(gameDataService.CurrentSession, saveName, true);
             
             return (success, saveName);
@@ -387,9 +353,8 @@ namespace GameFramework.Services
         
         /// <summary>
         /// Overwrites an existing save file with the current game session
-        /// Called internally via event system
         /// </summary>
-        private async Task<bool> OverwriteSaveFileAsync(SaveFileInfo targetSaveFile)
+        private async Task<bool> PerformOverwriteSaveAsync(SaveFileInfo targetSaveFile)
         {
             if (!CanOverwriteSaveFile(targetSaveFile)) return false;
 
@@ -410,7 +375,7 @@ namespace GameFramework.Services
             try
             {
                 string saveName = targetSaveFile.FileName;
-                bool wasAutoSave = saveName.Contains(AUTOSAVE_IDENTIFIER);
+                bool wasAutoSave = saveName.Contains("[AUTOSAVE]");
                 bool success = await SaveGameSessionInternalAsync(gameDataService.CurrentSession, saveName, wasAutoSave);
         
                 if (!success)
@@ -451,25 +416,24 @@ namespace GameFramework.Services
         {
             try
             {
+                // Update session metadata and capture current time data from TimeService
                 session.UpdateLastSaveTime();
                 session.WasAutoSave = isAutoSave;
                 
-                // Store playtime information in custom data
-                var playTimeInfo = session.GetPlayTimeInfo();
-                session.SetCustomData("playTimeAtSave", playTimeInfo.GameTime);
-                session.SetCustomData("sessionTimeAtSave", playTimeInfo.SessionTime);
-                session.SetCustomData("timeTrackingActive", playTimeInfo.IsTracking);
+                // Use utility for serialization
+                var json = GameSessionSerializer.SerializeToJson(session, true);
                 
-                var json = JsonUtility.ToJson(session, true);
-                var filePath = GetSaveFilePath(saveName);
+                // Use utility for file writing
+                var success = await SaveFileUtilities.WriteSaveFileAsync(saveName, json);
                 
-                await System.IO.File.WriteAllTextAsync(filePath, json);
+                if (success)
+                {
+                    // Invalidate cache since file content changed
+                    InvalidateCache(saveName);
+                    _eventSystem.Publish(new SaveGameEvent());
+                }
                 
-                // Invalidate cache since file content changed
-                InvalidateCache(saveName);
-                _eventSystem.Publish(new SaveGameEvent());
-                
-                return true;
+                return success;
             }
             catch (Exception e)
             {
@@ -477,10 +441,9 @@ namespace GameFramework.Services
                 return false;
             }
         }
-        
+
         /// <summary>
         /// Deletes only the autosave file for the current player, preserving other players' autosaves
-        /// This ensures each player maintains their own autosave without interfering with others
         /// </summary>
         private async Task DeleteCurrentPlayerAutoSaveAsync(string currentPlayerName)
         {
@@ -492,7 +455,7 @@ namespace GameFramework.Services
                 
             try
             {
-                var playerAutoSaveFiles = await GetPlayerAutoSaveFilesAsync(currentPlayerName);
+                var playerAutoSaveFiles = await SaveFileUtilities.GetPlayerAutoSaveFilesAsync(currentPlayerName);
                 foreach (string autoSaveFile in playerAutoSaveFiles)
                 {
                     await DeleteSaveAsync(autoSaveFile);
@@ -506,29 +469,15 @@ namespace GameFramework.Services
         }
         
         /// <summary>
-        /// Gets autosave files specifically for a given player name
-        /// </summary>
-        private async Task<string[]> GetPlayerAutoSaveFilesAsync(string playerName)
-        {
-            var allSaveFiles = await GetSaveFilesAsync();
-            return allSaveFiles.Where(fileName => 
-                fileName.Contains(AUTOSAVE_IDENTIFIER) && 
-                fileName.StartsWith(playerName + "_", StringComparison.OrdinalIgnoreCase)
-            ).ToArray();
-        }
-        
-        
-        /// <summary>
         /// Gets cached save file info, loading and caching it if not already cached
         /// Uses file modification time to determine if cache is still valid
         /// </summary>
         private async Task<SaveFileInfo> GetCachedSaveFileInfoAsync(string fileName)
         {
-            var filePath = GetSaveFilePath(fileName);
-            if (!System.IO.File.Exists(filePath))
+            if (!SaveFileUtilities.SaveFileExists(fileName))
                 return null;
             
-            var fileTime = System.IO.File.GetLastWriteTime(filePath);
+            var fileTime = SaveFileUtilities.GetSaveFileLastWriteTime(fileName);
             
             // Check if we have valid cached data
             if (_saveFileInfoCache.TryGetValue(fileName, out var cached) && 
@@ -568,103 +517,95 @@ namespace GameFramework.Services
             }
         }
         
-        /// <summary>
-        /// Generates timestamped save names for regular saves
-        /// </summary>
-        private static string GenerateTimestampSaveName(GameSession session, bool isAutoSave)
-        {
-            string timestamp = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
-            string playerName = session.playerName ?? "Player";
-            
-            return isAutoSave ? $"{playerName}_{AUTOSAVE_IDENTIFIER}_{timestamp}" : $"{playerName}_Save_{timestamp}";
-        }
-        
-        /// <summary>
-        /// Generates consistent autosave names (without timestamps) for each player
-        /// This ensures each player has only one autosave file that gets overwritten
-        /// </summary>
-        private static string GenerateAutoSaveName(GameSession session)
-        {
-            string playerName = session.playerName ?? "Player";
-            return $"{playerName}_{AUTOSAVE_IDENTIFIER}";
-        }
-        
         #endregion
         
-        #region Event Handlers
+        #region Unified Event Handler
         
         /// <summary>
-        /// Handles regular save requests from the event system
+        /// Unified event handler for all save requests
+        /// Routes to appropriate save operation based on SaveType
         /// </summary>
-        private async void OnRegularSaveRequested(RegularSaveRequestedEvent saveEvent)
+        private async void OnSaveRequested(SaveRequestedEvent saveEvent)
         {
+            Debug.Log($"[SaveService] Processing {saveEvent.SaveType} save request at {saveEvent.RequestTime}");
+            
             try
             {
-                var (success, saveName) = await PerformRegularSaveAsync();
-                
-                if (success)
+                switch (saveEvent.SaveType)
                 {
-                    _eventSystem.Publish(new SaveCompletedEvent(saveName, false, false));
-                }
-                else
-                {
-                    _eventSystem.Publish(new SaveFailedEvent("Regular save operation failed", false, false));
+                    case SaveType.Regular:
+                        await HandleRegularSave();
+                        break;
+                        
+                    case SaveType.Auto:
+                        await HandleAutoSave();
+                        break;
+                        
+                    case SaveType.Overwrite:
+                        await HandleOverwriteSave(saveEvent.TargetSaveFile);
+                        break;
+                        
+                    default:
+                        Debug.LogError($"[SaveService] Unknown save type: {saveEvent.SaveType}");
+                        _eventSystem.Publish(new SaveFailedEvent($"Unknown save type: {saveEvent.SaveType}", saveEvent.SaveType));
+                        break;
                 }
             }
             catch (Exception ex)
             {
-                Debug.LogError($"[SaveService] Error handling regular save request: {ex}");
-                _eventSystem.Publish(new SaveFailedEvent(ex.Message, false, false, ex));
+                Debug.LogError($"[SaveService] Error handling {saveEvent.SaveType} save request: {ex}");
+                _eventSystem.Publish(new SaveFailedEvent(ex.Message, saveEvent.SaveType, ex));
             }
         }
-
+        
         /// <summary>
-        /// Handles auto-save requests from the event system
+        /// Handles regular save requests
         /// </summary>
-        private async void OnAutoSaveRequested(AutoSaveRequestedEvent saveEvent)
+        private async Task HandleRegularSave()
         {
-            try
+            var (success, saveName) = await PerformRegularSaveAsync();
+            
+            if (success)
             {
-                var (success, saveName) = await PerformAutoSaveAsync();
-                
-                if (success)
-                {
-                    _eventSystem.Publish(new SaveCompletedEvent(saveName, true, false));
-                }
-                else
-                {
-                    _eventSystem.Publish(new SaveFailedEvent("Auto-save operation failed", true, false));
-                }
+                _eventSystem.Publish(new SaveCompletedEvent(saveName, SaveType.Regular));
             }
-            catch (Exception ex)
+            else
             {
-                Debug.LogError($"[SaveService] Error handling auto-save request: {ex}");
-                _eventSystem.Publish(new SaveFailedEvent(ex.Message, true, false, ex));
+                _eventSystem.Publish(new SaveFailedEvent("Regular save operation failed", SaveType.Regular));
             }
         }
-
+        
         /// <summary>
-        /// Handles overwrite save requests from the event system
+        /// Handles auto-save requests
         /// </summary>
-        private async void OnOverwriteSaveRequested(OverwriteSaveRequestedEvent saveEvent)
+        private async Task HandleAutoSave()
         {
-            try
+            var (success, saveName) = await PerformAutoSaveAsync();
+            
+            if (success)
             {
-                bool success = await OverwriteSaveFileAsync(saveEvent.TargetSaveFile);
-                
-                if (success)
-                {
-                    _eventSystem.Publish(new SaveCompletedEvent(saveEvent.TargetSaveFile.FileName, false, true));
-                }
-                else
-                {
-                    _eventSystem.Publish(new SaveFailedEvent("Overwrite save operation failed", false, true));
-                }
+                _eventSystem.Publish(new SaveCompletedEvent(saveName, SaveType.Auto));
             }
-            catch (Exception ex)
+            else
             {
-                Debug.LogError($"[SaveService] Error handling overwrite save request: {ex}");
-                _eventSystem.Publish(new SaveFailedEvent(ex.Message, false, true, ex));
+                _eventSystem.Publish(new SaveFailedEvent("Auto-save operation failed", SaveType.Auto));
+            }
+        }
+        
+        /// <summary>
+        /// Handles overwrite save requests
+        /// </summary>
+        private async Task HandleOverwriteSave(SaveFileInfo targetSaveFile)
+        {
+            bool success = await PerformOverwriteSaveAsync(targetSaveFile);
+            
+            if (success)
+            {
+                _eventSystem.Publish(new SaveCompletedEvent(targetSaveFile.FileName, SaveType.Overwrite));
+            }
+            else
+            {
+                _eventSystem.Publish(new SaveFailedEvent("Overwrite save operation failed", SaveType.Overwrite));
             }
         }
         

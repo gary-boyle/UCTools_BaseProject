@@ -21,17 +21,6 @@ namespace GameFramework.Services
     /// - Delegates all save/load operations to SaveService
     /// - Uses TimeService for all playtime tracking - no manual time management
     /// - Publishes session lifecycle events through EventSystem
-    /// 
-    /// Pros:
-    /// - Decoupled event handling through EventSystem
-    /// - Consistent event architecture across the framework
-    /// - Multiple systems can listen to session events without direct coupling
-    /// - Easy to add new event listeners without modifying this service
-    /// 
-    /// Cons:
-    /// - Slightly more overhead than direct Actions
-    /// - Event handling requires knowledge of event class structure
-    /// - Debugging event flow requires EventSystem awareness
     /// </summary>
     public class GameDataService : IGameDataService, IUpdatable
     {
@@ -87,17 +76,19 @@ namespace GameFramework.Services
         /// </summary>
         public void CreateNewGameSession(LoadingConfiguration config)
         {
+            string difficulty = "Normal";
+            
+            // Extract difficulty from config if available
+            if (config.GameData.ContainsKey("difficulty"))
+            {
+                difficulty = config.GameData["difficulty"].ToString();
+            }
+            
             CurrentSession = GameSession.CreateNewGame(
                 config.PlayerName, 
-                config.GameData.ContainsKey("difficulty") ? config.GameData["difficulty"].ToString() : "Normal",
+                difficulty,
                 config.SceneName
             );
-            
-            // Apply any custom data from loading config
-            foreach (var kvp in config.GameData)
-            {
-                CurrentSession.SetCustomData(kvp.Key, kvp.Value);
-            }
             
             // Reset auto-save timer for new session
             _lastAutoSaveCheck = DateTime.Now;
@@ -115,7 +106,7 @@ namespace GameFramework.Services
             CurrentSession = session ?? throw new ArgumentNullException(nameof(session));
     
             // No manual time adjustment needed - TimeService handles all playtime tracking
-            // TimeService will load playtime from the session's custom data automatically
+            // TimeService will load playtime from the session's time data automatically
     
             // Reset auto-save timer for loaded session
             _lastAutoSaveCheck = DateTime.Now;
@@ -177,7 +168,7 @@ namespace GameFramework.Services
                 return false;
             }
             
-            _eventSystem.Publish(new AutoSaveRequestedEvent());
+            _eventSystem.Publish(SaveRequestedEvent.CreateAutoSave());
             
             return true;
         }
@@ -264,13 +255,6 @@ namespace GameFramework.Services
                 session.lastSaveTime = DateTime.Now;
             }
 
-            // Validate custom data container
-            if (session.customData == null)
-            {
-                Debug.LogWarning("[GameDataService] GameSession has null custom data - initializing");
-                session.customData = new Dictionary<string, object>();
-            }
-
             // Validate playtime data (non-negative)
             if (session.TotalPlayTimeSeconds < 0)
             {
@@ -304,22 +288,6 @@ namespace GameFramework.Services
             if (CurrentSession?.progress == null)
                 throw new InvalidOperationException("No active game session or progress data");
             return CurrentSession.progress;
-        }
-        
-        /// <summary>
-        /// Gets custom data from current session
-        /// </summary>
-        public T GetCustomData<T>(string key, T defaultValue = default) 
-        {
-            return CurrentSession.GetCustomData<T>(key, defaultValue) ?? defaultValue;
-        }
-        
-        /// <summary>
-        /// Sets custom data in current session
-        /// </summary>
-        public void SetCustomData<T>(string key, T value)
-        {
-            CurrentSession?.SetCustomData<T>(key, value);
         }
         
         /// <summary>

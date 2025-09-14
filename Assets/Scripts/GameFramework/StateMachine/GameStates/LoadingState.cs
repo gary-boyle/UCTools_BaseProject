@@ -165,12 +165,6 @@ namespace GameFramework.StateMachine.GameStates
             if (GameDataService.HasActiveSession())
             {
                 GameDataService.CurrentSession.SetCurrentScene(_currentConfig.SceneName);
-                
-                // Apply any transition data to current session
-                foreach (var kvp in _currentConfig.GameData)
-                {
-                    GameDataService.SetCustomData(kvp.Key, kvp.Value);
-                }
             }
             
             // Load new scene
@@ -231,7 +225,6 @@ namespace GameFramework.StateMachine.GameStates
                     DateTime.Parse(config.GameData["sessionStartTime"].ToString()) : DateTime.Now,
                 lastSaveTime = config.GameData.ContainsKey("lastSaveTime") ? 
                     DateTime.Parse(config.GameData["lastSaveTime"].ToString()) : DateTime.Now,
-                customData = new System.Collections.Generic.Dictionary<string, object>(config.GameData)
             };
             
             // Restore player state from save data
@@ -250,13 +243,7 @@ namespace GameFramework.StateMachine.GameStates
             {
                 Score = config.GameData.ContainsKey("score") ? Convert.ToInt32(config.GameData["score"]) : 0
             };
-            
-            // Store TimeService-related data for restoration
-            if (config.GameData.ContainsKey("savedPlayTime"))
-            {
-                session.SetCustomData("GameTime", Convert.ToSingle(config.GameData["savedPlayTime"]));
-            }
-            
+
             return session;
         }
         

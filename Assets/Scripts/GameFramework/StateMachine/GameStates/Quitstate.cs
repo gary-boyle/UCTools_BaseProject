@@ -183,7 +183,7 @@ namespace GameFramework.StateMachine.GameStates
             {
                 if (GameDataService.HasActiveSession() && SaveService != null)
                 {
-                    EventSystem.Publish(new AutoSaveRequestedEvent());
+                    EventSystem.Publish(SaveRequestedEvent.CreateAutoSave());
                 }
                 
                 // Save any other important data (settings, preferences, etc.)

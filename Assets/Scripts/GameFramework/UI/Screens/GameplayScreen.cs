@@ -106,7 +106,7 @@ namespace GameFramework.UI.Screens
         /// </summary>
         private void OnTestButtonClicked(ClickEvent evt)
         {
-            _eventSystem.Publish(new AutoSaveRequestedEvent());
+            _eventSystem.Publish(SaveRequestedEvent.CreateAutoSave());
         }
         
         /// <summary>
@@ -122,7 +122,7 @@ namespace GameFramework.UI.Screens
         /// </summary>
         private void OnSaveButtonClicked(ClickEvent evt)
         {
-            _eventSystem.Publish(new RegularSaveRequestedEvent());
+            _eventSystem.Publish(SaveRequestedEvent.CreateRegularSave());
         }
 
         /// <summary>

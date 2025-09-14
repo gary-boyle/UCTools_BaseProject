@@ -28,7 +28,5 @@ namespace GameFramework.Services.Interfaces
         // Data Access
         PlayerState GetPlayerState();
         GameProgress GetGameProgress();
-        T GetCustomData<T>(string key, T defaultValue = default);
-        void SetCustomData<T>(string key, T value);
     }
 }
