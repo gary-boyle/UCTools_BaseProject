@@ -28,6 +28,7 @@ namespace GameFramework.Services
         private GameplaySettings_SO _gameplaySettings;
         
         private readonly IEventSystem _eventSystem;
+        private readonly IGameDataService _gameDataService;
         
         // Cache for save file metadata to avoid repeated file I/O
         private readonly Dictionary<string, SaveFileInfo> _saveFileInfoCache = new();
@@ -38,11 +39,12 @@ namespace GameFramework.Services
         private bool _autoSaveEnabled = true;
         private bool _autoSaveSchedulingActive = false;
 
-        public SaveService(IEventSystem eventSystem)
+        public SaveService(IEventSystem eventSystem, IGameDataService gameDataService)
         {
             _eventSystem = eventSystem ?? throw new ArgumentNullException(nameof(eventSystem));
+            _gameDataService = gameDataService ?? throw new ArgumentNullException(nameof(gameDataService));
         }
-        
+
         #region Initialization
         
         public async Task InitializeAsync()
@@ -416,23 +418,24 @@ namespace GameFramework.Services
         {
             try
             {
-                // Update session metadata and capture current time data from TimeService
-                session.UpdateLastSaveTime();
+                // Update session metadata using TimeService directly
+                session.LastSaveTime = DateTime.Now;
+                _gameDataService.UpdateSessionSaveTime(session);
                 session.WasAutoSave = isAutoSave;
-                
+        
                 // Use utility for serialization
                 var json = GameSessionSerializer.SerializeToJson(session, true);
-                
+        
                 // Use utility for file writing
                 var success = await SaveFileUtilities.WriteSaveFileAsync(saveName, json);
-                
+        
                 if (success)
                 {
                     // Invalidate cache since file content changed
                     InvalidateCache(saveName);
                     _eventSystem.Publish(new SaveGameEvent());
                 }
-                
+        
                 return success;
             }
             catch (Exception e)

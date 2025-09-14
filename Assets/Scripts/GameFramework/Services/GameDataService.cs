@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using GameFramework.Core;
 using GameFramework.DataStructures;
 using GameFramework.EventSystem.Events;
 using GameFramework.EventSystem.Interfaces;
@@ -12,15 +13,18 @@ using UnityEngine;
 namespace GameFramework.Services
 {
     /// <summary>
-    /// Clean GameDataService that manages unified GameSession data using EventSystem
+    /// GameDataService manages GameSession lifecycle and provides session creation utilities
     /// 
-    /// Intent: Single source of truth for all game state information with event-driven architecture
+    /// Intent: Single source of truth for game state with session creation and management
     /// 
     /// Design:
-    /// - Uses EventSystem for all communication instead of direct Action events
-    /// - Delegates all save/load operations to SaveService
-    /// - Uses TimeService for all playtime tracking - no manual time management
-    /// - Publishes session lifecycle events through EventSystem
+    /// - Handles all GameSession creation logic (moved from GameSession)
+    /// - Uses TimeService for all time-related operations
+    /// - Manages session lifecycle and save timing
+    /// - Uses EventSystem for communication
+    /// 
+    /// Pros: Clear separation of concerns, centralized session management
+    /// Cons: Slightly more complex but better architecture
     /// </summary>
     public class GameDataService : IGameDataService, IUpdatable
     {
@@ -35,10 +39,10 @@ namespace GameFramework.Services
         private DateTime _lastAutoSaveCheck = DateTime.MinValue;
         private const int AUTO_SAVE_INTERVAL_MINUTES = 5;
 
-        public GameDataService(IEventSystem eventSystem, ISaveService saveService)
+        public GameDataService(
+            IEventSystem eventSystem)
         {
             _eventSystem = eventSystem ?? throw new ArgumentNullException(nameof(eventSystem));
-            _saveService = saveService ?? throw new ArgumentNullException(nameof(saveService));
         }
 
         public async Task InitializeAsync()
@@ -67,10 +71,10 @@ namespace GameFramework.Services
             UpdateSession();
         }
         
-        #region GameSession Management
+        #region GameSession Creation (Moved from GameSession)
         
         /// <summary>
-        /// Creates a new game session from loading configuration
+        /// Creates a new game session from loading configuration (moved from GameSession)
         /// TimeService will handle playtime tracking automatically
         /// Publishes SessionCreatedEvent through EventSystem
         /// </summary>
@@ -84,7 +88,7 @@ namespace GameFramework.Services
                 difficulty = config.GameData["difficulty"].ToString();
             }
             
-            CurrentSession = GameSession.CreateNewGame(
+            CurrentSession = CreateNewGameSession(
                 config.PlayerName, 
                 difficulty,
                 config.SceneName
@@ -96,6 +100,57 @@ namespace GameFramework.Services
             // Publish session created event through EventSystem
             _eventSystem.Publish(new SessionCreatedEvent(CurrentSession));
         }
+        
+        /// <summary>
+        /// Creates a new GameSession with specified parameters (moved from GameSession static method)
+        /// </summary>
+        public GameSession CreateNewGameSession(string playerName, string difficulty, string startingScene)
+        {
+            var now = DateTime.Now;
+            var session = new GameSession
+            {
+                playerName = playerName,
+                difficulty = difficulty,
+                currentScene = startingScene,
+                SessionStartTime = now,
+                LastSaveTime = now,
+                WasAutoSave = false
+            };
+            
+            // Initialize time data
+            session.SetSavedTimeData(0f, 0f);
+            session.SetHasTimeData(true);
+            
+            Debug.Log($"[GameDataService] Created new game session: {session}");
+            return session;
+        }
+        
+        /// <summary>
+        /// Updates the last save time and captures current playtime data (moved from GameSession)
+        /// Called when the game is saved
+        /// </summary>
+        public void UpdateSessionSaveTime(GameSession session = null)
+        {
+            var targetSession = session ?? CurrentSession;
+            if (targetSession == null)
+            {
+                Debug.LogWarning("[GameDataService] Cannot update save time - no session provided");
+                return;
+            }
+            
+            targetSession.LastSaveTime = DateTime.Now;
+
+            var timeService = GameManager.GetService<ITimeService>();
+            // Use TimeService to update the session's time data
+            if (timeService.IsInitialized)
+            {
+                timeService.UpdateSessionTimeData(targetSession);
+            }
+        }
+        
+        #endregion
+        
+        #region GameSession Management
         
         /// <summary>
         /// Loads existing game session - TimeService handles playtime restoration
@@ -156,13 +211,12 @@ namespace GameFramework.Services
             }
         }
         
-        
         /// <summary>
         /// Performs an auto-save using SaveService
         /// </summary>
         public async Task<bool> PerformAutoSaveAsync()
         {
-            if (!_saveService.CanSaveGame())
+            if (CurrentSession != null)
             {
                 Debug.LogWarning("[GameDataService] Cannot auto-save - no active session or save service unavailable");
                 return false;
@@ -204,91 +258,31 @@ namespace GameFramework.Services
                 return false;
             }
 
-            // Validate player state
-            if (session.player == null)
-            {
-                Debug.LogError("[GameDataService] GameSession has null player state");
-                return false;
-            }
-
-            if (session.player.MaxHealth <= 0)
-            {
-                Debug.LogError("[GameDataService] GameSession has invalid player max health");
-                return false;
-            }
-
-            if (session.player.Health > session.player.MaxHealth)
-            {
-                Debug.LogWarning("[GameDataService] GameSession player health exceeds max health - auto-correcting");
-                session.player.Health = session.player.MaxHealth;
-            }
-
-            if (session.player.Level < 1)
-            {
-                Debug.LogError("[GameDataService] GameSession has invalid player level");
-                return false;
-            }
-
-            // Validate progress data
-            if (session.progress == null)
-            {
-                Debug.LogError("[GameDataService] GameSession has null progress data");
-                return false;
-            }
-
-            if (session.progress.Score < 0)
-            {
-                Debug.LogWarning("[GameDataService] GameSession has negative score - resetting to 0");
-                session.progress.Score = 0;
-            }
-
             // Validate timestamps
-            if (session.sessionStartTime == default(DateTime))
+            if (session.SessionStartTime == default(DateTime))
             {
                 Debug.LogWarning("[GameDataService] GameSession has invalid start time - using current time");
-                session.sessionStartTime = DateTime.Now;
+                session.SessionStartTime = DateTime.Now;
             }
 
-            if (session.lastSaveTime == default(DateTime))
+            if (session.LastSaveTime == default(DateTime))
             {
                 Debug.LogWarning("[GameDataService] GameSession has invalid save time - using current time");
-                session.lastSaveTime = DateTime.Now;
+                session.LastSaveTime = DateTime.Now;
             }
 
             // Validate playtime data (non-negative)
-            if (session.TotalPlayTimeSeconds < 0)
+            if (session.SavedGameTime < 0)
             {
-                Debug.LogError("[GameDataService] GameSession has negative total playtime");
+                Debug.LogError("[GameDataService] GameSession has negative saved game time");
                 return false;
             }
-
-            Debug.Log($"[GameDataService] GameSession validation passed: {session.playerName} - {session.FormattedPlayTime}");
             return true;
         }
         
         #endregion
 
         #region Data Access Convenience Methods
-        
-        /// <summary>
-        /// Gets the current player state - throws if no active session
-        /// </summary>
-        public PlayerState GetPlayerState() 
-        {
-            if (CurrentSession?.player == null)
-                throw new InvalidOperationException("No active game session or player state");
-            return CurrentSession.player;
-        }
-        
-        /// <summary>
-        /// Gets the current game progress - throws if no active session  
-        /// </summary>
-        public GameProgress GetGameProgress() 
-        {
-            if (CurrentSession?.progress == null)
-                throw new InvalidOperationException("No active game session or progress data");
-            return CurrentSession.progress;
-        }
         
         /// <summary>
         /// Checks if there's an active game session

@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using GameFramework.DataStructures;
 using GameFramework.Services.Data;
 
 namespace GameFramework.Services.Interfaces
@@ -26,5 +27,7 @@ namespace GameFramework.Services.Interfaces
         string GetFormattedGameTime();
         string GetFormattedSessionTime();
         TimeStatistics GetTimeStatistics();
+        void UpdateSessionTimeData(GameSession session);
+        string GetSavedFormattedPlayTime(GameSession session);
     }
 }

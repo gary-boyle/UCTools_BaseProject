@@ -127,10 +127,7 @@ namespace GameFramework.Services
                     Debug.LogError($"[LoadService] Loaded session from '{saveName}' failed validation");
                     return null;
                 }
-        
-                // Restore time data to services for proper integration
-                session.RestoreTimeDataToService();
-        
+                
                 _eventSystem.Publish(new LoadGameEvent());
                 
                 return session;
@@ -246,23 +243,16 @@ namespace GameFramework.Services
             {
                 ["gameSession"] = gameSession,
                 ["difficulty"] = gameSession.difficulty,
-                ["savedPlayTime"] = gameSession.TotalPlayTimeSeconds,
+                ["savedPlayTime"] = gameSession.SavedGameTime,        
                 ["timeServiceManaged"] = true,
-                ["playerLevel"] = gameSession.player.Level,
-                ["playerHealth"] = gameSession.player.Health,
-                ["playerMaxHealth"] = gameSession.player.MaxHealth,
-                ["playerExperience"] = gameSession.player.Experience,
-                ["playerPosition"] = gameSession.player.Position,
-                ["playerRotation"] = gameSession.player.Rotation,
-                ["score"] = gameSession.progress.Score,
-                ["sessionStartTime"] = gameSession.sessionStartTime.ToString(),
-                ["lastSaveTime"] = gameSession.lastSaveTime.ToString(),
+                ["sessionStartTime"] = gameSession.SessionStartTime.ToString(),    
+                ["lastSaveTime"] = gameSession.LastSaveTime.ToString(),           
                 // Time data for restoration
-                ["savedGameTime"] = gameSession.GetSavedGameTime(),
-                ["savedSessionTime"] = gameSession.GetSavedSessionTime(),
-                ["hasTimeData"] = gameSession.HasSavedTimeData()
+                ["savedGameTime"] = gameSession.SavedGameTime,        
+                ["savedSessionTime"] = gameSession.SavedSessionTime,  
+                ["hasTimeData"] = gameSession.HasSavedTimeData        
             };
-            
+    
             return new LoadingConfiguration
             {
                 Type = LoadingType.LoadSave,
@@ -309,9 +299,7 @@ namespace GameFramework.Services
         {
             return session != null &&
                    !string.IsNullOrEmpty(session.playerName) &&
-                   !string.IsNullOrEmpty(session.currentScene) &&
-                   session.player != null &&
-                   session.progress != null;
+                   !string.IsNullOrEmpty(session.currentScene);
         }
         
         #endregion

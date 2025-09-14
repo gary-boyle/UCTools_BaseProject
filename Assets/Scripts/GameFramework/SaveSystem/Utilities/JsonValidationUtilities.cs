@@ -24,8 +24,6 @@ namespace GameFramework.Utilities
                 // Check for required fields (lightweight check)
                 return json.Contains("\"playerName\"") &&
                        json.Contains("\"currentScene\"") &&
-                       json.Contains("\"player\"") &&
-                       json.Contains("\"progress\"") &&
                        json.Length > 100; // Basic size check
             }
             catch

@@ -1,5 +1,5 @@
 ﻿using System;
-using UnityEngine.Serialization;
+using GameFramework.Utilities;
 
 namespace GameFramework.DataStructures
 {
@@ -30,13 +30,11 @@ namespace GameFramework.DataStructures
             PlayerName = session.playerName;
             Difficulty = session.difficulty;
             CurrentScene = session.currentScene;
-            LastSaveTime = session.lastSaveTime;
-            PlayerLevel = session.player.Level;
-            Score = session.progress.Score;
+            LastSaveTime = session.LastSaveTime;
     
             // Use SAVED playtime information for save file display
-            FormattedPlayTime = session.SavedFormattedPlayTime;     
-            FormattedSessionTime = session.SavedFormattedSessionTime; 
+            FormattedPlayTime = TimeUtilities.FormatTimeFromSeconds(session?.SavedGameTime ?? 0f);
+            FormattedSessionTime = TimeUtilities.FormatTimeFromSeconds(session?.SavedSessionTime ?? 0f);
             
             // Check if this is an autosave from both filename and session data
             IsAutoSave = session.WasAutoSave;
@@ -44,5 +42,6 @@ namespace GameFramework.DataStructures
             // Format display strings
             FormattedDate = LastSaveTime.ToString("yyyy-MM-dd HH:mm");
         }
+
     }
 }

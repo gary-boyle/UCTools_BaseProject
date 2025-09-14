@@ -221,29 +221,12 @@ namespace GameFramework.StateMachine.GameStates
                 playerName = config.PlayerName,
                 difficulty = config.GameData.ContainsKey("difficulty") ? config.GameData["difficulty"].ToString() : "Normal",
                 currentScene = config.SceneName,
-                sessionStartTime = config.GameData.ContainsKey("sessionStartTime") ? 
+                SessionStartTime = config.GameData.ContainsKey("sessionStartTime") ? 
                     DateTime.Parse(config.GameData["sessionStartTime"].ToString()) : DateTime.Now,
-                lastSaveTime = config.GameData.ContainsKey("lastSaveTime") ? 
+                LastSaveTime = config.GameData.ContainsKey("lastSaveTime") ? 
                     DateTime.Parse(config.GameData["lastSaveTime"].ToString()) : DateTime.Now,
             };
             
-            // Restore player state from save data
-            session.player = new PlayerState
-            {
-                Level = config.GameData.ContainsKey("playerLevel") ? Convert.ToInt32(config.GameData["playerLevel"]) : 1,
-                Health = config.GameData.ContainsKey("playerHealth") ? Convert.ToInt32(config.GameData["playerHealth"]) : 100,
-                MaxHealth = config.GameData.ContainsKey("playerMaxHealth") ? Convert.ToInt32(config.GameData["playerMaxHealth"]) : 100,
-                Experience = config.GameData.ContainsKey("playerExperience") ? Convert.ToSingle(config.GameData["playerExperience"]) : 0f,
-                Position = config.GameData.ContainsKey("playerPosition") ? 
-                    (Vector3)config.GameData["playerPosition"] : Vector3.zero
-            };
-            
-            // Restore progress state from save data
-            session.progress = new GameProgress
-            {
-                Score = config.GameData.ContainsKey("score") ? Convert.ToInt32(config.GameData["score"]) : 0
-            };
-
             return session;
         }
         

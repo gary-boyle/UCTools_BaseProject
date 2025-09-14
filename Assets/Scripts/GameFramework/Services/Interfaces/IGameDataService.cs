@@ -24,9 +24,6 @@ namespace GameFramework.Services.Interfaces
         void ClearSession();
         bool HasActiveSession();
         bool IsValidGameSession(GameSession session);
-        
-        // Data Access
-        PlayerState GetPlayerState();
-        GameProgress GetGameProgress();
+        void UpdateSessionSaveTime(GameSession session = null);
     }
 }

@@ -6,18 +6,19 @@ using GameFramework.Services.Data;
 using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine.Enum;
 using GameFramework.StateMachine.Interfaces;
+using GameFramework.DataStructures;
+using GameFramework.Utilities;
 using UnityEngine;
 
 namespace GameFramework.Services
 {
     /// <summary>
-    /// TimeService manages game time tracking with proper pause handling and state awareness.
-    /// Tracks time only when in PlayingState and not paused.
-    /// Provides formatted time display and session tracking capabilities.
+    /// TimeService manages game time tracking and provides time-related utilities
+    /// Handles time formatting, playtime info generation, and session time synchronization
     /// 
-    /// Design: Uses event-driven architecture to respond to game state changes and pause events.
-    /// Pros: Accurate time tracking, integrates with pause system, provides multiple time formats
-    /// Cons: Depends on proper event firing from other systems
+    /// Design: Centralized time management with formatting utilities for GameSession data
+    /// Pros: All time logic in one place, consistent formatting, proper session integration
+    /// Cons: Slightly more complex interface but better separation of concerns
     /// </summary>
     public class TimeService : ITimeService, IUpdatable
     {
@@ -82,7 +83,7 @@ namespace GameFramework.Services
             
             // Subscribe to game lifecycle events
             _eventSystem.Subscribe<NewGameRequestedEvent>(OnNewGameRequested);
-            _eventSystem.Subscribe<SessionLoadedEvent>(OnSessionLoaded); // CHANGED: Listen for SessionLoadedEvent
+            _eventSystem.Subscribe<SessionLoadedEvent>(OnSessionLoaded);
             _eventSystem.Subscribe<SceneLoadedEvent>(OnSceneLoaded);
             
             // Initialize time tracking
@@ -105,7 +106,7 @@ namespace GameFramework.Services
             _eventSystem?.Unsubscribe<GamePausedEvent>(OnGamePaused);
             _eventSystem?.Unsubscribe<GameResumedEvent>(OnGameResumed);
             _eventSystem?.Unsubscribe<NewGameRequestedEvent>(OnNewGameRequested);
-            _eventSystem?.Unsubscribe<SessionLoadedEvent>(OnSessionLoaded); // CHANGED: Unsubscribe from SessionLoadedEvent
+            _eventSystem?.Unsubscribe<SessionLoadedEvent>(OnSessionLoaded);
             _eventSystem?.Unsubscribe<SceneLoadedEvent>(OnSceneLoaded);
             
             _isInitialized = false;
@@ -145,27 +146,81 @@ namespace GameFramework.Services
             }
         }
 
+        #endregion
+        
+        #region Time Formatting Utilities (Moved from GameSession)
+        
+        /// <summary>
+        /// Get formatted current game time string (HH:MM:SS)
+        /// </summary>
+        public string GetFormattedGameTime()
+        {
+            return TimeUtilities.FormatTimeFromSeconds(_gameTime);
+        }
+        
+        /// <summary>
+        /// Get formatted current session time string (HH:MM:SS)
+        /// </summary>
+        public string GetFormattedSessionTime()
+        {
+            return TimeUtilities.FormatTimeFromSeconds(_sessionTime);
+        }
+        
+
+        
+        /// <summary>
+        /// Get formatted saved playtime - delegates to utility
+        /// </summary>
+        public string GetSavedFormattedPlayTime(GameSession session)
+        {
+            return TimeUtilities.GetSavedFormattedPlayTime(session);
+        }
+        
+        /// <summary>
+        /// Helper method delegates to utility
+        /// </summary>
+        public string FormatTimeFromSeconds(float seconds)
+        {
+            return TimeUtilities.FormatTimeFromSeconds(seconds);
+        }
+        
+        #endregion
+        
+        #region GameSession Integration (Moved from GameSession)
+        
+        /// <summary>
+        /// Updates a GameSession with current time data from TimeService (moved from GameSession)
+        /// Call this before serializing the session to ensure current time data is captured
+        /// </summary>
+        public void UpdateSessionTimeData(GameSession session)
+        {
+            if (session == null)
+            {
+                Debug.LogWarning("[TimeService] Cannot update time data - session is null");
+                return;
+            }
+            
+            if (IsInitialized)
+            {
+                session.SetSavedTimeData(_gameTime, _sessionTime);
+                Debug.Log($"[TimeService] Updated session time data - Game: {GetFormattedGameTime()}, Session: {GetFormattedSessionTime()}");
+            }
+            else
+            {
+                Debug.LogWarning("[TimeService] TimeService not initialized - using fallback calculation");
+                
+                // Fallback: Calculate playtime based on session duration if we have no previous data
+                if (!session.HasSavedTimeData || session.SavedGameTime == 0f)
+                {
+                    var sessionDuration = (DateTime.Now - session.SessionStartTime).TotalSeconds;
+                    session.SetSavedTimeData((float)sessionDuration, (float)sessionDuration);
+                }
+            }
+        }
         
         #endregion
         
         #region Public Time Methods
-        
-        /// <summary>
-        /// Get formatted game time string (HH:MM:SS)
-        /// </summary>
-        public string GetFormattedGameTime()
-        {
-            return FormatTime(_gameTime);
-        }
-        
-        /// <summary>
-        /// Get formatted session time string (HH:MM:SS)
-        /// </summary>
-        public string GetFormattedSessionTime()
-        {
-            return FormatTime(_sessionTime);
-        }
-        
         
         /// <summary>
         /// Reset all timers
@@ -194,7 +249,7 @@ namespace GameFramework.Services
             _sessionTime = sessionTime;
             _levelTime = 0f; // Reset level time when loading
             
-            Debug.Log($"[TimeService] Loaded time data - Game: {FormatTime(_gameTime)}, Session: {FormatTime(_sessionTime)}");
+            Debug.Log($"[TimeService] Loaded time data - Game: {FormatTimeFromSeconds(_gameTime)}, Session: {FormatTimeFromSeconds(_sessionTime)}");
         }
         
         /// <summary>
@@ -248,10 +303,6 @@ namespace GameFramework.Services
             ResetAllTimers();
         }
         
-        /// <summary>
-        /// CHANGED: Now responds to SessionLoadedEvent instead of LoadGameEvent
-        /// This ensures the GameDataService.CurrentSession is properly set before loading time data
-        /// </summary>
         private void OnSessionLoaded(SessionLoadedEvent evt)
         {
             Debug.Log("[TimeService] Session loaded event received, loading time data...");
@@ -268,18 +319,6 @@ namespace GameFramework.Services
         #region Private Helper Methods
         
         /// <summary>
-        /// Format seconds into HH:MM:SS string
-        /// </summary>
-        private string FormatTime(float seconds)
-        {
-            var timeSpan = TimeSpan.FromSeconds(seconds);
-            return string.Format("{0:D2}:{1:D2}:{2:D2}", 
-                timeSpan.Hours, 
-                timeSpan.Minutes, 
-                timeSpan.Seconds);
-        }
-        
-        /// <summary>
         /// Load time data from the current game session
         /// </summary>
         private void LoadTimeDataFromSession()
@@ -287,9 +326,9 @@ namespace GameFramework.Services
             if (_gameDataService?.HasActiveSession() != true) return;
 
             var session = _gameDataService.CurrentSession;
-            if (session.HasSavedTimeData())
+            if (session.HasSavedTimeData)
             {
-                SetSavedTimeData(session.GetSavedGameTime(), session.GetSavedSessionTime());
+                SetSavedTimeData(session.SavedGameTime, session.SavedSessionTime);
             }
             else
             {

@@ -160,12 +160,10 @@ namespace GameFramework.UI.Screens
             try
             {
                 var session = _gameDataService.CurrentSession;
-                var playerState = _gameDataService.GetPlayerState();
-                var progress = _gameDataService.GetGameProgress();
         
-                UpdateDebugLabel1(session, playerState);
-                UpdateDebugLabel2(playerState);
-                UpdateDebugLabel3(progress);
+                UpdateDebugLabel1(session);
+                //UpdateDebugLabel2(playerState);
+                //UpdateDebugLabel3(progress);
                 UpdateDebugLabel4WithTimeService();
             }
             catch (Exception e)
@@ -178,31 +176,27 @@ namespace GameFramework.UI.Screens
         /// <summary>
         /// Update first debug label with player and level information
         /// </summary>
-        private void UpdateDebugLabel1(DataStructures.GameSession session, 
-                                     DataStructures.PlayerState playerState)
+        private void UpdateDebugLabel1(DataStructures.GameSession session)
         {
-            var text = $"Player: {session.playerName} | Level: {playerState.Level}";
+            var text = $"Player: {session.playerName}";
             SetDebugLabel(_debugLabel1, text);
         }
         
         /// <summary>
         /// Update second debug label with health information
         /// </summary>
-        private void UpdateDebugLabel2(DataStructures.PlayerState playerState)
-        {
-            var text = $"Health: {playerState.Health}/{playerState.MaxHealth}";
-            SetDebugLabel(_debugLabel2, text);
-        }
+        // private void UpdateDebugLabel2(DataStructures.PlayerState playerState)
+        // {
+        //     var text = $"Health: {playerState.Health}/{playerState.MaxHealth}";
+        //     SetDebugLabel(_debugLabel2, text);
+        // }
         
         /// <summary>
         /// Update third debug label with score and progress information
         /// </summary>
-        private void UpdateDebugLabel3(DataStructures.GameProgress progress)
-        {
-            var completedLevels = progress.CompletedLevels.Count;
-            var text = $"Score: {progress.Score} | Levels: {completedLevels}";
-            SetDebugLabel(_debugLabel3, text);
-        }
+        // private void UpdateDebugLabel3()
+        // {
+        // }
         
         /// <summary>
         /// Update fourth debug label with time and scene information
@@ -225,7 +219,7 @@ namespace GameFramework.UI.Screens
             }
             else
             {
-                var currentPlayTime = session?.TotalPlayTimeSeconds ?? 0f;
+                var currentPlayTime = session?.SavedGameTime ?? 0f;
                 var playTime = TimeSpan.FromSeconds(currentPlayTime);
                 var formattedTime = $"{playTime.Hours:D2}:{playTime.Minutes:D2}:{playTime.Seconds:D2}";
                 var text = $"Scene: {session?.currentScene ?? "Unknown"} | Time: {formattedTime} (Fallback)";
