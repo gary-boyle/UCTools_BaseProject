@@ -109,16 +109,16 @@ namespace GameFramework.Services
             var now = DateTime.Now;
             var session = new GameSession
             {
-                playerName = playerName,
-                difficulty = difficulty,
-                currentScene = startingScene,
+                PlayerName = playerName,
+                Difficulty = difficulty,
+                CurrentScene = startingScene,
                 SessionStartTime = now,
                 LastSaveTime = now,
                 WasAutoSave = false
             };
             
             // Initialize time data
-            session.SetSavedTimeData(0f, 0f);
+            session.SetSavedTimeData(0f);
             session.SetHasTimeData(true);
             
             Debug.Log($"[GameDataService] Created new game session: {session}");
@@ -180,7 +180,7 @@ namespace GameFramework.Services
             
             if (CurrentSession != null)
             {
-                playerName = CurrentSession.playerName;
+                playerName = CurrentSession.PlayerName;
             }
             
             CurrentSession = null;
@@ -246,13 +246,13 @@ namespace GameFramework.Services
             }
 
             // Validate required string fields
-            if (string.IsNullOrEmpty(session.playerName))
+            if (string.IsNullOrEmpty(session.PlayerName))
             {
                 Debug.LogError("[GameDataService] GameSession has invalid player name");
                 return false;
             }
 
-            if (string.IsNullOrEmpty(session.currentScene))
+            if (string.IsNullOrEmpty(session.CurrentScene))
             {
                 Debug.LogError("[GameDataService] GameSession has invalid current scene");
                 return false;

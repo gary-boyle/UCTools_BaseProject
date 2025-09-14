@@ -218,9 +218,9 @@ namespace GameFramework.StateMachine.GameStates
             // Extract saved session data from loading configuration
             var session = new GameSession
             {
-                playerName = config.PlayerName,
-                difficulty = config.GameData.ContainsKey("difficulty") ? config.GameData["difficulty"].ToString() : "Normal",
-                currentScene = config.SceneName,
+                PlayerName = config.PlayerName,
+                Difficulty = config.GameData.ContainsKey("difficulty") ? config.GameData["difficulty"].ToString() : "Normal",
+                CurrentScene = config.SceneName,
                 SessionStartTime = config.GameData.ContainsKey("sessionStartTime") ? 
                     DateTime.Parse(config.GameData["sessionStartTime"].ToString()) : DateTime.Now,
                 LastSaveTime = config.GameData.ContainsKey("lastSaveTime") ? 

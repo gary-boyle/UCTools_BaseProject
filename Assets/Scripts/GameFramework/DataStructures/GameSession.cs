@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace GameFramework.DataStructures
 {
@@ -12,9 +13,9 @@ namespace GameFramework.DataStructures
     public class GameSession
     {
         [Header("Session Info")]
-        public string playerName = "Player";
-        public string difficulty = "Normal";
-        public string currentScene = "";
+        public string PlayerName = "Player";
+        public string Difficulty = "Normal";
+        public string CurrentScene = "";
         
         [Header("DateTime Fields - Serializable")]
         [SerializeField] private long _sessionStartTimeTicks;
@@ -22,11 +23,11 @@ namespace GameFramework.DataStructures
         
         [Header("Time Tracking - Serialized Fields")]
         [SerializeField] private float _savedGameTime = 0f;      // Serialized playtime data
-        [SerializeField] private float _savedSessionTime = 0f;   // Serialized session time data
         [SerializeField] private bool _hasTimeData = false;      // Flag to know if we have saved time data
         
+        [Header("Save Info")]
         [SerializeField] public bool WasAutoSave = false;      // Flag to know if the game was an autosave
-        
+
         #region DateTime Properties
         
         /// <summary>
@@ -67,17 +68,11 @@ namespace GameFramework.DataStructures
         public float SavedGameTime => _savedGameTime;
         
         /// <summary>
-        /// Gets the saved session time in seconds  
-        /// </summary>
-        public float SavedSessionTime => _savedSessionTime;
-        
-        /// <summary>
         /// Sets the saved time data (used by TimeService)
         /// </summary>
-        public void SetSavedTimeData(float gameTime, float sessionTime)
+        public void SetSavedTimeData(float gameTime)
         {
             _savedGameTime = gameTime;
-            _savedSessionTime = sessionTime;
             _hasTimeData = true;
         }
         
@@ -109,7 +104,7 @@ namespace GameFramework.DataStructures
                 return;
             }
             
-            currentScene = sceneName;
+            CurrentScene = sceneName;
         }
         
         #endregion
@@ -121,7 +116,7 @@ namespace GameFramework.DataStructures
         /// </summary>
         public override string ToString()
         {
-            return $"GameSession[Player: {playerName}, Difficulty: {difficulty}, Scene: {currentScene}, " +
+            return $"GameSession[Player: {PlayerName}, Difficulty: {Difficulty}, Scene: {CurrentScene}, " +
                    $"SavedGameTime: {_savedGameTime:F1}s, HasTimeData: {_hasTimeData}, " +
                    $"LastSave: {LastSaveTime}]";
         }

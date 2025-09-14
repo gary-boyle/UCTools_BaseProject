@@ -18,7 +18,6 @@ namespace GameFramework.DataStructures
         public string CurrentScene;
         public DateTime LastSaveTime;
         public string FormattedPlayTime;
-        public string FormattedSessionTime;
         public string FormattedDate;
         public bool IsAutoSave;
         public int PlayerLevel;
@@ -27,14 +26,13 @@ namespace GameFramework.DataStructures
         public SaveFileInfo(string fileName, GameSession session)
         {
             FileName = fileName;
-            PlayerName = session.playerName;
-            Difficulty = session.difficulty;
-            CurrentScene = session.currentScene;
+            PlayerName = session.PlayerName;
+            Difficulty = session.Difficulty;
+            CurrentScene = session.CurrentScene;
             LastSaveTime = session.LastSaveTime;
     
             // Use SAVED playtime information for save file display
             FormattedPlayTime = TimeUtilities.FormatTimeFromSeconds(session?.SavedGameTime ?? 0f);
-            FormattedSessionTime = TimeUtilities.FormatTimeFromSeconds(session?.SavedSessionTime ?? 0f);
             
             // Check if this is an autosave from both filename and session data
             IsAutoSave = session.WasAutoSave;
@@ -42,6 +40,5 @@ namespace GameFramework.DataStructures
             // Format display strings
             FormattedDate = LastSaveTime.ToString("yyyy-MM-dd HH:mm");
         }
-
     }
 }

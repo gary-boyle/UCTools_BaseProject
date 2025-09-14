@@ -14,11 +14,12 @@ namespace GameFramework.Services
 {
     /// <summary>
     /// TimeService manages game time tracking and provides time-related utilities
-    /// Handles time formatting, playtime info generation, and session time synchronization
+    /// Tracks only GameTime (time spent actually playing when unpaused)
+    /// Handles time formatting, playtime info generation, and game time synchronization
     /// 
     /// Design: Centralized time management with formatting utilities for GameSession data
-    /// Pros: All time logic in one place, consistent formatting, proper session integration
-    /// Cons: Slightly more complex interface but better separation of concerns
+    /// Pros: Simple, focused time tracking, consistent formatting, proper session integration
+    /// Cons: None - simplified from previous session time tracking
     /// </summary>
     public class TimeService : ITimeService, IUpdatable
     {
@@ -28,11 +29,9 @@ namespace GameFramework.Services
         
         // Time tracking properties
         public float GameTime => _gameTime;
-        public float SessionTime => _sessionTime;
         
         // State tracking
         public bool IsTrackingGameTime => _isInPlayingState && !_isPaused;
-        public bool IsTrackingSessionTime => _isInitialized && !_isPaused;
         
         // Dependencies
         private readonly IEventSystem _eventSystem;
@@ -40,7 +39,6 @@ namespace GameFramework.Services
         
         // Internal time tracking
         private float _gameTime = 0f;          // Time spent actually playing (PlayingState + not paused)
-        private float _sessionTime = 0f;       // Total time since service started (excluding pause)
         private float _levelTime = 0f;         // Time spent in current level/scene
         
         // State flags
@@ -119,6 +117,7 @@ namespace GameFramework.Services
         
         /// <summary>
         /// Update time tracking - called every frame by GameManager
+        /// Only tracks game time when in playing state and unpaused
         /// </summary>
         public void Update()
         {
@@ -130,25 +129,17 @@ namespace GameFramework.Services
             _lastUpdateTime = currentTime;
 
             // Update timers based on current state
-            if (!_isPaused)
+            if (!_isPaused && _isInPlayingState)
             {
-                // Always update session time when not paused
-                _sessionTime += deltaTime;
-        
-                // Only update game time when in playing state
-                if (_isInPlayingState)
-                {
-                    _gameTime += deltaTime;
-                }
-        
-                // Always update level time when not paused (could be refined based on needs)
+                // Only update game time when in playing state and not paused
+                _gameTime += deltaTime;
                 _levelTime += deltaTime;
             }
         }
 
         #endregion
         
-        #region Time Formatting Utilities (Moved from GameSession)
+        #region Time Formatting Utilities
         
         /// <summary>
         /// Get formatted current game time string (HH:MM:SS)
@@ -157,16 +148,6 @@ namespace GameFramework.Services
         {
             return TimeUtilities.FormatTimeFromSeconds(_gameTime);
         }
-        
-        /// <summary>
-        /// Get formatted current session time string (HH:MM:SS)
-        /// </summary>
-        public string GetFormattedSessionTime()
-        {
-            return TimeUtilities.FormatTimeFromSeconds(_sessionTime);
-        }
-        
-
         
         /// <summary>
         /// Get formatted saved playtime - delegates to utility
@@ -186,10 +167,10 @@ namespace GameFramework.Services
         
         #endregion
         
-        #region GameSession Integration (Moved from GameSession)
+        #region GameSession Integration
         
         /// <summary>
-        /// Updates a GameSession with current time data from TimeService (moved from GameSession)
+        /// Updates a GameSession with current time data from TimeService
         /// Call this before serializing the session to ensure current time data is captured
         /// </summary>
         public void UpdateSessionTimeData(GameSession session)
@@ -202,8 +183,8 @@ namespace GameFramework.Services
             
             if (IsInitialized)
             {
-                session.SetSavedTimeData(_gameTime, _sessionTime);
-                Debug.Log($"[TimeService] Updated session time data - Game: {GetFormattedGameTime()}, Session: {GetFormattedSessionTime()}");
+                session.SetSavedTimeData(_gameTime);
+                Debug.Log($"[TimeService] Updated session time data - Game: {GetFormattedGameTime()}");
             }
             else
             {
@@ -213,7 +194,7 @@ namespace GameFramework.Services
                 if (!session.HasSavedTimeData || session.SavedGameTime == 0f)
                 {
                     var sessionDuration = (DateTime.Now - session.SessionStartTime).TotalSeconds;
-                    session.SetSavedTimeData((float)sessionDuration, (float)sessionDuration);
+                    session.SetSavedTimeData((float)sessionDuration);
                 }
             }
         }
@@ -228,7 +209,6 @@ namespace GameFramework.Services
         public void ResetAllTimers()
         {
             _gameTime = 0f;
-            _sessionTime = 0f;
             _levelTime = 0f;
         }
         
@@ -243,13 +223,12 @@ namespace GameFramework.Services
         /// <summary>
         /// Set saved time data (called when loading a game session)
         /// </summary>
-        public void SetSavedTimeData(float gameTime, float sessionTime)
+        public void SetSavedTimeData(float gameTime)
         {
             _gameTime = gameTime;
-            _sessionTime = sessionTime;
             _levelTime = 0f; // Reset level time when loading
             
-            Debug.Log($"[TimeService] Loaded time data - Game: {FormatTimeFromSeconds(_gameTime)}, Session: {FormatTimeFromSeconds(_sessionTime)}");
+            Debug.Log($"[TimeService] Loaded time data - Game: {FormatTimeFromSeconds(_gameTime)}");
         }
         
         /// <summary>
@@ -260,10 +239,8 @@ namespace GameFramework.Services
             return new TimeStatistics
             {
                 GameTime = _gameTime,
-                SessionTime = _sessionTime,
                 LevelTime = _levelTime,
                 IsTrackingGameTime = IsTrackingGameTime,
-                IsTrackingSessionTime = IsTrackingSessionTime,
                 IsPaused = _isPaused,
                 IsInPlayingState = _isInPlayingState
             };
@@ -328,7 +305,7 @@ namespace GameFramework.Services
             var session = _gameDataService.CurrentSession;
             if (session.HasSavedTimeData)
             {
-                SetSavedTimeData(session.SavedGameTime, session.SavedSessionTime);
+                SetSavedTimeData(session.SavedGameTime);
             }
             else
             {

@@ -242,22 +242,21 @@ namespace GameFramework.Services
             var gameData = new Dictionary<string, object>
             {
                 ["gameSession"] = gameSession,
-                ["difficulty"] = gameSession.difficulty,
+                ["difficulty"] = gameSession.Difficulty,
                 ["savedPlayTime"] = gameSession.SavedGameTime,        
                 ["timeServiceManaged"] = true,
                 ["sessionStartTime"] = gameSession.SessionStartTime.ToString(),    
                 ["lastSaveTime"] = gameSession.LastSaveTime.ToString(),           
-                // Time data for restoration
+                // Time data for restoration - only game time now
                 ["savedGameTime"] = gameSession.SavedGameTime,        
-                ["savedSessionTime"] = gameSession.SavedSessionTime,  
                 ["hasTimeData"] = gameSession.HasSavedTimeData        
             };
-    
+
             return new LoadingConfiguration
             {
                 Type = LoadingType.LoadSave,
-                SceneName = gameSession.currentScene,
-                PlayerName = gameSession.playerName,
+                SceneName = gameSession.CurrentScene,
+                PlayerName = gameSession.PlayerName,
                 ShowLoadingScreen = true,
                 MinimumLoadingTime = 2f,
                 GameData = gameData
@@ -298,8 +297,8 @@ namespace GameFramework.Services
         private static bool IsValidGameSession(GameSession session)
         {
             return session != null &&
-                   !string.IsNullOrEmpty(session.playerName) &&
-                   !string.IsNullOrEmpty(session.currentScene);
+                   !string.IsNullOrEmpty(session.PlayerName) &&
+                   !string.IsNullOrEmpty(session.CurrentScene);
         }
         
         #endregion

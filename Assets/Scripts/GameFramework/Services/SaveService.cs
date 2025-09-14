@@ -344,7 +344,7 @@ namespace GameFramework.Services
             }
 
             // Delete existing autosave for current player only
-            await DeleteCurrentPlayerAutoSaveAsync(gameDataService.CurrentSession.playerName);
+            await DeleteCurrentPlayerAutoSaveAsync(gameDataService.CurrentSession.PlayerName);
             
             // Use consistent autosave naming (no timestamp) for each player
             string saveName = SaveFileUtilities.GenerateAutoSaveName(gameDataService.CurrentSession);

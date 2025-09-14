@@ -6,14 +6,13 @@
     public struct PlayTimeInfo
     {
         public float GameTime;
-        public float SessionTime;
         public string FormattedGameTime;
-        public string FormattedSessionTime;
         public bool IsTracking;
         
         public override string ToString()
         {
-            return $"PlayTime[Game: {FormattedGameTime}, Session: {FormattedSessionTime}, Tracking: {IsTracking}]";
+            return $"PlayTime[Game: {FormattedGameTime}, Tracking: {IsTracking}]";
         }
     }
+
 }

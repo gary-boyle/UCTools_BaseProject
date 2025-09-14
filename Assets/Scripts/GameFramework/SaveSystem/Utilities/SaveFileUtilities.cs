@@ -147,7 +147,7 @@ namespace GameFramework.Utilities
                 throw new ArgumentNullException(nameof(session));
 
             string timestamp = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
-            string playerName = session.playerName ?? "Player";
+            string playerName = session.PlayerName ?? "Player";
 
             return isAutoSave 
                 ? $"{playerName}_{AUTOSAVE_IDENTIFIER}_{timestamp}" 
@@ -165,7 +165,7 @@ namespace GameFramework.Utilities
             if (session == null)
                 throw new ArgumentNullException(nameof(session));
 
-            string playerName = session.playerName ?? "Player";
+            string playerName = session.PlayerName ?? "Player";
             return $"{playerName}_{AUTOSAVE_IDENTIFIER}";
         }
 

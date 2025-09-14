@@ -178,7 +178,7 @@ namespace GameFramework.UI.Screens
         /// </summary>
         private void UpdateDebugLabel1(DataStructures.GameSession session)
         {
-            var text = $"Player: {session.playerName}";
+            var text = $"Player: {session.PlayerName}";
             SetDebugLabel(_debugLabel1, text);
         }
         
@@ -209,11 +209,10 @@ namespace GameFramework.UI.Screens
             if (_timeService != null && session != null)
             {
                 var formattedGameTime = _timeService.GetFormattedGameTime();
-                var formattedSessionTime = _timeService.GetFormattedSessionTime();
                 var isTracking = _timeService.IsTrackingGameTime;
                 
                 var trackingIndicator = isTracking ? "⏱️" : "⏸️";
-                var text = $"Scene: {session.currentScene} | Game: {formattedGameTime} | Session: {formattedSessionTime} {trackingIndicator}";
+                var text = $"Scene: {session.CurrentScene} | Game: {formattedGameTime} | {trackingIndicator}";
                 
                 SetDebugLabel(_debugLabel4, text);
             }
@@ -222,7 +221,7 @@ namespace GameFramework.UI.Screens
                 var currentPlayTime = session?.SavedGameTime ?? 0f;
                 var playTime = TimeSpan.FromSeconds(currentPlayTime);
                 var formattedTime = $"{playTime.Hours:D2}:{playTime.Minutes:D2}:{playTime.Seconds:D2}";
-                var text = $"Scene: {session?.currentScene ?? "Unknown"} | Time: {formattedTime} (Fallback)";
+                var text = $"Scene: {session?.CurrentScene ?? "Unknown"} | Time: {formattedTime} (Fallback)";
                 
                 SetDebugLabel(_debugLabel4, text);
             }
@@ -236,16 +235,8 @@ namespace GameFramework.UI.Screens
             SetDebugLabel(_debugLabel1, "No Active Session");
             SetDebugLabel(_debugLabel2, "---");
             SetDebugLabel(_debugLabel3, "---");
-            
-            if (_timeService != null)
-            {
-                var sessionTime = _timeService.GetFormattedSessionTime();
-                SetDebugLabel(_debugLabel4, $"Session Time: {sessionTime} (No Game Session)");
-            }
-            else
-            {
-                SetDebugLabel(_debugLabel4, "TimeService Unavailable");
-            }
+            SetDebugLabel(_debugLabel4, "---");
+
         }
         
         /// <summary>

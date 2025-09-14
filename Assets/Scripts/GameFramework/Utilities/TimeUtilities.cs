@@ -6,6 +6,7 @@ namespace GameFramework.Utilities
     /// <summary>
     /// Static utility class for time formatting and common time operations
     /// Contains pure functions with no dependencies on services or state
+    /// Focuses on GameTime only - no session time tracking
     /// </summary>
     public static class TimeUtilities
     {
@@ -68,18 +69,6 @@ namespace GameFramework.Utilities
         }
         
         /// <summary>
-        /// Get formatted saved session time string for a GameSession
-        /// Always uses the saved time data, not current TimeService data
-        /// </summary>
-        /// <param name="session">GameSession to get session time from</param>
-        /// <returns>Formatted session time string (HH:MM:SS)</returns>
-        public static string GetSavedFormattedSessionTime(GameSession session)
-        {
-            if (session == null) return "00:00:00";
-            return FormatTimeFromSeconds(session.SavedSessionTime);
-        }
-        
-        /// <summary>
         /// Creates a PlayTimeInfo from saved GameSession data (fallback when TimeService unavailable)
         /// </summary>
         /// <param name="session">GameSession to create info from</param>
@@ -91,9 +80,7 @@ namespace GameFramework.Utilities
                 return new PlayTimeInfo
                 {
                     GameTime = 0f,
-                    SessionTime = 0f,
                     FormattedGameTime = "00:00:00",
-                    FormattedSessionTime = "00:00:00",
                     IsTracking = false
                 };
             }
@@ -101,9 +88,7 @@ namespace GameFramework.Utilities
             return new PlayTimeInfo
             {
                 GameTime = session.SavedGameTime,
-                SessionTime = session.SavedSessionTime,
                 FormattedGameTime = FormatTimeFromSeconds(session.SavedGameTime),
-                FormattedSessionTime = FormatTimeFromSeconds(session.SavedSessionTime),
                 IsTracking = false // Can't track when using saved data
             };
         }

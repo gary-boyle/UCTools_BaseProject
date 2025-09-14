@@ -14,7 +14,6 @@ namespace GameFramework.Services.Interfaces
         
         // Time Properties
         float GameTime { get; }        // Time spent in PlayingState when not paused
-        float SessionTime { get; }     // Total time since service started (excluding pause)
 
         // State Properties
         bool IsTrackingGameTime { get; }
@@ -25,9 +24,7 @@ namespace GameFramework.Services.Interfaces
         
         // Time Methods
         string GetFormattedGameTime();
-        string GetFormattedSessionTime();
         TimeStatistics GetTimeStatistics();
         void UpdateSessionTimeData(GameSession session);
-        string GetSavedFormattedPlayTime(GameSession session);
     }
 }
