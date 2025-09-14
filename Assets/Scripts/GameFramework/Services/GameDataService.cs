@@ -22,9 +22,6 @@ namespace GameFramework.Services
     /// - Uses TimeService for all time-related operations
     /// - Manages session lifecycle and save timing
     /// - Uses EventSystem for communication
-    /// 
-    /// Pros: Clear separation of concerns, centralized session management
-    /// Cons: Slightly more complex but better architecture
     /// </summary>
     public class GameDataService : IGameDataService, IUpdatable
     {
@@ -71,10 +68,10 @@ namespace GameFramework.Services
             UpdateSession();
         }
         
-        #region GameSession Creation (Moved from GameSession)
+        #region GameSession Creation
         
         /// <summary>
-        /// Creates a new game session from loading configuration (moved from GameSession)
+        /// Creates a new game session from loading configuration
         /// TimeService will handle playtime tracking automatically
         /// Publishes SessionCreatedEvent through EventSystem
         /// </summary>
@@ -121,12 +118,11 @@ namespace GameFramework.Services
             session.SetSavedTimeData(0f);
             session.SetHasTimeData(true);
             
-            Debug.Log($"[GameDataService] Created new game session: {session}");
             return session;
         }
         
         /// <summary>
-        /// Updates the last save time and captures current playtime data (moved from GameSession)
+        /// Updates the last save time and captures current playtime data
         /// Called when the game is saved
         /// </summary>
         public void UpdateSessionSaveTime(GameSession session = null)
@@ -141,7 +137,6 @@ namespace GameFramework.Services
             targetSession.LastSaveTime = DateTime.Now;
 
             var timeService = GameManager.GetService<ITimeService>();
-            // Use TimeService to update the session's time data
             if (timeService.IsInitialized)
             {
                 timeService.UpdateSessionTimeData(targetSession);
@@ -160,9 +155,7 @@ namespace GameFramework.Services
         {
             CurrentSession = session ?? throw new ArgumentNullException(nameof(session));
     
-            // No manual time adjustment needed - TimeService handles all playtime tracking
             // TimeService will load playtime from the session's time data automatically
-    
             // Reset auto-save timer for loaded session
             _lastAutoSaveCheck = DateTime.Now;
             
@@ -197,8 +190,6 @@ namespace GameFramework.Services
         public void UpdateSession()
         {
             if (CurrentSession == null) return;
-    
-            // No manual playtime updates needed - TimeService handles everything
             
             // Check if it's time for an auto-save
             var timeSinceLastCheck = DateTime.Now - _lastAutoSaveCheck;

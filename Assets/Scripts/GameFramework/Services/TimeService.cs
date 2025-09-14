@@ -184,18 +184,6 @@ namespace GameFramework.Services
             if (IsInitialized)
             {
                 session.SetSavedTimeData(_gameTime);
-                Debug.Log($"[TimeService] Updated session time data - Game: {GetFormattedGameTime()}");
-            }
-            else
-            {
-                Debug.LogWarning("[TimeService] TimeService not initialized - using fallback calculation");
-                
-                // Fallback: Calculate playtime based on session duration if we have no previous data
-                if (!session.HasSavedTimeData || session.SavedGameTime == 0f)
-                {
-                    var sessionDuration = (DateTime.Now - session.SessionStartTime).TotalSeconds;
-                    session.SetSavedTimeData((float)sessionDuration);
-                }
             }
         }
         
@@ -227,8 +215,6 @@ namespace GameFramework.Services
         {
             _gameTime = gameTime;
             _levelTime = 0f; // Reset level time when loading
-            
-            Debug.Log($"[TimeService] Loaded time data - Game: {FormatTimeFromSeconds(_gameTime)}");
         }
         
         /// <summary>
