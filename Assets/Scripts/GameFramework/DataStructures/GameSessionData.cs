@@ -1,128 +1,116 @@
-﻿using System;
+﻿using GameFramework.SaveSystem.Data;
 using UnityEngine;
-using GameFramework.Services.Interfaces;
+using GameFramework.SaveSystem.Interfaces;
+using UnityEngine.Serialization;
 
 namespace GameFramework.DataStructures
 {
     /// <summary>
-    /// Pure data container for game session information
-    /// Contains only serializable data fields and basic accessors
-    /// No business logic - just data storage and retrieval
-    /// Implements ISaveable to integrate with the save system
+    /// Game session data implementation of ISaveable
+    /// Stores difficulty, scene, and game time information
     /// </summary>
-    [Serializable]
-    public class GameSessionData
+    [System.Serializable]
+    public class GameSessionData : ISaveable
     {
-        [Header("Session Info")]
-        public string PlayerName = "Player";
-        public string Difficulty = "Normal";
-        public string CurrentScene = "";
-        
-        [Header("DateTime Fields - Serializable")]
-        [SerializeField] private long _sessionStartTimeTicks;
-        [SerializeField] private long _lastSaveTimeTicks;
-        
-        [Header("Time Tracking - Serialized Fields")]
-        [SerializeField] private float _savedGameTime = 0f;      // Serialized playtime data
-        [SerializeField] private bool _hasTimeData = false;      // Flag to know if we have saved time data
-        
-        [Header("Save Info")]
-        [SerializeField] public bool WasAutoSave = false;      // Flag to know if the game was an autosave
-        
-        
-        #region DateTime Properties
-        
-        /// <summary>
-        /// Gets/Sets the session start time with proper serialization support
-        /// </summary>
-        public DateTime SessionStartTime
-        {
-            get 
-            {
-                if (_sessionStartTimeTicks == 0)
-                    return DateTime.Now; // Fallback for uninitialized data
-                return new DateTime(_sessionStartTimeTicks);
-            }
-            set { _sessionStartTimeTicks = value.Ticks; }
-        }
-        
-        /// <summary>
-        /// Gets/Sets the last save time with proper serialization support
-        /// </summary>
-        public DateTime LastSaveTime
-        {
-            get 
-            {
-                if (_lastSaveTimeTicks == 0)
-                    return DateTime.Now; // Fallback for uninitialized data
-                return new DateTime(_lastSaveTimeTicks);
-            }
-            set { _lastSaveTimeTicks = value.Ticks; }
-        }
-        
+        #region ISaveable Implementation
+        public string SaveKey => "GameSessionData";
+        public string TypeName => typeof(GameSessionData).Name;
         #endregion
-        
-        #region Time Data Access
-        
-        /// <summary>
-        /// Gets the saved game time in seconds
-        /// </summary>
-        public float SavedGameTime => _savedGameTime;
-        
-        /// <summary>
-        /// Sets the saved time data (used by TimeService)
-        /// </summary>
-        public void SetSavedTimeData(float gameTime)
-        {
-            _savedGameTime = gameTime;
-            _hasTimeData = true;
-        }
-        
-        /// <summary>
-        /// Checks if this session has saved time data
-        /// </summary>
-        public bool HasSavedTimeData => _hasTimeData;
-        
-        /// <summary>
-        /// Marks that time data has been initialized
-        /// </summary>
-        public void SetHasTimeData(bool hasData)
-        {
-            _hasTimeData = hasData;
-        }
-        
+
+        #region Private Fields
+        [SerializeField] private string _difficulty = "Normal";
+        [SerializeField] private string _currentScene = "MainMenu";
+        [SerializeField] private float _gameTime = 0f;
         #endregion
+
+        #region Public Properties
+        public string Difficulty 
+        { 
+            get => _difficulty; 
+            set => _difficulty = value; 
+        }
         
-        #region Scene Management
+        public string CurrentScene 
+        { 
+            get => _currentScene; 
+            set => _currentScene = value; 
+        }
         
+        public float GameTime 
+        { 
+            get => _gameTime; 
+            set => _gameTime = value; 
+        }
+        #endregion
+
+        #region ISaveable Methods
         /// <summary>
-        /// Updates the current scene reference
+        /// Gets serializable data for save operations
+        /// Returns anonymous object matching JSON structure requirements
         /// </summary>
-        public void SetCurrentScene(string sceneName)
+        public object GetSaveData()
         {
-            if (string.IsNullOrEmpty(sceneName))
+            return new GameSessionSaveData
             {
-                Debug.LogWarning("[GameSession] Attempted to set empty scene name");
+                difficulty = Difficulty,
+                currentScene = CurrentScene,
+                gameTime = GameTime
+            };
+        }
+
+        /// <summary>
+        /// Restores state from saved data
+        /// Handles dynamic object deserialization safely
+        /// </summary>
+        public void LoadSaveData(object data)
+        {
+            if (data == null)
+            {
+                Debug.LogWarning("[GameSessionData] Cannot load null save data");
                 return;
             }
-            
-            CurrentScene = sceneName;
+
+            try
+            {
+                // Handle JsonUtility deserialization
+                if (data is GameSessionData directData)
+                {
+                    _difficulty = directData._difficulty;
+                    _currentScene = directData._currentScene;
+                    _gameTime = directData._gameTime;
+                }
+                else
+                {
+                    // Handle dynamic object from JSON
+                    var json = JsonUtility.ToJson(data);
+                    var loadedData = JsonUtility.FromJson<GameSessionData>(json);
+                    
+                    _difficulty = loadedData._difficulty;
+                    _currentScene = loadedData._currentScene;
+                    _gameTime = loadedData._gameTime;
+                }
+                
+                Debug.Log($"[GameSessionData] Loaded save data - Difficulty: {_difficulty}, Scene: {_currentScene}, Time: {_gameTime}");
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogError($"[GameSessionData] Failed to load save data: {ex.Message}");
+            }
         }
-        
         #endregion
-        
-        #region Debug
-        
-        /// <summary>
-        /// Gets a summary string for debugging
-        /// </summary>
-        public override string ToString()
+
+        #region Constructors
+        public GameSessionData() { }
+
+        public GameSessionData(string difficulty, string currentScene, float gameTime)
         {
-            return $"GameSession[Player: {PlayerName}, Difficulty: {Difficulty}, Scene: {CurrentScene}, " +
-                   $"SavedGameTime: {_savedGameTime:F1}s, HasTimeData: {_hasTimeData}, " +
-                   $"LastSave: {LastSaveTime}]";
+            this._difficulty = difficulty;
+            this._currentScene = currentScene;
+            this._gameTime = gameTime;
         }
         
+        
+
         #endregion
     }
 }

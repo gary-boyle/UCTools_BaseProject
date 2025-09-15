@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
+using GameFramework.DataStructures;
 using GameFramework.EventSystem.Events;
 using GameFramework.EventSystem.Interfaces;
 using GameFramework.Services.Data;
 using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine.Enum;
 using GameFramework.StateMachine.Interfaces;
-using GameFramework.DataStructures;
 using GameFramework.Utilities;
 using UnityEngine;
 
@@ -16,10 +16,6 @@ namespace GameFramework.Services
     /// TimeService manages game time tracking and provides time-related utilities
     /// Tracks only GameTime (time spent actually playing when unpaused)
     /// Handles time formatting, playtime info generation, and game time synchronization
-    /// 
-    /// Design: Centralized time management with formatting utilities for GameSession data
-    /// Pros: Simple, focused time tracking, consistent formatting, proper session integration
-    /// Cons: None - simplified from previous session time tracking
     /// </summary>
     public class TimeService : ITimeService, IUpdatable
     {
@@ -88,9 +84,6 @@ namespace GameFramework.Services
             _lastUpdateTime = Time.realtimeSinceStartup;
             _isInitialized = true;
             
-            // Load existing time data if we have an active session
-            LoadTimeDataFromSession();
-            
             IsInitialized = true;
             await Task.CompletedTask;
         }
@@ -148,45 +141,11 @@ namespace GameFramework.Services
         {
             return TimeUtilities.FormatTimeFromSeconds(_gameTime);
         }
-        
-        /// <summary>
-        /// Get formatted saved playtime - delegates to utility
-        /// </summary>
-        public string GetSavedFormattedPlayTime(GameSessionData sessionData)
-        {
-            return TimeUtilities.GetSavedFormattedPlayTime(sessionData);
-        }
-        
-        /// <summary>
-        /// Helper method delegates to utility
-        /// </summary>
-        public string FormatTimeFromSeconds(float seconds)
-        {
-            return TimeUtilities.FormatTimeFromSeconds(seconds);
-        }
-        
+
         #endregion
         
         #region GameSession Integration
-        
-        /// <summary>
-        /// Updates a GameSession with current time data from TimeService
-        /// Call this before serializing the session to ensure current time data is captured
-        /// </summary>
-        public void UpdateSessionTimeData(GameSessionData sessionData)
-        {
-            if (sessionData == null)
-            {
-                Debug.LogWarning("[TimeService] Cannot update time data - session is null");
-                return;
-            }
-            
-            if (IsInitialized)
-            {
-                sessionData.SetSavedTimeData(_gameTime);
-            }
-        }
-        
+
         #endregion
         
         #region Public Time Methods
@@ -213,8 +172,6 @@ namespace GameFramework.Services
         /// </summary>
         public void SetSavedTimeData(float gameTime)
         {
-            _gameTime = gameTime;
-            _levelTime = 0f; // Reset level time when loading
         }
         
         /// <summary>
@@ -268,7 +225,6 @@ namespace GameFramework.Services
         
         private void OnSessionLoaded(SessionLoadedEvent evt)
         {
-            Debug.Log("[TimeService] Session loaded event received, loading time data...");
             LoadTimeDataFromSession();
         }
         
@@ -288,15 +244,9 @@ namespace GameFramework.Services
         {
             if (_gameDataService?.HasActiveSession() != true) return;
 
-            var session = _gameDataService.CurrentSessionData;
-            if (session.HasSavedTimeData)
-            {
-                SetSavedTimeData(session.SavedGameTime);
-            }
-            else
-            {
-                Debug.LogWarning("[TimeService] Session has no saved time data");
-            }
+            var session = _gameDataService.GetGameSessionData();
+            _gameTime = session.GameTime;
+            _levelTime = 0f; // Reset level time when loading
         }
         
         #endregion

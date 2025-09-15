@@ -25,6 +25,5 @@ namespace GameFramework.Services.Interfaces
         // Time Methods
         string GetFormattedGameTime();
         TimeStatistics GetTimeStatistics();
-        void UpdateSessionTimeData(GameSessionData sessionData);
     }
 }

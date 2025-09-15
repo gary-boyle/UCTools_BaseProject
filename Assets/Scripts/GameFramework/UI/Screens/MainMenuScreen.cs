@@ -88,12 +88,12 @@ namespace GameFramework.UI.Screens
         
         protected override void OnShow()
         {
-            // Update button states based on current game state
-            var saveService = GameManager.GetService<ISaveService>();
-            if (_loadButton != null && saveService != null)
-            {
-                _loadButton.SetEnabled(saveService.HasAnySaves());
-            }
+            // // Update button states based on current game state
+            // var saveService = GameManager.GetService<ISaveService>();
+            // if (_loadButton != null && saveService != null)
+            // {
+            //     _loadButton.SetEnabled(saveService.HasAnySaves());
+            // }
         }
         
     }

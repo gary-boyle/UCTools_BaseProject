@@ -39,12 +39,12 @@ namespace GameFramework.EventSystem.Events
     public class LoadGameRequestedEvent
     {
         public string SaveFileName { get; set; }
-        public SaveFileInfo SaveFileInfo { get; set; }
+        public SaveFileInfo SaveFileInfoOld { get; set; }
         
         public LoadGameRequestedEvent(string saveFileName, SaveFileInfo saveFileInfo)
         {
             SaveFileName = saveFileName;
-            SaveFileInfo = saveFileInfo;
+            SaveFileInfoOld = saveFileInfo;
         }
     }
     

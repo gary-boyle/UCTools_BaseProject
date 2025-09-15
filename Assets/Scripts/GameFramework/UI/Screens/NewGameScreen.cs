@@ -17,6 +17,8 @@ namespace GameFramework.UI.Screens
         
         private Button _confirmButton;
         private Button _backButton;
+        private Button _saveButton;
+
         private TextField _playerNameTextField;
         private DropdownField _difficultyDropdown;
         
@@ -59,6 +61,8 @@ namespace GameFramework.UI.Screens
             // Cache UI elements
             _confirmButton = RootElement?.Q<Button>("btn_Confirm");
             _backButton = RootElement?.Q<Button>("btn_Back");
+            _saveButton = RootElement?.Q<Button>("btn_Save");
+
             _playerNameTextField = RootElement?.Q<TextField>("txt_PlayerName");
             _difficultyDropdown = RootElement?.Q<DropdownField>("dd_Difficulty");
 
@@ -104,6 +108,11 @@ namespace GameFramework.UI.Screens
                 _backButton.RegisterCallback<ClickEvent>(OnBackButtonClicked);
             }
             
+            if (_saveButton != null)
+            {
+                _saveButton.RegisterCallback<ClickEvent>(OnSaveButtonClicked);
+            }
+            
             if (_playerNameTextField != null)
             {
                 _playerNameTextField.RegisterCallback<KeyDownEvent>(OnTextFieldKeyDown);
@@ -120,6 +129,10 @@ namespace GameFramework.UI.Screens
             if (_backButton != null)
             {
                 _backButton.UnregisterCallback<ClickEvent>(OnBackButtonClicked);
+            }
+            if (_saveButton != null)
+            {
+                _saveButton.UnregisterCallback<ClickEvent>(OnSaveButtonClicked);
             }
             
             if (_playerNameTextField != null)
@@ -160,6 +173,35 @@ namespace GameFramework.UI.Screens
     
             _eventSystem?.Publish(newGameEvent);
         }
+        
+        private void OnSaveButtonClicked(ClickEvent evt)
+        {
+            var playerName = _playerNameTextField?.value?.Trim();
+            if (string.IsNullOrEmpty(playerName))
+            {
+                playerName = "Player";
+            }
+            
+            var difficulty = _difficultyDropdown?.value ?? "Normal";
+            
+            // Only report the user interaction - don't handle UI lifecycle
+            var newGameEvent = new NewGameRequestedEvent
+            {
+                PlayerName = playerName,
+                Difficulty = difficulty,
+                StartingScene = "GameLevel1",
+                CustomData = new Dictionary<string, object>
+                {
+                    ["creationTime"] = System.DateTime.Now.ToString(),
+                    ["screenSource"] = nameof(NewGameScreen)
+                }
+            };
+    
+            _eventSystem.Publish(SaveRequestedEvent.CreateRegularSave());
+
+            //_eventSystem?.Publish(newGameEvent);
+        }
+
         
         /// <summary>
         /// Report back button request - state will handle UI transitions

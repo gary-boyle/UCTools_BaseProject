@@ -28,18 +28,6 @@ namespace GameFramework.Utilities
                 timeSpan.Seconds);
         }
         
-        /// <summary>
-        /// Get formatted saved playtime string for a GameSession
-        /// Always uses the saved time data, not current TimeService data
-        /// </summary>
-        /// <param name="sessionData">GameSession to get playtime from</param>
-        /// <returns>Formatted playtime string (HH:MM:SS)</returns>
-        public static string GetSavedFormattedPlayTime(GameSessionData sessionData)
-        {
-            if (sessionData == null) return "00:00:00";
-            return FormatTimeFromSeconds(sessionData.SavedGameTime);
-        }
-        
         #endregion
 
         

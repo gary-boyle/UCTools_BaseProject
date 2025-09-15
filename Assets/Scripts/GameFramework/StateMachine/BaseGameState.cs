@@ -35,7 +35,7 @@ namespace GameFramework.StateMachine
         protected IInputManager InputManager => Context.InputManager;
         protected ILoadService LoadService => Context.LoadService;
         protected IPauseService PauseService => Context.PauseService;
-        protected ISaveService SaveService => Context.SaveService;
+        //protected ISaveService SaveService => Context.SaveService;
         protected ISceneService SceneService => Context.SceneService;
         protected ITimeService TimeService => Context.TimeService;
         protected IUIService UIService => Context.UIService;

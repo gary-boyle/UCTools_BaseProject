@@ -1,29 +1,75 @@
-﻿using System;
-using System.Threading.Tasks;
-using GameFramework.DataStructures;
-using GameFramework.StateMachine.Data;
+﻿using GameFramework.DataStructures;
+using UnityEngine;
+using GameFramework.SaveSystem.Services;
+using GameFramework.EventSystem.Interfaces;
 
 namespace GameFramework.Services.Interfaces
 {
     /// <summary>
-    /// Clean IGameDataService interface for unified GameSession management
+    /// Interface for managing current game data (GameSessionData and PlayerData)
+    /// Provides controlled access to game state with save system integration
+    /// Uses EventSystem for change notifications
     /// </summary>
-    public interface IGameDataService
+    public interface IGameDataService : IGameService
     {
-        bool IsInitialized { get; }
-        GameSessionData CurrentSessionData { get; }
-        LoadingConfiguration CurrentLoadingConfig { get; set; }
+        #region GameSessionData Access
+        /// <summary>
+        /// Gets the current GameSessionData (read-only access)
+        /// </summary>
+        GameSessionData GetGameSessionData();
+
+        /// <summary>
+        /// Sets new GameSessionData and publishes change event
+        /// </summary>
+        void SetGameSessionData(GameSessionData gameSessionData);
+
+        /// <summary>
+        /// Updates specific game session properties
+        /// </summary>
+        void UpdateGameSession(string difficulty = null, string currentScene = null, float? gameTime = null);
         
-        // Service Lifecycle
-        Task InitializeAsync();
-        void Shutdown();
-        
-        // Session Management
-        void CreateNewGameSession(LoadingConfiguration config);
-        void LoadGameSession(GameSessionData sessionData);
-        void ClearSession();
         bool HasActiveSession();
-        bool IsValidGameSession(GameSessionData sessionData);
-        void UpdateSessionSaveTime(GameSessionData sessionData = null);
+        #endregion
+
+        #region PlayerData Access
+        /// <summary>
+        /// Gets the current PlayerData (read-only access)
+        /// </summary>
+        PlayerData GetPlayerData();
+
+        /// <summary>
+        /// Sets new PlayerData and publishes change event
+        /// </summary>
+        void SetPlayerData(PlayerData playerData);
+
+        /// <summary>
+        /// Updates specific player properties
+        /// </summary>
+        void UpdatePlayer(string playerName = null, Vector3? position = null, Vector3? rotation = null);
+        #endregion
+
+        #region Data Lifecycle
+        /// <summary>
+        /// Creates a new game session with default or specified parameters
+        /// </summary>
+        void StartNewGame(string playerName = "Player", string difficulty = "Normal", string startingScene = "MainMenu");
+
+        /// <summary>
+        /// Loads game data from provided data objects (used by load system)
+        /// </summary>
+        void LoadGameData(GameSessionData gameSessionData, PlayerData playerData);
+
+        /// <summary>
+        /// Resets all game data to defaults
+        /// </summary>
+        void ResetToDefaults();
+        #endregion
+
+        #region Validation
+        /// <summary>
+        /// Validates that current game data is in a consistent state
+        /// </summary>
+        bool ValidateGameData();
+        #endregion
     }
 }

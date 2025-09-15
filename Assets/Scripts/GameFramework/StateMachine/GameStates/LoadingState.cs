@@ -1,10 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using GameFramework.Core;
-using GameFramework.DataStructures;
 using GameFramework.EventSystem.Events;
 using GameFramework.Input;
-using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine.Data;
 using GameFramework.StateMachine.Enum;
 using GameFramework.StateMachine.Interfaces;
@@ -35,15 +32,7 @@ namespace GameFramework.StateMachine.GameStates
             await base.EnterAsync(context);
             InputManager.SetInputContext(InputContext.UI);
 
-            _currentConfig = GameDataService.CurrentLoadingConfig;
             _loadingStartTime = Time.time;
-            
-            if (_currentConfig == null)
-            {
-                Debug.LogError("[LoadingState] No loading configuration provided!");
-                await TransitionToStateAsync(GameStateType.MainMenu);
-                return;
-            }
             
             // Show loading screen if requested
             if (_currentConfig.ShowLoadingScreen)
@@ -108,64 +97,16 @@ namespace GameFramework.StateMachine.GameStates
         
         private async Task ProcessNewGameLoading()
         {
-            await UpdateLoadingProgress("Initializing new game...", 0.1f);
-            
-            // Create new game session from loading configuration
-            GameDataService.CreateNewGameSession(_currentConfig);
-            await UpdateLoadingProgress("Setting up player...", 0.3f);
-            
-            // Load the scene
-            await LoadScene(_currentConfig.SceneName);
-            await UpdateLoadingProgress("Loading world...", 0.7f);
-            
-            // Initialize game systems for new game
-            await InitializeGameSystems();
-            await UpdateLoadingProgress("Finalizing...", 1.0f);
         }
         
         private async Task ProcessLoadSaveLoading()
         {
-            await UpdateLoadingProgress("Loading save data...", 0.1f);
-            
-            // Get the GameSession directly from loading config
-            GameSessionData sessionData = null;
-            if (_currentConfig.GameData.ContainsKey("gameSession"))
-            {
-                sessionData = (GameSessionData)_currentConfig.GameData["gameSession"];
-            }
-            else
-            {
-                // Fallback: create from data if session not directly stored
-                sessionData = CreateSessionFromSaveData(_currentConfig);
-            }
-            
-            if (sessionData == null)
-            {
-                throw new InvalidOperationException("Could not load game session from save data");
-            }
-            
-            // Load the session into GameDataService - TimeService will handle playtime restoration
-            GameDataService.LoadGameSession(sessionData);
-            await UpdateLoadingProgress("Restoring game state...", 0.4f);
-            
-            // Load the appropriate scene
-            await LoadScene(_currentConfig.SceneName);
-            await UpdateLoadingProgress("Loading world...", 0.7f);
-            
-            // Initialize game systems with loaded data
-            await InitializeGameSystems();
-            await UpdateLoadingProgress("Finalizing...", 1.0f);
+
         }
         
         private async Task ProcessSceneTransitionLoading()
         {
             await UpdateLoadingProgress("Transitioning...", 0.2f);
-            
-            // Update current session's scene
-            if (GameDataService.HasActiveSession())
-            {
-                GameDataService.CurrentSessionData.SetCurrentScene(_currentConfig.SceneName);
-            }
             
             // Load new scene
             await LoadScene(_currentConfig.SceneName);
@@ -176,22 +117,6 @@ namespace GameFramework.StateMachine.GameStates
         
         private async Task ProcessGameRestartLoading()
         { 
-            await UpdateLoadingProgress("Restarting...", 0.1f);
-            
-            // Clear current session and create new one - TimeService will reset timers
-            GameDataService.ClearSession();
-            await UpdateLoadingProgress("Resetting...", 0.4f);
-            
-            // Create fresh session from current config
-            GameDataService.CreateNewGameSession(_currentConfig);
-            
-            // Reload the scene
-            await LoadScene(_currentConfig.SceneName);
-            await UpdateLoadingProgress("Reloading...", 0.8f);
-            
-            // Initialize fresh game systems
-            await InitializeGameSystems();
-            await UpdateLoadingProgress("Complete", 1.0f);
         }
         
         /// <summary>
@@ -207,39 +132,6 @@ namespace GameFramework.StateMachine.GameStates
             
             // Publish scene loaded event - TimeService will respond if needed
             EventSystem.Publish(new SceneLoadedEvent { SceneName = sceneName });
-        }
-        
-        /// <summary>
-        /// Creates a GameSession from save data stored in loading configuration
-        /// TimeService will handle playtime restoration automatically
-        /// </summary>
-        private static GameSessionData CreateSessionFromSaveData(LoadingConfiguration config)
-        {
-            // Extract saved session data from loading configuration
-            var session = new GameSessionData
-            {
-                PlayerName = config.PlayerName,
-                Difficulty = config.GameData.ContainsKey("difficulty") ? config.GameData["difficulty"].ToString() : "Normal",
-                CurrentScene = config.SceneName,
-                SessionStartTime = config.GameData.ContainsKey("sessionStartTime") ? 
-                    DateTime.Parse(config.GameData["sessionStartTime"].ToString()) : DateTime.Now,
-                LastSaveTime = config.GameData.ContainsKey("lastSaveTime") ? 
-                    DateTime.Parse(config.GameData["lastSaveTime"].ToString()) : DateTime.Now,
-            };
-            
-            return session;
-        }
-        
-        private async Task InitializeGameSystems()
-        {
-            // Publish initialization events
-            EventSystem.Publish(new GameSystemsInitializedEvent
-            {
-                LoadingType = _currentConfig.Type,
-                GameData = _currentConfig.GameData
-            });
-            
-            await Task.CompletedTask;
         }
         
         private async Task UpdateLoadingProgress(string message, float progress)
@@ -287,8 +179,6 @@ namespace GameFramework.StateMachine.GameStates
             }
             
             // Clear loading configuration
-            GameDataService.CurrentLoadingConfig = null;
-            _currentConfig = null;
             
             await base.ExitAsync();
         }

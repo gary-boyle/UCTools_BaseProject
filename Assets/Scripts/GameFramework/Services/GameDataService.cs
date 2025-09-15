@@ -1,309 +1,441 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using GameFramework.Core;
 using GameFramework.DataStructures;
 using GameFramework.EventSystem.Events;
-using GameFramework.EventSystem.Interfaces;
-using GameFramework.Services.Interfaces;
-using GameFramework.StateMachine.Data;
-using GameFramework.StateMachine.Interfaces;
 using UnityEngine;
+using GameFramework.SaveSystem.Services;
+using GameFramework.GameData.Events;
+using GameFramework.EventSystem.Interfaces;
+using GameFramework.SaveSystem.Interfaces;
+using GameFramework.Services.Interfaces;
 
-namespace GameFramework.Services
+namespace GameFramework.GameData.Services
 {
     /// <summary>
-    /// GameDataService manages GameSession lifecycle and provides session creation utilities
-    /// 
-    /// Intent: Single source of truth for game state with session creation and management
-    /// 
-    /// Design:
-    /// - Handles all GameSession creation logic (moved from GameSession)
-    /// - Uses TimeService for all time-related operations
-    /// - Manages session lifecycle and save timing
-    /// - Uses EventSystem for communication
+    /// Central service for managing current game data (GameSessionData and PlayerData)
+    /// Provides controlled access to game state and integrates with save system
+    /// Uses EventSystem for change notifications and automatic save system registration
     /// </summary>
-    public class GameDataService : IGameDataService, IUpdatable
+    public class GameDataService : IGameDataService
     {
-        public bool IsInitialized { get; private set; }
-        public GameSessionData CurrentSessionData { get; private set; }
-        public LoadingConfiguration CurrentLoadingConfig { get; set; }
-        
-        private readonly IEventSystem _eventSystem;
-        private readonly ISaveService _saveService;
-        
-        // Auto-save timing
-        private DateTime _lastAutoSaveCheck = DateTime.MinValue;
-        private const int AUTO_SAVE_INTERVAL_MINUTES = 5;
+        #region Private Fields
+        private GameSessionData _currentGameSession;
+        private PlayerData _currentPlayerData;
+        private ISaveDataRegistry _saveDataRegistry;
+        private IEventSystem _eventSystem;
+        #endregion
 
+        #region IGameService Implementation
+        public bool IsInitialized { get; private set; }
+        
+        // constructor
         public GameDataService(
-            IEventSystem eventSystem)
+            IEventSystem eventSystem,
+            ISaveDataRegistry saveDataRegistry
+            )
         {
             _eventSystem = eventSystem ?? throw new ArgumentNullException(nameof(eventSystem));
+            _saveDataRegistry = saveDataRegistry ?? throw new ArgumentNullException(nameof(_saveDataRegistry));
         }
 
         public async Task InitializeAsync()
         {
             if (IsInitialized) return;
-            
-            // Subscribe to scene events to keep session updated
-            _eventSystem.Subscribe<SceneLoadedEvent>(OnSceneLoaded);
-            
+
+            Debug.Log("[GameDataService] Initializing game data service...");
+
+            // Initialize with default data
+            InitializeDefaultGameData();
+
             IsInitialized = true;
-            await Task.CompletedTask;
+            Debug.Log("[GameDataService] Game data service initialized successfully");
         }
 
         public void Shutdown()
         {
-            _eventSystem?.Unsubscribe<SceneLoadedEvent>(OnSceneLoaded);
-            
-            ClearSession();
-            CurrentLoadingConfig = null;
+            if (!IsInitialized) return;
+
+            Debug.Log("[GameDataService] Shutting down game data service...");
+
+            // Deregister from save system if registry is available
+            if (_saveDataRegistry != null)
+            {
+                UnregisterFromSaveSystem();
+            }
+
+            // Clear references
+            _currentGameSession = null;
+            _currentPlayerData = null;
+            _saveDataRegistry = null;
+            _eventSystem = null;
+
             IsInitialized = false;
+            Debug.Log("[GameDataService] Game data service shutdown complete");
+        }
+        #endregion
+        
+
+        #region GameSessionData Access
+        /// <summary>
+        /// Gets the current GameSessionData (read-only access)
+        /// </summary>
+        public GameSessionData GetGameSessionData()
+        {
+            if (!IsInitialized)
+            {
+                Debug.LogWarning("[GameDataService] Service not initialized, returning null");
+                return null;
+            }
+
+            return _currentGameSession;
         }
 
-        public void Update()
-        {
-            // Only handle auto-save timing - TimeService handles all playtime tracking
-            UpdateSession();
-        }
-        
-        #region GameSession Creation
-        
         /// <summary>
-        /// Creates a new game session from loading configuration
-        /// TimeService will handle playtime tracking automatically
-        /// Publishes SessionCreatedEvent through EventSystem
+        /// Sets new GameSessionData and publishes change event
         /// </summary>
-        public void CreateNewGameSession(LoadingConfiguration config)
+        public void SetGameSessionData(GameSessionData gameSessionData)
         {
-            string difficulty = "Normal";
-            
-            // Extract difficulty from config if available
-            if (config.GameData.ContainsKey("difficulty"))
+            if (!IsInitialized)
             {
-                difficulty = config.GameData["difficulty"].ToString();
-            }
-            
-            CurrentSessionData = CreateNewGameSession(
-                config.PlayerName, 
-                difficulty,
-                config.SceneName
-            );
-            
-            // Reset auto-save timer for new session
-            _lastAutoSaveCheck = DateTime.Now;
-            
-            // Publish session created event through EventSystem
-            _eventSystem.Publish(new SessionCreatedEvent(CurrentSessionData));
-        }
-        
-        /// <summary>
-        /// Creates a new GameSession with specified parameters (moved from GameSession static method)
-        /// </summary>
-        public GameSessionData CreateNewGameSession(string playerName, string difficulty, string startingScene)
-        {
-            var now = DateTime.Now;
-            var session = new GameSessionData
-            {
-                PlayerName = playerName,
-                Difficulty = difficulty,
-                CurrentScene = startingScene,
-                SessionStartTime = now,
-                LastSaveTime = now,
-                WasAutoSave = false
-            };
-            
-            // Initialize time data
-            session.SetSavedTimeData(0f);
-            
-            return session;
-        }
-        
-        /// <summary>
-        /// Updates the last save time and captures current playtime data
-        /// Called when the game is saved
-        /// </summary>
-        public void UpdateSessionSaveTime(GameSessionData sessionData = null)
-        {
-            var targetSession = sessionData ?? CurrentSessionData;
-            if (targetSession == null)
-            {
-                Debug.LogWarning("[GameDataService] Cannot update save time - no session provided");
+                Debug.LogError("[GameDataService] Cannot set game session data - service not initialized");
                 return;
             }
-            
-            targetSession.LastSaveTime = DateTime.Now;
 
-            var timeService = GameManager.GetService<ITimeService>();
-            if (timeService.IsInitialized)
+            if (gameSessionData == null)
             {
-                timeService.UpdateSessionTimeData(targetSession);
+                Debug.LogError("[GameDataService] Cannot set null GameSessionData");
+                return;
+            }
+
+            var previousSession = _currentGameSession;
+            _currentGameSession = gameSessionData;
+
+            // Re-register with save system if registry is available
+            if (_saveDataRegistry != null)
+            {
+                if (previousSession != null)
+                {
+                    _saveDataRegistry.DeregisterSaveable(previousSession);
+                }
+                _saveDataRegistry.RegisterSaveable(_currentGameSession);
+            }
+
+            // Publish change event through EventSystem
+            _eventSystem?.Publish(new GameSessionDataChangedEvent(_currentGameSession));
+
+            Debug.Log($"[GameDataService] GameSessionData updated - Scene: {gameSessionData.CurrentScene}, Difficulty: {gameSessionData.Difficulty}");
+        }
+
+        /// <summary>
+        /// Updates specific game session properties
+        /// </summary>
+        public void UpdateGameSession(string difficulty = null, string currentScene = null, float? gameTime = null)
+        {
+            if (!IsInitialized || _currentGameSession == null)
+            {
+                Debug.LogError("[GameDataService] Cannot update game session - service not initialized or no current session");
+                return;
+            }
+
+            bool changed = false;
+
+            if (!string.IsNullOrEmpty(difficulty) && _currentGameSession.Difficulty != difficulty)
+            {
+                _currentGameSession.Difficulty = difficulty;
+                changed = true;
+            }
+
+            if (!string.IsNullOrEmpty(currentScene) && _currentGameSession.CurrentScene != currentScene)
+            {
+                _currentGameSession.CurrentScene = currentScene;
+                changed = true;
+            }
+
+            if (gameTime.HasValue && Math.Abs(_currentGameSession.GameTime - gameTime.Value) > 0.001f)
+            {
+                _currentGameSession.GameTime = gameTime.Value;
+                changed = true;
+            }
+
+            if (changed)
+            {
+                // Publish change event through EventSystem
+                _eventSystem?.Publish(new GameSessionDataChangedEvent(_currentGameSession));
+                Debug.Log("[GameDataService] GameSessionData updated via UpdateGameSession");
             }
         }
-        
-        #endregion
-        
-        #region GameSession Management
-        
-        /// <summary>
-        /// Loads existing game session - TimeService handles playtime restoration
-        /// Publishes SessionLoadedEvent through EventSystem
-        /// </summary>
-        public void LoadGameSession(GameSessionData sessionData)
+
+        public bool HasActiveSession()
         {
-            CurrentSessionData = sessionData ?? throw new ArgumentNullException(nameof(sessionData));
-    
-            // TimeService will load playtime from the session's time data automatically
-            // Reset auto-save timer for loaded session
-            _lastAutoSaveCheck = DateTime.Now;
-            
-            // Publish session loaded event through EventSystem
-            _eventSystem.Publish(new SessionLoadedEvent(CurrentSessionData));
-        }
-        
-        /// <summary>
-        /// Clears the current session
-        /// Publishes SessionClearedEvent through EventSystem
-        /// </summary>
-        public void ClearSession()
-        {
-            string playerName = null;
-            
-            if (CurrentSessionData != null)
-            {
-                playerName = CurrentSessionData.PlayerName;
-            }
-            
-            CurrentSessionData = null;
-            _lastAutoSaveCheck = DateTime.MinValue;
-            
-            // Publish session cleared event through EventSystem
-            _eventSystem.Publish(new SessionClearedEvent(playerName));
-        }
-        
-        /// <summary>
-        /// Updates session and handles auto-save timing
-        /// TimeService handles all playtime tracking - we just manage auto-saves
-        /// </summary>
-        public void UpdateSession()
-        {
-            if (CurrentSessionData == null) return;
-            
-            // Check if it's time for an auto-save
-            var timeSinceLastCheck = DateTime.Now - _lastAutoSaveCheck;
-            if (timeSinceLastCheck.TotalMinutes >= AUTO_SAVE_INTERVAL_MINUTES)
-            {
-                _lastAutoSaveCheck = DateTime.Now;
-        
-                // Delegate to SaveService's auto-save logic
-                _ = PerformAutoSaveAsync();
-            }
-        }
-        
-        /// <summary>
-        /// Performs an auto-save using SaveService
-        /// </summary>
-        public async Task<bool> PerformAutoSaveAsync()
-        {
-            if (CurrentSessionData != null)
-            {
-                Debug.LogWarning("[GameDataService] Cannot auto-save - no active session or save service unavailable");
-                return false;
-            }
-            
-            _eventSystem.Publish(SaveRequestedEvent.CreateAutoSave());
-            
-            return true;
+            return IsInitialized && _currentGameSession != null;
         }
         
         #endregion
 
-        #region GameSession Validation
+        #region PlayerData Access
+        /// <summary>
+        /// Gets the current PlayerData (read-only access)
+        /// </summary>
+        public PlayerData GetPlayerData()
+        {
+            if (!IsInitialized)
+            {
+                Debug.LogWarning("[GameDataService] Service not initialized, returning null");
+                return null;
+            }
+
+            return _currentPlayerData;
+        }
 
         /// <summary>
-        /// Validates the integrity and completeness of a GameSession
-        /// Checks all critical fields and data structures for consistency
+        /// Sets new PlayerData and publishes change event
         /// </summary>
-        /// <param name="sessionData">The GameSession to validate</param>
-        /// <returns>True if the session is valid and can be safely loaded</returns>
-        public bool IsValidGameSession(GameSessionData sessionData)
+        public void SetPlayerData(PlayerData playerData)
         {
-            if (sessionData == null)
+            if (!IsInitialized)
             {
-                Debug.LogError("[GameDataService] GameSession is null");
-                return false;
+                Debug.LogError("[GameDataService] Cannot set player data - service not initialized");
+                return;
             }
 
-            // Validate required string fields
-            if (string.IsNullOrEmpty(sessionData.PlayerName))
+            if (playerData == null)
             {
-                Debug.LogError("[GameDataService] GameSession has invalid player name");
-                return false;
+                Debug.LogError("[GameDataService] Cannot set null PlayerData");
+                return;
             }
 
-            if (string.IsNullOrEmpty(sessionData.CurrentScene))
+            var previousPlayer = _currentPlayerData;
+            _currentPlayerData = playerData;
+
+            // Re-register with save system if registry is available
+            if (_saveDataRegistry != null)
             {
-                Debug.LogError("[GameDataService] GameSession has invalid current scene");
-                return false;
+                if (previousPlayer != null)
+                {
+                    _saveDataRegistry.DeregisterSaveable(previousPlayer);
+                }
+                _saveDataRegistry.RegisterSaveable(_currentPlayerData);
             }
 
-            // Validate timestamps
-            if (sessionData.SessionStartTime == default(DateTime))
-            {
-                Debug.LogWarning("[GameDataService] GameSession has invalid start time - using current time");
-                sessionData.SessionStartTime = DateTime.Now;
-            }
+            // Publish change event through EventSystem
+            _eventSystem?.Publish(new PlayerDataChangedEvent(_currentPlayerData));
 
-            if (sessionData.LastSaveTime == default(DateTime))
-            {
-                Debug.LogWarning("[GameDataService] GameSession has invalid save time - using current time");
-                sessionData.LastSaveTime = DateTime.Now;
-            }
-
-            // Validate playtime data (non-negative)
-            if (sessionData.SavedGameTime < 0)
-            {
-                Debug.LogError("[GameDataService] GameSession has negative saved game time");
-                return false;
-            }
-            return true;
+            Debug.Log($"[GameDataService] PlayerData updated - Player: {playerData.PlayerName}, Position: {playerData.Position}");
         }
-        
+
+        /// <summary>
+        /// Updates specific player properties
+        /// </summary>
+        public void UpdatePlayer(string playerName = null, Vector3? position = null, Vector3? rotation = null)
+        {
+            if (!IsInitialized || _currentPlayerData == null)
+            {
+                Debug.LogError("[GameDataService] Cannot update player - service not initialized or no current player");
+                return;
+            }
+
+            bool changed = false;
+
+            if (!string.IsNullOrEmpty(playerName) && _currentPlayerData.PlayerName != playerName)
+            {
+                _currentPlayerData.PlayerName = playerName;
+                changed = true;
+            }
+
+            if (position.HasValue && _currentPlayerData.Position != position.Value)
+            {
+                _currentPlayerData.Position = position.Value;
+                changed = true;
+            }
+
+            if (rotation.HasValue && _currentPlayerData.Rotation != rotation.Value)
+            {
+                _currentPlayerData.Rotation = rotation.Value;
+                changed = true;
+            }
+
+            if (changed)
+            {
+                // Publish change event through EventSystem
+                _eventSystem?.Publish(new PlayerDataChangedEvent(_currentPlayerData));
+                Debug.Log("[GameDataService] PlayerData updated via UpdatePlayer");
+            }
+        }
         #endregion
 
-        #region Data Access Convenience Methods
-        
+        #region Data Lifecycle
         /// <summary>
-        /// Checks if there's an active game session
+        /// Creates a new game session with default or specified parameters
         /// </summary>
-        public bool HasActiveSession() => CurrentSessionData != null;
-        
-        /// <summary>
-        /// Gets loading configuration data
-        /// </summary>
-        public T GetLoadingData<T>(string key, T defaultValue = default)
+        public void StartNewGame(string playerName = "Player", string difficulty = "Normal", string startingScene = "MainMenu")
         {
-            if (CurrentLoadingConfig?.GameData?.ContainsKey(key) == true)
+            if (!IsInitialized)
             {
-                try { return (T)CurrentLoadingConfig.GameData[key]; }
-                catch { return defaultValue; }
+                Debug.LogError("[GameDataService] Cannot start new game - service not initialized");
+                return;
             }
-            return defaultValue;
+
+            Debug.Log($"[GameDataService] Starting new game - Player: {playerName}, Difficulty: {difficulty}, Scene: {startingScene}");
+
+            // Create new game session
+            var newGameSession = new GameSessionData(difficulty, startingScene, 0f);
+            SetGameSessionData(newGameSession);
+
+            // Create new player
+            var newPlayerData = new PlayerData(playerName, Vector3.zero, Vector3.zero);
+            SetPlayerData(newPlayerData);
+
+            // Publish new game started event
+            _eventSystem?.Publish(new NewGameStartedEvent(newGameSession, newPlayerData));
+            _eventSystem.Publish(SaveRequestedEvent.CreateRegularSave());
+
+            Debug.Log("[GameDataService] New game started successfully");
         }
-        
+
+        /// <summary>
+        /// Loads game data from provided data objects (used by load system)
+        /// </summary>
+        public void LoadGameData(GameSessionData gameSessionData, PlayerData playerData)
+        {
+            if (!IsInitialized)
+            {
+                Debug.LogError("[GameDataService] Cannot load game data - service not initialized");
+                return;
+            }
+
+            Debug.Log("[GameDataService] Loading game data from save");
+
+            if (gameSessionData != null)
+            {
+                SetGameSessionData(gameSessionData);
+            }
+
+            if (playerData != null)
+            {
+                SetPlayerData(playerData);
+            }
+
+            // Publish game data loaded event
+            _eventSystem?.Publish(new GameDataLoadedEvent(gameSessionData, playerData));
+
+            Debug.Log("[GameDataService] Game data loaded successfully");
+        }
+
+        /// <summary>
+        /// Resets all game data to defaults
+        /// </summary>
+        public void ResetToDefaults()
+        {
+            if (!IsInitialized)
+            {
+                Debug.LogError("[GameDataService] Cannot reset - service not initialized");
+                return;
+            }
+
+            Debug.Log("[GameDataService] Resetting game data to defaults");
+            InitializeDefaultGameData();
+
+            // Re-register with save system if available
+            if (_saveDataRegistry != null)
+            {
+                RegisterWithSaveSystem();
+            }
+
+            // Publish change events for the reset data
+            _eventSystem?.Publish(new GameSessionDataChangedEvent(_currentGameSession));
+            _eventSystem?.Publish(new PlayerDataChangedEvent(_currentPlayerData));
+        }
         #endregion
 
-        #region Event Handlers
-        
+        #region Private Methods
         /// <summary>
-        /// Updates current scene when scene loads
+        /// Initializes default game data objects
         /// </summary>
-        private void OnSceneLoaded(SceneLoadedEvent evt)
+        private void InitializeDefaultGameData()
         {
-            CurrentSessionData?.SetCurrentScene(evt.SceneName);
+            // Create default game session
+            _currentGameSession = new GameSessionData("Normal", "MainMenu", 0f);
+
+            // Create default player
+            _currentPlayerData = new PlayerData("Player", Vector3.zero, Vector3.zero);
+
+            Debug.Log("[GameDataService] Default game data initialized");
         }
-        
+
+        /// <summary>
+        /// Registers current data objects with the save system
+        /// </summary>
+        private void RegisterWithSaveSystem()
+        {
+            if (_saveDataRegistry == null) return;
+
+            bool sessionRegistered = _saveDataRegistry.RegisterSaveable(_currentGameSession);
+            bool playerRegistered = _saveDataRegistry.RegisterSaveable(_currentPlayerData);
+
+            if (sessionRegistered && playerRegistered)
+            {
+                Debug.Log("[GameDataService] Successfully registered game data objects with save system");
+            }
+            else
+            {
+                Debug.LogWarning("[GameDataService] Failed to register some game data objects with save system");
+            }
+        }
+
+        /// <summary>
+        /// Unregisters current data objects from the save system
+        /// </summary>
+        private void UnregisterFromSaveSystem()
+        {
+            if (_saveDataRegistry == null) return;
+
+            if (_currentGameSession != null)
+            {
+                _saveDataRegistry.DeregisterSaveable(_currentGameSession);
+            }
+
+            if (_currentPlayerData != null)
+            {
+                _saveDataRegistry.DeregisterSaveable(_currentPlayerData);
+            }
+
+            Debug.Log("[GameDataService] Unregistered game data objects from save system");
+        }
+        #endregion
+
+        #region Validation
+        /// <summary>
+        /// Validates that current game data is in a consistent state
+        /// </summary>
+        public bool ValidateGameData()
+        {
+            if (!IsInitialized)
+            {
+                Debug.LogWarning("[GameDataService] Cannot validate - service not initialized");
+                return false;
+            }
+
+            bool isValid = true;
+
+            if (_currentGameSession == null)
+            {
+                Debug.LogError("[GameDataService] Validation failed - GameSessionData is null");
+                isValid = false;
+            }
+
+            if (_currentPlayerData == null)
+            {
+                Debug.LogError("[GameDataService] Validation failed - PlayerData is null");
+                isValid = false;
+            }
+
+            if (isValid)
+            {
+                Debug.Log("[GameDataService] Game data validation passed");
+            }
+
+            return isValid;
+        }
         #endregion
     }
 }

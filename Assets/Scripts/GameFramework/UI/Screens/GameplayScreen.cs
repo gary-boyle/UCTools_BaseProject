@@ -1,7 +1,6 @@
 ﻿using System;
 using GameFramework.Core;
 using GameFramework.EventSystem.Events;
-using GameFramework.Services;
 using GameFramework.Services.Interfaces;
 using UCTools_Utilities.UI;
 using UnityEngine;
@@ -151,61 +150,39 @@ namespace GameFramework.UI.Screens
         /// </summary>
         protected override void OnUpdate(float deltaTime)
         {
-            if (!_gameDataService.HasActiveSession())
-            {
-                SetDebugLabelsNoSession();
-                return;
-            }
+            if (!_gameDataService.HasActiveSession()) return;
             
             try
             {
-                var session = _gameDataService.CurrentSessionData;
-        
-                UpdateDebugLabel1(session);
-                //UpdateDebugLabel2(playerState);
-                //UpdateDebugLabel3(progress);
-                UpdateDebugLabel4WithTimeService();
+                var session = _gameDataService.GetGameSessionData();
+                var player = _gameDataService.GetPlayerData();
+
+                UpdateDebugLabel1(player);
+                UpdateDebugLabel2(session);
+                // UpdateDebugLabel3();
+                // UpdateDebugLabel4();
             }
             catch (Exception e)
             {
                 Debug.LogError($"[GamePlayScreen] Error updating debug labels: {e.Message}");
-                SetDebugLabelsError();
             }
         }
         
         /// <summary>
         /// Update first debug label with player and level information
         /// </summary>
-        private void UpdateDebugLabel1(DataStructures.GameSessionData sessionData)
+        private void UpdateDebugLabel1(DataStructures.PlayerData playerData)
         {
-            var text = $"Player: {sessionData.PlayerName}";
-            SetDebugLabel(_debugLabel1, text);
+            var text = $"Player: {playerData.PlayerName}";
+            _debugLabel1.text = text;
         }
-        
-        /// <summary>
-        /// Update second debug label with health information
-        /// </summary>
-        // private void UpdateDebugLabel2(DataStructures.PlayerState playerState)
-        // {
-        //     var text = $"Health: {playerState.Health}/{playerState.MaxHealth}";
-        //     SetDebugLabel(_debugLabel2, text);
-        // }
-        
-        /// <summary>
-        /// Update third debug label with score and progress information
-        /// </summary>
-        // private void UpdateDebugLabel3()
-        // {
-        // }
         
         /// <summary>
         /// Update fourth debug label with time and scene information
         /// Uses TimeService if available, falls back to session data
         /// </summary>
-        private void UpdateDebugLabel4WithTimeService()
+        private void UpdateDebugLabel2(DataStructures.GameSessionData session)
         {
-            var session = _gameDataService.CurrentSessionData;
-            
             if (_timeService != null && session != null)
             {
                 var formattedGameTime = _timeService.GetFormattedGameTime();
@@ -213,60 +190,16 @@ namespace GameFramework.UI.Screens
                 
                 var trackingIndicator = isTracking ? "⏱️" : "⏸️";
                 var text = $"Scene: {session.CurrentScene} | Game: {formattedGameTime} | {trackingIndicator}";
-                
-                SetDebugLabel(_debugLabel4, text);
+                _debugLabel4.text = text;
             }
             else
             {
-                var currentPlayTime = session?.SavedGameTime ?? 0f;
+                var currentPlayTime = session?.GameTime ?? 0f;
                 var playTime = TimeSpan.FromSeconds(currentPlayTime);
                 var formattedTime = $"{playTime.Hours:D2}:{playTime.Minutes:D2}:{playTime.Seconds:D2}";
                 var text = $"Scene: {session?.CurrentScene ?? "Unknown"} | Time: {formattedTime} (Fallback)";
                 
-                SetDebugLabel(_debugLabel4, text);
-            }
-        }
-        
-        /// <summary>
-        /// Set debug labels when no active game session exists
-        /// </summary>
-        private void SetDebugLabelsNoSession()
-        {
-            SetDebugLabel(_debugLabel1, "No Active Session");
-            SetDebugLabel(_debugLabel2, "---");
-            SetDebugLabel(_debugLabel3, "---");
-            SetDebugLabel(_debugLabel4, "---");
-
-        }
-        
-        /// <summary>
-        /// Set debug labels when an error occurs loading game data
-        /// </summary>
-        private void SetDebugLabelsError()
-        {
-            SetDebugLabel(_debugLabel1, "Error Loading Data");
-            SetDebugLabel(_debugLabel2, "Check Console");
-            SetDebugLabel(_debugLabel3, "---");
-            
-            if (_timeService != null)
-            {
-                var timeStats = _timeService.GetTimeStatistics();
-                SetDebugLabel(_debugLabel4, $"TimeService: {timeStats.IsTrackingGameTime} | {_timeService.GetFormattedGameTime()}");
-            }
-            else
-            {
-                SetDebugLabel(_debugLabel4, "TimeService Error");
-            }
-        }
-        
-        /// <summary>
-        /// Safely set text on a label if it exists
-        /// </summary>
-        private void SetDebugLabel(Label label, string text)
-        {
-            if (label != null)
-            {
-                label.text = text;
+                _debugLabel4.text = text;
             }
         }
         

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using GameFramework.Audio;
-using GameFramework.Config;
 using GameFramework.EventSystem.Interfaces;
 using GameFramework.Services;
 using GameFramework.Services.Interfaces;
@@ -15,8 +14,10 @@ using GameFramework.Input.Interfaces;
 using UnityEngine;
 using UnityEngine.UIElements;
 using System;
-using GameFramework.Config.Enums;
 using GameFramework.Config.ScriptableObjects;
+using GameFramework.GameData.Services;
+using GameFramework.SaveSystem.Interfaces;
+using GameFramework.SaveSystem.Services;
 
 namespace GameFramework.Core
 {
@@ -350,14 +351,17 @@ namespace GameFramework.Core
             var profilingService = _container.Resolve<IProfilingService>();
             await profilingService.InitializeAsync();
 
+            var gameDataService = _container.Resolve<IGameDataService>();
+            await gameDataService.InitializeAsync();
+            
             var loadService = _container.Resolve<ILoadService>();
             await loadService.InitializeAsync();
             
             var saveService = _container.Resolve<ISaveService>();
             await saveService.InitializeAsync();
             
-            var saveRegistryService = _container.Resolve<ISaveRegistryService>();
-            await saveRegistryService.InitializeAsync();
+            var saveDataRegistry = _container.Resolve<ISaveDataRegistry>();
+            await saveDataRegistry.InitializeAsync();
             
             // Initialize UI service LAST since it depends on other services
             var uiService = _container.Resolve<IUIService>();
@@ -421,7 +425,7 @@ namespace GameFramework.Core
             _container.RegisterSingleton<ILoadService, LoadService>();
             _container.RegisterSingleton<ISaveService, SaveService>();
             _container.RegisterSingleton<IGameDataService, GameDataService>();
-            _container.RegisterSingleton<ISaveRegistryService, SaveRegistryService>();
+            _container.RegisterSingleton<ISaveDataRegistry, SaveDataRegistry>();
             
             // Register GameContext (depends on all other services)
             _container.RegisterSingleton<GameContext>();
@@ -595,12 +599,7 @@ namespace GameFramework.Core
     
             if (_stateMachine is IFixedUpdatable fixedUpdatable)
                 _fixedUpdatables.Add(fixedUpdatable);
-
-            // Add other systems that need updates
-            var gameDataService = _container.Resolve<IGameDataService>();
-            if (gameDataService is IUpdatable gameDataServiceUpdatable)
-                _updatables.Add(gameDataServiceUpdatable);
-
+            
             // Add AudioService for FadeIn/FadeOut
             var audioService = _container.Resolve<IAudioService>();
             if (audioService is IUpdatable audioServiceUpdatable)

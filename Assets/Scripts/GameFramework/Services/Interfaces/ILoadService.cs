@@ -17,11 +17,6 @@ namespace GameFramework.Services.Interfaces
         Task InitializeAsync();
         void Shutdown();
         
-        // Loading operations
-        Task<GameSessionData> LoadGameSessionAsync(string saveName);
-
-        // Loading support
-        Task<SaveFileInfo[]> GetLoadableSaveFilesAsync();
         
     }
 }

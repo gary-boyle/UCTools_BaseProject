@@ -1,30 +1,31 @@
 ﻿using System;
 
-namespace GameFramework.Services.Interfaces
+namespace GameFramework.SaveSystem.Interfaces
 {
     /// <summary>
-    /// Interface for objects that can be saved and loaded
-    /// Provides a contract for serializable game objects
+    /// Interface for objects that can be saved to persistent storage
+    /// Provides serialization key and data for save operations
     /// </summary>
     public interface ISaveable
     {
         /// <summary>
-        /// Unique identifier for this saveable object
-        /// Used to identify the object during save/load operations
+        /// Unique identifier for this saveable object in the save file
         /// </summary>
-        string SaveId { get; }
+        string SaveKey { get; }
         
         /// <summary>
-        /// Gets the current save data as a serializable object
-        /// This should return all data needed to restore the object's state
+        /// Type name for deserialization purposes
         /// </summary>
-        /// <returns>Serializable data object</returns>
+        string TypeName { get; }
+        
+        /// <summary>
+        /// Gets the serializable data for this object
+        /// </summary>
         object GetSaveData();
         
         /// <summary>
-        /// Restores the object's state from save data
+        /// Restores object state from saved data
         /// </summary>
-        /// <param name="saveData">Previously saved data object</param>
-        void LoadSaveData(object saveData);
+        void LoadSaveData(object data);
     }
 }

@@ -228,8 +228,8 @@ namespace GameFramework.UI.Screens
             return IsVisible &&
                    !_isSaving &&
                    !_isLoadingData &&
-                   !_isDeletingFile &&
-                   _saveService.CanSaveGame();
+                   !_isDeletingFile;
+            //_saveService.CanSaveGame();
         }
 
         /// <summary>
