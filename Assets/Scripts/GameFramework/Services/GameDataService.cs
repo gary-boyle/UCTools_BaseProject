@@ -26,7 +26,7 @@ namespace GameFramework.Services
     public class GameDataService : IGameDataService, IUpdatable
     {
         public bool IsInitialized { get; private set; }
-        public GameSession CurrentSession { get; private set; }
+        public GameSessionData CurrentSessionData { get; private set; }
         public LoadingConfiguration CurrentLoadingConfig { get; set; }
         
         private readonly IEventSystem _eventSystem;
@@ -85,7 +85,7 @@ namespace GameFramework.Services
                 difficulty = config.GameData["difficulty"].ToString();
             }
             
-            CurrentSession = CreateNewGameSession(
+            CurrentSessionData = CreateNewGameSession(
                 config.PlayerName, 
                 difficulty,
                 config.SceneName
@@ -95,16 +95,16 @@ namespace GameFramework.Services
             _lastAutoSaveCheck = DateTime.Now;
             
             // Publish session created event through EventSystem
-            _eventSystem.Publish(new SessionCreatedEvent(CurrentSession));
+            _eventSystem.Publish(new SessionCreatedEvent(CurrentSessionData));
         }
         
         /// <summary>
         /// Creates a new GameSession with specified parameters (moved from GameSession static method)
         /// </summary>
-        public GameSession CreateNewGameSession(string playerName, string difficulty, string startingScene)
+        public GameSessionData CreateNewGameSession(string playerName, string difficulty, string startingScene)
         {
             var now = DateTime.Now;
-            var session = new GameSession
+            var session = new GameSessionData
             {
                 PlayerName = playerName,
                 Difficulty = difficulty,
@@ -116,7 +116,6 @@ namespace GameFramework.Services
             
             // Initialize time data
             session.SetSavedTimeData(0f);
-            session.SetHasTimeData(true);
             
             return session;
         }
@@ -125,9 +124,9 @@ namespace GameFramework.Services
         /// Updates the last save time and captures current playtime data
         /// Called when the game is saved
         /// </summary>
-        public void UpdateSessionSaveTime(GameSession session = null)
+        public void UpdateSessionSaveTime(GameSessionData sessionData = null)
         {
-            var targetSession = session ?? CurrentSession;
+            var targetSession = sessionData ?? CurrentSessionData;
             if (targetSession == null)
             {
                 Debug.LogWarning("[GameDataService] Cannot update save time - no session provided");
@@ -151,16 +150,16 @@ namespace GameFramework.Services
         /// Loads existing game session - TimeService handles playtime restoration
         /// Publishes SessionLoadedEvent through EventSystem
         /// </summary>
-        public void LoadGameSession(GameSession session)
+        public void LoadGameSession(GameSessionData sessionData)
         {
-            CurrentSession = session ?? throw new ArgumentNullException(nameof(session));
+            CurrentSessionData = sessionData ?? throw new ArgumentNullException(nameof(sessionData));
     
             // TimeService will load playtime from the session's time data automatically
             // Reset auto-save timer for loaded session
             _lastAutoSaveCheck = DateTime.Now;
             
             // Publish session loaded event through EventSystem
-            _eventSystem.Publish(new SessionLoadedEvent(CurrentSession));
+            _eventSystem.Publish(new SessionLoadedEvent(CurrentSessionData));
         }
         
         /// <summary>
@@ -171,12 +170,12 @@ namespace GameFramework.Services
         {
             string playerName = null;
             
-            if (CurrentSession != null)
+            if (CurrentSessionData != null)
             {
-                playerName = CurrentSession.PlayerName;
+                playerName = CurrentSessionData.PlayerName;
             }
             
-            CurrentSession = null;
+            CurrentSessionData = null;
             _lastAutoSaveCheck = DateTime.MinValue;
             
             // Publish session cleared event through EventSystem
@@ -189,7 +188,7 @@ namespace GameFramework.Services
         /// </summary>
         public void UpdateSession()
         {
-            if (CurrentSession == null) return;
+            if (CurrentSessionData == null) return;
             
             // Check if it's time for an auto-save
             var timeSinceLastCheck = DateTime.Now - _lastAutoSaveCheck;
@@ -207,7 +206,7 @@ namespace GameFramework.Services
         /// </summary>
         public async Task<bool> PerformAutoSaveAsync()
         {
-            if (CurrentSession != null)
+            if (CurrentSessionData != null)
             {
                 Debug.LogWarning("[GameDataService] Cannot auto-save - no active session or save service unavailable");
                 return false;
@@ -226,44 +225,44 @@ namespace GameFramework.Services
         /// Validates the integrity and completeness of a GameSession
         /// Checks all critical fields and data structures for consistency
         /// </summary>
-        /// <param name="session">The GameSession to validate</param>
+        /// <param name="sessionData">The GameSession to validate</param>
         /// <returns>True if the session is valid and can be safely loaded</returns>
-        public bool IsValidGameSession(GameSession session)
+        public bool IsValidGameSession(GameSessionData sessionData)
         {
-            if (session == null)
+            if (sessionData == null)
             {
                 Debug.LogError("[GameDataService] GameSession is null");
                 return false;
             }
 
             // Validate required string fields
-            if (string.IsNullOrEmpty(session.PlayerName))
+            if (string.IsNullOrEmpty(sessionData.PlayerName))
             {
                 Debug.LogError("[GameDataService] GameSession has invalid player name");
                 return false;
             }
 
-            if (string.IsNullOrEmpty(session.CurrentScene))
+            if (string.IsNullOrEmpty(sessionData.CurrentScene))
             {
                 Debug.LogError("[GameDataService] GameSession has invalid current scene");
                 return false;
             }
 
             // Validate timestamps
-            if (session.SessionStartTime == default(DateTime))
+            if (sessionData.SessionStartTime == default(DateTime))
             {
                 Debug.LogWarning("[GameDataService] GameSession has invalid start time - using current time");
-                session.SessionStartTime = DateTime.Now;
+                sessionData.SessionStartTime = DateTime.Now;
             }
 
-            if (session.LastSaveTime == default(DateTime))
+            if (sessionData.LastSaveTime == default(DateTime))
             {
                 Debug.LogWarning("[GameDataService] GameSession has invalid save time - using current time");
-                session.LastSaveTime = DateTime.Now;
+                sessionData.LastSaveTime = DateTime.Now;
             }
 
             // Validate playtime data (non-negative)
-            if (session.SavedGameTime < 0)
+            if (sessionData.SavedGameTime < 0)
             {
                 Debug.LogError("[GameDataService] GameSession has negative saved game time");
                 return false;
@@ -278,7 +277,7 @@ namespace GameFramework.Services
         /// <summary>
         /// Checks if there's an active game session
         /// </summary>
-        public bool HasActiveSession() => CurrentSession != null;
+        public bool HasActiveSession() => CurrentSessionData != null;
         
         /// <summary>
         /// Gets loading configuration data
@@ -302,7 +301,7 @@ namespace GameFramework.Services
         /// </summary>
         private void OnSceneLoaded(SceneLoadedEvent evt)
         {
-            CurrentSession?.SetCurrentScene(evt.SceneName);
+            CurrentSessionData?.SetCurrentScene(evt.SceneName);
         }
         
         #endregion

@@ -14,19 +14,19 @@ namespace GameFramework.Utilities
         /// <summary>
         /// Serializes a GameSession to JSON string
         /// </summary>
-        /// <param name="session">The game session to serialize</param>
+        /// <param name="sessionData">The game session to serialize</param>
         /// <param name="prettyPrint">Whether to format JSON with indentation</param>
         /// <returns>JSON string representation of the game session</returns>
         /// <exception cref="ArgumentNullException">Thrown when session is null</exception>
         /// <exception cref="InvalidOperationException">Thrown when serialization fails</exception>
-        public static string SerializeToJson(GameSession session, bool prettyPrint = true)
+        public static string SerializeToJson(GameSessionData sessionData, bool prettyPrint = true)
         {
-            if (session == null)
-                throw new ArgumentNullException(nameof(session));
+            if (sessionData == null)
+                throw new ArgumentNullException(nameof(sessionData));
 
             try
             {
-                return JsonUtility.ToJson(session, prettyPrint);
+                return JsonUtility.ToJson(sessionData, prettyPrint);
             }
             catch (Exception ex)
             {
@@ -41,14 +41,14 @@ namespace GameFramework.Utilities
         /// <returns>Deserialized GameSession object</returns>
         /// <exception cref="ArgumentException">Thrown when JSON is null or empty</exception>
         /// <exception cref="InvalidOperationException">Thrown when deserialization fails</exception>
-        public static GameSession DeserializeFromJson(string json)
+        public static GameSessionData DeserializeFromJson(string json)
         {
             if (string.IsNullOrEmpty(json))
                 throw new ArgumentException("JSON string cannot be null or empty", nameof(json));
 
             try
             {
-                return JsonUtility.FromJson<GameSession>(json);
+                return JsonUtility.FromJson<GameSessionData>(json);
             }
             catch (Exception ex)
             {
@@ -59,12 +59,12 @@ namespace GameFramework.Utilities
         /// <summary>
         /// Asynchronously serializes a GameSession to JSON string
         /// </summary>
-        /// <param name="session">The game session to serialize</param>
+        /// <param name="sessionData">The game session to serialize</param>
         /// <param name="prettyPrint">Whether to format JSON with indentation</param>
         /// <returns>Task containing JSON string representation</returns>
-        public static async Task<string> SerializeToJsonAsync(GameSession session, bool prettyPrint = true)
+        public static async Task<string> SerializeToJsonAsync(GameSessionData sessionData, bool prettyPrint = true)
         {
-            return await Task.Run(() => SerializeToJson(session, prettyPrint));
+            return await Task.Run(() => SerializeToJson(sessionData, prettyPrint));
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace GameFramework.Utilities
         /// </summary>
         /// <param name="json">JSON string to deserialize</param>
         /// <returns>Task containing deserialized GameSession object</returns>
-        public static async Task<GameSession> DeserializeFromJsonAsync(string json)
+        public static async Task<GameSessionData> DeserializeFromJsonAsync(string json)
         {
             return await Task.Run(() => DeserializeFromJson(json));
         }
@@ -80,15 +80,15 @@ namespace GameFramework.Utilities
         /// <summary>
         /// Validates that a GameSession can be successfully serialized and deserialized
         /// </summary>
-        /// <param name="session">GameSession to validate</param>
+        /// <param name="sessionData">GameSession to validate</param>
         /// <returns>True if serialization round-trip succeeds</returns>
-        public static bool ValidateSerializationRoundTrip(GameSession session)
+        public static bool ValidateSerializationRoundTrip(GameSessionData sessionData)
         {
-            if (session == null) return false;
+            if (sessionData == null) return false;
 
             try
             {
-                var json = SerializeToJson(session);
+                var json = SerializeToJson(sessionData);
                 var deserialized = DeserializeFromJson(json);
                 return deserialized != null;
             }

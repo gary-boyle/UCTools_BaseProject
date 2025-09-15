@@ -356,6 +356,9 @@ namespace GameFramework.Core
             var saveService = _container.Resolve<ISaveService>();
             await saveService.InitializeAsync();
             
+            var saveRegistryService = _container.Resolve<ISaveRegistryService>();
+            await saveRegistryService.InitializeAsync();
+            
             // Initialize UI service LAST since it depends on other services
             var uiService = _container.Resolve<IUIService>();
             await uiService.InitializeAsync();
@@ -418,7 +421,8 @@ namespace GameFramework.Core
             _container.RegisterSingleton<ILoadService, LoadService>();
             _container.RegisterSingleton<ISaveService, SaveService>();
             _container.RegisterSingleton<IGameDataService, GameDataService>();
-
+            _container.RegisterSingleton<ISaveRegistryService, SaveRegistryService>();
+            
             // Register GameContext (depends on all other services)
             _container.RegisterSingleton<GameContext>();
     
@@ -618,8 +622,6 @@ namespace GameFramework.Core
             var pauseService = _container.Resolve<IPauseService>();
             if (pauseService is IUpdatable pauseUpdatable)
                 _updatables.Add(pauseUpdatable);
-            
-
             
             // Add UI service for screen updates
             var uiService = _container.Resolve<IUIService>();

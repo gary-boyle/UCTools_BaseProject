@@ -128,24 +128,24 @@ namespace GameFramework.StateMachine.GameStates
             await UpdateLoadingProgress("Loading save data...", 0.1f);
             
             // Get the GameSession directly from loading config
-            GameSession session = null;
+            GameSessionData sessionData = null;
             if (_currentConfig.GameData.ContainsKey("gameSession"))
             {
-                session = (GameSession)_currentConfig.GameData["gameSession"];
+                sessionData = (GameSessionData)_currentConfig.GameData["gameSession"];
             }
             else
             {
                 // Fallback: create from data if session not directly stored
-                session = CreateSessionFromSaveData(_currentConfig);
+                sessionData = CreateSessionFromSaveData(_currentConfig);
             }
             
-            if (session == null)
+            if (sessionData == null)
             {
                 throw new InvalidOperationException("Could not load game session from save data");
             }
             
             // Load the session into GameDataService - TimeService will handle playtime restoration
-            GameDataService.LoadGameSession(session);
+            GameDataService.LoadGameSession(sessionData);
             await UpdateLoadingProgress("Restoring game state...", 0.4f);
             
             // Load the appropriate scene
@@ -164,7 +164,7 @@ namespace GameFramework.StateMachine.GameStates
             // Update current session's scene
             if (GameDataService.HasActiveSession())
             {
-                GameDataService.CurrentSession.SetCurrentScene(_currentConfig.SceneName);
+                GameDataService.CurrentSessionData.SetCurrentScene(_currentConfig.SceneName);
             }
             
             // Load new scene
@@ -213,10 +213,10 @@ namespace GameFramework.StateMachine.GameStates
         /// Creates a GameSession from save data stored in loading configuration
         /// TimeService will handle playtime restoration automatically
         /// </summary>
-        private static GameSession CreateSessionFromSaveData(LoadingConfiguration config)
+        private static GameSessionData CreateSessionFromSaveData(LoadingConfiguration config)
         {
             // Extract saved session data from loading configuration
-            var session = new GameSession
+            var session = new GameSessionData
             {
                 PlayerName = config.PlayerName,
                 Difficulty = config.GameData.ContainsKey("difficulty") ? config.GameData["difficulty"].ToString() : "Normal",

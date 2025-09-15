@@ -11,7 +11,7 @@ namespace GameFramework.Services.Interfaces
     public interface IGameDataService
     {
         bool IsInitialized { get; }
-        GameSession CurrentSession { get; }
+        GameSessionData CurrentSessionData { get; }
         LoadingConfiguration CurrentLoadingConfig { get; set; }
         
         // Service Lifecycle
@@ -20,10 +20,10 @@ namespace GameFramework.Services.Interfaces
         
         // Session Management
         void CreateNewGameSession(LoadingConfiguration config);
-        void LoadGameSession(GameSession session);
+        void LoadGameSession(GameSessionData sessionData);
         void ClearSession();
         bool HasActiveSession();
-        bool IsValidGameSession(GameSession session);
-        void UpdateSessionSaveTime(GameSession session = null);
+        bool IsValidGameSession(GameSessionData sessionData);
+        void UpdateSessionSaveTime(GameSessionData sessionData = null);
     }
 }

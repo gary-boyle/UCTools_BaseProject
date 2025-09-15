@@ -100,7 +100,7 @@ namespace GameFramework.Services
         /// <summary>
         /// Loads game session from file using utility classes
         /// </summary>
-        public async Task<GameSession> LoadGameSessionAsync(string saveName)
+        public async Task<GameSessionData> LoadGameSessionAsync(string saveName)
         {
             if (!SaveFileUtilities.SaveFileExists(saveName))
             {
@@ -142,7 +142,7 @@ namespace GameFramework.Services
         /// <summary>
         /// Loads a game session using SaveFileInfo
         /// </summary>
-        private async Task<GameSession> LoadGameSessionByInfoAsync(SaveFileInfo saveFileInfo)
+        private async Task<GameSessionData> LoadGameSessionByInfoAsync(SaveFileInfo saveFileInfo)
         {
             return saveFileInfo?.FileName != null ? await LoadGameSessionAsync(saveFileInfo.FileName) : null;
         }
@@ -213,7 +213,7 @@ namespace GameFramework.Services
         /// <summary>
         /// Loads and validates game session using utility classes
         /// </summary>
-        private async Task<GameSession> LoadAndValidateGameSession(SaveFileInfo saveFileInfo)
+        private async Task<GameSessionData> LoadAndValidateGameSession(SaveFileInfo saveFileInfo)
         {
             try
             {
@@ -237,26 +237,26 @@ namespace GameFramework.Services
         /// <summary>
         /// Creates loading configuration with game session data
         /// </summary>
-        private static LoadingConfiguration CreateLoadSaveConfiguration(GameSession gameSession)
+        private static LoadingConfiguration CreateLoadSaveConfiguration(GameSessionData gameSessionData)
         {
             var gameData = new Dictionary<string, object>
             {
-                ["gameSession"] = gameSession,
-                ["difficulty"] = gameSession.Difficulty,
-                ["savedPlayTime"] = gameSession.SavedGameTime,        
+                ["gameSession"] = gameSessionData,
+                ["difficulty"] = gameSessionData.Difficulty,
+                ["savedPlayTime"] = gameSessionData.SavedGameTime,        
                 ["timeServiceManaged"] = true,
-                ["sessionStartTime"] = gameSession.SessionStartTime.ToString(),    
-                ["lastSaveTime"] = gameSession.LastSaveTime.ToString(),           
+                ["sessionStartTime"] = gameSessionData.SessionStartTime.ToString(),    
+                ["lastSaveTime"] = gameSessionData.LastSaveTime.ToString(),           
                 // Time data for restoration - only game time now
-                ["savedGameTime"] = gameSession.SavedGameTime,        
-                ["hasTimeData"] = gameSession.HasSavedTimeData        
+                ["savedGameTime"] = gameSessionData.SavedGameTime,        
+                ["hasTimeData"] = gameSessionData.HasSavedTimeData        
             };
 
             return new LoadingConfiguration
             {
                 Type = LoadingType.LoadSave,
-                SceneName = gameSession.CurrentScene,
-                PlayerName = gameSession.PlayerName,
+                SceneName = gameSessionData.CurrentScene,
+                PlayerName = gameSessionData.PlayerName,
                 ShowLoadingScreen = true,
                 MinimumLoadingTime = 2f,
                 GameData = gameData
@@ -294,11 +294,11 @@ namespace GameFramework.Services
         /// <summary>
         /// Basic GameSession validation
         /// </summary>
-        private static bool IsValidGameSession(GameSession session)
+        private static bool IsValidGameSession(GameSessionData sessionData)
         {
-            return session != null &&
-                   !string.IsNullOrEmpty(session.PlayerName) &&
-                   !string.IsNullOrEmpty(session.CurrentScene);
+            return sessionData != null &&
+                   !string.IsNullOrEmpty(sessionData.PlayerName) &&
+                   !string.IsNullOrEmpty(sessionData.CurrentScene);
         }
         
         #endregion

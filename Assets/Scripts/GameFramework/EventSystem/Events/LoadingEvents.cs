@@ -81,11 +81,11 @@ namespace GameFramework.EventSystem.Events
 
     public class LoadingCompletedEvent
     {
-        public GameSession Session { get; }
+        public GameSessionData SessionData { get; }
     
-        public LoadingCompletedEvent(GameSession session)
+        public LoadingCompletedEvent(GameSessionData sessionData)
         {
-            Session = session ?? throw new ArgumentNullException(nameof(session));
+            SessionData = sessionData ?? throw new ArgumentNullException(nameof(sessionData));
         }
     }
     

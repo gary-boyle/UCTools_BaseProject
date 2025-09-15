@@ -159,7 +159,7 @@ namespace GameFramework.UI.Screens
             
             try
             {
-                var session = _gameDataService.CurrentSession;
+                var session = _gameDataService.CurrentSessionData;
         
                 UpdateDebugLabel1(session);
                 //UpdateDebugLabel2(playerState);
@@ -176,9 +176,9 @@ namespace GameFramework.UI.Screens
         /// <summary>
         /// Update first debug label with player and level information
         /// </summary>
-        private void UpdateDebugLabel1(DataStructures.GameSession session)
+        private void UpdateDebugLabel1(DataStructures.GameSessionData sessionData)
         {
-            var text = $"Player: {session.PlayerName}";
+            var text = $"Player: {sessionData.PlayerName}";
             SetDebugLabel(_debugLabel1, text);
         }
         
@@ -204,7 +204,7 @@ namespace GameFramework.UI.Screens
         /// </summary>
         private void UpdateDebugLabel4WithTimeService()
         {
-            var session = _gameDataService.CurrentSession;
+            var session = _gameDataService.CurrentSessionData;
             
             if (_timeService != null && session != null)
             {

@@ -11,21 +11,21 @@ namespace GameFramework.EventSystem.Events
 
     public class SessionCreatedEvent
     {
-        public GameSession Session { get; }
+        public GameSessionData SessionData { get; }
     
-        public SessionCreatedEvent(GameSession session)
+        public SessionCreatedEvent(GameSessionData sessionData)
         {
-            Session = session ?? throw new ArgumentNullException(nameof(session));
+            SessionData = sessionData ?? throw new ArgumentNullException(nameof(sessionData));
         }
     }
 
     public class SessionLoadedEvent
     {
-        public GameSession Session { get; }
+        public GameSessionData SessionData { get; }
     
-        public SessionLoadedEvent(GameSession session)
+        public SessionLoadedEvent(GameSessionData sessionData)
         {
-            Session = session ?? throw new ArgumentNullException(nameof(session));
+            SessionData = sessionData ?? throw new ArgumentNullException(nameof(sessionData));
         }
     }
 

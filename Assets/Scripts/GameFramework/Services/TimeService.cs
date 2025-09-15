@@ -152,9 +152,9 @@ namespace GameFramework.Services
         /// <summary>
         /// Get formatted saved playtime - delegates to utility
         /// </summary>
-        public string GetSavedFormattedPlayTime(GameSession session)
+        public string GetSavedFormattedPlayTime(GameSessionData sessionData)
         {
-            return TimeUtilities.GetSavedFormattedPlayTime(session);
+            return TimeUtilities.GetSavedFormattedPlayTime(sessionData);
         }
         
         /// <summary>
@@ -173,9 +173,9 @@ namespace GameFramework.Services
         /// Updates a GameSession with current time data from TimeService
         /// Call this before serializing the session to ensure current time data is captured
         /// </summary>
-        public void UpdateSessionTimeData(GameSession session)
+        public void UpdateSessionTimeData(GameSessionData sessionData)
         {
-            if (session == null)
+            if (sessionData == null)
             {
                 Debug.LogWarning("[TimeService] Cannot update time data - session is null");
                 return;
@@ -183,7 +183,7 @@ namespace GameFramework.Services
             
             if (IsInitialized)
             {
-                session.SetSavedTimeData(_gameTime);
+                sessionData.SetSavedTimeData(_gameTime);
             }
         }
         
@@ -288,7 +288,7 @@ namespace GameFramework.Services
         {
             if (_gameDataService?.HasActiveSession() != true) return;
 
-            var session = _gameDataService.CurrentSession;
+            var session = _gameDataService.CurrentSessionData;
             if (session.HasSavedTimeData)
             {
                 SetSavedTimeData(session.SavedGameTime);

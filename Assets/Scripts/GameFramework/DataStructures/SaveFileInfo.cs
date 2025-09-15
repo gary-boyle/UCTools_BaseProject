@@ -23,19 +23,19 @@ namespace GameFramework.DataStructures
         public int PlayerLevel;
         public int Score;
 
-        public SaveFileInfo(string fileName, GameSession session)
+        public SaveFileInfo(string fileName, GameSessionData sessionData)
         {
             FileName = fileName;
-            PlayerName = session.PlayerName;
-            Difficulty = session.Difficulty;
-            CurrentScene = session.CurrentScene;
-            LastSaveTime = session.LastSaveTime;
+            PlayerName = sessionData.PlayerName;
+            Difficulty = sessionData.Difficulty;
+            CurrentScene = sessionData.CurrentScene;
+            LastSaveTime = sessionData.LastSaveTime;
     
             // Use SAVED playtime information for save file display
-            FormattedPlayTime = TimeUtilities.FormatTimeFromSeconds(session?.SavedGameTime ?? 0f);
+            FormattedPlayTime = TimeUtilities.FormatTimeFromSeconds(sessionData?.SavedGameTime ?? 0f);
             
             // Check if this is an autosave from both filename and session data
-            IsAutoSave = session.WasAutoSave;
+            IsAutoSave = sessionData.WasAutoSave;
     
             // Format display strings
             FormattedDate = LastSaveTime.ToString("yyyy-MM-dd HH:mm");

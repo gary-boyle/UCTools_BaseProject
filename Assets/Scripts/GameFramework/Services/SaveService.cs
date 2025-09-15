@@ -210,7 +210,7 @@ namespace GameFramework.Services
         public bool CanSaveGame()
         {
             var gameDataService = GameManager.GetService<IGameDataService>();
-            return gameDataService?.CurrentSession != null;
+            return gameDataService?.CurrentSessionData != null;
         }
         
         #endregion
@@ -319,14 +319,14 @@ namespace GameFramework.Services
         private async Task<(bool success, string saveName)> PerformRegularSaveAsync()
         {
             var gameDataService = GameManager.GetService<IGameDataService>();
-            if (gameDataService?.CurrentSession == null)
+            if (gameDataService?.CurrentSessionData == null)
             {
                 Debug.LogError("[SaveService] No active game session to save");
                 return (false, null);
             }
 
-            string saveName = SaveFileUtilities.GenerateTimestampSaveName(gameDataService.CurrentSession, false);
-            bool success = await SaveGameSessionInternalAsync(gameDataService.CurrentSession, saveName, false);
+            string saveName = SaveFileUtilities.GenerateTimestampSaveName(gameDataService.CurrentSessionData, false);
+            bool success = await SaveGameSessionInternalAsync(gameDataService.CurrentSessionData, saveName, false);
             
             return (success, saveName);
         }
@@ -337,18 +337,18 @@ namespace GameFramework.Services
         private async Task<(bool success, string saveName)> PerformAutoSaveAsync()
         {
             var gameDataService = GameManager.GetService<IGameDataService>();
-            if (gameDataService?.CurrentSession == null)
+            if (gameDataService?.CurrentSessionData == null)
             {
                 Debug.LogError("[SaveService] No active game session to autosave");
                 return (false, null);
             }
 
             // Delete existing autosave for current player only
-            await DeleteCurrentPlayerAutoSaveAsync(gameDataService.CurrentSession.PlayerName);
+            await DeleteCurrentPlayerAutoSaveAsync(gameDataService.CurrentSessionData.PlayerName);
             
             // Use consistent autosave naming (no timestamp) for each player
-            string saveName = SaveFileUtilities.GenerateAutoSaveName(gameDataService.CurrentSession);
-            bool success = await SaveGameSessionInternalAsync(gameDataService.CurrentSession, saveName, true);
+            string saveName = SaveFileUtilities.GenerateAutoSaveName(gameDataService.CurrentSessionData);
+            bool success = await SaveGameSessionInternalAsync(gameDataService.CurrentSessionData, saveName, true);
             
             return (success, saveName);
         }
@@ -362,7 +362,7 @@ namespace GameFramework.Services
 
             var gameDataService = GameManager.GetService<IGameDataService>();
             
-            if (gameDataService?.CurrentSession == null)
+            if (gameDataService?.CurrentSessionData == null)
             {
                 Debug.LogError("[SaveService] No active game session to save for overwrite");
                 return false;
@@ -378,7 +378,7 @@ namespace GameFramework.Services
             {
                 string saveName = targetSaveFile.FileName;
                 bool wasAutoSave = saveName.Contains("[AUTOSAVE]");
-                bool success = await SaveGameSessionInternalAsync(gameDataService.CurrentSession, saveName, wasAutoSave);
+                bool success = await SaveGameSessionInternalAsync(gameDataService.CurrentSessionData, saveName, wasAutoSave);
         
                 if (!success)
                 {
@@ -414,17 +414,17 @@ namespace GameFramework.Services
         /// Internal method that performs the actual save operation with game session data
         /// Updates playtime tracking and metadata before saving
         /// </summary>
-        private async Task<bool> SaveGameSessionInternalAsync(GameSession session, string saveName, bool isAutoSave)
+        private async Task<bool> SaveGameSessionInternalAsync(GameSessionData sessionData, string saveName, bool isAutoSave)
         {
             try
             {
                 // Update session metadata using TimeService directly
-                session.LastSaveTime = DateTime.Now;
-                _gameDataService.UpdateSessionSaveTime(session);
-                session.WasAutoSave = isAutoSave;
+                sessionData.LastSaveTime = DateTime.Now;
+                _gameDataService.UpdateSessionSaveTime(sessionData);
+                sessionData.WasAutoSave = isAutoSave;
         
                 // Use utility for serialization
-                var json = GameSessionSerializer.SerializeToJson(session, true);
+                var json = GameSessionSerializer.SerializeToJson(sessionData, true);
         
                 // Use utility for file writing
                 var success = await SaveFileUtilities.WriteSaveFileAsync(saveName, json);

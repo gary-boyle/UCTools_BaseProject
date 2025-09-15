@@ -1,6 +1,6 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.Serialization;
+using GameFramework.Services.Interfaces;
 
 namespace GameFramework.DataStructures
 {
@@ -8,9 +8,10 @@ namespace GameFramework.DataStructures
     /// Pure data container for game session information
     /// Contains only serializable data fields and basic accessors
     /// No business logic - just data storage and retrieval
+    /// Implements ISaveable to integrate with the save system
     /// </summary>
     [Serializable]
-    public class GameSession
+    public class GameSessionData
     {
         [Header("Session Info")]
         public string PlayerName = "Player";
@@ -27,7 +28,8 @@ namespace GameFramework.DataStructures
         
         [Header("Save Info")]
         [SerializeField] public bool WasAutoSave = false;      // Flag to know if the game was an autosave
-
+        
+        
         #region DateTime Properties
         
         /// <summary>

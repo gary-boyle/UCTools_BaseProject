@@ -296,7 +296,7 @@ namespace GameFramework.Editor.SaveFileManager.UI
                 {
                     var fileName = Path.GetFileNameWithoutExtension(filePath);
                     var jsonContent = await File.ReadAllTextAsync(filePath);
-                    var session = JsonUtility.FromJson<GameSession>(jsonContent);
+                    var session = JsonUtility.FromJson<GameSessionData>(jsonContent);
                     
                     if (session != null)
                     {

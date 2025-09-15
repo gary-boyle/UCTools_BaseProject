@@ -138,16 +138,16 @@ namespace GameFramework.Utilities
         /// <summary>
         /// Generates timestamped save names for regular saves
         /// </summary>
-        /// <param name="session">Game session for player name</param>
+        /// <param name="sessionData">Game session for player name</param>
         /// <param name="isAutoSave">Whether this is an auto-save</param>
         /// <returns>Generated save name with timestamp</returns>
-        public static string GenerateTimestampSaveName(GameSession session, bool isAutoSave)
+        public static string GenerateTimestampSaveName(GameSessionData sessionData, bool isAutoSave)
         {
-            if (session == null)
-                throw new ArgumentNullException(nameof(session));
+            if (sessionData == null)
+                throw new ArgumentNullException(nameof(sessionData));
 
             string timestamp = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
-            string playerName = session.PlayerName ?? "Player";
+            string playerName = sessionData.PlayerName ?? "Player";
 
             return isAutoSave 
                 ? $"{playerName}_{AUTOSAVE_IDENTIFIER}_{timestamp}" 
@@ -158,14 +158,14 @@ namespace GameFramework.Utilities
         /// Generates consistent autosave names (without timestamps) for each player
         /// This ensures each player has only one autosave file that gets overwritten
         /// </summary>
-        /// <param name="session">Game session for player name</param>
+        /// <param name="sessionData">Game session for player name</param>
         /// <returns>Generated autosave name</returns>
-        public static string GenerateAutoSaveName(GameSession session)
+        public static string GenerateAutoSaveName(GameSessionData sessionData)
         {
-            if (session == null)
-                throw new ArgumentNullException(nameof(session));
+            if (sessionData == null)
+                throw new ArgumentNullException(nameof(sessionData));
 
-            string playerName = session.PlayerName ?? "Player";
+            string playerName = sessionData.PlayerName ?? "Player";
             return $"{playerName}_{AUTOSAVE_IDENTIFIER}";
         }
 
