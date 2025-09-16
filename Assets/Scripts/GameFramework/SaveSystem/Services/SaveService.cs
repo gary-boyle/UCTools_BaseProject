@@ -164,6 +164,8 @@ namespace GameFramework.SaveSystem.Services
         /// </summary>
         private async Task<string> PerformSave(string fileName, bool isAutoSave)
         {
+            Debug.Log($"[SaveService] Starting save operation: {fileName}");
+
             // Create save file data container
             var saveFileData = new SaveFileData
             {
@@ -171,44 +173,81 @@ namespace GameFramework.SaveSystem.Services
                 WasAutoSave = isAutoSave
             };
 
-            // Collect data from registered saveables
+            // Collect data from all registered saveables
             var registeredObjects = _saveDataRegistry.GetAllSaveableObjects();
+            Debug.Log($"[SaveService] Collecting save data from {registeredObjects.Count} registered objects");
+
+            int successCount = 0;
+            int failureCount = 0;
 
             foreach (var kvp in registeredObjects)
             {
                 try
                 {
                     var saveable = kvp.Value;
-                    var saveData = saveable.GetSaveData();
-        
-                    // Store as JSON string directly
-                    var savedObjectData = new SavedObjectData(saveable.TypeName, saveData);
-                    //saveFileData.SavedObjects[kvp.Key] = savedObjectData;
-        
-                    saveFileData.AddSavedObject(kvp.Key, savedObjectData);
+                    Debug.Log($"[SaveService] Processing saveable: {saveable.SaveKey} (Type: {saveable.TypeName})");
 
-                    Debug.Log($"[SaveService] Collected save data for: {saveable.SaveKey}");
+                    // Get save data from the saveable object
+                    var saveData = saveable.GetSaveData();
+                    
+                    if (saveData == null)
+                    {
+                        Debug.LogWarning($"[SaveService] Saveable {saveable.SaveKey} returned null save data");
+                        failureCount++;
+                        continue;
+                    }
+
+                    // Use reflection to assign to the appropriate field in SaveFileData
+                    bool assigned = saveFileData.SetSaveData(saveable.SaveKey, saveData);
+                    
+                    if (assigned)
+                    {
+                        successCount++;
+                        Debug.Log($"[SaveService] Successfully collected save data for: {saveable.SaveKey}");
+                    }
+                    else
+                    {
+                        failureCount++;
+                        Debug.LogError($"[SaveService] Failed to assign save data for: {saveable.SaveKey}. " +
+                                      $"Ensure SaveFileData has a public field named '{saveable.SaveKey}'");
+                    }
                 }
                 catch (Exception ex)
                 {
-                    Debug.LogError($"[SaveService] Failed to collect save data from {kvp.Key}: {ex.Message}");
+                    failureCount++;
+                    Debug.LogError($"[SaveService] Exception while collecting save data from {kvp.Key}: {ex.Message}");
                 }
             }
 
+            Debug.Log($"[SaveService] Save data collection complete. Success: {successCount}, Failures: {failureCount}");
+
+            // Validate the collected data
+            if (!saveFileData.ValidateData())
+            {
+                throw new InvalidOperationException("Save data validation failed - essential data is missing");
+            }
+
             // Serialize to JSON
+            Debug.Log("[SaveService] Serializing save data to JSON...");
             string json = JsonSerializationHelper.SerializeToJson(saveFileData, true);
+            
             if (string.IsNullOrEmpty(json))
             {
                 throw new InvalidOperationException("Failed to serialize save data to JSON");
             }
 
+            Debug.Log($"[SaveService] JSON serialization successful. Size: {json.Length} characters");
+
             // Write to file
             string filePath = Path.Combine(_saveDirectory, fileName);
+            Debug.Log($"[SaveService] Writing save file to: {filePath}");
+            
             await WriteJsonToFileAsync(filePath, json);
             
             Debug.Log($"[SaveService] Save completed successfully: {fileName}");
             return fileName;
         }
+
 
         /// <summary>
         /// Writes JSON string to file asynchronously
@@ -256,8 +295,7 @@ namespace GameFramework.SaveSystem.Services
         private void PublishSaveCompletedEvent(string fileName, SaveType saveType)
         {
             var completedEvent = new SaveCompletedEvent(fileName, saveType);
-            // TODO: Integrate with your event system to publish the event
-            Debug.Log($"[SaveService] Save completed event: {fileName} ({saveType})");
+            _eventSystem?.Publish(completedEvent); 
         }
 
         /// <summary>
@@ -266,8 +304,7 @@ namespace GameFramework.SaveSystem.Services
         private void PublishSaveFailedEvent(string errorMessage, SaveType saveType, Exception exception = null)
         {
             var failedEvent = new SaveFailedEvent(errorMessage, saveType, exception);
-            // TODO: Integrate with your event system to publish the event
-            Debug.LogError($"[SaveService] Save failed event: {errorMessage} ({saveType})");
+            _eventSystem?.Publish(failedEvent); 
         }
         #endregion
     }

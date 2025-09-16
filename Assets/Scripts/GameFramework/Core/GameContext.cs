@@ -1,6 +1,7 @@
 ﻿using System;
 using GameFramework.EventSystem.Interfaces;
 using GameFramework.Input.Interfaces;
+using GameFramework.LoadSystem.Interfaces;
 using GameFramework.Services.Interfaces;
 
 namespace GameFramework.Core
@@ -114,7 +115,7 @@ namespace GameFramework.Core
         /// Provides secure, reliable game save functionality with support for
         /// multiple save slots, data validation, and cross-platform compatibility.
         /// </remarks>
-        //public ISaveService SaveService { get; }
+        public ISaveService SaveService { get; }
         
         /// <summary>
         /// Gets the game data service for managing runtime game state and shared data.
@@ -184,7 +185,7 @@ namespace GameFramework.Core
             IAudioService audioService,
             IInputManager inputManager,
             IUIService uiService,
-            //ISaveService saveService,
+            ISaveService saveService,
             IGameDataService gameDataService,
             IConsoleService consoleService,
             IGraphicsService graphicsService,
@@ -197,7 +198,7 @@ namespace GameFramework.Core
             AudioService = audioService ?? throw new ArgumentNullException(nameof(audioService));
             InputManager = inputManager ?? throw new ArgumentNullException(nameof(inputManager));
             UIService = uiService ?? throw new ArgumentNullException(nameof(uiService));
-            //SaveService = saveService ?? throw new ArgumentNullException(nameof(saveService));
+            SaveService = saveService ?? throw new ArgumentNullException(nameof(saveService));
             GameDataService = gameDataService ?? throw new ArgumentNullException(nameof(gameDataService));
             ConsoleService = consoleService ?? throw new ArgumentNullException(nameof(consoleService));
             GraphicsService = graphicsService ?? throw new ArgumentNullException(nameof(graphicsService));

@@ -1,35 +1,35 @@
 ﻿using System;
-using GameFramework.DataStructures;
 
 namespace GameFramework.Utilities
 {
-    /// <summary>
-    /// Static utility class for time formatting and common time operations
-    /// Contains pure functions with no dependencies on services or state
-    /// Focuses on GameTime only - no session time tracking
-    /// </summary>
     public static class TimeUtilities
     {
-        #region Time Formatting
-        
         /// <summary>
-        /// Formats time from seconds to HH:MM:SS string format
+        /// Formats seconds into time format - overload for double precision
         /// </summary>
-        /// <param name="seconds">Time in seconds</param>
-        /// <returns>Formatted time string (HH:MM:SS)</returns>
-        public static string FormatTimeFromSeconds(float seconds)
+        public static string FormatTimeFromSeconds(double totalSeconds)
         {
-            if (seconds < 0) seconds = 0; // Ensure non-negative
+            if (totalSeconds < 0) totalSeconds = 0;
             
-            var timeSpan = TimeSpan.FromSeconds(seconds);
-            return string.Format("{0:D2}:{1:D2}:{2:D2}", 
-                timeSpan.Hours, 
-                timeSpan.Minutes, 
-                timeSpan.Seconds);
+            var timeSpan = TimeSpan.FromSeconds(totalSeconds);
+            
+            if (timeSpan.TotalDays >= 1)
+            {
+                return $"{timeSpan.Days}d {timeSpan.Hours:D2}:{timeSpan.Minutes:D2}:{timeSpan.Seconds:D2}";
+            }
+            else
+            {
+                int totalHours = (int)timeSpan.TotalHours;
+                return $"{totalHours:D2}:{timeSpan.Minutes:D2}:{timeSpan.Seconds:D2}";
+            }
         }
         
-        #endregion
-
-        
+        /// <summary>
+        /// Formats seconds into time format - keep existing float overload for compatibility
+        /// </summary>
+        public static string FormatTimeFromSeconds(float totalSeconds)
+        {
+            return FormatTimeFromSeconds((double)totalSeconds);
+        }
     }
 }

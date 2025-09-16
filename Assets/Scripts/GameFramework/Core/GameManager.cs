@@ -15,7 +15,11 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using System;
 using GameFramework.Config.ScriptableObjects;
+using GameFramework.FileSystem.Interfaces;
+using GameFramework.FileSystem.Services;
 using GameFramework.GameData.Services;
+using GameFramework.LoadSystem.Interfaces;
+using GameFramework.LoadSystem.Services;
 using GameFramework.SaveSystem.Interfaces;
 using GameFramework.SaveSystem.Services;
 
@@ -313,6 +317,9 @@ namespace GameFramework.Core
             var eventSystem = _container.Resolve<IEventSystem>();
             await eventSystem.InitializeAsync();
 
+            var fileService = _container.Resolve<IFileService>();
+            await fileService.InitializeAsync();
+            
             SettingsRegistry.Initialize();
             if (!_servicesRegistered)
             {
@@ -392,6 +399,7 @@ namespace GameFramework.Core
             // Register leaf services first (no dependencies)
             _container.RegisterSingleton<IEventSystem, EventSystem.EventSystem>();
             _container.RegisterSingleton<IProfilingService, ProfilingService>();
+            _container.RegisterSingleton<IFileService, FileService>();
 
             // Register services with minimal dependencies
             _container.RegisterSingleton<ITimeService, TimeService>();

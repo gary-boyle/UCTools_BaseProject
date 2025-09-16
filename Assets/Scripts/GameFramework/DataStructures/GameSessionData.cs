@@ -1,13 +1,13 @@
 ﻿using GameFramework.SaveSystem.Data;
 using UnityEngine;
 using GameFramework.SaveSystem.Interfaces;
-using UnityEngine.Serialization;
 
 namespace GameFramework.DataStructures
 {
     /// <summary>
     /// Game session data implementation of ISaveable
     /// Stores difficulty, scene, and game time information
+    /// Single source of truth for game time - TimeService directly updates GameTimeDouble
     /// </summary>
     [System.Serializable]
     public class GameSessionData : ISaveable
@@ -20,7 +20,7 @@ namespace GameFramework.DataStructures
         #region Private Fields
         [SerializeField] private string _difficulty = "Normal";
         [SerializeField] private string _currentScene = "MainMenu";
-        [SerializeField] private float _gameTime = 0f;
+        [SerializeField] private double _gameTime = 0.0;
         #endregion
 
         #region Public Properties
@@ -36,7 +36,10 @@ namespace GameFramework.DataStructures
             set => _currentScene = value; 
         }
         
-        public float GameTime 
+        /// <summary>
+        /// Game time with double precision - TimeService updates this directly
+        /// </summary>
+        public double GameTime 
         { 
             get => _gameTime; 
             set => _gameTime = value; 
@@ -46,7 +49,7 @@ namespace GameFramework.DataStructures
         #region ISaveable Methods
         /// <summary>
         /// Gets serializable data for save operations
-        /// Returns anonymous object matching JSON structure requirements
+        /// Always returns current time since TimeService updates _gameTime directly
         /// </summary>
         public object GetSaveData()
         {
@@ -54,7 +57,7 @@ namespace GameFramework.DataStructures
             {
                 difficulty = Difficulty,
                 currentScene = CurrentScene,
-                gameTime = GameTime
+                gameTime = (float)_gameTime  // Cast to float for save format compatibility
             };
         }
 
@@ -101,16 +104,13 @@ namespace GameFramework.DataStructures
 
         #region Constructors
         public GameSessionData() { }
-
-        public GameSessionData(string difficulty, string currentScene, float gameTime)
+        
+        public GameSessionData(string difficulty, string currentScene, double gameTime)
         {
             this._difficulty = difficulty;
             this._currentScene = currentScene;
             this._gameTime = gameTime;
         }
-        
-        
-
         #endregion
     }
 }

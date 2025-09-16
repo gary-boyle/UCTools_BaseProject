@@ -13,34 +13,34 @@ namespace GameFramework.DataStructures
     public class SaveFileInfo
     {
         #region Serialized Fields
-        [SerializeField] private string fileName;
-        [SerializeField] private string playerName;
-        [SerializeField] private string currentScene;
-        [SerializeField] private long lastSaveTimeTicks;
-        [SerializeField] private float gameTime; 
-        [SerializeField] private bool wasAutoSaved;
+        [SerializeField] private string _fileName;
+        [SerializeField] private string _playerName;
+        [SerializeField] private string _currentScene;
+        [SerializeField] private long _lastSaveTimeTicks;
+        [SerializeField] private float _gameTime; 
+        [SerializeField] private bool _wasAutoSaved;
         #endregion
 
         #region Public Properties
-        public string FileName => fileName;
-        public string PlayerName => playerName;
-        public string CurrentScene => currentScene;
-        public float GameTime => gameTime;
-        public bool WasAutoSaved => wasAutoSaved;
+        public string FileName => _fileName;
+        public string PlayerName => _playerName;
+        public string CurrentScene => _currentScene;
+        public float GameTime => _gameTime;
+        public bool WasAutoSaved => _wasAutoSaved;
         
         /// <summary>
         /// Last save time as DateTime (converts from ticks)
         /// </summary>
         public DateTime LastSaveTime 
         { 
-            get => new DateTime(lastSaveTimeTicks);
-            private set => lastSaveTimeTicks = value.Ticks;
+            get => new DateTime(_lastSaveTimeTicks);
+            private set => _lastSaveTimeTicks = value.Ticks;
         }
 
         /// <summary>
         /// Ticks representation for serialization
         /// </summary>
-        public long LastSaveTimeTicks => lastSaveTimeTicks;
+        public long LastSaveTimeTicks => _lastSaveTimeTicks;
         #endregion
 
         #region Constructors
@@ -49,63 +49,117 @@ namespace GameFramework.DataStructures
         /// </summary>
         public SaveFileInfo()
         {
-            fileName = string.Empty;
-            playerName = "Unknown";
-            currentScene = "Unknown";
-            lastSaveTimeTicks = DateTime.Now.Ticks;
-            gameTime = 0f;
-            wasAutoSaved = false;
+            _fileName = string.Empty;
+            _playerName = "Unknown";
+            _currentScene = "Unknown";
+            _lastSaveTimeTicks = DateTime.Now.Ticks;
+            _gameTime = 0f;
+            _wasAutoSaved = false;
         }
 
         /// <summary>
-        /// Constructor from SaveFileData
+        /// Constructor from SaveFileData - updated for direct field access
         /// </summary>
         public SaveFileInfo(string fileName, SaveFileData saveData)
         {
-            this.fileName = fileName ?? string.Empty;
+            this._fileName = fileName ?? string.Empty;
             LastSaveTime = saveData.SaveTime; // Uses property setter to convert to ticks
-            wasAutoSaved = saveData.WasAutoSave;
+            _wasAutoSaved = saveData.WasAutoSave;
 
-            // Extract GameSessionData
-            if (saveData.SavedObjects.TryGetValue("GameSessionData", out var gameSessionObject))
+            // Extract GameSessionData directly from field
+            if (saveData.GameSessionData != null)
             {
                 try
                 {
-                    var gameSessionData = gameSessionObject.GetData<GameSessionData>();
-                    currentScene = gameSessionData?.CurrentScene ?? "Unknown";
-                    gameTime = gameSessionData?.GameTime ?? 0f;
+                    _currentScene = saveData.GameSessionData.currentScene ?? "Unknown";
+                    _gameTime = saveData.GameSessionData.gameTime;
                 }
                 catch (Exception ex)
                 {
                     Debug.LogWarning($"[SaveFileInfo] Failed to extract GameSessionData from {fileName}: {ex.Message}");
-                    currentScene = "Unknown";
-                    gameTime = 0f;
+                    _currentScene = "Unknown";
+                    _gameTime = 0f;
                 }
             }
             else
             {
-                currentScene = "Unknown";
-                gameTime = 0f;
+                Debug.LogWarning($"[SaveFileInfo] GameSessionData is null in save file {fileName}");
+                _currentScene = "Unknown";
+                _gameTime = 0f;
             }
 
-            // Extract PlayerData
-            if (saveData.SavedObjects.TryGetValue("PlayerData", out var playerObject))
+            // Extract PlayerData directly from field
+            if (saveData.PlayerData != null)
             {
                 try
                 {
-                    var playerData = playerObject.GetData<PlayerData>();
-                    playerName = playerData?.PlayerName ?? "Unknown";
+                    _playerName = saveData.PlayerData.playerName ?? "Unknown";
                 }
                 catch (Exception ex)
                 {
                     Debug.LogWarning($"[SaveFileInfo] Failed to extract PlayerData from {fileName}: {ex.Message}");
-                    playerName = "Unknown";
+                    _playerName = "Unknown";
                 }
             }
             else
             {
-                playerName = "Unknown";
+                Debug.LogWarning($"[SaveFileInfo] PlayerData is null in save file {fileName}");
+                _playerName = "Unknown";
             }
+        }
+        #endregion
+
+        #region Static Factory Method
+        /// <summary>
+        /// Creates a SaveFileInfo from a file path by reading and parsing the save file
+        /// </summary>
+        /// <param name="filePath">Full path to the save file</param>
+        /// <returns>SaveFileInfo or null if file cannot be read</returns>
+        public static SaveFileInfo CreateFromFile(string filePath)
+        {
+            if (!System.IO.File.Exists(filePath))
+            {
+                Debug.LogWarning($"[SaveFileInfo] Save file does not exist: {filePath}");
+                return null;
+            }
+
+            string fileName = System.IO.Path.GetFileName(filePath);
+
+            try
+            {
+                // Read and parse the save file
+                string json = System.IO.File.ReadAllText(filePath);
+                var saveData = JsonUtility.FromJson<SaveFileData>(json);
+
+                if (saveData == null)
+                {
+                    Debug.LogWarning($"[SaveFileInfo] Failed to parse save file: {fileName}");
+                    return CreateCorruptedSaveInfo(fileName);
+                }
+
+                return new SaveFileInfo(fileName, saveData);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"[SaveFileInfo] Error reading save file {fileName}: {ex.Message}");
+                return CreateCorruptedSaveInfo(fileName);
+            }
+        }
+
+        /// <summary>
+        /// Creates a SaveFileInfo for a corrupted save file
+        /// </summary>
+        private static SaveFileInfo CreateCorruptedSaveInfo(string fileName)
+        {
+            return new SaveFileInfo
+            {
+                _fileName = fileName,
+                _playerName = "Corrupted Save",
+                _currentScene = "Unknown",
+                _lastSaveTimeTicks = DateTime.MinValue.Ticks,
+                _gameTime = 0f,
+                _wasAutoSaved = false
+            };
         }
         #endregion
 
@@ -117,6 +171,7 @@ namespace GameFramework.DataStructures
         /// <returns>Formatted date/time string</returns>
         public string GetFormattedSaveTime(string format = "yyyy/MM/dd HH:mm:ss")
         {
+            if (LastSaveTime == DateTime.MinValue) return "Corrupted";
             return LastSaveTime.ToString(format);
         }
 
@@ -126,8 +181,10 @@ namespace GameFramework.DataStructures
         /// <returns>Formatted game time string</returns>
         public string GetFormattedGameTime()
         {
-            var timeSpan = TimeSpan.FromSeconds(gameTime);
-            return $"{(int)timeSpan.TotalHours:D2}:{timeSpan.Minutes:D2}:{timeSpan.Seconds:D2}";
+            if (LastSaveTime == DateTime.MinValue) return "--:--:--";
+            
+            var timeSpan = TimeSpan.FromSeconds(_gameTime);
+            return $"{(int)timeSpan.TotalHours:D2}h :{timeSpan.Minutes:D2}m :{timeSpan.Seconds:D2}s";
         }
 
         /// <summary>
@@ -136,7 +193,8 @@ namespace GameFramework.DataStructures
         /// <returns>User-friendly save type string</returns>
         public string GetSaveTypeString()
         {
-            return wasAutoSaved ? "Auto Save" : "Manual Save";
+            if (LastSaveTime == DateTime.MinValue) return "Corrupted";
+            return _wasAutoSaved ? "Auto Save" : "Manual Save";
         }
 
         /// <summary>
@@ -145,8 +203,18 @@ namespace GameFramework.DataStructures
         /// <returns>Display name without file extension</returns>
         public string GetDisplayName()
         {
-            if (string.IsNullOrEmpty(fileName)) return "Unknown";
-            return System.IO.Path.GetFileNameWithoutExtension(fileName);
+            if (string.IsNullOrEmpty(_fileName)) return "Unknown";
+            return System.IO.Path.GetFileNameWithoutExtension(_fileName);
+        }
+
+        /// <summary>
+        /// Checks if this save file info represents a valid (non-corrupted) save
+        /// </summary>
+        public bool IsValid()
+        {
+            return LastSaveTime != DateTime.MinValue && 
+                   !string.IsNullOrEmpty(_fileName) && 
+                   _playerName != "Corrupted Save";
         }
         #endregion
 
@@ -156,7 +224,10 @@ namespace GameFramework.DataStructures
         /// </summary>
         public override string ToString()
         {
-            return $"SaveFileInfo: {fileName} | Player: {playerName} | Scene: {currentScene} | " +
+            if (!IsValid())
+                return $"SaveFileInfo [CORRUPTED]: {_fileName}";
+
+            return $"SaveFileInfo: {_fileName} | Player: {_playerName} | Scene: {_currentScene} | " +
                    $"Time: {GetFormattedGameTime()} | Saved: {GetFormattedSaveTime()} | " +
                    $"Type: {GetSaveTypeString()}";
         }
@@ -168,7 +239,7 @@ namespace GameFramework.DataStructures
         {
             if (obj is SaveFileInfo other)
             {
-                return string.Equals(fileName, other.fileName, StringComparison.OrdinalIgnoreCase);
+                return string.Equals(_fileName, other._fileName, StringComparison.OrdinalIgnoreCase);
             }
             return false;
         }
@@ -178,7 +249,7 @@ namespace GameFramework.DataStructures
         /// </summary>
         public override int GetHashCode()
         {
-            return fileName?.GetHashCode() ?? 0;
+            return _fileName?.GetHashCode() ?? 0;
         }
         #endregion
     }

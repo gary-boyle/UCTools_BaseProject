@@ -7,7 +7,7 @@ namespace GameFramework.Services.Data
     /// </summary>
     public struct TimeStatistics
     {
-        public float GameTime;
+        public double GameTime;
         public float SessionTime;
         public float LevelTime;
         public bool IsTrackingGameTime;

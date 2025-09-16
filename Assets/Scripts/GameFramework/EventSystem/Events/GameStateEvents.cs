@@ -31,7 +31,6 @@ namespace GameFramework.EventSystem.Events
         public string PlayerName { get; set; }
         public string Difficulty { get; set; } = "Normal";
         public string StartingScene { get; set; } = "GameLevel1";
-        public Dictionary<string, object> CustomData { get; set; } = new();
     }
 
     public class SceneLoadedEvent

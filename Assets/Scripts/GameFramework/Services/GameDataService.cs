@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using GameFramework.DataStructures;
-using GameFramework.EventSystem.Events;
 using UnityEngine;
-using GameFramework.SaveSystem.Services;
 using GameFramework.GameData.Events;
 using GameFramework.EventSystem.Interfaces;
 using GameFramework.SaveSystem.Interfaces;
@@ -41,22 +39,17 @@ namespace GameFramework.GameData.Services
         public async Task InitializeAsync()
         {
             if (IsInitialized) return;
-
-            Debug.Log("[GameDataService] Initializing game data service...");
-
+            
             // Initialize with default data
             InitializeDefaultGameData();
 
             IsInitialized = true;
-            Debug.Log("[GameDataService] Game data service initialized successfully");
         }
 
         public void Shutdown()
         {
             if (!IsInitialized) return;
-
-            Debug.Log("[GameDataService] Shutting down game data service...");
-
+            
             // Deregister from save system if registry is available
             if (_saveDataRegistry != null)
             {
@@ -70,7 +63,6 @@ namespace GameFramework.GameData.Services
             _eventSystem = null;
 
             IsInitialized = false;
-            Debug.Log("[GameDataService] Game data service shutdown complete");
         }
         #endregion
         
@@ -122,8 +114,6 @@ namespace GameFramework.GameData.Services
 
             // Publish change event through EventSystem
             _eventSystem?.Publish(new GameSessionDataChangedEvent(_currentGameSession));
-
-            Debug.Log($"[GameDataService] GameSessionData updated - Scene: {gameSessionData.CurrentScene}, Difficulty: {gameSessionData.Difficulty}");
         }
 
         /// <summary>
@@ -161,7 +151,6 @@ namespace GameFramework.GameData.Services
             {
                 // Publish change event through EventSystem
                 _eventSystem?.Publish(new GameSessionDataChangedEvent(_currentGameSession));
-                Debug.Log("[GameDataService] GameSessionData updated via UpdateGameSession");
             }
         }
 
@@ -219,8 +208,6 @@ namespace GameFramework.GameData.Services
 
             // Publish change event through EventSystem
             _eventSystem?.Publish(new PlayerDataChangedEvent(_currentPlayerData));
-
-            Debug.Log($"[GameDataService] PlayerData updated - Player: {playerData.PlayerName}, Position: {playerData.Position}");
         }
 
         /// <summary>
@@ -258,7 +245,6 @@ namespace GameFramework.GameData.Services
             {
                 // Publish change event through EventSystem
                 _eventSystem?.Publish(new PlayerDataChangedEvent(_currentPlayerData));
-                Debug.Log("[GameDataService] PlayerData updated via UpdatePlayer");
             }
         }
         #endregion
@@ -274,9 +260,7 @@ namespace GameFramework.GameData.Services
                 Debug.LogError("[GameDataService] Cannot start new game - service not initialized");
                 return;
             }
-
-            Debug.Log($"[GameDataService] Starting new game - Player: {playerName}, Difficulty: {difficulty}, Scene: {startingScene}");
-
+            
             // Create new game session
             var newGameSession = new GameSessionData(difficulty, startingScene, 0f);
             SetGameSessionData(newGameSession);
@@ -287,9 +271,6 @@ namespace GameFramework.GameData.Services
 
             // Publish new game started event
             _eventSystem?.Publish(new NewGameStartedEvent(newGameSession, newPlayerData));
-            _eventSystem.Publish(SaveRequestedEvent.CreateRegularSave());
-
-            Debug.Log("[GameDataService] New game started successfully");
         }
 
         /// <summary>
@@ -302,9 +283,7 @@ namespace GameFramework.GameData.Services
                 Debug.LogError("[GameDataService] Cannot load game data - service not initialized");
                 return;
             }
-
-            Debug.Log("[GameDataService] Loading game data from save");
-
+            
             if (gameSessionData != null)
             {
                 SetGameSessionData(gameSessionData);
@@ -317,8 +296,6 @@ namespace GameFramework.GameData.Services
 
             // Publish game data loaded event
             _eventSystem?.Publish(new GameDataLoadedEvent(gameSessionData, playerData));
-
-            Debug.Log("[GameDataService] Game data loaded successfully");
         }
 
         /// <summary>
@@ -332,7 +309,6 @@ namespace GameFramework.GameData.Services
                 return;
             }
 
-            Debug.Log("[GameDataService] Resetting game data to defaults");
             InitializeDefaultGameData();
 
             // Re-register with save system if available
@@ -358,8 +334,6 @@ namespace GameFramework.GameData.Services
 
             // Create default player
             _currentPlayerData = new PlayerData("Player", Vector3.zero, Vector3.zero);
-
-            Debug.Log("[GameDataService] Default game data initialized");
         }
 
         /// <summary>
@@ -372,11 +346,7 @@ namespace GameFramework.GameData.Services
             bool sessionRegistered = _saveDataRegistry.RegisterSaveable(_currentGameSession);
             bool playerRegistered = _saveDataRegistry.RegisterSaveable(_currentPlayerData);
 
-            if (sessionRegistered && playerRegistered)
-            {
-                Debug.Log("[GameDataService] Successfully registered game data objects with save system");
-            }
-            else
+            if (!sessionRegistered && !playerRegistered)
             {
                 Debug.LogWarning("[GameDataService] Failed to register some game data objects with save system");
             }
@@ -398,8 +368,6 @@ namespace GameFramework.GameData.Services
             {
                 _saveDataRegistry.DeregisterSaveable(_currentPlayerData);
             }
-
-            Debug.Log("[GameDataService] Unregistered game data objects from save system");
         }
         #endregion
 
@@ -428,12 +396,7 @@ namespace GameFramework.GameData.Services
                 Debug.LogError("[GameDataService] Validation failed - PlayerData is null");
                 isValid = false;
             }
-
-            if (isValid)
-            {
-                Debug.Log("[GameDataService] Game data validation passed");
-            }
-
+            
             return isValid;
         }
         #endregion

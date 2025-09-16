@@ -16,7 +16,7 @@
                 <engine:VisualElement class="layout-row">
                     <engine:Button text="Back" name="btn_Back" class="btn btn--secondary btn--large mr-md" />
                     <engine:Button text="Start Game" name="btn_Confirm" class="btn btn--success btn--large" />
-                    <engine:Button text="Save" name="btn_Save" class="btn btn--success btn--large" />
+                    <engine:Button text="Start Game" name="btn_testSave" class="btn btn--success btn--large" />
                 </engine:VisualElement>
             </engine:VisualElement>
         </engine:VisualElement>

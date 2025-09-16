@@ -183,24 +183,14 @@ namespace GameFramework.UI.Screens
         /// </summary>
         private void UpdateDebugLabel2(DataStructures.GameSessionData session)
         {
-            if (_timeService != null && session != null)
-            {
-                var formattedGameTime = _timeService.GetFormattedGameTime();
-                var isTracking = _timeService.IsTrackingGameTime;
+            if (_timeService == null || session == null) return;
+            
+            var formattedGameTime = _timeService.GetFormattedGameTime();
+            var isTracking = _timeService.IsTrackingGameTime;
                 
-                var trackingIndicator = isTracking ? "⏱️" : "⏸️";
-                var text = $"Scene: {session.CurrentScene} | Game: {formattedGameTime} | {trackingIndicator}";
-                _debugLabel4.text = text;
-            }
-            else
-            {
-                var currentPlayTime = session?.GameTime ?? 0f;
-                var playTime = TimeSpan.FromSeconds(currentPlayTime);
-                var formattedTime = $"{playTime.Hours:D2}:{playTime.Minutes:D2}:{playTime.Seconds:D2}";
-                var text = $"Scene: {session?.CurrentScene ?? "Unknown"} | Time: {formattedTime} (Fallback)";
-                
-                _debugLabel4.text = text;
-            }
+            var trackingIndicator = isTracking ? "⏱️" : "⏸️";
+            var text = $"Scene: {session.CurrentScene} | Game: {formattedGameTime} | {trackingIndicator}";
+            _debugLabel4.text = text;
         }
         
         #endregion

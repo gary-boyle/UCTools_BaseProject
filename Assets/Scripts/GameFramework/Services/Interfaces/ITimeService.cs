@@ -13,7 +13,7 @@ namespace GameFramework.Services.Interfaces
         bool IsInitialized { get; }
         
         // Time Properties
-        float GameTime { get; }        // Time spent in PlayingState when not paused
+        double GameTime { get; } // Add this for precision when needed
 
         // State Properties
         bool IsTrackingGameTime { get; }
@@ -24,6 +24,6 @@ namespace GameFramework.Services.Interfaces
         
         // Time Methods
         string GetFormattedGameTime();
-        TimeStatistics GetTimeStatistics();
+        // TimeStatistics GetTimeStatistics();
     }
 }
