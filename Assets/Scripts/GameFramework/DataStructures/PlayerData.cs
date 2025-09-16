@@ -87,16 +87,16 @@ namespace GameFramework.DataStructures
                     _position = directData._position;
                     _rotation = directData._rotation;
                 }
-                else
-                {
-                    var json = JsonUtility.ToJson(data);
-                    var loadedData = JsonUtility.FromJson<PlayerSaveData>(json);
-            
-                    _uniqueID = loadedData.uniqueID;
-                    _playerName = loadedData.playerName;
-                    _position = loadedData.Position;
-                    _rotation = loadedData.Rotation;
-                }
+                // else
+                // {
+                //     var json = JsonUtility.ToJson(data);
+                //     var loadedData = JsonUtility.FromJson<PlayerSaveData>(json);
+                //
+                //     _uniqueID = loadedData.uniqueID;
+                //     _playerName = loadedData.playerName;
+                //     _position = loadedData.Position;
+                //     _rotation = loadedData.Rotation;
+                // }
         
                 // IMPORTANT: Always update the public property when loading
                 UniqueID = _uniqueID;

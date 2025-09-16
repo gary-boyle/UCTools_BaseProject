@@ -99,16 +99,16 @@ namespace GameFramework.DataStructures
                     _currentScene = directData._currentScene;
                     _gameTime = directData._gameTime;
                 }
-                else
-                {
-                    var json = JsonUtility.ToJson(data);
-                    var loadedData = JsonUtility.FromJson<GameSessionSaveData>(json);
-            
-                    _uniqueID = loadedData.uniqueID;
-                    _difficulty = loadedData.difficulty;
-                    _currentScene = loadedData.currentScene;
-                    _gameTime = loadedData.gameTime;
-                }
+                // else
+                // {
+                //     var json = JsonUtility.ToJson(data);
+                //     var loadedData = JsonUtility.FromJson<GameSessionSaveData>(json);
+                //
+                //     _uniqueID = loadedData.uniqueID;
+                //     _difficulty = loadedData.difficulty;
+                //     _currentScene = loadedData.currentScene;
+                //     _gameTime = loadedData.gameTime;
+                // }
         
                 // IMPORTANT: Always update the public property when loading
                 UniqueID = _uniqueID;

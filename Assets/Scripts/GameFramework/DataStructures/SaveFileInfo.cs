@@ -22,7 +22,12 @@ namespace GameFramework.DataStructures
         #endregion
 
         #region Public Properties
-        public string FileName => _fileName;
+        public string FileName
+        {
+            get => _fileName;
+            set => _fileName = value;
+        }
+
         public string PlayerName => _playerName;
         public string CurrentScene => _currentScene;
         public long GameTime => _gameTime;
@@ -31,6 +36,8 @@ namespace GameFramework.DataStructures
         /// <summary>
         /// Last save time as DateTime (converts from ticks)
         /// </summary>
+        ///
+        
         public DateTime LastSaveTime 
         { 
             get => new DateTime(_lastSaveTimeTicks);
