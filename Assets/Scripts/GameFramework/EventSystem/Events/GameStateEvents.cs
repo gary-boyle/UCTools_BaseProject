@@ -22,10 +22,6 @@ namespace GameFramework.EventSystem.Events
     
     public class OptionsChangedEvent { }
     
-    public class SaveGameEvent { }
-    
-    public class LoadGameEvent { }
-
     public class NewGameRequestedEvent
     {
         public string PlayerName { get; set; }
@@ -56,5 +52,4 @@ namespace GameFramework.EventSystem.Events
     
     public class VictoryEvent { }
     
-    public class UICancelInputEvent { }
 }

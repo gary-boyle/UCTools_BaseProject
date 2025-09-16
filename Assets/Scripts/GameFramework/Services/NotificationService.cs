@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using GameFramework.EventSystem.Events;
+using GameFramework.EventSystem.Events.Enums;
 using GameFramework.EventSystem.Interfaces;
 using GameFramework.Services.Interfaces;
 using GameFramework.UI.Popups;

@@ -1,4 +1,5 @@
 using GameFramework.EventSystem.Events;
+using GameFramework.EventSystem.Events.Enums;
 
 namespace GameFramework.Services.Interfaces
 {

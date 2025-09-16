@@ -41,8 +41,6 @@ namespace GameFramework.Services
 
         #region Constants
         private const string LOG_PREFIX = "[ConsoleService]";
-        private const string CONSOLE_ENABLED_CONFIG_KEY = "debug.console_enabled";
-        private const string VERBOSE_LOGGING_CONFIG_KEY = "debug.verbose_logging";
         #endregion
 
         /// <summary>

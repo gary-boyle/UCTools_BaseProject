@@ -7,6 +7,7 @@ using GameFramework.Events;
 using UnityEngine;
 using System.IO;
 using GameFramework.EventSystem.Events;
+using GameFramework.EventSystem.Events.Enums;
 using UnityEngine.InputSystem;
 
 namespace GameFramework.ConsoleTool.Commands

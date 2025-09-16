@@ -53,4 +53,7 @@ namespace GameFramework.EventSystem.Events
             ScrollDelta = scrollDelta;
         }
     }
+
+    public class UICancelInputEvent { }
+
 }

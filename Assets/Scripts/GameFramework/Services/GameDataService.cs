@@ -5,10 +5,9 @@ using UnityEngine;
 using GameFramework.GameData.Events;
 using GameFramework.EventSystem.Interfaces;
 using GameFramework.SaveSystem.Interfaces;
-using GameFramework.SaveSystem.Utilities;
 using GameFramework.Services.Interfaces;
 
-namespace GameFramework.GameData.Services
+namespace GameFramework.Services
 {
     /// <summary>
     /// Central service for managing current game data (GameSessionData and PlayerData)
@@ -34,7 +33,7 @@ namespace GameFramework.GameData.Services
             )
         {
             _eventSystem = eventSystem ?? throw new ArgumentNullException(nameof(eventSystem));
-            _saveDataRegistry = saveDataRegistry ?? throw new ArgumentNullException(nameof(_saveDataRegistry));
+            _saveDataRegistry = saveDataRegistry ?? throw new ArgumentNullException(nameof(saveDataRegistry));
         }
 
         public async Task InitializeAsync()

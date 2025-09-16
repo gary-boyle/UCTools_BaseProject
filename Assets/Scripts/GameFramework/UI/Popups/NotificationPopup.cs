@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using GameFramework.EventSystem.Events;
+using GameFramework.EventSystem.Events.Enums;
 using UnityEngine;
 using UnityEngine.UIElements;
 

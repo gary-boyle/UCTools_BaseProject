@@ -45,23 +45,5 @@ namespace GameFramework.FileSystem.Interfaces
         /// <param name="fileName">Name of the save file to check</param>
         /// <returns>True if file exists</returns>
         bool SaveFileExists(string fileName);
-
-        /// <summary>
-        /// Gets the full path to a save file
-        /// </summary>
-        /// <param name="fileName">Name of the save file</param>
-        /// <returns>Full file path</returns>
-        string GetSaveFilePath(string fileName);
-    }
-
-    /// <summary>
-    /// Information about the save file system
-    /// </summary>
-    public class SaveFileSystemInfo
-    {
-        public long TotalSaveFiles { get; set; }
-        public long TotalSizeBytes { get; set; }
-        public string SaveDirectory { get; set; }
-        public bool DirectoryExists { get; set; }
     }
 }

@@ -17,18 +17,9 @@ namespace GameFramework.Services.Interfaces
         /// Gets the current GameSessionData (read-only access)
         /// </summary>
         GameSessionData GetGameSessionData();
-
-        /// <summary>
-        /// Sets new GameSessionData and publishes change event
-        /// </summary>
-        void SetGameSessionData(GameSessionData gameSessionData);
-
-        /// <summary>
-        /// Updates specific game session properties
-        /// </summary>
-        void UpdateGameSession(string difficulty = null, string currentScene = null, long? gameTime = null);
         
         bool HasActiveSession();
+        
         #endregion
 
         #region PlayerData Access
@@ -36,16 +27,7 @@ namespace GameFramework.Services.Interfaces
         /// Gets the current PlayerData (read-only access)
         /// </summary>
         PlayerData GetPlayerData();
-
-        /// <summary>
-        /// Sets new PlayerData and publishes change event
-        /// </summary>
-        void SetPlayerData(PlayerData playerData);
-
-        /// <summary>
-        /// Updates specific player properties
-        /// </summary>
-        void UpdatePlayer(string playerName = null, Vector3? position = null, Vector3? rotation = null);
+        
         #endregion
 
         #region Data Lifecycle
@@ -59,17 +41,6 @@ namespace GameFramework.Services.Interfaces
         /// </summary>
         void LoadGameData(GameSessionData gameSessionData, PlayerData playerData);
 
-        /// <summary>
-        /// Resets all game data to defaults
-        /// </summary>
-        void ResetToDefaults();
-        #endregion
-
-        #region Validation
-        /// <summary>
-        /// Validates that current game data is in a consistent state
-        /// </summary>
-        bool ValidateGameData();
         #endregion
     }
 }

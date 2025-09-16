@@ -345,9 +345,6 @@ namespace GameFramework.UI.Screens
             UpdateProgressOverlay(PROGRESS_SUCCESS, 1.0f);
             await Task.Delay(800); // Show completion state
             
-            // Publish save event
-            _eventSystem.Publish(new SaveGameEvent());
-            
             // Refresh the save files list to show the new/updated save
             await RefreshSaveFilesList();
             

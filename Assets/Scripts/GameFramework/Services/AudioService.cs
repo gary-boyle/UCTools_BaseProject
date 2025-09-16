@@ -464,30 +464,13 @@ namespace GameFramework.Services
             
             return Mathf.Clamp(20f * Mathf.Log10(normalizedVolume), MIN_MIXER_VOLUME, MAX_MIXER_VOLUME);
         }
-
-        private float ConvertFromMixerVolume(float mixerVolume)
-        {
-            if (mixerVolume <= MIN_MIXER_VOLUME)
-                return 0f;
-                
-            return Mathf.Pow(10f, mixerVolume / 20f);
-        }
-
+        
         private void SetMixerVolume(string parameterName, float normalizedVolume)
         {
             float mixerVolume = ConvertToMixerVolume(normalizedVolume);
             _masterMixer.SetFloat(parameterName, mixerVolume);
         }
-
-        private float GetMixerVolume(string parameterName)
-        {
-            if (_masterMixer.GetFloat(parameterName, out float mixerVolume))
-            {
-                return ConvertFromMixerVolume(mixerVolume);
-            }
-            return 1f;
-        }
-
+        
         private bool TrySetMixerParameter(string parameterName, float value)
         {
             return _masterMixer.SetFloat(parameterName, value);

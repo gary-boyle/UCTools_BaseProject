@@ -11,21 +11,6 @@ namespace GameFramework.EventSystem.Events
     /// Handles load requests, progress updates, and completion states
     /// </summary>
     
-    /// <summary>
-    /// Event triggered when the player requests to load a saved game
-    /// </summary>
-    public class LoadGameRequestedEvent
-    {
-        public string SaveFileName { get; set; }
-        public SaveFileInfo SaveFileInfoOld { get; set; }
-        
-        public LoadGameRequestedEvent(string saveFileName, SaveFileInfo saveFileInfo)
-        {
-            SaveFileName = saveFileName;
-            SaveFileInfoOld = saveFileInfo;
-        }
-    }
-    
     public class LoadSaveFileEvent
     {
         public SaveFileInfo SaveFileInfo { get; }

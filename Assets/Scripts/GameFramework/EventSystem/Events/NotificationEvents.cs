@@ -1,4 +1,5 @@
 using System;
+using GameFramework.EventSystem.Events.Enums;
 
 namespace GameFramework.EventSystem.Events
 {
@@ -48,14 +49,4 @@ namespace GameFramework.EventSystem.Events
             => new ShowNotificationEvent(message, NotificationType.Error, duration);
     }
 
-    /// <summary>
-    /// Types of notifications that determine styling and behavior
-    /// </summary>
-    public enum NotificationType
-    {
-        Info,
-        Success,
-        Warning,
-        Error
-    }
 }
