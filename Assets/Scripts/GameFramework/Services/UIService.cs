@@ -83,13 +83,13 @@ namespace GameFramework.Services
         public void Update()
         {
             if (!IsInitialized) return;
-
+            
             bool isPaused = _pauseService?.IsPaused ?? false;
             
             // Use different deltaTime sources based on pause state and element type
             float scaledDeltaTime = Time.deltaTime;        // Affected by timeScale (becomes 0 when paused)
             float unscaledDeltaTime = Time.unscaledDeltaTime; // Not affected by timeScale
-
+            
             // Update only visible screens that need frame updates
             for (int i = _updatableScreens.Count - 1; i >= 0; i--)
             {
@@ -108,7 +108,7 @@ namespace GameFramework.Services
                     _updatableScreens.RemoveAt(i);
                 }
             }
-
+            
             // Update all visible popups that need frame updates
             // Popups should generally work even when paused (especially debug/utility popups)
             for (int i = _updatablePopups.Count - 1; i >= 0; i--)

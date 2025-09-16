@@ -1,8 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using GameFramework.Core;
 using GameFramework.EventSystem.Events;
 using GameFramework.EventSystem.Interfaces;
+using GameFramework.Services.Interfaces;
 using UCTools_Utilities.UI;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace GameFramework.UI.Screens
@@ -10,6 +14,7 @@ namespace GameFramework.UI.Screens
     /// <summary>
     /// New Game Screen - pure UI component that only reports user interactions
     /// Does not handle its own lifecycle - that's managed by the NewGameState
+    /// Provides form validation and user feedback
     /// </summary>
     public class NewGameScreen : UIScreen
     {
@@ -17,6 +22,8 @@ namespace GameFramework.UI.Screens
         
         private Button _confirmButton;
         private Button _backButton;
+        private Button _testSaveButton;
+        
         private TextField _playerNameTextField;
         private DropdownField _difficultyDropdown;
         
@@ -37,11 +44,15 @@ namespace GameFramework.UI.Screens
         
         #region Screen Lifecycle
         
+        /// <summary>
+        /// Reset UI state when screen is shown again
+        /// </summary>
         protected override void OnShow()
         {
             base.OnShow();
             RegisterUIEventHandlers();
             SetInitialUIState();
+            EnableConfirmButton(); // Re-enable button when screen is shown
         }
         
         protected override void OnHide()
@@ -59,6 +70,8 @@ namespace GameFramework.UI.Screens
             // Cache UI elements
             _confirmButton = RootElement?.Q<Button>("btn_Confirm");
             _backButton = RootElement?.Q<Button>("btn_Back");
+            _testSaveButton = RootElement?.Q<Button>("btn_testSave");
+            
             _playerNameTextField = RootElement?.Q<TextField>("txt_PlayerName");
             _difficultyDropdown = RootElement?.Q<DropdownField>("dd_Difficulty");
 
@@ -73,12 +86,19 @@ namespace GameFramework.UI.Screens
                 _difficultyDropdown.choices.AddRange(new[] { "Easy", "Normal", "Hard", "Expert" });
                 _difficultyDropdown.SetValueWithoutNotify("Normal");
             }
+
+            // Set up confirm button text for clarity
+            if (_confirmButton != null)
+            {
+                _confirmButton.text = "Start New Game";
+            }
         }
         
         private void SetInitialUIState()
         {
             if (_playerNameTextField != null)
             {
+                // Focus the text field for immediate typing
                 _playerNameTextField.Focus();
                 
                 if (string.IsNullOrEmpty(_playerNameTextField.value))
@@ -94,38 +114,18 @@ namespace GameFramework.UI.Screens
         
         private void RegisterUIEventHandlers()
         {
-            if (_confirmButton != null)
-            {
-                _confirmButton.RegisterCallback<ClickEvent>(OnNewGameClicked);
-            }
-            
-            if (_backButton != null)
-            {
-                _backButton.RegisterCallback<ClickEvent>(OnBackButtonClicked);
-            }
-            
-            if (_playerNameTextField != null)
-            {
-                _playerNameTextField.RegisterCallback<KeyDownEvent>(OnTextFieldKeyDown);
-            }
+            _confirmButton?.RegisterCallback<ClickEvent>(OnNewGameClicked);
+            _backButton?.RegisterCallback<ClickEvent>(OnBackButtonClicked);
+            _playerNameTextField?.RegisterCallback<KeyDownEvent>(OnTextFieldKeyDown);
+            _testSaveButton?.RegisterCallback<ClickEvent>(OnSaveButtonClicked);
         }
         
         private void UnregisterUIEventHandlers()
         {
-            if (_confirmButton != null)
-            {
-                _confirmButton.UnregisterCallback<ClickEvent>(OnNewGameClicked);
-            }
-            
-            if (_backButton != null)
-            {
-                _backButton.UnregisterCallback<ClickEvent>(OnBackButtonClicked);
-            }
-            
-            if (_playerNameTextField != null)
-            {
-                _playerNameTextField.UnregisterCallback<KeyDownEvent>(OnTextFieldKeyDown);
-            }
+            _confirmButton?.UnregisterCallback<ClickEvent>(OnNewGameClicked);
+            _backButton?.UnregisterCallback<ClickEvent>(OnBackButtonClicked);
+            _playerNameTextField?.UnregisterCallback<KeyDownEvent>(OnTextFieldKeyDown);
+            _testSaveButton?.UnregisterCallback<ClickEvent>(OnSaveButtonClicked);
         }
         
         #endregion
@@ -133,32 +133,40 @@ namespace GameFramework.UI.Screens
         #region UI Event Handlers - Only Report User Interactions
         
         /// <summary>
-        /// Report new game request - state will handle UI transitions
+        /// Report new game request with validation - state will handle game creation and transitions
         /// </summary>
         private void OnNewGameClicked(ClickEvent evt)
         {
-            var playerName = _playerNameTextField?.value?.Trim();
+            // Basic client-side validation
+            string playerName = _playerNameTextField?.value?.Trim() ?? "";
             if (string.IsNullOrEmpty(playerName))
             {
-                playerName = "Player";
+                playerName = "Player"; // Default fallback
             }
             
-            var difficulty = _difficultyDropdown?.value ?? "Normal";
+            string difficulty = _difficultyDropdown?.value ?? "Normal";
             
-            // Only report the user interaction - don't handle UI lifecycle
+            // Validate difficulty selection
+            if (!IsValidDifficulty(difficulty))
+            {
+                Debug.LogWarning($"[NewGameScreen] Invalid difficulty selected: {difficulty}, defaulting to Normal");
+                difficulty = "Normal";
+            }
+            
+            Debug.Log($"[NewGameScreen] New game requested - Player: '{playerName}', Difficulty: '{difficulty}'");
+            
+            // Report the user interaction - state will handle the actual game creation
             var newGameEvent = new NewGameRequestedEvent
             {
                 PlayerName = playerName,
                 Difficulty = difficulty,
-                StartingScene = "GameLevel1",
-                CustomData = new Dictionary<string, object>
-                {
-                    ["creationTime"] = System.DateTime.Now.ToString(),
-                    ["screenSource"] = nameof(NewGameScreen)
-                }
+                StartingScene = "GameLevel1" // Default starting scene
             };
     
             _eventSystem?.Publish(newGameEvent);
+            
+            // Provide immediate visual feedback
+            DisableConfirmButton();
         }
         
         /// <summary>
@@ -166,7 +174,8 @@ namespace GameFramework.UI.Screens
         /// </summary>
         private void OnBackButtonClicked(ClickEvent evt)
         {
-            // Only report the user interaction - don't handle UI lifecycle
+            Debug.Log("[NewGameScreen] Back button clicked, requesting return to main menu");
+            
             var mainMenuEvent = new MainMenuRequestedEvent();
             _eventSystem?.Publish(mainMenuEvent);
             evt?.StopPropagation();
@@ -189,6 +198,68 @@ namespace GameFramework.UI.Screens
             }
         }
         
+        /// <summary>
+        /// Test save button for development/testing
+        /// </summary>
+        private async void OnSaveButtonClicked(ClickEvent evt)
+        {
+            await ShowSaveGamePopup();
+        }
+        
         #endregion
+        
+        #region Helper Methods
+        
+        /// <summary>
+        /// Validates if the selected difficulty is valid
+        /// </summary>
+        private bool IsValidDifficulty(string difficulty)
+        {
+            var validDifficulties = new[] { "Easy", "Normal", "Hard", "Expert" };
+            return Array.Exists(validDifficulties, d => d.Equals(difficulty, StringComparison.OrdinalIgnoreCase));
+        }
+        
+        /// <summary>
+        /// Disables confirm button to prevent double-clicks during transition
+        /// </summary>
+        private void DisableConfirmButton()
+        {
+            if (_confirmButton != null)
+            {
+                _confirmButton.SetEnabled(false);
+                _confirmButton.text = "Starting...";
+            }
+        }
+        
+        /// <summary>
+        /// Re-enables confirm button (called when returning to this screen)
+        /// </summary>
+        private void EnableConfirmButton()
+        {
+            if (_confirmButton != null)
+            {
+                _confirmButton.SetEnabled(true);
+                _confirmButton.text = "Start New Game";
+            }
+        }
+        
+        /// <summary>
+        /// Development/testing method to show save popup
+        /// </summary>
+        private async Task ShowSaveGamePopup()
+        {
+            try
+            {
+                Debug.Log("[NewGameScreen] Opening Save Game popup for testing");
+                await GameManager.GetService<IUIService>().ShowPopupAsync<SaveGamePopup>();
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"[NewGameScreen] Error showing Save Game popup: {ex}");
+            }
+        }
+        
+        #endregion
+
     }
 }

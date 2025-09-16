@@ -20,6 +20,8 @@ namespace GameFramework.UI.Screens
         private Label _wellDoneLabel;
         private Label _congratulationsLabel;
 
+        
+        
         /// <summary>
         /// Initialize victory screen with UI element references
         /// </summary>

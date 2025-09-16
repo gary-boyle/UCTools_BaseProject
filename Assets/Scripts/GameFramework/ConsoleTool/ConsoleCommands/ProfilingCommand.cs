@@ -18,15 +18,6 @@ namespace GameFramework.ConsoleTool.Commands
     /// - Simple command structure with clear subcommand handlers
     /// - Direct service interaction without static state
     /// - Clean separation between command parsing and execution
-    /// 
-    /// Pros:
-    /// - Stateless design prevents threading issues
-    /// - Clear command structure with consistent error handling
-    /// - Direct service calls for real-time feedback
-    /// 
-    /// Cons:
-    /// - Requires ProfilingService to be available
-    /// - No offline command caching
     /// </summary>
     public class ProfilingCommand : ConsoleCommandBase
     {

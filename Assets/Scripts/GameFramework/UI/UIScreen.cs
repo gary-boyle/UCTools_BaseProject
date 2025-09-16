@@ -12,6 +12,10 @@ namespace GameFramework.UI
     /// </summary>
     public abstract class UIScreen
     {
+        private bool _isDirty = false;
+        private float _lastUpdateTime = 0f;
+        private float _updateInterval = 0f; 
+
         protected VisualElement RootElement { get; private set; }
         public bool IsVisible { get; protected set; }
         public bool NeedsFrameUpdates { get; protected set; }
@@ -22,6 +26,7 @@ namespace GameFramework.UI
         {
             RootElement = rootElement ?? throw new ArgumentNullException(nameof(rootElement));
             _eventSystem = GameManager.GetService<IEventSystem>() ?? throw new ArgumentNullException(nameof(_eventSystem));
+            NeedsFrameUpdates = false;
             
             Hide(); // Start hidden
         }
@@ -38,6 +43,16 @@ namespace GameFramework.UI
             RootElement.style.display = DisplayStyle.None;
             IsVisible = false;
             OnHide();
+        }
+
+        protected void MarkDirty()
+        {
+            _isDirty = true;
+        }
+
+        protected void SetUpdateInterval(float interval)
+        {
+            _updateInterval = interval;
         }
 
         /// <summary>
@@ -82,9 +97,23 @@ namespace GameFramework.UI
         /// </summary>
         internal void InternalUpdate(float deltaTime)
         {
-            if (IsVisible && NeedsFrameUpdates)
+            if (!IsVisible || !NeedsFrameUpdates) return;
+            
+            // Check if enough time has passed for interval-based updates
+            if (_updateInterval > 0f)
+            {
+                _lastUpdateTime += deltaTime;
+                if (_lastUpdateTime < _updateInterval && !_isDirty)
+                    return;
+                    
+                _lastUpdateTime = 0f;
+            }
+            
+            // Only update if dirty or interval-based
+            if (_isDirty || _updateInterval == 0f)
             {
                 OnUpdate(deltaTime);
+                _isDirty = false;
             }
         }
 

@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using GameFramework.DataStructures;
+using GameFramework.SaveSystem.Data;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -21,16 +22,6 @@ namespace GameFramework.Editor.SaveFileManager.UI
     /// - Three-panel layout similar to profiling session viewer
     /// - Reflection-based field display for flexibility
     /// - Configurable through ScriptableObject settings
-    /// 
-    /// Pros:
-    /// - Modern, responsive UI with UIToolkit
-    /// - Consistent styling with other editor tools
-    /// - Flexible field display system
-    /// - Better performance than IMGUI
-    /// 
-    /// Cons:
-    /// - More complex setup with UXML/USS files
-    /// - Requires UIToolkit knowledge for customization
     /// </summary>
     public class SaveFileManagerWindow : EditorWindow
     {
@@ -38,7 +29,7 @@ namespace GameFramework.Editor.SaveFileManager.UI
         
         private const string UXMLPath = "Assets/Scripts/Editor/SaveFileManager/UI/UXML/SaveFileManagerWindow.uxml";
         private const string SaveItemUXMLPath = "Assets/Scripts/Editor/SaveFileManager/UI/UXML/SaveFileListItem.uxml";
-        private const float REFRESH_INTERVAL = 2f;
+        private const float REFRESH_INTERVAL = 10f;
         
         #endregion
         
@@ -202,11 +193,11 @@ namespace GameFramework.Editor.SaveFileManager.UI
             var save = _saveFiles[index];
             
             // Update file name and auto-save badge
-            var fileName = save.IsAutoSave ? save.PlayerName : save.FileName;
+            var fileName = save.WasAutoSaved ? save.PlayerName : save.GetDisplayName();
             element.Q<Label>("file-name").text = fileName;
             
             var autoSaveBadge = element.Q<Label>("auto-save-badge");
-            if (save.IsAutoSave)
+            if (save.WasAutoSaved)
             {
                 autoSaveBadge.RemoveFromClassList("hidden");
                 autoSaveBadge.text = "AUTO";
@@ -218,13 +209,11 @@ namespace GameFramework.Editor.SaveFileManager.UI
             
             // Update save info
             element.Q<Label>("player-name").text = save.PlayerName ?? "Unknown";
-            element.Q<Label>("player-level").text = $"Lv. {save.PlayerLevel}";
-            element.Q<Label>("save-date").text = save.FormattedDate;
-            element.Q<Label>("play-time").text = save.FormattedPlayTime;
+            element.Q<Label>("save-date").text = save.GetFormattedSaveTime("yyyy/MM/dd HH:mm");
+            element.Q<Label>("play-time").text = save.GetFormattedGameTime();
             
             // Update additional info
             element.Q<Label>("current-scene").text = $"Scene: {save.CurrentScene ?? "Unknown"}";
-            element.Q<Label>("score").text = $"Score: {save.Score}";
         }
         
         private void OnSaveSelected(IEnumerable<object> selectedItems)
@@ -287,20 +276,20 @@ namespace GameFramework.Editor.SaveFileManager.UI
                 return Array.Empty<SaveFileInfo>();
             }
             
-            var saveFiles = Directory.GetFiles(saveDirectory, "*.gamesave");
+            var saveFiles = Directory.GetFiles(saveDirectory, "*.json");
             var saveInfos = new List<SaveFileInfo>();
             
             foreach (var filePath in saveFiles)
             {
                 try
                 {
-                    var fileName = Path.GetFileNameWithoutExtension(filePath);
+                    var fileName = Path.GetFileName(filePath); // Keep full filename with extension
                     var jsonContent = await File.ReadAllTextAsync(filePath);
-                    var session = JsonUtility.FromJson<GameSession>(jsonContent);
+                    var saveData = JsonUtility.FromJson<SaveFileData>(jsonContent);
                     
-                    if (session != null)
+                    if (saveData != null)
                     {
-                        var saveInfo = new SaveFileInfo(fileName, session);
+                        var saveInfo = new SaveFileInfo(fileName, saveData);
                         saveInfos.Add(saveInfo);
                     }
                 }
@@ -321,7 +310,7 @@ namespace GameFramework.Editor.SaveFileManager.UI
                 return;
             }
             
-            SetStatus($"Loading {saveInfo.FileName}...", "info");
+            SetStatus($"Loading {saveInfo.GetDisplayName()}...", "info");
             
             // TODO: Implement actual loading
             // This would typically involve finding your save/load service and calling it
@@ -333,7 +322,7 @@ namespace GameFramework.Editor.SaveFileManager.UI
         {
             var confirmed = EditorUtility.DisplayDialog(
                 "Delete Save File",
-                $"Are you sure you want to delete '{saveInfo.FileName}'?\n\nThis action cannot be undone.",
+                $"Are you sure you want to delete '{saveInfo.GetDisplayName()}'?\n\nThis action cannot be undone.",
                 "Delete",
                 "Cancel"
             );
@@ -342,13 +331,13 @@ namespace GameFramework.Editor.SaveFileManager.UI
             
             try
             {
-                SetStatus($"Deleting {saveInfo.FileName}...", "info");
+                SetStatus($"Deleting {saveInfo.GetDisplayName()}...", "info");
                 
                 var filePath = GetSaveFilePath(saveInfo.FileName);
                 if (File.Exists(filePath))
                 {
                     File.Delete(filePath);
-                    SetStatus($"Deleted {saveInfo.FileName}", "info");
+                    SetStatus($"Deleted {saveInfo.GetDisplayName()}", "info");
                 }
                 
                 // Clear selection and refresh
@@ -379,7 +368,8 @@ namespace GameFramework.Editor.SaveFileManager.UI
         
         private string GetSaveFilePath(string fileName)
         {
-            return Application.persistentDataPath + "/Saves/" + fileName + ".gamesave";
+            // fileName now includes the extension, so just join with directory
+            return Path.Combine(Application.persistentDataPath, "Saves", fileName);
         }
         
         #endregion
@@ -444,8 +434,8 @@ namespace GameFramework.Editor.SaveFileManager.UI
         
         private void UpdateUIState()
         {
-            // Set initial toggle states
-            _autoRefreshToggle.value = true;
+            // Set initial toggle states - disable auto-refresh by default
+            _autoRefreshToggle.value = false;
             _showRawToggle.value = false;
         }
         

@@ -1,23 +1,22 @@
 ﻿using System;
 using System.Threading.Tasks;
+using GameFramework.DataStructures;
 using GameFramework.EventSystem.Events;
 using GameFramework.EventSystem.Interfaces;
+using GameFramework.GameData.Events;
 using GameFramework.Services.Data;
 using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine.Enum;
 using GameFramework.StateMachine.Interfaces;
+using GameFramework.Utilities;
 using UnityEngine;
 
 namespace GameFramework.Services
 {
     /// <summary>
-    /// TimeService manages game time tracking with proper pause handling and state awareness.
-    /// Tracks time only when in PlayingState and not paused.
-    /// Provides formatted time display and session tracking capabilities.
-    /// 
-    /// Design: Uses event-driven architecture to respond to game state changes and pause events.
-    /// Pros: Accurate time tracking, integrates with pause system, provides multiple time formats
-    /// Cons: Depends on proper event firing from other systems
+    /// TimeService manages game time tracking by directly updating GameSessionData
+    /// GameSessionData is the single source of truth for game time
+    /// Uses double precision internally for accurate tracking of large time values
     /// </summary>
     public class TimeService : ITimeService, IUpdatable
     {
@@ -25,34 +24,29 @@ namespace GameFramework.Services
         
         public bool IsInitialized { get; private set; }
         
-        // Time tracking properties
-        public float GameTime => _gameTime;
-        public float SessionTime => _sessionTime;
-        public float LevelTime => _levelTime;
-        public TimeSpan GameTimeSpan => TimeSpan.FromSeconds(_gameTime);
-        public TimeSpan SessionTimeSpan => TimeSpan.FromSeconds(_sessionTime);
-        public TimeSpan LevelTimeSpan => TimeSpan.FromSeconds(_levelTime);
+        /// <summary>
+        /// Get current game time with double precision from GameSessionData
+        /// </summary>
+        public long GameTime => _gameDataService?.GetGameSessionData()?.GameTime ?? 0;
+        
+        // Level time stays local since it's not saved
+        private long _levelTime = 0;
+        private double _deltaTimeAccumulator = 0.0;
         
         // State tracking
         public bool IsTrackingGameTime => _isInPlayingState && !_isPaused;
-        public bool IsTrackingSessionTime => _isInitialized && !_isPaused;
         
         // Dependencies
         private readonly IEventSystem _eventSystem;
         private readonly IGameDataService _gameDataService;
-        
-        // Internal time tracking
-        private float _gameTime = 0f;          // Time spent actually playing (PlayingState + not paused)
-        private float _sessionTime = 0f;       // Total time since service started (excluding pause)
-        private float _levelTime = 0f;         // Time spent in current level/scene
         
         // State flags
         private bool _isInPlayingState = false;
         private bool _isPaused = false;
         private bool _isInitialized = false;
         
-        // For delta time calculations
-        private float _lastUpdateTime;
+        // For delta time calculations - use double precision
+        private double _lastUpdateTime;
         
         #endregion
         
@@ -76,45 +70,40 @@ namespace GameFramework.Services
         public async Task InitializeAsync()
         {
             if (IsInitialized) return;
-            
+
             // Subscribe to game state changes
             _eventSystem.Subscribe<GameStateChangeEvent>(OnGameStateChanged);
-            
+
             // Subscribe to pause events
             _eventSystem.Subscribe<GamePausedEvent>(OnGamePaused);
             _eventSystem.Subscribe<GameResumedEvent>(OnGameResumed);
-            
+
             // Subscribe to game lifecycle events
             _eventSystem.Subscribe<NewGameRequestedEvent>(OnNewGameRequested);
-            _eventSystem.Subscribe<LoadGameEvent>(OnGameLoaded);
             _eventSystem.Subscribe<SceneLoadedEvent>(OnSceneLoaded);
-            
-            // Initialize time tracking
-            _lastUpdateTime = Time.realtimeSinceStartup;
+
+            // Note: No need to subscribe to GameDataLoadedEvent or SaveRequestedEvent
+            // since GameSessionData is the single source of truth
+
+            // Initialize time tracking with double precision
+            _lastUpdateTime = Time.realtimeSinceStartupAsDouble;
             _isInitialized = true;
-            
-            // Load existing time data if we have an active session
-            LoadTimeDataFromSession();
-            
+
             IsInitialized = true;
             await Task.CompletedTask;
         }
-        
+
         public void Shutdown()
         {
             if (!IsInitialized) return;
-            
-            // Save time data to session
-            SaveTimeDataToSession();
-            
+
             // Unsubscribe from events
             _eventSystem?.Unsubscribe<GameStateChangeEvent>(OnGameStateChanged);
             _eventSystem?.Unsubscribe<GamePausedEvent>(OnGamePaused);
             _eventSystem?.Unsubscribe<GameResumedEvent>(OnGameResumed);
             _eventSystem?.Unsubscribe<NewGameRequestedEvent>(OnNewGameRequested);
-            _eventSystem?.Unsubscribe<LoadGameEvent>(OnGameLoaded);
             _eventSystem?.Unsubscribe<SceneLoadedEvent>(OnSceneLoaded);
-            
+
             _isInitialized = false;
             IsInitialized = false;
         }
@@ -124,64 +113,69 @@ namespace GameFramework.Services
         #region Update Loop
         
         /// <summary>
-        /// Update time tracking - called every frame by GameManager
+        /// Update time tracking - directly updates GameSessionData.GameTime
+        /// GameSessionData is the single source of truth for game time
+        /// Uses double precision for accurate tracking of large time values
         /// </summary>
+
         public void Update()
         {
             if (!_isInitialized) return;
-    
-            // Calculate delta time using real time (unaffected by Time.timeScale)
-            float currentTime = Time.realtimeSinceStartup;
-            float deltaTime = currentTime - _lastUpdateTime;
+            
+            var gameSession = _gameDataService?.GetGameSessionData();
+            if (gameSession == null) return;
+            
+            // Calculate delta time using double precision real time (unaffected by Time.timeScale)
+            double currentTime = Time.realtimeSinceStartupAsDouble;
+            double deltaTime = currentTime - _lastUpdateTime;
             _lastUpdateTime = currentTime;
-
+            
             // Update timers based on current state
-            if (!_isPaused)
+            if (!_isPaused && _isInPlayingState)
             {
-                // Always update session time when not paused
-                _sessionTime += deltaTime;
-        
-                // Only update game time when in playing state
-                if (_isInPlayingState)
+                // Accumulate deltaTime
+                _deltaTimeAccumulator += deltaTime;
+            
+                // Increment GameTime when accumulated deltaTime exceeds 1
+                while (_deltaTimeAccumulator >= 1.0)
                 {
-                    _gameTime += deltaTime;
+                    gameSession.GameTime++;
+                    _levelTime++;
+            
+                    _deltaTimeAccumulator = 0.0;
                 }
-        
-                // Always update level time when not paused (could be refined based on needs)
-                _levelTime += deltaTime;
+            
+                // Update level time
             }
         }
 
-        
         #endregion
         
-        #region Public Time Methods
+        #region Time Formatting Utilities
         
         /// <summary>
-        /// Get formatted game time string (HH:MM:SS)
+        /// Get formatted current game time string with double precision
         /// </summary>
         public string GetFormattedGameTime()
         {
-            return FormatTime(_gameTime);
+            return TimeUtilities.FormatTimeFromSeconds(GameTime);
         }
+
+        #endregion
         
-        /// <summary>
-        /// Get formatted session time string (HH:MM:SS)
-        /// </summary>
-        public string GetFormattedSessionTime()
-        {
-            return FormatTime(_sessionTime);
-        }
-        
+        #region Public Time Methods
         
         /// <summary>
         /// Reset all timers
         /// </summary>
         public void ResetAllTimers()
         {
-            _gameTime = 0f;
-            _sessionTime = 0f;
-            _levelTime = 0f;
+            var gameSession = _gameDataService?.GetGameSessionData();
+            if (gameSession != null)
+            {
+                gameSession.GameTime = 0;
+            }
+            _levelTime = 0;
         }
         
         /// <summary>
@@ -189,25 +183,23 @@ namespace GameFramework.Services
         /// </summary>
         public void ResetLevelTimer()
         {
-            _levelTime = 0f;
+            _levelTime = 0;
         }
         
-        /// <summary>
-        /// Get time statistics for debugging/display
-        /// </summary>
-        public TimeStatistics GetTimeStatistics()
-        {
-            return new TimeStatistics
-            {
-                GameTime = _gameTime,
-                SessionTime = _sessionTime,
-                LevelTime = _levelTime,
-                IsTrackingGameTime = IsTrackingGameTime,
-                IsTrackingSessionTime = IsTrackingSessionTime,
-                IsPaused = _isPaused,
-                IsInPlayingState = _isInPlayingState
-            };
-        }
+        // /// <summary>
+        // /// Get time statistics for debugging/display
+        // /// </summary>
+        // public TimeStatistics GetTimeStatistics()
+        // {
+        //     return new TimeStatistics
+        //     {
+        //         GameTime = GameTime, 
+        //         LevelTime = (float)_levelTime,
+        //         IsTrackingGameTime = IsTrackingGameTime,
+        //         IsPaused = _isPaused,
+        //         IsInPlayingState = _isInPlayingState
+        //     };
+        // }
         
         #endregion
         
@@ -235,7 +227,7 @@ namespace GameFramework.Services
             _isPaused = false;
             
             // Update last update time to prevent time jump when resuming
-            _lastUpdateTime = Time.realtimeSinceStartup;
+            _lastUpdateTime = Time.realtimeSinceStartupAsDouble;
         }
         
         private void OnNewGameRequested(NewGameRequestedEvent evt)
@@ -243,54 +235,9 @@ namespace GameFramework.Services
             ResetAllTimers();
         }
         
-        private void OnGameLoaded(LoadGameEvent evt)
-        {
-            LoadTimeDataFromSession();
-        }
-        
         private void OnSceneLoaded(SceneLoadedEvent evt)
         {
             ResetLevelTimer();
-        }
-        
-        #endregion
-        
-        #region Private Helper Methods
-        
-        /// <summary>
-        /// Format seconds into HH:MM:SS string
-        /// </summary>
-        private string FormatTime(float seconds)
-        {
-            var timeSpan = TimeSpan.FromSeconds(seconds);
-            return string.Format("{0:D2}:{1:D2}:{2:D2}", 
-                timeSpan.Hours, 
-                timeSpan.Minutes, 
-                timeSpan.Seconds);
-        }
-        
-        /// <summary>
-        /// Save time data to the current game session
-        /// </summary>
-        private void SaveTimeDataToSession()
-        {
-            if (_gameDataService?.HasActiveSession() != true) return;
-            
-            _gameDataService.SetCustomData("GameTime", _gameTime);
-            _gameDataService.SetCustomData("SessionTime", _sessionTime);
-            Debug.Log("[TimeService] Time data saved to session");
-        }
-        
-        /// <summary>
-        /// Load time data from the current game session
-        /// </summary>
-        private void LoadTimeDataFromSession()
-        {
-            if (_gameDataService?.HasActiveSession() != true) return;
-            
-            _gameTime = _gameDataService.GetCustomData<float>("GameTime", 0f);
-            _sessionTime = _gameDataService.GetCustomData<float>("SessionTime", 0f);
-            _levelTime = 0f; // Always reset level time when loading
         }
         
         #endregion

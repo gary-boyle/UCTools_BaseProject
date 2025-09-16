@@ -83,10 +83,6 @@ namespace GameFramework.StateMachine.GameStates
                 await ExecuteShutdownPhase("Preparing for shutdown...", 0.0f, 0.2f, PrepareForShutdown);
                 if (_shutdownCancelled) return;
                 
-                // Phase 2: Save game data (20-50%)
-                await ExecuteShutdownPhase("Saving game data...", 0.2f, 0.5f, SaveGameData);
-                if (_shutdownCancelled) return;
-                
                 // Phase 3: Clean up resources (50-80%)
                 _criticalShutdownPhase = true; // No cancellation after this point
                 _quitScreen?.SetShuttingDown(true);
@@ -173,28 +169,7 @@ namespace GameFramework.StateMachine.GameStates
             
             await Task.Delay(500); // Simulate preparation time
         }
-        
-        /// <summary>
-        /// Phase 2: Save game data
-        /// </summary>
-        private async Task SaveGameData()
-        {
-            try
-            {
-                if (GameDataService.HasActiveSession() && SaveService != null)
-                {
-                    EventSystem.Publish(new AutoSaveRequestedEvent());
-                }
-                
-                // Save any other important data (settings, preferences, etc.)
-                await Task.Delay(1000); // Simulate save time
-            }
-            catch (Exception e)
-            {
-                Debug.LogWarning($"[QuitState] Failed to save data during shutdown: {e.Message}");
-            }
-        }
-        
+
         /// <summary>
         /// Phase 3: Clean up resources
         /// </summary>

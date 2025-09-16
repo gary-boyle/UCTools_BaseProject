@@ -228,8 +228,8 @@ namespace GameFramework.UI.Screens
             return IsVisible &&
                    !_isSaving &&
                    !_isLoadingData &&
-                   !_isDeletingFile &&
-                   _saveService.CanSaveGame();
+                   !_isDeletingFile;
+            //_saveService.CanSaveGame();
         }
 
         /// <summary>
@@ -287,11 +287,11 @@ namespace GameFramework.UI.Screens
                 // Publish save request event instead of calling service directly
                 if (isAutoSave)
                 {
-                    _eventSystem.Publish(new AutoSaveRequestedEvent());
+                    _eventSystem.Publish(SaveRequestedEvent.CreateAutoSave());
                 }
                 else
                 {
-                    _eventSystem.Publish(new RegularSaveRequestedEvent());
+                    _eventSystem.Publish(SaveRequestedEvent.CreateRegularSave());
                 }
 
                 UpdateProgressOverlay("Save request sent...", 0.6f);
@@ -325,7 +325,7 @@ namespace GameFramework.UI.Screens
                 await Task.Delay(200);
 
                 // Publish overwrite request event instead of calling service directly
-                _eventSystem.Publish(new OverwriteSaveRequestedEvent(targetSaveFile));
+                _eventSystem.Publish(SaveRequestedEvent.CreateOverwriteSave(targetSaveFile));
 
                 UpdateProgressOverlay("Overwrite request sent...", 0.9f);
             }

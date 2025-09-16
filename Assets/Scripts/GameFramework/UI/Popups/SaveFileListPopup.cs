@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 using GameFramework.Core;
 using GameFramework.DataStructures;
 using GameFramework.EventSystem.Interfaces;
+using GameFramework.FileSystem.Interfaces;
+using GameFramework.LoadSystem.Interfaces;
 using GameFramework.Services.Interfaces;
-using UCTools_Utilities.UI;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -39,6 +40,7 @@ namespace GameFramework.UI.Screens
         protected readonly ILoadService _loadService;
         protected readonly ISaveService _saveService;
         protected readonly IEventSystem _eventSystem;
+        protected readonly IFileService _fileService;
         
         #endregion
 
@@ -75,6 +77,7 @@ namespace GameFramework.UI.Screens
             _loadService = GameManager.GetService<ILoadService>() ?? throw new ArgumentNullException(nameof(_loadService));
             _saveService = GameManager.GetService<ISaveService>() ?? throw new ArgumentNullException(nameof(_saveService));
             _eventSystem = GameManager.GetService<IEventSystem>() ?? throw new ArgumentNullException(nameof(_eventSystem));
+            _fileService = GameManager.GetService<IFileService>() ?? throw new ArgumentNullException(nameof(_fileService));
         }
 
         #region Abstract Methods - Implemented by derived classes
@@ -260,12 +263,9 @@ namespace GameFramework.UI.Screens
             var bindings = new Dictionary<string, string>
             {
                 ["lbl_PlayerName"] = saveFileInfo.PlayerName ?? "Unknown Player",
-                ["lbl_Difficulty"] = saveFileInfo.Difficulty ?? "Normal",
                 ["lbl_Scene"] = saveFileInfo.CurrentScene ?? "Unknown Scene",
-                ["lbl_PlayTime"] = $"Play Time: {saveFileInfo.FormattedPlayTime ?? "00:00:00"}",
-                ["lbl_SaveDate"] = $"Saved: {saveFileInfo.FormattedDate ?? "Unknown Date"}",
-                ["lbl_PlayerLevel"] = $"Level {saveFileInfo.PlayerLevel}",
-                ["lbl_Score"] = $"Score: {saveFileInfo.Score:N0}"
+                ["lbl_PlayTime"] = $"Play Time: {saveFileInfo.GetFormattedGameTime()}",
+                ["lbl_SaveDate"] = $"Saved: {saveFileInfo.LastSaveTime}",
             };
 
             foreach (var (elementName, text) in bindings)
@@ -281,12 +281,12 @@ namespace GameFramework.UI.Screens
             var autoSaveIndicator = element.Q<Label>("lbl_AutoSaveIndicator");
             if (autoSaveIndicator != null)
             {
-                autoSaveIndicator.style.display = saveFileInfo.IsAutoSave ? DisplayStyle.Flex : DisplayStyle.None;
-                autoSaveIndicator.EnableInClassList("autosave-active", saveFileInfo.IsAutoSave);
+                autoSaveIndicator.style.display = saveFileInfo.WasAutoSaved ? DisplayStyle.Flex : DisplayStyle.None;
+                autoSaveIndicator.EnableInClassList("autosave-active", saveFileInfo.WasAutoSaved);
             }
     
             // Add autosave class to the entire container for additional styling
-            element.EnableInClassList("is-autosave", saveFileInfo.IsAutoSave);
+            element.EnableInClassList("is-autosave", saveFileInfo.WasAutoSaved);
         }
 
         private void UpdateSelectionVisuals(VisualElement element, SaveFileInfo saveFileInfo)
@@ -466,8 +466,8 @@ namespace GameFramework.UI.Screens
                 SetDataLoadingState(true);
                 SetStatusMessage(LOADING_SAVE_FILES_MESSAGE, true);
 
-                // Delegate data loading to LoadService
-                _saveFiles = await _loadService.GetLoadableSaveFilesAsync();
+                // Use FileService to get save files
+                _saveFiles = await _fileService.GetSaveFilesAsync();
 
                 RefreshListView();
                 HandleEmptyListState();
@@ -527,23 +527,17 @@ namespace GameFramework.UI.Screens
                 SetDeletingState(true);
                 SetStatusMessage(DELETING_SAVE_FILE_MESSAGE, true);
 
-                // Use SaveService to delete the file
-                bool deleteSuccess = await _saveService.DeleteSaveFileByInfoAsync(saveFileToDelete);
-
-                if (deleteSuccess)
+                // Use FileService to delete the file
+                bool success = await _fileService.DeleteSaveFileAsync(saveFileToDelete.FileName);
+        
+                if (success)
                 {
-                    // Clear selection since the file no longer exists
-                    _selectedSaveFile = null;
-                    _saveFileList?.ClearSelection();
-
-                    // Refresh the save files list
+                    // Refresh the list after successful deletion
                     await RefreshSaveFilesList();
                 }
                 else
                 {
                     SetStatusMessage(ERROR_DELETING_MESSAGE, true);
-
-                    // Clear error message after a delay
                     await Task.Delay(3000);
                     if (_saveFiles.Length > 0)
                     {
@@ -555,8 +549,6 @@ namespace GameFramework.UI.Screens
             {
                 Debug.LogError($"[{GetType().Name}] Error deleting save file: {ex}");
                 SetStatusMessage(ERROR_DELETING_MESSAGE, true);
-
-                // Clear error message after a delay
                 await Task.Delay(3000);
                 if (_saveFiles.Length > 0)
                 {
@@ -568,6 +560,7 @@ namespace GameFramework.UI.Screens
                 SetDeletingState(false);
             }
         }
+
         
         #endregion
 

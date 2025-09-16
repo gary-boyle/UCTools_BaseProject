@@ -4,6 +4,7 @@ using System.IO;
 using System.Reflection;
 using GameFramework.DataStructures;
 using GameFramework.Editor.SaveFileManager.ScriptableObjects;
+using GameFramework.SaveSystem.Data;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -145,13 +146,11 @@ namespace GameFramework.Editor.SaveFileManager.UI
         {
             CreateFieldDisplay(nameof(SaveFileInfo.FileName), "File Name");
             CreateFieldDisplay(nameof(SaveFileInfo.PlayerName), "Player Name");
-            CreateFieldDisplay(nameof(SaveFileInfo.Difficulty), "Difficulty");
             CreateFieldDisplay(nameof(SaveFileInfo.CurrentScene), "Current Scene");
-            CreateFieldDisplay(nameof(SaveFileInfo.PlayerLevel), "Player Level");
-            CreateFieldDisplay(nameof(SaveFileInfo.Score), "Score");
-            CreateFieldDisplay(nameof(SaveFileInfo.FormattedPlayTime), "Play Time");
-            CreateFieldDisplay(nameof(SaveFileInfo.FormattedDate), "Last Save");
-            CreateFieldDisplay(nameof(SaveFileInfo.IsAutoSave), "Auto Save");
+            CreateFieldDisplay(nameof(SaveFileInfo.WasAutoSaved), "Auto Save");
+            CreateFieldDisplay(nameof(SaveFileInfo.GameTime), "Game Time");
+            CreateFieldDisplay(nameof(SaveFileInfo.LastSaveTime), "Last Save time");
+
         }
         
         private void CreateFieldDisplay(string fieldName, string displayName, bool isReadOnly = true)
@@ -273,7 +272,8 @@ namespace GameFramework.Editor.SaveFileManager.UI
         
         private string GetSaveFilePath(string fileName)
         {
-            return Application.persistentDataPath + "/Saves/" + fileName + ".gamesave";
+            // fileName now includes the extension, so just join with directory
+            return Path.Combine(Application.persistentDataPath, "Saves", fileName);
         }
     }
 }

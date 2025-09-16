@@ -136,12 +136,12 @@ namespace GameFramework.Services
         public void Update()
         {
             if (!_isInitialized) return;
-
+            
             float currentTime = Time.realtimeSinceStartup;
             float deltaTime = Time.unscaledDeltaTime;
-
+            
             UpdateFPSCalculation(deltaTime);
-
+            
             if (_isSessionActive)
             {
                 // Collect data every frame during sessions
@@ -150,7 +150,7 @@ namespace GameFramework.Services
                 
                 AddToSession(snapshot);
                 PublishPerformanceUpdate(snapshot);
-
+            
                 if (_sessionCurrentFrame >= _sessionTargetFrames)
                 {
                     StopSession();

@@ -1,6 +1,7 @@
 ﻿using System;
 using GameFramework.EventSystem.Interfaces;
 using GameFramework.Input.Interfaces;
+using GameFramework.LoadSystem.Interfaces;
 using GameFramework.Services.Interfaces;
 
 namespace GameFramework.Core

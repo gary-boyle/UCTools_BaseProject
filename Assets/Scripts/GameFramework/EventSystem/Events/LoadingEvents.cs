@@ -12,39 +12,17 @@ namespace GameFramework.EventSystem.Events
     /// </summary>
     
     /// <summary>
-    /// Event for loading progress updates with message and completion percentage
-    /// Consolidates progress tracking for UI and system notifications
-    /// </summary>
-    public class LoadingProgressEvent
-    {
-        public string Message { get; }
-        public float Progress { get; }
-    
-        public LoadingProgressEvent(string message, float progress)
-        {
-            Message = message ?? throw new ArgumentNullException(nameof(message));
-            Progress = Mathf.Clamp01(progress); // Ensure progress is between 0 and 1
-        }
-    }
-    
-    public class GameSystemsInitializedEvent
-    {
-        public LoadingType LoadingType { get; set; }
-        public Dictionary<string, object> GameData { get; set; }
-    }
-    
-    /// <summary>
     /// Event triggered when the player requests to load a saved game
     /// </summary>
     public class LoadGameRequestedEvent
     {
         public string SaveFileName { get; set; }
-        public SaveFileInfo SaveFileInfo { get; set; }
+        public SaveFileInfo SaveFileInfoOld { get; set; }
         
         public LoadGameRequestedEvent(string saveFileName, SaveFileInfo saveFileInfo)
         {
             SaveFileName = saveFileName;
-            SaveFileInfo = saveFileInfo;
+            SaveFileInfoOld = saveFileInfo;
         }
     }
     
@@ -70,9 +48,8 @@ namespace GameFramework.EventSystem.Events
 
     public class LoadingFailedEvent
     {
-        public Exception Exception { get; }
-        public string ErrorMessage => Exception?.Message ?? "Unknown loading error";
-    
+        public Exception Exception;
+        
         public LoadingFailedEvent(Exception exception)
         {
             Exception = exception ?? throw new ArgumentNullException(nameof(exception));
@@ -81,12 +58,6 @@ namespace GameFramework.EventSystem.Events
 
     public class LoadingCompletedEvent
     {
-        public GameSession Session { get; }
-    
-        public LoadingCompletedEvent(GameSession session)
-        {
-            Session = session ?? throw new ArgumentNullException(nameof(session));
-        }
     }
     
     /// <summary>
@@ -96,12 +67,39 @@ namespace GameFramework.EventSystem.Events
     public class LoadingStartedEvent
     {
         public SaveFileInfo SaveFileInfo { get; }
-        public DateTime StartTime { get; }
 
         public LoadingStartedEvent(SaveFileInfo saveFileInfo)
         {
             SaveFileInfo = saveFileInfo ?? throw new ArgumentNullException(nameof(saveFileInfo));
-            StartTime = DateTime.Now;
         }
     }
+    
+    /// <summary>
+    /// Event published when loading should begin and transition to loading state
+    /// </summary>
+    public class BeginLoadGameEvent
+    {
+        public SaveFileInfo SaveFileInfo { get; }
+
+        public BeginLoadGameEvent(SaveFileInfo saveFileInfo)
+        {
+            SaveFileInfo = saveFileInfo;
+        }
+    }
+
+    /// <summary>
+    /// Event published to update loading progress
+    /// </summary>
+    public class LoadingProgressEvent
+    {
+        public string Message { get; }
+        public float Progress { get; }
+
+        public LoadingProgressEvent(string message, float progress)
+        {
+            Message = message;
+            Progress = Mathf.Clamp01(progress);
+        }
+    }
+
 }

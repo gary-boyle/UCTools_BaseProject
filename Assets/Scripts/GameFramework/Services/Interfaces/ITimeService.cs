@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using GameFramework.DataStructures;
 using GameFramework.Services.Data;
 
 namespace GameFramework.Services.Interfaces
@@ -12,8 +13,7 @@ namespace GameFramework.Services.Interfaces
         bool IsInitialized { get; }
         
         // Time Properties
-        float GameTime { get; }        // Time spent in PlayingState when not paused
-        float SessionTime { get; }     // Total time since service started (excluding pause)
+        long GameTime { get; } // Add this for precision when needed
 
         // State Properties
         bool IsTrackingGameTime { get; }
@@ -24,7 +24,6 @@ namespace GameFramework.Services.Interfaces
         
         // Time Methods
         string GetFormattedGameTime();
-        string GetFormattedSessionTime();
-        TimeStatistics GetTimeStatistics();
+        // TimeStatistics GetTimeStatistics();
     }
 }

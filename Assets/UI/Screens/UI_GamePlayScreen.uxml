@@ -10,8 +10,8 @@
                 <engine:Button text="Pause" name="btn_Pause" class="btn btn--secondary hud-element mr-md" />
             </engine:VisualElement>
             <engine:VisualElement class="layout-row">
-                <engine:Button text="Victory" name="btn_Victory" class="btn btn--success hud-element mr-md" />
-                <engine:Button text="Game Over" name="btn_GameOver" class="btn btn--danger hud-element mr-md" />
+                <engine:Button text="Victory" name="btn_Victory" class="btn btn--success hud-element mr-md" style="background-color: rgb(0, 118, 21);" />
+                <engine:Button text="Game Over" name="btn_GameOver" class="btn btn--danger hud-element mr-md" style="background-color: rgb(132, 0, 24);" />
             </engine:VisualElement>
         </engine:VisualElement>
         <engine:VisualElement name="VisualElement" class="hud-bottom">

@@ -104,7 +104,7 @@ namespace GameFramework.UI.Screens
         /// </summary>
         private void OnLoadingFailed(LoadingFailedEvent evt)
         {
-            ShowError($"Loading failed: {evt.ErrorMessage}");
+            ShowError($"Loading failed: {evt.Exception.Message}");
         }
 
         /// <summary>

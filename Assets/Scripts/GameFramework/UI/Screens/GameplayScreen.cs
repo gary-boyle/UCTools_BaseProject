@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Text;
 using GameFramework.Core;
 using GameFramework.EventSystem.Events;
-using GameFramework.Services;
 using GameFramework.Services.Interfaces;
 using UCTools_Utilities.UI;
 using UnityEngine;
@@ -12,6 +12,18 @@ namespace GameFramework.UI.Screens
     /// <summary>
     /// Game play screen - pure UI component that reports user interactions and displays game data
     /// Does not handle its own lifecycle - that's managed by the PlayingState
+    /// 
+    /// DESIGN: Optimized to prevent per-frame memory allocations by caching string values
+    /// and only updating UI elements when data actually changes.
+    /// 
+    /// PROS: 
+    /// - Zero GC allocations during steady state
+    /// - Maintains clean separation of concerns
+    /// - Efficient string handling with StringBuilder reuse
+    /// 
+    /// CONS:
+    /// - Slightly more complex caching logic
+    /// - Additional memory overhead for cached values
     /// </summary>
     public class GamePlayScreen : UIScreen
     {
@@ -33,6 +45,22 @@ namespace GameFramework.UI.Screens
         // Services for data display
         private IGameDataService _gameDataService;
         private ITimeService _timeService;
+
+        // Cached values to prevent unnecessary string allocations
+        private string _cachedPlayerName = string.Empty;
+        private string _cachedCurrentScene = string.Empty;
+        private string _cachedGameTime = string.Empty;
+        private bool _cachedIsTrackingTime;
+        
+        // Reusable StringBuilder to prevent allocation during string building
+        private readonly StringBuilder _stringBuilder = new StringBuilder(128);
+        
+        // Constants to prevent repeated allocations
+        private const string TRACKING_INDICATOR_ON = "⏱️";
+        private const string TRACKING_INDICATOR_OFF = "⏸️";
+        private const string PLAYER_PREFIX = "Player: ";
+        private const string SCENE_SEPARATOR = " | Game: ";
+        private const string TIME_SEPARATOR = " | ";
 
         /// <summary>
         /// Initialize screen with dependency injection of services
@@ -106,7 +134,7 @@ namespace GameFramework.UI.Screens
         /// </summary>
         private void OnTestButtonClicked(ClickEvent evt)
         {
-            _eventSystem.Publish(new AutoSaveRequestedEvent());
+            _eventSystem.Publish(SaveRequestedEvent.CreateAutoSave());
         }
         
         /// <summary>
@@ -122,7 +150,7 @@ namespace GameFramework.UI.Screens
         /// </summary>
         private void OnSaveButtonClicked(ClickEvent evt)
         {
-            _eventSystem.Publish(new RegularSaveRequestedEvent());
+            _eventSystem.Publish(SaveRequestedEvent.CreateRegularSave());
         }
 
         /// <summary>
@@ -143,145 +171,87 @@ namespace GameFramework.UI.Screens
 
         #endregion
         
-        #region Debug Label Updates - Pure Data Display
+        #region Debug Label Updates - Optimized for Zero Allocations
         
         /// <summary>
-        /// Updates debug labels with current game state - pure data display function
-        /// Called every frame while screen is active
+        /// Updates debug labels with current game state - only when data changes
+        /// Called every frame while screen is active but prevents unnecessary allocations
         /// </summary>
         protected override void OnUpdate(float deltaTime)
         {
-            if (!_gameDataService.HasActiveSession())
-            {
-                SetDebugLabelsNoSession();
-                return;
-            }
+            if (!_gameDataService.HasActiveSession()) return;
             
             try
             {
-                var session = _gameDataService.CurrentSession;
-                var playerState = _gameDataService.GetPlayerState();
-                var progress = _gameDataService.GetGameProgress();
-        
-                UpdateDebugLabel1(session, playerState);
-                UpdateDebugLabel2(playerState);
-                UpdateDebugLabel3(progress);
-                UpdateDebugLabel4WithTimeService();
+                var session = _gameDataService.GetGameSessionData();
+                var player = _gameDataService.GetPlayerData();
+
+                UpdateDebugLabel1(player);
+                UpdateDebugLabel2(session);
+                // UpdateDebugLabel3();
+                // UpdateDebugLabel4();
             }
             catch (Exception e)
             {
                 Debug.LogError($"[GamePlayScreen] Error updating debug labels: {e.Message}");
-                SetDebugLabelsError();
             }
         }
         
         /// <summary>
-        /// Update first debug label with player and level information
+        /// Update first debug label with player information - only when player name changes
+        /// Uses cached values to prevent unnecessary string allocations
         /// </summary>
-        private void UpdateDebugLabel1(DataStructures.GameSession session, 
-                                     DataStructures.PlayerState playerState)
+        private void UpdateDebugLabel1(DataStructures.PlayerData playerData)
         {
-            var text = $"Player: {session.playerName} | Level: {playerState.Level}";
-            SetDebugLabel(_debugLabel1, text);
-        }
-        
-        /// <summary>
-        /// Update second debug label with health information
-        /// </summary>
-        private void UpdateDebugLabel2(DataStructures.PlayerState playerState)
-        {
-            var text = $"Health: {playerState.Health}/{playerState.MaxHealth}";
-            SetDebugLabel(_debugLabel2, text);
-        }
-        
-        /// <summary>
-        /// Update third debug label with score and progress information
-        /// </summary>
-        private void UpdateDebugLabel3(DataStructures.GameProgress progress)
-        {
-            var completedLevels = progress.CompletedLevels.Count;
-            var text = $"Score: {progress.Score} | Levels: {completedLevels}";
-            SetDebugLabel(_debugLabel3, text);
-        }
-        
-        /// <summary>
-        /// Update fourth debug label with time and scene information
-        /// Uses TimeService if available, falls back to session data
-        /// </summary>
-        private void UpdateDebugLabel4WithTimeService()
-        {
-            var session = _gameDataService.CurrentSession;
+            if (_debugLabel1 == null || playerData?.PlayerName == null) return;
             
-            if (_timeService != null && session != null)
+            // Only update if player name has changed
+            if (_cachedPlayerName != playerData.PlayerName)
             {
-                var formattedGameTime = _timeService.GetFormattedGameTime();
-                var formattedSessionTime = _timeService.GetFormattedSessionTime();
-                var isTracking = _timeService.IsTrackingGameTime;
+                _cachedPlayerName = playerData.PlayerName;
                 
-                var trackingIndicator = isTracking ? "⏱️" : "⏸️";
-                var text = $"Scene: {session.currentScene} | Game: {formattedGameTime} | Session: {formattedSessionTime} {trackingIndicator}";
+                // Use StringBuilder to prevent allocations
+                _stringBuilder.Clear();
+                _stringBuilder.Append(PLAYER_PREFIX);
+                _stringBuilder.Append(_cachedPlayerName);
                 
-                SetDebugLabel(_debugLabel4, text);
-            }
-            else
-            {
-                var currentPlayTime = session?.TotalPlayTimeSeconds ?? 0f;
-                var playTime = TimeSpan.FromSeconds(currentPlayTime);
-                var formattedTime = $"{playTime.Hours:D2}:{playTime.Minutes:D2}:{playTime.Seconds:D2}";
-                var text = $"Scene: {session?.currentScene ?? "Unknown"} | Time: {formattedTime} (Fallback)";
-                
-                SetDebugLabel(_debugLabel4, text);
+                _debugLabel1.text = _stringBuilder.ToString();
             }
         }
         
         /// <summary>
-        /// Set debug labels when no active game session exists
+        /// Update debug label with time and scene information - only when data changes
+        /// Uses cached values and StringBuilder to prevent memory allocations
         /// </summary>
-        private void SetDebugLabelsNoSession()
+        private void UpdateDebugLabel2(DataStructures.GameSessionData session)
         {
-            SetDebugLabel(_debugLabel1, "No Active Session");
-            SetDebugLabel(_debugLabel2, "---");
-            SetDebugLabel(_debugLabel3, "---");
+            if (_debugLabel4 == null || _timeService == null || session == null) return;
             
-            if (_timeService != null)
-            {
-                var sessionTime = _timeService.GetFormattedSessionTime();
-                SetDebugLabel(_debugLabel4, $"Session Time: {sessionTime} (No Game Session)");
-            }
-            else
-            {
-                SetDebugLabel(_debugLabel4, "TimeService Unavailable");
-            }
-        }
-        
-        /// <summary>
-        /// Set debug labels when an error occurs loading game data
-        /// </summary>
-        private void SetDebugLabelsError()
-        {
-            SetDebugLabel(_debugLabel1, "Error Loading Data");
-            SetDebugLabel(_debugLabel2, "Check Console");
-            SetDebugLabel(_debugLabel3, "---");
+            // Get current values
+            var currentGameTime = _timeService.GetFormattedGameTime();
+            var currentIsTracking = _timeService.IsTrackingGameTime;
+            var currentScene = session.CurrentScene;
             
-            if (_timeService != null)
+            // Only update if any value has changed
+            if (_cachedCurrentScene != currentScene || 
+                _cachedGameTime != currentGameTime || 
+                _cachedIsTrackingTime != currentIsTracking)
             {
-                var timeStats = _timeService.GetTimeStatistics();
-                SetDebugLabel(_debugLabel4, $"TimeService: {timeStats.IsTrackingGameTime} | {_timeService.GetFormattedGameTime()}");
-            }
-            else
-            {
-                SetDebugLabel(_debugLabel4, "TimeService Error");
-            }
-        }
-        
-        /// <summary>
-        /// Safely set text on a label if it exists
-        /// </summary>
-        private void SetDebugLabel(Label label, string text)
-        {
-            if (label != null)
-            {
-                label.text = text;
+                // Cache new values
+                _cachedCurrentScene = currentScene;
+                _cachedGameTime = currentGameTime;
+                _cachedIsTrackingTime = currentIsTracking;
+                
+                // Build string efficiently using StringBuilder
+                _stringBuilder.Clear();
+                _stringBuilder.Append("Scene: ");
+                _stringBuilder.Append(_cachedCurrentScene);
+                _stringBuilder.Append(SCENE_SEPARATOR);
+                _stringBuilder.Append(_cachedGameTime);
+                _stringBuilder.Append(TIME_SEPARATOR);
+                _stringBuilder.Append(_cachedIsTrackingTime ? TRACKING_INDICATOR_ON : TRACKING_INDICATOR_OFF);
+                
+                _debugLabel4.text = _stringBuilder.ToString();
             }
         }
         
