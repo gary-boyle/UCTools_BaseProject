@@ -121,30 +121,30 @@ namespace GameFramework.Services
         public void Update()
         {
             if (!_isInitialized) return;
-
+            
             var gameSession = _gameDataService?.GetGameSessionData();
             if (gameSession == null) return;
-
+            
             // Calculate delta time using double precision real time (unaffected by Time.timeScale)
             double currentTime = Time.realtimeSinceStartupAsDouble;
             double deltaTime = currentTime - _lastUpdateTime;
             _lastUpdateTime = currentTime;
-
+            
             // Update timers based on current state
             if (!_isPaused && _isInPlayingState)
             {
                 // Accumulate deltaTime
                 _deltaTimeAccumulator += deltaTime;
-
+            
                 // Increment GameTime when accumulated deltaTime exceeds 1
                 while (_deltaTimeAccumulator >= 1.0)
                 {
                     gameSession.GameTime++;
                     _levelTime++;
-
+            
                     _deltaTimeAccumulator = 0.0;
                 }
-
+            
                 // Update level time
             }
         }

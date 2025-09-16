@@ -31,20 +31,6 @@ namespace GameFramework.ConsoleTool.Commands
     /// > load list               - List available save files (explicit)
     /// > load latest             - Load most recent save file
     /// > load auto               - Load most recent auto-save
-    /// 
-    /// Pros:
-    /// - Fully integrated with existing load system architecture
-    /// - Real-time progress feedback through event system
-    /// - Convenient shortcuts (latest, auto) for common operations
-    /// - Comprehensive error handling and validation
-    /// - Event-driven design maintains system architecture
-    /// - Async file operations for better performance
-    /// 
-    /// Cons:
-    /// - Complex event subscription/unsubscription management
-    /// - Async nature requires event-based feedback rather than direct returns
-    /// - Requires multiple service dependencies
-    /// - Loading progress events may be rapid for console display
     /// </summary>
     public class LoadCommand : ConsoleCommandBase
     {

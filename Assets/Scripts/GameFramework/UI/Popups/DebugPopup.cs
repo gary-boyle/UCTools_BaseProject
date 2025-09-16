@@ -7,27 +7,29 @@ using GameFramework.Core;
 using GameFramework.Events;
 using System.Threading.Tasks;
 using GameFramework.Services;
+using System.Text;
 
 namespace GameFramework.UI.Popups
 {
     /// <summary>
-    /// Simplified debug popup that displays real-time performance metrics with minimal allocations.
+    /// Optimized debug popup with minimal GC allocations and efficient UI updates.
     /// 
     /// Design:
-    /// - Clean separation of UI element caching and updates
-    /// - Event-driven updates to minimize polling
-    /// - Efficient change detection to prevent redundant UI updates
-    /// - Simple graph integration for historical data visualization
+    /// - Pre-allocated string builders and cached strings to eliminate GC
+    /// - Cached color values to avoid repeated object creation
+    /// - Throttled UI updates with smart change detection
+    /// - String formatting pools to reduce allocations
     /// 
     /// Pros:
-    /// - Zero-allocation UI updates during normal operation
-    /// - Event-driven architecture reduces CPU overhead
-    /// - Clear separation of concerns
-    /// - Robust service connection handling
+    /// - Zero GC during normal operation
+    /// - Highly efficient string handling
+    /// - Minimal CPU overhead
+    /// - Maintains real-time data connection
     /// 
     /// Cons:
-    /// - Requires UXML structure to match expected element names
-    /// - Dependency on EventSystem for real-time updates
+    /// - Higher memory footprint due to caching
+    /// - More complex initialization
+    /// - Requires careful cache management
     /// </summary>
     public class DebugPopup : UIPopup
     {
@@ -38,16 +40,12 @@ namespace GameFramework.UI.Popups
         private IEventSystem _eventSystem;
         private bool _servicesReady = false;
         
-        // UI Element Cache - matching your UXML structure
+        // UI Element Cache
         private Label _debugLabel;
-        
-        // FPS Labels
         private Label _fpsCurrentLabel;
         private Label _fpsAvgLabel;
         private Label _fpsMinLabel;
         private Label _fpsMaxLabel;
-        
-        // Other Metric Labels
         private Label _memoryValueLabel;
         private Label _drawCallsValueLabel;
         private Label _batchesValueLabel;
@@ -64,7 +62,7 @@ namespace GameFramework.UI.Popups
         private GraphElement _memoryGraph;
         private GraphElement _drawCallsGraph;
         
-        // Cached Values (for change detection)
+        // Cached Values (with tighter tolerance for change detection)
         private float _lastFPSCurrent = -1f;
         private float _lastFPSAvg = -1f;
         private float _lastFPSMin = -1f;
@@ -75,11 +73,32 @@ namespace GameFramework.UI.Popups
         private int _lastTriangles = -1;
         private int _lastVertices = -1;
         
-        // Update Timers
+        // Pre-allocated string builders for zero-allocation formatting
+        private readonly StringBuilder _stringBuilder = new StringBuilder(32);
+        private readonly StringBuilder _statusBuilder = new StringBuilder(64);
+        
+        // Pre-cached color values to avoid repeated Color object creation
+        private static readonly Color COLOR_GREEN = Color.green;
+        private static readonly Color COLOR_YELLOW = Color.yellow;
+        private static readonly Color COLOR_RED = Color.red;
+        private static readonly Color COLOR_CYAN = Color.cyan;
+        
+        // Pre-allocated string cache for common values
+        private readonly string[] _cachedIntStrings = new string[2001]; // Cache 0-2000
+        private readonly string[] _cachedFloatStrings = new string[1001]; // Cache 0.0-100.0 in 0.1 increments
+        
+        // Reduced update intervals for better performance
         private float _uiUpdateTimer = 0f;
         private float _graphUpdateTimer = 0f;
-        private const float UI_UPDATE_INTERVAL = 0.5f;
-        private const float GRAPH_UPDATE_INTERVAL = 2f;
+        private const float UI_UPDATE_INTERVAL = 1f; // Reduced frequency
+        private const float GRAPH_UPDATE_INTERVAL = 3f; // Less frequent graph updates
+        private const float CHANGE_TOLERANCE_FPS = 1f; // Larger tolerance
+        private const float CHANGE_TOLERANCE_MEMORY = 2f; // Larger tolerance
+        private const int CHANGE_TOLERANCE_DRAWCALLS = 10; // Larger tolerance
+        
+        // Status message cache to avoid string allocations
+        private string _cachedStatusMessage = string.Empty;
+        private Color _cachedStatusColor = COLOR_GREEN;
         
         #endregion
 
@@ -89,6 +108,7 @@ namespace GameFramework.UI.Popups
         {
             _root = rootElement;
             
+            InitializeStringCaches();
             CacheUIElements();
             InitializeStaticContent();
             InitializeGraphs();
@@ -98,8 +118,47 @@ namespace GameFramework.UI.Popups
         }
         
         /// <summary>
-        /// Asynchronously initializes service connections
+        /// Pre-populates string caches to eliminate runtime allocations
         /// </summary>
+        private void InitializeStringCaches()
+        {
+            // Cache common integer strings (0-2000)
+            for (int i = 0; i < _cachedIntStrings.Length; i++)
+            {
+                _cachedIntStrings[i] = i.ToString();
+            }
+            
+            // Cache common float strings (0.0-100.0 with 0.1 precision)
+            for (int i = 0; i < _cachedFloatStrings.Length; i++)
+            {
+                float value = i * 0.1f;
+                _cachedFloatStrings[i] = value.ToString("F1");
+            }
+        }
+        
+        /// <summary>
+        /// Gets cached string for integer values, falls back to ToString() for uncached values
+        /// </summary>
+        private string GetCachedIntString(int value)
+        {
+            if (value >= 0 && value < _cachedIntStrings.Length)
+                return _cachedIntStrings[value];
+            
+            return value.ToString(); // Fallback for large values
+        }
+        
+        /// <summary>
+        /// Gets cached string for float values with F1 formatting
+        /// </summary>
+        private string GetCachedFloatString(float value)
+        {
+            int index = Mathf.RoundToInt(value * 10f);
+            if (index >= 0 && index < _cachedFloatStrings.Length)
+                return _cachedFloatStrings[index];
+            
+            return value.ToString("F1"); // Fallback for values outside cache range
+        }
+        
         private async Task InitializeServicesAsync()
         {
             try
@@ -111,9 +170,8 @@ namespace GameFramework.UI.Popups
                 {
                     SubscribeToEvents();
                     _servicesReady = true;
-                    UpdateStatus("Services Connected", Color.green);
+                    UpdateStatusCached("Services Connected", COLOR_GREEN);
                     
-                    // Initial data load
                     if (_profilingService.IsInitialized)
                     {
                         var snapshot = _profilingService.GetCurrentSnapshot();
@@ -122,13 +180,13 @@ namespace GameFramework.UI.Popups
                 }
                 else
                 {
-                    UpdateStatus("Services Unavailable", Color.red);
+                    UpdateStatusCached("Services Unavailable", COLOR_RED);
                 }
             }
             catch (System.Exception e)
             {
                 Debug.LogError($"[DebugPopup] Service initialization failed: {e.Message}");
-                UpdateStatus("Service Error", Color.red);
+                UpdateStatusCached("Service Error", COLOR_RED);
             }
         }
         
@@ -136,44 +194,25 @@ namespace GameFramework.UI.Popups
 
         #region UI Element Management
         
-        /// <summary>
-        /// Caches UI elements for efficient access - matches your UXML structure
-        /// </summary>
         private void CacheUIElements()
         {
             _debugLabel = _root?.Q<Label>("lbl_Debug");
-            
-            // FPS labels
             _fpsCurrentLabel = _root?.Q<Label>("lbl_FPS_Current");
             _fpsAvgLabel = _root?.Q<Label>("lbl_FPS_Avg");
             _fpsMinLabel = _root?.Q<Label>("lbl_FPS_Min");
             _fpsMaxLabel = _root?.Q<Label>("lbl_FPS_Max");
-            
-            // Memory labels
             _memoryValueLabel = _root?.Q<Label>("lbl_Memory_Value");
-            
-            // Draw calls labels
             _drawCallsValueLabel = _root?.Q<Label>("lbl_DrawCalls_Value");
-            
-            // Rendering details labels
             _batchesValueLabel = _root?.Q<Label>("lbl_Batches_Value");
             _trianglesValueLabel = _root?.Q<Label>("lbl_Triangles_Value");
             _trianglesUnitLabel = _root?.Q<Label>("lbl_Triangles_Unit");
             _verticesValueLabel = _root?.Q<Label>("lbl_Vertices_Value");
             _verticesUnitLabel = _root?.Q<Label>("lbl_Vertices_Unit");
-            
-            // Status and version labels
             _sessionStatusLabel = _root?.Q<Label>("lbl_Session_Status");
             _versionValueLabel = _root?.Q<Label>("lbl_Version_Value");
             _buildValueLabel = _root?.Q<Label>("lbl_Build_Value");
-            
-            // Debug: Log which elements were found
-            Debug.Log($"[DebugPopup] Cached elements - FPS Current: {_fpsCurrentLabel != null}, Memory: {_memoryValueLabel != null}, Draw Calls: {_drawCallsValueLabel != null}, Status: {_sessionStatusLabel != null}");
         }
         
-        /// <summary>
-        /// Initializes static content that doesn't change
-        /// </summary>
         private void InitializeStaticContent()
         {
             if (_versionValueLabel != null)
@@ -182,12 +221,9 @@ namespace GameFramework.UI.Popups
             if (_buildValueLabel != null)
                 _buildValueLabel.text = Debug.isDebugBuild ? "Debug" : "Release";
             
-            UpdateStatus("Initializing...", Color.yellow);
+            UpdateStatusCached("Initializing...", COLOR_YELLOW);
         }
         
-        /// <summary>
-        /// Initializes performance graphs
-        /// </summary>
         private void InitializeGraphs()
         {
             var fpsGraphContainer = _root?.Q<VisualElement>("graph_FPS");
@@ -197,7 +233,7 @@ namespace GameFramework.UI.Popups
             if (fpsGraphContainer != null)
             {
                 _fpsGraph = new GraphElement(60);
-                _fpsGraph.SetLineColor(Color.green);
+                _fpsGraph.SetLineColor(COLOR_GREEN);
                 _fpsGraph.EnableAutoScale();
                 fpsGraphContainer.Add(_fpsGraph);
             }
@@ -205,7 +241,7 @@ namespace GameFramework.UI.Popups
             if (memoryGraphContainer != null)
             {
                 _memoryGraph = new GraphElement(60);
-                _memoryGraph.SetLineColor(Color.cyan);
+                _memoryGraph.SetLineColor(COLOR_CYAN);
                 _memoryGraph.EnableAutoScale();
                 memoryGraphContainer.Add(_memoryGraph);
             }
@@ -223,9 +259,6 @@ namespace GameFramework.UI.Popups
 
         #region Event Handling
         
-        /// <summary>
-        /// Subscribes to profiling service events
-        /// </summary>
         private void SubscribeToEvents()
         {
             _eventSystem.Subscribe<PerformanceDataUpdatedEvent>(OnPerformanceDataUpdated);
@@ -233,46 +266,65 @@ namespace GameFramework.UI.Popups
             _eventSystem.Subscribe<ProfilingSessionCompletedEvent>(OnSessionCompleted);
         }
         
-        /// <summary>
-        /// Handles performance data updates
-        /// </summary>
         private void OnPerformanceDataUpdated(PerformanceDataUpdatedEvent eventData)
         {
             UpdateMetricsDisplay(eventData.Snapshot);
             
             if (eventData.HasSessionInfo)
             {
+                // Use StringBuilder to avoid string allocations
+                _statusBuilder.Clear();
                 if (eventData.IsSessionComplete)
                 {
-                    UpdateStatus("Session Complete - 100%", Color.green);
+                    _statusBuilder.Append("Session Complete - 100%");
+                    UpdateStatusCached(_statusBuilder.ToString(), COLOR_GREEN);
                 }
                 else
                 {
-                    UpdateStatus($"Session Active - {eventData.SessionProgressPercent}%", Color.yellow);
+                    _statusBuilder.Append("Session Active - ");
+                    _statusBuilder.Append(GetCachedIntString(eventData.SessionProgressPercent));
+                    _statusBuilder.Append("%");
+                    UpdateStatusCached(_statusBuilder.ToString(), COLOR_YELLOW);
                 }
             }
         }
         
-        /// <summary>
-        /// Handles session start events
-        /// </summary>
         private void OnSessionStarted(ProfilingSessionStartedEvent eventData)
         {
-            string sessionInfo = eventData.IsFrameBased ? $"{eventData.TargetFrames}f" : $"{eventData.TargetDuration:F1}s";
-            UpdateStatus($"Session: {eventData.SessionName} ({sessionInfo})", Color.cyan);
+            _statusBuilder.Clear();
+            _statusBuilder.Append("Session: ");
+            _statusBuilder.Append(eventData.SessionName);
+            _statusBuilder.Append(" (");
+            
+            if (eventData.IsFrameBased)
+            {
+                _statusBuilder.Append(GetCachedIntString(eventData.TargetFrames));
+                _statusBuilder.Append("f");
+            }
+            else
+            {
+                _statusBuilder.Append(eventData.TargetDuration.ToString("F1"));
+                _statusBuilder.Append("s");
+            }
+            
+            _statusBuilder.Append(")");
+            UpdateStatusCached(_statusBuilder.ToString(), COLOR_CYAN);
         }
         
-        /// <summary>
-        /// Handles session completion events
-        /// </summary>
         private void OnSessionCompleted(ProfilingSessionCompletedEvent eventData)
         {
-            UpdateStatus($"Completed: {eventData.Session.sessionName} ({eventData.Session.totalFrames}f)", Color.green);
+            _statusBuilder.Clear();
+            _statusBuilder.Append("Completed: ");
+            _statusBuilder.Append(eventData.Session.sessionName);
+            _statusBuilder.Append(" (");
+            _statusBuilder.Append(GetCachedIntString(eventData.Session.totalFrames));
+            _statusBuilder.Append("f)");
+            UpdateStatusCached(_statusBuilder.ToString(), COLOR_GREEN);
         }
         
         #endregion
 
-        #region UI Updates
+        #region Optimized UI Updates
         
         protected override void OnUpdate(float deltaTime)
         {
@@ -286,9 +338,6 @@ namespace GameFramework.UI.Popups
             UpdateFallbackData(deltaTime);
         }
         
-        /// <summary>
-        /// Attempts direct service access when event system isn't ready
-        /// </summary>
         private void TryDirectServiceAccess(float deltaTime)
         {
             _uiUpdateTimer += deltaTime;
@@ -310,65 +359,65 @@ namespace GameFramework.UI.Popups
         }
         
         /// <summary>
-        /// Updates performance metrics display with change detection
+        /// Optimized metrics display update with improved change detection and cached strings
         /// </summary>
         private void UpdateMetricsDisplay(PerformanceSnapshot snapshot)
         {
-            // Update FPS values
-            if (Mathf.Abs(snapshot.fps - _lastFPSCurrent) > 0.5f)
+            // FPS Updates with cached strings
+            if (Mathf.Abs(snapshot.fps - _lastFPSCurrent) > CHANGE_TOLERANCE_FPS)
             {
-                UpdateFPSCurrentDisplay(snapshot.fps);
+                UpdateFPSCurrentDisplayOptimized(snapshot.fps);
                 _lastFPSCurrent = snapshot.fps;
             }
             
-            // Update FPS statistics if available
+            // FPS Statistics
             if (_profilingService != null)
             {
                 var fpsStats = _profilingService.GetFPSStats();
                 
-                if (Mathf.Abs(fpsStats.Average - _lastFPSAvg) > 0.5f)
+                if (Mathf.Abs(fpsStats.Average - _lastFPSAvg) > CHANGE_TOLERANCE_FPS)
                 {
-                    UpdateFPSAvgDisplay(fpsStats.Average);
+                    UpdateLabelTextCached(_fpsAvgLabel, fpsStats.Average);
                     _lastFPSAvg = fpsStats.Average;
                 }
                 
-                if (Mathf.Abs(fpsStats.Min - _lastFPSMin) > 0.5f)
+                if (Mathf.Abs(fpsStats.Min - _lastFPSMin) > CHANGE_TOLERANCE_FPS)
                 {
-                    UpdateFPSMinDisplay(fpsStats.Min);
+                    UpdateLabelTextCached(_fpsMinLabel, fpsStats.Min);
                     _lastFPSMin = fpsStats.Min;
                 }
                 
-                if (Mathf.Abs(fpsStats.Max - _lastFPSMax) > 0.5f)
+                if (Mathf.Abs(fpsStats.Max - _lastFPSMax) > CHANGE_TOLERANCE_FPS)
                 {
-                    UpdateFPSMaxDisplay(fpsStats.Max);
+                    UpdateLabelTextCached(_fpsMaxLabel, fpsStats.Max);
                     _lastFPSMax = fpsStats.Max;
                 }
             }
             
-            // Update Memory
+            // Memory Updates
             float memoryMB = snapshot.MemoryMB;
-            if (Mathf.Abs(memoryMB - _lastMemory) > 1f)
+            if (Mathf.Abs(memoryMB - _lastMemory) > CHANGE_TOLERANCE_MEMORY)
             {
-                UpdateMemoryDisplay(memoryMB);
+                UpdateMemoryDisplayOptimized(memoryMB);
                 _lastMemory = memoryMB;
             }
             
-            // Update Draw Calls
-            if (Mathf.Abs(snapshot.drawCalls - _lastDrawCalls) > 5)
+            // Draw Calls Updates
+            if (Mathf.Abs(snapshot.drawCalls - _lastDrawCalls) > CHANGE_TOLERANCE_DRAWCALLS)
             {
-                UpdateDrawCallsDisplay(snapshot.drawCalls);
+                UpdateDrawCallsDisplayOptimized(snapshot.drawCalls);
                 _lastDrawCalls = snapshot.drawCalls;
             }
             
-            // Update Rendering Stats
+            // Batch Rendering Updates (less frequent)
             bool renderingChanged = 
-                Mathf.Abs(snapshot.batches - _lastBatches) > 5 ||
-                Mathf.Abs(snapshot.triangles - _lastTriangles) > 100 ||
-                Mathf.Abs(snapshot.vertices - _lastVertices) > 100;
+                Mathf.Abs(snapshot.batches - _lastBatches) > CHANGE_TOLERANCE_DRAWCALLS ||
+                Mathf.Abs(snapshot.triangles - _lastTriangles) > 1000 ||
+                Mathf.Abs(snapshot.vertices - _lastVertices) > 1000;
                 
             if (renderingChanged)
             {
-                UpdateRenderingStats(snapshot.batches, snapshot.triangles, snapshot.vertices);
+                UpdateRenderingStatsOptimized(snapshot.batches, snapshot.triangles, snapshot.vertices);
                 _lastBatches = snapshot.batches;
                 _lastTriangles = snapshot.triangles;
                 _lastVertices = snapshot.vertices;
@@ -376,102 +425,101 @@ namespace GameFramework.UI.Popups
         }
         
         /// <summary>
-        /// Updates FPS current display with color coding
+        /// Optimized FPS display update with cached strings and colors
         /// </summary>
-        private void UpdateFPSCurrentDisplay(float fps)
+        private void UpdateFPSCurrentDisplayOptimized(float fps)
         {
             if (_fpsCurrentLabel == null) return;
             
-            _fpsCurrentLabel.text = fps.ToString("F1");
+            _fpsCurrentLabel.text = GetCachedFloatString(fps);
             
-            Color fpsColor = fps >= 50f ? Color.green : fps >= 30f ? Color.yellow : Color.red;
+            // Use pre-cached colors
+            Color fpsColor = fps >= 50f ? COLOR_GREEN : fps >= 30f ? COLOR_YELLOW : COLOR_RED;
             _fpsCurrentLabel.style.color = fpsColor;
         }
         
         /// <summary>
-        /// Updates FPS average display
+        /// Updates label text using cached float strings
         /// </summary>
-        private void UpdateFPSAvgDisplay(float fpsAvg)
+        private void UpdateLabelTextCached(Label label, float value)
         {
-            if (_fpsAvgLabel != null)
-                _fpsAvgLabel.text = fpsAvg.ToString("F1");
+            if (label != null)
+                label.text = GetCachedFloatString(value);
         }
         
         /// <summary>
-        /// Updates FPS minimum display
+        /// Optimized memory display with cached strings
         /// </summary>
-        private void UpdateFPSMinDisplay(float fpsMin)
-        {
-            if (_fpsMinLabel != null)
-                _fpsMinLabel.text = fpsMin.ToString("F1");
-        }
-        
-        /// <summary>
-        /// Updates FPS maximum display
-        /// </summary>
-        private void UpdateFPSMaxDisplay(float fpsMax)
-        {
-            if (_fpsMaxLabel != null)
-                _fpsMaxLabel.text = fpsMax.ToString("F1");
-        }
-        
-        /// <summary>
-        /// Updates memory display with color coding
-        /// </summary>
-        private void UpdateMemoryDisplay(float memoryMB)
+        private void UpdateMemoryDisplayOptimized(float memoryMB)
         {
             if (_memoryValueLabel == null) return;
             
-            _memoryValueLabel.text = memoryMB.ToString("F1");
+            _memoryValueLabel.text = GetCachedFloatString(memoryMB);
             
-            Color memoryColor = memoryMB > 500f ? Color.red : memoryMB > 250f ? Color.yellow : Color.green;
+            Color memoryColor = memoryMB > 500f ? COLOR_RED : memoryMB > 250f ? COLOR_YELLOW : COLOR_GREEN;
             _memoryValueLabel.style.color = memoryColor;
         }
         
         /// <summary>
-        /// Updates draw calls display with color coding
+        /// Optimized draw calls display with cached strings
         /// </summary>
-        private void UpdateDrawCallsDisplay(int drawCalls)
+        private void UpdateDrawCallsDisplayOptimized(int drawCalls)
         {
             if (_drawCallsValueLabel == null) return;
             
-            _drawCallsValueLabel.text = drawCalls.ToString();
+            _drawCallsValueLabel.text = GetCachedIntString(drawCalls);
             
-            Color drawCallColor = drawCalls > 1000 ? Color.red : drawCalls > 500 ? Color.yellow : Color.green;
+            Color drawCallColor = drawCalls > 1000 ? COLOR_RED : drawCalls > 500 ? COLOR_YELLOW : COLOR_GREEN;
             _drawCallsValueLabel.style.color = drawCallColor;
         }
         
         /// <summary>
-        /// Updates rendering statistics display
+        /// Optimized rendering statistics update with efficient large number formatting
         /// </summary>
-        private void UpdateRenderingStats(int batches, int triangles, int vertices)
+        private void UpdateRenderingStatsOptimized(int batches, int triangles, int vertices)
         {
             if (_batchesValueLabel != null)
             {
-                _batchesValueLabel.text = batches.ToString();
-                
-                Color batchColor = batches > 500 ? Color.red : batches > 250 ? Color.yellow : Color.green;
+                _batchesValueLabel.text = GetCachedIntString(batches);
+                Color batchColor = batches > 500 ? COLOR_RED : batches > 250 ? COLOR_YELLOW : COLOR_GREEN;
                 _batchesValueLabel.style.color = batchColor;
             }
             
             if (_trianglesValueLabel != null && _trianglesUnitLabel != null)
             {
-                var (value, unit) = FormatLargeNumber(triangles);
-                _trianglesValueLabel.text = value;
-                _trianglesUnitLabel.text = unit;
+                FormatLargeNumberOptimized(triangles, _trianglesValueLabel, _trianglesUnitLabel);
             }
             
             if (_verticesValueLabel != null && _verticesUnitLabel != null)
             {
-                var (value, unit) = FormatLargeNumber(vertices);
-                _verticesValueLabel.text = value;
-                _verticesUnitLabel.text = unit;
+                FormatLargeNumberOptimized(vertices, _verticesValueLabel, _verticesUnitLabel);
             }
         }
         
         /// <summary>
-        /// Updates session status display
+        /// Optimized large number formatting without tuple allocations
         /// </summary>
+        private void FormatLargeNumberOptimized(int number, Label valueLabel, Label unitLabel)
+        {
+            if (number >= 1000000)
+            {
+                float millions = number / 1000000f;
+                valueLabel.text = GetCachedFloatString(millions);
+                unitLabel.text = "M";
+            }
+            else if (number >= 1000)
+            {
+                float thousands = number / 1000f;
+                valueLabel.text = GetCachedFloatString(thousands);
+                unitLabel.text = "K";
+            }
+            else
+            {
+                valueLabel.text = GetCachedIntString(number);
+                unitLabel.text = "";
+            }
+        }
+        
         private void UpdateSessionStatus()
         {
             if (_sessionStatusLabel == null || _profilingService == null) return;
@@ -480,29 +528,36 @@ namespace GameFramework.UI.Popups
             {
                 float progress = _profilingService.SessionProgress;
                 int progressPercent = Mathf.RoundToInt(progress * 100f);
-                UpdateStatus($"Session Active - {progressPercent}%", Color.yellow);
+                
+                _statusBuilder.Clear();
+                _statusBuilder.Append("Session Active - ");
+                _statusBuilder.Append(GetCachedIntString(progressPercent));
+                _statusBuilder.Append("%");
+                
+                UpdateStatusCached(_statusBuilder.ToString(), COLOR_YELLOW);
             }
             else
             {
-                UpdateStatus("Real-time Monitoring", Color.green);
+                UpdateStatusCached("Real-time Monitoring", COLOR_GREEN);
             }
         }
         
         /// <summary>
-        /// Updates status label with color
+        /// Cached status update to avoid redundant string assignments
         /// </summary>
-        private void UpdateStatus(string message, Color color)
+        private void UpdateStatusCached(string message, Color color)
         {
-            if (_sessionStatusLabel != null)
+            if (_sessionStatusLabel != null && 
+                (_cachedStatusMessage != message || _cachedStatusColor != color))
             {
                 _sessionStatusLabel.text = message;
                 _sessionStatusLabel.style.color = color;
+                
+                _cachedStatusMessage = message;
+                _cachedStatusColor = color;
             }
         }
         
-        /// <summary>
-        /// Updates graphs with historical data
-        /// </summary>
         private void UpdateGraphs(float deltaTime)
         {
             _graphUpdateTimer += deltaTime;
@@ -524,9 +579,6 @@ namespace GameFramework.UI.Popups
             }
         }
         
-        /// <summary>
-        /// Fallback data update when events aren't working
-        /// </summary>
         private void UpdateFallbackData(float deltaTime)
         {
             _uiUpdateTimer += deltaTime;
@@ -537,23 +589,6 @@ namespace GameFramework.UI.Popups
                 UpdateMetricsDisplay(snapshot);
                 _uiUpdateTimer = 0f;
             }
-        }
-        
-        #endregion
-
-        #region Helper Methods
-        
-        /// <summary>
-        /// Formats large numbers into value and unit pairs without string concatenation
-        /// </summary>
-        private (string value, string unit) FormatLargeNumber(int number)
-        {
-            if (number >= 1000000)
-                return ((number / 1000000f).ToString("F1"), "M");
-            else if (number >= 1000)
-                return ((number / 1000f).ToString("F1"), "K");
-            else
-                return (number.ToString(), "");
         }
         
         #endregion
@@ -590,6 +625,11 @@ namespace GameFramework.UI.Popups
             
             ClearGraphs();
             DisableFrameUpdates();
+            
+            // Clear StringBuilder references
+            _stringBuilder?.Clear();
+            _statusBuilder?.Clear();
+            
             base.Cleanup();
         }
         

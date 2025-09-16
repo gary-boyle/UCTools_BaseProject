@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using GameFramework.Core;
 using GameFramework.EventSystem.Events;
 using GameFramework.Services.Interfaces;
@@ -11,6 +12,18 @@ namespace GameFramework.UI.Screens
     /// <summary>
     /// Game play screen - pure UI component that reports user interactions and displays game data
     /// Does not handle its own lifecycle - that's managed by the PlayingState
+    /// 
+    /// DESIGN: Optimized to prevent per-frame memory allocations by caching string values
+    /// and only updating UI elements when data actually changes.
+    /// 
+    /// PROS: 
+    /// - Zero GC allocations during steady state
+    /// - Maintains clean separation of concerns
+    /// - Efficient string handling with StringBuilder reuse
+    /// 
+    /// CONS:
+    /// - Slightly more complex caching logic
+    /// - Additional memory overhead for cached values
     /// </summary>
     public class GamePlayScreen : UIScreen
     {
@@ -32,6 +45,22 @@ namespace GameFramework.UI.Screens
         // Services for data display
         private IGameDataService _gameDataService;
         private ITimeService _timeService;
+
+        // Cached values to prevent unnecessary string allocations
+        private string _cachedPlayerName = string.Empty;
+        private string _cachedCurrentScene = string.Empty;
+        private string _cachedGameTime = string.Empty;
+        private bool _cachedIsTrackingTime;
+        
+        // Reusable StringBuilder to prevent allocation during string building
+        private readonly StringBuilder _stringBuilder = new StringBuilder(128);
+        
+        // Constants to prevent repeated allocations
+        private const string TRACKING_INDICATOR_ON = "⏱️";
+        private const string TRACKING_INDICATOR_OFF = "⏸️";
+        private const string PLAYER_PREFIX = "Player: ";
+        private const string SCENE_SEPARATOR = " | Game: ";
+        private const string TIME_SEPARATOR = " | ";
 
         /// <summary>
         /// Initialize screen with dependency injection of services
@@ -142,11 +171,11 @@ namespace GameFramework.UI.Screens
 
         #endregion
         
-        #region Debug Label Updates - Pure Data Display
+        #region Debug Label Updates - Optimized for Zero Allocations
         
         /// <summary>
-        /// Updates debug labels with current game state - pure data display function
-        /// Called every frame while screen is active
+        /// Updates debug labels with current game state - only when data changes
+        /// Called every frame while screen is active but prevents unnecessary allocations
         /// </summary>
         protected override void OnUpdate(float deltaTime)
         {
@@ -169,28 +198,61 @@ namespace GameFramework.UI.Screens
         }
         
         /// <summary>
-        /// Update first debug label with player and level information
+        /// Update first debug label with player information - only when player name changes
+        /// Uses cached values to prevent unnecessary string allocations
         /// </summary>
         private void UpdateDebugLabel1(DataStructures.PlayerData playerData)
         {
-            var text = $"Player: {playerData.PlayerName}";
-            _debugLabel1.text = text;
+            if (_debugLabel1 == null || playerData?.PlayerName == null) return;
+            
+            // Only update if player name has changed
+            if (_cachedPlayerName != playerData.PlayerName)
+            {
+                _cachedPlayerName = playerData.PlayerName;
+                
+                // Use StringBuilder to prevent allocations
+                _stringBuilder.Clear();
+                _stringBuilder.Append(PLAYER_PREFIX);
+                _stringBuilder.Append(_cachedPlayerName);
+                
+                _debugLabel1.text = _stringBuilder.ToString();
+            }
         }
         
         /// <summary>
-        /// Update fourth debug label with time and scene information
-        /// Uses TimeService if available, falls back to session data
+        /// Update debug label with time and scene information - only when data changes
+        /// Uses cached values and StringBuilder to prevent memory allocations
         /// </summary>
         private void UpdateDebugLabel2(DataStructures.GameSessionData session)
         {
-            if (_timeService == null || session == null) return;
+            if (_debugLabel4 == null || _timeService == null || session == null) return;
             
-            var formattedGameTime = _timeService.GetFormattedGameTime();
-            var isTracking = _timeService.IsTrackingGameTime;
+            // Get current values
+            var currentGameTime = _timeService.GetFormattedGameTime();
+            var currentIsTracking = _timeService.IsTrackingGameTime;
+            var currentScene = session.CurrentScene;
+            
+            // Only update if any value has changed
+            if (_cachedCurrentScene != currentScene || 
+                _cachedGameTime != currentGameTime || 
+                _cachedIsTrackingTime != currentIsTracking)
+            {
+                // Cache new values
+                _cachedCurrentScene = currentScene;
+                _cachedGameTime = currentGameTime;
+                _cachedIsTrackingTime = currentIsTracking;
                 
-            var trackingIndicator = isTracking ? "⏱️" : "⏸️";
-            var text = $"Scene: {session.CurrentScene} | Game: {formattedGameTime} | {trackingIndicator}";
-            _debugLabel4.text = text;
+                // Build string efficiently using StringBuilder
+                _stringBuilder.Clear();
+                _stringBuilder.Append("Scene: ");
+                _stringBuilder.Append(_cachedCurrentScene);
+                _stringBuilder.Append(SCENE_SEPARATOR);
+                _stringBuilder.Append(_cachedGameTime);
+                _stringBuilder.Append(TIME_SEPARATOR);
+                _stringBuilder.Append(_cachedIsTrackingTime ? TRACKING_INDICATOR_ON : TRACKING_INDICATOR_OFF);
+                
+                _debugLabel4.text = _stringBuilder.ToString();
+            }
         }
         
         #endregion

@@ -11,21 +11,21 @@ using GameFramework.EventSystem.Events;
 using GameFramework.EventSystem.Events.Enums;
 using GameFramework.EventSystem.Interfaces;
 using GameFramework.SaveSystem.Interfaces;
+using GameFramework.FileSystem.Interfaces;
 
 namespace GameFramework.SaveSystem.Services
 {
     /// <summary>
     /// Main save service responsible for orchestrating save operations
-    /// Handles event-driven save requests and coordinates with registry and serialization
-    /// Manages file I/O operations with proper error handling
+    /// Handles event-driven save requests and coordinates with registry and file service
+    /// Delegates file I/O operations to FileService for separation of concerns
     /// </summary>
     public class SaveService : ISaveService
     {
         #region Private Fields
-        private string _saveDirectory;
-        private const string SAVE_FILE_EXTENSION = ".json";
         private const string AUTO_SAVE_PREFIX = "AutoSave_";
         private const string REGULAR_SAVE_PREFIX = "Save_";
+        private const string SAVE_FILE_EXTENSION = ".json";
         #endregion
 
         #region IGameService Implementation
@@ -34,13 +34,16 @@ namespace GameFramework.SaveSystem.Services
         // Dependencies
         private readonly IEventSystem _eventSystem;
         private readonly ISaveDataRegistry _saveDataRegistry;
+        private readonly IFileService _fileService;
         
         public SaveService(
             IEventSystem eventSystem,
-            ISaveDataRegistry saveDataRegistry)
+            ISaveDataRegistry saveDataRegistry,
+            IFileService fileService)
         {
             _eventSystem = eventSystem ?? throw new ArgumentNullException(nameof(eventSystem));
             _saveDataRegistry = saveDataRegistry ?? throw new ArgumentNullException(nameof(saveDataRegistry));
+            _fileService = fileService ?? throw new ArgumentNullException(nameof(fileService));
         }
         
         public async Task InitializeAsync()
@@ -49,14 +52,7 @@ namespace GameFramework.SaveSystem.Services
 
             Debug.Log("[SaveService] Initializing save service...");
 
-            // Initialize save directory
-            _saveDirectory = Path.Combine(Application.persistentDataPath, "Saves");
-            if (!Directory.Exists(_saveDirectory))
-            {
-                Directory.CreateDirectory(_saveDirectory);
-                Debug.Log($"[SaveService] Created save directory: {_saveDirectory}");
-            }
-
+            // Note: FileService handles directory creation, we just subscribe to events
             SubscribeToEvents();
             
             IsInitialized = true;
@@ -85,7 +81,6 @@ namespace GameFramework.SaveSystem.Services
         }
         
         #endregion
-        
 
         #region Event Handlers
         /// <summary>
@@ -105,6 +100,13 @@ namespace GameFramework.SaveSystem.Services
             {
                 Debug.LogError("[SaveService] Cannot process save request - registry dependency not set");
                 PublishSaveFailedEvent("Save data registry not available", saveEvent.SaveType);
+                return;
+            }
+
+            if (_fileService == null)
+            {
+                Debug.LogError("[SaveService] Cannot process save request - file service dependency not set");
+                PublishSaveFailedEvent("File service not available", saveEvent.SaveType);
                 return;
             }
 
@@ -160,10 +162,9 @@ namespace GameFramework.SaveSystem.Services
             return await PerformSave(fileName, saveEvent.SaveType == SaveType.Auto);
         }
 
-
         /// <summary>
         /// Performs the actual save operation
-        /// Collects data from registry, serializes, and writes to file
+        /// Collects data from registry and delegates file writing to FileService
         /// </summary>
         private async Task<string> PerformSave(string fileName, bool isAutoSave)
         {
@@ -230,44 +231,17 @@ namespace GameFramework.SaveSystem.Services
                 throw new InvalidOperationException("Save data validation failed - essential data is missing");
             }
 
-            // Serialize to JSON
-            Debug.Log("[SaveService] Serializing save data to JSON...");
-            string json = JsonSerializationHelper.SerializeToJson(saveFileData, true);
+            // Delegate file writing to FileService
+            Debug.Log($"[SaveService] Delegating file write to FileService: {fileName}");
+            bool writeSuccess = await _fileService.WriteSaveFileAsync(fileName, saveFileData);
             
-            if (string.IsNullOrEmpty(json))
+            if (!writeSuccess)
             {
-                throw new InvalidOperationException("Failed to serialize save data to JSON");
+                throw new InvalidOperationException($"FileService failed to write save file: {fileName}");
             }
-
-            Debug.Log($"[SaveService] JSON serialization successful. Size: {json.Length} characters");
-
-            // Write to file
-            string filePath = Path.Combine(_saveDirectory, fileName);
-            Debug.Log($"[SaveService] Writing save file to: {filePath}");
-            
-            await WriteJsonToFileAsync(filePath, json);
             
             Debug.Log($"[SaveService] Save completed successfully: {fileName}");
             return fileName;
-        }
-
-
-        /// <summary>
-        /// Writes JSON string to file asynchronously
-        /// </summary>
-        private async Task WriteJsonToFileAsync(string filePath, string json)
-        {
-            try
-            {
-                using (var writer = new StreamWriter(filePath, false))
-                {
-                    await writer.WriteAsync(json);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new IOException($"Failed to write save file to {filePath}: {ex.Message}", ex);
-            }
         }
         #endregion
 
@@ -309,9 +283,8 @@ namespace GameFramework.SaveSystem.Services
             string playerUniqueId = playerData.UniqueID;
             string autoSaveFileName = $"AutoSave_{playerUniqueId}.json";
     
-            // Check if this auto-save already exists
-            string autoSaveFilePath = Path.Combine(_saveDirectory, autoSaveFileName);
-            if (File.Exists(autoSaveFilePath))
+            // Check if this auto-save already exists using FileService
+            if (_fileService.SaveFileExists(autoSaveFileName))
             {
                 Debug.Log($"[SaveService] Found existing auto-save for player {playerUniqueId}, will overwrite: {autoSaveFileName}");
                 return autoSaveFileName;
@@ -322,7 +295,6 @@ namespace GameFramework.SaveSystem.Services
                 return autoSaveFileName;
             }
         }
-
         #endregion
 
         #region Event Publishing
