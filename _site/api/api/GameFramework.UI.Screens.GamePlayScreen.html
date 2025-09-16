@@ -86,6 +86,19 @@
   <h1 id="GameFramework_UI_Screens_GamePlayScreen" data-uid="GameFramework.UI.Screens.GamePlayScreen" class="text-break">Class GamePlayScreen</h1>
   <div class="markdown level0 summary"><p>Game play screen - pure UI component that reports user interactions and displays game data
 Does not handle its own lifecycle - that's managed by the PlayingState</p>
+<p>DESIGN: Optimized to prevent per-frame memory allocations by caching string values
+and only updating UI elements when data actually changes.</p>
+<p>PROS:</p>
+<ul>
+<li>Zero GC allocations during steady state</li>
+<li>Maintains clean separation of concerns</li>
+<li>Efficient string handling with StringBuilder reuse</li>
+</ul>
+<p>CONS:</p>
+<ul>
+<li>Slightly more complex caching logic</li>
+<li>Additional memory overhead for cached values</li>
+</ul>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -113,6 +126,12 @@ Does not handle its own lifecycle - that's managed by the PlayingState</p>
     </div>
     <div>
       <a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_Hide">UIScreen.Hide()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_MarkDirty">UIScreen.MarkDirty()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_SetUpdateInterval_System_Single_">UIScreen.SetUpdateInterval(float)</a>
     </div>
     <div>
       <a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_EnableFrameUpdates">UIScreen.EnableFrameUpdates()</a>
@@ -208,8 +227,8 @@ Does not handle its own lifecycle - that's managed by the PlayingState</p>
   <div><a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_OnShow">UIScreen.OnShow()</a></div>
   <a id="GameFramework_UI_Screens_GamePlayScreen_OnUpdate_" data-uid="GameFramework.UI.Screens.GamePlayScreen.OnUpdate*"></a>
   <h4 id="GameFramework_UI_Screens_GamePlayScreen_OnUpdate_System_Single_" data-uid="GameFramework.UI.Screens.GamePlayScreen.OnUpdate(System.Single)">OnUpdate(float)</h4>
-  <div class="markdown level1 summary"><p>Updates debug labels with current game state - pure data display function
-Called every frame while screen is active</p>
+  <div class="markdown level1 summary"><p>Updates debug labels with current game state - only when data changes
+Called every frame while screen is active but prevents unnecessary allocations</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>

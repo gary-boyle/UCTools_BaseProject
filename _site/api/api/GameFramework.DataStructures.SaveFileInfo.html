@@ -84,10 +84,8 @@
 
 
   <h1 id="GameFramework_DataStructures_SaveFileInfo" data-uid="GameFramework.DataStructures.SaveFileInfo" class="text-break">Class SaveFileInfo</h1>
-  <div class="markdown level0 summary"><p>Represents information about a save file for display in the UI
-Handles display formatting for timestamp-based saves and autosaves
-Properly detects autosave files from both filename and session data
-Uses TimeService-based playtime information for accurate display</p>
+  <div class="markdown level0 summary"><p>Minimal wrapper containing essential save file information for UI display
+Extracts key data from GameSessionData and PlayerData for save file lists</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -98,13 +96,7 @@ Uses TimeService-based playtime information for accurate display</p>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
-    </div>
-    <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
@@ -114,9 +106,6 @@ Uses TimeService-based playtime information for accurate display</p>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.DataStructures.html">DataStructures</a></h6>
@@ -129,12 +118,22 @@ public class SaveFileInfo</code></pre>
   <h3 id="constructors">Constructors
 </h3>
   <a id="GameFramework_DataStructures_SaveFileInfo__ctor_" data-uid="GameFramework.DataStructures.SaveFileInfo.#ctor*"></a>
-  <h4 id="GameFramework_DataStructures_SaveFileInfo__ctor_System_String_GameFramework_DataStructures_GameSession_" data-uid="GameFramework.DataStructures.SaveFileInfo.#ctor(System.String,GameFramework.DataStructures.GameSession)">SaveFileInfo(string, GameSession)</h4>
-  <div class="markdown level1 summary"></div>
+  <h4 id="GameFramework_DataStructures_SaveFileInfo__ctor" data-uid="GameFramework.DataStructures.SaveFileInfo.#ctor">SaveFileInfo()</h4>
+  <div class="markdown level1 summary"><p>Default constructor for serialization</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public SaveFileInfo(string fileName, GameSession session)</code></pre>
+    <pre><code class="lang-csharp hljs">public SaveFileInfo()</code></pre>
+  </div>
+  <a id="GameFramework_DataStructures_SaveFileInfo__ctor_" data-uid="GameFramework.DataStructures.SaveFileInfo.#ctor*"></a>
+  <h4 id="GameFramework_DataStructures_SaveFileInfo__ctor_System_String_GameFramework_SaveSystem_Data_SaveFileData_" data-uid="GameFramework.DataStructures.SaveFileInfo.#ctor(System.String,GameFramework.SaveSystem.Data.SaveFileData)">SaveFileInfo(string, SaveFileData)</h4>
+  <div class="markdown level1 summary"><p>Constructor from SaveFileData - updated for direct field access</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SaveFileInfo(string fileName, SaveFileData saveData)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -152,22 +151,23 @@ public class SaveFileInfo</code></pre>
         <td></td>
       </tr>
       <tr>
-        <td><a class="xref" href="GameFramework.DataStructures.GameSession.html">GameSession</a></td>
-        <td><span class="parametername">session</span></td>
+        <td><a class="xref" href="GameFramework.SaveSystem.Data.SaveFileData.html">SaveFileData</a></td>
+        <td><span class="parametername">saveData</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <h3 id="fields">Fields
+  <h3 id="properties">Properties
 </h3>
+  <a id="GameFramework_DataStructures_SaveFileInfo_CurrentScene_" data-uid="GameFramework.DataStructures.SaveFileInfo.CurrentScene*"></a>
   <h4 id="GameFramework_DataStructures_SaveFileInfo_CurrentScene" data-uid="GameFramework.DataStructures.SaveFileInfo.CurrentScene">CurrentScene</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string CurrentScene</code></pre>
+    <pre><code class="lang-csharp hljs">public string CurrentScene { get; }</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
+  <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
@@ -182,36 +182,15 @@ public class SaveFileInfo</code></pre>
       </tr>
     </tbody>
   </table>
-  <h4 id="GameFramework_DataStructures_SaveFileInfo_Difficulty" data-uid="GameFramework.DataStructures.SaveFileInfo.Difficulty">Difficulty</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Difficulty</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <a id="GameFramework_DataStructures_SaveFileInfo_FileName_" data-uid="GameFramework.DataStructures.SaveFileInfo.FileName*"></a>
   <h4 id="GameFramework_DataStructures_SaveFileInfo_FileName" data-uid="GameFramework.DataStructures.SaveFileInfo.FileName">FileName</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string FileName</code></pre>
+    <pre><code class="lang-csharp hljs">public string FileName { get; set; }</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
+  <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
@@ -226,14 +205,15 @@ public class SaveFileInfo</code></pre>
       </tr>
     </tbody>
   </table>
-  <h4 id="GameFramework_DataStructures_SaveFileInfo_FormattedDate" data-uid="GameFramework.DataStructures.SaveFileInfo.FormattedDate">FormattedDate</h4>
+  <a id="GameFramework_DataStructures_SaveFileInfo_GameTime_" data-uid="GameFramework.DataStructures.SaveFileInfo.GameTime*"></a>
+  <h4 id="GameFramework_DataStructures_SaveFileInfo_GameTime" data-uid="GameFramework.DataStructures.SaveFileInfo.GameTime">GameTime</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string FormattedDate</code></pre>
+    <pre><code class="lang-csharp hljs">public long GameTime { get; }</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
+  <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
@@ -243,85 +223,21 @@ public class SaveFileInfo</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <h4 id="GameFramework_DataStructures_SaveFileInfo_FormattedPlayTime" data-uid="GameFramework.DataStructures.SaveFileInfo.FormattedPlayTime">FormattedPlayTime</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string FormattedPlayTime</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h4 id="GameFramework_DataStructures_SaveFileInfo_FormattedSessionTime" data-uid="GameFramework.DataStructures.SaveFileInfo.FormattedSessionTime">FormattedSessionTime</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string FormattedSessionTime</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h4 id="GameFramework_DataStructures_SaveFileInfo_IsAutoSave" data-uid="GameFramework.DataStructures.SaveFileInfo.IsAutoSave">IsAutoSave</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsAutoSave</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <a id="GameFramework_DataStructures_SaveFileInfo_LastSaveTime_" data-uid="GameFramework.DataStructures.SaveFileInfo.LastSaveTime*"></a>
   <h4 id="GameFramework_DataStructures_SaveFileInfo_LastSaveTime" data-uid="GameFramework.DataStructures.SaveFileInfo.LastSaveTime">LastSaveTime</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Last save time as DateTime (converts from ticks)</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public DateTime LastSaveTime</code></pre>
+    <pre><code class="lang-csharp hljs">public DateTime LastSaveTime { get; }</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
+  <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
@@ -336,14 +252,16 @@ public class SaveFileInfo</code></pre>
       </tr>
     </tbody>
   </table>
-  <h4 id="GameFramework_DataStructures_SaveFileInfo_PlayerLevel" data-uid="GameFramework.DataStructures.SaveFileInfo.PlayerLevel">PlayerLevel</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="GameFramework_DataStructures_SaveFileInfo_LastSaveTimeTicks_" data-uid="GameFramework.DataStructures.SaveFileInfo.LastSaveTimeTicks*"></a>
+  <h4 id="GameFramework_DataStructures_SaveFileInfo_LastSaveTimeTicks" data-uid="GameFramework.DataStructures.SaveFileInfo.LastSaveTimeTicks">LastSaveTimeTicks</h4>
+  <div class="markdown level1 summary"><p>Ticks representation for serialization</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int PlayerLevel</code></pre>
+    <pre><code class="lang-csharp hljs">public long LastSaveTimeTicks { get; }</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
+  <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
@@ -353,19 +271,20 @@ public class SaveFileInfo</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
+  <a id="GameFramework_DataStructures_SaveFileInfo_PlayerName_" data-uid="GameFramework.DataStructures.SaveFileInfo.PlayerName*"></a>
   <h4 id="GameFramework_DataStructures_SaveFileInfo_PlayerName" data-uid="GameFramework.DataStructures.SaveFileInfo.PlayerName">PlayerName</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string PlayerName</code></pre>
+    <pre><code class="lang-csharp hljs">public string PlayerName { get; }</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
+  <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
@@ -380,14 +299,220 @@ public class SaveFileInfo</code></pre>
       </tr>
     </tbody>
   </table>
-  <h4 id="GameFramework_DataStructures_SaveFileInfo_Score" data-uid="GameFramework.DataStructures.SaveFileInfo.Score">Score</h4>
+  <a id="GameFramework_DataStructures_SaveFileInfo_WasAutoSaved_" data-uid="GameFramework.DataStructures.SaveFileInfo.WasAutoSaved*"></a>
+  <h4 id="GameFramework_DataStructures_SaveFileInfo_WasAutoSaved" data-uid="GameFramework.DataStructures.SaveFileInfo.WasAutoSaved">WasAutoSaved</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int Score</code></pre>
+    <pre><code class="lang-csharp hljs">public bool WasAutoSaved { get; }</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+  <a id="GameFramework_DataStructures_SaveFileInfo_CreateFromFile_" data-uid="GameFramework.DataStructures.SaveFileInfo.CreateFromFile*"></a>
+  <h4 id="GameFramework_DataStructures_SaveFileInfo_CreateFromFile_System_String_" data-uid="GameFramework.DataStructures.SaveFileInfo.CreateFromFile(System.String)">CreateFromFile(string)</h4>
+  <div class="markdown level1 summary"><p>Creates a SaveFileInfo from a file path by reading and parsing the save file</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static SaveFileInfo CreateFromFile(string filePath)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">filePath</span></td>
+        <td><p>Full path to the save file</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.DataStructures.SaveFileInfo.html">SaveFileInfo</a></td>
+        <td><p>SaveFileInfo or null if file cannot be read</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_DataStructures_SaveFileInfo_Equals_" data-uid="GameFramework.DataStructures.SaveFileInfo.Equals*"></a>
+  <h4 id="GameFramework_DataStructures_SaveFileInfo_Equals_System_Object_" data-uid="GameFramework.DataStructures.SaveFileInfo.Equals(System.Object)">Equals(object)</h4>
+  <div class="markdown level1 summary"><p>Equality comparison based on file name</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object obj)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">obj</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a></div>
+  <a id="GameFramework_DataStructures_SaveFileInfo_GetDisplayName_" data-uid="GameFramework.DataStructures.SaveFileInfo.GetDisplayName*"></a>
+  <h4 id="GameFramework_DataStructures_SaveFileInfo_GetDisplayName" data-uid="GameFramework.DataStructures.SaveFileInfo.GetDisplayName">GetDisplayName()</h4>
+  <div class="markdown level1 summary"><p>Gets a short display name for the save file (without extension)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetDisplayName()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><p>Display name without file extension</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_DataStructures_SaveFileInfo_GetFormattedGameTime_" data-uid="GameFramework.DataStructures.SaveFileInfo.GetFormattedGameTime*"></a>
+  <h4 id="GameFramework_DataStructures_SaveFileInfo_GetFormattedGameTime" data-uid="GameFramework.DataStructures.SaveFileInfo.GetFormattedGameTime">GetFormattedGameTime()</h4>
+  <div class="markdown level1 summary"><p>Gets formatted game time string (hours:minutes:seconds)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetFormattedGameTime()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><p>Formatted game time string</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_DataStructures_SaveFileInfo_GetFormattedSaveTime_" data-uid="GameFramework.DataStructures.SaveFileInfo.GetFormattedSaveTime*"></a>
+  <h4 id="GameFramework_DataStructures_SaveFileInfo_GetFormattedSaveTime_System_String_" data-uid="GameFramework.DataStructures.SaveFileInfo.GetFormattedSaveTime(System.String)">GetFormattedSaveTime(string)</h4>
+  <div class="markdown level1 summary"><p>Gets formatted save time string for UI display</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetFormattedSaveTime(string format = &quot;yyyy/MM/dd HH:mm:ss&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">format</span></td>
+        <td><p>DateTime format string</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><p>Formatted date/time string</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_DataStructures_SaveFileInfo_GetHashCode_" data-uid="GameFramework.DataStructures.SaveFileInfo.GetHashCode*"></a>
+  <h4 id="GameFramework_DataStructures_SaveFileInfo_GetHashCode" data-uid="GameFramework.DataStructures.SaveFileInfo.GetHashCode">GetHashCode()</h4>
+  <div class="markdown level1 summary"><p>Hash code based on file name</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
@@ -402,6 +527,83 @@ public class SaveFileInfo</code></pre>
       </tr>
     </tbody>
   </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a></div>
+  <a id="GameFramework_DataStructures_SaveFileInfo_GetSaveTypeString_" data-uid="GameFramework.DataStructures.SaveFileInfo.GetSaveTypeString*"></a>
+  <h4 id="GameFramework_DataStructures_SaveFileInfo_GetSaveTypeString" data-uid="GameFramework.DataStructures.SaveFileInfo.GetSaveTypeString">GetSaveTypeString()</h4>
+  <div class="markdown level1 summary"><p>Gets save type display string</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetSaveTypeString()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><p>User-friendly save type string</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_DataStructures_SaveFileInfo_IsValid_" data-uid="GameFramework.DataStructures.SaveFileInfo.IsValid*"></a>
+  <h4 id="GameFramework_DataStructures_SaveFileInfo_IsValid" data-uid="GameFramework.DataStructures.SaveFileInfo.IsValid">IsValid()</h4>
+  <div class="markdown level1 summary"><p>Checks if this save file info represents a valid (non-corrupted) save</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsValid()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_DataStructures_SaveFileInfo_ToString_" data-uid="GameFramework.DataStructures.SaveFileInfo.ToString*"></a>
+  <h4 id="GameFramework_DataStructures_SaveFileInfo_ToString" data-uid="GameFramework.DataStructures.SaveFileInfo.ToString">ToString()</h4>
+  <div class="markdown level1 summary"><p>String representation for debugging</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a></div>
 
 </article>
           </div>

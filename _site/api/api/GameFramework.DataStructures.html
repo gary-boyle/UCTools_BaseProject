@@ -88,28 +88,16 @@
     <h3 id="classes">
 Classes
 </h3>
-      <h4><a class="xref" href="GameFramework.DataStructures.GameProgress.html">GameProgress</a></h4>
-      <section><p>Game progression and achievement data</p>
+      <h4><a class="xref" href="GameFramework.DataStructures.GameSessionData.html">GameSessionData</a></h4>
+      <section><p>Game session data implementation of ISaveable with unique ID
+Stores difficulty, scene, and game time information</p>
 </section>
-      <h4><a class="xref" href="GameFramework.DataStructures.GameSession.html">GameSession</a></h4>
-      <section><p>Central game session data - single source of truth for all game state
-Stores playtime data in serializable fields while providing TimeService integration
-Ensures playtime persists correctly across save/load operations</p>
-</section>
-      <h4><a class="xref" href="GameFramework.DataStructures.PlayerState.html">PlayerState</a></h4>
-      <section><p>Player-specific state data</p>
+      <h4><a class="xref" href="GameFramework.DataStructures.PlayerData.html">PlayerData</a></h4>
+      <section><p>Player data with unique ID for identification and single auto-save per player</p>
 </section>
       <h4><a class="xref" href="GameFramework.DataStructures.SaveFileInfo.html">SaveFileInfo</a></h4>
-      <section><p>Represents information about a save file for display in the UI
-Handles display formatting for timestamp-based saves and autosaves
-Properly detects autosave files from both filename and session data
-Uses TimeService-based playtime information for accurate display</p>
-</section>
-    <h3 id="structs">
-Structs
-</h3>
-      <h4><a class="xref" href="GameFramework.DataStructures.PlayTimeInfo.html">PlayTimeInfo</a></h4>
-      <section><p>Playtime information structure for UI display and debugging</p>
+      <section><p>Minimal wrapper containing essential save file information for UI display
+Extracts key data from GameSessionData and PlayerData for save file lists</p>
 </section>
 
 

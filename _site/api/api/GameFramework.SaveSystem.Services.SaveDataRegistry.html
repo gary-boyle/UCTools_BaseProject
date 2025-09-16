@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class SaveService | UCTools Base Project </title>
+    <title>Class SaveDataRegistry | UCTools Base Project </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class SaveService | UCTools Base Project ">
+    <meta name="title" content="Class SaveDataRegistry | UCTools Base Project ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -79,27 +79,25 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="GameFramework.Services.SaveService">
+            <article class="content wrap" id="_content" data-uid="GameFramework.SaveSystem.Services.SaveDataRegistry">
 
 
 
-  <h1 id="GameFramework_Services_SaveService" data-uid="GameFramework.Services.SaveService" class="text-break">Class SaveService</h1>
-  <div class="markdown level0 summary"><p>Save service that handles file saving operations and save file metadata via event system
-Now includes auto-save scheduling based on gameplay settings
-Clean separation - UI triggers saves via events, service handles implementation
-All loading operations are handled by LoadService</p>
+  <h1 id="GameFramework_SaveSystem_Services_SaveDataRegistry" data-uid="GameFramework.SaveSystem.Services.SaveDataRegistry" class="text-break">Class SaveDataRegistry</h1>
+  <div class="markdown level0 summary"><p>Registry service for managing ISaveable objects
+Provides centralized registration/deregistration with lifecycle management
+Implements IGameService for proper initialization and cleanup</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><span class="xref">SaveService</span></div>
+    <div class="level1"><span class="xref">SaveDataRegistry</span></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
-    <div><a class="xref" href="GameFramework.Services.Interfaces.ISaveService.html">ISaveService</a></div>
+    <div><a class="xref" href="GameFramework.SaveSystem.Interfaces.ISaveDataRegistry.html">ISaveDataRegistry</a></div>
     <div><a class="xref" href="GameFramework.Services.Interfaces.IGameService.html">IGameService</a></div>
-    <div><a class="xref" href="GameFramework.StateMachine.Interfaces.IUpdatable.html">IUpdatable</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -125,43 +123,26 @@ All loading operations are handled by LoadService</p>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
     </div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.Services.html">Services</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.SaveSystem.html">SaveSystem</a>.<a class="xref" href="GameFramework.SaveSystem.Services.html">Services</a></h6>
   <h6><strong>Assembly</strong>: .dll</h6>
-  <h5 id="GameFramework_Services_SaveService_syntax">Syntax</h5>
+  <h5 id="GameFramework_SaveSystem_Services_SaveDataRegistry_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class SaveService : ISaveService, IGameService, IUpdatable</code></pre>
+    <pre><code class="lang-csharp hljs">public class SaveDataRegistry : ISaveDataRegistry, IGameService</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
-  <a id="GameFramework_Services_SaveService__ctor_" data-uid="GameFramework.Services.SaveService.#ctor*"></a>
-  <h4 id="GameFramework_Services_SaveService__ctor_GameFramework_EventSystem_Interfaces_IEventSystem_" data-uid="GameFramework.Services.SaveService.#ctor(GameFramework.EventSystem.Interfaces.IEventSystem)">SaveService(IEventSystem)</h4>
+  <a id="GameFramework_SaveSystem_Services_SaveDataRegistry__ctor_" data-uid="GameFramework.SaveSystem.Services.SaveDataRegistry.#ctor*"></a>
+  <h4 id="GameFramework_SaveSystem_Services_SaveDataRegistry__ctor" data-uid="GameFramework.SaveSystem.Services.SaveDataRegistry.#ctor">SaveDataRegistry()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public SaveService(IEventSystem eventSystem)</code></pre>
+    <pre><code class="lang-csharp hljs">public SaveDataRegistry()</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="GameFramework.EventSystem.Interfaces.IEventSystem.html">IEventSystem</a></td>
-        <td><span class="parametername">eventSystem</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <h3 id="properties">Properties
 </h3>
-  <a id="GameFramework_Services_SaveService_IsInitialized_" data-uid="GameFramework.Services.SaveService.IsInitialized*"></a>
-  <h4 id="GameFramework_Services_SaveService_IsInitialized" data-uid="GameFramework.Services.SaveService.IsInitialized">IsInitialized</h4>
+  <a id="GameFramework_SaveSystem_Services_SaveDataRegistry_IsInitialized_" data-uid="GameFramework.SaveSystem.Services.SaveDataRegistry.IsInitialized*"></a>
+  <h4 id="GameFramework_SaveSystem_Services_SaveDataRegistry_IsInitialized" data-uid="GameFramework.SaveSystem.Services.SaveDataRegistry.IsInitialized">IsInitialized</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -183,17 +164,58 @@ All loading operations are handled by LoadService</p>
       </tr>
     </tbody>
   </table>
+  <a id="GameFramework_SaveSystem_Services_SaveDataRegistry_RegisteredCount_" data-uid="GameFramework.SaveSystem.Services.SaveDataRegistry.RegisteredCount*"></a>
+  <h4 id="GameFramework_SaveSystem_Services_SaveDataRegistry_RegisteredCount" data-uid="GameFramework.SaveSystem.Services.SaveDataRegistry.RegisteredCount">RegisteredCount</h4>
+  <div class="markdown level1 summary"><p>Gets count of registered objects</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int RegisteredCount { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="methods">Methods
 </h3>
-  <a id="GameFramework_Services_SaveService_CanSaveGame_" data-uid="GameFramework.Services.SaveService.CanSaveGame*"></a>
-  <h4 id="GameFramework_Services_SaveService_CanSaveGame" data-uid="GameFramework.Services.SaveService.CanSaveGame">CanSaveGame()</h4>
-  <div class="markdown level1 summary"><p>Checks if the game can currently be saved based on session state</p>
+  <a id="GameFramework_SaveSystem_Services_SaveDataRegistry_DeregisterSaveable_" data-uid="GameFramework.SaveSystem.Services.SaveDataRegistry.DeregisterSaveable*"></a>
+  <h4 id="GameFramework_SaveSystem_Services_SaveDataRegistry_DeregisterSaveable_GameFramework_SaveSystem_Interfaces_ISaveable_" data-uid="GameFramework.SaveSystem.Services.SaveDataRegistry.DeregisterSaveable(GameFramework.SaveSystem.Interfaces.ISaveable)">DeregisterSaveable(ISaveable)</h4>
+  <div class="markdown level1 summary"><p>Deregisters an ISaveable object from the registry</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool CanSaveGame()</code></pre>
+    <pre><code class="lang-csharp hljs">public bool DeregisterSaveable(ISaveable saveable)</code></pre>
   </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.SaveSystem.Interfaces.ISaveable.html">ISaveable</a></td>
+        <td><span class="parametername">saveable</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-condensed">
     <thead>
@@ -209,14 +231,14 @@ All loading operations are handled by LoadService</p>
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_Services_SaveService_DeleteSaveAsync_" data-uid="GameFramework.Services.SaveService.DeleteSaveAsync*"></a>
-  <h4 id="GameFramework_Services_SaveService_DeleteSaveAsync_System_String_" data-uid="GameFramework.Services.SaveService.DeleteSaveAsync(System.String)">DeleteSaveAsync(string)</h4>
-  <div class="markdown level1 summary"><p>Deletes a save file and clears its cache entry</p>
+  <a id="GameFramework_SaveSystem_Services_SaveDataRegistry_DeregisterSaveable_" data-uid="GameFramework.SaveSystem.Services.SaveDataRegistry.DeregisterSaveable*"></a>
+  <h4 id="GameFramework_SaveSystem_Services_SaveDataRegistry_DeregisterSaveable_System_String_" data-uid="GameFramework.SaveSystem.Services.SaveDataRegistry.DeregisterSaveable(System.String)">DeregisterSaveable(string)</h4>
+  <div class="markdown level1 summary"><p>Deregisters an ISaveable object by save key</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; DeleteSaveAsync(string saveName)</code></pre>
+    <pre><code class="lang-csharp hljs">public bool DeregisterSaveable(string saveKey)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -230,189 +252,11 @@ All loading operations are handled by LoadService</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">saveName</span></td>
+        <td><span class="parametername">saveKey</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_Services_SaveService_DeleteSaveFileByInfoAsync_" data-uid="GameFramework.Services.SaveService.DeleteSaveFileByInfoAsync*"></a>
-  <h4 id="GameFramework_Services_SaveService_DeleteSaveFileByInfoAsync_GameFramework_DataStructures_SaveFileInfo_" data-uid="GameFramework.Services.SaveService.DeleteSaveFileByInfoAsync(GameFramework.DataStructures.SaveFileInfo)">DeleteSaveFileByInfoAsync(SaveFileInfo)</h4>
-  <div class="markdown level1 summary"><p>Deletes a save file using SaveFileInfo object</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; DeleteSaveFileByInfoAsync(SaveFileInfo saveFileInfo)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="GameFramework.DataStructures.SaveFileInfo.html">SaveFileInfo</a></td>
-        <td><span class="parametername">saveFileInfo</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_Services_SaveService_GetAutoSaveStatus_" data-uid="GameFramework.Services.SaveService.GetAutoSaveStatus*"></a>
-  <h4 id="GameFramework_Services_SaveService_GetAutoSaveStatus" data-uid="GameFramework.Services.SaveService.GetAutoSaveStatus">GetAutoSaveStatus()</h4>
-  <div class="markdown level1 summary"><p>Get current auto-save settings for debugging/display</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public (bool enabled, float intervalMinutes, bool scheduling) GetAutoSaveStatus()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>(<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.boolean,system.single,system.boolean-.enabled">enabled</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.boolean,system.single,system.boolean-.intervalminutes">intervalMinutes</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.boolean,system.single,system.boolean-.scheduling">scheduling</a>)</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_Services_SaveService_GetSaveFileInfosAsync_" data-uid="GameFramework.Services.SaveService.GetSaveFileInfosAsync*"></a>
-  <h4 id="GameFramework_Services_SaveService_GetSaveFileInfosAsync" data-uid="GameFramework.Services.SaveService.GetSaveFileInfosAsync">GetSaveFileInfosAsync()</h4>
-  <div class="markdown level1 summary"><p>Gets metadata for all save files, sorted by most recent first</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;SaveFileInfo[]&gt; GetSaveFileInfosAsync()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="GameFramework.DataStructures.SaveFileInfo.html">SaveFileInfo</a>[]&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_Services_SaveService_GetSaveFilePath_" data-uid="GameFramework.Services.SaveService.GetSaveFilePath*"></a>
-  <h4 id="GameFramework_Services_SaveService_GetSaveFilePath_System_String_" data-uid="GameFramework.Services.SaveService.GetSaveFilePath(System.String)">GetSaveFilePath(string)</h4>
-  <div class="markdown level1 summary"><p>Gets the full file path for a save name</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string GetSaveFilePath(string saveName)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">saveName</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_Services_SaveService_GetSaveFilesAsync_" data-uid="GameFramework.Services.SaveService.GetSaveFilesAsync*"></a>
-  <h4 id="GameFramework_Services_SaveService_GetSaveFilesAsync" data-uid="GameFramework.Services.SaveService.GetSaveFilesAsync">GetSaveFilesAsync()</h4>
-  <div class="markdown level1 summary"><p>Gets all save file names asynchronously</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;string[]&gt; GetSaveFilesAsync()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_Services_SaveService_HasAnySaves_" data-uid="GameFramework.Services.SaveService.HasAnySaves*"></a>
-  <h4 id="GameFramework_Services_SaveService_HasAnySaves" data-uid="GameFramework.Services.SaveService.HasAnySaves">HasAnySaves()</h4>
-  <div class="markdown level1 summary"><p>Checks if any save files exist</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool HasAnySaves()</code></pre>
-  </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-condensed">
     <thead>
@@ -428,8 +272,74 @@ All loading operations are handled by LoadService</p>
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_Services_SaveService_InitializeAsync_" data-uid="GameFramework.Services.SaveService.InitializeAsync*"></a>
-  <h4 id="GameFramework_Services_SaveService_InitializeAsync" data-uid="GameFramework.Services.SaveService.InitializeAsync">InitializeAsync()</h4>
+  <a id="GameFramework_SaveSystem_Services_SaveDataRegistry_GetAllSaveableObjects_" data-uid="GameFramework.SaveSystem.Services.SaveDataRegistry.GetAllSaveableObjects*"></a>
+  <h4 id="GameFramework_SaveSystem_Services_SaveDataRegistry_GetAllSaveableObjects" data-uid="GameFramework.SaveSystem.Services.SaveDataRegistry.GetAllSaveableObjects">GetAllSaveableObjects()</h4>
+  <div class="markdown level1 summary"><p>Gets all registered ISaveable objects
+Returns read-only collection to prevent external modification</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyDictionary&lt;string, ISaveable&gt; GetAllSaveableObjects()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="GameFramework.SaveSystem.Interfaces.ISaveable.html">ISaveable</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_SaveSystem_Services_SaveDataRegistry_GetSaveable_" data-uid="GameFramework.SaveSystem.Services.SaveDataRegistry.GetSaveable*"></a>
+  <h4 id="GameFramework_SaveSystem_Services_SaveDataRegistry_GetSaveable_System_String_" data-uid="GameFramework.SaveSystem.Services.SaveDataRegistry.GetSaveable(System.String)">GetSaveable(string)</h4>
+  <div class="markdown level1 summary"><p>Gets a specific ISaveable object by save key</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ISaveable GetSaveable(string saveKey)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">saveKey</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.SaveSystem.Interfaces.ISaveable.html">ISaveable</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_SaveSystem_Services_SaveDataRegistry_InitializeAsync_" data-uid="GameFramework.SaveSystem.Services.SaveDataRegistry.InitializeAsync*"></a>
+  <h4 id="GameFramework_SaveSystem_Services_SaveDataRegistry_InitializeAsync" data-uid="GameFramework.SaveSystem.Services.SaveDataRegistry.InitializeAsync">InitializeAsync()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -451,14 +361,14 @@ All loading operations are handled by LoadService</p>
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_Services_SaveService_InvalidateCache_" data-uid="GameFramework.Services.SaveService.InvalidateCache*"></a>
-  <h4 id="GameFramework_Services_SaveService_InvalidateCache_System_String_" data-uid="GameFramework.Services.SaveService.InvalidateCache(System.String)">InvalidateCache(string)</h4>
-  <div class="markdown level1 summary"><p>Invalidates cached metadata for a specific save file</p>
+  <a id="GameFramework_SaveSystem_Services_SaveDataRegistry_IsRegistered_" data-uid="GameFramework.SaveSystem.Services.SaveDataRegistry.IsRegistered*"></a>
+  <h4 id="GameFramework_SaveSystem_Services_SaveDataRegistry_IsRegistered_System_String_" data-uid="GameFramework.SaveSystem.Services.SaveDataRegistry.IsRegistered(System.String)">IsRegistered(string)</h4>
+  <div class="markdown level1 summary"><p>Checks if a save key is registered</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void InvalidateCache(string saveName)</code></pre>
+    <pre><code class="lang-csharp hljs">public bool IsRegistered(string saveKey)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -472,19 +382,35 @@ All loading operations are handled by LoadService</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">saveName</span></td>
+        <td><span class="parametername">saveKey</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_Services_SaveService_SetAutoSaveSchedulingActive_" data-uid="GameFramework.Services.SaveService.SetAutoSaveSchedulingActive*"></a>
-  <h4 id="GameFramework_Services_SaveService_SetAutoSaveSchedulingActive_System_Boolean_" data-uid="GameFramework.Services.SaveService.SetAutoSaveSchedulingActive(System.Boolean)">SetAutoSaveSchedulingActive(bool)</h4>
-  <div class="markdown level1 summary"><p>Control auto-save scheduling (typically called when game session starts/ends)</p>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_SaveSystem_Services_SaveDataRegistry_RegisterSaveable_" data-uid="GameFramework.SaveSystem.Services.SaveDataRegistry.RegisterSaveable*"></a>
+  <h4 id="GameFramework_SaveSystem_Services_SaveDataRegistry_RegisterSaveable_GameFramework_SaveSystem_Interfaces_ISaveable_" data-uid="GameFramework.SaveSystem.Services.SaveDataRegistry.RegisterSaveable(GameFramework.SaveSystem.Interfaces.ISaveable)">RegisterSaveable(ISaveable)</h4>
+  <div class="markdown level1 summary"><p>Registers an ISaveable object with the registry
+Validates unique save keys to prevent conflicts</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void SetAutoSaveSchedulingActive(bool active)</code></pre>
+    <pre><code class="lang-csharp hljs">public bool RegisterSaveable(ISaveable saveable)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -497,38 +423,41 @@ All loading operations are handled by LoadService</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><span class="parametername">active</span></td>
+        <td><a class="xref" href="GameFramework.SaveSystem.Interfaces.ISaveable.html">ISaveable</a></td>
+        <td><span class="parametername">saveable</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_Services_SaveService_Shutdown_" data-uid="GameFramework.Services.SaveService.Shutdown*"></a>
-  <h4 id="GameFramework_Services_SaveService_Shutdown" data-uid="GameFramework.Services.SaveService.Shutdown">Shutdown()</h4>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_SaveSystem_Services_SaveDataRegistry_Shutdown_" data-uid="GameFramework.SaveSystem.Services.SaveDataRegistry.Shutdown*"></a>
+  <h4 id="GameFramework_SaveSystem_Services_SaveDataRegistry_Shutdown" data-uid="GameFramework.SaveSystem.Services.SaveDataRegistry.Shutdown">Shutdown()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Shutdown()</code></pre>
   </div>
-  <a id="GameFramework_Services_SaveService_Update_" data-uid="GameFramework.Services.SaveService.Update*"></a>
-  <h4 id="GameFramework_Services_SaveService_Update" data-uid="GameFramework.Services.SaveService.Update">Update()</h4>
-  <div class="markdown level1 summary"><p>IUpdatable implementation - handles auto-save timer</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Update()</code></pre>
-  </div>
   <h3 id="implements">Implements</h3>
   <div>
-      <a class="xref" href="GameFramework.Services.Interfaces.ISaveService.html">ISaveService</a>
+      <a class="xref" href="GameFramework.SaveSystem.Interfaces.ISaveDataRegistry.html">ISaveDataRegistry</a>
   </div>
   <div>
       <a class="xref" href="GameFramework.Services.Interfaces.IGameService.html">IGameService</a>
-  </div>
-  <div>
-      <a class="xref" href="GameFramework.StateMachine.Interfaces.IUpdatable.html">IUpdatable</a>
   </div>
 
 </article>

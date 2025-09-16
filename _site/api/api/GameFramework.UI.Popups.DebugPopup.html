@@ -84,25 +84,26 @@
 
 
   <h1 id="GameFramework_UI_Popups_DebugPopup" data-uid="GameFramework.UI.Popups.DebugPopup" class="text-break">Class DebugPopup</h1>
-  <div class="markdown level0 summary"><p>Simplified debug popup that displays real-time performance metrics with minimal allocations.</p>
+  <div class="markdown level0 summary"><p>Optimized debug popup with minimal GC allocations and efficient UI updates.</p>
 <p>Design:</p>
 <ul>
-<li>Clean separation of UI element caching and updates</li>
-<li>Event-driven updates to minimize polling</li>
-<li>Efficient change detection to prevent redundant UI updates</li>
-<li>Simple graph integration for historical data visualization</li>
+<li>Pre-allocated string builders and cached strings to eliminate GC</li>
+<li>Cached color values to avoid repeated object creation</li>
+<li>Throttled UI updates with smart change detection</li>
+<li>String formatting pools to reduce allocations</li>
 </ul>
 <p>Pros:</p>
 <ul>
-<li>Zero-allocation UI updates during normal operation</li>
-<li>Event-driven architecture reduces CPU overhead</li>
-<li>Clear separation of concerns</li>
-<li>Robust service connection handling</li>
+<li>Zero GC during normal operation</li>
+<li>Highly efficient string handling</li>
+<li>Minimal CPU overhead</li>
+<li>Maintains real-time data connection</li>
 </ul>
 <p>Cons:</p>
 <ul>
-<li>Requires UXML structure to match expected element names</li>
-<li>Dependency on EventSystem for real-time updates</li>
+<li>Higher memory footprint due to caching</li>
+<li>More complex initialization</li>
+<li>Requires careful cache management</li>
 </ul>
 </div>
   <div class="markdown level0 conceptual"></div>
@@ -132,6 +133,12 @@
     </div>
     <div>
       <a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_Hide">UIScreen.Hide()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_MarkDirty">UIScreen.MarkDirty()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_SetUpdateInterval_System_Single_">UIScreen.SetUpdateInterval(float)</a>
     </div>
     <div>
       <a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_EnableFrameUpdates">UIScreen.EnableFrameUpdates()</a>

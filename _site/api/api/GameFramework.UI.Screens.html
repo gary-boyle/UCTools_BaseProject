@@ -99,14 +99,28 @@ Follows established pattern of publishing events rather than managing state dire
       <h4><a class="xref" href="GameFramework.UI.Screens.GamePlayScreen.html">GamePlayScreen</a></h4>
       <section><p>Game play screen - pure UI component that reports user interactions and displays game data
 Does not handle its own lifecycle - that's managed by the PlayingState</p>
+<p>DESIGN: Optimized to prevent per-frame memory allocations by caching string values
+and only updating UI elements when data actually changes.</p>
+<p>PROS:</p>
+<ul>
+<li>Zero GC allocations during steady state</li>
+<li>Maintains clean separation of concerns</li>
+<li>Efficient string handling with StringBuilder reuse</li>
+</ul>
+<p>CONS:</p>
+<ul>
+<li>Slightly more complex caching logic</li>
+<li>Additional memory overhead for cached values</li>
+</ul>
 </section>
       <h4><a class="xref" href="GameFramework.UI.Screens.LoadGamePopup.html">LoadGamePopup</a></h4>
       <section><p>Load game popup that extends the base save file list functionality
-Provides double-click loading and load button functionality</p>
+Provides double-click loading and load button functionality
+Works with FileService for file operations and LoadService for game state loading</p>
 <p>INTENT: Specialized popup for loading saved game files with enhanced UX
-DESIGN: Leverages base class double-click infrastructure for consistent UX
-PROS: Minimal code duplication, consistent interaction patterns, clean separation
-CONS: Dependent on base class implementation</p>
+DESIGN: Leverages base class infrastructure and new FileService/LoadService separation
+PROS: Minimal code duplication, consistent interaction patterns, clean separation of concerns
+CONS: Dependent on base class implementation and service availability</p>
 </section>
       <h4><a class="xref" href="GameFramework.UI.Screens.LoadingScreen.html">LoadingScreen</a></h4>
       <section><p>Loading screen that displays loading progress and messages</p>
@@ -121,7 +135,8 @@ Does not handle its own lifecycle - that's managed by the MainMenuState</p>
 </section>
       <h4><a class="xref" href="GameFramework.UI.Screens.NewGameScreen.html">NewGameScreen</a></h4>
       <section><p>New Game Screen - pure UI component that only reports user interactions
-Does not handle its own lifecycle - that's managed by the NewGameState</p>
+Does not handle its own lifecycle - that's managed by the NewGameState
+Provides form validation and user feedback</p>
 </section>
       <h4><a class="xref" href="GameFramework.UI.Screens.QuitScreen.html">QuitScreen</a></h4>
       <section><p>Quit screen - displays shutdown progress and handles graceful application exit

@@ -84,12 +84,9 @@
 
 
   <h1 id="GameFramework_Services_TimeService" data-uid="GameFramework.Services.TimeService" class="text-break">Class TimeService</h1>
-  <div class="markdown level0 summary"><p>TimeService manages game time tracking with proper pause handling and state awareness.
-Tracks time only when in PlayingState and not paused.
-Provides formatted time display and session tracking capabilities.</p>
-<p>Design: Uses event-driven architecture to respond to game state changes and pause events.
-Pros: Accurate time tracking, integrates with pause system, provides multiple time formats
-Cons: Depends on proper event firing from other systems</p>
+  <div class="markdown level0 summary"><p>TimeService manages game time tracking by directly updating GameSessionData
+GameSessionData is the single source of truth for game time
+Uses double precision internally for accurate tracking of large time values</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -169,11 +166,12 @@ Cons: Depends on proper event firing from other systems</p>
 </h3>
   <a id="GameFramework_Services_TimeService_GameTime_" data-uid="GameFramework.Services.TimeService.GameTime*"></a>
   <h4 id="GameFramework_Services_TimeService_GameTime" data-uid="GameFramework.Services.TimeService.GameTime">GameTime</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Get current game time with double precision from GameSessionData</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public float GameTime { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public long GameTime { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
@@ -185,30 +183,7 @@ Cons: Depends on proper event firing from other systems</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_Services_TimeService_GameTimeSpan_" data-uid="GameFramework.Services.TimeService.GameTimeSpan*"></a>
-  <h4 id="GameFramework_Services_TimeService_GameTimeSpan" data-uid="GameFramework.Services.TimeService.GameTimeSpan">GameTimeSpan</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public TimeSpan GameTimeSpan { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timespan">TimeSpan</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -259,126 +234,11 @@ Cons: Depends on proper event firing from other systems</p>
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_Services_TimeService_IsTrackingSessionTime_" data-uid="GameFramework.Services.TimeService.IsTrackingSessionTime*"></a>
-  <h4 id="GameFramework_Services_TimeService_IsTrackingSessionTime" data-uid="GameFramework.Services.TimeService.IsTrackingSessionTime">IsTrackingSessionTime</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsTrackingSessionTime { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_Services_TimeService_LevelTime_" data-uid="GameFramework.Services.TimeService.LevelTime*"></a>
-  <h4 id="GameFramework_Services_TimeService_LevelTime" data-uid="GameFramework.Services.TimeService.LevelTime">LevelTime</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public float LevelTime { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_Services_TimeService_LevelTimeSpan_" data-uid="GameFramework.Services.TimeService.LevelTimeSpan*"></a>
-  <h4 id="GameFramework_Services_TimeService_LevelTimeSpan" data-uid="GameFramework.Services.TimeService.LevelTimeSpan">LevelTimeSpan</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public TimeSpan LevelTimeSpan { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timespan">TimeSpan</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_Services_TimeService_SessionTime_" data-uid="GameFramework.Services.TimeService.SessionTime*"></a>
-  <h4 id="GameFramework_Services_TimeService_SessionTime" data-uid="GameFramework.Services.TimeService.SessionTime">SessionTime</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public float SessionTime { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_Services_TimeService_SessionTimeSpan_" data-uid="GameFramework.Services.TimeService.SessionTimeSpan*"></a>
-  <h4 id="GameFramework_Services_TimeService_SessionTimeSpan" data-uid="GameFramework.Services.TimeService.SessionTimeSpan">SessionTimeSpan</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public TimeSpan SessionTimeSpan { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timespan">TimeSpan</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <h3 id="methods">Methods
 </h3>
   <a id="GameFramework_Services_TimeService_GetFormattedGameTime_" data-uid="GameFramework.Services.TimeService.GetFormattedGameTime*"></a>
   <h4 id="GameFramework_Services_TimeService_GetFormattedGameTime" data-uid="GameFramework.Services.TimeService.GetFormattedGameTime">GetFormattedGameTime()</h4>
-  <div class="markdown level1 summary"><p>Get formatted game time string (HH:MM:SS)</p>
+  <div class="markdown level1 summary"><p>Get formatted current game time string with double precision</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -396,54 +256,6 @@ Cons: Depends on proper event firing from other systems</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_Services_TimeService_GetFormattedSessionTime_" data-uid="GameFramework.Services.TimeService.GetFormattedSessionTime*"></a>
-  <h4 id="GameFramework_Services_TimeService_GetFormattedSessionTime" data-uid="GameFramework.Services.TimeService.GetFormattedSessionTime">GetFormattedSessionTime()</h4>
-  <div class="markdown level1 summary"><p>Get formatted session time string (HH:MM:SS)</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string GetFormattedSessionTime()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_Services_TimeService_GetTimeStatistics_" data-uid="GameFramework.Services.TimeService.GetTimeStatistics*"></a>
-  <h4 id="GameFramework_Services_TimeService_GetTimeStatistics" data-uid="GameFramework.Services.TimeService.GetTimeStatistics">GetTimeStatistics()</h4>
-  <div class="markdown level1 summary"><p>Get time statistics for debugging/display</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public TimeStatistics GetTimeStatistics()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="GameFramework.Services.Data.TimeStatistics.html">TimeStatistics</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -499,7 +311,9 @@ Cons: Depends on proper event firing from other systems</p>
   </div>
   <a id="GameFramework_Services_TimeService_Update_" data-uid="GameFramework.Services.TimeService.Update*"></a>
   <h4 id="GameFramework_Services_TimeService_Update" data-uid="GameFramework.Services.TimeService.Update">Update()</h4>
-  <div class="markdown level1 summary"><p>Update time tracking - called every frame by GameManager</p>
+  <div class="markdown level1 summary"><p>Update time tracking - directly updates GameSessionData.GameTime
+GameSessionData is the single source of truth for game time
+Uses double precision for accurate tracking of large time values</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>

@@ -164,6 +164,27 @@ input invert on/off          - Enable/disable Y-axis inversion
 input reset                  - Reset all input settings to defaults</p>
 </blockquote>
 </section>
+      <h4><a class="xref" href="GameFramework.ConsoleTool.Commands.LoadCommand.html">LoadCommand</a></h4>
+      <section><p>Console command for loading game state through the LoadService
+Integrates with EventSystem to request loads and track progress</p>
+<p>Design:</p>
+<ul>
+<li>Uses EventSystem to publish BeginLoadGameEvent</li>
+<li>Subscribes to loading progress, completion, and failure events</li>
+<li>Provides real-time loading feedback to user</li>
+<li>Supports listing and selecting save files</li>
+<li>Uses async FileService methods for better performance</li>
+</ul>
+<p>Usage Examples:</p>
+<blockquote>
+<p>load                    - List available save files
+load -h                 - Show help information
+load Save_001           - Load specific save file
+load list               - List available save files (explicit)
+load latest             - Load most recent save file
+load auto               - Load most recent auto-save</p>
+</blockquote>
+</section>
       <h4><a class="xref" href="GameFramework.ConsoleTool.Commands.ProfilingCommand.html">ProfilingCommand</a></h4>
       <section><p>Console command for controlling frame-based profiling sessions and monitoring performance.</p>
 <p>Design:</p>
@@ -172,16 +193,78 @@ input reset                  - Reset all input settings to defaults</p>
 <li>Direct service interaction without static state</li>
 <li>Clean separation between command parsing and execution</li>
 </ul>
+</section>
+      <h4><a class="xref" href="GameFramework.ConsoleTool.Commands.SaveCommand.html">SaveCommand</a></h4>
+      <section><p>Console command for saving game state through the SaveService
+Integrates with EventSystem to request saves and receive feedback</p>
+<p>Design:</p>
+<ul>
+<li>Uses EventSystem to publish SaveRequestedEvent for different save types</li>
+<li>Subscribes to save completion/failure events for user feedback</li>
+<li>Supports regular, auto, and overwrite save operations</li>
+<li>Provides comprehensive help via -h flag</li>
+<li>Uses async FileService methods for save file operations</li>
+</ul>
+<p>Usage Examples:</p>
+<blockquote>
+<p>save                    - Perform regular save
+save -h                 - Show help information
+save auto               - Perform auto-save
+save regular            - Perform regular save (explicit)
+save overwrite Save_001 - Overwrite specific save file
+save list               - List available save files</p>
+</blockquote>
 <p>Pros:</p>
 <ul>
-<li>Stateless design prevents threading issues</li>
-<li>Clear command structure with consistent error handling</li>
-<li>Direct service calls for real-time feedback</li>
+<li>Fully integrated with existing save system architecture</li>
+<li>Event-driven design maintains loose coupling</li>
+<li>Comprehensive error handling and user feedback</li>
+<li>Supports all save types from SaveService</li>
+<li>Real-time feedback through event subscription</li>
+<li>Async file operations for better performance</li>
 </ul>
 <p>Cons:</p>
 <ul>
-<li>Requires ProfilingService to be available</li>
-<li>No offline command caching</li>
+<li>Requires EventSystem and FileService dependencies</li>
+<li>Async nature means feedback comes through events rather than return values</li>
+<li>More complex than direct service calls due to event-driven architecture</li>
+</ul>
+</section>
+      <h4><a class="xref" href="GameFramework.ConsoleTool.Commands.TimeCommand.html">TimeCommand</a></h4>
+      <section><p>Console command for querying and manipulating game time
+Integrates with TimeService and GameDataService to provide time management functionality</p>
+<p>Design:</p>
+<ul>
+<li>Uses TimeService for reading current time and time formatting</li>
+<li>Accesses GameDataService directly to modify GameSessionData.GameTime</li>
+<li>Supports multiple time input formats for user convenience</li>
+<li>Provides comprehensive validation and error handling</li>
+<li>Includes -h flag for displaying help/usage information</li>
+</ul>
+<p>Usage Examples:</p>
+<blockquote>
+<p>time                    - Display current game time
+time -h                 - Display help/usage information
+time 3600               - Set game time to 3600 seconds (1 hour)
+time 1:30:45            - Set game time to 1 hour, 30 minutes, 45 seconds
+time reset              - Reset game time to 0
+time add 300            - Add 300 seconds to current game time
+time subtract 120       - Subtract 120 seconds from current game time</p>
+</blockquote>
+<p>Pros:</p>
+<ul>
+<li>Flexible time input formats (seconds, HH:MM:SS)</li>
+<li>Comprehensive error handling and validation</li>
+<li>Integrates seamlessly with existing TimeService</li>
+<li>Supports both absolute and relative time operations</li>
+<li>Provides immediate feedback on time changes</li>
+<li>Standard -h flag for help display</li>
+</ul>
+<p>Cons:</p>
+<ul>
+<li>Requires direct access to GameDataService for time modification</li>
+<li>Time changes bypass TimeService's normal tracking mechanisms</li>
+<li>Could potentially cause issues if game logic depends on time continuity</li>
 </ul>
 </section>
       <h4><a class="xref" href="GameFramework.ConsoleTool.Commands.WaitCommand.html">WaitCommand</a></h4>

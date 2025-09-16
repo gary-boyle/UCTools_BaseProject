@@ -85,11 +85,12 @@
 
   <h1 id="GameFramework_UI_Screens_LoadGamePopup" data-uid="GameFramework.UI.Screens.LoadGamePopup" class="text-break">Class LoadGamePopup</h1>
   <div class="markdown level0 summary"><p>Load game popup that extends the base save file list functionality
-Provides double-click loading and load button functionality</p>
+Provides double-click loading and load button functionality
+Works with FileService for file operations and LoadService for game state loading</p>
 <p>INTENT: Specialized popup for loading saved game files with enhanced UX
-DESIGN: Leverages base class double-click infrastructure for consistent UX
-PROS: Minimal code duplication, consistent interaction patterns, clean separation
-CONS: Dependent on base class implementation</p>
+DESIGN: Leverages base class infrastructure and new FileService/LoadService separation
+PROS: Minimal code duplication, consistent interaction patterns, clean separation of concerns
+CONS: Dependent on base class implementation and service availability</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -125,6 +126,9 @@ CONS: Dependent on base class implementation</p>
     </div>
     <div>
       <a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup__eventSystem">SaveFileListPopup._eventSystem</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup__fileService">SaveFileListPopup._fileService</a>
     </div>
     <div>
       <a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup__saveFiles">SaveFileListPopup._saveFiles</a>
@@ -178,9 +182,6 @@ CONS: Dependent on base class implementation</p>
       <a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup_UpdateButtonStates">SaveFileListPopup.UpdateButtonStates()</a>
     </div>
     <div>
-      <a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup_CanDeleteSelectedFile">SaveFileListPopup.CanDeleteSelectedFile()</a>
-    </div>
-    <div>
       <a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup_SetDataLoadingState_System_Boolean_">SaveFileListPopup.SetDataLoadingState(bool)</a>
     </div>
     <div>
@@ -203,6 +204,12 @@ CONS: Dependent on base class implementation</p>
     </div>
     <div>
       <a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_NeedsFrameUpdates">UIScreen.NeedsFrameUpdates</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_MarkDirty">UIScreen.MarkDirty()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_SetUpdateInterval_System_Single_">UIScreen.SetUpdateInterval(float)</a>
     </div>
     <div>
       <a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_EnableFrameUpdates">UIScreen.EnableFrameUpdates()</a>
@@ -287,6 +294,32 @@ CONS: Dependent on base class implementation</p>
   </div>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup_CacheSpecificUIElements">SaveFileListPopup.CacheSpecificUIElements()</a></div>
+  <a id="GameFramework_UI_Screens_LoadGamePopup_CanDeleteSelectedFile_" data-uid="GameFramework.UI.Screens.LoadGamePopup.CanDeleteSelectedFile*"></a>
+  <h4 id="GameFramework_UI_Screens_LoadGamePopup_CanDeleteSelectedFile" data-uid="GameFramework.UI.Screens.LoadGamePopup.CanDeleteSelectedFile">CanDeleteSelectedFile()</h4>
+  <div class="markdown level1 summary"><p>Override to provide more comprehensive validation for load operations</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override bool CanDeleteSelectedFile()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.UI.Screens.SaveFileListPopup.html#GameFramework_UI_Screens_SaveFileListPopup_CanDeleteSelectedFile">SaveFileListPopup.CanDeleteSelectedFile()</a></div>
   <a id="GameFramework_UI_Screens_LoadGamePopup_CanPerformDoubleClickAction_" data-uid="GameFramework.UI.Screens.LoadGamePopup.CanPerformDoubleClickAction*"></a>
   <h4 id="GameFramework_UI_Screens_LoadGamePopup_CanPerformDoubleClickAction" data-uid="GameFramework.UI.Screens.LoadGamePopup.CanPerformDoubleClickAction">CanPerformDoubleClickAction()</h4>
   <div class="markdown level1 summary"><p>Implements double-click validation - called by base class</p>

@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class OverwriteSaveRequestedEvent | UCTools Base Project </title>
+    <title>Class SaveService | UCTools Base Project </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class OverwriteSaveRequestedEvent | UCTools Base Project ">
+    <meta name="title" content="Class SaveService | UCTools Base Project ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -79,18 +79,25 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="GameFramework.EventSystem.Events.OverwriteSaveRequestedEvent">
+            <article class="content wrap" id="_content" data-uid="GameFramework.SaveSystem.Services.SaveService">
 
 
 
-  <h1 id="GameFramework_EventSystem_Events_OverwriteSaveRequestedEvent" data-uid="GameFramework.EventSystem.Events.OverwriteSaveRequestedEvent" class="text-break">Class OverwriteSaveRequestedEvent</h1>
-  <div class="markdown level0 summary"><p>Event triggered when the player requests to overwrite an existing save file</p>
+  <h1 id="GameFramework_SaveSystem_Services_SaveService" data-uid="GameFramework.SaveSystem.Services.SaveService" class="text-break">Class SaveService</h1>
+  <div class="markdown level0 summary"><p>Main save service responsible for orchestrating save operations
+Handles event-driven save requests and coordinates with registry and file service
+Delegates file I/O operations to FileService for separation of concerns</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><span class="xref">OverwriteSaveRequestedEvent</span></div>
+    <div class="level1"><span class="xref">SaveService</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="GameFramework.Services.Interfaces.ISaveService.html">ISaveService</a></div>
+    <div><a class="xref" href="GameFramework.Services.Interfaces.IGameService.html">IGameService</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -116,21 +123,21 @@
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
     </div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.EventSystem.html">EventSystem</a>.<a class="xref" href="GameFramework.EventSystem.Events.html">Events</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.SaveSystem.html">SaveSystem</a>.<a class="xref" href="GameFramework.SaveSystem.Services.html">Services</a></h6>
   <h6><strong>Assembly</strong>: .dll</h6>
-  <h5 id="GameFramework_EventSystem_Events_OverwriteSaveRequestedEvent_syntax">Syntax</h5>
+  <h5 id="GameFramework_SaveSystem_Services_SaveService_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class OverwriteSaveRequestedEvent</code></pre>
+    <pre><code class="lang-csharp hljs">public class SaveService : ISaveService, IGameService</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
-  <a id="GameFramework_EventSystem_Events_OverwriteSaveRequestedEvent__ctor_" data-uid="GameFramework.EventSystem.Events.OverwriteSaveRequestedEvent.#ctor*"></a>
-  <h4 id="GameFramework_EventSystem_Events_OverwriteSaveRequestedEvent__ctor_GameFramework_DataStructures_SaveFileInfo_" data-uid="GameFramework.EventSystem.Events.OverwriteSaveRequestedEvent.#ctor(GameFramework.DataStructures.SaveFileInfo)">OverwriteSaveRequestedEvent(SaveFileInfo)</h4>
+  <a id="GameFramework_SaveSystem_Services_SaveService__ctor_" data-uid="GameFramework.SaveSystem.Services.SaveService.#ctor*"></a>
+  <h4 id="GameFramework_SaveSystem_Services_SaveService__ctor_GameFramework_EventSystem_Interfaces_IEventSystem_GameFramework_SaveSystem_Interfaces_ISaveDataRegistry_GameFramework_FileSystem_Interfaces_IFileService_" data-uid="GameFramework.SaveSystem.Services.SaveService.#ctor(GameFramework.EventSystem.Interfaces.IEventSystem,GameFramework.SaveSystem.Interfaces.ISaveDataRegistry,GameFramework.FileSystem.Interfaces.IFileService)">SaveService(IEventSystem, ISaveDataRegistry, IFileService)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public OverwriteSaveRequestedEvent(SaveFileInfo targetSaveFile)</code></pre>
+    <pre><code class="lang-csharp hljs">public SaveService(IEventSystem eventSystem, ISaveDataRegistry saveDataRegistry, IFileService fileService)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -143,21 +150,31 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="GameFramework.DataStructures.SaveFileInfo.html">SaveFileInfo</a></td>
-        <td><span class="parametername">targetSaveFile</span></td>
+        <td><a class="xref" href="GameFramework.EventSystem.Interfaces.IEventSystem.html">IEventSystem</a></td>
+        <td><span class="parametername">eventSystem</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="GameFramework.SaveSystem.Interfaces.ISaveDataRegistry.html">ISaveDataRegistry</a></td>
+        <td><span class="parametername">saveDataRegistry</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="GameFramework.FileSystem.Interfaces.IFileService.html">IFileService</a></td>
+        <td><span class="parametername">fileService</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h3 id="properties">Properties
 </h3>
-  <a id="GameFramework_EventSystem_Events_OverwriteSaveRequestedEvent_RequestTime_" data-uid="GameFramework.EventSystem.Events.OverwriteSaveRequestedEvent.RequestTime*"></a>
-  <h4 id="GameFramework_EventSystem_Events_OverwriteSaveRequestedEvent_RequestTime" data-uid="GameFramework.EventSystem.Events.OverwriteSaveRequestedEvent.RequestTime">RequestTime</h4>
+  <a id="GameFramework_SaveSystem_Services_SaveService_IsInitialized_" data-uid="GameFramework.SaveSystem.Services.SaveService.IsInitialized*"></a>
+  <h4 id="GameFramework_SaveSystem_Services_SaveService_IsInitialized" data-uid="GameFramework.SaveSystem.Services.SaveService.IsInitialized">IsInitialized</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public DateTime RequestTime { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool IsInitialized { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
@@ -169,20 +186,22 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_EventSystem_Events_OverwriteSaveRequestedEvent_TargetSaveFile_" data-uid="GameFramework.EventSystem.Events.OverwriteSaveRequestedEvent.TargetSaveFile*"></a>
-  <h4 id="GameFramework_EventSystem_Events_OverwriteSaveRequestedEvent_TargetSaveFile" data-uid="GameFramework.EventSystem.Events.OverwriteSaveRequestedEvent.TargetSaveFile">TargetSaveFile</h4>
+  <h3 id="methods">Methods
+</h3>
+  <a id="GameFramework_SaveSystem_Services_SaveService_InitializeAsync_" data-uid="GameFramework.SaveSystem.Services.SaveService.InitializeAsync*"></a>
+  <h4 id="GameFramework_SaveSystem_Services_SaveService_InitializeAsync" data-uid="GameFramework.SaveSystem.Services.SaveService.InitializeAsync">InitializeAsync()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public SaveFileInfo TargetSaveFile { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Task InitializeAsync()</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
+  <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
@@ -192,11 +211,53 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="GameFramework.DataStructures.SaveFileInfo.html">SaveFileInfo</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
+  <a id="GameFramework_SaveSystem_Services_SaveService_OnSaveRequested_" data-uid="GameFramework.SaveSystem.Services.SaveService.OnSaveRequested*"></a>
+  <h4 id="GameFramework_SaveSystem_Services_SaveService_OnSaveRequested_GameFramework_EventSystem_Events_SaveRequestedEvent_" data-uid="GameFramework.SaveSystem.Services.SaveService.OnSaveRequested(GameFramework.EventSystem.Events.SaveRequestedEvent)">OnSaveRequested(SaveRequestedEvent)</h4>
+  <div class="markdown level1 summary"><p>Handles save requested events from the event system
+Processes different save types (Regular, Auto, Overwrite)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void OnSaveRequested(SaveRequestedEvent saveEvent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.EventSystem.Events.SaveRequestedEvent.html">SaveRequestedEvent</a></td>
+        <td><span class="parametername">saveEvent</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_SaveSystem_Services_SaveService_Shutdown_" data-uid="GameFramework.SaveSystem.Services.SaveService.Shutdown*"></a>
+  <h4 id="GameFramework_SaveSystem_Services_SaveService_Shutdown" data-uid="GameFramework.SaveSystem.Services.SaveService.Shutdown">Shutdown()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Shutdown()</code></pre>
+  </div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="GameFramework.Services.Interfaces.ISaveService.html">ISaveService</a>
+  </div>
+  <div>
+      <a class="xref" href="GameFramework.Services.Interfaces.IGameService.html">IGameService</a>
+  </div>
 
 </article>
           </div>

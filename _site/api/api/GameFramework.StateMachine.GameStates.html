@@ -101,9 +101,9 @@ Responsible for its UI lifecycle and event handling</p>
 Responsible for its UI lifecycle and event handling</p>
 </section>
       <h4><a class="xref" href="GameFramework.StateMachine.GameStates.LoadingState.html">LoadingState</a></h4>
-      <section><p>Loading state that handles different loading scenarios using unified GameSession system
-Creates or loads GameSession based on loading configuration
-Integrates with TimeService for proper playtime handling</p>
+      <section><p>Loading state that manages loading UI and transitions
+Focuses solely on state management and UI - actual loading handled by LoadService
+Listens for loading completion events and transitions accordingly</p>
 </section>
       <h4><a class="xref" href="GameFramework.StateMachine.GameStates.MainMenuState.html">MainMenuState</a></h4>
       <section><p>Main menu state - fully responsible for its UI lifecycle
@@ -111,7 +111,8 @@ Handles all UI transitions based on user interactions reported by the screen</p>
 </section>
       <h4><a class="xref" href="GameFramework.StateMachine.GameStates.NewGameState.html">NewGameState</a></h4>
       <section><p>New Game state - fully responsible for its UI lifecycle
-Handles all UI transitions based on user interactions reported by the screen</p>
+Handles all UI transitions based on user interactions reported by the screen
+Initializes new game data through GameDataService and transitions to PlayingState</p>
 </section>
       <h4><a class="xref" href="GameFramework.StateMachine.GameStates.PlayingState.html">PlayingState</a></h4>
       <section><p>Playing state - reacts to pause state changes from PauseService

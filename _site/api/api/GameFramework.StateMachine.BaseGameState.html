@@ -85,7 +85,8 @@
 
   <h1 id="GameFramework_StateMachine_BaseGameState" data-uid="GameFramework.StateMachine.BaseGameState" class="text-break">Class BaseGameState</h1>
   <div class="markdown level0 summary"><p>Base class for all game states with constructor injection support.
-All dependencies are provided via constructor rather than service locator pattern.</p>
+All dependencies are provided via constructor rather than service locator pattern.
+Includes universal load game functionality that can be overridden by derived states.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -375,7 +376,7 @@ All dependencies are provided via constructor rather than service locator patter
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="GameFramework.Services.Interfaces.ILoadService.html">ILoadService</a></td>
+        <td><a class="xref" href="GameFramework.LoadSystem.Interfaces.ILoadService.html">ILoadService</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -399,29 +400,6 @@ All dependencies are provided via constructor rather than service locator patter
     <tbody>
       <tr>
         <td><a class="xref" href="GameFramework.Services.Interfaces.IPauseService.html">IPauseService</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_StateMachine_BaseGameState_SaveService_" data-uid="GameFramework.StateMachine.BaseGameState.SaveService*"></a>
-  <h4 id="GameFramework_StateMachine_BaseGameState_SaveService" data-uid="GameFramework.StateMachine.BaseGameState.SaveService">SaveService</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected ISaveService SaveService { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="GameFramework.Services.Interfaces.ISaveService.html">ISaveService</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -520,6 +498,31 @@ All dependencies are provided via constructor rather than service locator patter
   </table>
   <h3 id="methods">Methods
 </h3>
+  <a id="GameFramework_StateMachine_BaseGameState_CanLoadFromCurrentState_" data-uid="GameFramework.StateMachine.BaseGameState.CanLoadFromCurrentState*"></a>
+  <h4 id="GameFramework_StateMachine_BaseGameState_CanLoadFromCurrentState" data-uid="GameFramework.StateMachine.BaseGameState.CanLoadFromCurrentState">CanLoadFromCurrentState()</h4>
+  <div class="markdown level1 summary"><p>Determines if loading is allowed from the current state
+Can be overridden by derived states to implement custom logic</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual bool CanLoadFromCurrentState()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <a id="GameFramework_StateMachine_BaseGameState_EnterAsync_" data-uid="GameFramework.StateMachine.BaseGameState.EnterAsync*"></a>
   <h4 id="GameFramework_StateMachine_BaseGameState_EnterAsync_GameFramework_Core_GameContext_" data-uid="GameFramework.StateMachine.BaseGameState.EnterAsync(GameFramework.Core.GameContext)">EnterAsync(GameContext)</h4>
   <div class="markdown level1 summary"><p>Called when entering this state. Setup UI, subscribe to events, initialize state-specific systems.</p>
@@ -594,6 +597,33 @@ All dependencies are provided via constructor rather than service locator patter
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public virtual void FixedUpdate()</code></pre>
   </div>
+  <a id="GameFramework_StateMachine_BaseGameState_OnBeginLoadGameRequested_" data-uid="GameFramework.StateMachine.BaseGameState.OnBeginLoadGameRequested*"></a>
+  <h4 id="GameFramework_StateMachine_BaseGameState_OnBeginLoadGameRequested_GameFramework_EventSystem_Events_BeginLoadGameEvent_" data-uid="GameFramework.StateMachine.BaseGameState.OnBeginLoadGameRequested(GameFramework.EventSystem.Events.BeginLoadGameEvent)">OnBeginLoadGameRequested(BeginLoadGameEvent)</h4>
+  <div class="markdown level1 summary"><p>Handles begin load game requests - can be overridden by derived states
+Default behavior is to transition to Loading state</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnBeginLoadGameRequested(BeginLoadGameEvent evt)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.EventSystem.Events.BeginLoadGameEvent.html">BeginLoadGameEvent</a></td>
+        <td><span class="parametername">evt</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <a id="GameFramework_StateMachine_BaseGameState_TransitionToStateAsync_" data-uid="GameFramework.StateMachine.BaseGameState.TransitionToStateAsync*"></a>
   <h4 id="GameFramework_StateMachine_BaseGameState_TransitionToStateAsync_GameFramework_StateMachine_Enum_GameStateType_" data-uid="GameFramework.StateMachine.BaseGameState.TransitionToStateAsync(GameFramework.StateMachine.Enum.GameStateType)">TransitionToStateAsync(GameStateType)</h4>
   <div class="markdown level1 summary"><p>Helper method for state transitions using injected state machine</p>

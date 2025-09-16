@@ -105,8 +105,8 @@ Classes
       <h4><a class="xref" href="GameFramework.EventSystem.Events.AudioEvents.UIAudioEvent.html">AudioEvents.UIAudioEvent</a></h4>
       <section><p>UI-specific audio events for common interactions</p>
 </section>
-      <h4><a class="xref" href="GameFramework.EventSystem.Events.AutoSaveRequestedEvent.html">AutoSaveRequestedEvent</a></h4>
-      <section><p>Event triggered when the player requests an auto-save operation</p>
+      <h4><a class="xref" href="GameFramework.EventSystem.Events.BeginLoadGameEvent.html">BeginLoadGameEvent</a></h4>
+      <section><p>Event published when loading should begin and transition to loading state</p>
 </section>
       <h4><a class="xref" href="GameFramework.EventSystem.Events.ConsoleHistoryDownInputEvent.html">ConsoleHistoryDownInputEvent</a></h4>
       <section></section>
@@ -132,12 +132,11 @@ Handles developer console input and interaction</p>
       <section><p>Core game state and lifecycle events
 Handles game state transitions, pause/resume, and basic game flow</p>
 </section>
-      <h4><a class="xref" href="GameFramework.EventSystem.Events.GameSystemsInitializedEvent.html">GameSystemsInitializedEvent</a></h4>
-      <section></section>
       <h4><a class="xref" href="GameFramework.EventSystem.Events.LoadGameEvent.html">LoadGameEvent</a></h4>
       <section></section>
       <h4><a class="xref" href="GameFramework.EventSystem.Events.LoadGameRequestedEvent.html">LoadGameRequestedEvent</a></h4>
-      <section><p>Event triggered when the player requests to load a saved game</p>
+      <section><p>Loading system events for game data loading and progress tracking
+Handles load requests, progress updates, and completion states</p>
 </section>
       <h4><a class="xref" href="GameFramework.EventSystem.Events.LoadSaveFileEvent.html">LoadSaveFileEvent</a></h4>
       <section></section>
@@ -150,8 +149,7 @@ Handles game state transitions, pause/resume, and basic game flow</p>
       <h4><a class="xref" href="GameFramework.EventSystem.Events.LoadingMessageChangedEvent.html">LoadingMessageChangedEvent</a></h4>
       <section></section>
       <h4><a class="xref" href="GameFramework.EventSystem.Events.LoadingProgressEvent.html">LoadingProgressEvent</a></h4>
-      <section><p>Loading system events for game data loading and progress tracking
-Handles load requests, progress updates, and completion states</p>
+      <section><p>Event published to update loading progress</p>
 </section>
       <h4><a class="xref" href="GameFramework.EventSystem.Events.LoadingStartedEvent.html">LoadingStartedEvent</a></h4>
       <section><p>Event published when loading process begins
@@ -165,9 +163,6 @@ Allows UI and other services to prepare for loading</p>
       <section></section>
       <h4><a class="xref" href="GameFramework.EventSystem.Events.OptionsRequestedEvent.html">OptionsRequestedEvent</a></h4>
       <section></section>
-      <h4><a class="xref" href="GameFramework.EventSystem.Events.OverwriteSaveRequestedEvent.html">OverwriteSaveRequestedEvent</a></h4>
-      <section><p>Event triggered when the player requests to overwrite an existing save file</p>
-</section>
       <h4><a class="xref" href="GameFramework.EventSystem.Events.PauseRequestedEvent.html">PauseRequestedEvent</a></h4>
       <section></section>
       <h4><a class="xref" href="GameFramework.EventSystem.Events.PlayerAttackInputEvent.html">PlayerAttackInputEvent</a></h4>
@@ -194,10 +189,6 @@ Handles movement, combat, and player interaction inputs</p>
       <section></section>
       <h4><a class="xref" href="GameFramework.EventSystem.Events.QuitRequestedEvent.html">QuitRequestedEvent</a></h4>
       <section></section>
-      <h4><a class="xref" href="GameFramework.EventSystem.Events.RegularSaveRequestedEvent.html">RegularSaveRequestedEvent</a></h4>
-      <section><p>Save system events for game persistence
-Handles save requests, completion, and error states</p>
-</section>
       <h4><a class="xref" href="GameFramework.EventSystem.Events.ResumeRequestedEvent.html">ResumeRequestedEvent</a></h4>
       <section></section>
       <h4><a class="xref" href="GameFramework.EventSystem.Events.SaveCompletedEvent.html">SaveCompletedEvent</a></h4>
@@ -208,15 +199,11 @@ Handles save requests, completion, and error states</p>
 </section>
       <h4><a class="xref" href="GameFramework.EventSystem.Events.SaveGameEvent.html">SaveGameEvent</a></h4>
       <section></section>
-      <h4><a class="xref" href="GameFramework.EventSystem.Events.SceneLoadedEvent.html">SceneLoadedEvent</a></h4>
-      <section></section>
-      <h4><a class="xref" href="GameFramework.EventSystem.Events.SessionClearedEvent.html">SessionClearedEvent</a></h4>
-      <section></section>
-      <h4><a class="xref" href="GameFramework.EventSystem.Events.SessionCreatedEvent.html">SessionCreatedEvent</a></h4>
-      <section><p>Session lifecycle events for game session management
-Handles session creation, loading, and cleanup</p>
+      <h4><a class="xref" href="GameFramework.EventSystem.Events.SaveRequestedEvent.html">SaveRequestedEvent</a></h4>
+      <section><p>Save system events for game persistence
+Handles save requests, completion, and error states</p>
 </section>
-      <h4><a class="xref" href="GameFramework.EventSystem.Events.SessionLoadedEvent.html">SessionLoadedEvent</a></h4>
+      <h4><a class="xref" href="GameFramework.EventSystem.Events.SceneLoadedEvent.html">SceneLoadedEvent</a></h4>
       <section></section>
       <h4><a class="xref" href="GameFramework.EventSystem.Events.UICancelInputEvent.html">UICancelInputEvent</a></h4>
       <section></section>

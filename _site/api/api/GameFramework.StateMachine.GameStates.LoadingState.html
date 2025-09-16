@@ -84,9 +84,9 @@
 
 
   <h1 id="GameFramework_StateMachine_GameStates_LoadingState" data-uid="GameFramework.StateMachine.GameStates.LoadingState" class="text-break">Class LoadingState</h1>
-  <div class="markdown level0 summary"><p>Loading state that handles different loading scenarios using unified GameSession system
-Creates or loads GameSession based on loading configuration
-Integrates with TimeService for proper playtime handling</p>
+  <div class="markdown level0 summary"><p>Loading state that manages loading UI and transitions
+Focuses solely on state management and UI - actual loading handled by LoadService
+Listens for loading completion events and transitions accordingly</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -131,9 +131,6 @@ Integrates with TimeService for proper playtime handling</p>
       <a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_PauseService">BaseGameState.PauseService</a>
     </div>
     <div>
-      <a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_SaveService">BaseGameState.SaveService</a>
-    </div>
-    <div>
       <a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_SceneService">BaseGameState.SceneService</a>
     </div>
     <div>
@@ -150,6 +147,12 @@ Integrates with TimeService for proper playtime handling</p>
     </div>
     <div>
       <a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_TransitionToStateAsync_GameFramework_StateMachine_Enum_GameStateType_">BaseGameState.TransitionToStateAsync(GameStateType)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_OnBeginLoadGameRequested_GameFramework_EventSystem_Events_BeginLoadGameEvent_">BaseGameState.OnBeginLoadGameRequested(BeginLoadGameEvent)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_CanLoadFromCurrentState">BaseGameState.CanLoadFromCurrentState()</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>

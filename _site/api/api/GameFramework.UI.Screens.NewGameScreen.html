@@ -85,7 +85,8 @@
 
   <h1 id="GameFramework_UI_Screens_NewGameScreen" data-uid="GameFramework.UI.Screens.NewGameScreen" class="text-break">Class NewGameScreen</h1>
   <div class="markdown level0 summary"><p>New Game Screen - pure UI component that only reports user interactions
-Does not handle its own lifecycle - that's managed by the NewGameState</p>
+Does not handle its own lifecycle - that's managed by the NewGameState
+Provides form validation and user feedback</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -113,6 +114,12 @@ Does not handle its own lifecycle - that's managed by the NewGameState</p>
     </div>
     <div>
       <a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_Hide">UIScreen.Hide()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_MarkDirty">UIScreen.MarkDirty()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_SetUpdateInterval_System_Single_">UIScreen.SetUpdateInterval(float)</a>
     </div>
     <div>
       <a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_EnableFrameUpdates">UIScreen.EnableFrameUpdates()</a>
@@ -198,7 +205,8 @@ Does not handle its own lifecycle - that's managed by the NewGameState</p>
   <div><a class="xref" href="GameFramework.UI.UIScreen.html#GameFramework_UI_UIScreen_OnHide">UIScreen.OnHide()</a></div>
   <a id="GameFramework_UI_Screens_NewGameScreen_OnShow_" data-uid="GameFramework.UI.Screens.NewGameScreen.OnShow*"></a>
   <h4 id="GameFramework_UI_Screens_NewGameScreen_OnShow" data-uid="GameFramework.UI.Screens.NewGameScreen.OnShow">OnShow()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Reset UI state when screen is shown again</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">

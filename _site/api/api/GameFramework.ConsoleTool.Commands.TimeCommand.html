@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class TimeCommand | UCTools Base Project </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class TimeCommand | UCTools Base Project ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  <meta property="docfx:newtab" content="true">
+
+  
+  </head>
+
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="UCTools">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="GameFramework.ConsoleTool.Commands.TimeCommand">
+
+
+
+  <h1 id="GameFramework_ConsoleTool_Commands_TimeCommand" data-uid="GameFramework.ConsoleTool.Commands.TimeCommand" class="text-break">Class TimeCommand</h1>
+  <div class="markdown level0 summary"><p>Console command for querying and manipulating game time
+Integrates with TimeService and GameDataService to provide time management functionality</p>
+<p>Design:</p>
+<ul>
+<li>Uses TimeService for reading current time and time formatting</li>
+<li>Accesses GameDataService directly to modify GameSessionData.GameTime</li>
+<li>Supports multiple time input formats for user convenience</li>
+<li>Provides comprehensive validation and error handling</li>
+<li>Includes -h flag for displaying help/usage information</li>
+</ul>
+<p>Usage Examples:</p>
+<blockquote>
+<p>time                    - Display current game time
+time -h                 - Display help/usage information
+time 3600               - Set game time to 3600 seconds (1 hour)
+time 1:30:45            - Set game time to 1 hour, 30 minutes, 45 seconds
+time reset              - Reset game time to 0
+time add 300            - Add 300 seconds to current game time
+time subtract 120       - Subtract 120 seconds from current game time</p>
+</blockquote>
+<p>Pros:</p>
+<ul>
+<li>Flexible time input formats (seconds, HH:MM:SS)</li>
+<li>Comprehensive error handling and validation</li>
+<li>Integrates seamlessly with existing TimeService</li>
+<li>Supports both absolute and relative time operations</li>
+<li>Provides immediate feedback on time changes</li>
+<li>Standard -h flag for help display</li>
+</ul>
+<p>Cons:</p>
+<ul>
+<li>Requires direct access to GameDataService for time modification</li>
+<li>Time changes bypass TimeService's normal tracking mechanisms</li>
+<li>Could potentially cause issues if game logic depends on time continuity</li>
+</ul>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+    <div class="level1"><a class="xref" href="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.html">ConsoleCommandBase</a></div>
+    <div class="level2"><span class="xref">TimeCommand</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="GameFramework.ConsoleTool.Interfaces.IConsoleCommand.html">IConsoleCommand</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.html#GameFramework_ConsoleTool_Commands_ConsoleCommandBase_TryParseInt_System_String_System_Int32__GameFramework_ConsoleTool_Interfaces_IConsoleContext_System_String_">ConsoleCommandBase.TryParseInt(string, out int, IConsoleContext, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.html#GameFramework_ConsoleTool_Commands_ConsoleCommandBase_ValidateArgumentCount_System_String___System_Int32_GameFramework_ConsoleTool_Interfaces_IConsoleContext_">ConsoleCommandBase.ValidateArgumentCount(string[], int, IConsoleContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.html#GameFramework_ConsoleTool_Commands_ConsoleCommandBase_ValidateArgumentCount_System_String___System_Int32_System_Int32_GameFramework_ConsoleTool_Interfaces_IConsoleContext_">ConsoleCommandBase.ValidateArgumentCount(string[], int, int, IConsoleContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.ConsoleTool.html">ConsoleTool</a>.<a class="xref" href="GameFramework.ConsoleTool.Commands.html">Commands</a></h6>
+  <h6><strong>Assembly</strong>: .dll</h6>
+  <h5 id="GameFramework_ConsoleTool_Commands_TimeCommand_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class TimeCommand : ConsoleCommandBase, IConsoleCommand</code></pre>
+  </div>
+  <h3 id="properties">Properties
+</h3>
+  <a id="GameFramework_ConsoleTool_Commands_TimeCommand_Category_" data-uid="GameFramework.ConsoleTool.Commands.TimeCommand.Category*"></a>
+  <h4 id="GameFramework_ConsoleTool_Commands_TimeCommand_Category" data-uid="GameFramework.ConsoleTool.Commands.TimeCommand.Category">Category</h4>
+  <div class="markdown level1 summary"><p>Categorize under System commands for organization</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override CategoryEnum Category { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.ConsoleTool.Enums.CategoryEnum.html">CategoryEnum</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.html#GameFramework_ConsoleTool_Commands_ConsoleCommandBase_Category">ConsoleCommandBase.Category</a></div>
+  <a id="GameFramework_ConsoleTool_Commands_TimeCommand_CommandName_" data-uid="GameFramework.ConsoleTool.Commands.TimeCommand.CommandName*"></a>
+  <h4 id="GameFramework_ConsoleTool_Commands_TimeCommand_CommandName" data-uid="GameFramework.ConsoleTool.Commands.TimeCommand.CommandName">CommandName</h4>
+  <div class="markdown level1 summary"><p>Command name - what users type to execute this command</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string CommandName { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.html#GameFramework_ConsoleTool_Commands_ConsoleCommandBase_CommandName">ConsoleCommandBase.CommandName</a></div>
+  <a id="GameFramework_ConsoleTool_Commands_TimeCommand_Description_" data-uid="GameFramework.ConsoleTool.Commands.TimeCommand.Description*"></a>
+  <h4 id="GameFramework_ConsoleTool_Commands_TimeCommand_Description" data-uid="GameFramework.ConsoleTool.Commands.TimeCommand.Description">Description</h4>
+  <div class="markdown level1 summary"><p>Brief description for help system</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string Description { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.html#GameFramework_ConsoleTool_Commands_ConsoleCommandBase_Description">ConsoleCommandBase.Description</a></div>
+  <a id="GameFramework_ConsoleTool_Commands_TimeCommand_Tag_" data-uid="GameFramework.ConsoleTool.Commands.TimeCommand.Tag*"></a>
+  <h4 id="GameFramework_ConsoleTool_Commands_TimeCommand_Tag" data-uid="GameFramework.ConsoleTool.Commands.TimeCommand.Tag">Tag</h4>
+  <div class="markdown level1 summary"><p>Tag for bulk operations - using system-level tag</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int Tag { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.html#GameFramework_ConsoleTool_Commands_ConsoleCommandBase_Tag">ConsoleCommandBase.Tag</a></div>
+  <h3 id="methods">Methods
+</h3>
+  <a id="GameFramework_ConsoleTool_Commands_TimeCommand_Execute_" data-uid="GameFramework.ConsoleTool.Commands.TimeCommand.Execute*"></a>
+  <h4 id="GameFramework_ConsoleTool_Commands_TimeCommand_Execute_System_String___GameFramework_ConsoleTool_Interfaces_IConsoleContext_" data-uid="GameFramework.ConsoleTool.Commands.TimeCommand.Execute(System.String[],GameFramework.ConsoleTool.Interfaces.IConsoleContext)">Execute(string[], IConsoleContext)</h4>
+  <div class="markdown level1 summary"><p>Main command execution method
+Handles different argument patterns for time operations
+Checks for -h flag first to display help</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Execute(string[] args, IConsoleContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>Command arguments</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="GameFramework.ConsoleTool.Interfaces.IConsoleContext.html">IConsoleContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>Console context for output</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.html#GameFramework_ConsoleTool_Commands_ConsoleCommandBase_Execute_System_String___GameFramework_ConsoleTool_Interfaces_IConsoleContext_">ConsoleCommandBase.Execute(string[], IConsoleContext)</a></div>
+  <a id="GameFramework_ConsoleTool_Commands_TimeCommand_GetUsage_" data-uid="GameFramework.ConsoleTool.Commands.TimeCommand.GetUsage*"></a>
+  <h4 id="GameFramework_ConsoleTool_Commands_TimeCommand_GetUsage" data-uid="GameFramework.ConsoleTool.Commands.TimeCommand.GetUsage">GetUsage()</h4>
+  <div class="markdown level1 summary"><p>Provide brief usage summary - detailed help available via -h flag</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string GetUsage()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.html#GameFramework_ConsoleTool_Commands_ConsoleCommandBase_GetUsage">ConsoleCommandBase.GetUsage()</a></div>
+  <a id="GameFramework_ConsoleTool_Commands_TimeCommand_ValidateArgs_" data-uid="GameFramework.ConsoleTool.Commands.TimeCommand.ValidateArgs*"></a>
+  <h4 id="GameFramework_ConsoleTool_Commands_TimeCommand_ValidateArgs_System_String___" data-uid="GameFramework.ConsoleTool.Commands.TimeCommand.ValidateArgs(System.String[])">ValidateArgs(string[])</h4>
+  <div class="markdown level1 summary"><p>Validate argument count before execution
+Always returns true since -h flag can appear with any argument count</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool ValidateArgs(string[] args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.ConsoleTool.Commands.ConsoleCommandBase.html#GameFramework_ConsoleTool_Commands_ConsoleCommandBase_ValidateArgs_System_String___">ConsoleCommandBase.ValidateArgs(string[])</a></div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="GameFramework.ConsoleTool.Interfaces.IConsoleCommand.html">IConsoleCommand</a>
+  </div>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In this article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        © 2025 UCTools Base Project Documentation
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

@@ -125,12 +125,12 @@
   <h3 id="constructors">Constructors
 </h3>
   <a id="GameFramework_EventSystem_Events_SaveCompletedEvent__ctor_" data-uid="GameFramework.EventSystem.Events.SaveCompletedEvent.#ctor*"></a>
-  <h4 id="GameFramework_EventSystem_Events_SaveCompletedEvent__ctor_System_String_System_Boolean_System_Boolean_" data-uid="GameFramework.EventSystem.Events.SaveCompletedEvent.#ctor(System.String,System.Boolean,System.Boolean)">SaveCompletedEvent(string, bool, bool)</h4>
+  <h4 id="GameFramework_EventSystem_Events_SaveCompletedEvent__ctor_System_String_GameFramework_EventSystem_Events_Enums_SaveType_" data-uid="GameFramework.EventSystem.Events.SaveCompletedEvent.#ctor(System.String,GameFramework.EventSystem.Events.Enums.SaveType)">SaveCompletedEvent(string, SaveType)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public SaveCompletedEvent(string saveFileName, bool isAutoSave, bool isOverwrite)</code></pre>
+    <pre><code class="lang-csharp hljs">public SaveCompletedEvent(string saveFileName, SaveType saveType)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -148,13 +148,8 @@
         <td></td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><span class="parametername">isAutoSave</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><span class="parametername">isOverwrite</span></td>
+        <td><a class="xref" href="GameFramework.EventSystem.Events.Enums.SaveType.html">SaveType</a></td>
+        <td><span class="parametername">saveType</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -249,6 +244,29 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_EventSystem_Events_SaveCompletedEvent_SaveType_" data-uid="GameFramework.EventSystem.Events.SaveCompletedEvent.SaveType*"></a>
+  <h4 id="GameFramework_EventSystem_Events_SaveCompletedEvent_SaveType" data-uid="GameFramework.EventSystem.Events.SaveCompletedEvent.SaveType">SaveType</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SaveType SaveType { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.EventSystem.Events.Enums.SaveType.html">SaveType</a></td>
         <td></td>
       </tr>
     </tbody>

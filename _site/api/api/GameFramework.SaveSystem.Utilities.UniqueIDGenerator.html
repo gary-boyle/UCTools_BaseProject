@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class GameSystemsInitializedEvent | UCTools Base Project </title>
+    <title>Class UniqueIDGenerator | UCTools Base Project </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class GameSystemsInitializedEvent | UCTools Base Project ">
+    <meta name="title" content="Class UniqueIDGenerator | UCTools Base Project ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -79,17 +79,18 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="GameFramework.EventSystem.Events.GameSystemsInitializedEvent">
+            <article class="content wrap" id="_content" data-uid="GameFramework.SaveSystem.Utilities.UniqueIDGenerator">
 
 
 
-  <h1 id="GameFramework_EventSystem_Events_GameSystemsInitializedEvent" data-uid="GameFramework.EventSystem.Events.GameSystemsInitializedEvent" class="text-break">Class GameSystemsInitializedEvent</h1>
-  <div class="markdown level0 summary"></div>
+  <h1 id="GameFramework_SaveSystem_Utilities_UniqueIDGenerator" data-uid="GameFramework.SaveSystem.Utilities.UniqueIDGenerator" class="text-break">Class UniqueIDGenerator</h1>
+  <div class="markdown level0 summary"><p>Utility class for generating unique IDs for saveable objects</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><span class="xref">GameSystemsInitializedEvent</span></div>
+    <div class="level1"><span class="xref">UniqueIDGenerator</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -115,46 +116,42 @@
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
     </div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.EventSystem.html">EventSystem</a>.<a class="xref" href="GameFramework.EventSystem.Events.html">Events</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.SaveSystem.html">SaveSystem</a>.<a class="xref" href="GameFramework.SaveSystem.Utilities.html">Utilities</a></h6>
   <h6><strong>Assembly</strong>: .dll</h6>
-  <h5 id="GameFramework_EventSystem_Events_GameSystemsInitializedEvent_syntax">Syntax</h5>
+  <h5 id="GameFramework_SaveSystem_Utilities_UniqueIDGenerator_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class GameSystemsInitializedEvent</code></pre>
+    <pre><code class="lang-csharp hljs">public static class UniqueIDGenerator</code></pre>
   </div>
-  <h3 id="properties">Properties
+  <h3 id="methods">Methods
 </h3>
-  <a id="GameFramework_EventSystem_Events_GameSystemsInitializedEvent_GameData_" data-uid="GameFramework.EventSystem.Events.GameSystemsInitializedEvent.GameData*"></a>
-  <h4 id="GameFramework_EventSystem_Events_GameSystemsInitializedEvent_GameData" data-uid="GameFramework.EventSystem.Events.GameSystemsInitializedEvent.GameData">GameData</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="GameFramework_SaveSystem_Utilities_UniqueIDGenerator_GenerateUniqueID_" data-uid="GameFramework.SaveSystem.Utilities.UniqueIDGenerator.GenerateUniqueID*"></a>
+  <h4 id="GameFramework_SaveSystem_Utilities_UniqueIDGenerator_GenerateUniqueID_System_String_" data-uid="GameFramework.SaveSystem.Utilities.UniqueIDGenerator.GenerateUniqueID(System.String)">GenerateUniqueID(string)</h4>
+  <div class="markdown level1 summary"><p>Generates a unique ID for saveable objects
+Format: {prefix}<em>{timestamp}</em>{random}</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Dictionary&lt;string, object&gt; GameData { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static string GenerateUniqueID(string prefix = &quot;obj&quot;)</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
+  <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
+        <th>Name</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">prefix</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_EventSystem_Events_GameSystemsInitializedEvent_LoadingType_" data-uid="GameFramework.EventSystem.Events.GameSystemsInitializedEvent.LoadingType*"></a>
-  <h4 id="GameFramework_EventSystem_Events_GameSystemsInitializedEvent_LoadingType" data-uid="GameFramework.EventSystem.Events.GameSystemsInitializedEvent.LoadingType">LoadingType</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public LoadingType LoadingType { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
+  <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
@@ -164,7 +161,48 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="GameFramework.StateMachine.Enum.LoadingType.html">LoadingType</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_SaveSystem_Utilities_UniqueIDGenerator_IsValidUniqueID_" data-uid="GameFramework.SaveSystem.Utilities.UniqueIDGenerator.IsValidUniqueID*"></a>
+  <h4 id="GameFramework_SaveSystem_Utilities_UniqueIDGenerator_IsValidUniqueID_System_String_" data-uid="GameFramework.SaveSystem.Utilities.UniqueIDGenerator.IsValidUniqueID(System.String)">IsValidUniqueID(string)</h4>
+  <div class="markdown level1 summary"><p>Validates that a unique ID has the expected format</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsValidUniqueID(string uniqueId)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">uniqueId</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td></td>
       </tr>
     </tbody>

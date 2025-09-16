@@ -84,81 +84,37 @@
 
 
   <h1 id="GameFramework_Services_Interfaces_ISaveService" data-uid="GameFramework.Services.Interfaces.ISaveService" class="text-break">Interface ISaveService</h1>
-  <div class="markdown level0 summary"><p>Interface for save service that handles file operations and save file metadata
-Save operations are triggered via event system for clean separation of concerns
-Provides file management and metadata retrieval for UI systems</p>
-<p>INTENT: Minimal interface focused on file operations and metadata
-DESIGN: Save operations moved to event system, interface only exposes what external systems need
-PROS: Clean separation, reduced coupling, focused responsibilities
-CONS: Less direct control for external systems (but that's by design)</p>
+  <div class="markdown level0 summary"><p>Interface for the SaveService, defining its public API.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="GameFramework.Services.Interfaces.IGameService.html#GameFramework_Services_Interfaces_IGameService_IsInitialized">IGameService.IsInitialized</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Services.Interfaces.IGameService.html#GameFramework_Services_Interfaces_IGameService_InitializeAsync">IGameService.InitializeAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Services.Interfaces.IGameService.html#GameFramework_Services_Interfaces_IGameService_Shutdown">IGameService.Shutdown()</a>
+    </div>
+  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.Services.html">Services</a>.<a class="xref" href="GameFramework.Services.Interfaces.html">Interfaces</a></h6>
   <h6><strong>Assembly</strong>: .dll</h6>
   <h5 id="GameFramework_Services_Interfaces_ISaveService_syntax">Syntax</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public interface ISaveService : IGameService</code></pre>
   </div>
-  <h3 id="properties">Properties
-</h3>
-  <a id="GameFramework_Services_Interfaces_ISaveService_IsInitialized_" data-uid="GameFramework.Services.Interfaces.ISaveService.IsInitialized*"></a>
-  <h4 id="GameFramework_Services_Interfaces_ISaveService_IsInitialized" data-uid="GameFramework.Services.Interfaces.ISaveService.IsInitialized">IsInitialized</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">bool IsInitialized { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <h3 id="methods">Methods
 </h3>
-  <a id="GameFramework_Services_Interfaces_ISaveService_CanSaveGame_" data-uid="GameFramework.Services.Interfaces.ISaveService.CanSaveGame*"></a>
-  <h4 id="GameFramework_Services_Interfaces_ISaveService_CanSaveGame" data-uid="GameFramework.Services.Interfaces.ISaveService.CanSaveGame">CanSaveGame()</h4>
-  <div class="markdown level1 summary"><p>Checks if the game can currently be saved based on session state
-Used by UI to determine save button availability</p>
+  <a id="GameFramework_Services_Interfaces_ISaveService_OnSaveRequested_" data-uid="GameFramework.Services.Interfaces.ISaveService.OnSaveRequested*"></a>
+  <h4 id="GameFramework_Services_Interfaces_ISaveService_OnSaveRequested_GameFramework_EventSystem_Events_SaveRequestedEvent_" data-uid="GameFramework.Services.Interfaces.ISaveService.OnSaveRequested(GameFramework.EventSystem.Events.SaveRequestedEvent)">OnSaveRequested(SaveRequestedEvent)</h4>
+  <div class="markdown level1 summary"><p>Handles save requested events.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">bool CanSaveGame()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_Services_Interfaces_ISaveService_DeleteSaveFileByInfoAsync_" data-uid="GameFramework.Services.Interfaces.ISaveService.DeleteSaveFileByInfoAsync*"></a>
-  <h4 id="GameFramework_Services_Interfaces_ISaveService_DeleteSaveFileByInfoAsync_GameFramework_DataStructures_SaveFileInfo_" data-uid="GameFramework.Services.Interfaces.ISaveService.DeleteSaveFileByInfoAsync(GameFramework.DataStructures.SaveFileInfo)">DeleteSaveFileByInfoAsync(SaveFileInfo)</h4>
-  <div class="markdown level1 summary"><p>Deletes a save file using SaveFileInfo</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; DeleteSaveFileByInfoAsync(SaveFileInfo saveFileInfo)</code></pre>
+    <pre><code class="lang-csharp hljs">void OnSaveRequested(SaveRequestedEvent saveEvent)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -171,147 +127,13 @@ Used by UI to determine save button availability</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="GameFramework.DataStructures.SaveFileInfo.html">SaveFileInfo</a></td>
-        <td><span class="parametername">saveFileInfo</span></td>
-        <td></td>
+        <td><a class="xref" href="GameFramework.EventSystem.Events.SaveRequestedEvent.html">SaveRequestedEvent</a></td>
+        <td><span class="parametername">saveEvent</span></td>
+        <td><p>The save event to process.</p>
+</td>
       </tr>
     </tbody>
   </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_Services_Interfaces_ISaveService_GetSaveFileInfosAsync_" data-uid="GameFramework.Services.Interfaces.ISaveService.GetSaveFileInfosAsync*"></a>
-  <h4 id="GameFramework_Services_Interfaces_ISaveService_GetSaveFileInfosAsync" data-uid="GameFramework.Services.Interfaces.ISaveService.GetSaveFileInfosAsync">GetSaveFileInfosAsync()</h4>
-  <div class="markdown level1 summary"><p>Gets formatted save file information with caching</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;SaveFileInfo[]&gt; GetSaveFileInfosAsync()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="GameFramework.DataStructures.SaveFileInfo.html">SaveFileInfo</a>[]&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_Services_Interfaces_ISaveService_GetSaveFilePath_" data-uid="GameFramework.Services.Interfaces.ISaveService.GetSaveFilePath*"></a>
-  <h4 id="GameFramework_Services_Interfaces_ISaveService_GetSaveFilePath_System_String_" data-uid="GameFramework.Services.Interfaces.ISaveService.GetSaveFilePath(System.String)">GetSaveFilePath(string)</h4>
-  <div class="markdown level1 summary"><p>Gets the full file path for a save file name</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">string GetSaveFilePath(string saveName)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">saveName</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_Services_Interfaces_ISaveService_HasAnySaves_" data-uid="GameFramework.Services.Interfaces.ISaveService.HasAnySaves*"></a>
-  <h4 id="GameFramework_Services_Interfaces_ISaveService_HasAnySaves" data-uid="GameFramework.Services.Interfaces.ISaveService.HasAnySaves">HasAnySaves()</h4>
-  <div class="markdown level1 summary"><p>Checks if any save files exist</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">bool HasAnySaves()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_Services_Interfaces_ISaveService_InitializeAsync_" data-uid="GameFramework.Services.Interfaces.ISaveService.InitializeAsync*"></a>
-  <h4 id="GameFramework_Services_Interfaces_ISaveService_InitializeAsync" data-uid="GameFramework.Services.Interfaces.ISaveService.InitializeAsync">InitializeAsync()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task InitializeAsync()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_Services_Interfaces_ISaveService_Shutdown_" data-uid="GameFramework.Services.Interfaces.ISaveService.Shutdown*"></a>
-  <h4 id="GameFramework_Services_Interfaces_ISaveService_Shutdown" data-uid="GameFramework.Services.Interfaces.ISaveService.Shutdown">Shutdown()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void Shutdown()</code></pre>
-  </div>
 
 </article>
           </div>
