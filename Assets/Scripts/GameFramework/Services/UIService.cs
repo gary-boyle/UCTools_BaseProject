@@ -327,6 +327,12 @@ namespace GameFramework.Services
             return _popups.TryGetValue(typeof(T), out var popup) ? (T)popup : null;
         }
         
+
+        public UIDocument GetUIDocument()
+        {
+            return _uiDocument;
+        }
+        
         public void SetDebugPopupText(string text)
         {
             GetPopup<DebugPopup>()?.SetText(text);

@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using GameFramework.UI;
 using GameFramework.UI.Screens;
 using GameFramework.UI.Popups;
+using UnityEngine.UIElements;
 
 namespace GameFramework.Services.Interfaces
 {
@@ -24,12 +25,16 @@ namespace GameFramework.Services.Interfaces
         
         T GetPopup<T>() where T : UIPopup;
 
+        UIDocument GetUIDocument();
+        
         // Essential Popup Management
         Task ShowPopupAsync<T>() where T : UIPopup;
         Task HidePopupAsync<T>() where T : UIPopup;
         Task CloseAllPopupsAsync();
         bool HasOpenPopups();
         UIPopup GetCurrentPopup();
+
+        void RegisterPopup<T>(T popup) where T : UIPopup;
         
         // Popup State Queries
         bool IsCurrentPopup<T>() where T : UIPopup;

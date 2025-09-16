@@ -374,6 +374,10 @@ namespace GameFramework.Core
             var uiService = _container.Resolve<IUIService>();
             await uiService.InitializeAsync();
             
+            // Initialize notification service after UI service (depends on UIService and EventSystem)
+            var notificationService = _container.Resolve<INotificationService>();
+            await notificationService.InitializeAsync();
+            
             Debug.Log("[GameManager] All services initialized!");
         }
 
@@ -434,6 +438,9 @@ namespace GameFramework.Core
             _container.RegisterSingleton<ISaveService, SaveService>();
             _container.RegisterSingleton<IGameDataService, GameDataService>();
             _container.RegisterSingleton<ISaveDataRegistry, SaveDataRegistry>();
+            
+            // Register notification service (depends on EventSystem and UIService)
+            _container.RegisterSingleton<INotificationService, NotificationService>();
             
             // Register GameContext (depends on all other services)
             _container.RegisterSingleton<GameContext>();

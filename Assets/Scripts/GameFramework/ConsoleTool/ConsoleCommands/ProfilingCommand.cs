@@ -143,6 +143,7 @@ namespace GameFramework.ConsoleTool.Commands
             if (!int.TryParse(args[1], out int frameCount) || frameCount <= 0)
             {
                 context.WriteError($"Invalid frame count: {args[1]}");
+                FireNotification($"Invalid frame count: {args[1]}", NotificationType.Error);
                 return;
             }
             
@@ -150,6 +151,9 @@ namespace GameFramework.ConsoleTool.Commands
             
             profilingService.StartFrameSession(frameCount, sessionName);
             context.WriteLine($"Started frame-based profiling session for {frameCount} frames");
+            
+            // Fire notification for profiling session start
+            FireNotification($"Profiling started ({frameCount} frames)", NotificationType.Info);
             
             // Hide console after starting session
             TryHideConsole();
@@ -164,10 +168,14 @@ namespace GameFramework.ConsoleTool.Commands
             {
                 profilingService.StopSession();
                 context.WriteLine("Profiling session stopped");
+                
+                // Fire notification for profiling session stop
+                FireNotification("Profiling session completed", NotificationType.Success);
             }
             else
             {
                 context.WriteWarning("No active profiling session to stop");
+                FireNotification("No profiling session to stop", NotificationType.Warning);
             }
         }
         
@@ -178,6 +186,9 @@ namespace GameFramework.ConsoleTool.Commands
         {
             profilingService.ClearHistory();
             context.WriteLine("Historical profiling data cleared");
+            
+            // Fire notification for data clearing
+            FireNotification("Profiling data cleared", NotificationType.Info);
         }
         
         /// <summary>
@@ -204,10 +215,12 @@ namespace GameFramework.ConsoleTool.Commands
             {
                 profilingService.SetUpdateFrequency(interval);
                 context.WriteLine($"Update frequency set to {interval:F1} seconds");
+                FireNotification($"Profiling update rate: {interval:F1}s", NotificationType.Success);
             }
             else
             {
                 context.WriteError($"Invalid config setting: {setting}. Use 'update'");
+                FireNotification($"Invalid config setting: {setting}", NotificationType.Error);
             }
         }
         
@@ -278,6 +291,26 @@ namespace GameFramework.ConsoleTool.Commands
                 return (number / 1000f).ToString("F1") + "K";
             else
                 return number.ToString();
+        }
+        
+        /// <summary>
+        /// Fires a notification through the EventSystem
+        /// </summary>
+        private void FireNotification(string message, NotificationType type)
+        {
+            try
+            {
+                var eventSystem = GameManager.GetService<IEventSystem>();
+                if (eventSystem != null)
+                {
+                    var notificationEvent = new ShowNotificationEvent(message, type);
+                    eventSystem.Publish(notificationEvent);
+                }
+            }
+            catch (System.Exception)
+            {
+                // Ignore notification failures - not critical for command functionality
+            }
         }
         
         #endregion
