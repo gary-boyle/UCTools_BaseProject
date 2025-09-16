@@ -1,5 +1,10 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI/USS/default.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3#default" />
+    <!-- Debug Popup Stylesheets -->
+    <Style src="project://database/Assets/UI/USS/core.uss" />
+    <Style src="project://database/Assets/UI/USS/typography.uss" />
+    <Style src="project://database/Assets/UI/USS/layout.uss" />
+    <Style src="project://database/Assets/UI/USS/debug.uss" />
+    <Style src="project://database/Assets/UI/USS/utilities.uss" />
     <ui:VisualElement name="UI_DebugPopup" picking-mode="Ignore" class="debug-overlay" style="padding-top: 6px; padding-right: 6px; padding-bottom: 6px; padding-left: 6px;">
         <ui:VisualElement picking-mode="Ignore" class="layout-column layout-space-between layout-grow">
             <ui:VisualElement picking-mode="Ignore" class="layout-column">

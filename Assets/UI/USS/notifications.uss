@@ -1,0 +1,81 @@
+/* Notification System Styles */
+
+.notification-container {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    z-index: 2000;
+    pointer-events: auto;
+    min-width: 300px;
+    max-width: 400px;
+}
+
+.notification-panel {
+    background-color: rgb(42, 42, 42);
+    border-radius: 8px;
+    padding: 16px;
+    border-width: 2px;
+    border-color: rgb(68, 68, 68);
+    opacity: 0;
+    scale: 0.9;
+    transition-duration: 0.3s;
+    transition-property: opacity, scale;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.notification-panel--visible {
+    opacity: 1;
+    scale: 1;
+}
+
+.notification-panel--success {
+    border-color: rgb(74, 255, 107);
+    background-color: rgb(26, 42, 26);
+}
+
+.notification-panel--warning {
+    border-color: rgb(255, 184, 74);
+    background-color: rgb(42, 35, 26);
+}
+
+.notification-panel--error {
+    border-color: rgb(255, 74, 107);
+    background-color: rgb(42, 26, 26);
+}
+
+.notification-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 16px;
+    background-color: rgb(74, 158, 255);
+    justify-content: center;
+    align-items: center;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+.notification-icon--success {
+    background-color: rgb(74, 255, 107);
+}
+
+.notification-icon--warning {
+    background-color: rgb(255, 184, 74);
+}
+
+.notification-icon--error {
+    background-color: rgb(255, 74, 107);
+}
+
+.notification-icon-text {
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}
+
+.notification-message {
+    flex-wrap: wrap;
+    white-space: normal;
+    font-size: 14px;
+    line-height: 1.4;
+}

@@ -1,5 +1,10 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI/USS/default.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3#default" />
+    <!-- Save File Widget Stylesheets -->
+    <Style src="project://database/Assets/UI/USS/core.uss" />
+    <Style src="project://database/Assets/UI/USS/typography.uss" />
+    <Style src="project://database/Assets/UI/USS/layout.uss" />
+    <Style src="project://database/Assets/UI/USS/components.uss" />
+    <Style src="project://database/Assets/UI/USS/utilities.uss" />
 
     <ui:VisualElement name="save-file-container" class="list-item">
         <ui:VisualElement class="layout-column layout-grow">

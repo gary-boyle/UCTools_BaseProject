@@ -1,0 +1,47 @@
+/* Debug and HUD Styles */
+
+.debug-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 24px;
+    picking-mode: Ignore;
+    z-index: 1000;
+}
+
+.debug-text {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: rgb(74, 255, 158);
+    font-size: 20px;
+    padding: 8px;
+    border-radius: 4px;
+    picking-mode: Ignore;
+}
+
+.hud-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.hud-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 24px;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.hud-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 24px;
+    flex-direction: row;
+    justify-content: space-between;
+}

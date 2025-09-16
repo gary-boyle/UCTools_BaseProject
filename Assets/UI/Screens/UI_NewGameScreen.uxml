@@ -1,6 +1,11 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <engine:Template name="Widget_CloseButton" src="project://database/Assets/UI/Widgets/Widget_CloseButton.uxml?fileID=9197481963319205126&amp;guid=0ae08ca0a349c17499c551fac1d2415c&amp;type=3#Widget_CloseButton" />
-    <Style src="project://database/Assets/UI/USS/default.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3#default" />
+    <Style src="project://database/Assets/UI/USS/core.uss?fileID=7433441132597879392&amp;guid=09a18b58682ed40438a6bc507bfcb39d&amp;type=3#core" />
+    <Style src="project://database/Assets/UI/USS/typography.uss?fileID=7433441132597879392&amp;guid=d5db0ddad1233b44cba2e8738bd06cde&amp;type=3#typography" />
+    <Style src="project://database/Assets/UI/USS/buttons.uss?fileID=7433441132597879392&amp;guid=1a0e5efac5d53714e8c94d0807ea52cd&amp;type=3#buttons" />
+    <Style src="project://database/Assets/UI/USS/forms.uss?fileID=7433441132597879392&amp;guid=ad1d61295ce764f49865e86120fab2af&amp;type=3#forms" />
+    <Style src="project://database/Assets/UI/USS/layout.uss?fileID=7433441132597879392&amp;guid=8ee73086e80e04948aa764ffb39100c1&amp;type=3#layout" />
+    <Style src="project://database/Assets/UI/USS/utilities.uss?fileID=7433441132597879392&amp;guid=8539e068af2f3d649b34e9bcaf85b14c&amp;type=3#utilities" />
     <engine:VisualElement name="VisualElement" class="ui-screen layout-center" style="display: flex;">
         <engine:VisualElement class="ui-container layout-column layout-center p-xl">
             <engine:Label text="New Game" name="lbl_Options" class="text--hero mb-xl" />
@@ -16,7 +21,6 @@
                 <engine:VisualElement class="layout-row">
                     <engine:Button text="Back" name="btn_Back" class="btn btn--secondary btn--large mr-md" />
                     <engine:Button text="Start Game" name="btn_Confirm" class="btn btn--success btn--large" />
-                    <engine:Button text="Start Game" name="btn_testSave" class="btn btn--success btn--large" />
                 </engine:VisualElement>
             </engine:VisualElement>
         </engine:VisualElement>

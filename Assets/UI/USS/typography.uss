@@ -1,0 +1,69 @@
+/* Typography and Text Styles */
+
+.text {
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    -unity-text-align: middle-left;
+}
+
+.text--secondary {
+    color: rgb(204, 204, 204);
+}
+
+.text--tertiary {
+    color: rgb(153, 153, 153);
+}
+
+.text--disabled {
+    color: rgb(102, 102, 102);
+}
+
+.text--center {
+    -unity-text-align: middle-center;
+}
+
+.text--xs {
+    font-size: 12px;
+}
+
+.text--sm {
+    font-size: 14px;
+}
+
+.text--lg {
+    font-size: 20px;
+}
+
+.text--xl {
+    font-size: 24px;
+}
+
+.text--display {
+    font-size: 48px;
+    color: rgb(107, 179, 255);
+    -unity-text-align: middle-center;
+    margin-bottom: 32px;
+}
+
+.text--hero {
+    font-size: 64px;
+    color: rgb(74, 158, 255);
+    -unity-text-align: middle-center;
+    margin-bottom: 48px;
+}
+
+.text--success {
+    color: rgb(74, 255, 107);
+}
+
+.text--danger {
+    color: rgb(255, 74, 107);
+}
+
+.text--warning {
+    color: rgb(255, 184, 74);
+}
+
+.text--accent {
+    color: rgb(74, 255, 158);
+}

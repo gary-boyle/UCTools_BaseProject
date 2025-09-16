@@ -13,7 +13,16 @@
     <engine:Template name="UI_OptionsPopup" src="project://database/Assets/UI/Popups/UI_OptionsPopup.uxml?fileID=9197481963319205126&amp;guid=ed64c046429a35445870f9cfed7575bd&amp;type=3#UI_OptionsPopup" />
     <engine:Template name="UI_DebugScreen" src="project://database/Assets/UI/Popups/UI_DebugPopup.uxml?fileID=9197481963319205126&amp;guid=4bbac5633f5ec884f85d4878cb799304&amp;type=3#UI_DebugPopup" />
     <engine:Template name="UI_QuitScreen" src="project://database/Assets/UI/Screens/UI_QuitScreen.uxml?fileID=9197481963319205126&amp;guid=8d925a2aa8d7440689269f189b82e524&amp;type=3#UI_QuitScreen" />
-    <Style src="project://database/Assets/UI/USS/default.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3#default" />
+    <!-- Modular Stylesheets -->
+    <Style src="project://database/Assets/UI/USS/core.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3#core" />
+    <Style src="project://database/Assets/UI/USS/typography.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3#typography" />
+    <Style src="project://database/Assets/UI/USS/buttons.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3#buttons" />
+    <Style src="project://database/Assets/UI/USS/forms.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3#forms" />
+    <Style src="project://database/Assets/UI/USS/layout.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3#layout" />
+    <Style src="project://database/Assets/UI/USS/components.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3#components" />
+    <Style src="project://database/Assets/UI/USS/utilities.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3#utilities" />
+    <Style src="project://database/Assets/UI/USS/notifications.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3#notifications" />
+    <Style src="project://database/Assets/UI/USS/debug.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3#debug" />
     <engine:Instance template="UI_SplashWindow" name="UI_SplashScreen" class="ui-screen" />
     <engine:Instance template="UI_MainMenuWindow" name="UI_MainMenuScreen" class="ui-screen" />
     <engine:Instance template="UI_HUDWindow" name="UI_GamePlayScreen" class="ui-screen" style="background-color: rgba(26, 26, 26, 0);" />

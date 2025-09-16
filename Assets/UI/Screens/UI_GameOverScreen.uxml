@@ -1,5 +1,10 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI/USS/default.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3#default" />
+    <!-- Game Over Screen Stylesheets -->
+    <Style src="project://database/Assets/UI/USS/core.uss" />
+    <Style src="project://database/Assets/UI/USS/typography.uss" />
+    <Style src="project://database/Assets/UI/USS/buttons.uss" />
+    <Style src="project://database/Assets/UI/USS/layout.uss" />
+    <Style src="project://database/Assets/UI/USS/utilities.uss" />
     <engine:VisualElement name="UI_SplashWindow" class="ui-screen layout-center" style="display: flex;">
         <engine:VisualElement class="layout-column layout-center">
             <engine:Label text="Game Over" class="text--hero text--danger mb-lg" />

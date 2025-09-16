@@ -1,0 +1,67 @@
+.ui-screen {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: none;
+    background-color: rgb(26, 26, 26);
+    padding: 48px;
+    justify-content: center;
+    align-items: center;
+}
+
+.ui-screen--visible {
+    display: flex;
+}
+
+.ui-popup {
+    background-color: rgb(20, 20, 20);
+    border-radius: 24px;
+    padding: 32px;
+    border-width: 2px;
+    border-color: rgb(68, 68, 68);
+    position: absolute;
+    width: 75%;
+    height: 90%;
+    align-self: center;
+    justify-content: center;
+}
+
+.ui-container {
+    background-color: rgb(42, 42, 42);
+    border-radius: 16px;
+    padding: 24px;
+    margin: 16px;
+    border-left-color: rgb(94, 94, 94);
+    border-right-color: rgb(94, 94, 94);
+    border-top-color: rgb(94, 94, 94);
+    border-bottom-color: rgb(94, 94, 94);
+    border-top-width: 4px;
+    border-right-width: 4px;
+    border-bottom-width: 4px;
+    border-left-width: 4px;
+}
+
+.ui-container--primary {
+    background-color: rgb(26, 26, 26);
+}
+
+.ui-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.85);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.ui-modal-panel {
+    background-color: rgb(42, 42, 42);
+    border-radius: 16px;
+    padding: 40px;
+    border-width: 2px;
+    border-color: rgb(68, 68, 68);
+    min-width: 350px;
+}

@@ -1,0 +1,110 @@
+/* Form Controls - Inputs, Dropdowns, Toggles, Sliders */
+
+.input {
+    height: 60px;
+    background-color: rgb(58, 58, 58);
+    border-radius: 4px;
+    border-width: 2px;
+    border-color: rgb(68, 68, 68);
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    padding: 8px 16px;
+    margin: 8px;
+    flex-grow: 1;
+}
+
+.unity-text-field__input {
+    height: 60px;
+    background-color: rgb(58, 58, 58);
+    border-radius: 4px;
+    border-width: 2px;
+    border-color: rgb(68, 68, 68);
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    padding: 8px 16px;
+    margin: 8px;
+    flex-grow: 1;
+}
+
+.input:focus {
+    border-color: rgb(74, 158, 255);
+    background-color: rgb(42, 42, 42);
+}
+
+.unity-text-field__input:focus {
+    border-color: rgb(74, 158, 255);
+    background-color: rgb(42, 42, 42);
+}
+
+.dropdown {
+    height: 60px;
+    background-color: rgb(58, 58, 58);
+    border-radius: 4px;
+    border-width: 2px;
+    border-color: rgb(68, 68, 68);
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    margin: 8px;
+    padding: 8px 16px;
+}
+
+.unity-dropdown {
+    height: 60px;
+    background-color: rgb(58, 58, 58);
+    border-radius: 4px;
+    border-width: 2px;
+    border-color: rgb(68, 68, 68);
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    margin: 8px;
+    padding: 8px 16px;
+}
+
+.dropdown:focus {
+    border-color: rgb(74, 158, 255);
+}
+
+.unity-dropdown:hover {
+    border-color: rgb(74, 158, 255);
+}
+
+.toggle {
+    margin: 8px;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    align-self: flex-start;
+}
+
+.unity-toggle__input {
+    background-color: rgb(0, 0, 0);
+    border-color: rgb(68, 68, 68);
+}
+
+.unity-toggle__input:checked {
+    border-color: rgb(107, 179, 255);
+}
+
+.slider {
+    margin: 8px;
+    height: 32px;
+}
+
+.slider > .unity-base-slider__tracker {
+    background-color: rgb(58, 58, 58);
+    border-radius: 4px;
+}
+
+.slider > .unity-base-slider__dragger {
+    background-color: rgb(74, 158, 255);
+    border-radius: 10px;
+    border-width: 2px;
+    border-color: rgb(46, 124, 214);
+}
+
+.slider > .unity-progress-bar__progress {
+    background-color: rgb(107, 179, 255);
+}
+
+.unity-popup-field__input {
+    background-color: rgb(36, 36, 36);
+}

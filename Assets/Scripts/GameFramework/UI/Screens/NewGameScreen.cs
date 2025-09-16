@@ -22,7 +22,6 @@ namespace GameFramework.UI.Screens
         
         private Button _confirmButton;
         private Button _backButton;
-        private Button _testSaveButton;
         
         private TextField _playerNameTextField;
         private DropdownField _difficultyDropdown;
@@ -70,7 +69,6 @@ namespace GameFramework.UI.Screens
             // Cache UI elements
             _confirmButton = RootElement?.Q<Button>("btn_Confirm");
             _backButton = RootElement?.Q<Button>("btn_Back");
-            _testSaveButton = RootElement?.Q<Button>("btn_testSave");
             
             _playerNameTextField = RootElement?.Q<TextField>("txt_PlayerName");
             _difficultyDropdown = RootElement?.Q<DropdownField>("dd_Difficulty");
@@ -117,7 +115,6 @@ namespace GameFramework.UI.Screens
             _confirmButton?.RegisterCallback<ClickEvent>(OnNewGameClicked);
             _backButton?.RegisterCallback<ClickEvent>(OnBackButtonClicked);
             _playerNameTextField?.RegisterCallback<KeyDownEvent>(OnTextFieldKeyDown);
-            _testSaveButton?.RegisterCallback<ClickEvent>(OnSaveButtonClicked);
         }
         
         private void UnregisterUIEventHandlers()
@@ -125,7 +122,6 @@ namespace GameFramework.UI.Screens
             _confirmButton?.UnregisterCallback<ClickEvent>(OnNewGameClicked);
             _backButton?.UnregisterCallback<ClickEvent>(OnBackButtonClicked);
             _playerNameTextField?.UnregisterCallback<KeyDownEvent>(OnTextFieldKeyDown);
-            _testSaveButton?.UnregisterCallback<ClickEvent>(OnSaveButtonClicked);
         }
         
         #endregion
@@ -198,13 +194,6 @@ namespace GameFramework.UI.Screens
             }
         }
         
-        /// <summary>
-        /// Test save button for development/testing
-        /// </summary>
-        private async void OnSaveButtonClicked(ClickEvent evt)
-        {
-            await ShowSaveGamePopup();
-        }
         
         #endregion
         
@@ -240,22 +229,6 @@ namespace GameFramework.UI.Screens
             {
                 _confirmButton.SetEnabled(true);
                 _confirmButton.text = "Start New Game";
-            }
-        }
-        
-        /// <summary>
-        /// Development/testing method to show save popup
-        /// </summary>
-        private async Task ShowSaveGamePopup()
-        {
-            try
-            {
-                Debug.Log("[NewGameScreen] Opening Save Game popup for testing");
-                await GameManager.GetService<IUIService>().ShowPopupAsync<SaveGamePopup>();
-            }
-            catch (Exception ex)
-            {
-                Debug.LogError($"[NewGameScreen] Error showing Save Game popup: {ex}");
             }
         }
         

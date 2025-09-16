@@ -1,0 +1,105 @@
+/* Button Styles and Variants */
+
+.btn {
+    height: 48px;
+    border-radius: 8px;
+    font-size: 20px;
+    margin: 8px;
+    padding: 16px;
+    border-width: 2px;
+    transition-duration: 0.2s;
+    cursor: link;
+    background-color: rgb(58, 58, 58);
+    color: rgb(255, 255, 255);
+    border-color: rgb(68, 68, 68);
+}
+
+.unity-button {
+    height: 48px;
+    border-radius: 8px;
+    font-size: 20px;
+    margin: 8px;
+    padding: 16px;
+    border-width: 2px;
+    transition-duration: 0.2s;
+    cursor: link;
+    background-color: rgb(58, 58, 58);
+    color: rgb(255, 255, 255);
+    border-color: rgb(68, 68, 68);
+}
+
+.btn:hover {
+    background-color: rgb(74, 74, 74);
+    border-color: rgb(74, 158, 255);
+    scale: 1.05;
+}
+
+.unity-button:hover {
+    background-color: rgb(74, 74, 74);
+    border-color: rgb(74, 158, 255);
+    scale: 1.05;
+}
+
+.btn:active {
+    background-color: rgb(42, 42, 42);
+    scale: 0.95;
+}
+
+.unity-button:active {
+    background-color: rgb(42, 42, 42);
+    scale: 0.95;
+}
+
+.btn--primary {
+    background-color: rgb(74, 158, 255);
+    border-color: rgb(46, 124, 214);
+}
+
+.btn--primary:hover {
+    background-color: rgb(107, 179, 255);
+}
+
+.btn--primary:active {
+    background-color: rgb(46, 124, 214);
+}
+
+.btn--danger {
+    background-color: rgb(255, 74, 107);
+    border-color: rgb(229, 74, 46);
+}
+
+.btn--danger:hover {
+    background-color: rgb(255, 138, 107);
+}
+
+.btn--success {
+    background-color: rgb(74, 255, 107);
+    border-color: rgb(46, 229, 124);
+}
+
+.btn--success:hover {
+    background-color: rgb(107, 255, 179);
+}
+
+.btn--large {
+    height: 64px;
+    font-size: 24px;
+    min-width: 200px;
+}
+
+.btn--small {
+    height: 32px;
+    font-size: 14px;
+    min-width: 80px;
+    padding: 8px;
+}
+
+.btn--close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 75px;
+    height: 75px;
+    border-radius: 20px;
+    align-items: flex-end;
+}
