@@ -13,7 +13,7 @@ namespace GameFramework.Services.Interfaces
         bool IsInitialized { get; }
         
         // Time Properties
-        double GameTime { get; } // Add this for precision when needed
+        long GameTime { get; } // Add this for precision when needed
 
         // State Properties
         bool IsTrackingGameTime { get; }

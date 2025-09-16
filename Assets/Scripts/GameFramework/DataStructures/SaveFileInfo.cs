@@ -17,7 +17,7 @@ namespace GameFramework.DataStructures
         [SerializeField] private string _playerName;
         [SerializeField] private string _currentScene;
         [SerializeField] private long _lastSaveTimeTicks;
-        [SerializeField] private float _gameTime; 
+        [SerializeField] private long _gameTime; 
         [SerializeField] private bool _wasAutoSaved;
         #endregion
 
@@ -25,7 +25,7 @@ namespace GameFramework.DataStructures
         public string FileName => _fileName;
         public string PlayerName => _playerName;
         public string CurrentScene => _currentScene;
-        public float GameTime => _gameTime;
+        public long GameTime => _gameTime;
         public bool WasAutoSaved => _wasAutoSaved;
         
         /// <summary>
@@ -53,7 +53,7 @@ namespace GameFramework.DataStructures
             _playerName = "Unknown";
             _currentScene = "Unknown";
             _lastSaveTimeTicks = DateTime.Now.Ticks;
-            _gameTime = 0f;
+            _gameTime = 0;
             _wasAutoSaved = false;
         }
 
@@ -78,14 +78,14 @@ namespace GameFramework.DataStructures
                 {
                     Debug.LogWarning($"[SaveFileInfo] Failed to extract GameSessionData from {fileName}: {ex.Message}");
                     _currentScene = "Unknown";
-                    _gameTime = 0f;
+                    _gameTime = 0;
                 }
             }
             else
             {
                 Debug.LogWarning($"[SaveFileInfo] GameSessionData is null in save file {fileName}");
                 _currentScene = "Unknown";
-                _gameTime = 0f;
+                _gameTime = 0;
             }
 
             // Extract PlayerData directly from field
@@ -157,7 +157,7 @@ namespace GameFramework.DataStructures
                 _playerName = "Corrupted Save",
                 _currentScene = "Unknown",
                 _lastSaveTimeTicks = DateTime.MinValue.Ticks,
-                _gameTime = 0f,
+                _gameTime = 0,
                 _wasAutoSaved = false
             };
         }

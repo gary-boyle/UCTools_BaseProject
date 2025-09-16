@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
+using GameFramework.DataStructures;
 using UnityEngine;
 using GameFramework.Services.Interfaces;
 using GameFramework.SaveSystem.Data;
@@ -132,17 +134,17 @@ namespace GameFramework.SaveSystem.Services
         private async Task<string> ProcessSaveRequest(SaveRequestedEvent saveEvent)
         {
             string fileName;
-            
+    
             switch (saveEvent.SaveType)
             {
                 case SaveType.Regular:
                     fileName = GenerateRegularSaveFileName();
                     break;
-                    
+            
                 case SaveType.Auto:
-                    fileName = GenerateAutoSaveFileName();
+                    fileName = await GetAutoSaveFileName();
                     break;
-                    
+            
                 case SaveType.Overwrite:
                     if (saveEvent.TargetSaveFile == null)
                     {
@@ -150,13 +152,14 @@ namespace GameFramework.SaveSystem.Services
                     }
                     fileName = saveEvent.TargetSaveFile.FileName;
                     break;
-                    
+            
                 default:
                     throw new ArgumentException($"Unknown save type: {saveEvent.SaveType}");
             }
 
             return await PerformSave(fileName, saveEvent.SaveType == SaveType.Auto);
         }
+
 
         /// <summary>
         /// Performs the actual save operation
@@ -279,13 +282,47 @@ namespace GameFramework.SaveSystem.Services
         }
 
         /// <summary>
-        /// Generates filename for auto saves with timestamp
+        /// Generates filename for auto saves with timestamp (fallback for when no UniqueID available)
         /// </summary>
         private string GenerateAutoSaveFileName()
         {
             string timestamp = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
             return $"{AUTO_SAVE_PREFIX}{timestamp}{SAVE_FILE_EXTENSION}";
         }
+        
+        /// <summary>
+        /// Gets the auto-save filename for the current player using their unique ID
+        /// Returns existing auto-save filename if found, otherwise generates new one
+        /// </summary>
+        private async Task<string> GetAutoSaveFileName()
+        {
+            // Get current player from registered saveables
+            var registeredObjects = _saveDataRegistry.GetAllSaveableObjects();
+            var playerData = registeredObjects.Values.FirstOrDefault(s => s.SaveKey == "PlayerData") as PlayerData;
+    
+            if (playerData?.UniqueID == null)
+            {
+                Debug.LogWarning("[SaveService] No Player UniqueID found, using timestamp-based auto-save");
+                return GenerateAutoSaveFileName();
+            }
+
+            string playerUniqueId = playerData.UniqueID;
+            string autoSaveFileName = $"AutoSave_{playerUniqueId}.json";
+    
+            // Check if this auto-save already exists
+            string autoSaveFilePath = Path.Combine(_saveDirectory, autoSaveFileName);
+            if (File.Exists(autoSaveFilePath))
+            {
+                Debug.Log($"[SaveService] Found existing auto-save for player {playerUniqueId}, will overwrite: {autoSaveFileName}");
+                return autoSaveFileName;
+            }
+            else
+            {
+                Debug.Log($"[SaveService] Creating new auto-save for player {playerUniqueId}: {autoSaveFileName}");
+                return autoSaveFileName;
+            }
+        }
+
         #endregion
 
         #region Event Publishing

@@ -3,8 +3,9 @@
     [System.Serializable]
     public class GameSessionSaveData
     {
+        public string uniqueID;
         public string difficulty;
         public string currentScene;
-        public float gameTime;
+        public long gameTime;
     }
 }

@@ -239,14 +239,39 @@ namespace GameFramework.LoadSystem.Services
 
         private GameSessionData ConvertToGameSessionData(GameSessionSaveData saveData)
         {
-            if (saveData == null) return null;
-            return new GameSessionData(saveData.difficulty, saveData.currentScene, saveData.gameTime);
+            if (saveData == null)
+            {
+                Debug.LogError("[LoadService] Cannot convert null GameSessionSaveData");
+                return null;
+            }
+
+            // Use constructor that preserves the unique ID from save data
+            return new GameSessionData(
+                saveData.uniqueID,   
+                saveData.difficulty,
+                saveData.currentScene,
+                saveData.gameTime
+            );
         }
 
+        /// <summary>
+        /// Converts PlayerSaveData to PlayerData - preserves unique ID
+        /// </summary>
         private PlayerData ConvertToPlayerData(PlayerSaveData saveData)
         {
-            if (saveData == null) return null;
-            return new PlayerData(saveData.playerName, saveData.Position, saveData.Rotation);
+            if (saveData == null)
+            {
+                Debug.LogError("[LoadService] Cannot convert null PlayerSaveData");
+                return null;
+            }
+
+            // Use constructor that preserves the unique ID from save data
+            return new PlayerData(
+                saveData.uniqueID,      // Preserve the loaded unique ID
+                saveData.playerName,
+                saveData.Position,
+                saveData.Rotation
+            );
         }
         #endregion
     }

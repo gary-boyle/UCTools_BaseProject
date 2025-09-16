@@ -26,7 +26,7 @@ namespace GameFramework.Services.Interfaces
         /// <summary>
         /// Updates specific game session properties
         /// </summary>
-        void UpdateGameSession(string difficulty = null, string currentScene = null, float? gameTime = null);
+        void UpdateGameSession(string difficulty = null, string currentScene = null, long? gameTime = null);
         
         bool HasActiveSession();
         #endregion

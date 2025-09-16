@@ -1,12 +1,12 @@
 ﻿using GameFramework.SaveSystem.Data;
-using GameFramework.SaveSystem.Interfaces;
 using UnityEngine;
+using GameFramework.SaveSystem.Interfaces;
+using GameFramework.SaveSystem.Utilities;
 
 namespace GameFramework.DataStructures
 {
     /// <summary>
-    /// Player data implementation of ISaveable
-    /// Stores player name, position, and rotation information
+    /// Player data with unique ID for identification and single auto-save per player
     /// </summary>
     [System.Serializable]
     public class PlayerData : ISaveable
@@ -17,50 +17,59 @@ namespace GameFramework.DataStructures
         #endregion
 
         #region Private Fields
-        [SerializeField] private string playerName = "";
-        [SerializeField] private Vector3 position = Vector3.zero;
-        [SerializeField] private Vector3 rotation = Vector3.zero;
+        [SerializeField] private string _uniqueID;      // Unique identifier for this player instance
+        [SerializeField] private string _playerName;
+        [SerializeField] private Vector3 _position;
+        [SerializeField] private Vector3 _rotation;
         #endregion
 
         #region Public Properties
+        
+        public string UniqueID
+        {
+            get => _uniqueID;
+            private set
+            {
+                if (string.IsNullOrEmpty(value) || !UniqueIDGenerator.IsValidUniqueID(value))
+                {
+                    Debug.LogError($"[GameSessionData] Invalid UniqueID assigned: {value}");
+                    return;
+                }
+                _uniqueID = value;
+            }
+        }
+        
         public string PlayerName 
         { 
-            get => playerName; 
-            set => playerName = value; 
+            get => _playerName; 
+            set => _playerName = value; 
         }
         
         public Vector3 Position 
         { 
-            get => position; 
-            set => position = value; 
+            get => _position; 
+            set => _position = value; 
         }
         
         public Vector3 Rotation 
         { 
-            get => rotation; 
-            set => rotation = value; 
+            get => _rotation; 
+            set => _rotation = value; 
         }
         #endregion
 
         #region ISaveable Methods
-        /// <summary>
-        /// Gets serializable data for save operations
-        /// Creates nested structure matching JSON requirements
-        /// </summary>
         public object GetSaveData()
         {
             return new PlayerSaveData
             {
-                playerName = PlayerName,
-                Position = Position,
-                Rotation = Rotation
+                uniqueID = _uniqueID,
+                playerName = _playerName,
+                Position = new Vector3(_position.x, _position.y, _position.z),
+                Rotation = new Vector3(_rotation.x, _rotation.y, _rotation.z)
             };
         }
 
-        /// <summary>
-        /// Restores state from saved data
-        /// Handles nested object structure safely
-        /// </summary>
         public void LoadSaveData(object data)
         {
             if (data == null)
@@ -71,23 +80,26 @@ namespace GameFramework.DataStructures
 
             try
             {
-                // Handle JsonUtility deserialization
                 if (data is PlayerData directData)
                 {
-                    playerName = directData.playerName;
-                    position = directData.position;
-                    rotation = directData.rotation;
+                    _uniqueID = directData._uniqueID;
+                    _playerName = directData._playerName;
+                    _position = directData._position;
+                    _rotation = directData._rotation;
                 }
                 else
                 {
-                    // Handle dynamic object from JSON
                     var json = JsonUtility.ToJson(data);
-                    var loadedData = JsonUtility.FromJson<PlayerData>(json);
-                    
-                    playerName = loadedData.playerName;
-                    position = loadedData.position;
-                    rotation = loadedData.rotation;
+                    var loadedData = JsonUtility.FromJson<PlayerSaveData>(json);
+            
+                    _uniqueID = loadedData.uniqueID;
+                    _playerName = loadedData.playerName;
+                    _position = loadedData.Position;
+                    _rotation = loadedData.Rotation;
                 }
+        
+                // IMPORTANT: Always update the public property when loading
+                UniqueID = _uniqueID;
             }
             catch (System.Exception ex)
             {
@@ -97,15 +109,39 @@ namespace GameFramework.DataStructures
         #endregion
 
         #region Constructors
-        public PlayerData() { }
+        public PlayerData() 
+        {
+            GenerateUniqueId();
+        }
 
         public PlayerData(string playerName, Vector3 position, Vector3 rotation)
         {
-            this.playerName = playerName;
-            this.position = position;
-            this.rotation = rotation;
+            GenerateUniqueId();
+            this.PlayerName = playerName;
+            this.Position = position;
+            this.Rotation = rotation;
+        }
+
+        /// <summary>
+        /// Constructor for loading existing player with known ID
+        /// </summary>
+        public PlayerData(string uniqueID, string playerName, Vector3 position, Vector3 rotation)
+        {
+            this.UniqueID = uniqueID;
+            this.PlayerName = playerName;
+            this.Position = position;
+            this.Rotation = rotation;
+        }
+        #endregion
+
+        #region Private Methods
+        /// <summary>
+        /// Generates a new unique ID for this player
+        /// </summary>
+        private void GenerateUniqueId()
+        {
+            UniqueID = UniqueIDGenerator.GenerateUniqueID("player");
         }
         #endregion
     }
-    
 }

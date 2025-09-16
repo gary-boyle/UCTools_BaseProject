@@ -5,6 +5,7 @@ using UnityEngine;
 using GameFramework.GameData.Events;
 using GameFramework.EventSystem.Interfaces;
 using GameFramework.SaveSystem.Interfaces;
+using GameFramework.SaveSystem.Utilities;
 using GameFramework.Services.Interfaces;
 
 namespace GameFramework.GameData.Services
@@ -119,7 +120,7 @@ namespace GameFramework.GameData.Services
         /// <summary>
         /// Updates specific game session properties
         /// </summary>
-        public void UpdateGameSession(string difficulty = null, string currentScene = null, float? gameTime = null)
+        public void UpdateGameSession(string difficulty = null, string currentScene = null, long? gameTime = null)
         {
             if (!IsInitialized || _currentGameSession == null)
             {
@@ -262,7 +263,7 @@ namespace GameFramework.GameData.Services
             }
             
             // Create new game session
-            var newGameSession = new GameSessionData(difficulty, startingScene, 0f);
+            var newGameSession = new GameSessionData(difficulty, startingScene, 0);
             SetGameSessionData(newGameSession);
 
             // Create new player
@@ -330,7 +331,7 @@ namespace GameFramework.GameData.Services
         private void InitializeDefaultGameData()
         {
             // Create default game session
-            _currentGameSession = new GameSessionData("Normal", "MainMenu", 0f);
+            _currentGameSession = new GameSessionData("Normal", "MainMenu", 0);
 
             // Create default player
             _currentPlayerData = new PlayerData("Player", Vector3.zero, Vector3.zero);

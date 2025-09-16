@@ -1,29 +1,45 @@
 ﻿using GameFramework.SaveSystem.Data;
+using GameFramework.SaveSystem.Utilities;
 using UnityEngine;
 using GameFramework.SaveSystem.Interfaces;
 
 namespace GameFramework.DataStructures
 {
     /// <summary>
-    /// Game session data implementation of ISaveable
+    /// Game session data implementation of ISaveable with unique ID
     /// Stores difficulty, scene, and game time information
-    /// Single source of truth for game time - TimeService directly updates GameTimeDouble
     /// </summary>
     [System.Serializable]
     public class GameSessionData : ISaveable
     {
         #region ISaveable Implementation
+        //public string UniqueID { get; private set; }
         public string SaveKey => "GameSessionData";
         public string TypeName => typeof(GameSessionData).Name;
         #endregion
 
         #region Private Fields
+        [SerializeField] private string _uniqueID;
         [SerializeField] private string _difficulty = "Normal";
         [SerializeField] private string _currentScene = "MainMenu";
-        [SerializeField] private double _gameTime = 0.0;
+        [SerializeField] private long _gameTime = 0;
         #endregion
 
         #region Public Properties
+        public string UniqueID
+        {
+            get => _uniqueID;
+            private set
+            {
+                if (string.IsNullOrEmpty(value) || !UniqueIDGenerator.IsValidUniqueID(value))
+                {
+                    Debug.LogError($"[GameSessionData] Invalid UniqueID assigned: {value}");
+                    return;
+                }
+                _uniqueID = value;
+            }
+        }
+        
         public string Difficulty 
         { 
             get => _difficulty; 
@@ -36,10 +52,11 @@ namespace GameFramework.DataStructures
             set => _currentScene = value; 
         }
         
+        
         /// <summary>
         /// Game time with double precision - TimeService updates this directly
         /// </summary>
-        public double GameTime 
+        public long GameTime 
         { 
             get => _gameTime; 
             set => _gameTime = value; 
@@ -55,15 +72,15 @@ namespace GameFramework.DataStructures
         {
             return new GameSessionSaveData
             {
-                difficulty = Difficulty,
-                currentScene = CurrentScene,
-                gameTime = (float)_gameTime  // Cast to float for save format compatibility
+                uniqueID = _uniqueID,
+                difficulty = _difficulty,
+                currentScene = _currentScene,
+                gameTime = _gameTime
             };
         }
 
         /// <summary>
         /// Restores state from saved data
-        /// Handles dynamic object deserialization safely
         /// </summary>
         public void LoadSaveData(object data)
         {
@@ -75,25 +92,26 @@ namespace GameFramework.DataStructures
 
             try
             {
-                // Handle JsonUtility deserialization
                 if (data is GameSessionData directData)
                 {
+                    _uniqueID = directData._uniqueID;
                     _difficulty = directData._difficulty;
                     _currentScene = directData._currentScene;
                     _gameTime = directData._gameTime;
                 }
                 else
                 {
-                    // Handle dynamic object from JSON
                     var json = JsonUtility.ToJson(data);
-                    var loadedData = JsonUtility.FromJson<GameSessionData>(json);
-                    
-                    _difficulty = loadedData._difficulty;
-                    _currentScene = loadedData._currentScene;
-                    _gameTime = loadedData._gameTime;
+                    var loadedData = JsonUtility.FromJson<GameSessionSaveData>(json);
+            
+                    _uniqueID = loadedData.uniqueID;
+                    _difficulty = loadedData.difficulty;
+                    _currentScene = loadedData.currentScene;
+                    _gameTime = loadedData.gameTime;
                 }
-                
-                Debug.Log($"[GameSessionData] Loaded save data - Difficulty: {_difficulty}, Scene: {_currentScene}, Time: {_gameTime}");
+        
+                // IMPORTANT: Always update the public property when loading
+                UniqueID = _uniqueID;
             }
             catch (System.Exception ex)
             {
@@ -103,13 +121,34 @@ namespace GameFramework.DataStructures
         #endregion
 
         #region Constructors
-        public GameSessionData() { }
         
-        public GameSessionData(string difficulty, string currentScene, double gameTime)
+        /// <summary>
+        /// Constructor for loading existing session with known ID
+        /// </summary>
+        public GameSessionData(string difficulty, string currentScene, long gameTime)
         {
-            this._difficulty = difficulty;
-            this._currentScene = currentScene;
-            this._gameTime = gameTime;
+            this.UniqueID = GenerateUniqueId();
+            this.Difficulty = difficulty;
+            this.CurrentScene = currentScene;
+            this.GameTime = gameTime;
+        }
+        
+        public GameSessionData(string gameSessionID, string difficulty, string currentScene, long gameTime)
+        {
+            this.UniqueID = gameSessionID;
+            this.Difficulty = difficulty;
+            this.CurrentScene = currentScene;
+            this.GameTime = gameTime;
+        }
+        #endregion
+
+        #region Private Methods
+        /// <summary>
+        /// Generates a new unique ID for this game session
+        /// </summary>
+        private string GenerateUniqueId()
+        {
+            return UniqueIDGenerator.GenerateUniqueID("session");
         }
         #endregion
     }

@@ -9,6 +9,12 @@ namespace GameFramework.SaveSystem.Interfaces
     public interface ISaveable
     {
         /// <summary>
+        /// Unique identifier for this specific instance of the saveable object
+        /// Generated once and persists across saves/loads
+        /// </summary>
+        string UniqueID { get; }
+
+        /// <summary>
         /// Unique identifier for this saveable object in the save file
         /// </summary>
         string SaveKey { get; }

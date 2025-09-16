@@ -27,10 +27,11 @@ namespace GameFramework.Services
         /// <summary>
         /// Get current game time with double precision from GameSessionData
         /// </summary>
-        public double GameTime => _gameDataService?.GetGameSessionData()?.GameTime ?? 0.0;
+        public long GameTime => _gameDataService?.GetGameSessionData()?.GameTime ?? 0;
         
         // Level time stays local since it's not saved
-        private double _levelTime = 0.0;
+        private long _levelTime = 0;
+        private double _deltaTimeAccumulator = 0.0;
         
         // State tracking
         public bool IsTrackingGameTime => _isInPlayingState && !_isPaused;
@@ -116,6 +117,7 @@ namespace GameFramework.Services
         /// GameSessionData is the single source of truth for game time
         /// Uses double precision for accurate tracking of large time values
         /// </summary>
+
         public void Update()
         {
             if (!_isInitialized) return;
@@ -131,9 +133,19 @@ namespace GameFramework.Services
             // Update timers based on current state
             if (!_isPaused && _isInPlayingState)
             {
-                // Directly update the GameSessionData - single source of truth
-                gameSession.GameTime += deltaTime;
-                _levelTime += deltaTime;
+                // Accumulate deltaTime
+                _deltaTimeAccumulator += deltaTime;
+
+                // Increment GameTime when accumulated deltaTime exceeds 1
+                while (_deltaTimeAccumulator >= 1.0)
+                {
+                    gameSession.GameTime++;
+                    _levelTime++;
+
+                    _deltaTimeAccumulator = 0.0;
+                }
+
+                // Update level time
             }
         }
 
@@ -161,9 +173,9 @@ namespace GameFramework.Services
             var gameSession = _gameDataService?.GetGameSessionData();
             if (gameSession != null)
             {
-                gameSession.GameTime = 0.0;
+                gameSession.GameTime = 0;
             }
-            _levelTime = 0.0;
+            _levelTime = 0;
         }
         
         /// <summary>
@@ -171,7 +183,7 @@ namespace GameFramework.Services
         /// </summary>
         public void ResetLevelTimer()
         {
-            _levelTime = 0.0;
+            _levelTime = 0;
         }
         
         // /// <summary>
