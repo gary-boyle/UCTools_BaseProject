@@ -5,6 +5,7 @@ using System.Reflection;
 using GameFramework.DataStructures;
 using GameFramework.Editor.SaveFileManager.ScriptableObjects;
 using GameFramework.SaveSystem.Data;
+using GameFramework.SaveSystem.Utilities;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -12,8 +13,20 @@ using UnityEngine.UIElements;
 namespace GameFramework.Editor.SaveFileManager.UI
 {
     /// <summary>
-    /// Panel for displaying detailed information about a selected save file
-    /// Uses reflection-based field display for flexibility with changing save structures
+    /// Enhanced panel for displaying detailed information about a selected save file
+    /// 
+    /// Features:
+    /// - Loads full SaveFileData directly from JSON for complete information access
+    /// - Displays nested objects (GameSessionData, PlayerData) with all their fields
+    /// - Supports Vector3, DateTime, and other Unity/complex types with proper formatting  
+    /// - Configurable field display through SaveFileDisplayConfig (supports nested field paths)
+    /// - Dynamic field discovery to automatically show all available data (extensible for future arbitrary data)
+    /// - Uses reflection-based field display for maximum flexibility with changing save structures
+    /// 
+    /// Configuration:
+    /// - Use dot notation in SaveFileDisplayConfig for nested fields (e.g., "PlayerData.uniqueID")
+    /// - Toggle ShowDynamicFieldDiscovery to show/hide complete data structure discovery
+    /// - System automatically handles new fields added to SaveFileData structure
     /// </summary>
     public class SaveFileDetailsPanel : VisualElement
     {
@@ -34,6 +47,7 @@ namespace GameFramework.Editor.SaveFileManager.UI
         
         // Data
         private SaveFileInfo _currentSave;
+        private SaveFileData _currentSaveData; // Full save data for enhanced display
         private ScriptableObjects.SaveFileDisplayConfig _displayConfig;
         private VisualTreeAsset _fieldItemTemplate; 
         
@@ -96,12 +110,16 @@ namespace GameFramework.Editor.SaveFileManager.UI
         {
             _currentSave = saveInfo;
             _displayConfig = displayConfig;
+            _currentSaveData = null; // Reset full save data
             
             if (saveInfo == null)
             {
                 ShowNoSelection();
                 return;
             }
+            
+            // Load full save data for enhanced display
+            LoadFullSaveData();
             
             ShowDetailsContent();
             UpdateFieldsDisplay();
@@ -121,6 +139,29 @@ namespace GameFramework.Editor.SaveFileManager.UI
             _detailsContent.style.display = DisplayStyle.Flex;
         }
         
+        private void LoadFullSaveData()
+        {
+            if (_currentSave == null) return;
+            
+            try
+            {
+                var savePath = GetSaveFilePath(_currentSave.FileName);
+                if (File.Exists(savePath))
+                {
+                    var jsonContent = File.ReadAllText(savePath);
+                    _currentSaveData = JsonSerializationHelper.DeserializeFromJson<SaveFileData>(jsonContent);
+                }
+                else
+                {
+                    Debug.LogWarning($"[SaveFileDetailsPanel] Save file not found: {savePath}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"[SaveFileDetailsPanel] Failed to load full save data: {ex.Message}");
+            }
+        }
+        
         private void UpdateFieldsDisplay()
         {
             _fieldsContainer.Clear();
@@ -129,16 +170,62 @@ namespace GameFramework.Editor.SaveFileManager.UI
             
             if (_displayConfig?.DisplayFields != null && _displayConfig.DisplayFields.Count > 0)
             {
-                // Use configured fields
+                // Use configured fields - but now support nested paths
                 foreach (var fieldConfig in _displayConfig.DisplayFields)
                 {
-                    CreateFieldDisplay(fieldConfig.FieldName, fieldConfig.DisplayName, fieldConfig.IsReadOnly);
+                    CreateFieldDisplayFromConfig(fieldConfig);
                 }
             }
             else
             {
-                // Use default fields
-                CreateDefaultFieldDisplays();
+                // Use enhanced default fields showing full save data
+                CreateEnhancedDefaultFieldDisplays();
+            }
+            
+            // Show dynamic field discovery if enabled (for debugging and future extensibility)
+            if (_displayConfig?.ShowDynamicFieldDiscovery == true)
+            {
+                CreateSectionHeader("Complete Save Data (All Fields)");
+                CreateDynamicFieldDiscovery();
+            }
+        }
+        
+        private void CreateEnhancedDefaultFieldDisplays()
+        {
+            // Basic save file info
+            CreateSectionHeader("Save File Information");
+            CreateFieldDisplay(nameof(SaveFileInfo.FileName), "File Name", true, _currentSave);
+            CreateFieldDisplay(nameof(SaveFileInfo.WasAutoSaved), "Auto Save", true, _currentSave);
+            CreateFieldDisplay(nameof(SaveFileInfo.LastSaveTime), "Last Save Time", true, _currentSave);
+            
+            if (_currentSaveData != null)
+            {
+                // Player Data section
+                if (_currentSaveData.PlayerData != null)
+                {
+                    CreateSectionHeader("Player Data");
+                    CreateNestedFieldDisplay("PlayerData.uniqueID", "Player Unique ID", _currentSaveData.PlayerData.uniqueID);
+                    CreateNestedFieldDisplay("PlayerData.playerName", "Player Name", _currentSaveData.PlayerData.playerName);
+                    CreateVector3FieldDisplay("PlayerData.Position", "Player Position", _currentSaveData.PlayerData.Position);
+                    CreateVector3FieldDisplay("PlayerData.Rotation", "Player Rotation", _currentSaveData.PlayerData.Rotation);
+                }
+                
+                // Game Session Data section
+                if (_currentSaveData.GameSessionData != null)
+                {
+                    CreateSectionHeader("Game Session Data");
+                    CreateNestedFieldDisplay("GameSessionData.uniqueID", "Session Unique ID", _currentSaveData.GameSessionData.uniqueID);
+                    CreateNestedFieldDisplay("GameSessionData.difficulty", "Difficulty", _currentSaveData.GameSessionData.difficulty);
+                    CreateNestedFieldDisplay("GameSessionData.currentScene", "Current Scene", _currentSaveData.GameSessionData.currentScene);
+                    CreateNestedFieldDisplay("GameSessionData.gameTime", "Game Time", _currentSaveData.GameSessionData.gameTime);
+                }
+            }
+            else
+            {
+                // Fallback to basic info if full data couldn't be loaded
+                CreateFieldDisplay(nameof(SaveFileInfo.PlayerName), "Player Name", true, _currentSave);
+                CreateFieldDisplay(nameof(SaveFileInfo.CurrentScene), "Current Scene", true, _currentSave);
+                CreateFieldDisplay(nameof(SaveFileInfo.GameTime), "Game Time", true, _currentSave);
             }
         }
         
@@ -150,10 +237,21 @@ namespace GameFramework.Editor.SaveFileManager.UI
             CreateFieldDisplay(nameof(SaveFileInfo.WasAutoSaved), "Auto Save");
             CreateFieldDisplay(nameof(SaveFileInfo.GameTime), "Game Time");
             CreateFieldDisplay(nameof(SaveFileInfo.LastSaveTime), "Last Save time");
-
         }
         
-        private void CreateFieldDisplay(string fieldName, string displayName, bool isReadOnly = true)
+        private void CreateSectionHeader(string sectionTitle)
+        {
+            var headerElement = new Label(sectionTitle);
+            headerElement.AddToClassList("section-header");
+            headerElement.style.fontSize = 14;
+            headerElement.style.unityFontStyleAndWeight = FontStyle.Bold;
+            headerElement.style.marginTop = 10;
+            headerElement.style.marginBottom = 5;
+            headerElement.style.color = new StyleColor(new Color(0.8f, 0.8f, 0.8f));
+            _fieldsContainer.Add(headerElement);
+        }
+        
+        private void CreateNestedFieldDisplay(string fieldPath, string displayName, object value)
         {
             try
             {
@@ -161,21 +259,283 @@ namespace GameFramework.Editor.SaveFileManager.UI
                 var fieldLabel = fieldItem.Q<Label>("field-label");
                 fieldLabel.text = displayName;
                 
+                // Display the value directly
+                DisplayFieldValue(fieldItem, value, value?.GetType() ?? typeof(string), true);
+                
+                _fieldsContainer.Add(fieldItem);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"Error creating nested field display for {fieldPath}: {ex.Message}");
+            }
+        }
+        
+        private void CreateVector3FieldDisplay(string fieldPath, string displayName, Vector3 vector)
+        {
+            try
+            {
+                var fieldItem = _fieldItemTemplate.CloneTree();
+                var fieldLabel = fieldItem.Q<Label>("field-label");
+                fieldLabel.text = displayName;
+                
+                // Format Vector3 as a readable string
+                var vectorString = $"({vector.x:F3}, {vector.y:F3}, {vector.z:F3})";
+                DisplayFieldValue(fieldItem, vectorString, typeof(string), true);
+                
+                _fieldsContainer.Add(fieldItem);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"Error creating Vector3 field display for {fieldPath}: {ex.Message}");
+            }
+        }
+        
+        private void CreateFieldDisplayFromConfig(SaveFileDisplayConfig.FieldDisplayConfig fieldConfig)
+        {
+            // Enhanced version that supports nested field paths
+            if (fieldConfig.FieldName.Contains("."))
+            {
+                // Handle nested field path (e.g., "PlayerData.uniqueID")
+                var value = GetNestedFieldValue(fieldConfig.FieldName);
+                CreateNestedFieldDisplay(fieldConfig.FieldName, fieldConfig.DisplayName, value);
+            }
+            else
+            {
+                // Handle simple field from SaveFileInfo
+                CreateFieldDisplay(fieldConfig.FieldName, fieldConfig.DisplayName, fieldConfig.IsReadOnly, _currentSave);
+            }
+        }
+        
+        private void CreateDynamicFieldDiscovery()
+        {
+            if (_currentSaveData == null) return;
+            
+            try
+            {
+                // Discover all fields and properties in SaveFileData
+                var saveDataType = typeof(SaveFileData);
+                var fields = saveDataType.GetFields(BindingFlags.Public | BindingFlags.Instance);
+                var properties = saveDataType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+                
+                // Display root level fields
+                CreateSubSectionHeader("Root Level Fields");
+                foreach (var field in fields)
+                {
+                    if (field.IsPublic)
+                    {
+                        var value = field.GetValue(_currentSaveData);
+                        CreateDynamicFieldDisplay($"SaveFileData.{field.Name}", GetFriendlyName(field.Name), value, field.FieldType);
+                    }
+                }
+                
+                foreach (var property in properties)
+                {
+                    if (property.CanRead)
+                    {
+                        try
+                        {
+                            var value = property.GetValue(_currentSaveData);
+                            CreateDynamicFieldDisplay($"SaveFileData.{property.Name}", GetFriendlyName(property.Name), value, property.PropertyType);
+                        }
+                        catch (Exception ex)
+                        {
+                            Debug.LogWarning($"Could not read property {property.Name}: {ex.Message}");
+                        }
+                    }
+                }
+                
+                // Discover nested objects
+                foreach (var field in fields)
+                {
+                    var value = field.GetValue(_currentSaveData);
+                    if (value != null && IsComplexType(field.FieldType))
+                    {
+                        CreateSubSectionHeader($"{GetFriendlyName(field.Name)} Fields");
+                        DiscoverNestedFields(field.Name, value);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"Error in dynamic field discovery: {ex.Message}");
+            }
+        }
+        
+        private void CreateSubSectionHeader(string title)
+        {
+            var headerElement = new Label($"• {title}");
+            headerElement.AddToClassList("subsection-header");
+            headerElement.style.fontSize = 12;
+            headerElement.style.unityFontStyleAndWeight = FontStyle.Bold;
+            headerElement.style.marginTop = 8;
+            headerElement.style.marginBottom = 3;
+            headerElement.style.marginLeft = 10;
+            headerElement.style.color = new StyleColor(new Color(0.7f, 0.7f, 0.7f));
+            _fieldsContainer.Add(headerElement);
+        }
+        
+        private void CreateDynamicFieldDisplay(string fullPath, string displayName, object value, Type fieldType)
+        {
+            try
+            {
+                var fieldItem = _fieldItemTemplate.CloneTree();
+                var fieldLabel = fieldItem.Q<Label>("field-label");
+                fieldLabel.text = displayName;
+                fieldLabel.style.marginLeft = 15; // Indent to show it's dynamic
+                
+                DisplayFieldValue(fieldItem, value, fieldType, true);
+                _fieldsContainer.Add(fieldItem);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"Error creating dynamic field display for {fullPath}: {ex.Message}");
+            }
+        }
+        
+        private void DiscoverNestedFields(string parentName, object parentObject)
+        {
+            if (parentObject == null) return;
+            
+            try
+            {
+                var objectType = parentObject.GetType();
+                var fields = objectType.GetFields(BindingFlags.Public | BindingFlags.Instance);
+                var properties = objectType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+                
+                foreach (var field in fields)
+                {
+                    var value = field.GetValue(parentObject);
+                    var fullPath = $"{parentName}.{field.Name}";
+                    CreateDynamicFieldDisplay(fullPath, GetFriendlyName(field.Name), value, field.FieldType);
+                }
+                
+                foreach (var property in properties)
+                {
+                    if (property.CanRead)
+                    {
+                        try
+                        {
+                            var value = property.GetValue(parentObject);
+                            var fullPath = $"{parentName}.{property.Name}";
+                            CreateDynamicFieldDisplay(fullPath, GetFriendlyName(property.Name), value, property.PropertyType);
+                        }
+                        catch (Exception ex)
+                        {
+                            Debug.LogWarning($"Could not read nested property {property.Name}: {ex.Message}");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"Error discovering nested fields for {parentName}: {ex.Message}");
+            }
+        }
+        
+        private bool IsComplexType(Type type)
+        {
+            // Check if it's a complex type that should have nested fields discovered
+            if (type.IsPrimitive || type == typeof(string) || type == typeof(DateTime) || 
+                type == typeof(Vector3) || type == typeof(Vector2) || type == typeof(Quaternion))
+            {
+                return false;
+            }
+            
+            // Check if it's a Unity serializable type or custom class
+            return type.IsClass && !type.IsArray;
+        }
+        
+        private string GetFriendlyName(string fieldName)
+        {
+            // Convert field names to friendly display names
+            return fieldName switch
+            {
+                "uniqueID" => "Unique ID",
+                "playerName" => "Player Name",
+                "currentScene" => "Current Scene",
+                "gameTime" => "Game Time",
+                "SaveTimeTicks" => "Save Time (Ticks)",
+                "WasAutoSave" => "Was Auto Save",
+                "PlayerData" => "Player Data",
+                "GameSessionData" => "Game Session Data",
+                "Position" => "Position",
+                "Rotation" => "Rotation",
+                _ => fieldName.Replace("_", " ").Replace("Data", "").Trim()
+            };
+        }
+        
+        private object GetNestedFieldValue(string fieldPath)
+        {
+            try
+            {
+                if (_currentSaveData == null) return null;
+                
+                var parts = fieldPath.Split('.');
+                if (parts.Length != 2) return null;
+                
+                var objectName = parts[0];
+                var fieldName = parts[1];
+                
+                object targetObject = null;
+                switch (objectName)
+                {
+                    case "PlayerData":
+                        targetObject = _currentSaveData.PlayerData;
+                        break;
+                    case "GameSessionData":
+                        targetObject = _currentSaveData.GameSessionData;
+                        break;
+                    default:
+                        return null;
+                }
+                
+                if (targetObject == null) return null;
+                
+                var field = targetObject.GetType().GetField(fieldName);
+                var property = targetObject.GetType().GetProperty(fieldName);
+                
+                if (field != null)
+                    return field.GetValue(targetObject);
+                else if (property != null)
+                    return property.GetValue(targetObject);
+                
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"Error getting nested field value for {fieldPath}: {ex.Message}");
+                return null;
+            }
+        }
+        
+        private void CreateFieldDisplay(string fieldName, string displayName, bool isReadOnly = true, object sourceObject = null)
+        {
+            try
+            {
+                // Default to _currentSave if no sourceObject provided
+                var targetObject = sourceObject ?? _currentSave;
+                if (targetObject == null) return;
+                
+                var fieldItem = _fieldItemTemplate.CloneTree();
+                var fieldLabel = fieldItem.Q<Label>("field-label");
+                fieldLabel.text = displayName;
+                
                 // Get field value using reflection
-                var field = typeof(SaveFileInfo).GetField(fieldName);
-                var property = typeof(SaveFileInfo).GetProperty(fieldName);
+                var objectType = targetObject.GetType();
+                var field = objectType.GetField(fieldName);
+                var property = objectType.GetProperty(fieldName);
                 
                 object value = null;
                 Type fieldType = null;
                 
                 if (field != null)
                 {
-                    value = field.GetValue(_currentSave);
+                    value = field.GetValue(targetObject);
                     fieldType = field.FieldType;
                 }
                 else if (property != null)
                 {
-                    value = property.GetValue(_currentSave);
+                    value = property.GetValue(targetObject);
                     fieldType = property.PropertyType;
                 }
                 else
@@ -215,6 +575,32 @@ namespace GameFramework.Editor.SaveFileManager.UI
                 intField.value = (int)(value ?? 0);
                 intField.SetEnabled(!isReadOnly);
             }
+            else if (fieldType == typeof(long))
+            {
+                var textField = fieldItem.Q<TextField>("field-value-text");
+                textField.style.display = DisplayStyle.Flex;
+                
+                // Format long values nicely (especially for game time)
+                long longValue = (long)(value ?? 0);
+                if (longValue > 100000) // Likely ticks or milliseconds
+                {
+                    // Try to format as time if it looks like game time
+                    var timeSpan = TimeSpan.FromMilliseconds(longValue);
+                    if (timeSpan.TotalDays < 365) // Reasonable game time
+                    {
+                        textField.value = $"{longValue:N0} ({timeSpan:hh\\:mm\\:ss})";
+                    }
+                    else
+                    {
+                        textField.value = longValue.ToString("N0");
+                    }
+                }
+                else
+                {
+                    textField.value = longValue.ToString();
+                }
+                textField.SetEnabled(!isReadOnly);
+            }
             else if (fieldType == typeof(float))
             {
                 var floatField = fieldItem.Q<FloatField>("field-value-float");
@@ -229,12 +615,51 @@ namespace GameFramework.Editor.SaveFileManager.UI
                 boolField.value = (bool)(value ?? false);
                 boolField.SetEnabled(!isReadOnly);
             }
+            else if (fieldType == typeof(DateTime))
+            {
+                var textField = fieldItem.Q<TextField>("field-value-text");
+                textField.style.display = DisplayStyle.Flex;
+                if (value is DateTime dateTime)
+                {
+                    textField.value = dateTime.ToString("yyyy-MM-dd HH:mm:ss");
+                }
+                else
+                {
+                    textField.value = "Invalid Date";
+                }
+                textField.SetEnabled(!isReadOnly);
+            }
+            else if (fieldType == typeof(Vector3))
+            {
+                var textField = fieldItem.Q<TextField>("field-value-text");
+                textField.style.display = DisplayStyle.Flex;
+                if (value is Vector3 vector)
+                {
+                    textField.value = $"({vector.x:F3}, {vector.y:F3}, {vector.z:F3})";
+                }
+                else
+                {
+                    textField.value = "(0, 0, 0)";
+                }
+                textField.SetEnabled(!isReadOnly);
+            }
             else
             {
                 // Default to text field for everything else
                 var textField = fieldItem.Q<TextField>("field-value-text");
                 textField.style.display = DisplayStyle.Flex;
-                textField.value = value?.ToString() ?? "null";
+                
+                // Handle null values gracefully
+                if (value == null)
+                {
+                    textField.value = "<null>";
+                    textField.style.color = new StyleColor(Color.gray);
+                }
+                else
+                {
+                    textField.value = value.ToString();
+                    textField.style.color = StyleKeyword.Initial; // Reset color
+                }
                 textField.SetEnabled(!isReadOnly);
             }
         }

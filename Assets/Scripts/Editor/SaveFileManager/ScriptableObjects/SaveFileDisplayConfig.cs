@@ -25,18 +25,30 @@ namespace GameFramework.Editor.SaveFileManager.ScriptableObjects
              }
          }
          
+         [Header("Display Options")]
+         [Tooltip("Show all discoverable fields from SaveFileData automatically (useful for debugging and future extensibility)")]
+         [SerializeField] public bool ShowDynamicFieldDiscovery = true;
+         
          [Header("Field Display Configuration")]
+         [Tooltip("Configure which fields to display. Use dot notation for nested fields (e.g., 'PlayerData.uniqueID')")]
          [SerializeField] public List<FieldDisplayConfig> DisplayFields = new List<FieldDisplayConfig>
          {
+             // Basic file information
              new FieldDisplayConfig("FileName", "File Name"),
-             new FieldDisplayConfig("PlayerName", "Player Name"),
-             new FieldDisplayConfig("Difficulty", "Difficulty"),
-             new FieldDisplayConfig("CurrentScene", "Current Scene"),
-             new FieldDisplayConfig("PlayerLevel", "Player Level"),
-             new FieldDisplayConfig("Score", "Score"),
-             new FieldDisplayConfig("FormattedPlayTime", "Play Time"),
-             new FieldDisplayConfig("FormattedDate", "Last Save"),
-             new FieldDisplayConfig("IsAutoSave", "Auto Save")
+             new FieldDisplayConfig("WasAutoSaved", "Auto Save"),
+             new FieldDisplayConfig("LastSaveTime", "Last Save Time"),
+             
+             // Player data (using nested field paths)
+             new FieldDisplayConfig("PlayerData.uniqueID", "Player Unique ID"),
+             new FieldDisplayConfig("PlayerData.playerName", "Player Name"),
+             new FieldDisplayConfig("PlayerData.Position", "Player Position"),
+             new FieldDisplayConfig("PlayerData.Rotation", "Player Rotation"),
+             
+             // Game session data (using nested field paths)
+             new FieldDisplayConfig("GameSessionData.uniqueID", "Session Unique ID"),
+             new FieldDisplayConfig("GameSessionData.difficulty", "Difficulty"),
+             new FieldDisplayConfig("GameSessionData.currentScene", "Current Scene"),
+             new FieldDisplayConfig("GameSessionData.gameTime", "Game Time")
          };
      }
 }
