@@ -1,0 +1,22 @@
+:root {
+}
+
+.sprite-background {
+    background-image: url("project://database/Assets/UI/Sprites/panelBackground_48.png?fileID=21300000&guid=acce19ba58a989245a1951b30bf33449&type=3#panelBackground_48");
+    -unity-slice-type: tiled;
+    -unity-slice-left: 48;
+    -unity-slice-top: 48;
+    -unity-slice-right: 48;
+    -unity-slice-bottom: 48;
+    -unity-slice-scale: 0.5px;
+}
+
+.sprite-button-background {
+    background-image: url("project://database/Assets/UI/Sprites/buttonBackground_48.png?fileID=21300000&guid=7b7f856678a70d24f94a37728a5806d0&type=3#buttonBackground_48");
+    -unity-slice-type: tiled;
+    -unity-slice-left: 48;
+    -unity-slice-top: 48;
+    -unity-slice-right: 48;
+    -unity-slice-bottom: 48;
+    -unity-slice-scale: 0.5px;
+}

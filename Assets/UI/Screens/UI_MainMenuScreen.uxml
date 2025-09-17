@@ -1,19 +1,19 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <!-- Main Menu Stylesheets -->
-    <Style src="project://database/Assets/UI/USS/core.uss" />
-    <Style src="project://database/Assets/UI/USS/typography.uss" />
-    <Style src="project://database/Assets/UI/USS/buttons.uss" />
-    <Style src="project://database/Assets/UI/USS/layout.uss" />
-    <Style src="project://database/Assets/UI/USS/utilities.uss" />
-    <engine:VisualElement class="ui-screen layout-center" style="display: flex;">
+    <Style src="project://database/Assets/UI/USS/core.uss?fileID=7433441132597879392&amp;guid=09a18b58682ed40438a6bc507bfcb39d&amp;type=3#core" />
+    <Style src="project://database/Assets/UI/USS/typography.uss?fileID=7433441132597879392&amp;guid=d5db0ddad1233b44cba2e8738bd06cde&amp;type=3#typography" />
+    <Style src="project://database/Assets/UI/USS/buttons.uss?fileID=7433441132597879392&amp;guid=1a0e5efac5d53714e8c94d0807ea52cd&amp;type=3#buttons" />
+    <Style src="project://database/Assets/UI/USS/layout.uss?fileID=7433441132597879392&amp;guid=8ee73086e80e04948aa764ffb39100c1&amp;type=3#layout" />
+    <Style src="project://database/Assets/UI/USS/utilities.uss?fileID=7433441132597879392&amp;guid=8539e068af2f3d649b34e9bcaf85b14c&amp;type=3#utilities" />
+    <Style src="project://database/Assets/UI/USS/sprite.uss?fileID=7433441132597879392&amp;guid=d1c4eea523899dc4faee82e05bf814f5&amp;type=3#sprite" />
+    <engine:VisualElement class="ui-screen layout-center" style="display: flex; -unity-slice-scale: 0;">
         <engine:VisualElement class="layout-column layout-center">
-            <engine:Label text="My Awesome Game" class="text--hero mb-xxl" />
-            <engine:VisualElement class="ui-container layout-column layout-center p-xl">
-                <engine:Button text="New Game" name="btn_NewGame" class="btn btn--primary btn--large mb-md scale-on-hover" />
-                <engine:Button text="Load Game" name="btn_LoadGame" class="btn btn--secondary btn--large mb-md scale-on-hover" />
+            <engine:Label text="UCTools Base Game" class="text--hero mb-xxl" />
+            <engine:VisualElement class="ui-container layout-column layout-center p-xl sprite-background">
+                <engine:Button text="New Game" name="btn_NewGame" class="btn btn--primary mb-md scale-on-hover btn--large" style="-unity-background-image-tint-color: rgb(103, 157, 192);" />
+                <engine:Button text="Load Game" name="btn_LoadGame" class="btn btn--secondary mb-md scale-on-hover text btn--large" />
                 <engine:Button text="Options" name="btn_Options" class="btn btn--secondary btn--large mb-md scale-on-hover" />
                 <engine:Button text="Credits" name="btn_Credits" class="btn btn--secondary btn--large mb-md scale-on-hover" />
-                <engine:Button text="Quit Game" name="btn_QuitGame" class="btn btn--danger btn--large scale-on-hover" />
+                <engine:Button text="Quit Game" name="btn_QuitGame" class="btn btn--danger btn--large scale-on-hover sprite-button-background" style="-unity-background-image-tint-color: rgb(241, 37, 37);" />
             </engine:VisualElement>
             <engine:Label text="Version 1.0.0" class="text--tertiary text--sm mt-xl" />
         </engine:VisualElement>

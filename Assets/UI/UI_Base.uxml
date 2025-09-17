@@ -8,21 +8,12 @@
     <engine:Template name="UI_GameOverScreen" src="project://database/Assets/UI/Screens/UI_GameOverScreen.uxml?fileID=9197481963319205126&amp;guid=5d92d0b3b5b0d7a409b5fcb8a9db6a43&amp;type=3#UI_GameOverScreen" />
     <engine:Template name="UI_PausedWindow" src="project://database/Assets/UI/Popups/UI_PausePopup.uxml?fileID=9197481963319205126&amp;guid=1d7897531c357074fbef681e25abe616&amp;type=3#UI_PausePopup" />
     <engine:Template name="UI_VictoryScreen" src="project://database/Assets/UI/Screens/UI_VictoryScreen.uxml?fileID=9197481963319205126&amp;guid=b136ed5cccad5464e95bd18ed9347ce2&amp;type=3#UI_VictoryScreen" />
+    <engine:Template name="UI_QuitScreen" src="project://database/Assets/UI/Screens/UI_QuitScreen.uxml?fileID=9197481963319205126&amp;guid=8d925a2aa8d7440689269f189b82e524&amp;type=3#UI_QuitScreen" />
     <engine:Template name="UI_LoadGamePopup" src="project://database/Assets/UI/Popups/UI_LoadGamePopup.uxml?fileID=9197481963319205126&amp;guid=88f93125b1d94e44da85938f48a00506&amp;type=3#UI_LoadGamePopup" />
     <engine:Template name="UI_SaveGamePopup" src="project://database/Assets/UI/Popups/UI_SaveGamePopup.uxml?fileID=9197481963319205126&amp;guid=5209e60cba5646739065907a84275511&amp;type=3#UI_SaveGamePopup" />
     <engine:Template name="UI_OptionsPopup" src="project://database/Assets/UI/Popups/UI_OptionsPopup.uxml?fileID=9197481963319205126&amp;guid=ed64c046429a35445870f9cfed7575bd&amp;type=3#UI_OptionsPopup" />
     <engine:Template name="UI_DebugScreen" src="project://database/Assets/UI/Popups/UI_DebugPopup.uxml?fileID=9197481963319205126&amp;guid=4bbac5633f5ec884f85d4878cb799304&amp;type=3#UI_DebugPopup" />
-    <engine:Template name="UI_QuitScreen" src="project://database/Assets/UI/Screens/UI_QuitScreen.uxml?fileID=9197481963319205126&amp;guid=8d925a2aa8d7440689269f189b82e524&amp;type=3#UI_QuitScreen" />
-    <!-- Modular Stylesheets -->
-    <Style src="project://database/Assets/UI/USS/core.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3#core" />
-    <Style src="project://database/Assets/UI/USS/typography.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3#typography" />
-    <Style src="project://database/Assets/UI/USS/buttons.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3#buttons" />
-    <Style src="project://database/Assets/UI/USS/forms.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3#forms" />
-    <Style src="project://database/Assets/UI/USS/layout.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3#layout" />
-    <Style src="project://database/Assets/UI/USS/components.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3#components" />
-    <Style src="project://database/Assets/UI/USS/utilities.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3#utilities" />
-    <Style src="project://database/Assets/UI/USS/notifications.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3#notifications" />
-    <Style src="project://database/Assets/UI/USS/debug.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3#debug" />
+    <Style src="project://database/Assets/UI/USS/default.uss?fileID=7433441132597879392&amp;guid=2a57d33c3711ed14f864a6368b02fede&amp;type=3#default" />
     <engine:Instance template="UI_SplashWindow" name="UI_SplashScreen" class="ui-screen" />
     <engine:Instance template="UI_MainMenuWindow" name="UI_MainMenuScreen" class="ui-screen" />
     <engine:Instance template="UI_HUDWindow" name="UI_GamePlayScreen" class="ui-screen" style="background-color: rgba(26, 26, 26, 0);" />

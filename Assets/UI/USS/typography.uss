@@ -1,13 +1,15 @@
-/* Typography and Text Styles */
-
 .text {
     color: rgb(255, 255, 255);
-    font-size: 16px;
+    font-size: 37px;
     -unity-text-align: middle-left;
+    -unity-font-definition: url("project://database/Assets/UI/Fonts/Boxy-Bold.ttf?fileID=12800000&guid=727c83d89ad3a724a994bb5b10029619&type=3#Boxy-Bold");
+    letter-spacing: 14px;
 }
 
 .text--secondary {
     color: rgb(204, 204, 204);
+    -unity-font-definition: url("project://database/Assets/UI/Fonts/ARCADE.TTF?fileID=12800000&guid=a385c4995ae72cc4aa84673209dc8c18&type=3#ARCADE");
+    font-size: 39px;
 }
 
 .text--tertiary {
@@ -27,7 +29,8 @@
 }
 
 .text--sm {
-    font-size: 14px;
+    font-size: 40px;
+    -unity-font-definition: url("project://database/Assets/UI/Fonts/ARCADE.TTF?fileID=12800000&guid=a385c4995ae72cc4aa84673209dc8c18&type=3#ARCADE");
 }
 
 .text--lg {
@@ -46,10 +49,12 @@
 }
 
 .text--hero {
-    font-size: 64px;
-    color: rgb(74, 158, 255);
-    -unity-text-align: middle-center;
-    margin-bottom: 48px;
+    font-size: 170px;
+    color: rgb(243, 243, 243);
+    -unity-text-align: upper-center;
+    margin-bottom: -30px;
+    -unity-font-definition: url("project://database/Assets/UI/Fonts/ARCADE.TTF?fileID=12800000&guid=a385c4995ae72cc4aa84673209dc8c18&type=3#ARCADE");
+    letter-spacing: 10px;
 }
 
 .text--success {

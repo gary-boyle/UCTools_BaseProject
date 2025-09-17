@@ -1,13 +1,12 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <!-- Splash Screen Stylesheets -->
-    <Style src="project://database/Assets/UI/USS/core.uss" />
-    <Style src="project://database/Assets/UI/USS/typography.uss" />
-    <Style src="project://database/Assets/UI/USS/layout.uss" />
-    <Style src="project://database/Assets/UI/USS/utilities.uss" />
+    <Style src="project://database/Assets/UI/USS/core.uss?fileID=7433441132597879392&amp;guid=09a18b58682ed40438a6bc507bfcb39d&amp;type=3#core" />
+    <Style src="project://database/Assets/UI/USS/typography.uss?fileID=7433441132597879392&amp;guid=d5db0ddad1233b44cba2e8738bd06cde&amp;type=3#typography" />
+    <Style src="project://database/Assets/UI/USS/layout.uss?fileID=7433441132597879392&amp;guid=8ee73086e80e04948aa764ffb39100c1&amp;type=3#layout" />
+    <Style src="project://database/Assets/UI/USS/utilities.uss?fileID=7433441132597879392&amp;guid=8539e068af2f3d649b34e9bcaf85b14c&amp;type=3#utilities" />
     <engine:VisualElement name="UI_SplashWindow" class="ui-screen layout-center" style="display: flex;">
         <engine:VisualElement class="layout-column layout-center fade-in">
             <engine:Label text="Utter Chaos Games" class="text--hero text--center" />
-            <engine:Label text="Presents" class="text--xl text--secondary text--center mt-lg" />
+            <engine:Label text="Presents" class="text--secondary text--center mt-lg" />
         </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>

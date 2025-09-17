@@ -1,16 +1,14 @@
-/* Form Controls - Inputs, Dropdowns, Toggles, Sliders */
-
 .input {
     height: 60px;
     background-color: rgb(58, 58, 58);
     border-radius: 4px;
     border-width: 2px;
     border-color: rgb(68, 68, 68);
-    color: rgb(255, 255, 255);
     font-size: 16px;
     padding: 8px 16px;
     margin: 8px;
     flex-grow: 1;
+    -unity-font-definition: url("project://database/Assets/UI/Fonts/ARCADE.TTF?fileID=12800000&guid=a385c4995ae72cc4aa84673209dc8c18&type=3#ARCADE");
 }
 
 .unity-text-field__input {
@@ -20,10 +18,11 @@
     border-width: 2px;
     border-color: rgb(68, 68, 68);
     color: rgb(255, 255, 255);
-    font-size: 16px;
+    font-size: 61px;
     padding: 8px 16px;
     margin: 8px;
     flex-grow: 1;
+    -unity-text-align: upper-left;
 }
 
 .input:focus {
@@ -46,6 +45,7 @@
     font-size: 16px;
     margin: 8px;
     padding: 8px 16px;
+    -unity-font-definition: url("project://database/Assets/UI/Fonts/ARCADE.TTF?fileID=12800000&guid=a385c4995ae72cc4aa84673209dc8c18&type=3#ARCADE");
 }
 
 .unity-dropdown {
@@ -55,9 +55,10 @@
     border-width: 2px;
     border-color: rgb(68, 68, 68);
     color: rgb(255, 255, 255);
-    font-size: 16px;
+    font-size: 44px;
     margin: 8px;
     padding: 8px 16px;
+    -unity-font-definition: url("project://database/Assets/UI/Fonts/ARCADE.TTF?fileID=12800000&guid=a385c4995ae72cc4aa84673209dc8c18&type=3#ARCADE");
 }
 
 .dropdown:focus {

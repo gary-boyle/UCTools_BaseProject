@@ -16,11 +16,11 @@
                 </engine:VisualElement>
                 <engine:VisualElement class="layout-row layout-center mb-xl" style="width: 100%;">
                     <engine:Label text="Difficulty:" class="text mr-md" />
-                    <engine:DropdownField name="dd_Difficulty" class="dropdown" style="flex-grow: 1;" />
+                    <engine:DropdownField name="dd_Difficulty" choices="Easy,Medium" index="0" class="dropdown" style="flex-grow: 1; font-size: 39px; letter-spacing: 8px; height: 80px;" />
                 </engine:VisualElement>
                 <engine:VisualElement class="layout-row">
                     <engine:Button text="Back" name="btn_Back" class="btn btn--secondary btn--large mr-md" />
-                    <engine:Button text="Start Game" name="btn_Confirm" class="btn btn--success btn--large" />
+                    <engine:Button text="Start Game" name="btn_Confirm" class="btn btn--success btn--large" style="-unity-background-image-tint-color: rgb(101, 241, 104);" />
                 </engine:VisualElement>
             </engine:VisualElement>
         </engine:VisualElement>
