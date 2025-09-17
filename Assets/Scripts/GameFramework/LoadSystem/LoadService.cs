@@ -14,6 +14,7 @@ namespace GameFramework.LoadSystem.Services
     /// <summary>
     /// Service responsible for transforming save data into live game state
     /// Handles game logic for loading, delegates file operations to FileService
+    /// Integrates with SceneService for scene transitions during loading
     /// Publishes progress events for UI updates
     /// </summary>
     public class LoadService : ILoadService
@@ -21,6 +22,7 @@ namespace GameFramework.LoadSystem.Services
         #region Private Fields
         private IFileService _fileService;
         private IGameDataService _gameDataService;
+        private ISceneService _sceneService;
         private IEventSystem _eventSystem;
         private SaveFileInfo _currentLoadingSaveFile;
         #endregion
@@ -32,10 +34,12 @@ namespace GameFramework.LoadSystem.Services
         public LoadService(
             IFileService fileService, 
             IGameDataService gameDataService, 
+            ISceneService sceneService,
             IEventSystem eventSystem)
         {
             _fileService = fileService ?? throw new ArgumentNullException(nameof(fileService));
             _gameDataService = gameDataService ?? throw new ArgumentNullException(nameof(gameDataService));
+            _sceneService = sceneService ?? throw new ArgumentNullException(nameof(sceneService));
             _eventSystem = eventSystem ?? throw new ArgumentNullException(nameof(eventSystem));
         }
         
@@ -62,6 +66,7 @@ namespace GameFramework.LoadSystem.Services
             
             _fileService = null;
             _gameDataService = null;
+            _sceneService = null;
             _eventSystem = null;
             IsInitialized = false;
             
@@ -140,19 +145,43 @@ namespace GameFramework.LoadSystem.Services
                 }
 
                 // Step 4: Convert save data to runtime objects
-                await PublishProgress("Converting save data...", 0.6f);
+                await PublishProgress("Converting save data...", 0.5f);
                 var loadedGameState = await ConvertSaveDataAsync(saveFileData);
                 if (loadedGameState == null || !loadedGameState.IsValid())
                 {
                     throw new Exception("Failed to convert save data to game objects");
                 }
 
-                // Step 5: Apply to game data service
-                await PublishProgress("Applying game state...", 0.8f);
+                // Step 5: Load scene if specified
+                await PublishProgress("Loading scene...", 0.65f);
+                var sceneToLoad = loadedGameState.GameSessionData?.CurrentScene;
+                if (!string.IsNullOrEmpty(sceneToLoad))
+                {
+                    Debug.Log($"[LoadService] Loading scene from save data: {sceneToLoad}");
+                    
+                    bool sceneLoaded = await _sceneService.LoadSceneWithProgressAsync(sceneToLoad, (sceneProgress) =>
+                    {
+                        // Map scene progress (0-1) to our overall progress range (0.65-0.8)
+                        float mappedProgress = 0.65f + (sceneProgress * 0.15f);
+                        _eventSystem?.Publish(new LoadingProgressEvent("Loading scene...", mappedProgress));
+                    });
+                    
+                    if (!sceneLoaded)
+                    {
+                        throw new Exception($"Failed to load scene: {sceneToLoad}");
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning("[LoadService] No scene specified in save data, skipping scene load");
+                }
+
+                // Step 6: Apply to game data service
+                await PublishProgress("Applying game state...", 0.85f);
                 _gameDataService.LoadGameData(loadedGameState.GameSessionData, loadedGameState.PlayerData);
                 await Task.Delay(200); // Small delay for processing
 
-                // Step 6: Complete
+                // Step 7: Complete
                 await PublishProgress("Loading complete!", 1.0f);
                 await Task.Delay(100);
 
@@ -177,6 +206,7 @@ namespace GameFramework.LoadSystem.Services
 
         /// <summary>
         /// Loads save data from SaveFileData and applies it to game state
+        /// Includes scene loading if specified in save data
         /// </summary>
         public async Task<bool> LoadGameStateAsync(SaveFileData saveFileData)
         {
@@ -189,6 +219,20 @@ namespace GameFramework.LoadSystem.Services
                 var loadedGameState = await ConvertSaveDataAsync(saveFileData);
                 if (loadedGameState == null || !loadedGameState.IsValid())
                     return false;
+
+                // Load scene if specified
+                var sceneToLoad = loadedGameState.GameSessionData?.CurrentScene;
+                if (!string.IsNullOrEmpty(sceneToLoad))
+                {
+                    Debug.Log($"[LoadService] Loading scene from save data: {sceneToLoad}");
+                    bool sceneLoaded = await _sceneService.LoadSceneWithProgressAsync(sceneToLoad);
+                    
+                    if (!sceneLoaded)
+                    {
+                        Debug.LogError($"[LoadService] Failed to load scene: {sceneToLoad}");
+                        return false;
+                    }
+                }
 
                 _gameDataService.LoadGameData(loadedGameState.GameSessionData, loadedGameState.PlayerData);
                 return true;
