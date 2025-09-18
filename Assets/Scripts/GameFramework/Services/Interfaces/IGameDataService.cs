@@ -1,4 +1,5 @@
-﻿using GameFramework.DataStructures;
+﻿using GameFramework.Components;
+using GameFramework.DataStructures;
 using UnityEngine;
 using GameFramework.SaveSystem.Services;
 using GameFramework.EventSystem.Interfaces;
@@ -37,18 +38,11 @@ namespace GameFramework.Services.Interfaces
         #endregion
 
         #region Data Lifecycle
-        /// <summary>
-        /// Creates a new game session with default or specified parameters
-        /// </summary>
-        void StartNewGame(string playerName = "Player", string difficulty = "Normal", string startingScene = "MainMenu");
 
         /// <summary>
         /// Loads game data from provided data objects (used by load system)
         /// </summary>
         void LoadGameData(GameSessionData gameSessionData, PlayerSaveData playerSaveData);
-
-        void UpdatePlayer(string playerName = null, Vector3? position = null, Vector3? rotation = null);
-        void ResetToDefaults();
         
         #endregion
     }

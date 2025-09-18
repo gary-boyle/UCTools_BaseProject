@@ -1,4 +1,5 @@
-﻿using GameFramework.DataStructures;
+﻿using GameFramework.Components;
+using GameFramework.DataStructures;
 using GameFramework.SaveSystem.Data;
 
 namespace GameFramework.GameData.Events

@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using GameFramework.Components;
 using GameFramework.DataStructures;
 using UnityEngine;
 using GameFramework.Services.Interfaces;

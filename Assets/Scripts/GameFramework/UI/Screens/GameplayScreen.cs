@@ -201,7 +201,7 @@ namespace GameFramework.UI.Screens
         /// Update first debug label with player information - only when player name changes
         /// Uses cached values to prevent unnecessary string allocations
         /// </summary>
-        private void UpdateDebugLabel1(DataStructures.PlayerData playerData)
+        private void UpdateDebugLabel1(Components.PlayerData playerData)
         {
             if (_debugLabel1 == null || playerData?.PlayerName == null) return;
             

@@ -45,7 +45,7 @@ namespace GameFramework.Services
             _eventSystem.Subscribe<LoadingCompletedEvent>(OnLoadingCompleted);
 
             IsInitialized = true;
-            Debug.Log("[InstantiationService] Initialized successfully");
+
             await Task.CompletedTask;
         }
 
@@ -66,7 +66,6 @@ namespace GameFramework.Services
             }
 
             IsInitialized = false;
-            Debug.Log("[InstantiationService] Shutdown complete");
         }
         #endregion
 
@@ -111,8 +110,6 @@ namespace GameFramework.Services
                         _gameDataService.ClearPendingPlayerData();
                     }
                     
-                    Debug.Log($"[InstantiationService] Player instantiated at {position} with rotation {rotation}");
-                    
                     // Publish instantiation event
                     _eventSystem.Publish(new PlayerInstantiatedEvent(_currentPlayer, position, rotation));
                     
@@ -145,8 +142,6 @@ namespace GameFramework.Services
         {
             if (_currentPlayer != null)
             {
-                Debug.Log("[InstantiationService] Destroying current player");
-                
                 // Deregister PlayerData from save system before destroying
                 var playerData = _currentPlayer.GetComponent<PlayerData>();
                 if (playerData != null)
@@ -168,7 +163,6 @@ namespace GameFramework.Services
         public void SetPlayerPrefab(GameObject playerPrefab)
         {
             _playerPrefab = playerPrefab;
-            Debug.Log($"[InstantiationService] Player prefab set: {playerPrefab?.name ?? "null"}");
         }
         #endregion
 
@@ -178,13 +172,10 @@ namespace GameFramework.Services
         /// </summary>
         private async void OnBeginNewGameLoad(BeginNewGameLoadEvent evt)
         {
-            Debug.Log("[InstantiationService] New game detected, will use PlayerSpawnPoint for instantiation");
-            
             _isNewGameLoad = true;
             
             // Clear any pending player data from previous sessions for new games
             _gameDataService.ClearPendingPlayerData();
-            Debug.Log("[InstantiationService] Cleared pending player data for new game");
             
             // The actual instantiation will happen when LoadingCompleted is fired
         }
@@ -194,8 +185,6 @@ namespace GameFramework.Services
         /// </summary>
         private async void OnLoadSaveFile(LoadSaveFileEvent evt)
         {
-            Debug.Log("[InstantiationService] Save file load detected, will use saved position for instantiation");
-            
             _isNewGameLoad = false;
             // The actual instantiation will happen when LoadingCompleted is fired
         }
@@ -205,8 +194,6 @@ namespace GameFramework.Services
         /// </summary>
         private async void OnLoadingCompleted(LoadingCompletedEvent evt)
         {
-            Debug.Log($"[InstantiationService] Loading completed, instantiating player... _isNewGameLoad: {_isNewGameLoad}");
-            
             if (_playerPrefab == null)
             {
                 Debug.LogError("[InstantiationService] Cannot instantiate player - prefab not set");
@@ -306,56 +293,29 @@ namespace GameFramework.Services
                 if (_isNewGameLoad)
                 {
                     // Configure for new game - use spawn position (from PlayerSpawnPoint or default)
-                    Debug.Log("[InstantiationService] Configuring player for new game");
-                    
                     playerData.PlayerName = "Player"; // Default name
-                    playerData.Position = spawnPosition;
-                    playerData.Rotation = spawnRotation;
                     
                     // Update transform
                     playerData.transform.position = spawnPosition;
                     playerData.transform.rotation = Quaternion.Euler(spawnRotation);
-                    
-                    Debug.Log($"[InstantiationService] Player configured for new game - Position: {spawnPosition}, Rotation: {spawnRotation}");
                 }
                 else
                 {
                     // For loaded games, try to get pending save data from GameDataService
                     var pendingData = _gameDataService.GetPendingPlayerSaveData();
-                    Debug.Log($"[InstantiationService] Loaded game path - pendingData found: {pendingData != null}");
-                    
                     if (pendingData != null)
                     {
                         // Configure from loaded save data
-                        Debug.Log($"[InstantiationService] Configuring player from save data: {pendingData.playerName}");
-                        
                         // Use LoadSaveData method to properly configure the PlayerData
                         playerData.LoadSaveData(pendingData);
-                        
-                        // Set position and rotation from save data (LoadSaveData should have done this, but ensure it's set)
-                        playerData.Position = pendingData.Position;
-                        playerData.Rotation = pendingData.Rotation;
                         
                         // Update transform to match saved data
                         playerData.transform.position = pendingData.Position;
                         playerData.transform.rotation = Quaternion.Euler(pendingData.Rotation);
-                        
-                        Debug.Log($"[InstantiationService] Player configured from save data - Position: {pendingData.Position}, Rotation: {pendingData.Rotation}");
                     }
                     else
                     {
-                        // Fallback if no save data (shouldn't happen for loaded games)
-                        Debug.LogWarning("[InstantiationService] No save data found for loaded game, using spawn position as fallback");
-                        
-                        playerData.PlayerName = "Player";
-                        playerData.Position = spawnPosition;
-                        playerData.Rotation = spawnRotation;
-                        
-                        // Update transform
-                        playerData.transform.position = spawnPosition;
-                        playerData.transform.rotation = Quaternion.Euler(spawnRotation);
-                        
-                        Debug.Log($"[InstantiationService] Player configured with fallback - Position: {spawnPosition}, Rotation: {spawnRotation}");
+                        throw new Exception("No pending PlayerSaveData available for loaded game");
                     }
                 }
             }
@@ -365,8 +325,6 @@ namespace GameFramework.Services
                 
                 // Fallback to basic configuration
                 playerData.PlayerName = "Player";
-                playerData.Position = spawnPosition;
-                playerData.Rotation = spawnRotation;
                 playerData.transform.position = spawnPosition;
                 playerData.transform.rotation = Quaternion.Euler(spawnRotation);
             }
@@ -424,7 +382,6 @@ namespace GameFramework.Services
                 
                 // Return the single active spawn point
                 var chosenSpawnPoint = activeSpawnPoints[0];
-                Debug.Log($"[InstantiationService] Found PlayerSpawnPoint: {chosenSpawnPoint.SpawnPointName} on GameObject '{chosenSpawnPoint.gameObject.name}'");
                 return chosenSpawnPoint;
             }
             catch (Exception ex)

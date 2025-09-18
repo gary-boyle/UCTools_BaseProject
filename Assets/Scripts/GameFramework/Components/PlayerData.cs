@@ -3,7 +3,7 @@ using UnityEngine;
 using GameFramework.SaveSystem.Interfaces;
 using GameFramework.SaveSystem.Utilities;
 
-namespace GameFramework.DataStructures
+namespace GameFramework.Components
 {
     /// <summary>
     /// Player data MonoBehaviour with unique ID for identification and single auto-save per player.
@@ -19,8 +19,8 @@ namespace GameFramework.DataStructures
         #region Private Fields
         [SerializeField] private string _uniqueID;      // Unique identifier for this player instance
         [SerializeField] private string _playerName;
-        [SerializeField] private Vector3 _position;
-        [SerializeField] private Vector3 _rotation;
+        private Vector3 _position;
+        private Vector3 _rotation;
         #endregion
 
         #region Public Properties
@@ -45,28 +45,34 @@ namespace GameFramework.DataStructures
             set => _playerName = value; 
         }
         
-        public Vector3 Position 
-        { 
-            get => _position; 
-            set => _position = value; 
-        }
-        
-        public Vector3 Rotation 
-        { 
-            get => _rotation; 
-            set => _rotation = value; 
-        }
+        // public Vector3 Position 
+        // { 
+        //     get => _position; 
+        //     set => _position = value; 
+        // }
+        //
+        // public Vector3 Rotation 
+        // { 
+        //     get => _rotation; 
+        //     set => _rotation = value; 
+        // }
         #endregion
 
         #region ISaveable Methods
         public object GetSaveData()
         {
+            // Ensure we have the latest position data before saving
+            SyncFromTransform();
+
+            var position = transform.position;
+            var rotation = transform.rotation.eulerAngles;
+            
             return new PlayerSaveData
             {
                 uniqueID = _uniqueID,
                 playerName = _playerName,
-                Position = new Vector3(_position.x, _position.y, _position.z),
-                Rotation = new Vector3(_rotation.x, _rotation.y, _rotation.z)
+                Position = new Vector3(position.x, position.y, position.z),
+                Rotation = new Vector3(rotation.x, rotation.y, rotation.z)
             };
         }
 
@@ -125,14 +131,12 @@ namespace GameFramework.DataStructures
         {
             GenerateUniqueId();
         }
-
+        
         /// <summary>
-        /// Update position and rotation data from the GameObject transform
-        /// This ensures save data always reflects current position
+        /// Forces immediate sync from transform (used before saving)
         /// </summary>
-        private void Update()
+        public void SyncFromTransform()
         {
-            // Continuously sync position and rotation from GameObject transform
             if (transform != null)
             {
                 _position = transform.position;
@@ -142,8 +146,6 @@ namespace GameFramework.DataStructures
         public PlayerData(string playerName, Vector3 position, Vector3 rotation)
         {
             this.PlayerName = playerName;
-            this.Position = position;
-            this.Rotation = rotation;
         }
 
         /// <summary>
@@ -153,8 +155,6 @@ namespace GameFramework.DataStructures
         {
             this.UniqueID = uniqueID;
             this.PlayerName = playerName;
-            this.Position = position;
-            this.Rotation = rotation;
         }
         #endregion
 

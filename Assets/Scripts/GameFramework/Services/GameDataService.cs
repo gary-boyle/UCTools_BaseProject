@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using GameFramework.Core;
+using GameFramework.Components;
 using GameFramework.DataStructures;
 using UnityEngine;
 using GameFramework.GameData.Events;
@@ -223,44 +223,6 @@ namespace GameFramework.Services
         }
 
         /// <summary>
-        /// Updates specific player properties
-        /// </summary>
-        public void UpdatePlayer(string playerName = null, Vector3? position = null, Vector3? rotation = null)
-        {
-            if (!IsInitialized || _currentPlayerData == null)
-            {
-                Debug.LogError("[GameDataService] Cannot update player - service not initialized or no current player");
-                return;
-            }
-
-            bool changed = false;
-
-            if (!string.IsNullOrEmpty(playerName) && _currentPlayerData.PlayerName != playerName)
-            {
-                _currentPlayerData.PlayerName = playerName;
-                changed = true;
-            }
-
-            if (position.HasValue && _currentPlayerData.Position != position.Value)
-            {
-                _currentPlayerData.Position = position.Value;
-                changed = true;
-            }
-
-            if (rotation.HasValue && _currentPlayerData.Rotation != rotation.Value)
-            {
-                _currentPlayerData.Rotation = rotation.Value;
-                changed = true;
-            }
-
-            if (changed)
-            {
-                // Publish change event through EventSystem
-                _eventSystem?.Publish(new PlayerDataChangedEvent(_currentPlayerData));
-            }
-        }
-
-        /// <summary>
         /// Gets pending PlayerSaveData from loaded games (before player instantiation)
         /// </summary>
         public PlayerSaveData GetPendingPlayerSaveData()
@@ -306,36 +268,6 @@ namespace GameFramework.Services
         #endregion
 
         #region Data Lifecycle
-        /// <summary>
-        /// Creates a new game session with default or specified parameters
-        /// </summary>
-        public void StartNewGame(string playerName = "Player", string difficulty = "Normal", string startingScene = "MainMenu")
-        {
-            if (!IsInitialized)
-            {
-                Debug.LogError("[GameDataService] Cannot start new game - service not initialized");
-                return;
-            }
-            
-            // Create new game session
-            var newGameSession = new GameSessionData(difficulty, startingScene, 0);
-            SetGameSessionData(newGameSession);
-
-            // Clear pending save data for new game
-            _pendingPlayerSaveData = null;
-            
-            // Create new player - this is a temporary solution
-            // In practice, PlayerData MonoBehaviours should be created by InstantiationService
-            var playerGO = new GameObject("NewGamePlayer");
-            var newPlayerData = playerGO.AddComponent<PlayerData>();
-            newPlayerData.PlayerName = playerName;
-            newPlayerData.Position = Vector3.zero;
-            newPlayerData.Rotation = Vector3.zero;
-            SetPlayerData(newPlayerData);
-
-            // Publish new game started event
-            _eventSystem?.Publish(new NewGameStartedEvent(newGameSession, newPlayerData));
-        }
 
         /// <summary>
         /// Loads game data from provided data objects (used by load system)
@@ -352,39 +284,15 @@ namespace GameFramework.Services
             {
                 SetGameSessionData(gameSessionData);
             }
-
+        
             if (playerSaveData != null)
             {
                 // Store the player save data - actual PlayerData MonoBehaviour will be created by InstantiationService
                 StorePendingPlayerData(playerSaveData);
             }
-
+        
             // Publish game data loaded event
             _eventSystem?.Publish(new GameDataLoadedEvent(gameSessionData, playerSaveData));
-        }
-
-        /// <summary>
-        /// Resets all game data to defaults
-        /// </summary>
-        public void ResetToDefaults()
-        {
-            if (!IsInitialized)
-            {
-                Debug.LogError("[GameDataService] Cannot reset - service not initialized");
-                return;
-            }
-
-            InitializeDefaultGameData();
-
-            // Re-register with save system if available
-            if (_saveDataRegistry != null)
-            {
-                RegisterWithSaveSystem();
-            }
-
-            // Publish change events for the reset data
-            _eventSystem?.Publish(new GameSessionDataChangedEvent(_currentGameSession));
-            _eventSystem?.Publish(new PlayerDataChangedEvent(_currentPlayerData));
         }
         #endregion
 
@@ -399,11 +307,8 @@ namespace GameFramework.Services
 
             // Create default player - this is a temporary solution for initialization
             // In practice, PlayerData MonoBehaviours should be created by InstantiationService
-            _currentPlayerData = GameManager.Get
             _currentPlayerData = new GameObject("DefaultPlayer").AddComponent<PlayerData>();
             _currentPlayerData.PlayerName = "Player";
-            _currentPlayerData.Position = Vector3.zero;
-            _currentPlayerData.Rotation = Vector3.zero;
         }
 
         /// <summary>
