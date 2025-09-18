@@ -37,6 +37,7 @@ namespace GameFramework.StateMachine
         protected ISceneService SceneService => Context.SceneService;
         protected ITimeService TimeService => Context.TimeService;
         protected IUIService UIService => Context.UIService;
+        protected IInstantiationService InstantiationService => Context.InstantiationService;
 
         protected BaseGameState(
             GameStateType stateType,

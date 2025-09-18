@@ -48,6 +48,7 @@ namespace GameFramework.Core
         [SerializeField] private UIDocument _UIPrefab;
         [SerializeField] private ConsoleGUI _consoleGUIPrefab;
         [SerializeField] private AudioManager _audioManagerPrefab;
+        [SerializeField] private GameObject _playerPrefab;
 
         [Header("Configuration Settings")]
         [SerializeField] private AudioSettings_SO _audioSettingsSo;
@@ -377,6 +378,11 @@ namespace GameFramework.Core
             var notificationService = _container.Resolve<INotificationService>();
             await notificationService.InitializeAsync();
             
+            // Initialize instantiation service and configure player prefab
+            var instantiationService = _container.Resolve<IInstantiationService>();
+            await instantiationService.InitializeAsync();
+            ConfigurePlayerPrefab(instantiationService);
+            
             Debug.Log("[GameManager] All services initialized!");
         }
 
@@ -437,6 +443,7 @@ namespace GameFramework.Core
             _container.RegisterSingleton<ISaveService, SaveService>();
             _container.RegisterSingleton<IGameDataService, GameDataService>();
             _container.RegisterSingleton<ISaveDataRegistry, SaveDataRegistry>();
+            _container.RegisterSingleton<IInstantiationService, InstantiationService>();
             
             // Register notification service (depends on EventSystem and UIService)
             _container.RegisterSingleton<INotificationService, NotificationService>();
@@ -543,6 +550,28 @@ namespace GameFramework.Core
             {
                 Debug.LogError($"[GameManager] Failed to create AudioManager from prefab: {e.Message}");
                 return null;
+            }
+        }
+        
+        /// <summary>
+        /// Configures the InstantiationService with the player prefab
+        /// </summary>
+        private void ConfigurePlayerPrefab(IInstantiationService instantiationService)
+        {
+            if (_playerPrefab == null)
+            {
+                Debug.LogError("[GameManager] Player Prefab is not assigned! Please assign it in the inspector.");
+                return;
+            }
+
+            try
+            {
+                instantiationService.SetPlayerPrefab(_playerPrefab);
+                Debug.Log($"[GameManager] Player prefab configured: {_playerPrefab.name}");
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError($"[GameManager] Failed to configure player prefab: {e.Message}");
             }
         }
         

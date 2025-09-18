@@ -6,10 +6,10 @@ using GameFramework.SaveSystem.Utilities;
 namespace GameFramework.DataStructures
 {
     /// <summary>
-    /// Player data with unique ID for identification and single auto-save per player
+    /// Player data MonoBehaviour with unique ID for identification and single auto-save per player.
+    /// Attach this to a PlayerPrefab to be instantiated during game loading.
     /// </summary>
-    [System.Serializable]
-    public class PlayerData : ISaveable
+    public class PlayerData : MonoBehaviour, ISaveable
     {
         #region ISaveable Implementation
         public string SaveKey => "PlayerData";
@@ -87,16 +87,24 @@ namespace GameFramework.DataStructures
                     _position = directData._position;
                     _rotation = directData._rotation;
                 }
-                // else
-                // {
-                //     var json = JsonUtility.ToJson(data);
-                //     var loadedData = JsonUtility.FromJson<PlayerSaveData>(json);
-                //
-                //     _uniqueID = loadedData.uniqueID;
-                //     _playerName = loadedData.playerName;
-                //     _position = loadedData.Position;
-                //     _rotation = loadedData.Rotation;
-                // }
+                else if (data is PlayerSaveData saveData)
+                {
+                    _uniqueID = saveData.uniqueID;
+                    _playerName = saveData.playerName;
+                    _position = saveData.Position;
+                    _rotation = saveData.Rotation;
+                }
+                else
+                {
+                    // Try JSON conversion as fallback
+                    var json = JsonUtility.ToJson(data);
+                    var loadedData = JsonUtility.FromJson<PlayerSaveData>(json);
+
+                    _uniqueID = loadedData.uniqueID;
+                    _playerName = loadedData.playerName;
+                    _position = loadedData.Position;
+                    _rotation = loadedData.Rotation;
+                }
         
                 // IMPORTANT: Always update the public property when loading
                 UniqueID = _uniqueID;
@@ -111,12 +119,28 @@ namespace GameFramework.DataStructures
         #region Constructors
         public PlayerData() 
         {
+        }
+
+        private void Awake()
+        {
             GenerateUniqueId();
         }
 
+        /// <summary>
+        /// Update position and rotation data from the GameObject transform
+        /// This ensures save data always reflects current position
+        /// </summary>
+        private void Update()
+        {
+            // Continuously sync position and rotation from GameObject transform
+            if (transform != null)
+            {
+                _position = transform.position;
+                _rotation = transform.rotation.eulerAngles;
+            }
+        }
         public PlayerData(string playerName, Vector3 position, Vector3 rotation)
         {
-            GenerateUniqueId();
             this.PlayerName = playerName;
             this.Position = position;
             this.Rotation = rotation;

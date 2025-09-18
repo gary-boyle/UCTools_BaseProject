@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
+using GameFramework.Core;
 using GameFramework.DataStructures;
 using UnityEngine;
 using GameFramework.GameData.Events;
 using GameFramework.EventSystem.Interfaces;
 using GameFramework.SaveSystem.Interfaces;
+using GameFramework.SaveSystem.Data;
 using GameFramework.Services.Interfaces;
 
 namespace GameFramework.Services
@@ -19,6 +21,7 @@ namespace GameFramework.Services
         #region Private Fields
         private GameSessionData _currentGameSession;
         private PlayerData _currentPlayerData;
+        private PlayerSaveData _pendingPlayerSaveData; // Stores player data from save files before instantiation
         private ISaveDataRegistry _saveDataRegistry;
         private IEventSystem _eventSystem;
         #endregion
@@ -59,6 +62,7 @@ namespace GameFramework.Services
             // Clear references
             _currentGameSession = null;
             _currentPlayerData = null;
+            _pendingPlayerSaveData = null;
             _saveDataRegistry = null;
             _eventSystem = null;
 
@@ -199,11 +203,19 @@ namespace GameFramework.Services
             // Re-register with save system if registry is available
             if (_saveDataRegistry != null)
             {
+                // Force deregister any existing PlayerData with the same SaveKey
+                _saveDataRegistry.DeregisterSaveable("PlayerData");
+                
                 if (previousPlayer != null)
                 {
                     _saveDataRegistry.DeregisterSaveable(previousPlayer);
                 }
-                _saveDataRegistry.RegisterSaveable(_currentPlayerData);
+                
+                bool registered = _saveDataRegistry.RegisterSaveable(_currentPlayerData);
+                if (!registered)
+                {
+                    Debug.LogError($"[GameDataService] Failed to register PlayerData with SaveKey: {_currentPlayerData.SaveKey}");
+                }
             }
 
             // Publish change event through EventSystem
@@ -247,6 +259,50 @@ namespace GameFramework.Services
                 _eventSystem?.Publish(new PlayerDataChangedEvent(_currentPlayerData));
             }
         }
+
+        /// <summary>
+        /// Gets pending PlayerSaveData from loaded games (before player instantiation)
+        /// </summary>
+        public PlayerSaveData GetPendingPlayerSaveData()
+        {
+            return _pendingPlayerSaveData;
+        }
+
+        /// <summary>
+        /// Stores PlayerSaveData from loaded games before player instantiation
+        /// </summary>
+        private void StorePendingPlayerData(PlayerSaveData playerSaveData)
+        {
+            _pendingPlayerSaveData = playerSaveData;
+            Debug.Log($"[GameDataService] Stored pending player save data for: {playerSaveData?.playerName ?? "Unknown"}");
+        }
+
+        /// <summary>
+        /// Clears pending PlayerSaveData (called after successful player instantiation)
+        /// </summary>
+        public void ClearPendingPlayerData()
+        {
+            _pendingPlayerSaveData = null;
+        }
+
+        /// <summary>
+        /// Forces deregistration of a specific PlayerData from the save system
+        /// Used when destroying player objects to prevent duplicate registrations
+        /// </summary>
+        public void ForceDeregisterPlayerData(PlayerData playerData)
+        {
+            if (playerData != null && _saveDataRegistry != null)
+            {
+                bool deregistered = _saveDataRegistry.DeregisterSaveable(playerData);
+                Debug.Log($"[GameDataService] Force deregistered PlayerData: {deregistered}");
+                
+                // Clear current reference if it matches
+                if (_currentPlayerData == playerData)
+                {
+                    _currentPlayerData = null;
+                }
+            }
+        }
         #endregion
 
         #region Data Lifecycle
@@ -265,8 +321,16 @@ namespace GameFramework.Services
             var newGameSession = new GameSessionData(difficulty, startingScene, 0);
             SetGameSessionData(newGameSession);
 
-            // Create new player
-            var newPlayerData = new PlayerData(playerName, Vector3.zero, Vector3.zero);
+            // Clear pending save data for new game
+            _pendingPlayerSaveData = null;
+            
+            // Create new player - this is a temporary solution
+            // In practice, PlayerData MonoBehaviours should be created by InstantiationService
+            var playerGO = new GameObject("NewGamePlayer");
+            var newPlayerData = playerGO.AddComponent<PlayerData>();
+            newPlayerData.PlayerName = playerName;
+            newPlayerData.Position = Vector3.zero;
+            newPlayerData.Rotation = Vector3.zero;
             SetPlayerData(newPlayerData);
 
             // Publish new game started event
@@ -276,7 +340,7 @@ namespace GameFramework.Services
         /// <summary>
         /// Loads game data from provided data objects (used by load system)
         /// </summary>
-        public void LoadGameData(GameSessionData gameSessionData, PlayerData playerData)
+        public void LoadGameData(GameSessionData gameSessionData, PlayerSaveData playerSaveData)
         {
             if (!IsInitialized)
             {
@@ -289,13 +353,14 @@ namespace GameFramework.Services
                 SetGameSessionData(gameSessionData);
             }
 
-            if (playerData != null)
+            if (playerSaveData != null)
             {
-                SetPlayerData(playerData);
+                // Store the player save data - actual PlayerData MonoBehaviour will be created by InstantiationService
+                StorePendingPlayerData(playerSaveData);
             }
 
             // Publish game data loaded event
-            _eventSystem?.Publish(new GameDataLoadedEvent(gameSessionData, playerData));
+            _eventSystem?.Publish(new GameDataLoadedEvent(gameSessionData, playerSaveData));
         }
 
         /// <summary>
@@ -332,8 +397,13 @@ namespace GameFramework.Services
             // Create default game session
             _currentGameSession = new GameSessionData("Normal", "MainMenu", 0);
 
-            // Create default player
-            _currentPlayerData = new PlayerData("Player", Vector3.zero, Vector3.zero);
+            // Create default player - this is a temporary solution for initialization
+            // In practice, PlayerData MonoBehaviours should be created by InstantiationService
+            _currentPlayerData = GameManager.Get
+            _currentPlayerData = new GameObject("DefaultPlayer").AddComponent<PlayerData>();
+            _currentPlayerData.PlayerName = "Player";
+            _currentPlayerData.Position = Vector3.zero;
+            _currentPlayerData.Rotation = Vector3.zero;
         }
 
         /// <summary>

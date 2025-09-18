@@ -9,11 +9,11 @@ namespace GameFramework.SaveSystem.Data
     public class LoadedGameState
     {
         public GameSessionData GameSessionData { get; set; }
-        public PlayerData PlayerData { get; set; }
+        public PlayerSaveData PlayerSaveData { get; set; }
 
         public bool IsValid()
         {
-            return GameSessionData != null && PlayerData != null;
+            return GameSessionData != null && PlayerSaveData != null;
         }
     }
 }

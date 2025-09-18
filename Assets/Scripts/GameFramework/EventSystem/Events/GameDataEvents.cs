@@ -1,4 +1,5 @@
 ﻿using GameFramework.DataStructures;
+using GameFramework.SaveSystem.Data;
 
 namespace GameFramework.GameData.Events
 {
@@ -49,12 +50,12 @@ namespace GameFramework.GameData.Events
     public class GameDataLoadedEvent
     {
         public GameSessionData GameSessionData { get; }
-        public PlayerData PlayerData { get; }
+        public PlayerSaveData PlayerSaveData { get; }
 
-        public GameDataLoadedEvent(GameSessionData gameSessionData, PlayerData playerData)
+        public GameDataLoadedEvent(GameSessionData gameSessionData, PlayerSaveData playerSaveData)
         {
             GameSessionData = gameSessionData;
-            PlayerData = playerData;
+            PlayerSaveData = playerSaveData;
         }
     }
 }

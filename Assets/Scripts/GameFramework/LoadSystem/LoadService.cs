@@ -220,7 +220,7 @@ namespace GameFramework.LoadSystem.Services
 
                 // Step 6: Apply to game data service
                 await PublishProgress("Applying game state...", 0.85f);
-                _gameDataService.LoadGameData(loadedGameState.GameSessionData, loadedGameState.PlayerData);
+                _gameDataService.LoadGameData(loadedGameState.GameSessionData, loadedGameState.PlayerSaveData);
                 await Task.Delay(200); // Small delay for processing
 
                 // Step 7: Complete
@@ -311,7 +311,7 @@ namespace GameFramework.LoadSystem.Services
 
                 // Step 5: Apply to game data service
                 await PublishProgress("Applying game state...", 0.85f);
-                _gameDataService.LoadGameData(loadedGameState.GameSessionData, loadedGameState.PlayerData);
+                _gameDataService.LoadGameData(loadedGameState.GameSessionData, loadedGameState.PlayerSaveData);
                 await Task.Delay(200);
 
                 // Step 6: Complete
@@ -349,7 +349,7 @@ namespace GameFramework.LoadSystem.Services
                 var loadedGameState = new LoadedGameState
                 {
                     GameSessionData = ConvertToGameSessionData(saveFileData.GameSessionData),
-                    PlayerData = ConvertToPlayerData(saveFileData.PlayerData)
+                    PlayerSaveData = saveFileData.PlayerData
                 };
 
                 return loadedGameState.IsValid() ? loadedGameState : null;
@@ -393,25 +393,8 @@ namespace GameFramework.LoadSystem.Services
             );
         }
 
-        /// <summary>
-        /// Converts PlayerSaveData to PlayerData - preserves unique ID
-        /// </summary>
-        private PlayerData ConvertToPlayerData(PlayerSaveData saveData)
-        {
-            if (saveData == null)
-            {
-                Debug.LogError("[LoadService] Cannot convert null PlayerSaveData");
-                return null;
-            }
-
-            // Use constructor that preserves the unique ID from save data
-            return new PlayerData(
-                saveData.uniqueID,      // Preserve the loaded unique ID
-                saveData.playerName,
-                saveData.Position,
-                saveData.Rotation
-            );
-        }
+        // NOTE: PlayerData conversion removed - PlayerSaveData is passed directly to GameDataService
+        // PlayerData MonoBehaviour components are created by InstantiationService when instantiating player prefab
         #endregion
     }
 }

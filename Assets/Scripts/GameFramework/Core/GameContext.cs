@@ -137,6 +137,8 @@ namespace GameFramework.Core
         
         public ITimeService TimeService { get; }
         
+        public IInstantiationService InstantiationService { get; }
+        
         // ILoadService is not listed as it made a circular dependency with GameStateMachine and it doesn't currently seem needed
         // public ILoadService LoadService { get; }
         
@@ -190,7 +192,8 @@ namespace GameFramework.Core
             IConsoleService consoleService,
             IGraphicsService graphicsService,
             IPauseService pauseService,
-            ITimeService timeService
+            ITimeService timeService,
+            IInstantiationService instantiationService
         )
         {
             EventSystem = eventSystem ?? throw new ArgumentNullException(nameof(eventSystem));
@@ -204,6 +207,7 @@ namespace GameFramework.Core
             GraphicsService = graphicsService ?? throw new ArgumentNullException(nameof(graphicsService));
             PauseService = pauseService ?? throw new ArgumentNullException(nameof(pauseService));
             TimeService = timeService ?? throw new ArgumentNullException(nameof(timeService));
+            InstantiationService = instantiationService ?? throw new ArgumentNullException(nameof(instantiationService));
         }
 
         #endregion

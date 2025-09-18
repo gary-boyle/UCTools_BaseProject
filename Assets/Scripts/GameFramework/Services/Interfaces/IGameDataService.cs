@@ -2,6 +2,7 @@
 using UnityEngine;
 using GameFramework.SaveSystem.Services;
 using GameFramework.EventSystem.Interfaces;
+using GameFramework.SaveSystem.Data;
 
 namespace GameFramework.Services.Interfaces
 {
@@ -27,6 +28,11 @@ namespace GameFramework.Services.Interfaces
         /// Gets the current PlayerData (read-only access)
         /// </summary>
         PlayerData GetPlayerData();
+        void SetPlayerData(PlayerData playerData);
+
+        PlayerSaveData GetPendingPlayerSaveData();
+        void ClearPendingPlayerData();
+        void ForceDeregisterPlayerData(PlayerData playerData);
         
         #endregion
 
@@ -39,8 +45,11 @@ namespace GameFramework.Services.Interfaces
         /// <summary>
         /// Loads game data from provided data objects (used by load system)
         /// </summary>
-        void LoadGameData(GameSessionData gameSessionData, PlayerData playerData);
+        void LoadGameData(GameSessionData gameSessionData, PlayerSaveData playerSaveData);
 
+        void UpdatePlayer(string playerName = null, Vector3? position = null, Vector3? rotation = null);
+        void ResetToDefaults();
+        
         #endregion
     }
 }
