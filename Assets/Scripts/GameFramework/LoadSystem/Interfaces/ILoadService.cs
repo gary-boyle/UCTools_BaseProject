@@ -25,10 +25,12 @@ namespace GameFramework.LoadSystem.Interfaces
 
         /// <summary>
         /// Loads save data from SaveFileData and applies it to game state
+        /// Includes scene loading and progress reporting  
         /// </summary>
         /// <param name="saveFileData">Save file data to apply</param>
+        /// <param name="isNewGame">Whether this is loading a new game (affects progress messages)</param>
         /// <returns>True if loading succeeded</returns>
-        Task<bool> LoadGameStateAsync(SaveFileData saveFileData);
+        Task<bool> LoadGameStateAsync(SaveFileData saveFileData, bool isNewGame = false);
 
         /// <summary>
         /// Converts SaveFileData to live game objects without applying to game state

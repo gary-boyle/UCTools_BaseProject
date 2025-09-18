@@ -6,6 +6,7 @@ using GameFramework.LoadSystem.Interfaces;
 using GameFramework.DataStructures;
 using GameFramework.EventSystem.Events;
 using GameFramework.SaveSystem.Data;
+using GameFramework.SaveSystem.Utilities;
 using GameFramework.EventSystem.Interfaces;
 using GameFramework.FileSystem.Interfaces;
 
@@ -51,6 +52,7 @@ namespace GameFramework.LoadSystem.Services
 
             // Subscribe to begin load events from UI
             _eventSystem.Subscribe<BeginLoadGameEvent>(OnBeginLoadGameRequested);
+            _eventSystem.Subscribe<BeginNewGameLoadEvent>(OnBeginNewGameLoadRequested);
 
             IsInitialized = true;
             Debug.Log("[LoadService] Load service initialized and subscribed to events");
@@ -63,6 +65,7 @@ namespace GameFramework.LoadSystem.Services
             Debug.Log("[LoadService] Shutting down load service...");
 
             _eventSystem?.Unsubscribe<BeginLoadGameEvent>(OnBeginLoadGameRequested);
+            _eventSystem?.Unsubscribe<BeginNewGameLoadEvent>(OnBeginNewGameLoadRequested);
             
             _fileService = null;
             _gameDataService = null;
@@ -97,6 +100,45 @@ namespace GameFramework.LoadSystem.Services
             if (!success)
             {
                 Debug.LogError($"[LoadService] Failed to load game state from: {evt.SaveFileInfo.FileName}");
+            }
+        }
+
+        /// <summary>
+        /// Handles begin new game load events - creates fresh SaveFileData and uses existing loading pipeline
+        /// </summary>
+        private async void OnBeginNewGameLoadRequested(BeginNewGameLoadEvent evt)
+        {
+            if (evt == null)
+            {
+                Debug.LogError("[LoadService] Received begin new game load event with null event data");
+                return;
+            }
+
+            Debug.Log($"[LoadService] Beginning new game load process - Player: {evt.PlayerName}, Difficulty: {evt.Difficulty}, Scene: {evt.StartingScene}");
+
+            try
+            {
+                // Create fresh SaveFileData for new game - this unifies the loading process
+                var newGameSaveData = NewGameSaveDataCreator.CreateNewGameSaveData(evt.PlayerName, evt.Difficulty, evt.StartingScene);
+                if (newGameSaveData == null)
+                {
+                    Debug.LogError("[LoadService] Failed to create new game save data");
+                    _eventSystem?.Publish(new LoadingFailedEvent(new Exception("Failed to create new game data")));
+                    return;
+                }
+
+                // Use the existing SaveFileData loading pipeline - this ensures identical behavior
+                bool success = await LoadGameStateAsync(newGameSaveData, isNewGame: true);
+                
+                if (!success)
+                {
+                    Debug.LogError("[LoadService] Failed to load new game state through unified pipeline");
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"[LoadService] Error in new game loading process: {ex.Message}");
+                _eventSystem?.Publish(new LoadingFailedEvent(ex));
             }
         }
         #endregion
@@ -206,43 +248,94 @@ namespace GameFramework.LoadSystem.Services
 
         /// <summary>
         /// Loads save data from SaveFileData and applies it to game state
-        /// Includes scene loading if specified in save data
+        /// Includes scene loading and progress reporting
         /// </summary>
-        public async Task<bool> LoadGameStateAsync(SaveFileData saveFileData)
+        public async Task<bool> LoadGameStateAsync(SaveFileData saveFileData, bool isNewGame = false)
         {
-            // This method is used internally and doesn't need progress reporting
             if (!IsInitialized || _gameDataService == null || saveFileData == null)
                 return false;
 
+            if (IsLoading)
+            {
+                Debug.LogWarning("[LoadService] Load operation already in progress");
+                return false;
+            }
+            
+            string loadType = isNewGame ? "new game" : "save";
+
             try
             {
+                IsLoading = true;
+                
+                
+                // Step 1: Initialize loading
+                await PublishProgress(isNewGame ? "Initializing new game..." : "Initializing load...", 0.0f);
+                await Task.Delay(100);
+
+                // Step 2: Validate data
+                await PublishProgress(isNewGame ? "Setting up game data..." : "Validating save data...", 0.2f);
+                await Task.Delay(100);
+
+                if (!saveFileData.ValidateData())
+                {
+                    throw new Exception($"Game data is invalid - cannot load {loadType}");
+                }
+
+                // Step 3: Convert save data to runtime objects
+                await PublishProgress(isNewGame ? "Creating game objects..." : "Converting save data...", 0.4f);
                 var loadedGameState = await ConvertSaveDataAsync(saveFileData);
                 if (loadedGameState == null || !loadedGameState.IsValid())
-                    return false;
+                {
+                    throw new Exception($"Failed to convert {loadType} data to game objects");
+                }
 
-                // Load scene if specified
+                // Step 4: Load scene if specified
+                await PublishProgress("Loading scene...", 0.6f);
                 var sceneToLoad = loadedGameState.GameSessionData?.CurrentScene;
                 if (!string.IsNullOrEmpty(sceneToLoad))
                 {
-                    Debug.Log($"[LoadService] Loading scene from save data: {sceneToLoad}");
-                    bool sceneLoaded = await _sceneService.LoadSceneWithProgressAsync(sceneToLoad);
+                    Debug.Log($"[LoadService] Loading scene for {loadType}: {sceneToLoad}");
+                    
+                    bool sceneLoaded = await _sceneService.LoadSceneWithProgressAsync(sceneToLoad, (sceneProgress) =>
+                    {
+                        // Map scene progress (0-1) to our overall progress range (0.6-0.8)
+                        float mappedProgress = 0.6f + (sceneProgress * 0.2f);
+                        _eventSystem?.Publish(new LoadingProgressEvent("Loading scene...", mappedProgress));
+                    });
                     
                     if (!sceneLoaded)
                     {
-                        Debug.LogError($"[LoadService] Failed to load scene: {sceneToLoad}");
-                        return false;
+                        throw new Exception($"Failed to load scene: {sceneToLoad}");
                     }
                 }
 
+                // Step 5: Apply to game data service
+                await PublishProgress("Applying game state...", 0.85f);
                 _gameDataService.LoadGameData(loadedGameState.GameSessionData, loadedGameState.PlayerData);
+                await Task.Delay(200);
+
+                // Step 6: Complete
+                await PublishProgress(isNewGame ? "New game ready!" : "Loading complete!", 1.0f);
+                await Task.Delay(100);
+
+                // Publish completion event
+                _eventSystem?.Publish(new LoadingCompletedEvent());
+                
+                Debug.Log($"[LoadService] Successfully loaded {loadType}");
                 return true;
             }
             catch (Exception ex)
             {
-                Debug.LogError($"[LoadService] Error applying game state: {ex.Message}");
+                Debug.LogError($"[LoadService] Error loading {loadType}: {ex.Message}");
+                _eventSystem?.Publish(new LoadingFailedEvent(ex));
                 return false;
             }
+            finally
+            {
+                IsLoading = false;
+            }
         }
+
 
         /// <summary>
         /// Converts SaveFileData to live game objects without applying
@@ -270,6 +363,8 @@ namespace GameFramework.LoadSystem.Services
         #endregion
 
         #region Private Methods
+
+
         /// <summary>
         /// Publishes loading progress events
         /// </summary>

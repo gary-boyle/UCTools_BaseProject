@@ -23,6 +23,7 @@ namespace GameFramework.StateMachine.GameStates
         private float _loadingStartTime;
         private bool _loadingCompleted = false;
         private bool _loadingFailed = false;
+        private LoadingType _currentLoadingType = LoadingType.LoadSave; // Default to load save
         #endregion
         
         public LoadingState(
@@ -44,11 +45,13 @@ namespace GameFramework.StateMachine.GameStates
             // Subscribe to loading events
             EventSystem.Subscribe<LoadingCompletedEvent>(OnLoadingCompleted);
             EventSystem.Subscribe<LoadingFailedEvent>(OnLoadingFailed);
+            EventSystem.Subscribe<BeginLoadGameEvent>(OnBeginLoadGame);
+            EventSystem.Subscribe<BeginNewGameLoadEvent>(OnBeginNewGameLoad);
             
             // Show loading screen
             await UIService.ShowScreenAsync<LoadingScreen>();
             var loadingScreen = UIService.GetScreen<LoadingScreen>();
-            loadingScreen?.SetLoadingType(LoadingType.LoadSave);
+            loadingScreen?.SetLoadingType(_currentLoadingType);
             
             Debug.Log("[LoadingState] Loading state entered, waiting for loading completion...");
         }
@@ -73,6 +76,28 @@ namespace GameFramework.StateMachine.GameStates
             // Transition to playing state
             Debug.Log("[LoadingState] Transitioning to playing state...");
             await TransitionToStateAsync(GameStateType.Playing);
+        }
+
+        /// <summary>
+        /// Handles when a load save game event begins - updates loading type
+        /// </summary>
+        private void OnBeginLoadGame(BeginLoadGameEvent evt)
+        {
+            _currentLoadingType = LoadingType.LoadSave;
+            var loadingScreen = UIService.GetScreen<LoadingScreen>();
+            loadingScreen?.SetLoadingType(_currentLoadingType);
+            Debug.Log("[LoadingState] Load save game detected, setting loading type to LoadSave");
+        }
+
+        /// <summary>
+        /// Handles when a new game load event begins - updates loading type
+        /// </summary>
+        private void OnBeginNewGameLoad(BeginNewGameLoadEvent evt)
+        {
+            _currentLoadingType = LoadingType.NewGame;
+            var loadingScreen = UIService.GetScreen<LoadingScreen>();
+            loadingScreen?.SetLoadingType(_currentLoadingType);
+            Debug.Log("[LoadingState] New game load detected, setting loading type to NewGame");
         }
 
         /// <summary>
@@ -120,6 +145,8 @@ namespace GameFramework.StateMachine.GameStates
             // Unsubscribe from events
             EventSystem.Unsubscribe<LoadingCompletedEvent>(OnLoadingCompleted);
             EventSystem.Unsubscribe<LoadingFailedEvent>(OnLoadingFailed);
+            EventSystem.Unsubscribe<BeginLoadGameEvent>(OnBeginLoadGame);
+            EventSystem.Unsubscribe<BeginNewGameLoadEvent>(OnBeginNewGameLoad);
             
             // Hide loading screen
             await UIService.HideScreenAsync<LoadingScreen>();

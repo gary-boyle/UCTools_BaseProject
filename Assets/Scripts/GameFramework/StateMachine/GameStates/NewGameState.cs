@@ -13,12 +13,12 @@ namespace GameFramework.StateMachine.GameStates
     /// <summary>
     /// New Game state - fully responsible for its UI lifecycle
     /// Handles all UI transitions based on user interactions reported by the screen
-    /// Initializes new game data through GameDataService and transitions to PlayingState
+    /// Publishes new game load events and transitions to LoadingState for consistent loading experience
     /// </summary>
     public class NewGameState : BaseGameState
     {
         #region Private Fields
-        private IGameDataService _gameDataService;
+        // No longer need GameDataService dependency - LoadService handles game data setup
         #endregion
 
         public NewGameState(
@@ -31,9 +31,6 @@ namespace GameFramework.StateMachine.GameStates
         public override async Task EnterAsync(GameContext context)
         {
             await base.EnterAsync(context);
-            
-            // Get GameDataService dependency from context
-            _gameDataService = context.GameDataService;
 
             InputManager.SetInputContext(InputContext.UI);
 
@@ -46,45 +43,34 @@ namespace GameFramework.StateMachine.GameStates
         }
         
         /// <summary>
-        /// Handle new game creation - initializes game data and transitions to PlayingState
+        /// Handle new game creation - publishes new game load event and transitions to LoadingState
         /// </summary>
         private async void OnNewGameRequested(NewGameRequestedEvent evt)
         {
-            if (_gameDataService == null)
-            {
-                Debug.LogError("[NewGameState] Cannot create new game - GameDataService not available");
-                await TransitionToStateAsync(GameStateType.MainMenu);
-                return;
-            }
-
             try
             {
-                Debug.Log($"[NewGameState] Creating new game - Player: {evt.PlayerName}, Difficulty: {evt.Difficulty}, Scene: {evt.StartingScene}");
+                Debug.Log($"[NewGameState] Starting new game - Player: {evt.PlayerName}, Difficulty: {evt.Difficulty}, Scene: {evt.StartingScene}");
 
                 // Validate input parameters
                 string playerName = string.IsNullOrWhiteSpace(evt.PlayerName) ? "Player" : evt.PlayerName.Trim();
                 string difficulty = string.IsNullOrWhiteSpace(evt.Difficulty) ? "Normal" : evt.Difficulty;
                 string startingScene = string.IsNullOrWhiteSpace(evt.StartingScene) ? "GameLevel1" : evt.StartingScene;
 
-                // Initialize new game data through GameDataService
-                _gameDataService.StartNewGame(
-                    playerName: playerName,
-                    difficulty: difficulty,
-                    startingScene: startingScene
-                );
-
-                Debug.Log("[NewGameState] New game data initialized successfully");
-
                 // Give a brief moment for UI feedback before transitioning
                 await Task.Delay(100);
 
-                // Transition directly to PlayingState to start the game
-                Debug.Log("[NewGameState] Transitioning to PlayingState to start new game");
-                await TransitionToStateAsync(GameStateType.Playing);
+                // Publish new game load event - LoadService will handle the actual loading
+                var beginNewGameLoadEvent = new BeginNewGameLoadEvent(playerName, difficulty, startingScene);
+                EventSystem.Publish(beginNewGameLoadEvent);
+
+                Debug.Log("[NewGameState] New game load event published, transitioning to LoadingState");
+
+                // Transition to LoadingState - this will now handle the loading process
+                await TransitionToStateAsync(GameStateType.Loading);
             }
             catch (System.Exception ex)
             {
-                Debug.LogError($"[NewGameState] Failed to create new game: {ex.Message}");
+                Debug.LogError($"[NewGameState] Failed to start new game: {ex.Message}");
                 
                 // Show error feedback to user (could add error UI here)
                 Debug.LogError("[NewGameState] Returning to main menu due to new game creation failure");
@@ -108,9 +94,6 @@ namespace GameFramework.StateMachine.GameStates
             // Unsubscribe from events
             EventSystem.Unsubscribe<NewGameRequestedEvent>(OnNewGameRequested);
             EventSystem.Unsubscribe<MainMenuRequestedEvent>(OnMainMenuRequested);
-            
-            // Clear service reference
-            _gameDataService = null;
             
             // State is responsible for cleaning up its UI
             await UIService.HideScreenAsync<NewGameScreen>();

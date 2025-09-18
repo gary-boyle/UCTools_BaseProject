@@ -73,6 +73,23 @@ namespace GameFramework.EventSystem.Events
     }
 
     /// <summary>
+    /// Event published when a new game should begin loading and transition to loading state
+    /// </summary>
+    public class BeginNewGameLoadEvent
+    {
+        public string PlayerName { get; }
+        public string Difficulty { get; }
+        public string StartingScene { get; }
+
+        public BeginNewGameLoadEvent(string playerName, string difficulty, string startingScene)
+        {
+            PlayerName = playerName ?? "Player";
+            Difficulty = difficulty ?? "Normal";  
+            StartingScene = startingScene ?? "GameLevel1";
+        }
+    }
+
+    /// <summary>
     /// Event published to update loading progress
     /// </summary>
     public class LoadingProgressEvent
