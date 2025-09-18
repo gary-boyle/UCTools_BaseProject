@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
+using GameFramework.Core;
 using GameFramework.EventSystem.Events;
 using GameFramework.EventSystem.Interfaces;
 using GameFramework.Services.Interfaces;
+using GameFramework.Input.Interfaces;
+using GameFramework.Input;
 using UnityEngine;
 
 namespace GameFramework.Services
@@ -20,9 +23,11 @@ namespace GameFramework.Services
         public bool IsPaused { get; private set; }
         
         private readonly IEventSystem _eventSystem;
+        private IInputManager _inputManager;
         
         // Pre-pause state restoration
         private float _prePauseTimeScale = 1f;
+        private InputContext _prePauseInputContext = InputContext.None;
         
         // Removed local events - now using EventSystem
         
@@ -33,7 +38,7 @@ namespace GameFramework.Services
         /// <summary>
         /// Constructor injection - receives required dependencies
         /// </summary>
-        public PauseService(IEventSystem eventSystem, IAudioService audioService)
+        public PauseService(IEventSystem eventSystem)
         {
             _eventSystem = eventSystem ?? throw new ArgumentNullException(nameof(eventSystem));
         }
@@ -48,7 +53,8 @@ namespace GameFramework.Services
             
             // Subscribe to application focus events
             //Application.focusChanged += OnApplicationFocusChanged;
-            
+            _inputManager = GameManager.GetService<IInputManager>();
+
             // Subscribe to pause/resume events
             _eventSystem.Subscribe<PauseRequestedEvent>(OnPauseRequested);
             _eventSystem.Subscribe<ResumeRequestedEvent>(OnResumeRequested);
@@ -100,10 +106,15 @@ namespace GameFramework.Services
             
             // Store current state before pausing
             _prePauseTimeScale = Time.timeScale;
+            _prePauseInputContext = _inputManager.GetCurrentContext();
             
             // Apply pause effects
             IsPaused = true;
             Time.timeScale = 0f;
+            
+            // Switch to UI-only input to block player interactions (mouse raycasts, movement, etc.)
+            // but allow UI interactions like pause menu navigation
+            _inputManager.SetInputContext(InputContext.UI);
             
             // Publish events through EventSystem only
             _eventSystem.Publish(new GamePausedEvent());
@@ -116,6 +127,9 @@ namespace GameFramework.Services
             // Restore pre-pause state
             IsPaused = false;
             Time.timeScale = _prePauseTimeScale;
+            
+            // Restore previous input context to re-enable player interactions
+            _inputManager.SetInputContext(_prePauseInputContext);
             
             //Debug.Log($"[PauseService] Game resumed (timeScale: {Time.timeScale})");
             

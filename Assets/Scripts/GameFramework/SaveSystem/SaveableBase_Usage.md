@@ -251,6 +251,43 @@ myComponent.EditorGenerateUniqueID(); // For testing only!
 7. **Use try-catch for complex loading** - Prevent save data corruption from breaking the game
 8. **Don't rely on UniqueIDs in prefab assets** - They're generated at runtime only
 
+## Save System Architecture
+
+### How SaveFileData Handles Different Object Types
+
+The save system uses a **hybrid approach** to store different types of saveable data:
+
+#### **Static Fields (Core Game Data)**
+- Fixed SaveKeys like `"GameSessionData"`, `"PlayerData"`  
+- Stored as direct fields in `SaveFileData`
+- Use reflection for field assignment
+
+#### **Dynamic Objects (SaveableBase Instances)**
+- Generated SaveKeys like `"ClickableCube_cube_1234567890_1234"`
+- Stored in `SaveFileData.DynamicSaveableObjects[]` array
+- Converted to `SavedObjectEntry` with Key-Value pairs
+
+```csharp
+// Save file structure
+{
+  "SaveTimeTicks": 638012345678901234,
+  "GameSessionData": { "uniqueID": "session_123", ... },
+  "PlayerData": { "uniqueID": "player_456", ... },
+  "DynamicSaveableObjects": [
+    {
+      "Key": "ClickableCube_cube_1234567890_1234",
+      "Value": { "typeName": "ClickableCubeSaveData", "dataJson": "{...}" }
+    },
+    {
+      "Key": "SaveableExample_example_1234567890_5678", 
+      "Value": { "typeName": "SaveableExampleData", "dataJson": "{...}" }
+    }
+  ]
+}
+```
+
+This design allows unlimited dynamic saveable objects while maintaining clean structure for core game data.
+
 ## Example Implementation
 
 See `SaveableExample.cs` in the Examples folder for a complete implementation example that demonstrates all the extension points and best practices.

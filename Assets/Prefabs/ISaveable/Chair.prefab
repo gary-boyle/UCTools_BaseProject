@@ -10,34 +10,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2225594177598793190, guid: 75935f2d5474c07469071d05e93760db, type: 3}
       propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2679149136971002413, guid: 75935f2d5474c07469071d05e93760db, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2679149136971002413, guid: 75935f2d5474c07469071d05e93760db, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2679149136971002413, guid: 75935f2d5474c07469071d05e93760db, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2679149136971002413, guid: 75935f2d5474c07469071d05e93760db, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2679149136971002413, guid: 75935f2d5474c07469071d05e93760db, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2679149136971002413, guid: 75935f2d5474c07469071d05e93760db, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2679149136971002413, guid: 75935f2d5474c07469071d05e93760db, type: 3}
-      propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2679149136971002413, guid: 75935f2d5474c07469071d05e93760db, type: 3}
@@ -66,13 +38,37 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2679149136971002413, guid: 75935f2d5474c07469071d05e93760db, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5787344937912495737}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5558404577254317732, guid: 75935f2d5474c07469071d05e93760db, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4557876471912948814}
   m_SourcePrefab: {fileID: 100100000, guid: 75935f2d5474c07469071d05e93760db, type: 3}
 --- !u!4 &2368465922154371450 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2679149136971002413, guid: 75935f2d5474c07469071d05e93760db, type: 3}
   m_PrefabInstance: {fileID: 427917586656815959}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5247589961145021939 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5558404577254317732, guid: 75935f2d5474c07469071d05e93760db, type: 3}
+  m_PrefabInstance: {fileID: 427917586656815959}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4557876471912948814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5247589961145021939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1413f96f6a6e9a24095a94d27adb9998, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameFramework.SaveSystem.Examples.TestGenericSaveable
+  _uniqueID: 
+  _testValue: 42
+  _testString: Hello World
+  _testBool: 1
 --- !u!1001 &6330511810752448914
 PrefabInstance:
   m_ObjectHideFlags: 0

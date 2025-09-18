@@ -311,63 +311,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7212061087555203392, guid: 1b656bc6893ad5240b5c37046409510e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3871860346592301809}
-    - targetCorrespondingSourceObject: {fileID: 7212061087555203392, guid: 1b656bc6893ad5240b5c37046409510e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3871860346592301808}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b656bc6893ad5240b5c37046409510e, type: 3}
---- !u!1 &3871860346592301807 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7212061087555203392, guid: 1b656bc6893ad5240b5c37046409510e, type: 3}
-  m_PrefabInstance: {fileID: 3871860346592301806}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3871860346592301808
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3871860346592301807}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddc529511366f7f43bd95f9f51e803ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameFramework.Components.ClickToInstantiate
-  prefabToInstantiate: {fileID: 8194816678922672206, guid: 0a715cd8b0a34e44d8cbccac03ca47f4, type: 3}
-  placementMode: 0
-  raycastLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  fixedDepth: 0
-  mouseButton: 1
-  alignToSurfaceNormal: 1
-  rotationOffset: {x: 0, y: 0, z: 0}
-  parentTransform: {fileID: 0}
---- !u!114 &3871860346592301809
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3871860346592301807}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddc529511366f7f43bd95f9f51e803ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameFramework.Components.ClickToInstantiate
-  prefabToInstantiate: {fileID: 5247589961145021939, guid: 23f627cbce6366347a60d829765e289b, type: 3}
-  placementMode: 0
-  raycastLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  fixedDepth: 0
-  mouseButton: 0
-  alignToSurfaceNormal: 1
-  rotationOffset: {x: 0, y: 0, z: 0}
-  parentTransform: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

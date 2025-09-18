@@ -17,6 +17,11 @@ namespace GameFramework.Components.Saveable
             };
         }
 
+        private void Start()
+        {
+            base.Start();
+            
+        }
         public override void LoadSaveData(object data)
         {
             if (data == null)

@@ -57,6 +57,10 @@ namespace GameFramework.SaveSystem
             OnAwakeCustom();
         }
 
+        // private void Start()
+        // {
+        //     OnStart();
+        // }
         protected virtual async void Start()
         {
             // Call virtual method for custom Start logic before registration

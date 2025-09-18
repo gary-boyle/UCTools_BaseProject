@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddc529511366f7f43bd95f9f51e803ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameFramework.Components.ClickToInstantiate
-  prefabToInstantiate: {fileID: 919132149155446097, guid: 7a680f808fc958342b2d2c689e44060d, type: 3}
+  prefabToInstantiate: {fileID: 5247589961145021939, guid: 23f627cbce6366347a60d829765e289b, type: 3}
   placementMode: 0
   raycastLayerMask:
     serializedVersion: 2

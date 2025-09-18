@@ -1,3 +1,6 @@
+using GameFramework.Core;
+using GameFramework.Input;
+using GameFramework.Input.Interfaces;
 using UnityEngine;
 
 namespace GameFramework.Components
@@ -25,7 +28,8 @@ namespace GameFramework.Components
         [SerializeField] private Transform parentTransform;
         
         private Camera mainCamera;
-        
+        private IInputManager _inputManager;
+
         public enum PlacementMode
         {
             Raycast,        // Places on surfaces hit by raycast
@@ -41,6 +45,8 @@ namespace GameFramework.Components
         
         private void Start()
         {
+            _inputManager = GameManager.GetService<IInputManager>();
+            
             // Get main camera reference
             mainCamera = Camera.main;
             if (mainCamera == null)
@@ -62,6 +68,8 @@ namespace GameFramework.Components
         
         private void Update()
         {
+            if (_inputManager.GetCurrentContext() != InputContext.Player) return;
+            
             // Check for mouse click
             if (UnityEngine.Input.GetMouseButtonDown((int)mouseButton))
             {
