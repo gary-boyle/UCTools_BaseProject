@@ -21,6 +21,7 @@ using System.Threading.Tasks;
 using System;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.EventSystems;
 
 namespace GameFramework.Core
 {
@@ -428,6 +429,9 @@ namespace GameFramework.Core
             // Create and register UI document before UI service
             RegisterUIDocument();
             
+            // Create and register Unity EventSystem for UGUI input handling
+            RegisterEventSystem();
+            
             // Create and register console-related services (if debug console is enabled)
             if (_enableDebugConsole)
             {
@@ -521,6 +525,45 @@ namespace GameFramework.Core
             catch (System.Exception e)
             {
                 Debug.LogError($"[GameManager] Failed to create UIDocument from prefab: {e.Message}");
+            }
+        }
+        
+        /// <summary>
+        /// Creates and registers a Unity EventSystem for UGUI input handling.
+        /// </summary>
+        /// <remarks>
+        /// Unity's EventSystem is required for all UGUI input components (InputField, Button, etc.)
+        /// to receive input events. This ensures it persists across scene loads.
+        /// </remarks>
+        private void RegisterEventSystem()
+        {
+            // Check if EventSystem already exists (might be in scene)
+            if (UnityEngine.EventSystems.EventSystem.current != null)
+            {
+                Debug.Log("[GameManager] Unity EventSystem already exists - making it persistent");
+                DontDestroyOnLoad(UnityEngine.EventSystems.EventSystem.current.gameObject);
+                return;
+            }
+            
+            try
+            {
+                // Create a new GameObject for the EventSystem
+                var eventSystemGameObject = new GameObject("EventSystem (Runtime)");
+                
+                // Add EventSystem component
+                var eventSystem = eventSystemGameObject.AddComponent<UnityEngine.EventSystems.EventSystem>();
+                
+                // Add StandaloneInputModule for keyboard/mouse input
+                var inputModule = eventSystemGameObject.AddComponent<UnityEngine.EventSystems.StandaloneInputModule>();
+                
+                // Make it persist across scene loads
+                DontDestroyOnLoad(eventSystemGameObject);
+                
+                Debug.Log("[GameManager] Unity EventSystem created and configured for persistence");
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError($"[GameManager] Failed to create Unity EventSystem: {e.Message}");
             }
         }
         

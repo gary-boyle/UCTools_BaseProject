@@ -127,7 +127,17 @@ namespace GameFramework.StateMachine.GameStates
             
             // Hide pause popup if it's showing
             await UIService.HidePopupAsync<PausePopup>();
-            InputManager.SetInputContext(InputContext.Player);
+            
+            // Only reset input context to Player if console is not open
+            var consoleService = Context.ConsoleService;
+            if (consoleService == null || !consoleService.IsConsoleOpen())
+            {
+                InputManager.SetInputContext(InputContext.Player);
+            }
+            else
+            {
+                Debug.Log("[PlayingState] Console is open - not resetting input context");
+            }
         }
         
         /// <summary>

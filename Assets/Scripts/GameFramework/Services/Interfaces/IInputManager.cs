@@ -32,6 +32,7 @@ namespace GameFramework.Input.Interfaces
         float GetMouseSensitivity() ;
 
         bool GetInvertYAxis();
+        InputContext GetCurrentContext();
 
     }
 }

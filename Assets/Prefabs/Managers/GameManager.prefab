@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9157005105602446286}
   - component: {fileID: 8792417935824281782}
+  - component: {fileID: 2114588777769679371}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -48,3 +49,39 @@ MonoBehaviour:
   _UIPrefab: {fileID: 4665962162709938052, guid: 068e7dab6cffd33438bae48c28f6101c, type: 3}
   _consoleGUIPrefab: {fileID: 1128345073793097708, guid: ec7a5319aefbd7b45aac5be477db403c, type: 3}
   _audioManagerPrefab: {fileID: 5759517096930060208, guid: a9eebbc1fda2f4c40a555b26aa6fa498, type: 3}
+  _playerPrefab: {fileID: 8851619217007553581, guid: 35a140cdbd9917d4dad65bee61bc9018, type: 3}
+  _audioSettingsSo: {fileID: 11400000, guid: d1a18cfd6a8679c4bb132ef39c829b82, type: 2}
+  _graphicsSettingsSo: {fileID: 11400000, guid: 9ddf5a5ff559bd844afda9a95710ac6f, type: 2}
+  _gameplaySettingsSo: {fileID: 11400000, guid: 099dbaa7c5f073c489c1cbdbafd19ac9, type: 2}
+  _inputSettingsSo: {fileID: 11400000, guid: 7c9f283ee7711594a9e6aef42ddb02ca, type: 2}
+  _debugSettingsSo: {fileID: 11400000, guid: ec9ebabf43328ae4a95d119be55c49e2, type: 2}
+--- !u!114 &2114588777769679371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7212061087555203392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
+  m_Actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
