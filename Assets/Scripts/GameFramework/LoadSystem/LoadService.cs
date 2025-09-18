@@ -321,7 +321,6 @@ namespace GameFramework.LoadSystem.Services
                 // Publish completion event
                 _eventSystem?.Publish(new LoadingCompletedEvent());
                 
-                Debug.Log($"[LoadService] Successfully loaded {loadType}");
                 return true;
             }
             catch (Exception ex)
@@ -393,8 +392,6 @@ namespace GameFramework.LoadSystem.Services
             );
         }
 
-        // NOTE: PlayerData conversion removed - PlayerSaveData is passed directly to GameDataService
-        // PlayerData MonoBehaviour components are created by InstantiationService when instantiating player prefab
         #endregion
     }
 }

@@ -46,6 +46,9 @@ namespace GameFramework.Services
             // Initialize with default data
             InitializeDefaultGameData();
 
+            // Register the initialized data with the save system
+            RegisterWithSaveSystem();
+
             IsInitialized = true;
         }
 
@@ -176,7 +179,7 @@ namespace GameFramework.Services
                 Debug.LogWarning("[GameDataService] Service not initialized, returning null");
                 return null;
             }
-
+            
             return _currentPlayerData;
         }
 
@@ -199,24 +202,13 @@ namespace GameFramework.Services
 
             var previousPlayer = _currentPlayerData;
             _currentPlayerData = playerData;
-
-            // Re-register with save system if registry is available
-            if (_saveDataRegistry != null)
+            
+            // Clean up any previous PlayerData GameObject if it exists
+            if (previousPlayer != null)
             {
-                // Force deregister any existing PlayerData with the same SaveKey
-                _saveDataRegistry.DeregisterSaveable("PlayerData");
-                
-                if (previousPlayer != null)
-                {
-                    _saveDataRegistry.DeregisterSaveable(previousPlayer);
-                }
-                
-                bool registered = _saveDataRegistry.RegisterSaveable(_currentPlayerData);
-                if (!registered)
-                {
-                    Debug.LogError($"[GameDataService] Failed to register PlayerData with SaveKey: {_currentPlayerData.SaveKey}");
-                }
+                UnityEngine.Object.DestroyImmediate(previousPlayer.gameObject);
             }
+
 
             // Publish change event through EventSystem
             _eventSystem?.Publish(new PlayerDataChangedEvent(_currentPlayerData));
@@ -261,6 +253,7 @@ namespace GameFramework.Services
                 // Clear current reference if it matches
                 if (_currentPlayerData == playerData)
                 {
+                    Debug.Log($"[GameDataService] Current PlayerData was destroyed, clearing reference");
                     _currentPlayerData = null;
                 }
             }
@@ -305,10 +298,11 @@ namespace GameFramework.Services
             // Create default game session
             _currentGameSession = new GameSessionData("Normal", "MainMenu", 0);
 
-            // Create default player - this is a temporary solution for initialization
-            // In practice, PlayerData MonoBehaviours should be created by InstantiationService
-            _currentPlayerData = new GameObject("DefaultPlayer").AddComponent<PlayerData>();
-            _currentPlayerData.PlayerName = "Player";
+            // Don't create a dummy PlayerData - let InstantiationService create the real one
+            // PlayerData will be null until the real player is instantiated
+            _currentPlayerData = null;
+            
+            Debug.Log("[GameDataService] Initialized with GameSession only, PlayerData will be set when real player is instantiated");
         }
 
         /// <summary>
@@ -319,11 +313,23 @@ namespace GameFramework.Services
             if (_saveDataRegistry == null) return;
 
             bool sessionRegistered = _saveDataRegistry.RegisterSaveable(_currentGameSession);
-            bool playerRegistered = _saveDataRegistry.RegisterSaveable(_currentPlayerData);
-
-            if (!sessionRegistered && !playerRegistered)
+            
+            // Only try to register PlayerData if it exists (real player has been instantiated)
+            bool playerRegistered = false;
+            if (_currentPlayerData != null)
             {
-                Debug.LogWarning("[GameDataService] Failed to register some game data objects with save system");
+                playerRegistered = _saveDataRegistry.RegisterSaveable(_currentPlayerData);
+            }
+            else
+            {
+                Debug.Log("[GameDataService] PlayerData is null, will be registered when real player is instantiated");
+            }
+
+            Debug.Log($"[GameDataService] Registration results - Session: {sessionRegistered}, Player: {playerRegistered}");
+            
+            if (!sessionRegistered)
+            {
+                Debug.LogWarning("[GameDataService] Failed to register GameSession with save system");
             }
         }
 

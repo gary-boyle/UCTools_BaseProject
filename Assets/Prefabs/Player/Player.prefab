@@ -9,12 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7794249365499132122}
-  - component: {fileID: 1866099678249882131}
-  - component: {fileID: 934891226460633779}
   - component: {fileID: 3764867399697104109}
   - component: {fileID: 3958305396307691653}
   - component: {fileID: 9000902341628311577}
-  - component: {fileID: 7592924343793023864}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -37,39 +34,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1215660048992525934}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1866099678249882131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1446662224772573595}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3da2953435f642a1af5305cc2571cde9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameFramework.DataStructures.PlayerData
-  _uniqueID: 
-  _playerName: 
---- !u!114 &934891226460633779
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1446662224772573595}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8c7d2c4133d08e4b845d9949182be8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameFramework.Components.PlayerController
-  _moveSpeed: 10
-  _groundLayerMask:
-    serializedVersion: 2
-    m_Bits: 1
-  _groundCheckDistance: 0.1
-  _groundCheckPoint: {fileID: 0}
-  _showDebugInfo: 0
 --- !u!33 &3764867399697104109
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -149,33 +113,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &7592924343793023864
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1446662224772573595}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!1 &7818760745583363627
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,6 +176,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1215660048992525934}
+  - component: {fileID: 6835960619841895384}
+  - component: {fileID: 3421404348651573308}
+  - component: {fileID: 2126959124047159454}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -263,3 +203,63 @@ Transform:
   - {fileID: 51924904132924267}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6835960619841895384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8851619217007553581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3da2953435f642a1af5305cc2571cde9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameFramework.DataStructures.PlayerData
+  _uniqueID: 
+  _playerName: 
+--- !u!54 &3421404348651573308
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8851619217007553581}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &2126959124047159454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8851619217007553581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8c7d2c4133d08e4b845d9949182be8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameFramework.Components.PlayerController
+  _moveSpeed: 10
+  _groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  _groundCheckDistance: 0.1
+  _groundCheckPoint: {fileID: 0}
+  _showDebugInfo: 0

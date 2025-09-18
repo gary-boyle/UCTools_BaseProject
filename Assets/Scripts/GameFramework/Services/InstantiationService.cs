@@ -105,7 +105,7 @@ namespace GameFramework.Services
                         
                         // Register with GameDataService as current player
                         _gameDataService.SetPlayerData(playerData);
-                        
+
                         // Clear pending save data since player is now instantiated
                         _gameDataService.ClearPendingPlayerData();
                     }
@@ -244,16 +244,7 @@ namespace GameFramework.Services
                 
                 // Instantiate the player
                 var player = await InstantiatePlayerAsync(spawnPosition, spawnRotation);
-                
-                if (player != null)
-                {
-                    Debug.Log("[InstantiationService] Player successfully instantiated after loading");
-                }
-                else
-                {
-                    Debug.LogError("[InstantiationService] Failed to instantiate player after loading");
-                }
-                
+
                 // Reset the flag for next load
                 _isNewGameLoad = false;
             }
@@ -274,7 +265,6 @@ namespace GameFramework.Services
         {
             _defaultSpawnPosition = position;
             _defaultSpawnRotation = rotation;
-            Debug.Log($"[InstantiationService] Default spawn settings updated: Position {position}, Rotation {rotation}");
         }
         #endregion
 
@@ -286,8 +276,6 @@ namespace GameFramework.Services
         {
             try
             {
-                Debug.Log($"[InstantiationService] ConfigurePlayerDataFromSaveData - _isNewGameLoad: {_isNewGameLoad}, spawnPosition: {spawnPosition}, spawnRotation: {spawnRotation}");
-                
                 // For new games, always use the provided spawn position (from PlayerSpawnPoint)
                 // For loaded games, use save data and ignore the spawn position
                 if (_isNewGameLoad)

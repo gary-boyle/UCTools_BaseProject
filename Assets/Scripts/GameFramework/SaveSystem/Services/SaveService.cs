@@ -180,8 +180,7 @@ namespace GameFramework.SaveSystem.Services
 
             // Collect data from all registered saveables
             var registeredObjects = _saveDataRegistry.GetAllSaveableObjects();
-            Debug.Log($"[SaveService] Collecting save data from {registeredObjects.Count} registered objects");
-
+            
             int successCount = 0;
             int failureCount = 0;
 
@@ -191,6 +190,15 @@ namespace GameFramework.SaveSystem.Services
                 {
                     var saveable = kvp.Value;
                     Debug.Log($"[SaveService] Processing saveable: {saveable.SaveKey} (Type: {saveable.TypeName})");
+                    
+                    // Check if this is a destroyed MonoBehaviour
+                    if (saveable is MonoBehaviour mb && mb == null)
+                    {
+                        Debug.LogWarning($"[SaveService] Saveable {saveable.SaveKey} is a destroyed MonoBehaviour, removing from registry");
+                        _saveDataRegistry.DeregisterSaveable(saveable.SaveKey);
+                        failureCount++;
+                        continue;
+                    }
 
                     // Get save data from the saveable object
                     var saveData = saveable.GetSaveData();
@@ -226,10 +234,17 @@ namespace GameFramework.SaveSystem.Services
 
             Debug.Log($"[SaveService] Save data collection complete. Success: {successCount}, Failures: {failureCount}");
 
-            // Validate the collected data
-            if (!saveFileData.ValidateData())
+            // Validate the collected data (now allows null PlayerData)
+            bool isValid = saveFileData.ValidateData();
+            if (!isValid)
             {
                 throw new InvalidOperationException("Save data validation failed - essential data is missing");
+            }
+            
+            // Additional info about what was saved
+            if (saveFileData.PlayerData == null)
+            {
+                Debug.LogError("[SaveService] Save completed without PlayerData - player may not be instantiated yet");
             }
 
             // Delegate file writing to FileService
@@ -287,12 +302,10 @@ namespace GameFramework.SaveSystem.Services
             // Check if this auto-save already exists using FileService
             if (_fileService.SaveFileExists(autoSaveFileName))
             {
-                Debug.Log($"[SaveService] Found existing auto-save for player {playerUniqueId}, will overwrite: {autoSaveFileName}");
                 return autoSaveFileName;
             }
             else
             {
-                Debug.Log($"[SaveService] Creating new auto-save for player {playerUniqueId}: {autoSaveFileName}");
                 return autoSaveFileName;
             }
         }

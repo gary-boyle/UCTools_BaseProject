@@ -360,6 +360,10 @@ namespace GameFramework.Core
             var profilingService = _container.Resolve<IProfilingService>();
             await profilingService.InitializeAsync();
 
+            // Initialize SaveDataRegistry FIRST (required by GameDataService and SaveService)
+            var saveDataRegistry = _container.Resolve<ISaveDataRegistry>();
+            await saveDataRegistry.InitializeAsync();
+            
             var gameDataService = _container.Resolve<IGameDataService>();
             await gameDataService.InitializeAsync();
             
@@ -368,9 +372,6 @@ namespace GameFramework.Core
             
             var saveService = _container.Resolve<ISaveService>();
             await saveService.InitializeAsync();
-            
-            var saveDataRegistry = _container.Resolve<ISaveDataRegistry>();
-            await saveDataRegistry.InitializeAsync();
             
             // Initialize UI service LAST since it depends on other services
             var uiService = _container.Resolve<IUIService>();

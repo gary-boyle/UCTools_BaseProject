@@ -1,4 +1,5 @@
-﻿using GameFramework.SaveSystem.Data;
+﻿using GameFramework.Core;
+using GameFramework.SaveSystem.Data;
 using UnityEngine;
 using GameFramework.SaveSystem.Interfaces;
 using GameFramework.SaveSystem.Utilities;
@@ -21,6 +22,8 @@ namespace GameFramework.Components
         [SerializeField] private string _playerName;
         private Vector3 _position;
         private Vector3 _rotation;
+        private ISaveDataRegistry _saveDataRegistry;
+
         #endregion
 
         #region Public Properties
@@ -130,6 +133,20 @@ namespace GameFramework.Components
         private void Awake()
         {
             GenerateUniqueId();
+
+            _saveDataRegistry = GameManager.GetService<ISaveDataRegistry>();
+            
+            // Re-register with save system if registry is available
+            if (_saveDataRegistry != null)
+            {
+                // Force deregister any existing PlayerData with the same SaveKey
+                _saveDataRegistry.DeregisterSaveable("PlayerData");
+                _saveDataRegistry.RegisterSaveable(this);
+            }
+            else
+            {
+                Debug.LogError("[GameDataService] SaveDataRegistry is null! Cannot register PlayerData!");
+            }
         }
         
         /// <summary>
