@@ -148,6 +148,7 @@ namespace GameFramework.Core
             {
                 _instance = this;
                 DontDestroyOnLoad(gameObject);
+                Time.timeScale = 1;
                 
                 // Start initialization
                 _ = InitializeFrameworkAsync();

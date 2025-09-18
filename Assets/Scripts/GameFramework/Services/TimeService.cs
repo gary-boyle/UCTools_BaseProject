@@ -186,21 +186,6 @@ namespace GameFramework.Services
             _levelTime = 0;
         }
         
-        // /// <summary>
-        // /// Get time statistics for debugging/display
-        // /// </summary>
-        // public TimeStatistics GetTimeStatistics()
-        // {
-        //     return new TimeStatistics
-        //     {
-        //         GameTime = GameTime, 
-        //         LevelTime = (float)_levelTime,
-        //         IsTrackingGameTime = IsTrackingGameTime,
-        //         IsPaused = _isPaused,
-        //         IsInPlayingState = _isInPlayingState
-        //     };
-        // }
-        
         #endregion
         
         #region Event Handlers

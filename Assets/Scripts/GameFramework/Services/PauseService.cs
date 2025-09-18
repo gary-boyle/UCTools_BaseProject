@@ -20,11 +20,9 @@ namespace GameFramework.Services
         public bool IsPaused { get; private set; }
         
         private readonly IEventSystem _eventSystem;
-        private readonly IAudioService _audioService;
         
         // Pre-pause state restoration
         private float _prePauseTimeScale = 1f;
-        private float _prePauseAudioVolume = 1f;
         
         // Removed local events - now using EventSystem
         
@@ -38,7 +36,6 @@ namespace GameFramework.Services
         public PauseService(IEventSystem eventSystem, IAudioService audioService)
         {
             _eventSystem = eventSystem ?? throw new ArgumentNullException(nameof(eventSystem));
-            _audioService = audioService ?? throw new ArgumentNullException(nameof(audioService));
         }
         
         #endregion
@@ -50,7 +47,7 @@ namespace GameFramework.Services
             if (IsInitialized) return;
             
             // Subscribe to application focus events
-            Application.focusChanged += OnApplicationFocusChanged;
+            //Application.focusChanged += OnApplicationFocusChanged;
             
             // Subscribe to pause/resume events
             _eventSystem.Subscribe<PauseRequestedEvent>(OnPauseRequested);
@@ -68,7 +65,7 @@ namespace GameFramework.Services
             if (!IsInitialized) return;
             
             // Unsubscribe from application events
-            Application.focusChanged -= OnApplicationFocusChanged;
+            //Application.focusChanged -= OnApplicationFocusChanged;
             
             // Unsubscribe from game events
             _eventSystem?.Unsubscribe<PauseRequestedEvent>(OnPauseRequested);
@@ -120,6 +117,8 @@ namespace GameFramework.Services
             IsPaused = false;
             Time.timeScale = _prePauseTimeScale;
             
+            //Debug.Log($"[PauseService] Game resumed (timeScale: {Time.timeScale})");
+            
             // Publish events through EventSystem only
             _eventSystem.Publish(new GameResumedEvent());
         }
@@ -138,11 +137,21 @@ namespace GameFramework.Services
             ResumeGame();
         }
         
-        private void OnApplicationFocusChanged(bool hasFocus)
-        {
-            PauseGame();
-        }
-        
+        // private void OnApplicationFocusChanged(bool hasFocus)
+        // {
+        //     // Only pause when losing focus, resume when gaining focus
+        //     if (!hasFocus)
+        //     {
+        //         PauseGame();
+        //         Debug.Log("[PauseService] Application lost focus - pausing game");
+        //     }
+        //     else
+        //     {
+        //         ResumeGame();
+        //         Debug.Log("[PauseService] Application gained focus - resuming game");
+        //     }
+        // }
+        //
         #endregion
     }
 }
