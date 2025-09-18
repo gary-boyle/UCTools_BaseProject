@@ -88,6 +88,10 @@
     <h3 id="classes">
 Classes
 </h3>
+      <h4><a class="xref" href="GameFramework.SaveSystem.Data.ClickableCubeSaveData.html">ClickableCubeSaveData</a></h4>
+      <section><p>Serializable save data for ClickableCube component
+Stores the cube's color and integer value for persistence</p>
+</section>
       <h4><a class="xref" href="GameFramework.SaveSystem.Data.GameSessionSaveData.html">GameSessionSaveData</a></h4>
       <section></section>
       <h4><a class="xref" href="GameFramework.SaveSystem.Data.LoadedGameState.html">LoadedGameState</a></h4>
@@ -97,8 +101,8 @@ Classes
       <section></section>
       <h4><a class="xref" href="GameFramework.SaveSystem.Data.SaveFileData.html">SaveFileData</a></h4>
       <section><p>Container for all save file data with clean JSON structure
-Uses direct field mapping for type safety and clean serialization
-Extensible by adding new fields for additional save data types</p>
+Uses direct field mapping for core system data and Dictionary for dynamic saveables
+Supports both static system data and runtime-generated saveable objects</p>
 </section>
       <h4><a class="xref" href="GameFramework.SaveSystem.Data.SavedObjectEntry.html">SavedObjectEntry</a></h4>
       <section><p>Helper class for serializing Dictionary as List

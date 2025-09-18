@@ -79,12 +79,13 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="GameFramework.DataStructures.PlayerData">
+            <article class="content wrap" id="_content" data-uid="GameFramework.Components.PlayerData">
 
 
 
-  <h1 id="GameFramework_DataStructures_PlayerData" data-uid="GameFramework.DataStructures.PlayerData" class="text-break">Class PlayerData</h1>
-  <div class="markdown level0 summary"><p>Player data with unique ID for identification and single auto-save per player</p>
+  <h1 id="GameFramework_Components_PlayerData" data-uid="GameFramework.Components.PlayerData" class="text-break">Class PlayerData</h1>
+  <div class="markdown level0 summary"><p>Player data MonoBehaviour with unique ID for identification and single auto-save per player.
+Attach this to a PlayerPrefab to be instantiated during game loading.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -96,49 +97,24 @@
     <h5>Implements</h5>
     <div><a class="xref" href="GameFramework.SaveSystem.Interfaces.ISaveable.html">ISaveable</a></div>
   </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
-    </div>
-  </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.DataStructures.html">DataStructures</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.Components.html">Components</a></h6>
   <h6><strong>Assembly</strong>: .dll</h6>
-  <h5 id="GameFramework_DataStructures_PlayerData_syntax">Syntax</h5>
+  <h5 id="GameFramework_Components_PlayerData_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Serializable]
-public class PlayerData : ISaveable</code></pre>
+    <pre><code class="lang-csharp hljs">public class PlayerData : MonoBehaviour, ISaveable</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
-  <a id="GameFramework_DataStructures_PlayerData__ctor_" data-uid="GameFramework.DataStructures.PlayerData.#ctor*"></a>
-  <h4 id="GameFramework_DataStructures_PlayerData__ctor" data-uid="GameFramework.DataStructures.PlayerData.#ctor">PlayerData()</h4>
+  <a id="GameFramework_Components_PlayerData__ctor_" data-uid="GameFramework.Components.PlayerData.#ctor*"></a>
+  <h4 id="GameFramework_Components_PlayerData__ctor" data-uid="GameFramework.Components.PlayerData.#ctor">PlayerData()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public PlayerData()</code></pre>
   </div>
-  <a id="GameFramework_DataStructures_PlayerData__ctor_" data-uid="GameFramework.DataStructures.PlayerData.#ctor*"></a>
-  <h4 id="GameFramework_DataStructures_PlayerData__ctor_System_String_System_String_Vector3_Vector3_" data-uid="GameFramework.DataStructures.PlayerData.#ctor(System.String,System.String,Vector3,Vector3)">PlayerData(string, string, Vector3, Vector3)</h4>
+  <a id="GameFramework_Components_PlayerData__ctor_" data-uid="GameFramework.Components.PlayerData.#ctor*"></a>
+  <h4 id="GameFramework_Components_PlayerData__ctor_System_String_System_String_Vector3_Vector3_" data-uid="GameFramework.Components.PlayerData.#ctor(System.String,System.String,Vector3,Vector3)">PlayerData(string, string, Vector3, Vector3)</h4>
   <div class="markdown level1 summary"><p>Constructor for loading existing player with known ID</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -178,8 +154,8 @@ public class PlayerData : ISaveable</code></pre>
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_DataStructures_PlayerData__ctor_" data-uid="GameFramework.DataStructures.PlayerData.#ctor*"></a>
-  <h4 id="GameFramework_DataStructures_PlayerData__ctor_System_String_Vector3_Vector3_" data-uid="GameFramework.DataStructures.PlayerData.#ctor(System.String,Vector3,Vector3)">PlayerData(string, Vector3, Vector3)</h4>
+  <a id="GameFramework_Components_PlayerData__ctor_" data-uid="GameFramework.Components.PlayerData.#ctor*"></a>
+  <h4 id="GameFramework_Components_PlayerData__ctor_System_String_Vector3_Vector3_" data-uid="GameFramework.Components.PlayerData.#ctor(System.String,Vector3,Vector3)">PlayerData(string, Vector3, Vector3)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -215,8 +191,8 @@ public class PlayerData : ISaveable</code></pre>
   </table>
   <h3 id="properties">Properties
 </h3>
-  <a id="GameFramework_DataStructures_PlayerData_PlayerName_" data-uid="GameFramework.DataStructures.PlayerData.PlayerName*"></a>
-  <h4 id="GameFramework_DataStructures_PlayerData_PlayerName" data-uid="GameFramework.DataStructures.PlayerData.PlayerName">PlayerName</h4>
+  <a id="GameFramework_Components_PlayerData_PlayerName_" data-uid="GameFramework.Components.PlayerData.PlayerName*"></a>
+  <h4 id="GameFramework_Components_PlayerData_PlayerName" data-uid="GameFramework.Components.PlayerData.PlayerName">PlayerName</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -238,54 +214,8 @@ public class PlayerData : ISaveable</code></pre>
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_DataStructures_PlayerData_Position_" data-uid="GameFramework.DataStructures.PlayerData.Position*"></a>
-  <h4 id="GameFramework_DataStructures_PlayerData_Position" data-uid="GameFramework.DataStructures.PlayerData.Position">Position</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Vector3 Position { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Vector3</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_DataStructures_PlayerData_Rotation_" data-uid="GameFramework.DataStructures.PlayerData.Rotation*"></a>
-  <h4 id="GameFramework_DataStructures_PlayerData_Rotation" data-uid="GameFramework.DataStructures.PlayerData.Rotation">Rotation</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Vector3 Rotation { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Vector3</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_DataStructures_PlayerData_SaveKey_" data-uid="GameFramework.DataStructures.PlayerData.SaveKey*"></a>
-  <h4 id="GameFramework_DataStructures_PlayerData_SaveKey" data-uid="GameFramework.DataStructures.PlayerData.SaveKey">SaveKey</h4>
+  <a id="GameFramework_Components_PlayerData_SaveKey_" data-uid="GameFramework.Components.PlayerData.SaveKey*"></a>
+  <h4 id="GameFramework_Components_PlayerData_SaveKey" data-uid="GameFramework.Components.PlayerData.SaveKey">SaveKey</h4>
   <div class="markdown level1 summary"><p>Unique identifier for this saveable object in the save file</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -308,8 +238,8 @@ public class PlayerData : ISaveable</code></pre>
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_DataStructures_PlayerData_TypeName_" data-uid="GameFramework.DataStructures.PlayerData.TypeName*"></a>
-  <h4 id="GameFramework_DataStructures_PlayerData_TypeName" data-uid="GameFramework.DataStructures.PlayerData.TypeName">TypeName</h4>
+  <a id="GameFramework_Components_PlayerData_TypeName_" data-uid="GameFramework.Components.PlayerData.TypeName*"></a>
+  <h4 id="GameFramework_Components_PlayerData_TypeName" data-uid="GameFramework.Components.PlayerData.TypeName">TypeName</h4>
   <div class="markdown level1 summary"><p>Type name for deserialization purposes</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -332,8 +262,8 @@ public class PlayerData : ISaveable</code></pre>
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_DataStructures_PlayerData_UniqueID_" data-uid="GameFramework.DataStructures.PlayerData.UniqueID*"></a>
-  <h4 id="GameFramework_DataStructures_PlayerData_UniqueID" data-uid="GameFramework.DataStructures.PlayerData.UniqueID">UniqueID</h4>
+  <a id="GameFramework_Components_PlayerData_UniqueID_" data-uid="GameFramework.Components.PlayerData.UniqueID*"></a>
+  <h4 id="GameFramework_Components_PlayerData_UniqueID" data-uid="GameFramework.Components.PlayerData.UniqueID">UniqueID</h4>
   <div class="markdown level1 summary"><p>Unique identifier for this specific instance of the saveable object
 Generated once and persists across saves/loads</p>
 </div>
@@ -359,8 +289,8 @@ Generated once and persists across saves/loads</p>
   </table>
   <h3 id="methods">Methods
 </h3>
-  <a id="GameFramework_DataStructures_PlayerData_GetSaveData_" data-uid="GameFramework.DataStructures.PlayerData.GetSaveData*"></a>
-  <h4 id="GameFramework_DataStructures_PlayerData_GetSaveData" data-uid="GameFramework.DataStructures.PlayerData.GetSaveData">GetSaveData()</h4>
+  <a id="GameFramework_Components_PlayerData_GetSaveData_" data-uid="GameFramework.Components.PlayerData.GetSaveData*"></a>
+  <h4 id="GameFramework_Components_PlayerData_GetSaveData" data-uid="GameFramework.Components.PlayerData.GetSaveData">GetSaveData()</h4>
   <div class="markdown level1 summary"><p>Gets the serializable data for this object</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -383,8 +313,8 @@ Generated once and persists across saves/loads</p>
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_DataStructures_PlayerData_LoadSaveData_" data-uid="GameFramework.DataStructures.PlayerData.LoadSaveData*"></a>
-  <h4 id="GameFramework_DataStructures_PlayerData_LoadSaveData_System_Object_" data-uid="GameFramework.DataStructures.PlayerData.LoadSaveData(System.Object)">LoadSaveData(object)</h4>
+  <a id="GameFramework_Components_PlayerData_LoadSaveData_" data-uid="GameFramework.Components.PlayerData.LoadSaveData*"></a>
+  <h4 id="GameFramework_Components_PlayerData_LoadSaveData_System_Object_" data-uid="GameFramework.Components.PlayerData.LoadSaveData(System.Object)">LoadSaveData(object)</h4>
   <div class="markdown level1 summary"><p>Restores object state from saved data</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -409,6 +339,15 @@ Generated once and persists across saves/loads</p>
       </tr>
     </tbody>
   </table>
+  <a id="GameFramework_Components_PlayerData_SyncFromTransform_" data-uid="GameFramework.Components.PlayerData.SyncFromTransform*"></a>
+  <h4 id="GameFramework_Components_PlayerData_SyncFromTransform" data-uid="GameFramework.Components.PlayerData.SyncFromTransform">SyncFromTransform()</h4>
+  <div class="markdown level1 summary"><p>Forces immediate sync from transform (used before saving)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SyncFromTransform()</code></pre>
+  </div>
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="GameFramework.SaveSystem.Interfaces.ISaveable.html">ISaveable</a>

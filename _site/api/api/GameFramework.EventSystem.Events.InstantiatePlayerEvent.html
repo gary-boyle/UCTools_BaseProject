@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class SaveFileSystemInfo | UCTools Base Project </title>
+    <title>Class InstantiatePlayerEvent | UCTools Base Project </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class SaveFileSystemInfo | UCTools Base Project ">
+    <meta name="title" content="Class InstantiatePlayerEvent | UCTools Base Project ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -79,18 +79,18 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="GameFramework.FileSystem.Interfaces.SaveFileSystemInfo">
+            <article class="content wrap" id="_content" data-uid="GameFramework.EventSystem.Events.InstantiatePlayerEvent">
 
 
 
-  <h1 id="GameFramework_FileSystem_Interfaces_SaveFileSystemInfo" data-uid="GameFramework.FileSystem.Interfaces.SaveFileSystemInfo" class="text-break">Class SaveFileSystemInfo</h1>
-  <div class="markdown level0 summary"><p>Information about the save file system</p>
+  <h1 id="GameFramework_EventSystem_Events_InstantiatePlayerEvent" data-uid="GameFramework.EventSystem.Events.InstantiatePlayerEvent" class="text-break">Class InstantiatePlayerEvent</h1>
+  <div class="markdown level0 summary"><p>Event published to request player instantiation during loading</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><span class="xref">SaveFileSystemInfo</span></div>
+    <div class="level1"><span class="xref">InstantiatePlayerEvent</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -116,21 +116,107 @@
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
     </div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.FileSystem.html">FileSystem</a>.<a class="xref" href="GameFramework.FileSystem.Interfaces.html">Interfaces</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.EventSystem.html">EventSystem</a>.<a class="xref" href="GameFramework.EventSystem.Events.html">Events</a></h6>
   <h6><strong>Assembly</strong>: .dll</h6>
-  <h5 id="GameFramework_FileSystem_Interfaces_SaveFileSystemInfo_syntax">Syntax</h5>
+  <h5 id="GameFramework_EventSystem_Events_InstantiatePlayerEvent_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class SaveFileSystemInfo</code></pre>
+    <pre><code class="lang-csharp hljs">public class InstantiatePlayerEvent</code></pre>
   </div>
-  <h3 id="properties">Properties
+  <h3 id="constructors">Constructors
 </h3>
-  <a id="GameFramework_FileSystem_Interfaces_SaveFileSystemInfo_DirectoryExists_" data-uid="GameFramework.FileSystem.Interfaces.SaveFileSystemInfo.DirectoryExists*"></a>
-  <h4 id="GameFramework_FileSystem_Interfaces_SaveFileSystemInfo_DirectoryExists" data-uid="GameFramework.FileSystem.Interfaces.SaveFileSystemInfo.DirectoryExists">DirectoryExists</h4>
+  <a id="GameFramework_EventSystem_Events_InstantiatePlayerEvent__ctor_" data-uid="GameFramework.EventSystem.Events.InstantiatePlayerEvent.#ctor*"></a>
+  <h4 id="GameFramework_EventSystem_Events_InstantiatePlayerEvent__ctor" data-uid="GameFramework.EventSystem.Events.InstantiatePlayerEvent.#ctor">InstantiatePlayerEvent()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool DirectoryExists { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public InstantiatePlayerEvent()</code></pre>
+  </div>
+  <a id="GameFramework_EventSystem_Events_InstantiatePlayerEvent__ctor_" data-uid="GameFramework.EventSystem.Events.InstantiatePlayerEvent.#ctor*"></a>
+  <h4 id="GameFramework_EventSystem_Events_InstantiatePlayerEvent__ctor_Vector3_Vector3_" data-uid="GameFramework.EventSystem.Events.InstantiatePlayerEvent.#ctor(Vector3,Vector3)">InstantiatePlayerEvent(Vector3, Vector3)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public InstantiatePlayerEvent(Vector3 position, Vector3 rotation)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector3</span></td>
+        <td><span class="parametername">position</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">Vector3</span></td>
+        <td><span class="parametername">rotation</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+</h3>
+  <a id="GameFramework_EventSystem_Events_InstantiatePlayerEvent_Position_" data-uid="GameFramework.EventSystem.Events.InstantiatePlayerEvent.Position*"></a>
+  <h4 id="GameFramework_EventSystem_Events_InstantiatePlayerEvent_Position" data-uid="GameFramework.EventSystem.Events.InstantiatePlayerEvent.Position">Position</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector3 Position { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector3</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_EventSystem_Events_InstantiatePlayerEvent_Rotation_" data-uid="GameFramework.EventSystem.Events.InstantiatePlayerEvent.Rotation*"></a>
+  <h4 id="GameFramework_EventSystem_Events_InstantiatePlayerEvent_Rotation" data-uid="GameFramework.EventSystem.Events.InstantiatePlayerEvent.Rotation">Rotation</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector3 Rotation { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector3</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_EventSystem_Events_InstantiatePlayerEvent_UseDefaultSettings_" data-uid="GameFramework.EventSystem.Events.InstantiatePlayerEvent.UseDefaultSettings*"></a>
+  <h4 id="GameFramework_EventSystem_Events_InstantiatePlayerEvent_UseDefaultSettings" data-uid="GameFramework.EventSystem.Events.InstantiatePlayerEvent.UseDefaultSettings">UseDefaultSettings</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool UseDefaultSettings { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
@@ -143,75 +229,6 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_FileSystem_Interfaces_SaveFileSystemInfo_SaveDirectory_" data-uid="GameFramework.FileSystem.Interfaces.SaveFileSystemInfo.SaveDirectory*"></a>
-  <h4 id="GameFramework_FileSystem_Interfaces_SaveFileSystemInfo_SaveDirectory" data-uid="GameFramework.FileSystem.Interfaces.SaveFileSystemInfo.SaveDirectory">SaveDirectory</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string SaveDirectory { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_FileSystem_Interfaces_SaveFileSystemInfo_TotalSaveFiles_" data-uid="GameFramework.FileSystem.Interfaces.SaveFileSystemInfo.TotalSaveFiles*"></a>
-  <h4 id="GameFramework_FileSystem_Interfaces_SaveFileSystemInfo_TotalSaveFiles" data-uid="GameFramework.FileSystem.Interfaces.SaveFileSystemInfo.TotalSaveFiles">TotalSaveFiles</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public long TotalSaveFiles { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_FileSystem_Interfaces_SaveFileSystemInfo_TotalSizeBytes_" data-uid="GameFramework.FileSystem.Interfaces.SaveFileSystemInfo.TotalSizeBytes*"></a>
-  <h4 id="GameFramework_FileSystem_Interfaces_SaveFileSystemInfo_TotalSizeBytes" data-uid="GameFramework.FileSystem.Interfaces.SaveFileSystemInfo.TotalSizeBytes">TotalSizeBytes</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public long TotalSizeBytes { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
         <td></td>
       </tr>
     </tbody>

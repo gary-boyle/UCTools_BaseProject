@@ -85,8 +85,8 @@
 
   <h1 id="GameFramework_SaveSystem_Data_SaveFileData" data-uid="GameFramework.SaveSystem.Data.SaveFileData" class="text-break">Class SaveFileData</h1>
   <div class="markdown level0 summary"><p>Container for all save file data with clean JSON structure
-Uses direct field mapping for type safety and clean serialization
-Extensible by adding new fields for additional save data types</p>
+Uses direct field mapping for core system data and Dictionary for dynamic saveables
+Supports both static system data and runtime-generated saveable objects</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -137,6 +137,28 @@ public class SaveFileData</code></pre>
   </div>
   <h3 id="fields">Fields
 </h3>
+  <h4 id="GameFramework_SaveSystem_Data_SaveFileData_DynamicSaveableObjects" data-uid="GameFramework.SaveSystem.Data.SaveFileData.DynamicSaveableObjects">DynamicSaveableObjects</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SavedObjectEntry[] DynamicSaveableObjects</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.SaveSystem.Data.SavedObjectEntry.html">SavedObjectEntry</a>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h4 id="GameFramework_SaveSystem_Data_SaveFileData_GameSessionData" data-uid="GameFramework.SaveSystem.Data.SaveFileData.GameSessionData">GameSessionData</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -253,9 +275,57 @@ public class SaveFileData</code></pre>
   </table>
   <h3 id="methods">Methods
 </h3>
+  <a id="GameFramework_SaveSystem_Data_SaveFileData_GetAllDynamicSaveKeys_" data-uid="GameFramework.SaveSystem.Data.SaveFileData.GetAllDynamicSaveKeys*"></a>
+  <h4 id="GameFramework_SaveSystem_Data_SaveFileData_GetAllDynamicSaveKeys" data-uid="GameFramework.SaveSystem.Data.SaveFileData.GetAllDynamicSaveKeys">GetAllDynamicSaveKeys()</h4>
+  <div class="markdown level1 summary"><p>Gets all dynamic save keys for debugging purposes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string[] GetAllDynamicSaveKeys()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_SaveSystem_Data_SaveFileData_GetDynamicObjectCount_" data-uid="GameFramework.SaveSystem.Data.SaveFileData.GetDynamicObjectCount*"></a>
+  <h4 id="GameFramework_SaveSystem_Data_SaveFileData_GetDynamicObjectCount" data-uid="GameFramework.SaveSystem.Data.SaveFileData.GetDynamicObjectCount">GetDynamicObjectCount()</h4>
+  <div class="markdown level1 summary"><p>Gets count of dynamic saveable objects</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int GetDynamicObjectCount()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <a id="GameFramework_SaveSystem_Data_SaveFileData_GetSaveData_" data-uid="GameFramework.SaveSystem.Data.SaveFileData.GetSaveData*"></a>
   <h4 id="GameFramework_SaveSystem_Data_SaveFileData_GetSaveData__1_System_String_" data-uid="GameFramework.SaveSystem.Data.SaveFileData.GetSaveData``1(System.String)">GetSaveData&lt;T&gt;(string)</h4>
-  <div class="markdown level1 summary"><p>Gets save data by key using reflection</p>
+  <div class="markdown level1 summary"><p>Gets save data by key - handles both static fields and dynamic saveable objects</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -311,8 +381,9 @@ public class SaveFileData</code></pre>
   </table>
   <a id="GameFramework_SaveSystem_Data_SaveFileData_SetSaveData_" data-uid="GameFramework.SaveSystem.Data.SaveFileData.SetSaveData*"></a>
   <h4 id="GameFramework_SaveSystem_Data_SaveFileData_SetSaveData_System_String_System_Object_" data-uid="GameFramework.SaveSystem.Data.SaveFileData.SetSaveData(System.String,System.Object)">SetSaveData(string, object)</h4>
-  <div class="markdown level1 summary"><p>Uses reflection to set save data field by save key
-Enables dynamic assignment without hardcoded switch statements</p>
+  <div class="markdown level1 summary"><p>Sets save data by key - handles both static fields and dynamic saveable objects
+Static fields: GameSessionData, PlayerData (use reflection)
+Dynamic objects: SaveableBase instances (store in DynamicSaveableObjects array)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>

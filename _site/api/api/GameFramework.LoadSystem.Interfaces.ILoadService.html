@@ -222,13 +222,14 @@ Useful for previewing or validation</p>
     </tbody>
   </table>
   <a id="GameFramework_LoadSystem_Interfaces_ILoadService_LoadGameStateAsync_" data-uid="GameFramework.LoadSystem.Interfaces.ILoadService.LoadGameStateAsync*"></a>
-  <h4 id="GameFramework_LoadSystem_Interfaces_ILoadService_LoadGameStateAsync_GameFramework_SaveSystem_Data_SaveFileData_" data-uid="GameFramework.LoadSystem.Interfaces.ILoadService.LoadGameStateAsync(GameFramework.SaveSystem.Data.SaveFileData)">LoadGameStateAsync(SaveFileData)</h4>
-  <div class="markdown level1 summary"><p>Loads save data from SaveFileData and applies it to game state</p>
+  <h4 id="GameFramework_LoadSystem_Interfaces_ILoadService_LoadGameStateAsync_GameFramework_SaveSystem_Data_SaveFileData_System_Boolean_" data-uid="GameFramework.LoadSystem.Interfaces.ILoadService.LoadGameStateAsync(GameFramework.SaveSystem.Data.SaveFileData,System.Boolean)">LoadGameStateAsync(SaveFileData, bool)</h4>
+  <div class="markdown level1 summary"><p>Loads save data from SaveFileData and applies it to game state
+Includes scene loading and progress reporting</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; LoadGameStateAsync(SaveFileData saveFileData)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; LoadGameStateAsync(SaveFileData saveFileData, bool isNewGame = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -244,6 +245,12 @@ Useful for previewing or validation</p>
         <td><a class="xref" href="GameFramework.SaveSystem.Data.SaveFileData.html">SaveFileData</a></td>
         <td><span class="parametername">saveFileData</span></td>
         <td><p>Save file data to apply</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">isNewGame</span></td>
+        <td><p>Whether this is loading a new game (affects progress messages)</p>
 </td>
       </tr>
     </tbody>

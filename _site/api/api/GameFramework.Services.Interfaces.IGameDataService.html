@@ -109,6 +109,39 @@ Uses EventSystem for change notifications</p>
   </div>
   <h3 id="methods">Methods
 </h3>
+  <a id="GameFramework_Services_Interfaces_IGameDataService_ClearPendingPlayerData_" data-uid="GameFramework.Services.Interfaces.IGameDataService.ClearPendingPlayerData*"></a>
+  <h4 id="GameFramework_Services_Interfaces_IGameDataService_ClearPendingPlayerData" data-uid="GameFramework.Services.Interfaces.IGameDataService.ClearPendingPlayerData">ClearPendingPlayerData()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void ClearPendingPlayerData()</code></pre>
+  </div>
+  <a id="GameFramework_Services_Interfaces_IGameDataService_ForceDeregisterPlayerData_" data-uid="GameFramework.Services.Interfaces.IGameDataService.ForceDeregisterPlayerData*"></a>
+  <h4 id="GameFramework_Services_Interfaces_IGameDataService_ForceDeregisterPlayerData_GameFramework_Components_PlayerData_" data-uid="GameFramework.Services.Interfaces.IGameDataService.ForceDeregisterPlayerData(GameFramework.Components.PlayerData)">ForceDeregisterPlayerData(PlayerData)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void ForceDeregisterPlayerData(PlayerData playerData)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Components.PlayerData.html">PlayerData</a></td>
+        <td><span class="parametername">playerData</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <a id="GameFramework_Services_Interfaces_IGameDataService_GetGameSessionData_" data-uid="GameFramework.Services.Interfaces.IGameDataService.GetGameSessionData*"></a>
   <h4 id="GameFramework_Services_Interfaces_IGameDataService_GetGameSessionData" data-uid="GameFramework.Services.Interfaces.IGameDataService.GetGameSessionData">GetGameSessionData()</h4>
   <div class="markdown level1 summary"><p>Gets the current GameSessionData (read-only access)</p>
@@ -133,6 +166,29 @@ Uses EventSystem for change notifications</p>
       </tr>
     </tbody>
   </table>
+  <a id="GameFramework_Services_Interfaces_IGameDataService_GetPendingPlayerSaveData_" data-uid="GameFramework.Services.Interfaces.IGameDataService.GetPendingPlayerSaveData*"></a>
+  <h4 id="GameFramework_Services_Interfaces_IGameDataService_GetPendingPlayerSaveData" data-uid="GameFramework.Services.Interfaces.IGameDataService.GetPendingPlayerSaveData">GetPendingPlayerSaveData()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">PlayerSaveData GetPendingPlayerSaveData()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.SaveSystem.Data.PlayerSaveData.html">PlayerSaveData</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <a id="GameFramework_Services_Interfaces_IGameDataService_GetPlayerData_" data-uid="GameFramework.Services.Interfaces.IGameDataService.GetPlayerData*"></a>
   <h4 id="GameFramework_Services_Interfaces_IGameDataService_GetPlayerData" data-uid="GameFramework.Services.Interfaces.IGameDataService.GetPlayerData">GetPlayerData()</h4>
   <div class="markdown level1 summary"><p>Gets the current PlayerData (read-only access)</p>
@@ -152,7 +208,7 @@ Uses EventSystem for change notifications</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="GameFramework.DataStructures.PlayerData.html">PlayerData</a></td>
+        <td><a class="xref" href="GameFramework.Components.PlayerData.html">PlayerData</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -181,13 +237,13 @@ Uses EventSystem for change notifications</p>
     </tbody>
   </table>
   <a id="GameFramework_Services_Interfaces_IGameDataService_LoadGameData_" data-uid="GameFramework.Services.Interfaces.IGameDataService.LoadGameData*"></a>
-  <h4 id="GameFramework_Services_Interfaces_IGameDataService_LoadGameData_GameFramework_DataStructures_GameSessionData_GameFramework_DataStructures_PlayerData_" data-uid="GameFramework.Services.Interfaces.IGameDataService.LoadGameData(GameFramework.DataStructures.GameSessionData,GameFramework.DataStructures.PlayerData)">LoadGameData(GameSessionData, PlayerData)</h4>
+  <h4 id="GameFramework_Services_Interfaces_IGameDataService_LoadGameData_GameFramework_DataStructures_GameSessionData_GameFramework_SaveSystem_Data_PlayerSaveData_" data-uid="GameFramework.Services.Interfaces.IGameDataService.LoadGameData(GameFramework.DataStructures.GameSessionData,GameFramework.SaveSystem.Data.PlayerSaveData)">LoadGameData(GameSessionData, PlayerSaveData)</h4>
   <div class="markdown level1 summary"><p>Loads game data from provided data objects (used by load system)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void LoadGameData(GameSessionData gameSessionData, PlayerData playerData)</code></pre>
+    <pre><code class="lang-csharp hljs">void LoadGameData(GameSessionData gameSessionData, PlayerSaveData playerSaveData)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -205,51 +261,15 @@ Uses EventSystem for change notifications</p>
         <td></td>
       </tr>
       <tr>
-        <td><a class="xref" href="GameFramework.DataStructures.PlayerData.html">PlayerData</a></td>
-        <td><span class="parametername">playerData</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_Services_Interfaces_IGameDataService_ResetToDefaults_" data-uid="GameFramework.Services.Interfaces.IGameDataService.ResetToDefaults*"></a>
-  <h4 id="GameFramework_Services_Interfaces_IGameDataService_ResetToDefaults" data-uid="GameFramework.Services.Interfaces.IGameDataService.ResetToDefaults">ResetToDefaults()</h4>
-  <div class="markdown level1 summary"><p>Resets all game data to defaults</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void ResetToDefaults()</code></pre>
-  </div>
-  <a id="GameFramework_Services_Interfaces_IGameDataService_SetGameSessionData_" data-uid="GameFramework.Services.Interfaces.IGameDataService.SetGameSessionData*"></a>
-  <h4 id="GameFramework_Services_Interfaces_IGameDataService_SetGameSessionData_GameFramework_DataStructures_GameSessionData_" data-uid="GameFramework.Services.Interfaces.IGameDataService.SetGameSessionData(GameFramework.DataStructures.GameSessionData)">SetGameSessionData(GameSessionData)</h4>
-  <div class="markdown level1 summary"><p>Sets new GameSessionData and publishes change event</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void SetGameSessionData(GameSessionData gameSessionData)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="GameFramework.DataStructures.GameSessionData.html">GameSessionData</a></td>
-        <td><span class="parametername">gameSessionData</span></td>
+        <td><a class="xref" href="GameFramework.SaveSystem.Data.PlayerSaveData.html">PlayerSaveData</a></td>
+        <td><span class="parametername">playerSaveData</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <a id="GameFramework_Services_Interfaces_IGameDataService_SetPlayerData_" data-uid="GameFramework.Services.Interfaces.IGameDataService.SetPlayerData*"></a>
-  <h4 id="GameFramework_Services_Interfaces_IGameDataService_SetPlayerData_GameFramework_DataStructures_PlayerData_" data-uid="GameFramework.Services.Interfaces.IGameDataService.SetPlayerData(GameFramework.DataStructures.PlayerData)">SetPlayerData(PlayerData)</h4>
-  <div class="markdown level1 summary"><p>Sets new PlayerData and publishes change event</p>
-</div>
+  <h4 id="GameFramework_Services_Interfaces_IGameDataService_SetPlayerData_GameFramework_Components_PlayerData_" data-uid="GameFramework.Services.Interfaces.IGameDataService.SetPlayerData(GameFramework.Components.PlayerData)">SetPlayerData(PlayerData)</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -266,140 +286,8 @@ Uses EventSystem for change notifications</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="GameFramework.DataStructures.PlayerData.html">PlayerData</a></td>
+        <td><a class="xref" href="GameFramework.Components.PlayerData.html">PlayerData</a></td>
         <td><span class="parametername">playerData</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_Services_Interfaces_IGameDataService_StartNewGame_" data-uid="GameFramework.Services.Interfaces.IGameDataService.StartNewGame*"></a>
-  <h4 id="GameFramework_Services_Interfaces_IGameDataService_StartNewGame_System_String_System_String_System_String_" data-uid="GameFramework.Services.Interfaces.IGameDataService.StartNewGame(System.String,System.String,System.String)">StartNewGame(string, string, string)</h4>
-  <div class="markdown level1 summary"><p>Creates a new game session with default or specified parameters</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void StartNewGame(string playerName = &quot;Player&quot;, string difficulty = &quot;Normal&quot;, string startingScene = &quot;MainMenu&quot;)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">playerName</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">difficulty</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">startingScene</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_Services_Interfaces_IGameDataService_UpdateGameSession_" data-uid="GameFramework.Services.Interfaces.IGameDataService.UpdateGameSession*"></a>
-  <h4 id="GameFramework_Services_Interfaces_IGameDataService_UpdateGameSession_System_String_System_String_System_Nullable_System_Int64__" data-uid="GameFramework.Services.Interfaces.IGameDataService.UpdateGameSession(System.String,System.String,System.Nullable{System.Int64})">UpdateGameSession(string, string, long?)</h4>
-  <div class="markdown level1 summary"><p>Updates specific game session properties</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void UpdateGameSession(string difficulty = null, string currentScene = null, long? gameTime = null)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">difficulty</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">currentScene</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a>?</td>
-        <td><span class="parametername">gameTime</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_Services_Interfaces_IGameDataService_UpdatePlayer_" data-uid="GameFramework.Services.Interfaces.IGameDataService.UpdatePlayer*"></a>
-  <h4 id="GameFramework_Services_Interfaces_IGameDataService_UpdatePlayer_System_String_System_Nullable_Vector3__System_Nullable_Vector3__" data-uid="GameFramework.Services.Interfaces.IGameDataService.UpdatePlayer(System.String,System.Nullable{Vector3},System.Nullable{Vector3})">UpdatePlayer(string, Vector3?, Vector3?)</h4>
-  <div class="markdown level1 summary"><p>Updates specific player properties</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void UpdatePlayer(string playerName = null, Vector3? position = null, Vector3? rotation = null)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">playerName</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">Vector3</span>?</td>
-        <td><span class="parametername">position</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">Vector3</span>?</td>
-        <td><span class="parametername">rotation</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_Services_Interfaces_IGameDataService_ValidateGameData_" data-uid="GameFramework.Services.Interfaces.IGameDataService.ValidateGameData*"></a>
-  <h4 id="GameFramework_Services_Interfaces_IGameDataService_ValidateGameData" data-uid="GameFramework.Services.Interfaces.IGameDataService.ValidateGameData">ValidateGameData()</h4>
-  <div class="markdown level1 summary"><p>Validates that current game data is in a consistent state</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">bool ValidateGameData()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td></td>
       </tr>
     </tbody>

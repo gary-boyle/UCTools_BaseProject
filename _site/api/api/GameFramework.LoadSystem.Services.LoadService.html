@@ -86,6 +86,7 @@
   <h1 id="GameFramework_LoadSystem_Services_LoadService" data-uid="GameFramework.LoadSystem.Services.LoadService" class="text-break">Class LoadService</h1>
   <div class="markdown level0 summary"><p>Service responsible for transforming save data into live game state
 Handles game logic for loading, delegates file operations to FileService
+Integrates with SceneService for scene transitions during loading
 Publishes progress events for UI updates</p>
 </div>
   <div class="markdown level0 conceptual"></div>
@@ -132,12 +133,12 @@ Publishes progress events for UI updates</p>
   <h3 id="constructors">Constructors
 </h3>
   <a id="GameFramework_LoadSystem_Services_LoadService__ctor_" data-uid="GameFramework.LoadSystem.Services.LoadService.#ctor*"></a>
-  <h4 id="GameFramework_LoadSystem_Services_LoadService__ctor_GameFramework_FileSystem_Interfaces_IFileService_GameFramework_Services_Interfaces_IGameDataService_GameFramework_EventSystem_Interfaces_IEventSystem_" data-uid="GameFramework.LoadSystem.Services.LoadService.#ctor(GameFramework.FileSystem.Interfaces.IFileService,GameFramework.Services.Interfaces.IGameDataService,GameFramework.EventSystem.Interfaces.IEventSystem)">LoadService(IFileService, IGameDataService, IEventSystem)</h4>
+  <h4 id="GameFramework_LoadSystem_Services_LoadService__ctor_GameFramework_FileSystem_Interfaces_IFileService_GameFramework_Services_Interfaces_IGameDataService_GameFramework_Services_Interfaces_ISceneService_GameFramework_EventSystem_Interfaces_IEventSystem_" data-uid="GameFramework.LoadSystem.Services.LoadService.#ctor(GameFramework.FileSystem.Interfaces.IFileService,GameFramework.Services.Interfaces.IGameDataService,GameFramework.Services.Interfaces.ISceneService,GameFramework.EventSystem.Interfaces.IEventSystem)">LoadService(IFileService, IGameDataService, ISceneService, IEventSystem)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public LoadService(IFileService fileService, IGameDataService gameDataService, IEventSystem eventSystem)</code></pre>
+    <pre><code class="lang-csharp hljs">public LoadService(IFileService fileService, IGameDataService gameDataService, ISceneService sceneService, IEventSystem eventSystem)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -157,6 +158,11 @@ Publishes progress events for UI updates</p>
       <tr>
         <td><a class="xref" href="GameFramework.Services.Interfaces.IGameDataService.html">IGameDataService</a></td>
         <td><span class="parametername">gameDataService</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="GameFramework.Services.Interfaces.ISceneService.html">ISceneService</a></td>
+        <td><span class="parametername">sceneService</span></td>
         <td></td>
       </tr>
       <tr>
@@ -323,13 +329,14 @@ Publishes progress events for UI updates</p>
     </tbody>
   </table>
   <a id="GameFramework_LoadSystem_Services_LoadService_LoadGameStateAsync_" data-uid="GameFramework.LoadSystem.Services.LoadService.LoadGameStateAsync*"></a>
-  <h4 id="GameFramework_LoadSystem_Services_LoadService_LoadGameStateAsync_GameFramework_SaveSystem_Data_SaveFileData_" data-uid="GameFramework.LoadSystem.Services.LoadService.LoadGameStateAsync(GameFramework.SaveSystem.Data.SaveFileData)">LoadGameStateAsync(SaveFileData)</h4>
-  <div class="markdown level1 summary"><p>Loads save data from SaveFileData and applies it to game state</p>
+  <h4 id="GameFramework_LoadSystem_Services_LoadService_LoadGameStateAsync_GameFramework_SaveSystem_Data_SaveFileData_System_Boolean_" data-uid="GameFramework.LoadSystem.Services.LoadService.LoadGameStateAsync(GameFramework.SaveSystem.Data.SaveFileData,System.Boolean)">LoadGameStateAsync(SaveFileData, bool)</h4>
+  <div class="markdown level1 summary"><p>Loads save data from SaveFileData and applies it to game state
+Includes scene loading and progress reporting</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; LoadGameStateAsync(SaveFileData saveFileData)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; LoadGameStateAsync(SaveFileData saveFileData, bool isNewGame = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -344,6 +351,11 @@ Publishes progress events for UI updates</p>
       <tr>
         <td><a class="xref" href="GameFramework.SaveSystem.Data.SaveFileData.html">SaveFileData</a></td>
         <td><span class="parametername">saveFileData</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">isNewGame</span></td>
         <td></td>
       </tr>
     </tbody>

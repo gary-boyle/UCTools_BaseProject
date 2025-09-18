@@ -115,6 +115,11 @@ Now integrates with debug settings for console and logging control.</p>
 <li>ConsoleInputHandler automatically manages input conflicts by checking IsConsoleOpen()</li>
 </ol>
 </section>
+      <h4><a class="xref" href="GameFramework.Services.GameDataService.html">GameDataService</a></h4>
+      <section><p>Central service for managing current game data (GameSessionData and PlayerData)
+Provides controlled access to game state and integrates with save system
+Uses EventSystem for change notifications and automatic save system registration</p>
+</section>
       <h4><a class="xref" href="GameFramework.Services.GraphicsService.html">GraphicsService</a></h4>
       <section><p>Graphics service that handles all Unity graphics API calls
 Responds to configuration changes via events</p>
@@ -122,6 +127,15 @@ Responds to configuration changes via events</p>
 DESIGN: Event-driven graphics management, single responsibility
 PROS: Clean separation, all graphics logic in one place, easily testable
 CONS: Additional service complexity</p>
+</section>
+      <h4><a class="xref" href="GameFramework.Services.InstantiationService.html">InstantiationService</a></h4>
+      <section><p>Service responsible for instantiating game objects, particularly the player prefab.
+Integrates with the event system to notify about instantiation events.
+Works with GameDataService to configure PlayerData components from save data.</p>
+</section>
+      <h4><a class="xref" href="GameFramework.Services.NotificationService.html">NotificationService</a></h4>
+      <section><p>Service that manages notification popups and automatically subscribes to game events
+to display contextual notifications to the player</p>
 </section>
       <h4><a class="xref" href="GameFramework.Services.PauseService.html">PauseService</a></h4>
       <section><p>Simple centralized pause service that manages game pause state
@@ -152,7 +166,7 @@ Uses EventSystem for all event publishing instead of local events</p>
 </ul>
 </section>
       <h4><a class="xref" href="GameFramework.Services.SceneService.html">SceneService</a></h4>
-      <section><p>Scene service implementation with constructor injection</p>
+      <section><p>Scene service implementation with constructor injection and progress reporting support</p>
 </section>
       <h4><a class="xref" href="GameFramework.Services.TimeService.html">TimeService</a></h4>
       <section><p>TimeService manages game time tracking by directly updating GameSessionData

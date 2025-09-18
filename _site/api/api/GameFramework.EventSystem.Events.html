@@ -108,6 +108,9 @@ Classes
       <h4><a class="xref" href="GameFramework.EventSystem.Events.BeginLoadGameEvent.html">BeginLoadGameEvent</a></h4>
       <section><p>Event published when loading should begin and transition to loading state</p>
 </section>
+      <h4><a class="xref" href="GameFramework.EventSystem.Events.BeginNewGameLoadEvent.html">BeginNewGameLoadEvent</a></h4>
+      <section><p>Event published when a new game should begin loading and transition to loading state</p>
+</section>
       <h4><a class="xref" href="GameFramework.EventSystem.Events.ConsoleHistoryDownInputEvent.html">ConsoleHistoryDownInputEvent</a></h4>
       <section></section>
       <h4><a class="xref" href="GameFramework.EventSystem.Events.ConsoleHistoryUpInputEvent.html">ConsoleHistoryUpInputEvent</a></h4>
@@ -132,14 +135,13 @@ Handles developer console input and interaction</p>
       <section><p>Core game state and lifecycle events
 Handles game state transitions, pause/resume, and basic game flow</p>
 </section>
-      <h4><a class="xref" href="GameFramework.EventSystem.Events.LoadGameEvent.html">LoadGameEvent</a></h4>
-      <section></section>
-      <h4><a class="xref" href="GameFramework.EventSystem.Events.LoadGameRequestedEvent.html">LoadGameRequestedEvent</a></h4>
+      <h4><a class="xref" href="GameFramework.EventSystem.Events.InstantiatePlayerEvent.html">InstantiatePlayerEvent</a></h4>
+      <section><p>Event published to request player instantiation during loading</p>
+</section>
+      <h4><a class="xref" href="GameFramework.EventSystem.Events.LoadSaveFileEvent.html">LoadSaveFileEvent</a></h4>
       <section><p>Loading system events for game data loading and progress tracking
 Handles load requests, progress updates, and completion states</p>
 </section>
-      <h4><a class="xref" href="GameFramework.EventSystem.Events.LoadSaveFileEvent.html">LoadSaveFileEvent</a></h4>
-      <section></section>
       <h4><a class="xref" href="GameFramework.EventSystem.Events.LoadWindowRequestedEvent.html">LoadWindowRequestedEvent</a></h4>
       <section></section>
       <h4><a class="xref" href="GameFramework.EventSystem.Events.LoadingCompletedEvent.html">LoadingCompletedEvent</a></h4>
@@ -169,6 +171,13 @@ Allows UI and other services to prepare for loading</p>
       <section></section>
       <h4><a class="xref" href="GameFramework.EventSystem.Events.PlayerCrouchInputEvent.html">PlayerCrouchInputEvent</a></h4>
       <section></section>
+      <h4><a class="xref" href="GameFramework.EventSystem.Events.PlayerDestroyedEvent.html">PlayerDestroyedEvent</a></h4>
+      <section><p>Event published when the player GameObject is about to be destroyed</p>
+</section>
+      <h4><a class="xref" href="GameFramework.EventSystem.Events.PlayerInstantiatedEvent.html">PlayerInstantiatedEvent</a></h4>
+      <section><p>Instantiation system events for game object creation and destruction
+Handles player instantiation and destruction during loading</p>
+</section>
       <h4><a class="xref" href="GameFramework.EventSystem.Events.PlayerInteractInputEvent.html">PlayerInteractInputEvent</a></h4>
       <section></section>
       <h4><a class="xref" href="GameFramework.EventSystem.Events.PlayerJumpInputEvent.html">PlayerJumpInputEvent</a></h4>
@@ -197,14 +206,16 @@ Handles movement, combat, and player interaction inputs</p>
       <h4><a class="xref" href="GameFramework.EventSystem.Events.SaveFailedEvent.html">SaveFailedEvent</a></h4>
       <section><p>Event published when a save operation fails</p>
 </section>
-      <h4><a class="xref" href="GameFramework.EventSystem.Events.SaveGameEvent.html">SaveGameEvent</a></h4>
-      <section></section>
       <h4><a class="xref" href="GameFramework.EventSystem.Events.SaveRequestedEvent.html">SaveRequestedEvent</a></h4>
       <section><p>Save system events for game persistence
 Handles save requests, completion, and error states</p>
 </section>
       <h4><a class="xref" href="GameFramework.EventSystem.Events.SceneLoadedEvent.html">SceneLoadedEvent</a></h4>
       <section></section>
+      <h4><a class="xref" href="GameFramework.EventSystem.Events.ShowNotificationEvent.html">ShowNotificationEvent</a></h4>
+      <section><p>Notification system events for displaying temporary UI messages
+These events trigger notification popups that appear in the top-left corner</p>
+</section>
       <h4><a class="xref" href="GameFramework.EventSystem.Events.UICancelInputEvent.html">UICancelInputEvent</a></h4>
       <section></section>
       <h4><a class="xref" href="GameFramework.EventSystem.Events.UIClickInputEvent.html">UIClickInputEvent</a></h4>

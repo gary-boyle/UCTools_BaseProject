@@ -104,6 +104,13 @@ Uses EventSystem for change notifications</p>
       <h4><a class="xref" href="GameFramework.Services.Interfaces.IGraphicsService.html">IGraphicsService</a></h4>
       <section><p>Interface for graphics service</p>
 </section>
+      <h4><a class="xref" href="GameFramework.Services.Interfaces.IInstantiationService.html">IInstantiationService</a></h4>
+      <section><p>Interface for instantiation service that handles prefab instantiation during game loading</p>
+</section>
+      <h4><a class="xref" href="GameFramework.Services.Interfaces.INotificationService.html">INotificationService</a></h4>
+      <section><p>Service for displaying temporary notification popups in the UI
+Automatically subscribes to relevant game events to show contextual notifications</p>
+</section>
       <h4><a class="xref" href="GameFramework.Services.Interfaces.IPauseService.html">IPauseService</a></h4>
       <section><p>Simple centralized pause service interface
 Single source of truth for game pause state</p>
@@ -131,7 +138,7 @@ Single source of truth for game pause state</p>
       <section><p>Interface for the SaveService, defining its public API.</p>
 </section>
       <h4><a class="xref" href="GameFramework.Services.Interfaces.ISceneService.html">ISceneService</a></h4>
-      <section><p>Interface for scene management service</p>
+      <section><p>Interface for scene management service with progress reporting support</p>
 </section>
       <h4><a class="xref" href="GameFramework.Services.Interfaces.ITimeService.html">ITimeService</a></h4>
       <section><p>Interface for time tracking service that manages game time, session time, and level time

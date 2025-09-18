@@ -84,8 +84,22 @@
 
 
   <h1 id="GameFramework_Editor_SaveFileManager_UI_SaveFileDetailsPanel" data-uid="GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel" class="text-break">Class SaveFileDetailsPanel</h1>
-  <div class="markdown level0 summary"><p>Panel for displaying detailed information about a selected save file
-Uses reflection-based field display for flexibility with changing save structures</p>
+  <div class="markdown level0 summary"><p>Enhanced panel for displaying detailed information about a selected save file</p>
+<p>Features:</p>
+<ul>
+<li>Loads full SaveFileData directly from JSON for complete information access</li>
+<li>Displays nested objects (GameSessionData, PlayerData) with all their fields</li>
+<li>Supports Vector3, DateTime, and other Unity/complex types with proper formatting</li>
+<li>Configurable field display through SaveFileDisplayConfig (supports nested field paths)</li>
+<li>Dynamic field discovery to automatically show all available data (extensible for future arbitrary data)</li>
+<li>Uses reflection-based field display for maximum flexibility with changing save structures</li>
+</ul>
+<p>Configuration:</p>
+<ul>
+<li>Use dot notation in SaveFileDisplayConfig for nested fields (e.g., &quot;PlayerData.uniqueID&quot;)</li>
+<li>Toggle ShowDynamicFieldDiscovery to show/hide complete data structure discovery</li>
+<li>System automatically handles new fields added to SaveFileData structure</li>
+</ul>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">

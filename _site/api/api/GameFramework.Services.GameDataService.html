@@ -79,11 +79,11 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="GameFramework.GameData.Services.GameDataService">
+            <article class="content wrap" id="_content" data-uid="GameFramework.Services.GameDataService">
 
 
 
-  <h1 id="GameFramework_GameData_Services_GameDataService" data-uid="GameFramework.GameData.Services.GameDataService" class="text-break">Class GameDataService</h1>
+  <h1 id="GameFramework_Services_GameDataService" data-uid="GameFramework.Services.GameDataService" class="text-break">Class GameDataService</h1>
   <div class="markdown level0 summary"><p>Central service for managing current game data (GameSessionData and PlayerData)
 Provides controlled access to game state and integrates with save system
 Uses EventSystem for change notifications and automatic save system registration</p>
@@ -123,16 +123,16 @@ Uses EventSystem for change notifications and automatic save system registration
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
     </div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.GameData.html">GameData</a>.<a class="xref" href="GameFramework.GameData.Services.html">Services</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.Services.html">Services</a></h6>
   <h6><strong>Assembly</strong>: .dll</h6>
-  <h5 id="GameFramework_GameData_Services_GameDataService_syntax">Syntax</h5>
+  <h5 id="GameFramework_Services_GameDataService_syntax">Syntax</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class GameDataService : IGameDataService, IGameService</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
-  <a id="GameFramework_GameData_Services_GameDataService__ctor_" data-uid="GameFramework.GameData.Services.GameDataService.#ctor*"></a>
-  <h4 id="GameFramework_GameData_Services_GameDataService__ctor_GameFramework_EventSystem_Interfaces_IEventSystem_GameFramework_SaveSystem_Interfaces_ISaveDataRegistry_" data-uid="GameFramework.GameData.Services.GameDataService.#ctor(GameFramework.EventSystem.Interfaces.IEventSystem,GameFramework.SaveSystem.Interfaces.ISaveDataRegistry)">GameDataService(IEventSystem, ISaveDataRegistry)</h4>
+  <a id="GameFramework_Services_GameDataService__ctor_" data-uid="GameFramework.Services.GameDataService.#ctor*"></a>
+  <h4 id="GameFramework_Services_GameDataService__ctor_GameFramework_EventSystem_Interfaces_IEventSystem_GameFramework_SaveSystem_Interfaces_ISaveDataRegistry_" data-uid="GameFramework.Services.GameDataService.#ctor(GameFramework.EventSystem.Interfaces.IEventSystem,GameFramework.SaveSystem.Interfaces.ISaveDataRegistry)">GameDataService(IEventSystem, ISaveDataRegistry)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -163,8 +163,8 @@ Uses EventSystem for change notifications and automatic save system registration
   </table>
   <h3 id="properties">Properties
 </h3>
-  <a id="GameFramework_GameData_Services_GameDataService_IsInitialized_" data-uid="GameFramework.GameData.Services.GameDataService.IsInitialized*"></a>
-  <h4 id="GameFramework_GameData_Services_GameDataService_IsInitialized" data-uid="GameFramework.GameData.Services.GameDataService.IsInitialized">IsInitialized</h4>
+  <a id="GameFramework_Services_GameDataService_IsInitialized_" data-uid="GameFramework.Services.GameDataService.IsInitialized*"></a>
+  <h4 id="GameFramework_Services_GameDataService_IsInitialized" data-uid="GameFramework.Services.GameDataService.IsInitialized">IsInitialized</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -188,8 +188,44 @@ Uses EventSystem for change notifications and automatic save system registration
   </table>
   <h3 id="methods">Methods
 </h3>
-  <a id="GameFramework_GameData_Services_GameDataService_GetGameSessionData_" data-uid="GameFramework.GameData.Services.GameDataService.GetGameSessionData*"></a>
-  <h4 id="GameFramework_GameData_Services_GameDataService_GetGameSessionData" data-uid="GameFramework.GameData.Services.GameDataService.GetGameSessionData">GetGameSessionData()</h4>
+  <a id="GameFramework_Services_GameDataService_ClearPendingPlayerData_" data-uid="GameFramework.Services.GameDataService.ClearPendingPlayerData*"></a>
+  <h4 id="GameFramework_Services_GameDataService_ClearPendingPlayerData" data-uid="GameFramework.Services.GameDataService.ClearPendingPlayerData">ClearPendingPlayerData()</h4>
+  <div class="markdown level1 summary"><p>Clears pending PlayerSaveData (called after successful player instantiation)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearPendingPlayerData()</code></pre>
+  </div>
+  <a id="GameFramework_Services_GameDataService_ForceDeregisterPlayerData_" data-uid="GameFramework.Services.GameDataService.ForceDeregisterPlayerData*"></a>
+  <h4 id="GameFramework_Services_GameDataService_ForceDeregisterPlayerData_GameFramework_Components_PlayerData_" data-uid="GameFramework.Services.GameDataService.ForceDeregisterPlayerData(GameFramework.Components.PlayerData)">ForceDeregisterPlayerData(PlayerData)</h4>
+  <div class="markdown level1 summary"><p>Forces deregistration of a specific PlayerData from the save system
+Used when destroying player objects to prevent duplicate registrations</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ForceDeregisterPlayerData(PlayerData playerData)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Components.PlayerData.html">PlayerData</a></td>
+        <td><span class="parametername">playerData</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Services_GameDataService_GetGameSessionData_" data-uid="GameFramework.Services.GameDataService.GetGameSessionData*"></a>
+  <h4 id="GameFramework_Services_GameDataService_GetGameSessionData" data-uid="GameFramework.Services.GameDataService.GetGameSessionData">GetGameSessionData()</h4>
   <div class="markdown level1 summary"><p>Gets the current GameSessionData (read-only access)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -212,8 +248,32 @@ Uses EventSystem for change notifications and automatic save system registration
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_GameData_Services_GameDataService_GetPlayerData_" data-uid="GameFramework.GameData.Services.GameDataService.GetPlayerData*"></a>
-  <h4 id="GameFramework_GameData_Services_GameDataService_GetPlayerData" data-uid="GameFramework.GameData.Services.GameDataService.GetPlayerData">GetPlayerData()</h4>
+  <a id="GameFramework_Services_GameDataService_GetPendingPlayerSaveData_" data-uid="GameFramework.Services.GameDataService.GetPendingPlayerSaveData*"></a>
+  <h4 id="GameFramework_Services_GameDataService_GetPendingPlayerSaveData" data-uid="GameFramework.Services.GameDataService.GetPendingPlayerSaveData">GetPendingPlayerSaveData()</h4>
+  <div class="markdown level1 summary"><p>Gets pending PlayerSaveData from loaded games (before player instantiation)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PlayerSaveData GetPendingPlayerSaveData()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.SaveSystem.Data.PlayerSaveData.html">PlayerSaveData</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Services_GameDataService_GetPlayerData_" data-uid="GameFramework.Services.GameDataService.GetPlayerData*"></a>
+  <h4 id="GameFramework_Services_GameDataService_GetPlayerData" data-uid="GameFramework.Services.GameDataService.GetPlayerData">GetPlayerData()</h4>
   <div class="markdown level1 summary"><p>Gets the current PlayerData (read-only access)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -231,13 +291,13 @@ Uses EventSystem for change notifications and automatic save system registration
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="GameFramework.DataStructures.PlayerData.html">PlayerData</a></td>
+        <td><a class="xref" href="GameFramework.Components.PlayerData.html">PlayerData</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_GameData_Services_GameDataService_HasActiveSession_" data-uid="GameFramework.GameData.Services.GameDataService.HasActiveSession*"></a>
-  <h4 id="GameFramework_GameData_Services_GameDataService_HasActiveSession" data-uid="GameFramework.GameData.Services.GameDataService.HasActiveSession">HasActiveSession()</h4>
+  <a id="GameFramework_Services_GameDataService_HasActiveSession_" data-uid="GameFramework.Services.GameDataService.HasActiveSession*"></a>
+  <h4 id="GameFramework_Services_GameDataService_HasActiveSession" data-uid="GameFramework.Services.GameDataService.HasActiveSession">HasActiveSession()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -259,8 +319,8 @@ Uses EventSystem for change notifications and automatic save system registration
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_GameData_Services_GameDataService_InitializeAsync_" data-uid="GameFramework.GameData.Services.GameDataService.InitializeAsync*"></a>
-  <h4 id="GameFramework_GameData_Services_GameDataService_InitializeAsync" data-uid="GameFramework.GameData.Services.GameDataService.InitializeAsync">InitializeAsync()</h4>
+  <a id="GameFramework_Services_GameDataService_InitializeAsync_" data-uid="GameFramework.Services.GameDataService.InitializeAsync*"></a>
+  <h4 id="GameFramework_Services_GameDataService_InitializeAsync" data-uid="GameFramework.Services.GameDataService.InitializeAsync">InitializeAsync()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -282,14 +342,14 @@ Uses EventSystem for change notifications and automatic save system registration
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_GameData_Services_GameDataService_LoadGameData_" data-uid="GameFramework.GameData.Services.GameDataService.LoadGameData*"></a>
-  <h4 id="GameFramework_GameData_Services_GameDataService_LoadGameData_GameFramework_DataStructures_GameSessionData_GameFramework_DataStructures_PlayerData_" data-uid="GameFramework.GameData.Services.GameDataService.LoadGameData(GameFramework.DataStructures.GameSessionData,GameFramework.DataStructures.PlayerData)">LoadGameData(GameSessionData, PlayerData)</h4>
+  <a id="GameFramework_Services_GameDataService_LoadGameData_" data-uid="GameFramework.Services.GameDataService.LoadGameData*"></a>
+  <h4 id="GameFramework_Services_GameDataService_LoadGameData_GameFramework_DataStructures_GameSessionData_GameFramework_SaveSystem_Data_PlayerSaveData_" data-uid="GameFramework.Services.GameDataService.LoadGameData(GameFramework.DataStructures.GameSessionData,GameFramework.SaveSystem.Data.PlayerSaveData)">LoadGameData(GameSessionData, PlayerSaveData)</h4>
   <div class="markdown level1 summary"><p>Loads game data from provided data objects (used by load system)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void LoadGameData(GameSessionData gameSessionData, PlayerData playerData)</code></pre>
+    <pre><code class="lang-csharp hljs">public void LoadGameData(GameSessionData gameSessionData, PlayerSaveData playerSaveData)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -307,23 +367,14 @@ Uses EventSystem for change notifications and automatic save system registration
         <td></td>
       </tr>
       <tr>
-        <td><a class="xref" href="GameFramework.DataStructures.PlayerData.html">PlayerData</a></td>
-        <td><span class="parametername">playerData</span></td>
+        <td><a class="xref" href="GameFramework.SaveSystem.Data.PlayerSaveData.html">PlayerSaveData</a></td>
+        <td><span class="parametername">playerSaveData</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_GameData_Services_GameDataService_ResetToDefaults_" data-uid="GameFramework.GameData.Services.GameDataService.ResetToDefaults*"></a>
-  <h4 id="GameFramework_GameData_Services_GameDataService_ResetToDefaults" data-uid="GameFramework.GameData.Services.GameDataService.ResetToDefaults">ResetToDefaults()</h4>
-  <div class="markdown level1 summary"><p>Resets all game data to defaults</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void ResetToDefaults()</code></pre>
-  </div>
-  <a id="GameFramework_GameData_Services_GameDataService_SetGameSessionData_" data-uid="GameFramework.GameData.Services.GameDataService.SetGameSessionData*"></a>
-  <h4 id="GameFramework_GameData_Services_GameDataService_SetGameSessionData_GameFramework_DataStructures_GameSessionData_" data-uid="GameFramework.GameData.Services.GameDataService.SetGameSessionData(GameFramework.DataStructures.GameSessionData)">SetGameSessionData(GameSessionData)</h4>
+  <a id="GameFramework_Services_GameDataService_SetGameSessionData_" data-uid="GameFramework.Services.GameDataService.SetGameSessionData*"></a>
+  <h4 id="GameFramework_Services_GameDataService_SetGameSessionData_GameFramework_DataStructures_GameSessionData_" data-uid="GameFramework.Services.GameDataService.SetGameSessionData(GameFramework.DataStructures.GameSessionData)">SetGameSessionData(GameSessionData)</h4>
   <div class="markdown level1 summary"><p>Sets new GameSessionData and publishes change event</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -348,8 +399,8 @@ Uses EventSystem for change notifications and automatic save system registration
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_GameData_Services_GameDataService_SetPlayerData_" data-uid="GameFramework.GameData.Services.GameDataService.SetPlayerData*"></a>
-  <h4 id="GameFramework_GameData_Services_GameDataService_SetPlayerData_GameFramework_DataStructures_PlayerData_" data-uid="GameFramework.GameData.Services.GameDataService.SetPlayerData(GameFramework.DataStructures.PlayerData)">SetPlayerData(PlayerData)</h4>
+  <a id="GameFramework_Services_GameDataService_SetPlayerData_" data-uid="GameFramework.Services.GameDataService.SetPlayerData*"></a>
+  <h4 id="GameFramework_Services_GameDataService_SetPlayerData_GameFramework_Components_PlayerData_" data-uid="GameFramework.Services.GameDataService.SetPlayerData(GameFramework.Components.PlayerData)">SetPlayerData(PlayerData)</h4>
   <div class="markdown level1 summary"><p>Sets new PlayerData and publishes change event</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -368,58 +419,22 @@ Uses EventSystem for change notifications and automatic save system registration
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="GameFramework.DataStructures.PlayerData.html">PlayerData</a></td>
+        <td><a class="xref" href="GameFramework.Components.PlayerData.html">PlayerData</a></td>
         <td><span class="parametername">playerData</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_GameData_Services_GameDataService_Shutdown_" data-uid="GameFramework.GameData.Services.GameDataService.Shutdown*"></a>
-  <h4 id="GameFramework_GameData_Services_GameDataService_Shutdown" data-uid="GameFramework.GameData.Services.GameDataService.Shutdown">Shutdown()</h4>
+  <a id="GameFramework_Services_GameDataService_Shutdown_" data-uid="GameFramework.Services.GameDataService.Shutdown*"></a>
+  <h4 id="GameFramework_Services_GameDataService_Shutdown" data-uid="GameFramework.Services.GameDataService.Shutdown">Shutdown()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Shutdown()</code></pre>
   </div>
-  <a id="GameFramework_GameData_Services_GameDataService_StartNewGame_" data-uid="GameFramework.GameData.Services.GameDataService.StartNewGame*"></a>
-  <h4 id="GameFramework_GameData_Services_GameDataService_StartNewGame_System_String_System_String_System_String_" data-uid="GameFramework.GameData.Services.GameDataService.StartNewGame(System.String,System.String,System.String)">StartNewGame(string, string, string)</h4>
-  <div class="markdown level1 summary"><p>Creates a new game session with default or specified parameters</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void StartNewGame(string playerName = &quot;Player&quot;, string difficulty = &quot;Normal&quot;, string startingScene = &quot;MainMenu&quot;)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">playerName</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">difficulty</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">startingScene</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_GameData_Services_GameDataService_UpdateGameSession_" data-uid="GameFramework.GameData.Services.GameDataService.UpdateGameSession*"></a>
-  <h4 id="GameFramework_GameData_Services_GameDataService_UpdateGameSession_System_String_System_String_System_Nullable_System_Int64__" data-uid="GameFramework.GameData.Services.GameDataService.UpdateGameSession(System.String,System.String,System.Nullable{System.Int64})">UpdateGameSession(string, string, long?)</h4>
+  <a id="GameFramework_Services_GameDataService_UpdateGameSession_" data-uid="GameFramework.Services.GameDataService.UpdateGameSession*"></a>
+  <h4 id="GameFramework_Services_GameDataService_UpdateGameSession_System_String_System_String_System_Nullable_System_Int64__" data-uid="GameFramework.Services.GameDataService.UpdateGameSession(System.String,System.String,System.Nullable{System.Int64})">UpdateGameSession(string, string, long?)</h4>
   <div class="markdown level1 summary"><p>Updates specific game session properties</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -454,44 +469,8 @@ Uses EventSystem for change notifications and automatic save system registration
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_GameData_Services_GameDataService_UpdatePlayer_" data-uid="GameFramework.GameData.Services.GameDataService.UpdatePlayer*"></a>
-  <h4 id="GameFramework_GameData_Services_GameDataService_UpdatePlayer_System_String_System_Nullable_Vector3__System_Nullable_Vector3__" data-uid="GameFramework.GameData.Services.GameDataService.UpdatePlayer(System.String,System.Nullable{Vector3},System.Nullable{Vector3})">UpdatePlayer(string, Vector3?, Vector3?)</h4>
-  <div class="markdown level1 summary"><p>Updates specific player properties</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void UpdatePlayer(string playerName = null, Vector3? position = null, Vector3? rotation = null)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">playerName</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">Vector3</span>?</td>
-        <td><span class="parametername">position</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">Vector3</span>?</td>
-        <td><span class="parametername">rotation</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_GameData_Services_GameDataService_ValidateGameData_" data-uid="GameFramework.GameData.Services.GameDataService.ValidateGameData*"></a>
-  <h4 id="GameFramework_GameData_Services_GameDataService_ValidateGameData" data-uid="GameFramework.GameData.Services.GameDataService.ValidateGameData">ValidateGameData()</h4>
+  <a id="GameFramework_Services_GameDataService_ValidateGameData_" data-uid="GameFramework.Services.GameDataService.ValidateGameData*"></a>
+  <h4 id="GameFramework_Services_GameDataService_ValidateGameData" data-uid="GameFramework.Services.GameDataService.ValidateGameData">ValidateGameData()</h4>
   <div class="markdown level1 summary"><p>Validates that current game data is in a consistent state</p>
 </div>
   <div class="markdown level1 conceptual"></div>

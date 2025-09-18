@@ -112,7 +112,7 @@ Handles all UI transitions based on user interactions reported by the screen</p>
       <h4><a class="xref" href="GameFramework.StateMachine.GameStates.NewGameState.html">NewGameState</a></h4>
       <section><p>New Game state - fully responsible for its UI lifecycle
 Handles all UI transitions based on user interactions reported by the screen
-Initializes new game data through GameDataService and transitions to PlayingState</p>
+Publishes new game load events and transitions to LoadingState for consistent loading experience</p>
 </section>
       <h4><a class="xref" href="GameFramework.StateMachine.GameStates.PlayingState.html">PlayingState</a></h4>
       <section><p>Playing state - reacts to pause state changes from PauseService

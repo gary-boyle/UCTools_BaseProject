@@ -86,7 +86,7 @@
   <h1 id="GameFramework_StateMachine_GameStates_NewGameState" data-uid="GameFramework.StateMachine.GameStates.NewGameState" class="text-break">Class NewGameState</h1>
   <div class="markdown level0 summary"><p>New Game state - fully responsible for its UI lifecycle
 Handles all UI transitions based on user interactions reported by the screen
-Initializes new game data through GameDataService and transitions to PlayingState</p>
+Publishes new game load events and transitions to LoadingState for consistent loading experience</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -138,6 +138,9 @@ Initializes new game data through GameDataService and transitions to PlayingStat
     </div>
     <div>
       <a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_UIService">BaseGameState.UIService</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_InstantiationService">BaseGameState.InstantiationService</a>
     </div>
     <div>
       <a class="xref" href="GameFramework.StateMachine.BaseGameState.html#GameFramework_StateMachine_BaseGameState_Update">BaseGameState.Update()</a>

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class InstantiationService | UCTools Base Project </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class InstantiationService | UCTools Base Project ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  <meta property="docfx:newtab" content="true">
+
+  
+  </head>
+
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="UCTools">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="GameFramework.Services.InstantiationService">
+
+
+
+  <h1 id="GameFramework_Services_InstantiationService" data-uid="GameFramework.Services.InstantiationService" class="text-break">Class InstantiationService</h1>
+  <div class="markdown level0 summary"><p>Service responsible for instantiating game objects, particularly the player prefab.
+Integrates with the event system to notify about instantiation events.
+Works with GameDataService to configure PlayerData components from save data.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+    <div class="level1"><span class="xref">InstantiationService</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="GameFramework.Services.Interfaces.IInstantiationService.html">IInstantiationService</a></div>
+    <div><a class="xref" href="GameFramework.Services.Interfaces.IGameService.html">IGameService</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.Services.html">Services</a></h6>
+  <h6><strong>Assembly</strong>: .dll</h6>
+  <h5 id="GameFramework_Services_InstantiationService_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class InstantiationService : IInstantiationService, IGameService</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+</h3>
+  <a id="GameFramework_Services_InstantiationService__ctor_" data-uid="GameFramework.Services.InstantiationService.#ctor*"></a>
+  <h4 id="GameFramework_Services_InstantiationService__ctor_GameFramework_EventSystem_Interfaces_IEventSystem_GameFramework_Services_Interfaces_IGameDataService_" data-uid="GameFramework.Services.InstantiationService.#ctor(GameFramework.EventSystem.Interfaces.IEventSystem,GameFramework.Services.Interfaces.IGameDataService)">InstantiationService(IEventSystem, IGameDataService)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public InstantiationService(IEventSystem eventSystem, IGameDataService gameDataService)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.EventSystem.Interfaces.IEventSystem.html">IEventSystem</a></td>
+        <td><span class="parametername">eventSystem</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="GameFramework.Services.Interfaces.IGameDataService.html">IGameDataService</a></td>
+        <td><span class="parametername">gameDataService</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+</h3>
+  <a id="GameFramework_Services_InstantiationService_IsInitialized_" data-uid="GameFramework.Services.InstantiationService.IsInitialized*"></a>
+  <h4 id="GameFramework_Services_InstantiationService_IsInitialized" data-uid="GameFramework.Services.InstantiationService.IsInitialized">IsInitialized</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsInitialized { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+  <a id="GameFramework_Services_InstantiationService_DestroyPlayerAsync_" data-uid="GameFramework.Services.InstantiationService.DestroyPlayerAsync*"></a>
+  <h4 id="GameFramework_Services_InstantiationService_DestroyPlayerAsync" data-uid="GameFramework.Services.InstantiationService.DestroyPlayerAsync">DestroyPlayerAsync()</h4>
+  <div class="markdown level1 summary"><p>Destroys the current player instance if it exists</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task DestroyPlayerAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><p>Task representing the async operation</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Services_InstantiationService_GetCurrentPlayer_" data-uid="GameFramework.Services.InstantiationService.GetCurrentPlayer*"></a>
+  <h4 id="GameFramework_Services_InstantiationService_GetCurrentPlayer" data-uid="GameFramework.Services.InstantiationService.GetCurrentPlayer">GetCurrentPlayer()</h4>
+  <div class="markdown level1 summary"><p>Gets the current player instance if it exists</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GameObject GetCurrentPlayer()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">GameObject</span></td>
+        <td><p>The current player GameObject, or null if no player exists</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Services_InstantiationService_InitializeAsync_" data-uid="GameFramework.Services.InstantiationService.InitializeAsync*"></a>
+  <h4 id="GameFramework_Services_InstantiationService_InitializeAsync" data-uid="GameFramework.Services.InstantiationService.InitializeAsync">InitializeAsync()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task InitializeAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Services_InstantiationService_InstantiatePlayerAsync_" data-uid="GameFramework.Services.InstantiationService.InstantiatePlayerAsync*"></a>
+  <h4 id="GameFramework_Services_InstantiationService_InstantiatePlayerAsync" data-uid="GameFramework.Services.InstantiationService.InstantiatePlayerAsync">InstantiatePlayerAsync()</h4>
+  <div class="markdown level1 summary"><p>Instantiates the player prefab using default spawn settings</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;GameObject&gt; InstantiatePlayerAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<span class="xref">GameObject</span>&gt;</td>
+        <td><p>The instantiated player GameObject</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Services_InstantiationService_InstantiatePlayerAsync_" data-uid="GameFramework.Services.InstantiationService.InstantiatePlayerAsync*"></a>
+  <h4 id="GameFramework_Services_InstantiationService_InstantiatePlayerAsync_Vector3_Vector3_" data-uid="GameFramework.Services.InstantiationService.InstantiatePlayerAsync(Vector3,Vector3)">InstantiatePlayerAsync(Vector3, Vector3)</h4>
+  <div class="markdown level1 summary"><p>Instantiates the player prefab at the specified position and rotation</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;GameObject&gt; InstantiatePlayerAsync(Vector3 position, Vector3 rotation)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector3</span></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>World position to instantiate the player</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Vector3</span></td>
+        <td><span class="parametername">rotation</span></td>
+        <td><p>World rotation to instantiate the player</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<span class="xref">GameObject</span>&gt;</td>
+        <td><p>The instantiated player GameObject</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Services_InstantiationService_SetDefaultSpawnSettings_" data-uid="GameFramework.Services.InstantiationService.SetDefaultSpawnSettings*"></a>
+  <h4 id="GameFramework_Services_InstantiationService_SetDefaultSpawnSettings_Vector3_Vector3_" data-uid="GameFramework.Services.InstantiationService.SetDefaultSpawnSettings(Vector3,Vector3)">SetDefaultSpawnSettings(Vector3, Vector3)</h4>
+  <div class="markdown level1 summary"><p>Sets the default spawn position and rotation for new games</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetDefaultSpawnSettings(Vector3 position, Vector3 rotation)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector3</span></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>Default spawn position</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Vector3</span></td>
+        <td><span class="parametername">rotation</span></td>
+        <td><p>Default spawn rotation</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Services_InstantiationService_SetPlayerPrefab_" data-uid="GameFramework.Services.InstantiationService.SetPlayerPrefab*"></a>
+  <h4 id="GameFramework_Services_InstantiationService_SetPlayerPrefab_GameObject_" data-uid="GameFramework.Services.InstantiationService.SetPlayerPrefab(GameObject)">SetPlayerPrefab(GameObject)</h4>
+  <div class="markdown level1 summary"><p>Sets the player prefab to be instantiated</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetPlayerPrefab(GameObject playerPrefab)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">GameObject</span></td>
+        <td><span class="parametername">playerPrefab</span></td>
+        <td><p>The prefab to use for player instantiation</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Services_InstantiationService_Shutdown_" data-uid="GameFramework.Services.InstantiationService.Shutdown*"></a>
+  <h4 id="GameFramework_Services_InstantiationService_Shutdown" data-uid="GameFramework.Services.InstantiationService.Shutdown">Shutdown()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Shutdown()</code></pre>
+  </div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="GameFramework.Services.Interfaces.IInstantiationService.html">IInstantiationService</a>
+  </div>
+  <div>
+      <a class="xref" href="GameFramework.Services.Interfaces.IGameService.html">IGameService</a>
+  </div>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In this article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        © 2025 UCTools Base Project Documentation
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

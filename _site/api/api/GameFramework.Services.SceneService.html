@@ -84,7 +84,7 @@
 
 
   <h1 id="GameFramework_Services_SceneService" data-uid="GameFramework.Services.SceneService" class="text-break">Class SceneService</h1>
-  <div class="markdown level0 summary"><p>Scene service implementation with constructor injection</p>
+  <div class="markdown level0 summary"><p>Scene service implementation with constructor injection and progress reporting support</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -182,6 +182,49 @@
   </table>
   <h3 id="methods">Methods
 </h3>
+  <a id="GameFramework_Services_SceneService_ActivatePreloadedSceneAsync_" data-uid="GameFramework.Services.SceneService.ActivatePreloadedSceneAsync*"></a>
+  <h4 id="GameFramework_Services_SceneService_ActivatePreloadedSceneAsync_System_String_" data-uid="GameFramework.Services.SceneService.ActivatePreloadedSceneAsync(System.String)">ActivatePreloadedSceneAsync(string)</h4>
+  <div class="markdown level1 summary"><p>Activates a preloaded scene</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; ActivatePreloadedSceneAsync(string sceneName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">sceneName</span></td>
+        <td><p>Name of the scene to activate</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
+        <td><p>True if scene activated successfully</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <a id="GameFramework_Services_SceneService_GetCurrentSceneName_" data-uid="GameFramework.Services.SceneService.GetCurrentSceneName*"></a>
   <h4 id="GameFramework_Services_SceneService_GetCurrentSceneName" data-uid="GameFramework.Services.SceneService.GetCurrentSceneName">GetCurrentSceneName()</h4>
   <div class="markdown level1 summary"></div>
@@ -345,6 +388,104 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Services_SceneService_LoadSceneWithProgressAsync_" data-uid="GameFramework.Services.SceneService.LoadSceneWithProgressAsync*"></a>
+  <h4 id="GameFramework_Services_SceneService_LoadSceneWithProgressAsync_System_String_System_Action_System_Single__" data-uid="GameFramework.Services.SceneService.LoadSceneWithProgressAsync(System.String,System.Action{System.Single})">LoadSceneWithProgressAsync(string, Action&lt;float&gt;)</h4>
+  <div class="markdown level1 summary"><p>Loads a scene with progress reporting for loading systems</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; LoadSceneWithProgressAsync(string sceneName, Action&lt;float&gt; progressCallback = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">sceneName</span></td>
+        <td><p>Name of the scene to load</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>&gt;</td>
+        <td><span class="parametername">progressCallback</span></td>
+        <td><p>Optional callback to report loading progress (0.0f to 1.0f)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
+        <td><p>True if scene loaded successfully</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Services_SceneService_PreloadSceneAsync_" data-uid="GameFramework.Services.SceneService.PreloadSceneAsync*"></a>
+  <h4 id="GameFramework_Services_SceneService_PreloadSceneAsync_System_String_System_Action_System_Single__" data-uid="GameFramework.Services.SceneService.PreloadSceneAsync(System.String,System.Action{System.Single})">PreloadSceneAsync(string, Action&lt;float&gt;)</h4>
+  <div class="markdown level1 summary"><p>Preloads a scene without activating it, useful for seamless transitions</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; PreloadSceneAsync(string sceneName, Action&lt;float&gt; progressCallback = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">sceneName</span></td>
+        <td><p>Name of the scene to preload</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>&gt;</td>
+        <td><span class="parametername">progressCallback</span></td>
+        <td><p>Optional callback to report loading progress (0.0f to 1.0f)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
+        <td><p>True if scene preloaded successfully</p>
+</td>
       </tr>
     </tbody>
   </table>
