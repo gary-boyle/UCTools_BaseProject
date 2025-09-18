@@ -221,6 +221,7 @@ namespace GameFramework.Input
             // Subscribe using the delegate references
             // Player Actions
             _inputActions.Player.Move.performed += _onMoveInput;
+            _inputActions.Player.Move.canceled += _onMoveInput;  // Add canceled phase for movement
             _inputActions.Player.Look.performed += _onLookInput;
             _inputActions.Player.Attack.performed += _onAttackInput;
             _inputActions.Player.Jump.performed += _onJumpInput;
@@ -255,7 +256,10 @@ namespace GameFramework.Input
             
             // Unsubscribe Player Actions
             if (_onMoveInput != null)
+            {
                 _inputActions.Player.Move.performed -= _onMoveInput;
+                _inputActions.Player.Move.canceled -= _onMoveInput;  // Remove canceled phase subscription
+            }
             if (_onLookInput != null)
                 _inputActions.Player.Look.performed -= _onLookInput;
             if (_onAttackInput != null)

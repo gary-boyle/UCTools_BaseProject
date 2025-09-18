@@ -16,9 +16,6 @@ namespace GameFramework.Components
         #region Serialized Fields
         [Header("Movement Settings")]
         [SerializeField] private float _moveSpeed = 5.0f;
-        [SerializeField] private float _acceleration = 10.0f;
-        [SerializeField] private float _deceleration = 10.0f;
-        [SerializeField] private float _drag = 5.0f;
         
         [Header("Ground Detection")]
         [SerializeField] private LayerMask _groundLayerMask = 1;
@@ -67,7 +64,6 @@ namespace GameFramework.Components
             
             // Configure rigidbody for character movement
             _rigidbody.freezeRotation = true; // Prevent physics rotation
-            _rigidbody.linearDamping = _drag;
             
             // Create ground check point if not assigned
             // if (_groundCheckPoint == null)
@@ -152,9 +148,11 @@ namespace GameFramework.Components
         {
             if (!_isInitialized) return;
 
-            // Only process performed phase for continuous movement
-            if (inputEvent.Phase == InputActionPhase.Performed || inputEvent.Phase == InputActionPhase.Started)
+            // Handle all phases and check for zero vector
+            if (inputEvent.Phase == InputActionPhase.Performed || 
+                inputEvent.Phase == InputActionPhase.Started)
             {
+                // Set input vector, even if it's zero (this handles key release)
                 _inputVector = inputEvent.MovementVector;
             }
             else if (inputEvent.Phase == InputActionPhase.Canceled)
@@ -162,7 +160,13 @@ namespace GameFramework.Components
                 _inputVector = Vector2.zero;
             }
 
-            if (_showDebugInfo && inputEvent.Phase == InputActionPhase.Performed)
+            // Additional safety: if the movement vector is very small, treat as no input
+            if (_inputVector.magnitude < 0.01f)
+            {
+                _inputVector = Vector2.zero;
+            }
+
+            if (_showDebugInfo)
             {
                 Debug.Log($"[PlayerController] Movement Input: {_inputVector}, Phase: {inputEvent.Phase}");
             }
@@ -198,14 +202,19 @@ namespace GameFramework.Components
             _targetVelocity = inputDirection * _moveSpeed;
             
             // Debug info
-            if (_showDebugInfo && IsMoving)
+            if (_showDebugInfo)
             {
-                Debug.DrawRay(transform.position, _targetVelocity.normalized * 2f, Color.green);
+                Debug.Log($"[PlayerController] Input: {_inputVector}, Target Velocity: {_targetVelocity}, IsMoving: {IsMoving}");
+                
+                if (IsMoving)
+                {
+                    Debug.DrawRay(transform.position, _targetVelocity.normalized * 2f, Color.green);
+                }
             }
         }
 
         /// <summary>
-        /// Apply movement to the rigidbody using physics
+        /// Apply movement to the rigidbody - immediate response to input
         /// </summary>
         private void ApplyMovement()
         {
@@ -214,21 +223,11 @@ namespace GameFramework.Components
             // Get current velocity and preserve Y component (gravity/vertical movement)
             Vector3 currentVelocity = _rigidbody.linearVelocity;
             
-            // Only modify horizontal velocity (X and Z)
-            Vector3 horizontalVelocity = new Vector3(currentVelocity.x, 0f, currentVelocity.z);
-            
-            // Calculate force needed to reach target velocity
-            Vector3 velocityDifference = _targetVelocity - horizontalVelocity;
-            
-            // Apply acceleration/deceleration based on input
-            float forceMultiplier = IsMoving ? _acceleration : _deceleration;
-            Vector3 force = velocityDifference * forceMultiplier;
-            
-            // Apply horizontal force, preserve vertical velocity
+            // Set horizontal velocity directly based on input (immediate response)
             Vector3 newVelocity = new Vector3(
-                Mathf.MoveTowards(currentVelocity.x, _targetVelocity.x, forceMultiplier * Time.fixedDeltaTime),
+                _targetVelocity.x,
                 currentVelocity.y, // Preserve Y velocity (gravity)
-                Mathf.MoveTowards(currentVelocity.z, _targetVelocity.z, forceMultiplier * Time.fixedDeltaTime)
+                _targetVelocity.z
             );
             
             _rigidbody.linearVelocity = newVelocity;
@@ -236,6 +235,7 @@ namespace GameFramework.Components
             // Debug info
             if (_showDebugInfo)
             {
+                Debug.Log($"[PlayerController] Applied Velocity: {newVelocity} (was: {currentVelocity})");
                 Debug.DrawRay(transform.position, _rigidbody.linearVelocity, Color.blue);
             }
         }
