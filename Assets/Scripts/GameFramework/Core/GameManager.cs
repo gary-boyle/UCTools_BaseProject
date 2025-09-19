@@ -491,8 +491,8 @@ namespace GameFramework.Core
             _container.RegisterSingleton<IRuntimeObjectInstantiator, RuntimeObjectInstantiator>();
             
             // Register V2 services (replaces old LoadService and SaveService)
-            _container.RegisterSingleton<ILoadService, LoadServiceV2>();
-            _container.RegisterSingleton<ISaveService, SaveServiceV2>();
+            _container.RegisterSingleton<ILoadService, LoadService>();
+            _container.RegisterSingleton<ISaveService, SaveService>();
             
             Debug.Log("[GameManager] V2 save/load system registration complete");
         }

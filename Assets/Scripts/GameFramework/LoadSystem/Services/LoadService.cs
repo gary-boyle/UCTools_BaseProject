@@ -21,7 +21,7 @@ namespace GameFramework.LoadSystem.Services
     /// Supports both legacy SaveFileData and new SaveFileDataV2 formats.
     /// Uses PrefabRegistry and RuntimeObjectInstantiator instead of Resources folder.
     /// </summary>
-    public class LoadServiceV2 : ILoadService
+    public class LoadService : ILoadService
     {
         #region Private Fields
         private IFileService _fileService;
@@ -36,7 +36,7 @@ namespace GameFramework.LoadSystem.Services
         public bool IsInitialized { get; private set; }
         public bool IsLoading { get; private set; }
 
-        public LoadServiceV2(
+        public LoadService(
             IFileService fileService, 
             IGameDataService gameDataService, 
             ISceneService sceneService,

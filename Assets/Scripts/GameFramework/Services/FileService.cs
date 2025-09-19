@@ -170,7 +170,7 @@ namespace GameFramework.FileSystem.Services
                 string filePath = GetSaveFilePath(fileName);
                 
                 // Serialize to JSON
-                string json = JsonSerializationHelper.SerializeToJson(saveFileData, true);
+                string json = JsonSerializationHelper.SerializeToJson(saveFileData);
                 if (string.IsNullOrEmpty(json))
                 {
                     Debug.LogError($"[FileService] Failed to serialize save data for {fileName}");

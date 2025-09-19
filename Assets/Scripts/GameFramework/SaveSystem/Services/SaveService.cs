@@ -17,7 +17,7 @@ namespace GameFramework.SaveSystem.Services
     /// Creates SaveFileDataV2 with typed runtime object collections instead of nested JSON strings.
     /// Works with SaveableBase objects and the new RuntimeObjectSaveData system.
     /// </summary>
-    public class SaveServiceV2 : ISaveService
+    public class SaveService : ISaveService
     {
         #region Private Fields
         private IGameDataService _gameDataService;
@@ -30,7 +30,7 @@ namespace GameFramework.SaveSystem.Services
         #region IGameService Implementation
         public bool IsInitialized { get; private set; }
 
-        public SaveServiceV2(
+        public SaveService(
             IGameDataService gameDataService, 
             IEventSystem eventSystem,
             ISaveDataRegistry saveDataRegistry)

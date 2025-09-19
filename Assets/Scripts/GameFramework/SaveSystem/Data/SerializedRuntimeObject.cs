@@ -21,7 +21,7 @@ namespace GameFramework.SaveSystem.Data
         public string jsonData; // JSON serialization of the RuntimeObjectSaveData
         
         [Header("Debug Info")]
-        [SerializeField, ReadOnly] private int dataLength = 0;
+        [ReadOnly] public int dataLength = 0;
         
         /// <summary>
         /// Default constructor for serialization
