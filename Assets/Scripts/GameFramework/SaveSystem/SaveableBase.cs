@@ -58,7 +58,6 @@ namespace GameFramework.SaveSystem
         #region Unity Lifecycle
         protected virtual void Awake()
         {
-            Debug.Log($"!!! - {gameObject.name}");
             // Only generate unique ID at runtime when object is actually instantiated in a scene
             // This prevents prefabs and prefab variants from sharing the same ID
             if (string.IsNullOrEmpty(_uniqueID) && IsRuntimeInstance())
