@@ -1,6 +1,7 @@
 using UnityEngine;
 using GameFramework.SaveSystem;
 using GameFramework.SaveSystem.Data;
+using GameFramework.SaveSystem.Attributes;
 
 namespace GameFramework.SaveSystem.Examples
 {
@@ -8,6 +9,7 @@ namespace GameFramework.SaveSystem.Examples
     /// Simple test class to verify the new clean save system works properly.
     /// Uses SaveableBaseV2 with direct field storage instead of nested JSON strings.
     /// </summary>
+    [SaveableType(typeof(TestGenericRuntimeSaveData))]
     public class TestGenericSaveable : SaveableBase
     {
         [Header("Test Generic Saveable")]

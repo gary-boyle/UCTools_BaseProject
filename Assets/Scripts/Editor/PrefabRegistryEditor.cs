@@ -246,18 +246,4 @@ namespace GameFramework.Editor
             Debug.Log($"[PrefabRegistryEditor] Found and added {addedCount} SaveableBase prefabs");
         }
     }
-
-    /// <summary>
-    /// Custom property drawer for the ReadOnly attribute
-    /// </summary>
-    [CustomPropertyDrawer(typeof(ReadOnlyAttribute))]
-    public class ReadOnlyPropertyDrawer : PropertyDrawer
-    {
-        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
-        {
-            EditorGUI.BeginDisabledGroup(true);
-            EditorGUI.PropertyField(position, property, label);
-            EditorGUI.EndDisabledGroup();
-        }
-    }
 }

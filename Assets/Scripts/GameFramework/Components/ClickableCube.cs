@@ -2,6 +2,7 @@ using UnityEngine;
 using GameFramework.SaveSystem;
 using GameFramework.SaveSystem.Data;
 using GameFramework.SaveSystem.Utilities;
+using GameFramework.SaveSystem.Attributes;
 using GameFramework.Core;
 
 namespace GameFramework.Components
@@ -11,6 +12,7 @@ namespace GameFramework.Components
     /// When clicked, changes the cube's color and increments an integer value.
     /// Uses the new clean save system with direct field storage instead of nested JSON.
     /// </summary>
+    [SaveableType(typeof(ClickableCubeRuntimeSaveData))]
     [RequireComponent(typeof(Collider))]
     public class ClickableCube : SaveableBase
     {

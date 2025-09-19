@@ -3,12 +3,14 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using GameFramework.SaveSystem.Utilities;
 
 namespace GameFramework.SaveSystem.Data
 {
     /// <summary>
-    /// New clean save file data structure that eliminates nested JSON strings.
-    /// Uses direct field storage for runtime objects instead of serialized JSON blobs.
+    /// New clean save file data structure with dynamic runtime object storage.
+    /// Uses unified SerializedRuntimeObject collection that can store any type of RuntimeObjectSaveData.
+    /// Automatically extensible - no code changes needed for new saveable types!
     /// Maintains compatibility with PlayerData and GameSessionData as requested.
     /// </summary>
     [System.Serializable]
@@ -25,13 +27,12 @@ namespace GameFramework.SaveSystem.Data
         [SerializeField] public PlayerSaveData PlayerData;            // SaveKey: "PlayerData"
         
         [Header("Runtime Objects")]
-        // Clean runtime object data - no more nested JSON strings!
-        [SerializeField] public List<ClickableCubeRuntimeSaveData> ClickableCubes = new List<ClickableCubeRuntimeSaveData>();
-        [SerializeField] public List<TestGenericRuntimeSaveData> TestGenericObjects = new List<TestGenericRuntimeSaveData>();
+        // Dynamic runtime object storage - automatically handles ANY saveable type!
+        [SerializeField] public List<SerializedRuntimeObject> RuntimeObjects = new List<SerializedRuntimeObject>();
         
-        // Future object types can be added here as direct fields
-        // [SerializeField] public List<EnemyRuntimeSaveData> Enemies = new List<EnemyRuntimeSaveData>();
-        // [SerializeField] public List<ItemRuntimeSaveData> Items = new List<ItemRuntimeSaveData>();
+        [Header("Debug Info")]
+        [SerializeField, ReadOnly] private int _totalRuntimeObjects = 0;
+        [SerializeField, ReadOnly] private string _lastUpdated = "";
         #endregion
 
         #region Public Properties
@@ -47,7 +48,14 @@ namespace GameFramework.SaveSystem.Data
         /// <summary>
         /// Total number of runtime objects in this save file
         /// </summary>
-        public int TotalRuntimeObjects => GetAllRuntimeObjects().Count;
+        public int TotalRuntimeObjects 
+        { 
+            get 
+            {
+                UpdateDebugInfo();
+                return RuntimeObjects?.Count ?? 0;
+            }
+        }
         #endregion
 
         #region Constructor
@@ -55,15 +63,15 @@ namespace GameFramework.SaveSystem.Data
         {
             SaveTimeTicks = DateTime.Now.Ticks;
             WasAutoSave = false;
-            ClickableCubes = new List<ClickableCubeRuntimeSaveData>();
-            TestGenericObjects = new List<TestGenericRuntimeSaveData>();
+            RuntimeObjects = new List<SerializedRuntimeObject>();
+            UpdateDebugInfo();
         }
         #endregion
 
         #region Runtime Object Management
         /// <summary>
-        /// Adds or updates a runtime object's save data based on its type and unique ID.
-        /// Uses reflection to dynamically handle any SaveableBase-derived types.
+        /// Adds or updates a runtime object's save data using the unified storage system.
+        /// Automatically handles any type of RuntimeObjectSaveData without needing code changes.
         /// </summary>
         /// <param name="saveData">The runtime object save data</param>
         /// <returns>True if the object was added or updated successfully</returns>
@@ -77,8 +85,42 @@ namespace GameFramework.SaveSystem.Data
 
             try
             {
-                // Use reflection to find the appropriate collection and method
-                return SetRuntimeObjectDataGeneric(saveData);
+                // Find existing object by unique ID
+                var existingIndex = RuntimeObjects.FindIndex(obj => obj.uniqueID == saveData.uniqueID);
+                
+                if (existingIndex >= 0)
+                {
+                    // Update existing object
+                    bool updateSuccess = RuntimeObjects[existingIndex].UpdateFrom(saveData);
+                    if (updateSuccess)
+                    {
+                        Debug.Log($"[SaveFileDataV2] Updated runtime object: {saveData.uniqueID} ({saveData.typeName})");
+                        UpdateDebugInfo();
+                        return true;
+                    }
+                    else
+                    {
+                        Debug.LogError($"[SaveFileDataV2] Failed to update runtime object: {saveData.uniqueID}");
+                        return false;
+                    }
+                }
+                else
+                {
+                    // Add new object
+                    var serializedObject = new SerializedRuntimeObject(saveData);
+                    if (serializedObject.IsValid())
+                    {
+                        RuntimeObjects.Add(serializedObject);
+                        Debug.Log($"[SaveFileDataV2] Added new runtime object: {saveData.uniqueID} ({saveData.typeName})");
+                        UpdateDebugInfo();
+                        return true;
+                    }
+                    else
+                    {
+                        Debug.LogError($"[SaveFileDataV2] Failed to serialize runtime object: {saveData.uniqueID}");
+                        return false;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -88,48 +130,53 @@ namespace GameFramework.SaveSystem.Data
         }
 
         /// <summary>
-        /// Gets all runtime objects from all collections as a generic list.
+        /// Gets all runtime objects deserialized from the unified storage.
         /// This provides a unified way to access all runtime objects regardless of their specific type.
         /// </summary>
-        /// <returns>List containing all runtime objects from all typed collections</returns>
+        /// <returns>List containing all deserialized runtime objects</returns>
         public List<RuntimeObjectSaveData> GetAllRuntimeObjects()
         {
             var allObjects = new List<RuntimeObjectSaveData>();
 
-            // Add objects from all known collections
-            if (ClickableCubes != null)
-                allObjects.AddRange(ClickableCubes.Cast<RuntimeObjectSaveData>());
-
-            if (TestGenericObjects != null)
-                allObjects.AddRange(TestGenericObjects.Cast<RuntimeObjectSaveData>());
-
-            // Future collections would be added here automatically if we use reflection
-            // Or can be added manually as new types are created
+            if (RuntimeObjects != null)
+            {
+                foreach (var serializedObj in RuntimeObjects)
+                {
+                    var deserializedObj = serializedObj.Deserialize();
+                    if (deserializedObj != null)
+                    {
+                        allObjects.Add(deserializedObj);
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"[SaveFileDataV2] Failed to deserialize runtime object: {serializedObj.uniqueID}");
+                    }
+                }
+            }
 
             return allObjects;
         }
 
         /// <summary>
-        /// Gets a runtime object by unique ID from any collection.
-        /// More generic version that searches all collections.
+        /// Gets a runtime object by unique ID from the unified storage.
         /// </summary>
         /// <param name="uniqueID">The unique ID to search for</param>
-        /// <returns>The runtime object if found, null otherwise</returns>
+        /// <returns>The deserialized runtime object if found, null otherwise</returns>
         public RuntimeObjectSaveData GetRuntimeObjectByID(string uniqueID)
         {
             if (string.IsNullOrEmpty(uniqueID))
                 return null;
 
-            var allObjects = GetAllRuntimeObjects();
-            return allObjects.FirstOrDefault(obj => obj.uniqueID == uniqueID);
+            var serializedObj = RuntimeObjects?.FirstOrDefault(obj => obj.uniqueID == uniqueID);
+            return serializedObj?.Deserialize();
         }
         
         /// <summary>
-        /// Gets runtime object save data by unique ID and type
+        /// Gets runtime object save data by unique ID and type using the unified storage
         /// </summary>
         /// <typeparam name="T">The type of runtime save data</typeparam>
         /// <param name="uniqueID">The unique ID of the object</param>
-        /// <returns>The save data, or null if not found</returns>
+        /// <returns>The save data, or null if not found or wrong type</returns>
         public T GetRuntimeObjectData<T>(string uniqueID) where T : RuntimeObjectSaveData
         {
             if (string.IsNullOrEmpty(uniqueID))
@@ -137,16 +184,12 @@ namespace GameFramework.SaveSystem.Data
 
             try
             {
-                if (typeof(T) == typeof(ClickableCubeRuntimeSaveData))
-                {
-                    return ClickableCubes.FirstOrDefault(c => c.uniqueID == uniqueID) as T;
-                }
-                else if (typeof(T) == typeof(TestGenericRuntimeSaveData))
-                {
-                    return TestGenericObjects.FirstOrDefault(g => g.uniqueID == uniqueID) as T;
-                }
+                var serializedObj = RuntimeObjects?.FirstOrDefault(obj => obj.uniqueID == uniqueID);
+                if (serializedObj == null)
+                    return null;
 
-                return null;
+                var deserializedObj = serializedObj.Deserialize();
+                return deserializedObj as T;
             }
             catch (Exception ex)
             {
@@ -156,24 +199,29 @@ namespace GameFramework.SaveSystem.Data
         }
         
         /// <summary>
-        /// Gets all runtime objects of a specific type
+        /// Gets all runtime objects of a specific type from the unified storage
         /// </summary>
         /// <typeparam name="T">The type of runtime save data</typeparam>
         /// <returns>List of objects of the specified type</returns>
         public List<T> GetAllRuntimeObjectsOfType<T>() where T : RuntimeObjectSaveData
         {
+            var results = new List<T>();
+
             try
             {
-                if (typeof(T) == typeof(ClickableCubeRuntimeSaveData))
+                if (RuntimeObjects != null)
                 {
-                    return ClickableCubes.Cast<T>().ToList();
-                }
-                else if (typeof(T) == typeof(TestGenericRuntimeSaveData))
-                {
-                    return TestGenericObjects.Cast<T>().ToList();
+                    foreach (var serializedObj in RuntimeObjects)
+                    {
+                        var deserializedObj = serializedObj.Deserialize();
+                        if (deserializedObj is T typedObj)
+                        {
+                            results.Add(typedObj);
+                        }
+                    }
                 }
 
-                return new List<T>();
+                return results;
             }
             catch (Exception ex)
             {
@@ -183,7 +231,7 @@ namespace GameFramework.SaveSystem.Data
         }
         
         /// <summary>
-        /// Removes a runtime object by unique ID
+        /// Removes a runtime object by unique ID from the unified storage
         /// </summary>
         /// <param name="uniqueID">The unique ID of the object to remove</param>
         /// <returns>True if the object was found and removed</returns>
@@ -194,18 +242,16 @@ namespace GameFramework.SaveSystem.Data
 
             try
             {
-                // Try to remove from each collection
-                bool removed = false;
+                int removedCount = RuntimeObjects.RemoveAll(obj => obj.uniqueID == uniqueID);
                 
-                removed |= ClickableCubes.RemoveAll(c => c.uniqueID == uniqueID) > 0;
-                removed |= TestGenericObjects.RemoveAll(g => g.uniqueID == uniqueID) > 0;
-
-                if (removed)
+                if (removedCount > 0)
                 {
                     Debug.Log($"[SaveFileDataV2] Removed runtime object: {uniqueID}");
+                    UpdateDebugInfo();
+                    return true;
                 }
 
-                return removed;
+                return false;
             }
             catch (Exception ex)
             {
@@ -217,7 +263,7 @@ namespace GameFramework.SaveSystem.Data
 
         #region Validation
         /// <summary>
-        /// Validates that all expected save data is present
+        /// Validates that all expected save data is present and properly structured
         /// </summary>
         public bool ValidateData()
         {
@@ -240,135 +286,79 @@ namespace GameFramework.SaveSystem.Data
             int totalObjects = TotalRuntimeObjects;
             Debug.Log($"[SaveFileDataV2] Found {totalObjects} runtime objects");
             
-            // Validate individual object collections
-            ValidateObjectCollection(ClickableCubes, "ClickableCubes");
-            ValidateObjectCollection(TestGenericObjects, "TestGenericObjects");
+            if (RuntimeObjects != null)
+            {
+                int validCount = 0;
+                int invalidCount = 0;
+                var typeGroups = new Dictionary<string, int>();
+
+                foreach (var serializedObj in RuntimeObjects)
+                {
+                    if (serializedObj.IsValid())
+                    {
+                        validCount++;
+                        
+                        // Count objects by type for debugging
+                        if (!typeGroups.ContainsKey(serializedObj.typeName))
+                            typeGroups[serializedObj.typeName] = 0;
+                        typeGroups[serializedObj.typeName]++;
+                    }
+                    else
+                    {
+                        invalidCount++;
+                        Debug.LogWarning($"[SaveFileDataV2] Invalid serialized object: {serializedObj.uniqueID}");
+                    }
+                }
+
+                Debug.Log($"[SaveFileDataV2] Runtime Objects: {validCount} valid, {invalidCount} invalid");
+                
+                // Log type breakdown
+                foreach (var typeGroup in typeGroups)
+                {
+                    Debug.Log($"[SaveFileDataV2] - {typeGroup.Key}: {typeGroup.Value} objects");
+                }
+                
+                if (invalidCount > 0)
+                    isValid = false;
+            }
 
             return isValid;
-        }
-        
-        private void ValidateObjectCollection<T>(List<T> collection, string collectionName) where T : RuntimeObjectSaveData
-        {
-            if (collection == null)
-            {
-                Debug.LogWarning($"[SaveFileDataV2] {collectionName} collection is null");
-                return;
-            }
-
-            int validCount = 0;
-            int invalidCount = 0;
-
-            foreach (var obj in collection)
-            {
-                if (obj != null && !string.IsNullOrEmpty(obj.uniqueID) && !string.IsNullOrEmpty(obj.prefabGUID))
-                {
-                    validCount++;
-                }
-                else
-                {
-                    invalidCount++;
-                }
-            }
-
-            Debug.Log($"[SaveFileDataV2] {collectionName}: {validCount} valid, {invalidCount} invalid objects");
         }
         #endregion
 
         #region Private Methods
         /// <summary>
-        /// Generic method to set runtime object data using reflection to find the correct collection
+        /// Updates debug information fields
         /// </summary>
-        /// <param name="saveData">The runtime save data to store</param>
-        /// <returns>True if successful</returns>
-        private bool SetRuntimeObjectDataGeneric(RuntimeObjectSaveData saveData)
+        private void UpdateDebugInfo()
         {
-            // Handle known types with direct method calls for better performance
-            switch (saveData)
-            {
-                case ClickableCubeRuntimeSaveData cubeData:
-                    return SetClickableCubeData(cubeData);
-                
-                case TestGenericRuntimeSaveData genericData:
-                    return SetTestGenericData(genericData);
-                
-                default:
-                    // For future extensibility, we could use reflection here to find
-                    // the appropriate collection and add the object
-                    Debug.LogWarning($"[SaveFileDataV2] Unknown runtime object type: {saveData.GetType().Name}. " +
-                                   "Add specific handling for this type to SaveFileDataV2.");
-                    
-                    // TODO: Implement full reflection-based approach for unknown types
-                    // This would automatically find the correct List<T> field and add the object
-                    return false;
-            }
+            _totalRuntimeObjects = RuntimeObjects?.Count ?? 0;
+            _lastUpdated = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
         }
         
-        private bool SetClickableCubeData(ClickableCubeRuntimeSaveData cubeData)
+        /// <summary>
+        /// Gets type statistics for debugging purposes
+        /// </summary>
+        /// <returns>Dictionary mapping type names to counts</returns>
+        public Dictionary<string, int> GetTypeStatistics()
         {
-            // Find existing entry
-            var existingIndex = ClickableCubes.FindIndex(c => c.uniqueID == cubeData.uniqueID);
+            var stats = new Dictionary<string, int>();
             
-            if (existingIndex >= 0)
+            if (RuntimeObjects != null)
             {
-                // Update existing
-                ClickableCubes[existingIndex] = cubeData;
-                Debug.Log($"[SaveFileDataV2] Updated ClickableCube: {cubeData.uniqueID}");
-            }
-            else
-            {
-                // Add new
-                ClickableCubes.Add(cubeData);
-                Debug.Log($"[SaveFileDataV2] Added new ClickableCube: {cubeData.uniqueID}");
-            }
-            
-            return true;
-        }
-        
-        private bool SetTestGenericData(TestGenericRuntimeSaveData genericData)
-        {
-            // Find existing entry
-            var existingIndex = TestGenericObjects.FindIndex(g => g.uniqueID == genericData.uniqueID);
-            
-            if (existingIndex >= 0)
-            {
-                // Update existing
-                TestGenericObjects[existingIndex] = genericData;
-                Debug.Log($"[SaveFileDataV2] Updated TestGenericSaveable: {genericData.uniqueID}");
-            }
-            else
-            {
-                // Add new
-                TestGenericObjects.Add(genericData);
-                Debug.Log($"[SaveFileDataV2] Added new TestGenericSaveable: {genericData.uniqueID}");
+                foreach (var serializedObj in RuntimeObjects)
+                {
+                    if (!string.IsNullOrEmpty(serializedObj.typeName))
+                    {
+                        if (!stats.ContainsKey(serializedObj.typeName))
+                            stats[serializedObj.typeName] = 0;
+                        stats[serializedObj.typeName]++;
+                    }
+                }
             }
             
-            return true;
+            return stats;
         }
         #endregion
-
-        // #region Legacy Support (Optional)
-        // /// <summary>
-        // /// Converts from old SaveFileData format (if needed for migration)
-        // /// Note: User requested NO backwards compatibility, so this is optional
-        // /// </summary>
-        // public static SaveFileDataV2 FromLegacySaveFileData(SaveFileData legacyData)
-        // {
-        //     if (legacyData == null)
-        //         return null;
-        //
-        //     var newData = new SaveFileDataV2
-        //     {
-        //         SaveTimeTicks = legacyData.SaveTimeTicks,
-        //         WasAutoSave = legacyData.WasAutoSave,
-        //         GameSessionData = legacyData.GameSessionData,
-        //         PlayerData = legacyData.PlayerData
-        //     };
-        //
-        //     // Migration logic would go here if needed
-        //     // Since user specifically requested NO backwards compatibility, leaving this empty
-        //
-        //     return newData;
-        // }
-        // #endregion
     }
 }

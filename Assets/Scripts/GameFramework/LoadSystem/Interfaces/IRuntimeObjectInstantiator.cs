@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using GameFramework.LoadSystem.Services;
 using GameFramework.SaveSystem.Data;
 using GameFramework.Services.Interfaces;
 using UnityEngine;
@@ -25,16 +24,14 @@ namespace GameFramework.LoadSystem.Interfaces
         Task<bool> ConfigureObjectAsync(GameObject gameObject, RuntimeObjectSaveData saveData);
 
         /// <summary>
-        /// Registers a custom object factory for a specific type
+        /// Logs information about registered saveable types (for debugging)
         /// </summary>
-        /// <param name="typeName">The type name to handle</param>
-        /// <param name="factory">The factory implementation</param>
-        void RegisterObjectFactory(string typeName, IObjectFactory factory);
+        void LogRegisteredTypes();
 
         /// <summary>
-        /// Unregisters an object factory
+        /// Validates that all registered types are properly configured
         /// </summary>
-        /// <param name="typeName">The type name to unregister</param>
-        void UnregisterObjectFactory(string typeName);
+        /// <returns>True if all types are valid, false if there are issues</returns>
+        bool ValidateRegisteredTypes();
     }
 }

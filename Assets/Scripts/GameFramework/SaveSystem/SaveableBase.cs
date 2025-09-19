@@ -2,8 +2,10 @@ using UnityEngine;
 using GameFramework.SaveSystem.Interfaces;
 using GameFramework.SaveSystem.Utilities;
 using GameFramework.SaveSystem.Data;
+using GameFramework.SaveSystem.Attributes;
 using GameFramework.Core;
 using System.Threading.Tasks;
+using System.Reflection;
 
 namespace GameFramework.SaveSystem
 {
@@ -14,10 +16,10 @@ namespace GameFramework.SaveSystem
     /// </summary>
     public abstract class SaveableBase : MonoBehaviour, ISaveable
     {
-        #region ISaveable Implementation
-        public virtual string SaveKey => $"{GetType().Name}_{UniqueID}";
-        public virtual string TypeName => GetType().Name;
-        #endregion
+    #region ISaveable Implementation
+    public virtual string SaveKey => $"{GetSaveableTypeName()}_{UniqueID}";
+    public virtual string TypeName => GetSaveableTypeName();
+    #endregion
 
         #region Private Fields
         [SerializeField] private string _uniqueID;
@@ -185,7 +187,6 @@ namespace GameFramework.SaveSystem
             {
                 _saveDataRegistry.DeregisterSaveable(this);
                 _isRegisteredWithSaveSystem = false;
-                Debug.Log($"[{GetType().Name}] {gameObject.name} unregistered from save system");
                 OnSaveSystemUnregistered();
             }
         }
@@ -324,6 +325,25 @@ namespace GameFramework.SaveSystem
         #endregion
 
         #region Utility Methods
+        /// <summary>
+        /// Gets the saveable type name for this object using the SaveableTypeRegistry.
+        /// This automatically uses the SaveableType attribute if present, otherwise falls back to class name.
+        /// </summary>
+        /// <returns>The type name for this saveable object</returns>
+        protected virtual string GetSaveableTypeName()
+        {
+            // Try to get the type name from the SaveableTypeRegistry first
+            var registryTypeName = SaveableTypeRegistry.GetTypeName(SaveableTypeRegistry.GetSaveDataType(GetType()));
+            if (!string.IsNullOrEmpty(registryTypeName))
+            {
+                return registryTypeName;
+            }
+            
+            // Fall back to class name if no SaveableType attribute is found
+            Debug.LogWarning($"[{GetType().Name}] No SaveableType attribute found. Consider adding [SaveableType(typeof(YourRuntimeSaveData))] to this class for better type management.");
+            return GetType().Name;
+        }
+
         /// <summary>
         /// Generates a new unique ID for this saveable object.
         /// Uses the class name as prefix by default. Override for custom prefixes.
