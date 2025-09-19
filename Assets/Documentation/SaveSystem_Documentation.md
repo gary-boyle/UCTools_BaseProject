@@ -21,8 +21,8 @@ The Save System is a powerful, extensible framework for persisting game state in
 
 ```mermaid
 graph TB
-    A[SaveableBase] --> B[SaveServiceV2]
-    B --> C[SaveFileDataV2]
+    A[SaveableBase] --> B[SaveService]
+    B --> C[SaveFileData]
     C --> D[SerializedRuntimeObject]
     A --> E[SaveableTypeRegistry]
     F[SaveableTypeAttribute] --> E
@@ -34,7 +34,7 @@ graph TB
 
 The Save System integrates with the game's dependency injection container:
 
-- **SaveServiceV2**: Main save orchestration service
+- **SaveService**: Main save orchestration service
 - **SaveDataRegistry**: Manages registered saveable objects
 - **Event System**: Progress reporting and completion notifications
 - **File System**: Persistent storage operations
@@ -44,6 +44,7 @@ The Save System integrates with the game's dependency injection container:
 ## Quick Start Guide
 
 ### 1. Create a Saveable Component
+This is a Monobehaviour that's attached to objects you want to save.
 
 ```csharp
 using UnityEngine;
@@ -51,13 +52,13 @@ using GameFramework.SaveSystem;
 using GameFramework.SaveSystem.Data;
 using GameFramework.SaveSystem.Attributes;
 
-[SaveableType(typeof(MyObjectRuntimeSaveData))]
+[SaveableType(typeof(MyObjectRuntimeSaveData))] // <------  Very important!
 public class MyObject : SaveableBase
 {
     [SerializeField] private int _value = 0;
     [SerializeField] private string _name = "Default";
     
-    protected override RuntimeObjectSaveData CreateSpecificRuntimeSaveData()
+    protected override RuntimeObjectSaveData CreateSpecificRuntimeSaveData() // <------  Must be set up for specific attributes being saved
     {
         return new MyObjectRuntimeSaveData(UniqueID, PrefabGUID)
         {
@@ -66,7 +67,7 @@ public class MyObject : SaveableBase
         };
     }
     
-    protected override void LoadSpecificRuntimeSaveData(RuntimeObjectSaveData saveData)
+    protected override void LoadSpecificRuntimeSaveData(RuntimeObjectSaveData saveData) // <------  Must be set up for specific attributes being saved
     {
         if (saveData is MyObjectRuntimeSaveData myData)
         {
@@ -75,11 +76,12 @@ public class MyObject : SaveableBase
         }
     }
     
-    protected override string GetUniqueIdPrefix() => "myobject";
+    protected override string GetUniqueIdPrefix() => "myobject"; // <------  Should match the Class name
 }
 ```
 
 ### 2. Create Save Data Structure
+This is a data structure file that describes that data you will save/load for the above class.
 
 ```csharp
 using GameFramework.SaveSystem.Data;
@@ -158,11 +160,11 @@ protected virtual void OnAfterLoad() { }
 
 ---
 
-## SaveServiceV2 Class Reference
+## SaveService Class Reference
 
 ### Overview
 
-`SaveServiceV2` is the main orchestration service for save operations. It:
+`SaveService` is the main orchestration service for save operations. It:
 
 - Coordinates with the save data registry
 - Collects data from all saveable objects
@@ -196,11 +198,11 @@ The save service publishes events during the save process:
 
 ---
 
-## SaveFileDataV2 Class Reference
+## SaveFileData Class Reference
 
 ### Overview
 
-`SaveFileDataV2` is the unified container for all save data. It features:
+`SaveFileData` is the unified container for all save data. It features:
 
 - Dynamic runtime object storage
 - Automatic type handling
@@ -455,7 +457,7 @@ SaveableTypeRegistry.LogRegisteredTypes();
 
 #### Validate Save Data
 ```csharp
-var saveData = new SaveFileDataV2();
+var saveData = new SaveFileData();
 bool isValid = saveData.ValidateData();
 ```
 
@@ -486,38 +488,6 @@ foreach (var kvp in stats)
 - Type discovery happens once at startup
 - Minimal runtime overhead after initialization
 - Lookup operations are O(1) dictionary access
-
----
-
-## Migration Guide
-
-### From ObjectFactory System
-
-**Before (Old System)**:
-```csharp
-// Required factory registration
-RegisterObjectFactory("MyObject", new MyObjectFactory());
-
-// Required factory implementation
-public class MyObjectFactory : IObjectFactory { ... }
-
-// Required SaveFileDataV2 modifications
-[SerializeField] public List<MyObjectRuntimeSaveData> MyObjects;
-```
-
-**After (New System)**:
-```csharp
-// Just add the attribute - everything else is automatic!
-[SaveableType(typeof(MyObjectRuntimeSaveData))]
-public class MyObject : SaveableBase { ... }
-```
-
-**Benefits**:
-- 90% reduction in boilerplate code
-- Automatic type discovery
-- No more manual registration
-- No more factory implementations needed
-- SaveFileDataV2 handles all types automatically
 
 ---
 

@@ -14,7 +14,7 @@ namespace GameFramework.SaveSystem.Data
     /// Maintains compatibility with PlayerData and GameSessionData as requested.
     /// </summary>
     [System.Serializable]
-    public class SaveFileDataV2
+    public class SaveFileData
     {
         #region Serialized Fields
         [Header("Save File Metadata")]
@@ -59,7 +59,7 @@ namespace GameFramework.SaveSystem.Data
         #endregion
 
         #region Constructor
-        public SaveFileDataV2()
+        public SaveFileData()
         {
             SaveTimeTicks = DateTime.Now.Ticks;
             WasAutoSave = false;

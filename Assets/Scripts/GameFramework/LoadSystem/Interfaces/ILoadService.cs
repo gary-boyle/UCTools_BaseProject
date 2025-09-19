@@ -30,7 +30,7 @@ namespace GameFramework.LoadSystem.Interfaces
         /// <param name="saveFileData">Save file data to apply</param>
         /// <param name="isNewGame">Whether this is loading a new game (affects progress messages)</param>
         /// <returns>True if loading succeeded</returns>
-        Task<bool> LoadGameStateAsync(SaveFileDataV2 saveFileData, bool isNewGame = false);
+        Task<bool> LoadGameStateAsync(SaveFileData saveFileData, bool isNewGame = false);
 
         /// <summary>
         /// Converts SaveFileDataV2 to live game objects without applying to game state
@@ -38,6 +38,6 @@ namespace GameFramework.LoadSystem.Interfaces
         /// </summary>
         /// <param name="saveFileData">Save data to convert</param>
         /// <returns>Converted game objects or null if conversion failed</returns>
-        Task<LoadedGameState> ConvertSaveDataAsync(SaveFileDataV2 saveFileData);
+        Task<LoadedGameState> ConvertSaveDataAsync(SaveFileData saveFileData);
     }
 }

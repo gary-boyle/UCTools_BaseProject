@@ -210,11 +210,11 @@ namespace GameFramework.SaveSystem.Services
         /// <summary>
         /// Creates the base SaveFileDataV2 container with core game data
         /// </summary>
-        private async Task<SaveFileDataV2> CreateSaveFileDataAsync(bool isAutoSave)
+        private async Task<SaveFileData> CreateSaveFileDataAsync(bool isAutoSave)
         {
             try
             {
-                var saveFileData = new SaveFileDataV2
+                var saveFileData = new SaveFileData
                 {
                     SaveTime = DateTime.Now,
                     WasAutoSave = isAutoSave
@@ -257,7 +257,7 @@ namespace GameFramework.SaveSystem.Services
         /// Note: Core system objects (GameSessionData, PlayerData) are handled separately 
         /// in CreateSaveFileDataAsync and are skipped here.
         /// </summary>
-        private async Task CollectRuntimeObjectDataAsync(SaveFileDataV2 saveFileData)
+        private async Task CollectRuntimeObjectDataAsync(SaveFileData saveFileData)
         {
             var registeredObjects = _saveDataRegistry.GetAllSaveableObjects();
             
@@ -330,7 +330,7 @@ namespace GameFramework.SaveSystem.Services
         /// <summary>
         /// Writes SaveFileDataV2 directly to disk as JSON
         /// </summary>
-        private async Task<bool> WriteSaveFileV2Async(string fileName, SaveFileDataV2 saveFileData)
+        private async Task<bool> WriteSaveFileV2Async(string fileName, SaveFileData saveFileData)
         {
             try
             {

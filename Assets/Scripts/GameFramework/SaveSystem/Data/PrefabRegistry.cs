@@ -340,9 +340,9 @@ namespace GameFramework.SaveSystem.Data
         [SerializeField] public GameObject Prefab;
         [SerializeField, ReadOnly] public string PrefabName; // For display purposes
     }
-    
-    /// <summary>
-    /// ReadOnly attribute for inspector display
-    /// </summary>
-    public class ReadOnlyAttribute : PropertyAttribute { }
+    //
+    // /// <summary>
+    // /// ReadOnly attribute for inspector display
+    // /// </summary>
+    // public class ReadOnlyAttribute : PropertyAttribute { }
 }

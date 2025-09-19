@@ -8,7 +8,7 @@ namespace GameFramework.SaveSystem.Data
     /// This allows SaveFileDataV2 to store any type of RuntimeObjectSaveData without requiring
     /// specific typed collections for each saveable type.
     /// </summary>
-    [System.Serializable]
+    [Serializable]
     public class SerializedRuntimeObject
     {
         [Header("Object Identity")]
@@ -82,7 +82,7 @@ namespace GameFramework.SaveSystem.Data
                 // If that fails, try to find it using SaveableTypeRegistry
                 if (saveDataType == null && !string.IsNullOrEmpty(typeName))
                 {
-                    saveDataType = GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.GetSaveDataType(typeName);
+                    saveDataType = Utilities.SaveableTypeRegistry.GetSaveDataType(typeName);
                 }
                 
                 if (saveDataType == null)

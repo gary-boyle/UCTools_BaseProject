@@ -206,7 +206,7 @@ namespace GameFramework.LoadSystem.Services
         /// Loads save data from SaveFileDataV2 and applies it to game state
         /// Includes runtime object instantiation, scene loading and progress reporting
         /// </summary>
-        public async Task<bool> LoadGameStateAsync(SaveFileDataV2 saveFileData, bool isNewGame = false)
+        public async Task<bool> LoadGameStateAsync(SaveFileData saveFileData, bool isNewGame = false)
         {
             if (!IsInitialized || _gameDataService == null || saveFileData == null)
                 return false;
@@ -238,7 +238,7 @@ namespace GameFramework.LoadSystem.Services
         /// <summary>
         /// Converts SaveFileDataV2 to live game objects without applying to services
         /// </summary>
-        public async Task<LoadedGameState> ConvertSaveDataAsync(SaveFileDataV2 saveFileData)
+        public async Task<LoadedGameState> ConvertSaveDataAsync(SaveFileData saveFileData)
         {
             if (saveFileData == null) return null;
 
@@ -264,7 +264,7 @@ namespace GameFramework.LoadSystem.Services
         /// <summary>
         /// Internal method that handles the actual loading process for SaveFileDataV2
         /// </summary>
-        private async Task<bool> LoadGameStateInternalAsync(SaveFileDataV2 saveFileData, bool isNewGame)
+        private async Task<bool> LoadGameStateInternalAsync(SaveFileData saveFileData, bool isNewGame)
         {
             string loadType = isNewGame ? "new game" : "save";
 
@@ -363,7 +363,7 @@ namespace GameFramework.LoadSystem.Services
         /// First checks for existing objects in scene with matching uniqueID and type,
         /// updates those if found, otherwise instantiates new objects.
         /// </summary>
-        private async Task InstantiateRuntimeObjectsAsync(SaveFileDataV2 saveFileData)
+        private async Task InstantiateRuntimeObjectsAsync(SaveFileData saveFileData)
         {
             var instantiationTasks = new List<Task<GameObject>>();
             int existingUpdatedCount = 0;
@@ -422,7 +422,7 @@ namespace GameFramework.LoadSystem.Services
         /// <summary>
         /// Reads SaveFileDataV2 directly from disk
         /// </summary>
-        private async Task<SaveFileDataV2> ReadSaveFileV2Async(string fileName)
+        private async Task<SaveFileData> ReadSaveFileV2Async(string fileName)
         {
             try
             {
@@ -435,7 +435,7 @@ namespace GameFramework.LoadSystem.Services
                 }
                 
                 string jsonContent = await System.IO.File.ReadAllTextAsync(filePath);
-                var saveFileData = JsonUtility.FromJson<SaveFileDataV2>(jsonContent);
+                var saveFileData = JsonUtility.FromJson<SaveFileData>(jsonContent);
                 
                 Debug.Log($"[LoadServiceV2] Successfully read SaveFileDataV2 from: {fileName}");
                 return saveFileData;
@@ -450,9 +450,9 @@ namespace GameFramework.LoadSystem.Services
         /// <summary>
         /// Creates new game save data
         /// </summary>
-        private SaveFileDataV2 CreateNewGameSaveData(string playerName, string difficulty, string startingScene)
+        private SaveFileData CreateNewGameSaveData(string playerName, string difficulty, string startingScene)
         {
-            var newGameData = new SaveFileDataV2();
+            var newGameData = new SaveFileData();
             
             // Create new GameSessionData
             newGameData.GameSessionData = new GameSessionSaveData

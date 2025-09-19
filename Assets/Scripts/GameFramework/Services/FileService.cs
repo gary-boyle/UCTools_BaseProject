@@ -97,7 +97,7 @@ namespace GameFramework.FileSystem.Services
         /// <summary>
         /// Reads and deserializes a save file
         /// </summary>
-        public async Task<SaveFileDataV2> ReadSaveFileAsync(string fileName)
+        public async Task<SaveFileData> ReadSaveFileAsync(string fileName)
         {
             if (!IsInitialized)
             {
@@ -131,7 +131,7 @@ namespace GameFramework.FileSystem.Services
                 }
 
                 // Deserialize JSON to SaveFileData
-                var saveFileData = JsonSerializationHelper.DeserializeFromJson<SaveFileDataV2>(json);
+                var saveFileData = JsonSerializationHelper.DeserializeFromJson<SaveFileData>(json);
                 
                 if (saveFileData == null)
                 {
@@ -151,7 +151,7 @@ namespace GameFramework.FileSystem.Services
         /// <summary>
         /// Writes SaveFileData to a save file with backup functionality
         /// </summary>
-        public async Task<bool> WriteSaveFileAsync(string fileName, SaveFileDataV2 saveFileData)
+        public async Task<bool> WriteSaveFileAsync(string fileName, SaveFileData saveFileData)
         {
             if (!IsInitialized)
             {
