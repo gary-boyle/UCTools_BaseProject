@@ -8,8 +8,8 @@ namespace GameFramework.Services.Interfaces
     /// </summary>
     public interface IGameService
     {
-        bool IsInitialized { get; }
-        Task InitializeAsync();
-        void Shutdown();
+        public bool IsInitialized { get; }
+        public Task InitializeAsync();
+        public void Shutdown();
     }
 }

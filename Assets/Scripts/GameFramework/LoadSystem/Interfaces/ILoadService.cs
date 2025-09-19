@@ -24,7 +24,7 @@ namespace GameFramework.LoadSystem.Interfaces
         Task<bool> LoadGameStateAsync(SaveFileInfo saveFileInfo);
 
         /// <summary>
-        /// Loads save data from SaveFileData and applies it to game state
+        /// Loads save data from SaveFileDataV2 and applies it to game state
         /// Includes scene loading and progress reporting  
         /// </summary>
         /// <param name="saveFileData">Save file data to apply</param>
@@ -33,7 +33,7 @@ namespace GameFramework.LoadSystem.Interfaces
         Task<bool> LoadGameStateAsync(SaveFileData saveFileData, bool isNewGame = false);
 
         /// <summary>
-        /// Converts SaveFileData to live game objects without applying to game state
+        /// Converts SaveFileDataV2 to live game objects without applying to game state
         /// Useful for previewing or validation
         /// </summary>
         /// <param name="saveFileData">Save data to convert</param>

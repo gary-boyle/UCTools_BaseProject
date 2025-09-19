@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using GameFramework.SaveSystem.Data;
+using GameFramework.SaveSystem.Utilities;
 using UnityEngine.Serialization;
 
 namespace GameFramework.DataStructures
@@ -65,12 +66,23 @@ namespace GameFramework.DataStructures
         }
 
         /// <summary>
-        /// Constructor from SaveFileData - updated for direct field access
+        /// Constructor from SaveFileData - updated for direct field access with new structure
         /// </summary>
         public SaveFileInfo(string fileName, SaveFileData saveData)
         {
             this._fileName = fileName ?? string.Empty;
-            LastSaveTime = saveData.SaveTime; // Uses property setter to convert to ticks
+            
+            // Handle save time - use property getter to convert from ticks
+            try
+            {
+                LastSaveTime = saveData.SaveTime; // Uses SaveFileData.SaveTime property that converts from ticks
+            }
+            catch (Exception ex)
+            {
+                Debug.LogWarning($"[SaveFileInfo] Failed to parse save time from {fileName}: {ex.Message}");
+                LastSaveTime = DateTime.Now;
+            }
+            
             _wasAutoSaved = saveData.WasAutoSave;
 
             // Extract GameSessionData directly from field
@@ -134,9 +146,9 @@ namespace GameFramework.DataStructures
 
             try
             {
-                // Read and parse the save file
+                // Read and parse the save file using our enhanced JSON helper
                 string json = System.IO.File.ReadAllText(filePath);
-                var saveData = JsonUtility.FromJson<SaveFileData>(json);
+                var saveData = JsonSerializationHelper.DeserializeFromJson<SaveFileData>(json);
 
                 if (saveData == null)
                 {

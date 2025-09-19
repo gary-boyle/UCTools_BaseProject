@@ -1,33 +1,38 @@
-﻿using System;
+using System;
 using UnityEngine;
-using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using GameFramework.SaveSystem.Utilities;
 
 namespace GameFramework.SaveSystem.Data
 {
     /// <summary>
-    /// Container for all save file data with clean JSON structure
-    /// Uses direct field mapping for core system data and Dictionary for dynamic saveables
-    /// Supports both static system data and runtime-generated saveable objects
+    /// New clean save file data structure with dynamic runtime object storage.
+    /// Uses unified SerializedRuntimeObject collection that can store any type of RuntimeObjectSaveData.
+    /// Automatically extensible - no code changes needed for new saveable types!
+    /// Maintains compatibility with PlayerData and GameSessionData as requested.
     /// </summary>
     [System.Serializable]
     public class SaveFileData
     {
         #region Serialized Fields
+        [Header("Save File Metadata")]
         [SerializeField] public long SaveTimeTicks;
         [SerializeField] public bool WasAutoSave;
         
-        // Core game data (always present with fixed SaveKeys)
+        [Header("Core Game Data")]
+        // Core game data (always present with fixed SaveKeys) - UNCHANGED as requested
         [SerializeField] public GameSessionSaveData GameSessionData;  // SaveKey: "GameSessionData"
         [SerializeField] public PlayerSaveData PlayerData;            // SaveKey: "PlayerData"
         
-        // Dynamic saveable objects (SaveableBase instances with generated SaveKeys)
-        [SerializeField] public SavedObjectEntry[] DynamicSaveableObjects;
+        [Header("Runtime Objects")]
+        // Dynamic runtime object storage - automatically handles ANY saveable type!
+        [SerializeField] public List<SerializedRuntimeObject> RuntimeObjects = new List<SerializedRuntimeObject>();
         
-        // Future extensions: Add new fields here as needed
-        // [SerializeField] public List<EnemySaveData> Enemies;
-        // [SerializeField] public InventorySaveData Inventory;
+        [Header("Debug Info")]
+        [SerializeField, ReadOnly] private int _totalRuntimeObjects = 0;
+        [SerializeField, ReadOnly] private string _lastUpdated = "";
         #endregion
 
         #region Public Properties
@@ -39,6 +44,18 @@ namespace GameFramework.SaveSystem.Data
             get => new DateTime(SaveTimeTicks);
             set => SaveTimeTicks = value.Ticks;
         }
+        
+        /// <summary>
+        /// Total number of runtime objects in this save file
+        /// </summary>
+        public int TotalRuntimeObjects 
+        { 
+            get 
+            {
+                UpdateDebugInfo();
+                return RuntimeObjects?.Count ?? 0;
+            }
+        }
         #endregion
 
         #region Constructor
@@ -46,196 +63,301 @@ namespace GameFramework.SaveSystem.Data
         {
             SaveTimeTicks = DateTime.Now.Ticks;
             WasAutoSave = false;
-            DynamicSaveableObjects = new SavedObjectEntry[0]; // Initialize as empty array
+            RuntimeObjects = new List<SerializedRuntimeObject>();
+            UpdateDebugInfo();
         }
         #endregion
 
-        #region Helper Methods
+        #region Runtime Object Management
         /// <summary>
-        /// Sets save data by key - handles both static fields and dynamic saveable objects
-        /// Static fields: GameSessionData, PlayerData (use reflection)
-        /// Dynamic objects: SaveableBase instances (store in DynamicSaveableObjects array)
+        /// Adds or updates a runtime object's save data using the unified storage system.
+        /// Automatically handles any type of RuntimeObjectSaveData without needing code changes.
         /// </summary>
-        public bool SetSaveData(string saveKey, object data)
+        /// <param name="saveData">The runtime object save data</param>
+        /// <returns>True if the object was added or updated successfully</returns>
+        public bool SetRuntimeObjectData(RuntimeObjectSaveData saveData)
         {
-            try
+            if (saveData == null || string.IsNullOrEmpty(saveData.uniqueID))
             {
-                // First, try to set as a static field (for core game data)
-                var field = typeof(SaveFileData).GetField(saveKey, BindingFlags.Public | BindingFlags.Instance);
-                if (field != null)
-                {
-                    field.SetValue(this, data);
-                    Debug.Log($"[SaveFileData] Set static field save data for key: {saveKey}");
-                    return true;
-                }
-                
-                // If not a static field, handle as dynamic saveable object
-                return SetDynamicSaveData(saveKey, data);
-            }
-            catch (Exception ex)
-            {
-                Debug.LogError($"[SaveFileData] Failed to set save data for key {saveKey}: {ex.Message}");
+                Debug.LogError("[SaveFileDataV2] Cannot set runtime object data - null data or missing unique ID");
                 return false;
             }
-        }
 
-        /// <summary>
-        /// Sets dynamic saveable object data in the DynamicSaveableObjects array
-        /// </summary>
-        private bool SetDynamicSaveData(string saveKey, object data)
-        {
             try
             {
-                // Convert to list for easier manipulation
-                var dynamicObjects = DynamicSaveableObjects?.ToList() ?? new List<SavedObjectEntry>();
+                // Find existing object by unique ID
+                var existingIndex = RuntimeObjects.FindIndex(obj => obj.uniqueID == saveData.uniqueID);
                 
-                // Create SavedObjectData from the raw save data
-                var savedObjectData = new SavedObjectData(data?.GetType().Name ?? "Unknown", data);
-                
-                // Look for existing entry with this key
-                var existingEntry = dynamicObjects.FirstOrDefault(e => e.Key == saveKey);
-                if (existingEntry != null)
+                if (existingIndex >= 0)
                 {
-                    // Update existing entry
-                    existingEntry.Value = savedObjectData;
+                    // Update existing object
+                    bool updateSuccess = RuntimeObjects[existingIndex].UpdateFrom(saveData);
+                    if (updateSuccess)
+                    {
+                        Debug.Log($"[SaveFileDataV2] Updated runtime object: {saveData.uniqueID} ({saveData.typeName})");
+                        UpdateDebugInfo();
+                        return true;
+                    }
+                    else
+                    {
+                        Debug.LogError($"[SaveFileDataV2] Failed to update runtime object: {saveData.uniqueID}");
+                        return false;
+                    }
                 }
                 else
                 {
-                    // Add new entry
-                    dynamicObjects.Add(new SavedObjectEntry 
-                    { 
-                        Key = saveKey, 
-                        Value = savedObjectData 
-                    });
+                    // Add new object
+                    var serializedObject = new SerializedRuntimeObject(saveData);
+                    if (serializedObject.IsValid())
+                    {
+                        RuntimeObjects.Add(serializedObject);
+                        Debug.Log($"[SaveFileDataV2] Added new runtime object: {saveData.uniqueID} ({saveData.typeName})");
+                        UpdateDebugInfo();
+                        return true;
+                    }
+                    else
+                    {
+                        Debug.LogError($"[SaveFileDataV2] Failed to serialize runtime object: {saveData.uniqueID}");
+                        return false;
+                    }
                 }
-                
-                // Convert back to array
-                DynamicSaveableObjects = dynamicObjects.ToArray();
-                
-                Debug.Log($"[SaveFileData] Set dynamic save data for key: {saveKey}");
-                return true;
             }
             catch (Exception ex)
             {
-                Debug.LogError($"[SaveFileData] Failed to set dynamic save data for key {saveKey}: {ex.Message}");
+                Debug.LogError($"[SaveFileDataV2] Error setting runtime object data: {ex.Message}");
                 return false;
             }
         }
 
         /// <summary>
-        /// Gets save data by key - handles both static fields and dynamic saveable objects
+        /// Gets all runtime objects deserialized from the unified storage.
+        /// This provides a unified way to access all runtime objects regardless of their specific type.
         /// </summary>
-        public T GetSaveData<T>(string saveKey) where T : class
+        /// <returns>List containing all deserialized runtime objects</returns>
+        public List<RuntimeObjectSaveData> GetAllRuntimeObjects()
         {
-            try
+            var allObjects = new List<RuntimeObjectSaveData>();
+
+            if (RuntimeObjects != null)
             {
-                // First, try to get from static field (for core game data)
-                var field = typeof(SaveFileData).GetField(saveKey, BindingFlags.Public | BindingFlags.Instance);
-                if (field != null)
+                foreach (var serializedObj in RuntimeObjects)
                 {
-                    return field.GetValue(this) as T;
+                    var deserializedObj = serializedObj.Deserialize();
+                    if (deserializedObj != null)
+                    {
+                        allObjects.Add(deserializedObj);
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"[SaveFileDataV2] Failed to deserialize runtime object: {serializedObj.uniqueID}");
+                    }
                 }
-                
-                // If not a static field, try to get from dynamic saveable objects
-                return GetDynamicSaveData<T>(saveKey);
             }
-            catch (Exception ex)
-            {
-                Debug.LogError($"[SaveFileData] Failed to get save data for key {saveKey}: {ex.Message}");
-                return null;
-            }
+
+            return allObjects;
         }
 
         /// <summary>
-        /// Gets dynamic saveable object data from the DynamicSaveableObjects array
+        /// Gets a runtime object by unique ID from the unified storage.
         /// </summary>
-        private T GetDynamicSaveData<T>(string saveKey) where T : class
+        /// <param name="uniqueID">The unique ID to search for</param>
+        /// <returns>The deserialized runtime object if found, null otherwise</returns>
+        public RuntimeObjectSaveData GetRuntimeObjectByID(string uniqueID)
         {
+            if (string.IsNullOrEmpty(uniqueID))
+                return null;
+
+            var serializedObj = RuntimeObjects?.FirstOrDefault(obj => obj.uniqueID == uniqueID);
+            return serializedObj?.Deserialize();
+        }
+        
+        /// <summary>
+        /// Gets runtime object save data by unique ID and type using the unified storage
+        /// </summary>
+        /// <typeparam name="T">The type of runtime save data</typeparam>
+        /// <param name="uniqueID">The unique ID of the object</param>
+        /// <returns>The save data, or null if not found or wrong type</returns>
+        public T GetRuntimeObjectData<T>(string uniqueID) where T : RuntimeObjectSaveData
+        {
+            if (string.IsNullOrEmpty(uniqueID))
+                return null;
+
             try
             {
-                if (DynamicSaveableObjects == null)
-                {
+                var serializedObj = RuntimeObjects?.FirstOrDefault(obj => obj.uniqueID == uniqueID);
+                if (serializedObj == null)
                     return null;
-                }
-                
-                // Find the entry with matching key
-                var entry = DynamicSaveableObjects.FirstOrDefault(e => e.Key == saveKey);
-                if (entry?.Value != null)
-                {
-                    // Use SavedObjectData's generic method to deserialize
-                    return entry.Value.GetData<T>();
-                }
-                
-                Debug.LogWarning($"[SaveFileData] No dynamic save data found for key: {saveKey}");
-                return null;
+
+                var deserializedObj = serializedObj.Deserialize();
+                return deserializedObj as T;
             }
             catch (Exception ex)
             {
-                Debug.LogError($"[SaveFileData] Failed to get dynamic save data for key {saveKey}: {ex.Message}");
+                Debug.LogError($"[SaveFileDataV2] Error getting runtime object data: {ex.Message}");
                 return null;
             }
         }
-
+        
         /// <summary>
-        /// Validates that all expected save data is present
+        /// Gets all runtime objects of a specific type from the unified storage
+        /// </summary>
+        /// <typeparam name="T">The type of runtime save data</typeparam>
+        /// <returns>List of objects of the specified type</returns>
+        public List<T> GetAllRuntimeObjectsOfType<T>() where T : RuntimeObjectSaveData
+        {
+            var results = new List<T>();
+
+            try
+            {
+                if (RuntimeObjects != null)
+                {
+                    foreach (var serializedObj in RuntimeObjects)
+                    {
+                        var deserializedObj = serializedObj.Deserialize();
+                        if (deserializedObj is T typedObj)
+                        {
+                            results.Add(typedObj);
+                        }
+                    }
+                }
+
+                return results;
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"[SaveFileDataV2] Error getting runtime objects of type: {ex.Message}");
+                return new List<T>();
+            }
+        }
+        
+        /// <summary>
+        /// Removes a runtime object by unique ID from the unified storage
+        /// </summary>
+        /// <param name="uniqueID">The unique ID of the object to remove</param>
+        /// <returns>True if the object was found and removed</returns>
+        public bool RemoveRuntimeObject(string uniqueID)
+        {
+            if (string.IsNullOrEmpty(uniqueID))
+                return false;
+
+            try
+            {
+                int removedCount = RuntimeObjects.RemoveAll(obj => obj.uniqueID == uniqueID);
+                
+                if (removedCount > 0)
+                {
+                    Debug.Log($"[SaveFileDataV2] Removed runtime object: {uniqueID}");
+                    UpdateDebugInfo();
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"[SaveFileDataV2] Error removing runtime object: {ex.Message}");
+                return false;
+            }
+        }
+        #endregion
+
+        #region Validation
+        /// <summary>
+        /// Validates that all expected save data is present and properly structured
         /// </summary>
         public bool ValidateData()
         {
             bool isValid = true;
 
-            // Validate static/core data
+            // Validate core data (unchanged from original requirements)
             if (GameSessionData == null)
             {
-                Debug.LogError("[SaveFileData] GameSessionData is null");
+                Debug.LogError("[SaveFileDataV2] GameSessionData is null");
                 isValid = false;
             }
 
             if (PlayerData == null)
             {
-                Debug.LogError("[SaveFileData] PlayerData is null");
+                Debug.LogError("[SaveFileDataV2] PlayerData is null");
                 isValid = false;
             }
 
-            // Validate dynamic saveable objects array
-            if (DynamicSaveableObjects != null)
+            // Validate runtime objects
+            int totalObjects = TotalRuntimeObjects;
+            Debug.Log($"[SaveFileDataV2] Found {totalObjects} runtime objects");
+            
+            if (RuntimeObjects != null)
             {
-                int validDynamicObjects = 0;
-                foreach (var entry in DynamicSaveableObjects)
+                int validCount = 0;
+                int invalidCount = 0;
+                var typeGroups = new Dictionary<string, int>();
+
+                foreach (var serializedObj in RuntimeObjects)
                 {
-                    if (entry != null && !string.IsNullOrEmpty(entry.Key) && entry.Value != null)
+                    if (serializedObj.IsValid())
                     {
-                        validDynamicObjects++;
+                        validCount++;
+                        
+                        // Count objects by type for debugging
+                        if (!typeGroups.ContainsKey(serializedObj.typeName))
+                            typeGroups[serializedObj.typeName] = 0;
+                        typeGroups[serializedObj.typeName]++;
+                    }
+                    else
+                    {
+                        invalidCount++;
+                        Debug.LogWarning($"[SaveFileDataV2] Invalid serialized object: {serializedObj.uniqueID}");
                     }
                 }
-                Debug.Log($"[SaveFileData] Found {validDynamicObjects} valid dynamic saveable objects");
-            }
-            else
-            {
-                Debug.LogWarning("[SaveFileData] DynamicSaveableObjects is null");
+
+                Debug.Log($"[SaveFileDataV2] Runtime Objects: {validCount} valid, {invalidCount} invalid");
+                
+                // Log type breakdown
+                foreach (var typeGroup in typeGroups)
+                {
+                    Debug.Log($"[SaveFileDataV2] - {typeGroup.Key}: {typeGroup.Value} objects");
+                }
+                
+                if (invalidCount > 0)
+                    isValid = false;
             }
 
             return isValid;
         }
+        #endregion
 
+        #region Private Methods
         /// <summary>
-        /// Gets all dynamic save keys for debugging purposes
+        /// Updates debug information fields
         /// </summary>
-        public string[] GetAllDynamicSaveKeys()
+        private void UpdateDebugInfo()
         {
-            if (DynamicSaveableObjects == null) return new string[0];
-            
-            return DynamicSaveableObjects
-                .Where(entry => entry != null && !string.IsNullOrEmpty(entry.Key))
-                .Select(entry => entry.Key)
-                .ToArray();
+            _totalRuntimeObjects = RuntimeObjects?.Count ?? 0;
+            _lastUpdated = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
         }
-
+        
         /// <summary>
-        /// Gets count of dynamic saveable objects
+        /// Gets type statistics for debugging purposes
         /// </summary>
-        public int GetDynamicObjectCount()
+        /// <returns>Dictionary mapping type names to counts</returns>
+        public Dictionary<string, int> GetTypeStatistics()
         {
-            return DynamicSaveableObjects?.Length ?? 0;
+            var stats = new Dictionary<string, int>();
+            
+            if (RuntimeObjects != null)
+            {
+                foreach (var serializedObj in RuntimeObjects)
+                {
+                    if (!string.IsNullOrEmpty(serializedObj.typeName))
+                    {
+                        if (!stats.ContainsKey(serializedObj.typeName))
+                            stats[serializedObj.typeName] = 0;
+                        stats[serializedObj.typeName]++;
+                    }
+                }
+            }
+            
+            return stats;
         }
         #endregion
     }

@@ -7,6 +7,8 @@
             <uie:ToolbarToggle text="Auto Refresh" name="auto-refresh-toggle" tooltip="Automatically refresh save files every few seconds" class="toolbar-toggle" />
             <uie:ToolbarSpacer style="width: 10px;" />
             <uie:ToolbarToggle text="Show Raw Data" name="show-raw-toggle" tooltip="Show raw JSON data for selected save file" class="toolbar-toggle" />
+            <uie:ToolbarSpacer style="width: 10px;" />
+            <uie:ToolbarToggle text="Edit Mode" name="edit-mode-toggle" tooltip="Enable editing of save file fields" class="toolbar-toggle edit-mode-toggle" />
             <uie:ToolbarSpacer />
             <uie:ToolbarButton text="Config" display-tooltip-when-elided="true" name="config-button" tooltip="Open display configuration" class="toolbar-button" />
             <uie:ToolbarButton text="Files: 0" display-tooltip-when-elided="true" name="file-count-button" enable-rich-text="false" class="toolbar-button file-count" />

@@ -331,3 +331,79 @@
     background-color: rgba(100, 150, 255, 0.2);
     border-color: rgb(100, 150, 255);
 }
+
+/* Edit Mode Styles */
+.edit-mode-toggle {
+    background-color: rgba(100, 150, 255, 0.2);
+}
+
+.edit-mode-toggle:checked {
+    background-color: rgba(100, 200, 100, 0.3);
+}
+
+.edit-mode-buttons {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    padding: 8px;
+    background-color: rgba(50, 100, 150, 0.1);
+    border-radius: 4px;
+    border-width: 1px;
+    border-color: rgba(100, 150, 200, 0.3);
+}
+
+.unsaved-changes-label {
+    color: rgb(255, 200, 100);
+    font-size: 12px;
+    margin-bottom: 5px;
+    -unity-font-style: bold;
+}
+
+.save-button {
+    background-color: rgba(100, 200, 100, 0.3);
+    border-color: rgba(100, 200, 100, 0.5);
+}
+
+.save-button:hover {
+    background-color: rgba(100, 200, 100, 0.5);
+}
+
+.save-button:disabled {
+    opacity: 0.5;
+    background-color: rgba(80, 80, 80, 0.3);
+}
+
+.cancel-button {
+    background-color: rgba(200, 100, 100, 0.3);
+    border-color: rgba(200, 100, 100, 0.5);
+}
+
+.cancel-button:hover {
+    background-color: rgba(200, 100, 100, 0.5);
+}
+
+.cancel-button:disabled {
+    opacity: 0.5;
+    background-color: rgba(80, 80, 80, 0.3);
+}
+
+/* Runtime Object Delete Button */
+.delete-runtime-object-button {
+    width: 24px;
+    height: 20px;
+    font-size: 12px;
+    margin-left: 10px;
+    background-color: rgba(200, 80, 80, 0.8);
+    color: white;
+    border-radius: 3px;
+    border-width: 1px;
+    border-color: rgba(200, 80, 80, 1.0);
+}
+
+.delete-runtime-object-button:hover {
+    background-color: rgba(220, 100, 100, 0.9);
+    border-color: rgba(220, 100, 100, 1.0);
+}
+
+.delete-runtime-object-button:active {
+    background-color: rgba(180, 60, 60, 1.0);
+}

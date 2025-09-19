@@ -1,12 +1,15 @@
 using UnityEngine;
 using GameFramework.SaveSystem;
+using GameFramework.SaveSystem.Data;
+using GameFramework.SaveSystem.Attributes;
 
 namespace GameFramework.SaveSystem.Examples
 {
     /// <summary>
-    /// Simple test class to verify SaveableBase works with the fixed save system
-    /// This should reproduce the SaveKey that was failing: "GenericSaveable_genericsaveable_..."
+    /// Simple test class to verify the new clean save system works properly.
+    /// Uses SaveableBaseV2 with direct field storage instead of nested JSON strings.
     /// </summary>
+    [SaveableType(typeof(TestGenericRuntimeSaveData))]
     public class TestGenericSaveable : SaveableBase
     {
         [Header("Test Generic Saveable")]
@@ -16,57 +19,38 @@ namespace GameFramework.SaveSystem.Examples
         
         protected override string GetUniqueIdPrefix()
         {
-            return "genericsaveable"; // This matches the failing SaveKey prefix
+            return "genericsaveable";
         }
         
-        public override object GetSaveData()
+        #region New Save System Implementation
+        protected override RuntimeObjectSaveData CreateSpecificRuntimeSaveData()
         {
-            Debug.Log($"[TestGenericSaveable] Creating save data for {gameObject.name} with SaveKey: {SaveKey}");
+            Debug.Log($"[TestGenericSaveable] Creating runtime save data for {gameObject.name} with SaveKey: {SaveKey}");
             
-            return new TestGenericSaveData
+            return new TestGenericRuntimeSaveData(UniqueID, PrefabGUID)
             {
-                uniqueID = UniqueID,
                 testValue = _testValue,
                 testString = _testString,
                 testBool = _testBool
             };
         }
-
-        public override void LoadSaveData(object data)
+        
+        protected override void LoadSpecificRuntimeSaveData(RuntimeObjectSaveData saveData)
         {
-            if (data == null)
+            if (saveData is TestGenericRuntimeSaveData genericData)
             {
-                Debug.LogWarning($"[TestGenericSaveable] Cannot load null save data for {gameObject.name}");
-                return;
-            }
-
-            TestGenericSaveData saveData;
-            
-            if (data is TestGenericSaveData directData)
-            {
-                saveData = directData;
+                _testValue = genericData.testValue;
+                _testString = genericData.testString;
+                _testBool = genericData.testBool;
+                
+                Debug.Log($"[TestGenericSaveable] Loaded runtime save data - Value: {_testValue}, String: {_testString}, Bool: {_testBool}");
             }
             else
             {
-                try
-                {
-                    var json = JsonUtility.ToJson(data);
-                    saveData = JsonUtility.FromJson<TestGenericSaveData>(json);
-                }
-                catch (System.Exception ex)
-                {
-                    Debug.LogError($"[TestGenericSaveable] Failed to deserialize save data: {ex.Message}");
-                    return;
-                }
+                Debug.LogWarning($"[TestGenericSaveable] Expected TestGenericRuntimeSaveData but got: {saveData?.GetType().Name}");
             }
-
-            SetUniqueID(saveData.uniqueID);
-            _testValue = saveData.testValue;
-            _testString = saveData.testString;
-            _testBool = saveData.testBool;
-            
-            Debug.Log($"[TestGenericSaveable] Loaded save data for {gameObject.name} - Value: {_testValue}, String: {_testString}, Bool: {_testBool}");
         }
+        #endregion
         
         // Public methods for testing
         public void SetTestValue(int value) => _testValue = value;
@@ -78,6 +62,8 @@ namespace GameFramework.SaveSystem.Examples
         public bool GetTestBool() => _testBool;
     }
 
+    // Legacy save data structure - kept for reference but no longer used
+    // The new system uses TestGenericRuntimeSaveData from RuntimeObjectSaveData.cs
     [System.Serializable]
     public class TestGenericSaveData
     {

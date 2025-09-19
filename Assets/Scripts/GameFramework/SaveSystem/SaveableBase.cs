@@ -1,27 +1,29 @@
 using UnityEngine;
 using GameFramework.SaveSystem.Interfaces;
 using GameFramework.SaveSystem.Utilities;
+using GameFramework.SaveSystem.Data;
+using GameFramework.SaveSystem.Attributes;
 using GameFramework.Core;
 using System.Threading.Tasks;
+using System.Reflection;
 
 namespace GameFramework.SaveSystem
 {
     /// <summary>
-    /// Abstract base class for MonoBehaviours that need to be saved.
-    /// Provides common ISaveable implementation with automatic save system registration,
-    /// UniqueID management, and extension points for custom save/load logic.
-    /// 
-    /// To use: inherit from SaveableBase and implement GetSaveData() and LoadSaveData()
+    /// Base class for MonoBehaviours that work with the new clean save system.
+    /// Provides RuntimeObjectSaveData support and automatic prefab registry integration.
+    /// Objects that inherit from this will automatically work with the V2 save/load system.
     /// </summary>
     public abstract class SaveableBase : MonoBehaviour, ISaveable
     {
-        #region ISaveable Implementation
-        public virtual string SaveKey => $"{GetType().Name}_{UniqueID}";
-        public virtual string TypeName => GetType().Name;
-        #endregion
+    #region ISaveable Implementation
+    public virtual string SaveKey => $"{GetSaveableTypeName()}_{UniqueID}";
+    public virtual string TypeName => GetSaveableTypeName();
+    #endregion
 
         #region Private Fields
         [SerializeField] private string _uniqueID;
+        [SerializeField] private string _prefabGUID; // New: GUID of the source prefab
         
         private ISaveDataRegistry _saveDataRegistry;
         private bool _isRegisteredWithSaveSystem = false;
@@ -41,6 +43,16 @@ namespace GameFramework.SaveSystem
                 _uniqueID = value;
             }
         }
+        
+        /// <summary>
+        /// GUID of the prefab this object was instantiated from
+        /// Used by the new instantiation system
+        /// </summary>
+        public string PrefabGUID
+        {
+            get => _prefabGUID;
+            set => _prefabGUID = value;
+        }
         #endregion
 
         #region Unity Lifecycle
@@ -53,14 +65,16 @@ namespace GameFramework.SaveSystem
                 GenerateUniqueId();
             }
             
+            // Try to determine prefab GUID if not set
+            if (string.IsNullOrEmpty(_prefabGUID) && IsRuntimeInstance())
+            {
+                DeterminePrefabGUID();
+            }
+            
             // Call virtual method for additional Awake logic
             OnAwakeCustom();
         }
 
-        // private void Start()
-        // {
-        //     OnStart();
-        // }
         protected virtual async void Start()
         {
             // Call virtual method for custom Start logic before registration
@@ -172,7 +186,6 @@ namespace GameFramework.SaveSystem
             {
                 _saveDataRegistry.DeregisterSaveable(this);
                 _isRegisteredWithSaveSystem = false;
-                Debug.Log($"[{GetType().Name}] {gameObject.name} unregistered from save system");
                 OnSaveSystemUnregistered();
             }
         }
@@ -193,48 +206,98 @@ namespace GameFramework.SaveSystem
         protected virtual void OnSaveSystemUnregistered() { }
         #endregion
 
-        #region Abstract ISaveable Methods
+        #region New Save System Methods
         /// <summary>
-        /// Gets the serializable data for this object.
-        /// Must be implemented by derived classes.
+        /// Creates runtime object save data with transform and identity information.
+        /// Derived classes should override CreateSpecificRuntimeSaveData() to provide type-specific data.
         /// </summary>
-        /// <returns>Serializable data object</returns>
-        public abstract object GetSaveData();
-
-        /// <summary>
-        /// Restores object state from saved data.
-        /// Must be implemented by derived classes.
-        /// </summary>
-        /// <param name="data">The saved data to load</param>
-        public abstract void LoadSaveData(object data);
-        #endregion
-
-        #region ISaveable Methods with Error Handling
-        /// <summary>
-        /// Template method for GetSaveData with error handling and extension points.
-        /// Calls the abstract GetSaveData method with proper error handling.
-        /// </summary>
-        object ISaveable.GetSaveData()
+        /// <returns>RuntimeObjectSaveData for this object</returns>
+        public virtual RuntimeObjectSaveData CreateRuntimeSaveData()
         {
+            var saveData = CreateSpecificRuntimeSaveData();
+            
+            if (saveData != null)
+            {
+                // Populate common fields
+                saveData.uniqueID = _uniqueID;
+                saveData.prefabGUID = _prefabGUID;
+                saveData.typeName = TypeName;
+                
+                // Populate transform data
+                saveData.position = transform.position;
+                saveData.rotation = transform.eulerAngles;
+                saveData.scale = transform.localScale;
+                saveData.isActive = gameObject.activeInHierarchy;
+            }
+            
+            return saveData;
+        }
+        
+        /// <summary>
+        /// Creates the specific runtime save data type for this object.
+        /// Must be implemented by derived classes to return their specific save data type.
+        /// </summary>
+        /// <returns>Specific runtime save data instance</returns>
+        protected abstract RuntimeObjectSaveData CreateSpecificRuntimeSaveData();
+        
+        /// <summary>
+        /// Loads runtime object save data and applies it to this object.
+        /// Handles common fields (transform, etc.) and delegates to LoadSpecificRuntimeSaveData for type-specific data.
+        /// </summary>
+        /// <param name="saveData">The runtime save data to load</param>
+        public virtual void LoadRuntimeSaveData(RuntimeObjectSaveData saveData)
+        {
+            if (saveData == null)
+            {
+                Debug.LogWarning($"[{GetType().Name}] Cannot load null runtime save data for {gameObject.name}");
+                return;
+            }
+            
             try
             {
-                OnBeforeSave();
-                var data = GetSaveData();
-                Debug.Log($"[{GetType().Name}] Save data collected for {gameObject.name}");
-                return data;
+                // Load common fields
+                _uniqueID = saveData.uniqueID;
+                _prefabGUID = saveData.prefabGUID;
+                
+                // Apply transform data
+                transform.position = saveData.position;
+                transform.rotation = Quaternion.Euler(saveData.rotation);
+                transform.localScale = saveData.scale;
+                gameObject.SetActive(saveData.isActive);
+                
+                // Load type-specific data
+                LoadSpecificRuntimeSaveData(saveData);
+                
+                Debug.Log($"[{GetType().Name}] Loaded runtime save data for {gameObject.name}");
+                OnAfterLoad();
             }
             catch (System.Exception ex)
             {
-                OnSaveError(ex);
-                throw; // Re-throw to maintain ISaveable contract
+                OnLoadError(ex);
             }
+        }
+        
+        /// <summary>
+        /// Loads type-specific runtime save data.
+        /// Must be implemented by derived classes to handle their specific data.
+        /// </summary>
+        /// <param name="saveData">The runtime save data containing type-specific information</param>
+        protected abstract void LoadSpecificRuntimeSaveData(RuntimeObjectSaveData saveData);
+        #endregion
+
+        #region ISaveable Methods (Legacy Compatibility)
+        /// <summary>
+        /// Legacy ISaveable method - provides backwards compatibility by delegating to new methods.
+        /// </summary>
+        public virtual object GetSaveData()
+        {
+            return CreateRuntimeSaveData();
         }
 
         /// <summary>
-        /// Template method for LoadSaveData with error handling and extension points.
-        /// Calls the abstract LoadSaveData method with proper error handling.
+        /// Legacy ISaveable method - provides backwards compatibility by delegating to new methods.
         /// </summary>
-        void ISaveable.LoadSaveData(object data)
+        public virtual void LoadSaveData(object data)
         {
             if (data == null)
             {
@@ -244,19 +307,42 @@ namespace GameFramework.SaveSystem
 
             try
             {
-                LoadSaveData(data);
-                OnAfterLoad();
-                Debug.Log($"[{GetType().Name}] Save data loaded for {gameObject.name}");
+                // Load as RuntimeObjectSaveData
+                if (data is RuntimeObjectSaveData runtimeData)
+                {
+                    LoadRuntimeSaveData(runtimeData);
+                    return;
+                }
+                
+                Debug.LogWarning($"[{GetType().Name}] Unsupported save data type: {data?.GetType().Name}");
             }
             catch (System.Exception ex)
             {
                 OnLoadError(ex);
-                // Don't re-throw here as loading should be more tolerant of errors
             }
         }
         #endregion
 
         #region Utility Methods
+        /// <summary>
+        /// Gets the saveable type name for this object using the SaveableTypeRegistry.
+        /// This automatically uses the SaveableType attribute if present, otherwise falls back to class name.
+        /// </summary>
+        /// <returns>The type name for this saveable object</returns>
+        protected virtual string GetSaveableTypeName()
+        {
+            // Try to get the type name from the SaveableTypeRegistry first
+            var registryTypeName = SaveableTypeRegistry.GetTypeName(SaveableTypeRegistry.GetSaveDataType(GetType()));
+            if (!string.IsNullOrEmpty(registryTypeName))
+            {
+                return registryTypeName;
+            }
+            
+            // Fall back to class name if no SaveableType attribute is found
+            Debug.LogWarning($"[{GetType().Name}] No SaveableType attribute found. Consider adding [SaveableType(typeof(YourRuntimeSaveData))] to this class for better type management.");
+            return GetType().Name;
+        }
+
         /// <summary>
         /// Generates a new unique ID for this saveable object.
         /// Uses the class name as prefix by default. Override for custom prefixes.
@@ -299,6 +385,27 @@ namespace GameFramework.SaveSystem
         /// Checks if this object is currently registered with the save system.
         /// </summary>
         public bool IsRegisteredWithSaveSystem => _isRegisteredWithSaveSystem;
+        
+        /// <summary>
+        /// Attempts to determine the prefab GUID for this object
+        /// </summary>
+        private void DeterminePrefabGUID()
+        {
+#if UNITY_EDITOR
+            // In editor, we can try to determine the prefab GUID
+            var prefabAsset = UnityEditor.PrefabUtility.GetCorrespondingObjectFromOriginalSource(this);
+            if (prefabAsset != null)
+            {
+                string assetPath = UnityEditor.AssetDatabase.GetAssetPath(prefabAsset);
+                if (!string.IsNullOrEmpty(assetPath))
+                {
+                    _prefabGUID = UnityEditor.AssetDatabase.AssetPathToGUID(assetPath);
+                    Debug.Log($"[{GetType().Name}] Auto-determined prefab GUID: {_prefabGUID}");
+                }
+            }
+#endif
+            // In builds, the prefab GUID should be set manually or through the instantiation system
+        }
         #endregion
 
         #region Runtime Instance Detection
@@ -334,8 +441,11 @@ namespace GameFramework.SaveSystem
         /// </summary>
         protected virtual void OnValidate()
         {
-            // Custom validation logic can be added here by derived classes
-            // We intentionally do NOT generate UniqueIDs here to prevent prefab conflicts
+            // Auto-determine prefab GUID if missing
+            if (string.IsNullOrEmpty(_prefabGUID) && !Application.isPlaying)
+            {
+                DeterminePrefabGUID();
+            }
         }
         
         /// <summary>

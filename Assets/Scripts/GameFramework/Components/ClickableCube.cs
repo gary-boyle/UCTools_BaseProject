@@ -1,7 +1,8 @@
 using UnityEngine;
-using GameFramework.SaveSystem.Interfaces;
+using GameFramework.SaveSystem;
 using GameFramework.SaveSystem.Data;
 using GameFramework.SaveSystem.Utilities;
+using GameFramework.SaveSystem.Attributes;
 using GameFramework.Core;
 
 namespace GameFramework.Components
@@ -9,25 +10,18 @@ namespace GameFramework.Components
     /// <summary>
     /// MonoBehaviour that can be attached to a cube to make it clickable.
     /// When clicked, changes the cube's color and increments an integer value.
-    /// Implements ISaveable to persist state between game sessions.
+    /// Uses the new clean save system with direct field storage instead of nested JSON.
     /// </summary>
+    [SaveableType(typeof(ClickableCubeRuntimeSaveData))]
     [RequireComponent(typeof(Collider))]
-    public class ClickableCube : MonoBehaviour, ISaveable
+    public class ClickableCube : SaveableBase
     {
-        #region ISaveable Implementation
-        public string SaveKey => $"ClickableCube_{UniqueID}";
-        public string TypeName => typeof(ClickableCube).Name;
-        #endregion
-
         #region Private Fields
-        [SerializeField] private string _uniqueID;
         [SerializeField] private Color _cubeColor = Color.white;
         [SerializeField] private int _cubeValue = 0;
         
         private Renderer _renderer;
         private Camera _mainCamera;
-        private ISaveDataRegistry _saveDataRegistry;
-        private bool _isRegisteredWithSaveSystem = false;
         
         [Header("Click Configuration")]
         [SerializeField] private Color[] _colorCycle = { 
@@ -40,19 +34,6 @@ namespace GameFramework.Components
         #endregion
 
         #region Public Properties
-        public string UniqueID
-        {
-            get => _uniqueID;
-            private set
-            {
-                if (string.IsNullOrEmpty(value) || !UniqueIDGenerator.IsValidUniqueID(value))
-                {
-                    Debug.LogError($"[ClickableCube] Invalid UniqueID assigned: {value}");
-                    return;
-                }
-                _uniqueID = value;
-            }
-        }
         
         public Color CubeColor
         {
@@ -72,14 +53,8 @@ namespace GameFramework.Components
         #endregion
 
         #region Unity Lifecycle
-        private void Awake()
+        protected override void OnAwakeCustom()
         {
-            // Generate unique ID if not already set
-            if (string.IsNullOrEmpty(_uniqueID))
-            {
-                GenerateUniqueId();
-            }
-            
             // Get required components
             _renderer = GetComponent<Renderer>();
             if (_renderer == null)
@@ -99,7 +74,7 @@ namespace GameFramework.Components
             }
         }
         
-        private async void Start()
+        protected override void OnStartCustom()
         {
             // Get main camera reference
             _mainCamera = Camera.main;
@@ -114,9 +89,6 @@ namespace GameFramework.Components
             
             // Initialize visual state
             UpdateVisualColor();
-            
-            // Register with save system
-            await RegisterWithSaveSystemAsync();
         }
         
         private void Update()
@@ -128,11 +100,6 @@ namespace GameFramework.Components
             }
         }
         
-        private void OnDestroy()
-        {
-            // Unregister from save system
-            UnregisterFromSaveSystem();
-        }
         
         #if UNITY_EDITOR
         private void OnDrawGizmosSelected()
@@ -203,96 +170,40 @@ namespace GameFramework.Components
         }
         #endregion
 
-        #region Save System Integration
-        private async System.Threading.Tasks.Task RegisterWithSaveSystemAsync()
+
+        #region New Save System Implementation
+        protected override RuntimeObjectSaveData CreateSpecificRuntimeSaveData()
         {
-            try
+            return new ClickableCubeRuntimeSaveData(UniqueID, PrefabGUID)
             {
-                // Get the SaveDataRegistry service
-                _saveDataRegistry = await GameManager.GetServiceAsync<ISaveDataRegistry>();
-                
-                if (_saveDataRegistry != null && !_isRegisteredWithSaveSystem)
-                {
-                    bool registered = _saveDataRegistry.RegisterSaveable(this);
-                    _isRegisteredWithSaveSystem = registered;
-                    
-                    if (registered)
-                    {
-                        Debug.Log($"[ClickableCube] {gameObject.name} registered with save system (Key: {SaveKey})");
-                    }
-                    else
-                    {
-                        Debug.LogWarning($"[ClickableCube] Failed to register {gameObject.name} with save system");
-                    }
-                }
-            }
-            catch (System.Exception ex)
-            {
-                Debug.LogError($"[ClickableCube] Error registering with save system: {ex.Message}");
-            }
+                cubeColor = _cubeColor,
+                cubeValue = _cubeValue
+            };
         }
         
-        private void UnregisterFromSaveSystem()
+        protected override void LoadSpecificRuntimeSaveData(RuntimeObjectSaveData saveData)
         {
-            if (_saveDataRegistry != null && _isRegisteredWithSaveSystem)
+            if (saveData is ClickableCubeRuntimeSaveData cubeData)
             {
-                _saveDataRegistry.DeregisterSaveable(this);
-                _isRegisteredWithSaveSystem = false;
-                Debug.Log($"[ClickableCube] {gameObject.name} unregistered from save system");
-            }
-        }
-        #endregion
-
-        #region ISaveable Methods
-        public object GetSaveData()
-        {
-            return new ClickableCubeSaveData(_uniqueID, _cubeColor, _cubeValue);
-        }
-
-        public void LoadSaveData(object data)
-        {
-            if (data == null)
-            {
-                Debug.LogWarning($"[ClickableCube] Cannot load null save data for {gameObject.name}");
-                return;
-            }
-
-            try
-            {
-                ClickableCubeSaveData saveData;
+                _cubeValue = cubeData.cubeValue;
+                CubeColor = cubeData.cubeColor; // This will also update the visual
                 
-                if (data is ClickableCubeSaveData directData)
-                {
-                    saveData = directData;
-                }
-                else
-                {
-                    // Try JSON conversion as fallback
-                    var json = JsonUtility.ToJson(data);
-                    saveData = JsonUtility.FromJson<ClickableCubeSaveData>(json);
-                }
-
-                // Restore state
-                _uniqueID = saveData.uniqueID;
-                _cubeValue = saveData.cubeValue;
-                CubeColor = saveData.cubeColor; // This will also update the visual
-
-                Debug.Log($"[ClickableCube] {gameObject.name} loaded save data - Value: {_cubeValue}, Color: {_cubeColor}");
+                Debug.Log($"[ClickableCube] Loaded specific save data - Value: {_cubeValue}, Color: {_cubeColor}");
             }
-            catch (System.Exception ex)
+            else
             {
-                Debug.LogError($"[ClickableCube] Failed to load save data for {gameObject.name}: {ex.Message}");
+                Debug.LogWarning($"[ClickableCube] Expected ClickableCubeRuntimeSaveData but got: {saveData?.GetType().Name}");
             }
         }
         #endregion
 
         #region Utility Methods
         /// <summary>
-        /// Generates a new unique ID for this cube
+        /// Gets the prefix used for unique ID generation
         /// </summary>
-        private void GenerateUniqueId()
+        protected override string GetUniqueIdPrefix()
         {
-            UniqueID = UniqueIDGenerator.GenerateUniqueID("cube");
+            return "cube";
         }
         
         /// <summary>

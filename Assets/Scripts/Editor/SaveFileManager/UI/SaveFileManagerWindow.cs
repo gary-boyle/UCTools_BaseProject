@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using GameFramework.DataStructures;
 using GameFramework.SaveSystem.Data;
+using GameFramework.SaveSystem.Utilities;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -40,6 +41,7 @@ namespace GameFramework.Editor.SaveFileManager.UI
         private Button _refreshButton;
         private Toggle _autoRefreshToggle;
         private Toggle _showRawToggle;
+        private Toggle _editModeToggle;
         private Button _configButton;
         private Button _fileCountButton;
         private Label _statusMessage;
@@ -64,7 +66,7 @@ namespace GameFramework.Editor.SaveFileManager.UI
         
         #region Unity Editor Integration
         
-        [MenuItem("UCTools/Game Framework/Save File Manager")]
+        [MenuItem("UCTools/Game Framework/Saveable/Save File Manager")]
         public static void ShowWindow()
         {
             var window = GetWindow<SaveFileManagerWindow>("Save File Manager");
@@ -140,20 +142,29 @@ namespace GameFramework.Editor.SaveFileManager.UI
             _refreshButton = rootVisualElement.Q<Button>("refresh-button");
             _autoRefreshToggle = rootVisualElement.Q<Toggle>("auto-refresh-toggle");
             _showRawToggle = rootVisualElement.Q<Toggle>("show-raw-toggle");
+            _editModeToggle = rootVisualElement.Q<Toggle>("edit-mode-toggle"); // May not exist yet
             _configButton = rootVisualElement.Q<Button>("config-button");
             _fileCountButton = rootVisualElement.Q<Button>("file-count-button");
             _savesList = rootVisualElement.Q<ListView>("saves-list");
             _statusMessage = rootVisualElement.Q<Label>("status-message");
             _refreshIndicator = rootVisualElement.Q<Label>("refresh-indicator");
             _noSavesMessage = rootVisualElement.Q("no-saves-message");
+            
+            // Log missing edit mode toggle for debugging
+            if (_editModeToggle == null)
+                Debug.LogWarning("[SaveFileManagerWindow] edit-mode-toggle not found in UXML - edit mode functionality disabled");
         }
         
         private void SetupEventHandlers()
         {
             _refreshButton.clicked += () => _ = RefreshSaveFilesAsync();
             _configButton.clicked += ShowConfigurationWindow;
-            _autoRefreshToggle.RegisterValueChangedCallback(OnAutoRefreshToggled);
-            _showRawToggle.RegisterValueChangedCallback(OnShowRawToggled);
+            _autoRefreshToggle?.RegisterValueChangedCallback(OnAutoRefreshToggled);
+            _showRawToggle?.RegisterValueChangedCallback(OnShowRawToggled);
+            
+            // Only setup edit mode toggle if it exists
+            if (_editModeToggle != null)
+                _editModeToggle.RegisterValueChangedCallback(OnEditModeToggled);
         }
         
         private void SetupSavesList()
@@ -174,6 +185,7 @@ namespace GameFramework.Editor.SaveFileManager.UI
             _detailsPanel.OnLoadRequested += LoadSelectedSave;
             _detailsPanel.OnDeleteRequested += DeleteSelectedSave;
             _detailsPanel.OnShowInExplorerRequested += ShowSaveFileInExplorer;
+            _detailsPanel.OnSaveRequested += OnSaveFileRequested;
             detailsContainer.Add(_detailsPanel);
         }
         
@@ -222,7 +234,7 @@ namespace GameFramework.Editor.SaveFileManager.UI
             _selectedSave = selectedSave;
             _selectedIndex = selectedSave != null ? Array.IndexOf(_saveFiles, selectedSave) : -1;
             
-            _detailsPanel.LoadSaveFile(selectedSave, _displayConfig, _showRawToggle?.value == true);
+            _detailsPanel.LoadSaveFile(selectedSave, _displayConfig, _showRawToggle?.value == true, _editModeToggle?.value == true);
         }
         
         #endregion
@@ -285,17 +297,40 @@ namespace GameFramework.Editor.SaveFileManager.UI
                 {
                     var fileName = Path.GetFileName(filePath); // Keep full filename with extension
                     var jsonContent = await File.ReadAllTextAsync(filePath);
-                    var saveData = JsonUtility.FromJson<SaveFileData>(jsonContent);
+                    var saveData = JsonSerializationHelper.DeserializeFromJson<SaveFileData>(jsonContent);
                     
                     if (saveData != null)
                     {
                         var saveInfo = new SaveFileInfo(fileName, saveData);
                         saveInfos.Add(saveInfo);
                     }
+                    else
+                    {
+                        Debug.LogWarning($"[SaveFileManager] Failed to deserialize save file {fileName} - creating corrupted save info");
+                        var corruptedSaveInfo = SaveFileInfo.CreateFromFile(filePath);
+                        if (corruptedSaveInfo != null)
+                        {
+                            saveInfos.Add(corruptedSaveInfo);
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {
                     Debug.LogWarning($"[SaveFileManager] Failed to load save file {filePath}: {ex.Message}");
+                    // Try to create corrupted save info as fallback
+                    try
+                    {
+                        var fileName = Path.GetFileName(filePath);
+                        var corruptedSaveInfo = SaveFileInfo.CreateFromFile(filePath);
+                        if (corruptedSaveInfo != null)
+                        {
+                            saveInfos.Add(corruptedSaveInfo);
+                        }
+                    }
+                    catch (Exception fallbackEx)
+                    {
+                        Debug.LogError($"[SaveFileManager] Even corrupted save creation failed for {filePath}: {fallbackEx.Message}");
+                    }
                 }
             }
             
@@ -391,7 +426,35 @@ namespace GameFramework.Editor.SaveFileManager.UI
         
         private void OnShowRawToggled(ChangeEvent<bool> evt)
         {
-            _detailsPanel?.LoadSaveFile(_selectedSave, _displayConfig, evt.newValue);
+            _detailsPanel?.LoadSaveFile(_selectedSave, _displayConfig, evt.newValue, _editModeToggle?.value == true);
+        }
+        
+        private void OnEditModeToggled(ChangeEvent<bool> evt)
+        {
+            if (evt.newValue)
+            {
+                SetStatus("Edit mode enabled - You can now modify save file fields", "info");
+            }
+            else
+            {
+                SetStatus("Edit mode disabled - Fields are now read-only", "info");
+            }
+            
+            _detailsPanel?.LoadSaveFile(_selectedSave, _displayConfig, _showRawToggle?.value == true, evt.newValue);
+        }
+        
+        private async void OnSaveFileRequested(SaveFileInfo saveInfo)
+        {
+            SetStatus($"Save file {saveInfo.GetDisplayName()} has been updated", "info");
+            
+            // Refresh the save file list to reflect any changes
+            await RefreshSaveFilesAsync();
+            
+            // Re-select the saved file if it's still selected
+            if (_selectedSave != null && _selectedSave.FileName == saveInfo.FileName)
+            {
+                _detailsPanel?.LoadSaveFile(_selectedSave, _displayConfig, _showRawToggle?.value == true, _editModeToggle?.value == true);
+            }
         }
         
         #endregion
@@ -434,9 +497,13 @@ namespace GameFramework.Editor.SaveFileManager.UI
         
         private void UpdateUIState()
         {
-            // Set initial toggle states - disable auto-refresh by default
-            _autoRefreshToggle.value = false;
-            _showRawToggle.value = false;
+            // Set initial toggle states - disable auto-refresh and edit mode by default
+            if (_autoRefreshToggle != null)
+                _autoRefreshToggle.value = false;
+            if (_showRawToggle != null)
+                _showRawToggle.value = false;
+            if (_editModeToggle != null)
+                _editModeToggle.value = false;
         }
         
         #endregion

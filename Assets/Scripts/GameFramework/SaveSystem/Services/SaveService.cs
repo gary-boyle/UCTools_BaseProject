@@ -1,184 +1,264 @@
-﻿using System;
-using System.IO;
-using System.Linq;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using GameFramework.Components;
-using GameFramework.DataStructures;
 using UnityEngine;
 using GameFramework.Services.Interfaces;
+using GameFramework.SaveSystem.Interfaces;
 using GameFramework.SaveSystem.Data;
 using GameFramework.SaveSystem.Utilities;
 using GameFramework.EventSystem.Events;
 using GameFramework.EventSystem.Events.Enums;
 using GameFramework.EventSystem.Interfaces;
-using GameFramework.SaveSystem.Interfaces;
-using GameFramework.FileSystem.Interfaces;
 
 namespace GameFramework.SaveSystem.Services
 {
     /// <summary>
-    /// Main save service responsible for orchestrating save operations
-    /// Handles event-driven save requests and coordinates with registry and file service
-    /// Delegates file I/O operations to FileService for separation of concerns
+    /// Enhanced SaveService that uses the new clean save system with direct field storage.
+    /// Creates SaveFileDataV2 with typed runtime object collections instead of nested JSON strings.
+    /// Works with SaveableBase objects and the new RuntimeObjectSaveData system.
     /// </summary>
     public class SaveService : ISaveService
     {
         #region Private Fields
-        private const string AUTO_SAVE_PREFIX = "AutoSave_";
-        private const string REGULAR_SAVE_PREFIX = "Save_";
-        private const string SAVE_FILE_EXTENSION = ".json";
+        private IGameDataService _gameDataService;
+        private IEventSystem _eventSystem;
+        private ISaveDataRegistry _saveDataRegistry;
+        
+        private bool _isSaving = false;
         #endregion
 
         #region IGameService Implementation
         public bool IsInitialized { get; private set; }
 
-        // Dependencies
-        private readonly IEventSystem _eventSystem;
-        private readonly ISaveDataRegistry _saveDataRegistry;
-        private readonly IFileService _fileService;
-        
         public SaveService(
+            IGameDataService gameDataService, 
             IEventSystem eventSystem,
-            ISaveDataRegistry saveDataRegistry,
-            IFileService fileService)
+            ISaveDataRegistry saveDataRegistry)
         {
+            _gameDataService = gameDataService ?? throw new ArgumentNullException(nameof(gameDataService));
             _eventSystem = eventSystem ?? throw new ArgumentNullException(nameof(eventSystem));
             _saveDataRegistry = saveDataRegistry ?? throw new ArgumentNullException(nameof(saveDataRegistry));
-            _fileService = fileService ?? throw new ArgumentNullException(nameof(fileService));
         }
-        
+
         public async Task InitializeAsync()
         {
             if (IsInitialized) return;
 
-            Debug.Log("[SaveService] Initializing save service...");
+            Debug.Log("[SaveServiceV2] Initializing enhanced save service...");
 
-            // Note: FileService handles directory creation, we just subscribe to events
-            SubscribeToEvents();
-            
+            // Subscribe to save events
+            _eventSystem.Subscribe<SaveRequestedEvent>(OnSaveRequested);
+
             IsInitialized = true;
-            Debug.Log("[SaveService] Save service initialized successfully");
+            Debug.Log("[SaveServiceV2] Enhanced save service initialized and subscribed to events");
+
+            await Task.CompletedTask;
         }
 
         public void Shutdown()
         {
             if (!IsInitialized) return;
 
-            UnsubscribeFromEvents();
-            
-            Debug.Log("[SaveService] Shutting down save service...");
+            Debug.Log("[SaveServiceV2] Shutting down enhanced save service...");
+
+            _eventSystem?.Unsubscribe<SaveRequestedEvent>(OnSaveRequested);
+
+            _gameDataService = null;
+            _eventSystem = null;
+            _saveDataRegistry = null;
             IsInitialized = false;
-            Debug.Log("[SaveService] Save service shutdown complete");
+
+            Debug.Log("[SaveServiceV2] Enhanced save service shutdown complete");
         }
-        
-        private void SubscribeToEvents()
-        {
-            _eventSystem.Subscribe<SaveRequestedEvent>(OnSaveRequested);
-        }
-        
-        private void UnsubscribeFromEvents()
-        {
-            _eventSystem.Unsubscribe<SaveRequestedEvent>(OnSaveRequested);
-        }
-        
         #endregion
 
-        #region Event Handlers
+        #region ISaveService Implementation
         /// <summary>
         /// Handles save requested events from the event system
-        /// Processes different save types (Regular, Auto, Overwrite)
+        /// Implements the ISaveService interface requirement
         /// </summary>
         public async void OnSaveRequested(SaveRequestedEvent saveEvent)
         {
             if (!IsInitialized)
             {
-                Debug.LogError("[SaveService] Cannot process save request - service not initialized");
-                PublishSaveFailedEvent("Save service not initialized", saveEvent.SaveType);
+                Debug.LogError("[SaveServiceV2] Cannot process save request - service not initialized");
+                _eventSystem?.Publish(new SaveFailedEvent("Save service not initialized", saveEvent.SaveType));
                 return;
             }
 
-            if (_saveDataRegistry == null)
-            {
-                Debug.LogError("[SaveService] Cannot process save request - registry dependency not set");
-                PublishSaveFailedEvent("Save data registry not available", saveEvent.SaveType);
-                return;
-            }
-
-            if (_fileService == null)
-            {
-                Debug.LogError("[SaveService] Cannot process save request - file service dependency not set");
-                PublishSaveFailedEvent("File service not available", saveEvent.SaveType);
-                return;
-            }
-
-            Debug.Log($"[SaveService] Processing {saveEvent.SaveType} save request");
+            Debug.Log($"[SaveServiceV2] Processing {saveEvent.SaveType} save request");
 
             try
             {
-                string fileName = await ProcessSaveRequest(saveEvent);
-                if (!string.IsNullOrEmpty(fileName))
+                string fileName = null;
+                bool isAutoSave = saveEvent.SaveType == SaveType.Auto;
+
+                switch (saveEvent.SaveType)
                 {
-                    PublishSaveCompletedEvent(fileName, saveEvent.SaveType);
+                    case SaveType.Regular:
+                        fileName = $"save_{DateTime.Now:yyyyMMdd_HHmmss}.json";
+                        break;
+                    case SaveType.Auto:
+                        fileName = $"autosave_{DateTime.Now:yyyyMMdd_HHmmss}.json";
+                        break;
+                    case SaveType.Overwrite:
+                        fileName = saveEvent.TargetSaveFile?.FileName;
+                        break;
+                }
+
+                if (string.IsNullOrEmpty(fileName))
+                {
+                    throw new Exception("Could not determine save file name");
+                }
+
+                bool success = await SaveGameStateAsync(fileName, isAutoSave);
+                
+                if (success)
+                {
+                    _eventSystem?.Publish(new SaveCompletedEvent(fileName, saveEvent.SaveType));
+                }
+                else
+                {
+                    _eventSystem?.Publish(new SaveFailedEvent("Save operation failed", saveEvent.SaveType));
                 }
             }
             catch (Exception ex)
             {
-                Debug.LogError($"[SaveService] Save operation failed: {ex.Message}");
-                PublishSaveFailedEvent($"Save operation failed: {ex.Message}", saveEvent.SaveType, ex);
+                Debug.LogError($"[SaveServiceV2] Save operation failed: {ex.Message}");
+                _eventSystem?.Publish(new SaveFailedEvent($"Save operation failed: {ex.Message}", saveEvent.SaveType, ex));
             }
         }
         #endregion
 
-        #region Save Operations
+        #region ISaveService Implementation
         /// <summary>
-        /// Processes save request based on save type
-        /// Returns the saved file name on success, null on failure
+        /// Saves the current game state to a file using the new clean save system
         /// </summary>
-        private async Task<string> ProcessSaveRequest(SaveRequestedEvent saveEvent)
+        public async Task<bool> SaveGameStateAsync(string fileName, bool isAutoSave = false)
         {
-            string fileName;
-    
-            switch (saveEvent.SaveType)
+            if (!IsInitialized)
             {
-                case SaveType.Regular:
-                    fileName = GenerateRegularSaveFileName();
-                    break;
-            
-                case SaveType.Auto:
-                    fileName = await GetAutoSaveFileName();
-                    break;
-            
-                case SaveType.Overwrite:
-                    if (saveEvent.TargetSaveFile == null)
-                    {
-                        throw new InvalidOperationException("Overwrite save requires target save file");
-                    }
-                    fileName = saveEvent.TargetSaveFile.FileName;
-                    break;
-            
-                default:
-                    throw new ArgumentException($"Unknown save type: {saveEvent.SaveType}");
+                Debug.LogError("[SaveServiceV2] Cannot save game state - service not initialized");
+                return false;
             }
 
-            return await PerformSave(fileName, saveEvent.SaveType == SaveType.Auto);
+            if (_isSaving)
+            {
+                Debug.LogWarning("[SaveServiceV2] Save operation already in progress");
+                return false;
+            }
+
+            try
+            {
+                _isSaving = true;
+                
+                // Step 1: Initialize saving
+                await PublishProgress("Initializing save...", 0.0f);
+                await Task.Delay(100);
+
+                // Step 2: Create save file data container
+                await PublishProgress("Gathering game data...", 0.1f);
+                var saveFileData = await CreateSaveFileDataAsync(isAutoSave);
+                if (saveFileData == null)
+                {
+                    throw new Exception("Failed to create save file data");
+                }
+
+                // Step 3: Collect runtime object data
+                await PublishProgress("Collecting runtime objects...", 0.3f);
+                await CollectRuntimeObjectDataAsync(saveFileData);
+
+                // Step 4: Validate save data
+                await PublishProgress("Validating save data...", 0.7f);
+                if (!saveFileData.ValidateData())
+                {
+                    throw new Exception("Save data validation failed");
+                }
+
+                // Step 5: Write to disk
+                await PublishProgress("Writing to disk...", 0.8f);
+                bool writeSuccess = await WriteSaveFileV2Async(fileName, saveFileData);
+                if (!writeSuccess)
+                {
+                    throw new Exception("Failed to write save file to disk");
+                }
+
+                // Step 6: Complete
+                await PublishProgress("Save complete!", 1.0f);
+                await Task.Delay(100);
+
+                // Publish completion event
+                _eventSystem?.Publish(new SavingCompletedEvent(fileName, isAutoSave));
+                
+                Debug.Log($"[SaveServiceV2] Successfully saved game state to: {fileName}");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"[SaveServiceV2] Error saving game state: {ex.Message}");
+                _eventSystem?.Publish(new SavingFailedEvent(ex, fileName, isAutoSave));
+                return false;
+            }
+            finally
+            {
+                _isSaving = false;
+            }
+        }
+        #endregion
+
+        #region Private Methods
+        /// <summary>
+        /// Creates the base SaveFileDataV2 container with core game data
+        /// </summary>
+        private async Task<SaveFileData> CreateSaveFileDataAsync(bool isAutoSave)
+        {
+            try
+            {
+                var saveFileData = new SaveFileData
+                {
+                    SaveTime = DateTime.Now,
+                    WasAutoSave = isAutoSave
+                };
+
+                var sessionData = _gameDataService?.GetGameSessionData();
+                
+                // Get core game data from GameDataService (unchanged as requested)
+                if (_gameDataService?.GetGameSessionData() != null)
+                {
+                    saveFileData.GameSessionData = new GameSessionSaveData
+                    {
+                        uniqueID = sessionData.UniqueID,
+                        difficulty = sessionData.Difficulty,
+                        currentScene = sessionData.CurrentScene,
+                        gameTime = sessionData.GameTime
+                    };
+                }
+
+                var playerData = _gameDataService?.GetPlayerData();
+
+                if (playerData != null)
+                {
+                    // Assuming PlayerData has a method to get save data (unchanged as requested)
+                    saveFileData.PlayerData = playerData.GetSaveData() as PlayerSaveData;
+                }
+
+                Debug.Log("[SaveServiceV2] Created base save file data");
+                return saveFileData;
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"[SaveServiceV2] Error creating save file data: {ex.Message}");
+                return null;
+            }
         }
 
         /// <summary>
-        /// Performs the actual save operation
-        /// Collects data from registry and delegates file writing to FileService
+        /// Collects runtime object data from all registered SaveableBase objects.
+        /// Note: Core system objects (GameSessionData, PlayerData) are handled separately 
+        /// in CreateSaveFileDataAsync and are skipped here.
         /// </summary>
-        private async Task<string> PerformSave(string fileName, bool isAutoSave)
+        private async Task CollectRuntimeObjectDataAsync(SaveFileData saveFileData)
         {
-            Debug.Log($"[SaveService] Starting save operation: {fileName}");
-
-            // Create save file data container
-            var saveFileData = new SaveFileData
-            {
-                SaveTime = DateTime.Now,
-                WasAutoSave = isAutoSave
-            };
-
-            // Collect data from all registered saveables
             var registeredObjects = _saveDataRegistry.GetAllSaveableObjects();
             
             int successCount = 0;
@@ -189,146 +269,141 @@ namespace GameFramework.SaveSystem.Services
                 try
                 {
                     var saveable = kvp.Value;
-                    Debug.Log($"[SaveService] Processing saveable: {saveable.SaveKey} (Type: {saveable.TypeName})");
+                    
+                    // Skip core system objects - they're handled separately in CreateSaveFileDataAsync
+                    if (saveable.SaveKey == "GameSessionData" || saveable.SaveKey == "PlayerData")
+                    {
+                        Debug.Log($"[SaveServiceV2] Skipping core system object: {saveable.SaveKey} (handled separately)");
+                        continue;
+                    }
                     
                     // Check if this is a destroyed MonoBehaviour
                     if (saveable is MonoBehaviour mb && mb == null)
                     {
-                        Debug.LogWarning($"[SaveService] Saveable {saveable.SaveKey} is a destroyed MonoBehaviour, removing from registry");
+                        Debug.LogWarning($"[SaveServiceV2] Saveable {saveable.SaveKey} is a destroyed MonoBehaviour, removing from registry");
                         _saveDataRegistry.DeregisterSaveable(saveable.SaveKey);
                         failureCount++;
                         continue;
                     }
 
-                    // Get save data from the saveable object
-                    var saveData = saveable.GetSaveData();
-                    
-                    if (saveData == null)
+                    // Get runtime save data from SaveableBase objects
+                    if (saveable is SaveableBase saveableV2)
                     {
-                        Debug.LogWarning($"[SaveService] Saveable {saveable.SaveKey} returned null save data");
-                        failureCount++;
-                        continue;
-                    }
-
-                    // Use reflection to assign to the appropriate field in SaveFileData
-                    bool assigned = saveFileData.SetSaveData(saveable.SaveKey, saveData);
-                    
-                    if (assigned)
-                    {
-                        successCount++;
-                        Debug.Log($"[SaveService] Successfully collected save data for: {saveable.SaveKey}");
+                        var runtimeSaveData = saveableV2.CreateRuntimeSaveData();
+                        if (runtimeSaveData != null)
+                        {
+                            bool added = saveFileData.SetRuntimeObjectData(runtimeSaveData);
+                            if (added)
+                            {
+                                successCount++;
+                                Debug.Log($"[SaveServiceV2] Collected runtime save data for: {saveable.SaveKey}");
+                            }
+                            else
+                            {
+                                Debug.LogWarning($"[SaveServiceV2] Failed to add runtime save data for: {saveable.SaveKey}");
+                                failureCount++;
+                            }
+                        }
+                        else
+                        {
+                            Debug.LogWarning($"[SaveServiceV2] SaveableBase {saveable.SaveKey} returned null save data");
+                            failureCount++;
+                        }
                     }
                     else
                     {
+                        Debug.LogError($"[SaveServiceV2] Object {saveable.SaveKey} is not SaveableBase - only V2 save system objects are supported");
                         failureCount++;
-                        Debug.LogError($"[SaveService] Failed to assign save data for: {saveable.SaveKey}. " +
-                                      $"Ensure SaveFileData has a public field named '{saveable.SaveKey}'");
                     }
                 }
                 catch (Exception ex)
                 {
+                    Debug.LogError($"[SaveServiceV2] Error collecting save data from {kvp.Key}: {ex.Message}");
                     failureCount++;
-                    Debug.LogError($"[SaveService] Exception while collecting save data from {kvp.Key}: {ex.Message}");
                 }
             }
 
-            Debug.Log($"[SaveService] Save data collection complete. Success: {successCount}, Failures: {failureCount}");
+            Debug.Log($"[SaveServiceV2] Runtime object data collection complete: {successCount} succeeded, {failureCount} failed");
+            await Task.Delay(100); // Small delay for progress reporting
+        }
 
-            // Validate the collected data (now allows null PlayerData)
-            bool isValid = saveFileData.ValidateData();
-            if (!isValid)
+        /// <summary>
+        /// Writes SaveFileDataV2 directly to disk as JSON
+        /// </summary>
+        private async Task<bool> WriteSaveFileV2Async(string fileName, SaveFileData saveFileData)
+        {
+            try
             {
-                throw new InvalidOperationException("Save data validation failed - essential data is missing");
+                string saveDirectory = System.IO.Path.Combine(Application.persistentDataPath, "Saves");
+                if (!System.IO.Directory.Exists(saveDirectory))
+                {
+                    System.IO.Directory.CreateDirectory(saveDirectory);
+                }
+                
+                string filePath = System.IO.Path.Combine(saveDirectory, fileName);
+                string jsonContent = JsonUtility.ToJson(saveFileData, true);
+                
+                await System.IO.File.WriteAllTextAsync(filePath, jsonContent);
+                
+                Debug.Log($"[SaveServiceV2] Successfully wrote SaveFileDataV2 to: {fileName}");
+                return true;
             }
-            
-            // Additional info about what was saved
-            if (saveFileData.PlayerData == null)
+            catch (System.Exception ex)
             {
-                Debug.LogError("[SaveService] Save completed without PlayerData - player may not be instantiated yet");
+                Debug.LogError($"[SaveServiceV2] Error writing SaveFileDataV2 to {fileName}: {ex.Message}");
+                return false;
             }
+        }
 
-            // Delegate file writing to FileService
-            Debug.Log($"[SaveService] Delegating file write to FileService: {fileName}");
-            bool writeSuccess = await _fileService.WriteSaveFileAsync(fileName, saveFileData);
+        /// <summary>
+        /// Publishes saving progress events
+        /// </summary>
+        private async Task PublishProgress(string message, float progress)
+        {
+            _eventSystem?.Publish(new SavingProgressEvent(message, progress));
             
-            if (!writeSuccess)
-            {
-                throw new InvalidOperationException($"FileService failed to write save file: {fileName}");
-            }
-            
-            Debug.Log($"[SaveService] Save completed successfully: {fileName}");
-            return fileName;
+            // Small delay to allow UI to update
+            await Task.Delay(50);
         }
         #endregion
+    }
 
-        #region File Name Generation
-        /// <summary>
-        /// Generates filename for regular saves with timestamp
-        /// </summary>
-        private string GenerateRegularSaveFileName()
-        {
-            string timestamp = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
-            return $"{REGULAR_SAVE_PREFIX}{timestamp}{SAVE_FILE_EXTENSION}";
-        }
+    // Event classes for the new save system
+    public class SavingProgressEvent
+    {
+        public string Message { get; }
+        public float Progress { get; }
 
-        /// <summary>
-        /// Generates filename for auto saves with timestamp (fallback for when no UniqueID available)
-        /// </summary>
-        private string GenerateAutoSaveFileName()
+        public SavingProgressEvent(string message, float progress)
         {
-            string timestamp = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
-            return $"{AUTO_SAVE_PREFIX}{timestamp}{SAVE_FILE_EXTENSION}";
+            Message = message;
+            Progress = progress;
         }
-        
-        /// <summary>
-        /// Gets the auto-save filename for the current player using their unique ID
-        /// Returns existing auto-save filename if found, otherwise generates new one
-        /// </summary>
-        private async Task<string> GetAutoSaveFileName()
-        {
-            // Get current player from registered saveables
-            var registeredObjects = _saveDataRegistry.GetAllSaveableObjects();
-            var playerData = registeredObjects.Values.FirstOrDefault(s => s.SaveKey == "PlayerData") as PlayerData;
-    
-            if (playerData?.UniqueID == null)
-            {
-                Debug.LogWarning("[SaveService] No Player UniqueID found, using timestamp-based auto-save");
-                return GenerateAutoSaveFileName();
-            }
+    }
 
-            string playerUniqueId = playerData.UniqueID;
-            string autoSaveFileName = $"AutoSave_{playerUniqueId}.json";
-    
-            // Check if this auto-save already exists using FileService
-            if (_fileService.SaveFileExists(autoSaveFileName))
-            {
-                return autoSaveFileName;
-            }
-            else
-            {
-                return autoSaveFileName;
-            }
-        }
-        #endregion
+    public class SavingCompletedEvent
+    {
+        public string FileName { get; }
+        public bool WasAutoSave { get; }
 
-        #region Event Publishing
-        /// <summary>
-        /// Publishes save completed event
-        /// </summary>
-        private void PublishSaveCompletedEvent(string fileName, SaveType saveType)
+        public SavingCompletedEvent(string fileName, bool wasAutoSave)
         {
-            var completedEvent = new SaveCompletedEvent(fileName, saveType);
-            _eventSystem?.Publish(completedEvent); 
+            FileName = fileName;
+            WasAutoSave = wasAutoSave;
         }
+    }
 
-        /// <summary>
-        /// Publishes save failed event
-        /// </summary>
-        private void PublishSaveFailedEvent(string errorMessage, SaveType saveType, Exception exception = null)
+    public class SavingFailedEvent
+    {
+        public Exception Exception { get; }
+        public string FileName { get; }
+        public bool WasAutoSave { get; }
+
+        public SavingFailedEvent(Exception exception, string fileName, bool wasAutoSave)
         {
-            var failedEvent = new SaveFailedEvent(errorMessage, saveType, exception);
-            _eventSystem?.Publish(failedEvent); 
+            Exception = exception;
+            FileName = fileName;
+            WasAutoSave = wasAutoSave;
         }
-        #endregion
     }
 }

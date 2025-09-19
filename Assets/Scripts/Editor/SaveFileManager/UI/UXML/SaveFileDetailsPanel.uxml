@@ -15,6 +15,13 @@
                 <ui:VisualElement name="play-mode-warning" class="play-mode-warning">
                     <ui:Label text="⚠ Enter Play Mode to load save files" display-tooltip-when-elided="true" name="play-mode-label" class="warning-label" />
                 </ui:VisualElement>
+                <ui:VisualElement name="edit-mode-buttons" class="edit-mode-buttons" style="display: none;">
+                    <ui:Label text="⚠ You have unsaved changes" display-tooltip-when-elided="true" name="unsaved-changes-label" class="warning-label unsaved-changes-label" style="display: none;" />
+                    <ui:VisualElement name="edit-buttons-container" class="actions-container" style="margin-top: 5px;">
+                        <ui:Button text="💾 Save Changes" display-tooltip-when-elided="true" name="save-changes-button" tooltip="Save changes to the JSON file" class="action-button save-button" />
+                        <ui:Button text="❌ Cancel" display-tooltip-when-elided="true" name="cancel-changes-button" tooltip="Discard changes and revert to original data" class="action-button cancel-button" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="basic-info-section" class="info-section">
                 <ui:Label text="Basic Information" display-tooltip-when-elided="true" name="basic-info-title" class="section-title" />

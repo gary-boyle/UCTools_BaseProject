@@ -16,6 +16,7 @@ using GameFramework.LoadSystem.Interfaces;
 using GameFramework.LoadSystem.Services;
 using GameFramework.SaveSystem.Interfaces;
 using GameFramework.SaveSystem.Services;
+using GameFramework.SaveSystem.Data;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System;
@@ -377,6 +378,9 @@ namespace GameFramework.Core
             var uiService = _container.Resolve<IUIService>();
             await uiService.InitializeAsync();
             
+            var runtimeObjectInstantiator = _container.Resolve<IRuntimeObjectInstantiator>();
+            await runtimeObjectInstantiator.InitializeAsync();
+            
             // Initialize notification service after UI service (depends on UIService and EventSystem)
             var notificationService = _container.Resolve<INotificationService>();
             await notificationService.InitializeAsync();
@@ -445,8 +449,8 @@ namespace GameFramework.Core
             
             // Register services that might depend on the above
             _container.RegisterSingleton<IUIService, UIService>();
-            _container.RegisterSingleton<ILoadService, LoadService>();
-            _container.RegisterSingleton<ISaveService, SaveService>();
+            // Register new V2 save/load system
+            RegisterNewSaveSystem();
             _container.RegisterSingleton<IGameDataService, GameDataService>();
             _container.RegisterSingleton<ISaveDataRegistry, SaveDataRegistry>();
             _container.RegisterSingleton<IInstantiationService, InstantiationService>();
@@ -462,6 +466,35 @@ namespace GameFramework.Core
             _container.RegisterSingleton<IGameStateMachine, GameStateMachine>();
     
             Debug.Log("[GameManager] Core services registration complete");
+        }
+        
+        /// <summary>
+        /// Registers the new V2 save/load system with PrefabRegistry and RuntimeObjectInstantiator
+        /// </summary>
+        private void RegisterNewSaveSystem()
+        {
+            Debug.Log("[GameManager] Registering new V2 save/load system...");
+            
+            // Load PrefabRegistry from ScriptableObjects folder
+            var prefabRegistry = Resources.Load<PrefabRegistry>("PrefabRegistry");
+            if (prefabRegistry == null)
+            {
+                Debug.LogError("[GameManager] PrefabRegistry not found! Create one at Resources/PrefabRegistry.asset");
+                // Create a fallback empty registry
+                prefabRegistry = ScriptableObject.CreateInstance<PrefabRegistry>();
+            }
+            
+            // Register the PrefabRegistry instance
+            _container.RegisterSingleton(prefabRegistry);
+            
+            // Register RuntimeObjectInstantiator with PrefabRegistry dependency
+            _container.RegisterSingleton<IRuntimeObjectInstantiator, RuntimeObjectInstantiator>();
+            
+            // Register V2 services (replaces old LoadService and SaveService)
+            _container.RegisterSingleton<ILoadService, LoadService>();
+            _container.RegisterSingleton<ISaveService, SaveService>();
+            
+            Debug.Log("[GameManager] V2 save/load system registration complete");
         }
         
         /// <summary>
