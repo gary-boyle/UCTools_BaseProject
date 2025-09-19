@@ -2,9 +2,9 @@
     <Style src="project://database/Assets/Scripts/Editor/SaveFileManager/UI/USS/SaveFileManager.uss?fileID=7433441132597879392&amp;guid=c1fd077cb2bd42d4a1318bbe8829d5f4&amp;type=3#SaveFileManager" />
     <ui:VisualElement name="field-row" class="field-row">
         <ui:Label text="Field Label:" display-tooltip-when-elided="true" name="field-label" class="field-label" />
-        <ui:TextField picking-mode="Ignore" readonly="true" name="field-value-text" class="field-value" />
-        <ui:IntegerField readonly="true" name="field-value-int" class="field-value field-value-hidden" />
-        <ui:FloatField readonly="true" name="field-value-float" class="field-value field-value-hidden" />
-        <ui:Toggle readonly="true" name="field-value-bool" class="field-value field-value-hidden" />
+        <ui:TextField picking-mode="Ignore" name="field-value-text" class="field-value" />
+        <ui:IntegerField name="field-value-int" class="field-value field-value-hidden" />
+        <ui:FloatField name="field-value-float" class="field-value field-value-hidden" />
+        <ui:Toggle name="field-value-bool" class="field-value field-value-hidden" />
     </ui:VisualElement>
 </ui:UXML>
