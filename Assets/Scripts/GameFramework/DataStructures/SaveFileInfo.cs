@@ -67,7 +67,7 @@ namespace GameFramework.DataStructures
         /// <summary>
         /// Constructor from SaveFileData - updated for direct field access
         /// </summary>
-        public SaveFileInfo(string fileName, SaveFileData saveData)
+        public SaveFileInfo(string fileName, SaveFileDataV2 saveData)
         {
             this._fileName = fileName ?? string.Empty;
             LastSaveTime = saveData.SaveTime; // Uses property setter to convert to ticks
@@ -136,7 +136,7 @@ namespace GameFramework.DataStructures
             {
                 // Read and parse the save file
                 string json = System.IO.File.ReadAllText(filePath);
-                var saveData = JsonUtility.FromJson<SaveFileData>(json);
+                var saveData = JsonUtility.FromJson<SaveFileDataV2>(json);
 
                 if (saveData == null)
                 {

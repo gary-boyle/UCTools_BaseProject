@@ -24,20 +24,20 @@ namespace GameFramework.LoadSystem.Interfaces
         Task<bool> LoadGameStateAsync(SaveFileInfo saveFileInfo);
 
         /// <summary>
-        /// Loads save data from SaveFileData and applies it to game state
+        /// Loads save data from SaveFileDataV2 and applies it to game state
         /// Includes scene loading and progress reporting  
         /// </summary>
         /// <param name="saveFileData">Save file data to apply</param>
         /// <param name="isNewGame">Whether this is loading a new game (affects progress messages)</param>
         /// <returns>True if loading succeeded</returns>
-        Task<bool> LoadGameStateAsync(SaveFileData saveFileData, bool isNewGame = false);
+        Task<bool> LoadGameStateAsync(SaveFileDataV2 saveFileData, bool isNewGame = false);
 
         /// <summary>
-        /// Converts SaveFileData to live game objects without applying to game state
+        /// Converts SaveFileDataV2 to live game objects without applying to game state
         /// Useful for previewing or validation
         /// </summary>
         /// <param name="saveFileData">Save data to convert</param>
         /// <returns>Converted game objects or null if conversion failed</returns>
-        Task<LoadedGameState> ConvertSaveDataAsync(SaveFileData saveFileData);
+        Task<LoadedGameState> ConvertSaveDataAsync(SaveFileDataV2 saveFileData);
     }
 }

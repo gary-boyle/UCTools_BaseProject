@@ -17,20 +17,20 @@ namespace GameFramework.FileSystem.Interfaces
         /// <returns>Array of SaveFileInfo objects</returns>
         Task<SaveFileInfo[]> GetSaveFilesAsync();
 
-        /// <summary>
-        /// Reads and deserializes a save file to SaveFileData
-        /// </summary>
-        /// <param name="fileName">Name of the save file to read</param>
-        /// <returns>SaveFileData or null if reading failed</returns>
-        Task<SaveFileData> ReadSaveFileAsync(string fileName);
+        // /// <summary>
+        // /// Reads and deserializes a save file to SaveFileData
+        // /// </summary>
+        // /// <param name="fileName">Name of the save file to read</param>
+        // /// <returns>SaveFileData or null if reading failed</returns>
+        // Task<SaveFileData> ReadSaveFileAsync(string fileName);
 
-        /// <summary>
-        /// Writes SaveFileData to a save file
-        /// </summary>
-        /// <param name="fileName">Name of the save file to write</param>
-        /// <param name="saveFileData">Data to write</param>
-        /// <returns>True if writing succeeded</returns>
-        Task<bool> WriteSaveFileAsync(string fileName, SaveFileData saveFileData);
+        // /// <summary>
+        // /// Writes SaveFileData to a save file
+        // /// </summary>
+        // /// <param name="fileName">Name of the save file to write</param>
+        // /// <param name="saveFileData">Data to write</param>
+        // /// <returns>True if writing succeeded</returns>
+        // Task<bool> WriteSaveFileAsync(string fileName, SaveFileData saveFileData);
 
         /// <summary>
         /// Deletes a save file from disk
