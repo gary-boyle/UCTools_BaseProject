@@ -89,10 +89,9 @@
 Classes
 </h3>
       <h4><a class="xref" href="GameFramework.SaveSystem.SaveableBase.html">SaveableBase</a></h4>
-      <section><p>Abstract base class for MonoBehaviours that need to be saved.
-Provides common ISaveable implementation with automatic save system registration,
-UniqueID management, and extension points for custom save/load logic.</p>
-<p>To use: inherit from SaveableBase and implement GetSaveData() and LoadSaveData()</p>
+      <section><p>Base class for MonoBehaviours that work with the new clean save system.
+Provides RuntimeObjectSaveData support and automatic prefab registry integration.
+Objects that inherit from this will automatically work with the V2 save/load system.</p>
 </section>
 
 

@@ -94,10 +94,16 @@ Provides centralized registration/deregistration with lifecycle management
 Implements IGameService for proper initialization and cleanup</p>
 </section>
       <h4><a class="xref" href="GameFramework.SaveSystem.Services.SaveService.html">SaveService</a></h4>
-      <section><p>Main save service responsible for orchestrating save operations
-Handles event-driven save requests and coordinates with registry and file service
-Delegates file I/O operations to FileService for separation of concerns</p>
+      <section><p>Enhanced SaveService that uses the new clean save system with direct field storage.
+Creates SaveFileDataV2 with typed runtime object collections instead of nested JSON strings.
+Works with SaveableBase objects and the new RuntimeObjectSaveData system.</p>
 </section>
+      <h4><a class="xref" href="GameFramework.SaveSystem.Services.SavingCompletedEvent.html">SavingCompletedEvent</a></h4>
+      <section></section>
+      <h4><a class="xref" href="GameFramework.SaveSystem.Services.SavingFailedEvent.html">SavingFailedEvent</a></h4>
+      <section></section>
+      <h4><a class="xref" href="GameFramework.SaveSystem.Services.SavingProgressEvent.html">SavingProgressEvent</a></h4>
+      <section></section>
 
 
 </article>

@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Namespace GameFramework.LoadSystem.Interfaces | UCTools Base Project </title>
+    <title>Namespace GameFramework.SaveSystem.Attributes | UCTools Base Project </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Namespace GameFramework.LoadSystem.Interfaces | UCTools Base Project ">
+    <meta name="title" content="Namespace GameFramework.SaveSystem.Attributes | UCTools Base Project ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -79,21 +79,25 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="GameFramework.LoadSystem.Interfaces">
+            <article class="content wrap" id="_content" data-uid="GameFramework.SaveSystem.Attributes">
 
-  <h1 id="GameFramework_LoadSystem_Interfaces" data-uid="GameFramework.LoadSystem.Interfaces" class="text-break">Namespace GameFramework.LoadSystem.Interfaces</h1>
+  <h1 id="GameFramework_SaveSystem_Attributes" data-uid="GameFramework.SaveSystem.Attributes" class="text-break">Namespace GameFramework.SaveSystem.Attributes</h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="markdown level0 remarks"></div>
-    <h3 id="interfaces">
-Interfaces
+    <h3 id="classes">
+Classes
 </h3>
-      <h4><a class="xref" href="GameFramework.LoadSystem.Interfaces.ILoadService.html">ILoadService</a></h4>
-      <section><p>Interface for loading save data and transforming it into live game state
-Handles game logic for loading, not file operations</p>
+      <h4><a class="xref" href="GameFramework.SaveSystem.Attributes.SaveableTypeAttribute.html">SaveableTypeAttribute</a></h4>
+      <section><p>Attribute to specify the RuntimeObjectSaveData type associated with a SaveableBase class.
+This enables automatic type discovery and eliminates the need for manual registration.</p>
+<p>Usage:
+[SaveableType(typeof(MyObjectRuntimeSaveData))]
+public class MyObject : SaveableBase
+{
+// Implementation...
+}</p>
 </section>
-      <h4><a class="xref" href="GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator.html">IRuntimeObjectInstantiator</a></h4>
-      <section></section>
 
 
 </article>

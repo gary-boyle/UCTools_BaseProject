@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class NewGameSaveDataCreator | UCTools Base Project </title>
+    <title>Class TestGenericRuntimeSaveData | UCTools Base Project </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class NewGameSaveDataCreator | UCTools Base Project ">
+    <meta name="title" content="Class TestGenericRuntimeSaveData | UCTools Base Project ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -79,20 +79,46 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="GameFramework.SaveSystem.Utilities.NewGameSaveDataCreator">
+            <article class="content wrap" id="_content" data-uid="GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData">
 
 
 
-  <h1 id="GameFramework_SaveSystem_Utilities_NewGameSaveDataCreator" data-uid="GameFramework.SaveSystem.Utilities.NewGameSaveDataCreator" class="text-break">Class NewGameSaveDataCreator</h1>
-  <div class="markdown level0 summary"></div>
+  <h1 id="GameFramework_SaveSystem_Data_TestGenericRuntimeSaveData" data-uid="GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData" class="text-break">Class TestGenericRuntimeSaveData</h1>
+  <div class="markdown level0 summary"><p>Specialized save data for TestGenericSaveable objects</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><span class="xref">NewGameSaveDataCreator</span></div>
+    <div class="level1"><a class="xref" href="GameFramework.SaveSystem.Data.RuntimeObjectSaveData.html">RuntimeObjectSaveData</a></div>
+    <div class="level2"><span class="xref">TestGenericRuntimeSaveData</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="GameFramework.SaveSystem.Data.RuntimeObjectSaveData.html#GameFramework_SaveSystem_Data_RuntimeObjectSaveData_uniqueID">RuntimeObjectSaveData.uniqueID</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.SaveSystem.Data.RuntimeObjectSaveData.html#GameFramework_SaveSystem_Data_RuntimeObjectSaveData_prefabGUID">RuntimeObjectSaveData.prefabGUID</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.SaveSystem.Data.RuntimeObjectSaveData.html#GameFramework_SaveSystem_Data_RuntimeObjectSaveData_typeName">RuntimeObjectSaveData.typeName</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.SaveSystem.Data.RuntimeObjectSaveData.html#GameFramework_SaveSystem_Data_RuntimeObjectSaveData_position">RuntimeObjectSaveData.position</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.SaveSystem.Data.RuntimeObjectSaveData.html#GameFramework_SaveSystem_Data_RuntimeObjectSaveData_rotation">RuntimeObjectSaveData.rotation</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.SaveSystem.Data.RuntimeObjectSaveData.html#GameFramework_SaveSystem_Data_RuntimeObjectSaveData_scale">RuntimeObjectSaveData.scale</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.SaveSystem.Data.RuntimeObjectSaveData.html#GameFramework_SaveSystem_Data_RuntimeObjectSaveData_isActive">RuntimeObjectSaveData.isActive</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.SaveSystem.Data.RuntimeObjectSaveData.html#GameFramework_SaveSystem_Data_RuntimeObjectSaveData_objectDataJson">RuntimeObjectSaveData.objectDataJson</a>
+    </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
     </div>
@@ -115,23 +141,30 @@
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
     </div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.SaveSystem.html">SaveSystem</a>.<a class="xref" href="GameFramework.SaveSystem.Utilities.html">Utilities</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.SaveSystem.html">SaveSystem</a>.<a class="xref" href="GameFramework.SaveSystem.Data.html">Data</a></h6>
   <h6><strong>Assembly</strong>: .dll</h6>
-  <h5 id="GameFramework_SaveSystem_Utilities_NewGameSaveDataCreator_syntax">Syntax</h5>
+  <h5 id="GameFramework_SaveSystem_Data_TestGenericRuntimeSaveData_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class NewGameSaveDataCreator</code></pre>
+    <pre><code class="lang-csharp hljs">[Serializable]
+public class TestGenericRuntimeSaveData : RuntimeObjectSaveData</code></pre>
   </div>
-  <h3 id="methods">Methods
+  <h3 id="constructors">Constructors
 </h3>
-  <a id="GameFramework_SaveSystem_Utilities_NewGameSaveDataCreator_CreateNewGameSaveData_" data-uid="GameFramework.SaveSystem.Utilities.NewGameSaveDataCreator.CreateNewGameSaveData*"></a>
-  <h4 id="GameFramework_SaveSystem_Utilities_NewGameSaveDataCreator_CreateNewGameSaveData_System_String_System_String_System_String_" data-uid="GameFramework.SaveSystem.Utilities.NewGameSaveDataCreator.CreateNewGameSaveData(System.String,System.String,System.String)">CreateNewGameSaveData(string, string, string)</h4>
-  <div class="markdown level1 summary"><p>Creates fresh SaveFileData for a new game with default values
-This allows new games to go through the same loading pipeline as existing saves</p>
-</div>
+  <a id="GameFramework_SaveSystem_Data_TestGenericRuntimeSaveData__ctor_" data-uid="GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.#ctor*"></a>
+  <h4 id="GameFramework_SaveSystem_Data_TestGenericRuntimeSaveData__ctor" data-uid="GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.#ctor">TestGenericRuntimeSaveData()</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static SaveFileData CreateNewGameSaveData(string playerName, string difficulty, string startingScene)</code></pre>
+    <pre><code class="lang-csharp hljs">public TestGenericRuntimeSaveData()</code></pre>
+  </div>
+  <a id="GameFramework_SaveSystem_Data_TestGenericRuntimeSaveData__ctor_" data-uid="GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.#ctor*"></a>
+  <h4 id="GameFramework_SaveSystem_Data_TestGenericRuntimeSaveData__ctor_System_String_System_String_" data-uid="GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.#ctor(System.String,System.String)">TestGenericRuntimeSaveData(string, string)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TestGenericRuntimeSaveData(string uniqueID, string prefabGUID)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -145,22 +178,26 @@ This allows new games to go through the same loading pipeline as existing saves<
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">playerName</span></td>
+        <td><span class="parametername">uniqueID</span></td>
         <td></td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">difficulty</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">startingScene</span></td>
+        <td><span class="parametername">prefabGUID</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <h5 class="returns">Returns</h5>
+  <h3 id="fields">Fields
+</h3>
+  <h4 id="GameFramework_SaveSystem_Data_TestGenericRuntimeSaveData_testBool" data-uid="GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.testBool">testBool</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool testBool</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
@@ -170,7 +207,51 @@ This allows new games to go through the same loading pipeline as existing saves<
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="GameFramework.SaveSystem.Data.SaveFileData.html">SaveFileData</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_SaveSystem_Data_TestGenericRuntimeSaveData_testString" data-uid="GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.testString">testString</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string testString</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_SaveSystem_Data_TestGenericRuntimeSaveData_testValue" data-uid="GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.testValue">testValue</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int testValue</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td></td>
       </tr>
     </tbody>

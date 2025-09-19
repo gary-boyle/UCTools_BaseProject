@@ -84,9 +84,9 @@
 
 
   <h1 id="GameFramework_SaveSystem_Services_SaveService" data-uid="GameFramework.SaveSystem.Services.SaveService" class="text-break">Class SaveService</h1>
-  <div class="markdown level0 summary"><p>Main save service responsible for orchestrating save operations
-Handles event-driven save requests and coordinates with registry and file service
-Delegates file I/O operations to FileService for separation of concerns</p>
+  <div class="markdown level0 summary"><p>Enhanced SaveService that uses the new clean save system with direct field storage.
+Creates SaveFileDataV2 with typed runtime object collections instead of nested JSON strings.
+Works with SaveableBase objects and the new RuntimeObjectSaveData system.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -132,12 +132,12 @@ Delegates file I/O operations to FileService for separation of concerns</p>
   <h3 id="constructors">Constructors
 </h3>
   <a id="GameFramework_SaveSystem_Services_SaveService__ctor_" data-uid="GameFramework.SaveSystem.Services.SaveService.#ctor*"></a>
-  <h4 id="GameFramework_SaveSystem_Services_SaveService__ctor_GameFramework_EventSystem_Interfaces_IEventSystem_GameFramework_SaveSystem_Interfaces_ISaveDataRegistry_GameFramework_FileSystem_Interfaces_IFileService_" data-uid="GameFramework.SaveSystem.Services.SaveService.#ctor(GameFramework.EventSystem.Interfaces.IEventSystem,GameFramework.SaveSystem.Interfaces.ISaveDataRegistry,GameFramework.FileSystem.Interfaces.IFileService)">SaveService(IEventSystem, ISaveDataRegistry, IFileService)</h4>
+  <h4 id="GameFramework_SaveSystem_Services_SaveService__ctor_GameFramework_Services_Interfaces_IGameDataService_GameFramework_EventSystem_Interfaces_IEventSystem_GameFramework_SaveSystem_Interfaces_ISaveDataRegistry_" data-uid="GameFramework.SaveSystem.Services.SaveService.#ctor(GameFramework.Services.Interfaces.IGameDataService,GameFramework.EventSystem.Interfaces.IEventSystem,GameFramework.SaveSystem.Interfaces.ISaveDataRegistry)">SaveService(IGameDataService, IEventSystem, ISaveDataRegistry)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public SaveService(IEventSystem eventSystem, ISaveDataRegistry saveDataRegistry, IFileService fileService)</code></pre>
+    <pre><code class="lang-csharp hljs">public SaveService(IGameDataService gameDataService, IEventSystem eventSystem, ISaveDataRegistry saveDataRegistry)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -150,6 +150,11 @@ Delegates file I/O operations to FileService for separation of concerns</p>
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="GameFramework.Services.Interfaces.IGameDataService.html">IGameDataService</a></td>
+        <td><span class="parametername">gameDataService</span></td>
+        <td></td>
+      </tr>
+      <tr>
         <td><a class="xref" href="GameFramework.EventSystem.Interfaces.IEventSystem.html">IEventSystem</a></td>
         <td><span class="parametername">eventSystem</span></td>
         <td></td>
@@ -157,11 +162,6 @@ Delegates file I/O operations to FileService for separation of concerns</p>
       <tr>
         <td><a class="xref" href="GameFramework.SaveSystem.Interfaces.ISaveDataRegistry.html">ISaveDataRegistry</a></td>
         <td><span class="parametername">saveDataRegistry</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GameFramework.FileSystem.Interfaces.IFileService.html">IFileService</a></td>
-        <td><span class="parametername">fileService</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -219,7 +219,7 @@ Delegates file I/O operations to FileService for separation of concerns</p>
   <a id="GameFramework_SaveSystem_Services_SaveService_OnSaveRequested_" data-uid="GameFramework.SaveSystem.Services.SaveService.OnSaveRequested*"></a>
   <h4 id="GameFramework_SaveSystem_Services_SaveService_OnSaveRequested_GameFramework_EventSystem_Events_SaveRequestedEvent_" data-uid="GameFramework.SaveSystem.Services.SaveService.OnSaveRequested(GameFramework.EventSystem.Events.SaveRequestedEvent)">OnSaveRequested(SaveRequestedEvent)</h4>
   <div class="markdown level1 summary"><p>Handles save requested events from the event system
-Processes different save types (Regular, Auto, Overwrite)</p>
+Implements the ISaveService interface requirement</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -239,6 +239,52 @@ Processes different save types (Regular, Auto, Overwrite)</p>
       <tr>
         <td><a class="xref" href="GameFramework.EventSystem.Events.SaveRequestedEvent.html">SaveRequestedEvent</a></td>
         <td><span class="parametername">saveEvent</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_SaveSystem_Services_SaveService_SaveGameStateAsync_" data-uid="GameFramework.SaveSystem.Services.SaveService.SaveGameStateAsync*"></a>
+  <h4 id="GameFramework_SaveSystem_Services_SaveService_SaveGameStateAsync_System_String_System_Boolean_" data-uid="GameFramework.SaveSystem.Services.SaveService.SaveGameStateAsync(System.String,System.Boolean)">SaveGameStateAsync(string, bool)</h4>
+  <div class="markdown level1 summary"><p>Saves the current game state to a file using the new clean save system</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; SaveGameStateAsync(string fileName, bool isAutoSave = false)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">fileName</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">isAutoSave</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>

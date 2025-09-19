@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class SaveableExampleData | UCTools Base Project </title>
+    <title>Class SavingCompletedEvent | UCTools Base Project </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class SaveableExampleData | UCTools Base Project ">
+    <meta name="title" content="Class SavingCompletedEvent | UCTools Base Project ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -79,19 +79,17 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="GameFramework.SaveSystem.Examples.SaveableExampleData">
+            <article class="content wrap" id="_content" data-uid="GameFramework.SaveSystem.Services.SavingCompletedEvent">
 
 
 
-  <h1 id="GameFramework_SaveSystem_Examples_SaveableExampleData" data-uid="GameFramework.SaveSystem.Examples.SaveableExampleData" class="text-break">Class SaveableExampleData</h1>
-  <div class="markdown level0 summary"><p>Serializable save data class for SaveableExample.
-This is what gets saved to/loaded from the save file.</p>
-</div>
+  <h1 id="GameFramework_SaveSystem_Services_SavingCompletedEvent" data-uid="GameFramework.SaveSystem.Services.SavingCompletedEvent" class="text-break">Class SavingCompletedEvent</h1>
+  <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><span class="xref">SaveableExampleData</span></div>
+    <div class="level1"><span class="xref">SavingCompletedEvent</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -117,23 +115,55 @@ This is what gets saved to/loaded from the save file.</p>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
     </div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.SaveSystem.html">SaveSystem</a>.<a class="xref" href="GameFramework.SaveSystem.Examples.html">Examples</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.SaveSystem.html">SaveSystem</a>.<a class="xref" href="GameFramework.SaveSystem.Services.html">Services</a></h6>
   <h6><strong>Assembly</strong>: .dll</h6>
-  <h5 id="GameFramework_SaveSystem_Examples_SaveableExampleData_syntax">Syntax</h5>
+  <h5 id="GameFramework_SaveSystem_Services_SavingCompletedEvent_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Serializable]
-public class SaveableExampleData</code></pre>
+    <pre><code class="lang-csharp hljs">public class SavingCompletedEvent</code></pre>
   </div>
-  <h3 id="fields">Fields
+  <h3 id="constructors">Constructors
 </h3>
-  <h4 id="GameFramework_SaveSystem_Examples_SaveableExampleData_health" data-uid="GameFramework.SaveSystem.Examples.SaveableExampleData.health">health</h4>
+  <a id="GameFramework_SaveSystem_Services_SavingCompletedEvent__ctor_" data-uid="GameFramework.SaveSystem.Services.SavingCompletedEvent.#ctor*"></a>
+  <h4 id="GameFramework_SaveSystem_Services_SavingCompletedEvent__ctor_System_String_System_Boolean_" data-uid="GameFramework.SaveSystem.Services.SavingCompletedEvent.#ctor(System.String,System.Boolean)">SavingCompletedEvent(string, bool)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public float health</code></pre>
+    <pre><code class="lang-csharp hljs">public SavingCompletedEvent(string fileName, bool wasAutoSave)</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">fileName</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">wasAutoSave</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+</h3>
+  <a id="GameFramework_SaveSystem_Services_SavingCompletedEvent_FileName_" data-uid="GameFramework.SaveSystem.Services.SavingCompletedEvent.FileName*"></a>
+  <h4 id="GameFramework_SaveSystem_Services_SavingCompletedEvent_FileName" data-uid="GameFramework.SaveSystem.Services.SavingCompletedEvent.FileName">FileName</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string FileName { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
@@ -143,19 +173,20 @@ public class SaveableExampleData</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <h4 id="GameFramework_SaveSystem_Examples_SaveableExampleData_isActive" data-uid="GameFramework.SaveSystem.Examples.SaveableExampleData.isActive">isActive</h4>
+  <a id="GameFramework_SaveSystem_Services_SavingCompletedEvent_WasAutoSave_" data-uid="GameFramework.SaveSystem.Services.SavingCompletedEvent.WasAutoSave*"></a>
+  <h4 id="GameFramework_SaveSystem_Services_SavingCompletedEvent_WasAutoSave" data-uid="GameFramework.SaveSystem.Services.SavingCompletedEvent.WasAutoSave">WasAutoSave</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool isActive</code></pre>
+    <pre><code class="lang-csharp hljs">public bool WasAutoSave { get; }</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
+  <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
@@ -166,72 +197,6 @@ public class SaveableExampleData</code></pre>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h4 id="GameFramework_SaveSystem_Examples_SaveableExampleData_playerName" data-uid="GameFramework.SaveSystem.Examples.SaveableExampleData.playerName">playerName</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string playerName</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h4 id="GameFramework_SaveSystem_Examples_SaveableExampleData_spawnPosition" data-uid="GameFramework.SaveSystem.Examples.SaveableExampleData.spawnPosition">spawnPosition</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Vector3 spawnPosition</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Vector3</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h4 id="GameFramework_SaveSystem_Examples_SaveableExampleData_uniqueID" data-uid="GameFramework.SaveSystem.Examples.SaveableExampleData.uniqueID">uniqueID</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string uniqueID</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td></td>
       </tr>
     </tbody>

@@ -642,6 +642,19 @@ references:
   commentId: T:GameFramework.Components.ClickableCube
   fullName: GameFramework.Components.ClickableCube
   nameWithType: ClickableCube
+- uid: GameFramework.Components.ClickableCube.CreateSpecificRuntimeSaveData
+  name: CreateSpecificRuntimeSaveData()
+  href: api/api/GameFramework.Components.ClickableCube.html#GameFramework_Components_ClickableCube_CreateSpecificRuntimeSaveData
+  commentId: M:GameFramework.Components.ClickableCube.CreateSpecificRuntimeSaveData
+  fullName: GameFramework.Components.ClickableCube.CreateSpecificRuntimeSaveData()
+  nameWithType: ClickableCube.CreateSpecificRuntimeSaveData()
+- uid: GameFramework.Components.ClickableCube.CreateSpecificRuntimeSaveData*
+  name: CreateSpecificRuntimeSaveData
+  href: api/api/GameFramework.Components.ClickableCube.html#GameFramework_Components_ClickableCube_CreateSpecificRuntimeSaveData_
+  commentId: Overload:GameFramework.Components.ClickableCube.CreateSpecificRuntimeSaveData
+  isSpec: "True"
+  fullName: GameFramework.Components.ClickableCube.CreateSpecificRuntimeSaveData
+  nameWithType: ClickableCube.CreateSpecificRuntimeSaveData
 - uid: GameFramework.Components.ClickableCube.CubeColor
   name: CubeColor
   href: api/api/GameFramework.Components.ClickableCube.html#GameFramework_Components_ClickableCube_CubeColor
@@ -668,35 +681,58 @@ references:
   isSpec: "True"
   fullName: GameFramework.Components.ClickableCube.CubeValue
   nameWithType: ClickableCube.CubeValue
-- uid: GameFramework.Components.ClickableCube.GetSaveData
-  name: GetSaveData()
-  href: api/api/GameFramework.Components.ClickableCube.html#GameFramework_Components_ClickableCube_GetSaveData
-  commentId: M:GameFramework.Components.ClickableCube.GetSaveData
-  fullName: GameFramework.Components.ClickableCube.GetSaveData()
-  nameWithType: ClickableCube.GetSaveData()
-- uid: GameFramework.Components.ClickableCube.GetSaveData*
-  name: GetSaveData
-  href: api/api/GameFramework.Components.ClickableCube.html#GameFramework_Components_ClickableCube_GetSaveData_
-  commentId: Overload:GameFramework.Components.ClickableCube.GetSaveData
+- uid: GameFramework.Components.ClickableCube.GetUniqueIdPrefix
+  name: GetUniqueIdPrefix()
+  href: api/api/GameFramework.Components.ClickableCube.html#GameFramework_Components_ClickableCube_GetUniqueIdPrefix
+  commentId: M:GameFramework.Components.ClickableCube.GetUniqueIdPrefix
+  fullName: GameFramework.Components.ClickableCube.GetUniqueIdPrefix()
+  nameWithType: ClickableCube.GetUniqueIdPrefix()
+- uid: GameFramework.Components.ClickableCube.GetUniqueIdPrefix*
+  name: GetUniqueIdPrefix
+  href: api/api/GameFramework.Components.ClickableCube.html#GameFramework_Components_ClickableCube_GetUniqueIdPrefix_
+  commentId: Overload:GameFramework.Components.ClickableCube.GetUniqueIdPrefix
   isSpec: "True"
-  fullName: GameFramework.Components.ClickableCube.GetSaveData
-  nameWithType: ClickableCube.GetSaveData
-- uid: GameFramework.Components.ClickableCube.LoadSaveData(System.Object)
-  name: LoadSaveData(object)
-  href: api/api/GameFramework.Components.ClickableCube.html#GameFramework_Components_ClickableCube_LoadSaveData_System_Object_
-  commentId: M:GameFramework.Components.ClickableCube.LoadSaveData(System.Object)
-  name.vb: LoadSaveData(Object)
-  fullName: GameFramework.Components.ClickableCube.LoadSaveData(object)
-  fullName.vb: GameFramework.Components.ClickableCube.LoadSaveData(Object)
-  nameWithType: ClickableCube.LoadSaveData(object)
-  nameWithType.vb: ClickableCube.LoadSaveData(Object)
-- uid: GameFramework.Components.ClickableCube.LoadSaveData*
-  name: LoadSaveData
-  href: api/api/GameFramework.Components.ClickableCube.html#GameFramework_Components_ClickableCube_LoadSaveData_
-  commentId: Overload:GameFramework.Components.ClickableCube.LoadSaveData
+  fullName: GameFramework.Components.ClickableCube.GetUniqueIdPrefix
+  nameWithType: ClickableCube.GetUniqueIdPrefix
+- uid: GameFramework.Components.ClickableCube.LoadSpecificRuntimeSaveData(GameFramework.SaveSystem.Data.RuntimeObjectSaveData)
+  name: LoadSpecificRuntimeSaveData(RuntimeObjectSaveData)
+  href: api/api/GameFramework.Components.ClickableCube.html#GameFramework_Components_ClickableCube_LoadSpecificRuntimeSaveData_GameFramework_SaveSystem_Data_RuntimeObjectSaveData_
+  commentId: M:GameFramework.Components.ClickableCube.LoadSpecificRuntimeSaveData(GameFramework.SaveSystem.Data.RuntimeObjectSaveData)
+  fullName: GameFramework.Components.ClickableCube.LoadSpecificRuntimeSaveData(GameFramework.SaveSystem.Data.RuntimeObjectSaveData)
+  nameWithType: ClickableCube.LoadSpecificRuntimeSaveData(RuntimeObjectSaveData)
+- uid: GameFramework.Components.ClickableCube.LoadSpecificRuntimeSaveData*
+  name: LoadSpecificRuntimeSaveData
+  href: api/api/GameFramework.Components.ClickableCube.html#GameFramework_Components_ClickableCube_LoadSpecificRuntimeSaveData_
+  commentId: Overload:GameFramework.Components.ClickableCube.LoadSpecificRuntimeSaveData
   isSpec: "True"
-  fullName: GameFramework.Components.ClickableCube.LoadSaveData
-  nameWithType: ClickableCube.LoadSaveData
+  fullName: GameFramework.Components.ClickableCube.LoadSpecificRuntimeSaveData
+  nameWithType: ClickableCube.LoadSpecificRuntimeSaveData
+- uid: GameFramework.Components.ClickableCube.OnAwakeCustom
+  name: OnAwakeCustom()
+  href: api/api/GameFramework.Components.ClickableCube.html#GameFramework_Components_ClickableCube_OnAwakeCustom
+  commentId: M:GameFramework.Components.ClickableCube.OnAwakeCustom
+  fullName: GameFramework.Components.ClickableCube.OnAwakeCustom()
+  nameWithType: ClickableCube.OnAwakeCustom()
+- uid: GameFramework.Components.ClickableCube.OnAwakeCustom*
+  name: OnAwakeCustom
+  href: api/api/GameFramework.Components.ClickableCube.html#GameFramework_Components_ClickableCube_OnAwakeCustom_
+  commentId: Overload:GameFramework.Components.ClickableCube.OnAwakeCustom
+  isSpec: "True"
+  fullName: GameFramework.Components.ClickableCube.OnAwakeCustom
+  nameWithType: ClickableCube.OnAwakeCustom
+- uid: GameFramework.Components.ClickableCube.OnStartCustom
+  name: OnStartCustom()
+  href: api/api/GameFramework.Components.ClickableCube.html#GameFramework_Components_ClickableCube_OnStartCustom
+  commentId: M:GameFramework.Components.ClickableCube.OnStartCustom
+  fullName: GameFramework.Components.ClickableCube.OnStartCustom()
+  nameWithType: ClickableCube.OnStartCustom()
+- uid: GameFramework.Components.ClickableCube.OnStartCustom*
+  name: OnStartCustom
+  href: api/api/GameFramework.Components.ClickableCube.html#GameFramework_Components_ClickableCube_OnStartCustom_
+  commentId: Overload:GameFramework.Components.ClickableCube.OnStartCustom
+  isSpec: "True"
+  fullName: GameFramework.Components.ClickableCube.OnStartCustom
+  nameWithType: ClickableCube.OnStartCustom
 - uid: GameFramework.Components.ClickableCube.OnValueChanged
   name: OnValueChanged()
   href: api/api/GameFramework.Components.ClickableCube.html#GameFramework_Components_ClickableCube_OnValueChanged
@@ -723,19 +759,6 @@ references:
   isSpec: "True"
   fullName: GameFramework.Components.ClickableCube.ResetCube
   nameWithType: ClickableCube.ResetCube
-- uid: GameFramework.Components.ClickableCube.SaveKey
-  name: SaveKey
-  href: api/api/GameFramework.Components.ClickableCube.html#GameFramework_Components_ClickableCube_SaveKey
-  commentId: P:GameFramework.Components.ClickableCube.SaveKey
-  fullName: GameFramework.Components.ClickableCube.SaveKey
-  nameWithType: ClickableCube.SaveKey
-- uid: GameFramework.Components.ClickableCube.SaveKey*
-  name: SaveKey
-  href: api/api/GameFramework.Components.ClickableCube.html#GameFramework_Components_ClickableCube_SaveKey_
-  commentId: Overload:GameFramework.Components.ClickableCube.SaveKey
-  isSpec: "True"
-  fullName: GameFramework.Components.ClickableCube.SaveKey
-  nameWithType: ClickableCube.SaveKey
 - uid: GameFramework.Components.ClickableCube.SetValues(System.Int32,Color)
   name: SetValues(int, Color)
   href: api/api/GameFramework.Components.ClickableCube.html#GameFramework_Components_ClickableCube_SetValues_System_Int32_Color_
@@ -752,32 +775,6 @@ references:
   isSpec: "True"
   fullName: GameFramework.Components.ClickableCube.SetValues
   nameWithType: ClickableCube.SetValues
-- uid: GameFramework.Components.ClickableCube.TypeName
-  name: TypeName
-  href: api/api/GameFramework.Components.ClickableCube.html#GameFramework_Components_ClickableCube_TypeName
-  commentId: P:GameFramework.Components.ClickableCube.TypeName
-  fullName: GameFramework.Components.ClickableCube.TypeName
-  nameWithType: ClickableCube.TypeName
-- uid: GameFramework.Components.ClickableCube.TypeName*
-  name: TypeName
-  href: api/api/GameFramework.Components.ClickableCube.html#GameFramework_Components_ClickableCube_TypeName_
-  commentId: Overload:GameFramework.Components.ClickableCube.TypeName
-  isSpec: "True"
-  fullName: GameFramework.Components.ClickableCube.TypeName
-  nameWithType: ClickableCube.TypeName
-- uid: GameFramework.Components.ClickableCube.UniqueID
-  name: UniqueID
-  href: api/api/GameFramework.Components.ClickableCube.html#GameFramework_Components_ClickableCube_UniqueID
-  commentId: P:GameFramework.Components.ClickableCube.UniqueID
-  fullName: GameFramework.Components.ClickableCube.UniqueID
-  nameWithType: ClickableCube.UniqueID
-- uid: GameFramework.Components.ClickableCube.UniqueID*
-  name: UniqueID
-  href: api/api/GameFramework.Components.ClickableCube.html#GameFramework_Components_ClickableCube_UniqueID_
-  commentId: Overload:GameFramework.Components.ClickableCube.UniqueID
-  isSpec: "True"
-  fullName: GameFramework.Components.ClickableCube.UniqueID
-  nameWithType: ClickableCube.UniqueID
 - uid: GameFramework.Components.PlayerController
   name: PlayerController
   href: api/api/GameFramework.Components.PlayerController.html
@@ -1147,41 +1144,6 @@ references:
   commentId: N:GameFramework.Components.Saveable
   fullName: GameFramework.Components.Saveable
   nameWithType: GameFramework.Components.Saveable
-- uid: GameFramework.Components.Saveable.GenericSaveable
-  name: GenericSaveable
-  href: api/api/GameFramework.Components.Saveable.GenericSaveable.html
-  commentId: T:GameFramework.Components.Saveable.GenericSaveable
-  fullName: GameFramework.Components.Saveable.GenericSaveable
-  nameWithType: GenericSaveable
-- uid: GameFramework.Components.Saveable.GenericSaveable.GetSaveData
-  name: GetSaveData()
-  href: api/api/GameFramework.Components.Saveable.GenericSaveable.html#GameFramework_Components_Saveable_GenericSaveable_GetSaveData
-  commentId: M:GameFramework.Components.Saveable.GenericSaveable.GetSaveData
-  fullName: GameFramework.Components.Saveable.GenericSaveable.GetSaveData()
-  nameWithType: GenericSaveable.GetSaveData()
-- uid: GameFramework.Components.Saveable.GenericSaveable.GetSaveData*
-  name: GetSaveData
-  href: api/api/GameFramework.Components.Saveable.GenericSaveable.html#GameFramework_Components_Saveable_GenericSaveable_GetSaveData_
-  commentId: Overload:GameFramework.Components.Saveable.GenericSaveable.GetSaveData
-  isSpec: "True"
-  fullName: GameFramework.Components.Saveable.GenericSaveable.GetSaveData
-  nameWithType: GenericSaveable.GetSaveData
-- uid: GameFramework.Components.Saveable.GenericSaveable.LoadSaveData(System.Object)
-  name: LoadSaveData(object)
-  href: api/api/GameFramework.Components.Saveable.GenericSaveable.html#GameFramework_Components_Saveable_GenericSaveable_LoadSaveData_System_Object_
-  commentId: M:GameFramework.Components.Saveable.GenericSaveable.LoadSaveData(System.Object)
-  name.vb: LoadSaveData(Object)
-  fullName: GameFramework.Components.Saveable.GenericSaveable.LoadSaveData(object)
-  fullName.vb: GameFramework.Components.Saveable.GenericSaveable.LoadSaveData(Object)
-  nameWithType: GenericSaveable.LoadSaveData(object)
-  nameWithType.vb: GenericSaveable.LoadSaveData(Object)
-- uid: GameFramework.Components.Saveable.GenericSaveable.LoadSaveData*
-  name: LoadSaveData
-  href: api/api/GameFramework.Components.Saveable.GenericSaveable.html#GameFramework_Components_Saveable_GenericSaveable_LoadSaveData_
-  commentId: Overload:GameFramework.Components.Saveable.GenericSaveable.LoadSaveData
-  isSpec: "True"
-  fullName: GameFramework.Components.Saveable.GenericSaveable.LoadSaveData
-  nameWithType: GenericSaveable.LoadSaveData
 - uid: GameFramework.Components.Saveable.GenericSaveableData
   name: GenericSaveableData
   href: api/api/GameFramework.Components.Saveable.GenericSaveableData.html
@@ -7112,6 +7074,121 @@ references:
   isSpec: "True"
   fullName: GameFramework.Editor.ConfigFileEditorWindow.ShowWindow
   nameWithType: ConfigFileEditorWindow.ShowWindow
+- uid: GameFramework.Editor.PrefabRegistryEditor
+  name: PrefabRegistryEditor
+  href: api/api/GameFramework.Editor.PrefabRegistryEditor.html
+  commentId: T:GameFramework.Editor.PrefabRegistryEditor
+  fullName: GameFramework.Editor.PrefabRegistryEditor
+  nameWithType: PrefabRegistryEditor
+- uid: GameFramework.Editor.PrefabRegistryEditor.OnInspectorGUI
+  name: OnInspectorGUI()
+  href: api/api/GameFramework.Editor.PrefabRegistryEditor.html#GameFramework_Editor_PrefabRegistryEditor_OnInspectorGUI
+  commentId: M:GameFramework.Editor.PrefabRegistryEditor.OnInspectorGUI
+  fullName: GameFramework.Editor.PrefabRegistryEditor.OnInspectorGUI()
+  nameWithType: PrefabRegistryEditor.OnInspectorGUI()
+- uid: GameFramework.Editor.PrefabRegistryEditor.OnInspectorGUI*
+  name: OnInspectorGUI
+  href: api/api/GameFramework.Editor.PrefabRegistryEditor.html#GameFramework_Editor_PrefabRegistryEditor_OnInspectorGUI_
+  commentId: Overload:GameFramework.Editor.PrefabRegistryEditor.OnInspectorGUI
+  isSpec: "True"
+  fullName: GameFramework.Editor.PrefabRegistryEditor.OnInspectorGUI
+  nameWithType: PrefabRegistryEditor.OnInspectorGUI
+- uid: GameFramework.Editor.PrefabRegistryPopulator
+  name: PrefabRegistryPopulator
+  href: api/api/GameFramework.Editor.PrefabRegistryPopulator.html
+  commentId: T:GameFramework.Editor.PrefabRegistryPopulator
+  fullName: GameFramework.Editor.PrefabRegistryPopulator
+  nameWithType: PrefabRegistryPopulator
+- uid: GameFramework.Editor.PrefabRegistryPopulator.AutoPopulatePrefabRegistry
+  name: AutoPopulatePrefabRegistry()
+  href: api/api/GameFramework.Editor.PrefabRegistryPopulator.html#GameFramework_Editor_PrefabRegistryPopulator_AutoPopulatePrefabRegistry
+  commentId: M:GameFramework.Editor.PrefabRegistryPopulator.AutoPopulatePrefabRegistry
+  fullName: GameFramework.Editor.PrefabRegistryPopulator.AutoPopulatePrefabRegistry()
+  nameWithType: PrefabRegistryPopulator.AutoPopulatePrefabRegistry()
+- uid: GameFramework.Editor.PrefabRegistryPopulator.AutoPopulatePrefabRegistry*
+  name: AutoPopulatePrefabRegistry
+  href: api/api/GameFramework.Editor.PrefabRegistryPopulator.html#GameFramework_Editor_PrefabRegistryPopulator_AutoPopulatePrefabRegistry_
+  commentId: Overload:GameFramework.Editor.PrefabRegistryPopulator.AutoPopulatePrefabRegistry
+  isSpec: "True"
+  fullName: GameFramework.Editor.PrefabRegistryPopulator.AutoPopulatePrefabRegistry
+  nameWithType: PrefabRegistryPopulator.AutoPopulatePrefabRegistry
+- uid: GameFramework.Editor.PrefabRegistryPopulator.ClearPrefabRegistry
+  name: ClearPrefabRegistry()
+  href: api/api/GameFramework.Editor.PrefabRegistryPopulator.html#GameFramework_Editor_PrefabRegistryPopulator_ClearPrefabRegistry
+  commentId: M:GameFramework.Editor.PrefabRegistryPopulator.ClearPrefabRegistry
+  fullName: GameFramework.Editor.PrefabRegistryPopulator.ClearPrefabRegistry()
+  nameWithType: PrefabRegistryPopulator.ClearPrefabRegistry()
+- uid: GameFramework.Editor.PrefabRegistryPopulator.ClearPrefabRegistry*
+  name: ClearPrefabRegistry
+  href: api/api/GameFramework.Editor.PrefabRegistryPopulator.html#GameFramework_Editor_PrefabRegistryPopulator_ClearPrefabRegistry_
+  commentId: Overload:GameFramework.Editor.PrefabRegistryPopulator.ClearPrefabRegistry
+  isSpec: "True"
+  fullName: GameFramework.Editor.PrefabRegistryPopulator.ClearPrefabRegistry
+  nameWithType: PrefabRegistryPopulator.ClearPrefabRegistry
+- uid: GameFramework.Editor.PrefabRegistryPopulator.SelectPrefabRegistry
+  name: SelectPrefabRegistry()
+  href: api/api/GameFramework.Editor.PrefabRegistryPopulator.html#GameFramework_Editor_PrefabRegistryPopulator_SelectPrefabRegistry
+  commentId: M:GameFramework.Editor.PrefabRegistryPopulator.SelectPrefabRegistry
+  fullName: GameFramework.Editor.PrefabRegistryPopulator.SelectPrefabRegistry()
+  nameWithType: PrefabRegistryPopulator.SelectPrefabRegistry()
+- uid: GameFramework.Editor.PrefabRegistryPopulator.SelectPrefabRegistry*
+  name: SelectPrefabRegistry
+  href: api/api/GameFramework.Editor.PrefabRegistryPopulator.html#GameFramework_Editor_PrefabRegistryPopulator_SelectPrefabRegistry_
+  commentId: Overload:GameFramework.Editor.PrefabRegistryPopulator.SelectPrefabRegistry
+  isSpec: "True"
+  fullName: GameFramework.Editor.PrefabRegistryPopulator.SelectPrefabRegistry
+  nameWithType: PrefabRegistryPopulator.SelectPrefabRegistry
+- uid: GameFramework.Editor.PrefabRegistryPopulator.ShowPrefabRegistryInfo
+  name: ShowPrefabRegistryInfo()
+  href: api/api/GameFramework.Editor.PrefabRegistryPopulator.html#GameFramework_Editor_PrefabRegistryPopulator_ShowPrefabRegistryInfo
+  commentId: M:GameFramework.Editor.PrefabRegistryPopulator.ShowPrefabRegistryInfo
+  fullName: GameFramework.Editor.PrefabRegistryPopulator.ShowPrefabRegistryInfo()
+  nameWithType: PrefabRegistryPopulator.ShowPrefabRegistryInfo()
+- uid: GameFramework.Editor.PrefabRegistryPopulator.ShowPrefabRegistryInfo*
+  name: ShowPrefabRegistryInfo
+  href: api/api/GameFramework.Editor.PrefabRegistryPopulator.html#GameFramework_Editor_PrefabRegistryPopulator_ShowPrefabRegistryInfo_
+  commentId: Overload:GameFramework.Editor.PrefabRegistryPopulator.ShowPrefabRegistryInfo
+  isSpec: "True"
+  fullName: GameFramework.Editor.PrefabRegistryPopulator.ShowPrefabRegistryInfo
+  nameWithType: PrefabRegistryPopulator.ShowPrefabRegistryInfo
+- uid: GameFramework.Editor.PrefabRegistryPopulator.ValidatePrefabRegistry
+  name: ValidatePrefabRegistry()
+  href: api/api/GameFramework.Editor.PrefabRegistryPopulator.html#GameFramework_Editor_PrefabRegistryPopulator_ValidatePrefabRegistry
+  commentId: M:GameFramework.Editor.PrefabRegistryPopulator.ValidatePrefabRegistry
+  fullName: GameFramework.Editor.PrefabRegistryPopulator.ValidatePrefabRegistry()
+  nameWithType: PrefabRegistryPopulator.ValidatePrefabRegistry()
+- uid: GameFramework.Editor.PrefabRegistryPopulator.ValidatePrefabRegistry*
+  name: ValidatePrefabRegistry
+  href: api/api/GameFramework.Editor.PrefabRegistryPopulator.html#GameFramework_Editor_PrefabRegistryPopulator_ValidatePrefabRegistry_
+  commentId: Overload:GameFramework.Editor.PrefabRegistryPopulator.ValidatePrefabRegistry
+  isSpec: "True"
+  fullName: GameFramework.Editor.PrefabRegistryPopulator.ValidatePrefabRegistry
+  nameWithType: PrefabRegistryPopulator.ValidatePrefabRegistry
+- uid: GameFramework.Editor.PrefabRegistryValidator
+  name: PrefabRegistryValidator
+  href: api/api/GameFramework.Editor.PrefabRegistryValidator.html
+  commentId: T:GameFramework.Editor.PrefabRegistryValidator
+  fullName: GameFramework.Editor.PrefabRegistryValidator
+  nameWithType: PrefabRegistryValidator
+- uid: GameFramework.Editor.PrefabRegistryWindow
+  name: PrefabRegistryWindow
+  href: api/api/GameFramework.Editor.PrefabRegistryWindow.html
+  commentId: T:GameFramework.Editor.PrefabRegistryWindow
+  fullName: GameFramework.Editor.PrefabRegistryWindow
+  nameWithType: PrefabRegistryWindow
+- uid: GameFramework.Editor.PrefabRegistryWindow.ShowWindow
+  name: ShowWindow()
+  href: api/api/GameFramework.Editor.PrefabRegistryWindow.html#GameFramework_Editor_PrefabRegistryWindow_ShowWindow
+  commentId: M:GameFramework.Editor.PrefabRegistryWindow.ShowWindow
+  fullName: GameFramework.Editor.PrefabRegistryWindow.ShowWindow()
+  nameWithType: PrefabRegistryWindow.ShowWindow()
+- uid: GameFramework.Editor.PrefabRegistryWindow.ShowWindow*
+  name: ShowWindow
+  href: api/api/GameFramework.Editor.PrefabRegistryWindow.html#GameFramework_Editor_PrefabRegistryWindow_ShowWindow_
+  commentId: Overload:GameFramework.Editor.PrefabRegistryWindow.ShowWindow
+  isSpec: "True"
+  fullName: GameFramework.Editor.PrefabRegistryWindow.ShowWindow
+  nameWithType: PrefabRegistryWindow.ShowWindow
 - uid: GameFramework.Editor.ProfilerSessionManager
   name: GameFramework.Editor.ProfilerSessionManager
   href: api/api/GameFramework.Editor.ProfilerSessionManager.html
@@ -7560,6 +7637,38 @@ references:
   commentId: E:GameFramework.Editor.ProfilerSessionManager.UI.SessionDetailsPanel.OnOpenFileRequested
   fullName: GameFramework.Editor.ProfilerSessionManager.UI.SessionDetailsPanel.OnOpenFileRequested
   nameWithType: SessionDetailsPanel.OnOpenFileRequested
+- uid: GameFramework.Editor.ReadOnlyPropertyDrawer
+  name: ReadOnlyPropertyDrawer
+  href: api/api/GameFramework.Editor.ReadOnlyPropertyDrawer.html
+  commentId: T:GameFramework.Editor.ReadOnlyPropertyDrawer
+  fullName: GameFramework.Editor.ReadOnlyPropertyDrawer
+  nameWithType: ReadOnlyPropertyDrawer
+- uid: GameFramework.Editor.ReadOnlyPropertyDrawer.GetPropertyHeight(SerializedProperty,GUIContent)
+  name: GetPropertyHeight(SerializedProperty, GUIContent)
+  href: api/api/GameFramework.Editor.ReadOnlyPropertyDrawer.html#GameFramework_Editor_ReadOnlyPropertyDrawer_GetPropertyHeight_SerializedProperty_GUIContent_
+  commentId: M:GameFramework.Editor.ReadOnlyPropertyDrawer.GetPropertyHeight(SerializedProperty,GUIContent)
+  fullName: GameFramework.Editor.ReadOnlyPropertyDrawer.GetPropertyHeight(SerializedProperty, GUIContent)
+  nameWithType: ReadOnlyPropertyDrawer.GetPropertyHeight(SerializedProperty, GUIContent)
+- uid: GameFramework.Editor.ReadOnlyPropertyDrawer.GetPropertyHeight*
+  name: GetPropertyHeight
+  href: api/api/GameFramework.Editor.ReadOnlyPropertyDrawer.html#GameFramework_Editor_ReadOnlyPropertyDrawer_GetPropertyHeight_
+  commentId: Overload:GameFramework.Editor.ReadOnlyPropertyDrawer.GetPropertyHeight
+  isSpec: "True"
+  fullName: GameFramework.Editor.ReadOnlyPropertyDrawer.GetPropertyHeight
+  nameWithType: ReadOnlyPropertyDrawer.GetPropertyHeight
+- uid: GameFramework.Editor.ReadOnlyPropertyDrawer.OnGUI(Rect,SerializedProperty,GUIContent)
+  name: OnGUI(Rect, SerializedProperty, GUIContent)
+  href: api/api/GameFramework.Editor.ReadOnlyPropertyDrawer.html#GameFramework_Editor_ReadOnlyPropertyDrawer_OnGUI_Rect_SerializedProperty_GUIContent_
+  commentId: M:GameFramework.Editor.ReadOnlyPropertyDrawer.OnGUI(Rect,SerializedProperty,GUIContent)
+  fullName: GameFramework.Editor.ReadOnlyPropertyDrawer.OnGUI(Rect, SerializedProperty, GUIContent)
+  nameWithType: ReadOnlyPropertyDrawer.OnGUI(Rect, SerializedProperty, GUIContent)
+- uid: GameFramework.Editor.ReadOnlyPropertyDrawer.OnGUI*
+  name: OnGUI
+  href: api/api/GameFramework.Editor.ReadOnlyPropertyDrawer.html#GameFramework_Editor_ReadOnlyPropertyDrawer_OnGUI_
+  commentId: Overload:GameFramework.Editor.ReadOnlyPropertyDrawer.OnGUI
+  isSpec: "True"
+  fullName: GameFramework.Editor.ReadOnlyPropertyDrawer.OnGUI
+  nameWithType: ReadOnlyPropertyDrawer.OnGUI
 - uid: GameFramework.Editor.SaveFileManager.ScriptableObjects
   name: GameFramework.Editor.SaveFileManager.ScriptableObjects
   href: api/api/GameFramework.Editor.SaveFileManager.ScriptableObjects.html
@@ -7621,12 +7730,30 @@ references:
   commentId: F:GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.FieldDisplayConfig.IsReadOnly
   fullName: GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.FieldDisplayConfig.IsReadOnly
   nameWithType: SaveFileDisplayConfig.FieldDisplayConfig.IsReadOnly
+- uid: GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.MaxRuntimeObjectsDisplay
+  name: MaxRuntimeObjectsDisplay
+  href: api/api/GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.html#GameFramework_Editor_SaveFileManager_ScriptableObjects_SaveFileDisplayConfig_MaxRuntimeObjectsDisplay
+  commentId: F:GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.MaxRuntimeObjectsDisplay
+  fullName: GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.MaxRuntimeObjectsDisplay
+  nameWithType: SaveFileDisplayConfig.MaxRuntimeObjectsDisplay
 - uid: GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.ShowDynamicFieldDiscovery
   name: ShowDynamicFieldDiscovery
   href: api/api/GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.html#GameFramework_Editor_SaveFileManager_ScriptableObjects_SaveFileDisplayConfig_ShowDynamicFieldDiscovery
   commentId: F:GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.ShowDynamicFieldDiscovery
   fullName: GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.ShowDynamicFieldDiscovery
   nameWithType: SaveFileDisplayConfig.ShowDynamicFieldDiscovery
+- uid: GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.ShowRuntimeObjectSpecificFields
+  name: ShowRuntimeObjectSpecificFields
+  href: api/api/GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.html#GameFramework_Editor_SaveFileManager_ScriptableObjects_SaveFileDisplayConfig_ShowRuntimeObjectSpecificFields
+  commentId: F:GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.ShowRuntimeObjectSpecificFields
+  fullName: GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.ShowRuntimeObjectSpecificFields
+  nameWithType: SaveFileDisplayConfig.ShowRuntimeObjectSpecificFields
+- uid: GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.ShowRuntimeObjectTransforms
+  name: ShowRuntimeObjectTransforms
+  href: api/api/GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.html#GameFramework_Editor_SaveFileManager_ScriptableObjects_SaveFileDisplayConfig_ShowRuntimeObjectTransforms
+  commentId: F:GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.ShowRuntimeObjectTransforms
+  fullName: GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.ShowRuntimeObjectTransforms
+  nameWithType: SaveFileDisplayConfig.ShowRuntimeObjectTransforms
 - uid: GameFramework.Editor.SaveFileManager.UI
   name: GameFramework.Editor.SaveFileManager.UI
   href: api/api/GameFramework.Editor.SaveFileManager.UI.html
@@ -7658,15 +7785,15 @@ references:
   fullName.vb: GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.New
   nameWithType: SaveFileDetailsPanel.SaveFileDetailsPanel
   nameWithType.vb: SaveFileDetailsPanel.New
-- uid: GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.LoadSaveFile(GameFramework.DataStructures.SaveFileInfo,GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig,System.Boolean)
-  name: LoadSaveFile(SaveFileInfo, SaveFileDisplayConfig, bool)
-  href: api/api/GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.html#GameFramework_Editor_SaveFileManager_UI_SaveFileDetailsPanel_LoadSaveFile_GameFramework_DataStructures_SaveFileInfo_GameFramework_Editor_SaveFileManager_ScriptableObjects_SaveFileDisplayConfig_System_Boolean_
-  commentId: M:GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.LoadSaveFile(GameFramework.DataStructures.SaveFileInfo,GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig,System.Boolean)
-  name.vb: LoadSaveFile(SaveFileInfo, SaveFileDisplayConfig, Boolean)
-  fullName: GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.LoadSaveFile(GameFramework.DataStructures.SaveFileInfo, GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig, bool)
-  fullName.vb: GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.LoadSaveFile(GameFramework.DataStructures.SaveFileInfo, GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig, Boolean)
-  nameWithType: SaveFileDetailsPanel.LoadSaveFile(SaveFileInfo, SaveFileDisplayConfig, bool)
-  nameWithType.vb: SaveFileDetailsPanel.LoadSaveFile(SaveFileInfo, SaveFileDisplayConfig, Boolean)
+- uid: GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.LoadSaveFile(GameFramework.DataStructures.SaveFileInfo,GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig,System.Boolean,System.Boolean)
+  name: LoadSaveFile(SaveFileInfo, SaveFileDisplayConfig, bool, bool)
+  href: api/api/GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.html#GameFramework_Editor_SaveFileManager_UI_SaveFileDetailsPanel_LoadSaveFile_GameFramework_DataStructures_SaveFileInfo_GameFramework_Editor_SaveFileManager_ScriptableObjects_SaveFileDisplayConfig_System_Boolean_System_Boolean_
+  commentId: M:GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.LoadSaveFile(GameFramework.DataStructures.SaveFileInfo,GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig,System.Boolean,System.Boolean)
+  name.vb: LoadSaveFile(SaveFileInfo, SaveFileDisplayConfig, Boolean, Boolean)
+  fullName: GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.LoadSaveFile(GameFramework.DataStructures.SaveFileInfo, GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig, bool, bool)
+  fullName.vb: GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.LoadSaveFile(GameFramework.DataStructures.SaveFileInfo, GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig, Boolean, Boolean)
+  nameWithType: SaveFileDetailsPanel.LoadSaveFile(SaveFileInfo, SaveFileDisplayConfig, bool, bool)
+  nameWithType.vb: SaveFileDetailsPanel.LoadSaveFile(SaveFileInfo, SaveFileDisplayConfig, Boolean, Boolean)
 - uid: GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.LoadSaveFile*
   name: LoadSaveFile
   href: api/api/GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.html#GameFramework_Editor_SaveFileManager_UI_SaveFileDetailsPanel_LoadSaveFile_
@@ -7686,6 +7813,12 @@ references:
   commentId: E:GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.OnLoadRequested
   fullName: GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.OnLoadRequested
   nameWithType: SaveFileDetailsPanel.OnLoadRequested
+- uid: GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.OnSaveRequested
+  name: OnSaveRequested
+  href: api/api/GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.html#GameFramework_Editor_SaveFileManager_UI_SaveFileDetailsPanel_OnSaveRequested
+  commentId: E:GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.OnSaveRequested
+  fullName: GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.OnSaveRequested
+  nameWithType: SaveFileDetailsPanel.OnSaveRequested
 - uid: GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.OnShowInExplorerRequested
   name: OnShowInExplorerRequested
   href: api/api/GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.html#GameFramework_Editor_SaveFileManager_UI_SaveFileDetailsPanel_OnShowInExplorerRequested
@@ -7724,6 +7857,57 @@ references:
   isSpec: "True"
   fullName: GameFramework.Editor.SaveFileManager.UI.SaveFileManagerWindow.ShowWindow
   nameWithType: SaveFileManagerWindow.ShowWindow
+- uid: GameFramework.Editor.SaveableBasePostProcessor
+  name: SaveableBasePostProcessor
+  href: api/api/GameFramework.Editor.SaveableBasePostProcessor.html
+  commentId: T:GameFramework.Editor.SaveableBasePostProcessor
+  fullName: GameFramework.Editor.SaveableBasePostProcessor
+  nameWithType: SaveableBasePostProcessor
+- uid: GameFramework.Editor.SaveableValidationTool
+  name: SaveableValidationTool
+  href: api/api/GameFramework.Editor.SaveableValidationTool.html
+  commentId: T:GameFramework.Editor.SaveableValidationTool
+  fullName: GameFramework.Editor.SaveableValidationTool
+  nameWithType: SaveableValidationTool
+- uid: GameFramework.Editor.SaveableValidationTool.ShowSceneSaveableInfo
+  name: ShowSceneSaveableInfo()
+  href: api/api/GameFramework.Editor.SaveableValidationTool.html#GameFramework_Editor_SaveableValidationTool_ShowSceneSaveableInfo
+  commentId: M:GameFramework.Editor.SaveableValidationTool.ShowSceneSaveableInfo
+  fullName: GameFramework.Editor.SaveableValidationTool.ShowSceneSaveableInfo()
+  nameWithType: SaveableValidationTool.ShowSceneSaveableInfo()
+- uid: GameFramework.Editor.SaveableValidationTool.ShowSceneSaveableInfo*
+  name: ShowSceneSaveableInfo
+  href: api/api/GameFramework.Editor.SaveableValidationTool.html#GameFramework_Editor_SaveableValidationTool_ShowSceneSaveableInfo_
+  commentId: Overload:GameFramework.Editor.SaveableValidationTool.ShowSceneSaveableInfo
+  isSpec: "True"
+  fullName: GameFramework.Editor.SaveableValidationTool.ShowSceneSaveableInfo
+  nameWithType: SaveableValidationTool.ShowSceneSaveableInfo
+- uid: GameFramework.Editor.SaveableValidationTool.ValidateAllLoadedScenes
+  name: ValidateAllLoadedScenes()
+  href: api/api/GameFramework.Editor.SaveableValidationTool.html#GameFramework_Editor_SaveableValidationTool_ValidateAllLoadedScenes
+  commentId: M:GameFramework.Editor.SaveableValidationTool.ValidateAllLoadedScenes
+  fullName: GameFramework.Editor.SaveableValidationTool.ValidateAllLoadedScenes()
+  nameWithType: SaveableValidationTool.ValidateAllLoadedScenes()
+- uid: GameFramework.Editor.SaveableValidationTool.ValidateAllLoadedScenes*
+  name: ValidateAllLoadedScenes
+  href: api/api/GameFramework.Editor.SaveableValidationTool.html#GameFramework_Editor_SaveableValidationTool_ValidateAllLoadedScenes_
+  commentId: Overload:GameFramework.Editor.SaveableValidationTool.ValidateAllLoadedScenes
+  isSpec: "True"
+  fullName: GameFramework.Editor.SaveableValidationTool.ValidateAllLoadedScenes
+  nameWithType: SaveableValidationTool.ValidateAllLoadedScenes
+- uid: GameFramework.Editor.SaveableValidationTool.ValidateSceneUniqueIds
+  name: ValidateSceneUniqueIds()
+  href: api/api/GameFramework.Editor.SaveableValidationTool.html#GameFramework_Editor_SaveableValidationTool_ValidateSceneUniqueIds
+  commentId: M:GameFramework.Editor.SaveableValidationTool.ValidateSceneUniqueIds
+  fullName: GameFramework.Editor.SaveableValidationTool.ValidateSceneUniqueIds()
+  nameWithType: SaveableValidationTool.ValidateSceneUniqueIds()
+- uid: GameFramework.Editor.SaveableValidationTool.ValidateSceneUniqueIds*
+  name: ValidateSceneUniqueIds
+  href: api/api/GameFramework.Editor.SaveableValidationTool.html#GameFramework_Editor_SaveableValidationTool_ValidateSceneUniqueIds_
+  commentId: Overload:GameFramework.Editor.SaveableValidationTool.ValidateSceneUniqueIds
+  isSpec: "True"
+  fullName: GameFramework.Editor.SaveableValidationTool.ValidateSceneUniqueIds
+  nameWithType: SaveableValidationTool.ValidateSceneUniqueIds
 - uid: GameFramework.EventSystem
   name: GameFramework.EventSystem
   href: api/api/GameFramework.EventSystem.html
@@ -10378,22 +10562,6 @@ references:
   isSpec: "True"
   fullName: GameFramework.FileSystem.Interfaces.IFileService.GetSaveFilesAsync
   nameWithType: IFileService.GetSaveFilesAsync
-- uid: GameFramework.FileSystem.Interfaces.IFileService.ReadSaveFileAsync(System.String)
-  name: ReadSaveFileAsync(string)
-  href: api/api/GameFramework.FileSystem.Interfaces.IFileService.html#GameFramework_FileSystem_Interfaces_IFileService_ReadSaveFileAsync_System_String_
-  commentId: M:GameFramework.FileSystem.Interfaces.IFileService.ReadSaveFileAsync(System.String)
-  name.vb: ReadSaveFileAsync(String)
-  fullName: GameFramework.FileSystem.Interfaces.IFileService.ReadSaveFileAsync(string)
-  fullName.vb: GameFramework.FileSystem.Interfaces.IFileService.ReadSaveFileAsync(String)
-  nameWithType: IFileService.ReadSaveFileAsync(string)
-  nameWithType.vb: IFileService.ReadSaveFileAsync(String)
-- uid: GameFramework.FileSystem.Interfaces.IFileService.ReadSaveFileAsync*
-  name: ReadSaveFileAsync
-  href: api/api/GameFramework.FileSystem.Interfaces.IFileService.html#GameFramework_FileSystem_Interfaces_IFileService_ReadSaveFileAsync_
-  commentId: Overload:GameFramework.FileSystem.Interfaces.IFileService.ReadSaveFileAsync
-  isSpec: "True"
-  fullName: GameFramework.FileSystem.Interfaces.IFileService.ReadSaveFileAsync
-  nameWithType: IFileService.ReadSaveFileAsync
 - uid: GameFramework.FileSystem.Interfaces.IFileService.SaveFileExists(System.String)
   name: SaveFileExists(string)
   href: api/api/GameFramework.FileSystem.Interfaces.IFileService.html#GameFramework_FileSystem_Interfaces_IFileService_SaveFileExists_System_String_
@@ -10410,22 +10578,6 @@ references:
   isSpec: "True"
   fullName: GameFramework.FileSystem.Interfaces.IFileService.SaveFileExists
   nameWithType: IFileService.SaveFileExists
-- uid: GameFramework.FileSystem.Interfaces.IFileService.WriteSaveFileAsync(System.String,GameFramework.SaveSystem.Data.SaveFileData)
-  name: WriteSaveFileAsync(string, SaveFileData)
-  href: api/api/GameFramework.FileSystem.Interfaces.IFileService.html#GameFramework_FileSystem_Interfaces_IFileService_WriteSaveFileAsync_System_String_GameFramework_SaveSystem_Data_SaveFileData_
-  commentId: M:GameFramework.FileSystem.Interfaces.IFileService.WriteSaveFileAsync(System.String,GameFramework.SaveSystem.Data.SaveFileData)
-  name.vb: WriteSaveFileAsync(String, SaveFileData)
-  fullName: GameFramework.FileSystem.Interfaces.IFileService.WriteSaveFileAsync(string, GameFramework.SaveSystem.Data.SaveFileData)
-  fullName.vb: GameFramework.FileSystem.Interfaces.IFileService.WriteSaveFileAsync(String, GameFramework.SaveSystem.Data.SaveFileData)
-  nameWithType: IFileService.WriteSaveFileAsync(string, SaveFileData)
-  nameWithType.vb: IFileService.WriteSaveFileAsync(String, SaveFileData)
-- uid: GameFramework.FileSystem.Interfaces.IFileService.WriteSaveFileAsync*
-  name: WriteSaveFileAsync
-  href: api/api/GameFramework.FileSystem.Interfaces.IFileService.html#GameFramework_FileSystem_Interfaces_IFileService_WriteSaveFileAsync_
-  commentId: Overload:GameFramework.FileSystem.Interfaces.IFileService.WriteSaveFileAsync
-  isSpec: "True"
-  fullName: GameFramework.FileSystem.Interfaces.IFileService.WriteSaveFileAsync
-  nameWithType: IFileService.WriteSaveFileAsync
 - uid: GameFramework.FileSystem.Services
   name: GameFramework.FileSystem.Services
   href: api/api/GameFramework.FileSystem.Services.html
@@ -11405,6 +11557,64 @@ references:
   isSpec: "True"
   fullName: GameFramework.LoadSystem.Interfaces.ILoadService.LoadGameStateAsync
   nameWithType: ILoadService.LoadGameStateAsync
+- uid: GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator
+  name: IRuntimeObjectInstantiator
+  href: api/api/GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator.html
+  commentId: T:GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator
+  fullName: GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator
+  nameWithType: IRuntimeObjectInstantiator
+- uid: GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator.ConfigureObjectAsync(GameObject,GameFramework.SaveSystem.Data.RuntimeObjectSaveData)
+  name: ConfigureObjectAsync(GameObject, RuntimeObjectSaveData)
+  href: api/api/GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator.html#GameFramework_LoadSystem_Interfaces_IRuntimeObjectInstantiator_ConfigureObjectAsync_GameObject_GameFramework_SaveSystem_Data_RuntimeObjectSaveData_
+  commentId: M:GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator.ConfigureObjectAsync(GameObject,GameFramework.SaveSystem.Data.RuntimeObjectSaveData)
+  fullName: GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator.ConfigureObjectAsync(GameObject, GameFramework.SaveSystem.Data.RuntimeObjectSaveData)
+  nameWithType: IRuntimeObjectInstantiator.ConfigureObjectAsync(GameObject, RuntimeObjectSaveData)
+- uid: GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator.ConfigureObjectAsync*
+  name: ConfigureObjectAsync
+  href: api/api/GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator.html#GameFramework_LoadSystem_Interfaces_IRuntimeObjectInstantiator_ConfigureObjectAsync_
+  commentId: Overload:GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator.ConfigureObjectAsync
+  isSpec: "True"
+  fullName: GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator.ConfigureObjectAsync
+  nameWithType: IRuntimeObjectInstantiator.ConfigureObjectAsync
+- uid: GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator.InstantiateObjectAsync(GameFramework.SaveSystem.Data.RuntimeObjectSaveData,Transform)
+  name: InstantiateObjectAsync(RuntimeObjectSaveData, Transform)
+  href: api/api/GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator.html#GameFramework_LoadSystem_Interfaces_IRuntimeObjectInstantiator_InstantiateObjectAsync_GameFramework_SaveSystem_Data_RuntimeObjectSaveData_Transform_
+  commentId: M:GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator.InstantiateObjectAsync(GameFramework.SaveSystem.Data.RuntimeObjectSaveData,Transform)
+  fullName: GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator.InstantiateObjectAsync(GameFramework.SaveSystem.Data.RuntimeObjectSaveData, Transform)
+  nameWithType: IRuntimeObjectInstantiator.InstantiateObjectAsync(RuntimeObjectSaveData, Transform)
+- uid: GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator.InstantiateObjectAsync*
+  name: InstantiateObjectAsync
+  href: api/api/GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator.html#GameFramework_LoadSystem_Interfaces_IRuntimeObjectInstantiator_InstantiateObjectAsync_
+  commentId: Overload:GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator.InstantiateObjectAsync
+  isSpec: "True"
+  fullName: GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator.InstantiateObjectAsync
+  nameWithType: IRuntimeObjectInstantiator.InstantiateObjectAsync
+- uid: GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator.LogRegisteredTypes
+  name: LogRegisteredTypes()
+  href: api/api/GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator.html#GameFramework_LoadSystem_Interfaces_IRuntimeObjectInstantiator_LogRegisteredTypes
+  commentId: M:GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator.LogRegisteredTypes
+  fullName: GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator.LogRegisteredTypes()
+  nameWithType: IRuntimeObjectInstantiator.LogRegisteredTypes()
+- uid: GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator.LogRegisteredTypes*
+  name: LogRegisteredTypes
+  href: api/api/GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator.html#GameFramework_LoadSystem_Interfaces_IRuntimeObjectInstantiator_LogRegisteredTypes_
+  commentId: Overload:GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator.LogRegisteredTypes
+  isSpec: "True"
+  fullName: GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator.LogRegisteredTypes
+  nameWithType: IRuntimeObjectInstantiator.LogRegisteredTypes
+- uid: GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator.ValidateRegisteredTypes
+  name: ValidateRegisteredTypes()
+  href: api/api/GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator.html#GameFramework_LoadSystem_Interfaces_IRuntimeObjectInstantiator_ValidateRegisteredTypes
+  commentId: M:GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator.ValidateRegisteredTypes
+  fullName: GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator.ValidateRegisteredTypes()
+  nameWithType: IRuntimeObjectInstantiator.ValidateRegisteredTypes()
+- uid: GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator.ValidateRegisteredTypes*
+  name: ValidateRegisteredTypes
+  href: api/api/GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator.html#GameFramework_LoadSystem_Interfaces_IRuntimeObjectInstantiator_ValidateRegisteredTypes_
+  commentId: Overload:GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator.ValidateRegisteredTypes
+  isSpec: "True"
+  fullName: GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator.ValidateRegisteredTypes
+  nameWithType: IRuntimeObjectInstantiator.ValidateRegisteredTypes
 - uid: GameFramework.LoadSystem.Services
   name: GameFramework.LoadSystem.Services
   href: api/api/GameFramework.LoadSystem.Services.html
@@ -11417,15 +11627,15 @@ references:
   commentId: T:GameFramework.LoadSystem.Services.LoadService
   fullName: GameFramework.LoadSystem.Services.LoadService
   nameWithType: LoadService
-- uid: GameFramework.LoadSystem.Services.LoadService.#ctor(GameFramework.FileSystem.Interfaces.IFileService,GameFramework.Services.Interfaces.IGameDataService,GameFramework.Services.Interfaces.ISceneService,GameFramework.EventSystem.Interfaces.IEventSystem)
-  name: LoadService(IFileService, IGameDataService, ISceneService, IEventSystem)
-  href: api/api/GameFramework.LoadSystem.Services.LoadService.html#GameFramework_LoadSystem_Services_LoadService__ctor_GameFramework_FileSystem_Interfaces_IFileService_GameFramework_Services_Interfaces_IGameDataService_GameFramework_Services_Interfaces_ISceneService_GameFramework_EventSystem_Interfaces_IEventSystem_
-  commentId: M:GameFramework.LoadSystem.Services.LoadService.#ctor(GameFramework.FileSystem.Interfaces.IFileService,GameFramework.Services.Interfaces.IGameDataService,GameFramework.Services.Interfaces.ISceneService,GameFramework.EventSystem.Interfaces.IEventSystem)
-  name.vb: New(IFileService, IGameDataService, ISceneService, IEventSystem)
-  fullName: GameFramework.LoadSystem.Services.LoadService.LoadService(GameFramework.FileSystem.Interfaces.IFileService, GameFramework.Services.Interfaces.IGameDataService, GameFramework.Services.Interfaces.ISceneService, GameFramework.EventSystem.Interfaces.IEventSystem)
-  fullName.vb: GameFramework.LoadSystem.Services.LoadService.New(GameFramework.FileSystem.Interfaces.IFileService, GameFramework.Services.Interfaces.IGameDataService, GameFramework.Services.Interfaces.ISceneService, GameFramework.EventSystem.Interfaces.IEventSystem)
-  nameWithType: LoadService.LoadService(IFileService, IGameDataService, ISceneService, IEventSystem)
-  nameWithType.vb: LoadService.New(IFileService, IGameDataService, ISceneService, IEventSystem)
+- uid: GameFramework.LoadSystem.Services.LoadService.#ctor(GameFramework.FileSystem.Interfaces.IFileService,GameFramework.Services.Interfaces.IGameDataService,GameFramework.Services.Interfaces.ISceneService,GameFramework.EventSystem.Interfaces.IEventSystem,GameFramework.LoadSystem.Services.RuntimeObjectInstantiator)
+  name: LoadService(IFileService, IGameDataService, ISceneService, IEventSystem, RuntimeObjectInstantiator)
+  href: api/api/GameFramework.LoadSystem.Services.LoadService.html#GameFramework_LoadSystem_Services_LoadService__ctor_GameFramework_FileSystem_Interfaces_IFileService_GameFramework_Services_Interfaces_IGameDataService_GameFramework_Services_Interfaces_ISceneService_GameFramework_EventSystem_Interfaces_IEventSystem_GameFramework_LoadSystem_Services_RuntimeObjectInstantiator_
+  commentId: M:GameFramework.LoadSystem.Services.LoadService.#ctor(GameFramework.FileSystem.Interfaces.IFileService,GameFramework.Services.Interfaces.IGameDataService,GameFramework.Services.Interfaces.ISceneService,GameFramework.EventSystem.Interfaces.IEventSystem,GameFramework.LoadSystem.Services.RuntimeObjectInstantiator)
+  name.vb: New(IFileService, IGameDataService, ISceneService, IEventSystem, RuntimeObjectInstantiator)
+  fullName: GameFramework.LoadSystem.Services.LoadService.LoadService(GameFramework.FileSystem.Interfaces.IFileService, GameFramework.Services.Interfaces.IGameDataService, GameFramework.Services.Interfaces.ISceneService, GameFramework.EventSystem.Interfaces.IEventSystem, GameFramework.LoadSystem.Services.RuntimeObjectInstantiator)
+  fullName.vb: GameFramework.LoadSystem.Services.LoadService.New(GameFramework.FileSystem.Interfaces.IFileService, GameFramework.Services.Interfaces.IGameDataService, GameFramework.Services.Interfaces.ISceneService, GameFramework.EventSystem.Interfaces.IEventSystem, GameFramework.LoadSystem.Services.RuntimeObjectInstantiator)
+  nameWithType: LoadService.LoadService(IFileService, IGameDataService, ISceneService, IEventSystem, RuntimeObjectInstantiator)
+  nameWithType.vb: LoadService.New(IFileService, IGameDataService, ISceneService, IEventSystem, RuntimeObjectInstantiator)
 - uid: GameFramework.LoadSystem.Services.LoadService.#ctor*
   name: LoadService
   href: api/api/GameFramework.LoadSystem.Services.LoadService.html#GameFramework_LoadSystem_Services_LoadService__ctor_
@@ -11523,70 +11733,237 @@ references:
   isSpec: "True"
   fullName: GameFramework.LoadSystem.Services.LoadService.Shutdown
   nameWithType: LoadService.Shutdown
+- uid: GameFramework.LoadSystem.Services.RuntimeObjectInstantiator
+  name: RuntimeObjectInstantiator
+  href: api/api/GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.html
+  commentId: T:GameFramework.LoadSystem.Services.RuntimeObjectInstantiator
+  fullName: GameFramework.LoadSystem.Services.RuntimeObjectInstantiator
+  nameWithType: RuntimeObjectInstantiator
+- uid: GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.#ctor(GameFramework.SaveSystem.Data.PrefabRegistry)
+  name: RuntimeObjectInstantiator(PrefabRegistry)
+  href: api/api/GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.html#GameFramework_LoadSystem_Services_RuntimeObjectInstantiator__ctor_GameFramework_SaveSystem_Data_PrefabRegistry_
+  commentId: M:GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.#ctor(GameFramework.SaveSystem.Data.PrefabRegistry)
+  name.vb: New(PrefabRegistry)
+  fullName: GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.RuntimeObjectInstantiator(GameFramework.SaveSystem.Data.PrefabRegistry)
+  fullName.vb: GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.New(GameFramework.SaveSystem.Data.PrefabRegistry)
+  nameWithType: RuntimeObjectInstantiator.RuntimeObjectInstantiator(PrefabRegistry)
+  nameWithType.vb: RuntimeObjectInstantiator.New(PrefabRegistry)
+- uid: GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.#ctor*
+  name: RuntimeObjectInstantiator
+  href: api/api/GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.html#GameFramework_LoadSystem_Services_RuntimeObjectInstantiator__ctor_
+  commentId: Overload:GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.RuntimeObjectInstantiator
+  fullName.vb: GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.New
+  nameWithType: RuntimeObjectInstantiator.RuntimeObjectInstantiator
+  nameWithType.vb: RuntimeObjectInstantiator.New
+- uid: GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.ConfigureObjectAsync(GameObject,GameFramework.SaveSystem.Data.RuntimeObjectSaveData)
+  name: ConfigureObjectAsync(GameObject, RuntimeObjectSaveData)
+  href: api/api/GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.html#GameFramework_LoadSystem_Services_RuntimeObjectInstantiator_ConfigureObjectAsync_GameObject_GameFramework_SaveSystem_Data_RuntimeObjectSaveData_
+  commentId: M:GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.ConfigureObjectAsync(GameObject,GameFramework.SaveSystem.Data.RuntimeObjectSaveData)
+  fullName: GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.ConfigureObjectAsync(GameObject, GameFramework.SaveSystem.Data.RuntimeObjectSaveData)
+  nameWithType: RuntimeObjectInstantiator.ConfigureObjectAsync(GameObject, RuntimeObjectSaveData)
+- uid: GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.ConfigureObjectAsync*
+  name: ConfigureObjectAsync
+  href: api/api/GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.html#GameFramework_LoadSystem_Services_RuntimeObjectInstantiator_ConfigureObjectAsync_
+  commentId: Overload:GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.ConfigureObjectAsync
+  isSpec: "True"
+  fullName: GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.ConfigureObjectAsync
+  nameWithType: RuntimeObjectInstantiator.ConfigureObjectAsync
+- uid: GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.InitializeAsync
+  name: InitializeAsync()
+  href: api/api/GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.html#GameFramework_LoadSystem_Services_RuntimeObjectInstantiator_InitializeAsync
+  commentId: M:GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.InitializeAsync
+  fullName: GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.InitializeAsync()
+  nameWithType: RuntimeObjectInstantiator.InitializeAsync()
+- uid: GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.InitializeAsync*
+  name: InitializeAsync
+  href: api/api/GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.html#GameFramework_LoadSystem_Services_RuntimeObjectInstantiator_InitializeAsync_
+  commentId: Overload:GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.InitializeAsync
+  isSpec: "True"
+  fullName: GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.InitializeAsync
+  nameWithType: RuntimeObjectInstantiator.InitializeAsync
+- uid: GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.InstantiateObjectAsync(GameFramework.SaveSystem.Data.RuntimeObjectSaveData,Transform)
+  name: InstantiateObjectAsync(RuntimeObjectSaveData, Transform)
+  href: api/api/GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.html#GameFramework_LoadSystem_Services_RuntimeObjectInstantiator_InstantiateObjectAsync_GameFramework_SaveSystem_Data_RuntimeObjectSaveData_Transform_
+  commentId: M:GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.InstantiateObjectAsync(GameFramework.SaveSystem.Data.RuntimeObjectSaveData,Transform)
+  fullName: GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.InstantiateObjectAsync(GameFramework.SaveSystem.Data.RuntimeObjectSaveData, Transform)
+  nameWithType: RuntimeObjectInstantiator.InstantiateObjectAsync(RuntimeObjectSaveData, Transform)
+- uid: GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.InstantiateObjectAsync*
+  name: InstantiateObjectAsync
+  href: api/api/GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.html#GameFramework_LoadSystem_Services_RuntimeObjectInstantiator_InstantiateObjectAsync_
+  commentId: Overload:GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.InstantiateObjectAsync
+  isSpec: "True"
+  fullName: GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.InstantiateObjectAsync
+  nameWithType: RuntimeObjectInstantiator.InstantiateObjectAsync
+- uid: GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.IsInitialized
+  name: IsInitialized
+  href: api/api/GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.html#GameFramework_LoadSystem_Services_RuntimeObjectInstantiator_IsInitialized
+  commentId: P:GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.IsInitialized
+  fullName: GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.IsInitialized
+  nameWithType: RuntimeObjectInstantiator.IsInitialized
+- uid: GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.IsInitialized*
+  name: IsInitialized
+  href: api/api/GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.html#GameFramework_LoadSystem_Services_RuntimeObjectInstantiator_IsInitialized_
+  commentId: Overload:GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.IsInitialized
+  isSpec: "True"
+  fullName: GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.IsInitialized
+  nameWithType: RuntimeObjectInstantiator.IsInitialized
+- uid: GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.LogRegisteredTypes
+  name: LogRegisteredTypes()
+  href: api/api/GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.html#GameFramework_LoadSystem_Services_RuntimeObjectInstantiator_LogRegisteredTypes
+  commentId: M:GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.LogRegisteredTypes
+  fullName: GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.LogRegisteredTypes()
+  nameWithType: RuntimeObjectInstantiator.LogRegisteredTypes()
+- uid: GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.LogRegisteredTypes*
+  name: LogRegisteredTypes
+  href: api/api/GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.html#GameFramework_LoadSystem_Services_RuntimeObjectInstantiator_LogRegisteredTypes_
+  commentId: Overload:GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.LogRegisteredTypes
+  isSpec: "True"
+  fullName: GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.LogRegisteredTypes
+  nameWithType: RuntimeObjectInstantiator.LogRegisteredTypes
+- uid: GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.Shutdown
+  name: Shutdown()
+  href: api/api/GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.html#GameFramework_LoadSystem_Services_RuntimeObjectInstantiator_Shutdown
+  commentId: M:GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.Shutdown
+  fullName: GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.Shutdown()
+  nameWithType: RuntimeObjectInstantiator.Shutdown()
+- uid: GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.Shutdown*
+  name: Shutdown
+  href: api/api/GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.html#GameFramework_LoadSystem_Services_RuntimeObjectInstantiator_Shutdown_
+  commentId: Overload:GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.Shutdown
+  isSpec: "True"
+  fullName: GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.Shutdown
+  nameWithType: RuntimeObjectInstantiator.Shutdown
+- uid: GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.ValidateRegisteredTypes
+  name: ValidateRegisteredTypes()
+  href: api/api/GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.html#GameFramework_LoadSystem_Services_RuntimeObjectInstantiator_ValidateRegisteredTypes
+  commentId: M:GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.ValidateRegisteredTypes
+  fullName: GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.ValidateRegisteredTypes()
+  nameWithType: RuntimeObjectInstantiator.ValidateRegisteredTypes()
+- uid: GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.ValidateRegisteredTypes*
+  name: ValidateRegisteredTypes
+  href: api/api/GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.html#GameFramework_LoadSystem_Services_RuntimeObjectInstantiator_ValidateRegisteredTypes_
+  commentId: Overload:GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.ValidateRegisteredTypes
+  isSpec: "True"
+  fullName: GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.ValidateRegisteredTypes
+  nameWithType: RuntimeObjectInstantiator.ValidateRegisteredTypes
 - uid: GameFramework.SaveSystem
   name: GameFramework.SaveSystem
   href: api/api/GameFramework.SaveSystem.html
   commentId: N:GameFramework.SaveSystem
   fullName: GameFramework.SaveSystem
   nameWithType: GameFramework.SaveSystem
+- uid: GameFramework.SaveSystem.Attributes
+  name: GameFramework.SaveSystem.Attributes
+  href: api/api/GameFramework.SaveSystem.Attributes.html
+  commentId: N:GameFramework.SaveSystem.Attributes
+  fullName: GameFramework.SaveSystem.Attributes
+  nameWithType: GameFramework.SaveSystem.Attributes
+- uid: GameFramework.SaveSystem.Attributes.SaveableTypeAttribute
+  name: SaveableTypeAttribute
+  href: api/api/GameFramework.SaveSystem.Attributes.SaveableTypeAttribute.html
+  commentId: T:GameFramework.SaveSystem.Attributes.SaveableTypeAttribute
+  fullName: GameFramework.SaveSystem.Attributes.SaveableTypeAttribute
+  nameWithType: SaveableTypeAttribute
+- uid: GameFramework.SaveSystem.Attributes.SaveableTypeAttribute.#ctor(System.Type)
+  name: SaveableTypeAttribute(Type)
+  href: api/api/GameFramework.SaveSystem.Attributes.SaveableTypeAttribute.html#GameFramework_SaveSystem_Attributes_SaveableTypeAttribute__ctor_System_Type_
+  commentId: M:GameFramework.SaveSystem.Attributes.SaveableTypeAttribute.#ctor(System.Type)
+  name.vb: New(Type)
+  fullName: GameFramework.SaveSystem.Attributes.SaveableTypeAttribute.SaveableTypeAttribute(System.Type)
+  fullName.vb: GameFramework.SaveSystem.Attributes.SaveableTypeAttribute.New(System.Type)
+  nameWithType: SaveableTypeAttribute.SaveableTypeAttribute(Type)
+  nameWithType.vb: SaveableTypeAttribute.New(Type)
+- uid: GameFramework.SaveSystem.Attributes.SaveableTypeAttribute.#ctor*
+  name: SaveableTypeAttribute
+  href: api/api/GameFramework.SaveSystem.Attributes.SaveableTypeAttribute.html#GameFramework_SaveSystem_Attributes_SaveableTypeAttribute__ctor_
+  commentId: Overload:GameFramework.SaveSystem.Attributes.SaveableTypeAttribute.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: GameFramework.SaveSystem.Attributes.SaveableTypeAttribute.SaveableTypeAttribute
+  fullName.vb: GameFramework.SaveSystem.Attributes.SaveableTypeAttribute.New
+  nameWithType: SaveableTypeAttribute.SaveableTypeAttribute
+  nameWithType.vb: SaveableTypeAttribute.New
+- uid: GameFramework.SaveSystem.Attributes.SaveableTypeAttribute.DisplayName
+  name: DisplayName
+  href: api/api/GameFramework.SaveSystem.Attributes.SaveableTypeAttribute.html#GameFramework_SaveSystem_Attributes_SaveableTypeAttribute_DisplayName
+  commentId: P:GameFramework.SaveSystem.Attributes.SaveableTypeAttribute.DisplayName
+  fullName: GameFramework.SaveSystem.Attributes.SaveableTypeAttribute.DisplayName
+  nameWithType: SaveableTypeAttribute.DisplayName
+- uid: GameFramework.SaveSystem.Attributes.SaveableTypeAttribute.DisplayName*
+  name: DisplayName
+  href: api/api/GameFramework.SaveSystem.Attributes.SaveableTypeAttribute.html#GameFramework_SaveSystem_Attributes_SaveableTypeAttribute_DisplayName_
+  commentId: Overload:GameFramework.SaveSystem.Attributes.SaveableTypeAttribute.DisplayName
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.Attributes.SaveableTypeAttribute.DisplayName
+  nameWithType: SaveableTypeAttribute.DisplayName
+- uid: GameFramework.SaveSystem.Attributes.SaveableTypeAttribute.SaveDataType
+  name: SaveDataType
+  href: api/api/GameFramework.SaveSystem.Attributes.SaveableTypeAttribute.html#GameFramework_SaveSystem_Attributes_SaveableTypeAttribute_SaveDataType
+  commentId: P:GameFramework.SaveSystem.Attributes.SaveableTypeAttribute.SaveDataType
+  fullName: GameFramework.SaveSystem.Attributes.SaveableTypeAttribute.SaveDataType
+  nameWithType: SaveableTypeAttribute.SaveDataType
+- uid: GameFramework.SaveSystem.Attributes.SaveableTypeAttribute.SaveDataType*
+  name: SaveDataType
+  href: api/api/GameFramework.SaveSystem.Attributes.SaveableTypeAttribute.html#GameFramework_SaveSystem_Attributes_SaveableTypeAttribute_SaveDataType_
+  commentId: Overload:GameFramework.SaveSystem.Attributes.SaveableTypeAttribute.SaveDataType
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.Attributes.SaveableTypeAttribute.SaveDataType
+  nameWithType: SaveableTypeAttribute.SaveDataType
 - uid: GameFramework.SaveSystem.Data
   name: GameFramework.SaveSystem.Data
   href: api/api/GameFramework.SaveSystem.Data.html
   commentId: N:GameFramework.SaveSystem.Data
   fullName: GameFramework.SaveSystem.Data
   nameWithType: GameFramework.SaveSystem.Data
-- uid: GameFramework.SaveSystem.Data.ClickableCubeSaveData
-  name: ClickableCubeSaveData
-  href: api/api/GameFramework.SaveSystem.Data.ClickableCubeSaveData.html
-  commentId: T:GameFramework.SaveSystem.Data.ClickableCubeSaveData
-  fullName: GameFramework.SaveSystem.Data.ClickableCubeSaveData
-  nameWithType: ClickableCubeSaveData
-- uid: GameFramework.SaveSystem.Data.ClickableCubeSaveData.#ctor
-  name: ClickableCubeSaveData()
-  href: api/api/GameFramework.SaveSystem.Data.ClickableCubeSaveData.html#GameFramework_SaveSystem_Data_ClickableCubeSaveData__ctor
-  commentId: M:GameFramework.SaveSystem.Data.ClickableCubeSaveData.#ctor
+- uid: GameFramework.SaveSystem.Data.ClickableCubeRuntimeSaveData
+  name: ClickableCubeRuntimeSaveData
+  href: api/api/GameFramework.SaveSystem.Data.ClickableCubeRuntimeSaveData.html
+  commentId: T:GameFramework.SaveSystem.Data.ClickableCubeRuntimeSaveData
+  fullName: GameFramework.SaveSystem.Data.ClickableCubeRuntimeSaveData
+  nameWithType: ClickableCubeRuntimeSaveData
+- uid: GameFramework.SaveSystem.Data.ClickableCubeRuntimeSaveData.#ctor
+  name: ClickableCubeRuntimeSaveData()
+  href: api/api/GameFramework.SaveSystem.Data.ClickableCubeRuntimeSaveData.html#GameFramework_SaveSystem_Data_ClickableCubeRuntimeSaveData__ctor
+  commentId: M:GameFramework.SaveSystem.Data.ClickableCubeRuntimeSaveData.#ctor
   name.vb: New()
-  fullName: GameFramework.SaveSystem.Data.ClickableCubeSaveData.ClickableCubeSaveData()
-  fullName.vb: GameFramework.SaveSystem.Data.ClickableCubeSaveData.New()
-  nameWithType: ClickableCubeSaveData.ClickableCubeSaveData()
-  nameWithType.vb: ClickableCubeSaveData.New()
-- uid: GameFramework.SaveSystem.Data.ClickableCubeSaveData.#ctor(System.String,Color,System.Int32)
-  name: ClickableCubeSaveData(string, Color, int)
-  href: api/api/GameFramework.SaveSystem.Data.ClickableCubeSaveData.html#GameFramework_SaveSystem_Data_ClickableCubeSaveData__ctor_System_String_Color_System_Int32_
-  commentId: M:GameFramework.SaveSystem.Data.ClickableCubeSaveData.#ctor(System.String,Color,System.Int32)
-  name.vb: New(String, Color, Integer)
-  fullName: GameFramework.SaveSystem.Data.ClickableCubeSaveData.ClickableCubeSaveData(string, Color, int)
-  fullName.vb: GameFramework.SaveSystem.Data.ClickableCubeSaveData.New(String, Color, Integer)
-  nameWithType: ClickableCubeSaveData.ClickableCubeSaveData(string, Color, int)
-  nameWithType.vb: ClickableCubeSaveData.New(String, Color, Integer)
-- uid: GameFramework.SaveSystem.Data.ClickableCubeSaveData.#ctor*
-  name: ClickableCubeSaveData
-  href: api/api/GameFramework.SaveSystem.Data.ClickableCubeSaveData.html#GameFramework_SaveSystem_Data_ClickableCubeSaveData__ctor_
-  commentId: Overload:GameFramework.SaveSystem.Data.ClickableCubeSaveData.#ctor
+  fullName: GameFramework.SaveSystem.Data.ClickableCubeRuntimeSaveData.ClickableCubeRuntimeSaveData()
+  fullName.vb: GameFramework.SaveSystem.Data.ClickableCubeRuntimeSaveData.New()
+  nameWithType: ClickableCubeRuntimeSaveData.ClickableCubeRuntimeSaveData()
+  nameWithType.vb: ClickableCubeRuntimeSaveData.New()
+- uid: GameFramework.SaveSystem.Data.ClickableCubeRuntimeSaveData.#ctor(System.String,System.String)
+  name: ClickableCubeRuntimeSaveData(string, string)
+  href: api/api/GameFramework.SaveSystem.Data.ClickableCubeRuntimeSaveData.html#GameFramework_SaveSystem_Data_ClickableCubeRuntimeSaveData__ctor_System_String_System_String_
+  commentId: M:GameFramework.SaveSystem.Data.ClickableCubeRuntimeSaveData.#ctor(System.String,System.String)
+  name.vb: New(String, String)
+  fullName: GameFramework.SaveSystem.Data.ClickableCubeRuntimeSaveData.ClickableCubeRuntimeSaveData(string, string)
+  fullName.vb: GameFramework.SaveSystem.Data.ClickableCubeRuntimeSaveData.New(String, String)
+  nameWithType: ClickableCubeRuntimeSaveData.ClickableCubeRuntimeSaveData(string, string)
+  nameWithType.vb: ClickableCubeRuntimeSaveData.New(String, String)
+- uid: GameFramework.SaveSystem.Data.ClickableCubeRuntimeSaveData.#ctor*
+  name: ClickableCubeRuntimeSaveData
+  href: api/api/GameFramework.SaveSystem.Data.ClickableCubeRuntimeSaveData.html#GameFramework_SaveSystem_Data_ClickableCubeRuntimeSaveData__ctor_
+  commentId: Overload:GameFramework.SaveSystem.Data.ClickableCubeRuntimeSaveData.#ctor
   isSpec: "True"
   name.vb: New
-  fullName: GameFramework.SaveSystem.Data.ClickableCubeSaveData.ClickableCubeSaveData
-  fullName.vb: GameFramework.SaveSystem.Data.ClickableCubeSaveData.New
-  nameWithType: ClickableCubeSaveData.ClickableCubeSaveData
-  nameWithType.vb: ClickableCubeSaveData.New
-- uid: GameFramework.SaveSystem.Data.ClickableCubeSaveData.cubeColor
+  fullName: GameFramework.SaveSystem.Data.ClickableCubeRuntimeSaveData.ClickableCubeRuntimeSaveData
+  fullName.vb: GameFramework.SaveSystem.Data.ClickableCubeRuntimeSaveData.New
+  nameWithType: ClickableCubeRuntimeSaveData.ClickableCubeRuntimeSaveData
+  nameWithType.vb: ClickableCubeRuntimeSaveData.New
+- uid: GameFramework.SaveSystem.Data.ClickableCubeRuntimeSaveData.cubeColor
   name: cubeColor
-  href: api/api/GameFramework.SaveSystem.Data.ClickableCubeSaveData.html#GameFramework_SaveSystem_Data_ClickableCubeSaveData_cubeColor
-  commentId: F:GameFramework.SaveSystem.Data.ClickableCubeSaveData.cubeColor
-  fullName: GameFramework.SaveSystem.Data.ClickableCubeSaveData.cubeColor
-  nameWithType: ClickableCubeSaveData.cubeColor
-- uid: GameFramework.SaveSystem.Data.ClickableCubeSaveData.cubeValue
+  href: api/api/GameFramework.SaveSystem.Data.ClickableCubeRuntimeSaveData.html#GameFramework_SaveSystem_Data_ClickableCubeRuntimeSaveData_cubeColor
+  commentId: F:GameFramework.SaveSystem.Data.ClickableCubeRuntimeSaveData.cubeColor
+  fullName: GameFramework.SaveSystem.Data.ClickableCubeRuntimeSaveData.cubeColor
+  nameWithType: ClickableCubeRuntimeSaveData.cubeColor
+- uid: GameFramework.SaveSystem.Data.ClickableCubeRuntimeSaveData.cubeValue
   name: cubeValue
-  href: api/api/GameFramework.SaveSystem.Data.ClickableCubeSaveData.html#GameFramework_SaveSystem_Data_ClickableCubeSaveData_cubeValue
-  commentId: F:GameFramework.SaveSystem.Data.ClickableCubeSaveData.cubeValue
-  fullName: GameFramework.SaveSystem.Data.ClickableCubeSaveData.cubeValue
-  nameWithType: ClickableCubeSaveData.cubeValue
-- uid: GameFramework.SaveSystem.Data.ClickableCubeSaveData.uniqueID
-  name: uniqueID
-  href: api/api/GameFramework.SaveSystem.Data.ClickableCubeSaveData.html#GameFramework_SaveSystem_Data_ClickableCubeSaveData_uniqueID
-  commentId: F:GameFramework.SaveSystem.Data.ClickableCubeSaveData.uniqueID
-  fullName: GameFramework.SaveSystem.Data.ClickableCubeSaveData.uniqueID
-  nameWithType: ClickableCubeSaveData.uniqueID
+  href: api/api/GameFramework.SaveSystem.Data.ClickableCubeRuntimeSaveData.html#GameFramework_SaveSystem_Data_ClickableCubeRuntimeSaveData_cubeValue
+  commentId: F:GameFramework.SaveSystem.Data.ClickableCubeRuntimeSaveData.cubeValue
+  fullName: GameFramework.SaveSystem.Data.ClickableCubeRuntimeSaveData.cubeValue
+  nameWithType: ClickableCubeRuntimeSaveData.cubeValue
 - uid: GameFramework.SaveSystem.Data.GameSessionSaveData
   name: GameSessionSaveData
   href: api/api/GameFramework.SaveSystem.Data.GameSessionSaveData.html
@@ -11692,6 +12069,278 @@ references:
   commentId: F:GameFramework.SaveSystem.Data.PlayerSaveData.uniqueID
   fullName: GameFramework.SaveSystem.Data.PlayerSaveData.uniqueID
   nameWithType: PlayerSaveData.uniqueID
+- uid: GameFramework.SaveSystem.Data.PrefabEntry
+  name: PrefabEntry
+  href: api/api/GameFramework.SaveSystem.Data.PrefabEntry.html
+  commentId: T:GameFramework.SaveSystem.Data.PrefabEntry
+  fullName: GameFramework.SaveSystem.Data.PrefabEntry
+  nameWithType: PrefabEntry
+- uid: GameFramework.SaveSystem.Data.PrefabEntry.GUID
+  name: GUID
+  href: api/api/GameFramework.SaveSystem.Data.PrefabEntry.html#GameFramework_SaveSystem_Data_PrefabEntry_GUID
+  commentId: F:GameFramework.SaveSystem.Data.PrefabEntry.GUID
+  fullName: GameFramework.SaveSystem.Data.PrefabEntry.GUID
+  nameWithType: PrefabEntry.GUID
+- uid: GameFramework.SaveSystem.Data.PrefabEntry.Prefab
+  name: Prefab
+  href: api/api/GameFramework.SaveSystem.Data.PrefabEntry.html#GameFramework_SaveSystem_Data_PrefabEntry_Prefab
+  commentId: F:GameFramework.SaveSystem.Data.PrefabEntry.Prefab
+  fullName: GameFramework.SaveSystem.Data.PrefabEntry.Prefab
+  nameWithType: PrefabEntry.Prefab
+- uid: GameFramework.SaveSystem.Data.PrefabEntry.PrefabName
+  name: PrefabName
+  href: api/api/GameFramework.SaveSystem.Data.PrefabEntry.html#GameFramework_SaveSystem_Data_PrefabEntry_PrefabName
+  commentId: F:GameFramework.SaveSystem.Data.PrefabEntry.PrefabName
+  fullName: GameFramework.SaveSystem.Data.PrefabEntry.PrefabName
+  nameWithType: PrefabEntry.PrefabName
+- uid: GameFramework.SaveSystem.Data.PrefabRegistry
+  name: PrefabRegistry
+  href: api/api/GameFramework.SaveSystem.Data.PrefabRegistry.html
+  commentId: T:GameFramework.SaveSystem.Data.PrefabRegistry
+  fullName: GameFramework.SaveSystem.Data.PrefabRegistry
+  nameWithType: PrefabRegistry
+- uid: GameFramework.SaveSystem.Data.PrefabRegistry.GetAllEntries
+  name: GetAllEntries()
+  href: api/api/GameFramework.SaveSystem.Data.PrefabRegistry.html#GameFramework_SaveSystem_Data_PrefabRegistry_GetAllEntries
+  commentId: M:GameFramework.SaveSystem.Data.PrefabRegistry.GetAllEntries
+  fullName: GameFramework.SaveSystem.Data.PrefabRegistry.GetAllEntries()
+  nameWithType: PrefabRegistry.GetAllEntries()
+- uid: GameFramework.SaveSystem.Data.PrefabRegistry.GetAllEntries*
+  name: GetAllEntries
+  href: api/api/GameFramework.SaveSystem.Data.PrefabRegistry.html#GameFramework_SaveSystem_Data_PrefabRegistry_GetAllEntries_
+  commentId: Overload:GameFramework.SaveSystem.Data.PrefabRegistry.GetAllEntries
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.Data.PrefabRegistry.GetAllEntries
+  nameWithType: PrefabRegistry.GetAllEntries
+- uid: GameFramework.SaveSystem.Data.PrefabRegistry.GetGUID(GameObject)
+  name: GetGUID(GameObject)
+  href: api/api/GameFramework.SaveSystem.Data.PrefabRegistry.html#GameFramework_SaveSystem_Data_PrefabRegistry_GetGUID_GameObject_
+  commentId: M:GameFramework.SaveSystem.Data.PrefabRegistry.GetGUID(GameObject)
+  fullName: GameFramework.SaveSystem.Data.PrefabRegistry.GetGUID(GameObject)
+  nameWithType: PrefabRegistry.GetGUID(GameObject)
+- uid: GameFramework.SaveSystem.Data.PrefabRegistry.GetGUID*
+  name: GetGUID
+  href: api/api/GameFramework.SaveSystem.Data.PrefabRegistry.html#GameFramework_SaveSystem_Data_PrefabRegistry_GetGUID_
+  commentId: Overload:GameFramework.SaveSystem.Data.PrefabRegistry.GetGUID
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.Data.PrefabRegistry.GetGUID
+  nameWithType: PrefabRegistry.GetGUID
+- uid: GameFramework.SaveSystem.Data.PrefabRegistry.GetPrefab(System.String)
+  name: GetPrefab(string)
+  href: api/api/GameFramework.SaveSystem.Data.PrefabRegistry.html#GameFramework_SaveSystem_Data_PrefabRegistry_GetPrefab_System_String_
+  commentId: M:GameFramework.SaveSystem.Data.PrefabRegistry.GetPrefab(System.String)
+  name.vb: GetPrefab(String)
+  fullName: GameFramework.SaveSystem.Data.PrefabRegistry.GetPrefab(string)
+  fullName.vb: GameFramework.SaveSystem.Data.PrefabRegistry.GetPrefab(String)
+  nameWithType: PrefabRegistry.GetPrefab(string)
+  nameWithType.vb: PrefabRegistry.GetPrefab(String)
+- uid: GameFramework.SaveSystem.Data.PrefabRegistry.GetPrefab*
+  name: GetPrefab
+  href: api/api/GameFramework.SaveSystem.Data.PrefabRegistry.html#GameFramework_SaveSystem_Data_PrefabRegistry_GetPrefab_
+  commentId: Overload:GameFramework.SaveSystem.Data.PrefabRegistry.GetPrefab
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.Data.PrefabRegistry.GetPrefab
+  nameWithType: PrefabRegistry.GetPrefab
+- uid: GameFramework.SaveSystem.Data.PrefabRegistry.IsRegistered(GameObject)
+  name: IsRegistered(GameObject)
+  href: api/api/GameFramework.SaveSystem.Data.PrefabRegistry.html#GameFramework_SaveSystem_Data_PrefabRegistry_IsRegistered_GameObject_
+  commentId: M:GameFramework.SaveSystem.Data.PrefabRegistry.IsRegistered(GameObject)
+  fullName: GameFramework.SaveSystem.Data.PrefabRegistry.IsRegistered(GameObject)
+  nameWithType: PrefabRegistry.IsRegistered(GameObject)
+- uid: GameFramework.SaveSystem.Data.PrefabRegistry.IsRegistered(System.String)
+  name: IsRegistered(string)
+  href: api/api/GameFramework.SaveSystem.Data.PrefabRegistry.html#GameFramework_SaveSystem_Data_PrefabRegistry_IsRegistered_System_String_
+  commentId: M:GameFramework.SaveSystem.Data.PrefabRegistry.IsRegistered(System.String)
+  name.vb: IsRegistered(String)
+  fullName: GameFramework.SaveSystem.Data.PrefabRegistry.IsRegistered(string)
+  fullName.vb: GameFramework.SaveSystem.Data.PrefabRegistry.IsRegistered(String)
+  nameWithType: PrefabRegistry.IsRegistered(string)
+  nameWithType.vb: PrefabRegistry.IsRegistered(String)
+- uid: GameFramework.SaveSystem.Data.PrefabRegistry.IsRegistered*
+  name: IsRegistered
+  href: api/api/GameFramework.SaveSystem.Data.PrefabRegistry.html#GameFramework_SaveSystem_Data_PrefabRegistry_IsRegistered_
+  commentId: Overload:GameFramework.SaveSystem.Data.PrefabRegistry.IsRegistered
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.Data.PrefabRegistry.IsRegistered
+  nameWithType: PrefabRegistry.IsRegistered
+- uid: GameFramework.SaveSystem.Data.PrefabRegistry.RegisterPrefab(System.String,GameObject)
+  name: RegisterPrefab(string, GameObject)
+  href: api/api/GameFramework.SaveSystem.Data.PrefabRegistry.html#GameFramework_SaveSystem_Data_PrefabRegistry_RegisterPrefab_System_String_GameObject_
+  commentId: M:GameFramework.SaveSystem.Data.PrefabRegistry.RegisterPrefab(System.String,GameObject)
+  name.vb: RegisterPrefab(String, GameObject)
+  fullName: GameFramework.SaveSystem.Data.PrefabRegistry.RegisterPrefab(string, GameObject)
+  fullName.vb: GameFramework.SaveSystem.Data.PrefabRegistry.RegisterPrefab(String, GameObject)
+  nameWithType: PrefabRegistry.RegisterPrefab(string, GameObject)
+  nameWithType.vb: PrefabRegistry.RegisterPrefab(String, GameObject)
+- uid: GameFramework.SaveSystem.Data.PrefabRegistry.RegisterPrefab*
+  name: RegisterPrefab
+  href: api/api/GameFramework.SaveSystem.Data.PrefabRegistry.html#GameFramework_SaveSystem_Data_PrefabRegistry_RegisterPrefab_
+  commentId: Overload:GameFramework.SaveSystem.Data.PrefabRegistry.RegisterPrefab
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.Data.PrefabRegistry.RegisterPrefab
+  nameWithType: PrefabRegistry.RegisterPrefab
+- uid: GameFramework.SaveSystem.Data.PrefabRegistry.RegisteredGUIDs
+  name: RegisteredGUIDs
+  href: api/api/GameFramework.SaveSystem.Data.PrefabRegistry.html#GameFramework_SaveSystem_Data_PrefabRegistry_RegisteredGUIDs
+  commentId: P:GameFramework.SaveSystem.Data.PrefabRegistry.RegisteredGUIDs
+  fullName: GameFramework.SaveSystem.Data.PrefabRegistry.RegisteredGUIDs
+  nameWithType: PrefabRegistry.RegisteredGUIDs
+- uid: GameFramework.SaveSystem.Data.PrefabRegistry.RegisteredGUIDs*
+  name: RegisteredGUIDs
+  href: api/api/GameFramework.SaveSystem.Data.PrefabRegistry.html#GameFramework_SaveSystem_Data_PrefabRegistry_RegisteredGUIDs_
+  commentId: Overload:GameFramework.SaveSystem.Data.PrefabRegistry.RegisteredGUIDs
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.Data.PrefabRegistry.RegisteredGUIDs
+  nameWithType: PrefabRegistry.RegisteredGUIDs
+- uid: GameFramework.SaveSystem.Data.PrefabRegistry.TotalPrefabs
+  name: TotalPrefabs
+  href: api/api/GameFramework.SaveSystem.Data.PrefabRegistry.html#GameFramework_SaveSystem_Data_PrefabRegistry_TotalPrefabs
+  commentId: P:GameFramework.SaveSystem.Data.PrefabRegistry.TotalPrefabs
+  fullName: GameFramework.SaveSystem.Data.PrefabRegistry.TotalPrefabs
+  nameWithType: PrefabRegistry.TotalPrefabs
+- uid: GameFramework.SaveSystem.Data.PrefabRegistry.TotalPrefabs*
+  name: TotalPrefabs
+  href: api/api/GameFramework.SaveSystem.Data.PrefabRegistry.html#GameFramework_SaveSystem_Data_PrefabRegistry_TotalPrefabs_
+  commentId: Overload:GameFramework.SaveSystem.Data.PrefabRegistry.TotalPrefabs
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.Data.PrefabRegistry.TotalPrefabs
+  nameWithType: PrefabRegistry.TotalPrefabs
+- uid: GameFramework.SaveSystem.Data.PrefabRegistry.UnregisterPrefab(System.String)
+  name: UnregisterPrefab(string)
+  href: api/api/GameFramework.SaveSystem.Data.PrefabRegistry.html#GameFramework_SaveSystem_Data_PrefabRegistry_UnregisterPrefab_System_String_
+  commentId: M:GameFramework.SaveSystem.Data.PrefabRegistry.UnregisterPrefab(System.String)
+  name.vb: UnregisterPrefab(String)
+  fullName: GameFramework.SaveSystem.Data.PrefabRegistry.UnregisterPrefab(string)
+  fullName.vb: GameFramework.SaveSystem.Data.PrefabRegistry.UnregisterPrefab(String)
+  nameWithType: PrefabRegistry.UnregisterPrefab(string)
+  nameWithType.vb: PrefabRegistry.UnregisterPrefab(String)
+- uid: GameFramework.SaveSystem.Data.PrefabRegistry.UnregisterPrefab*
+  name: UnregisterPrefab
+  href: api/api/GameFramework.SaveSystem.Data.PrefabRegistry.html#GameFramework_SaveSystem_Data_PrefabRegistry_UnregisterPrefab_
+  commentId: Overload:GameFramework.SaveSystem.Data.PrefabRegistry.UnregisterPrefab
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.Data.PrefabRegistry.UnregisterPrefab
+  nameWithType: PrefabRegistry.UnregisterPrefab
+- uid: GameFramework.SaveSystem.Data.PrefabRegistry.ValidateAndCleanup
+  name: ValidateAndCleanup()
+  href: api/api/GameFramework.SaveSystem.Data.PrefabRegistry.html#GameFramework_SaveSystem_Data_PrefabRegistry_ValidateAndCleanup
+  commentId: M:GameFramework.SaveSystem.Data.PrefabRegistry.ValidateAndCleanup
+  fullName: GameFramework.SaveSystem.Data.PrefabRegistry.ValidateAndCleanup()
+  nameWithType: PrefabRegistry.ValidateAndCleanup()
+- uid: GameFramework.SaveSystem.Data.PrefabRegistry.ValidateAndCleanup*
+  name: ValidateAndCleanup
+  href: api/api/GameFramework.SaveSystem.Data.PrefabRegistry.html#GameFramework_SaveSystem_Data_PrefabRegistry_ValidateAndCleanup_
+  commentId: Overload:GameFramework.SaveSystem.Data.PrefabRegistry.ValidateAndCleanup
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.Data.PrefabRegistry.ValidateAndCleanup
+  nameWithType: PrefabRegistry.ValidateAndCleanup
+- uid: GameFramework.SaveSystem.Data.ReadOnlyAttribute
+  name: ReadOnlyAttribute
+  href: api/api/GameFramework.SaveSystem.Data.ReadOnlyAttribute.html
+  commentId: T:GameFramework.SaveSystem.Data.ReadOnlyAttribute
+  fullName: GameFramework.SaveSystem.Data.ReadOnlyAttribute
+  nameWithType: ReadOnlyAttribute
+- uid: GameFramework.SaveSystem.Data.ReadOnlyAttribute.#ctor
+  name: ReadOnlyAttribute()
+  href: api/api/GameFramework.SaveSystem.Data.ReadOnlyAttribute.html#GameFramework_SaveSystem_Data_ReadOnlyAttribute__ctor
+  commentId: M:GameFramework.SaveSystem.Data.ReadOnlyAttribute.#ctor
+  name.vb: New()
+  fullName: GameFramework.SaveSystem.Data.ReadOnlyAttribute.ReadOnlyAttribute()
+  fullName.vb: GameFramework.SaveSystem.Data.ReadOnlyAttribute.New()
+  nameWithType: ReadOnlyAttribute.ReadOnlyAttribute()
+  nameWithType.vb: ReadOnlyAttribute.New()
+- uid: GameFramework.SaveSystem.Data.ReadOnlyAttribute.#ctor*
+  name: ReadOnlyAttribute
+  href: api/api/GameFramework.SaveSystem.Data.ReadOnlyAttribute.html#GameFramework_SaveSystem_Data_ReadOnlyAttribute__ctor_
+  commentId: Overload:GameFramework.SaveSystem.Data.ReadOnlyAttribute.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: GameFramework.SaveSystem.Data.ReadOnlyAttribute.ReadOnlyAttribute
+  fullName.vb: GameFramework.SaveSystem.Data.ReadOnlyAttribute.New
+  nameWithType: ReadOnlyAttribute.ReadOnlyAttribute
+  nameWithType.vb: ReadOnlyAttribute.New
+- uid: GameFramework.SaveSystem.Data.RuntimeObjectSaveData
+  name: RuntimeObjectSaveData
+  href: api/api/GameFramework.SaveSystem.Data.RuntimeObjectSaveData.html
+  commentId: T:GameFramework.SaveSystem.Data.RuntimeObjectSaveData
+  fullName: GameFramework.SaveSystem.Data.RuntimeObjectSaveData
+  nameWithType: RuntimeObjectSaveData
+- uid: GameFramework.SaveSystem.Data.RuntimeObjectSaveData.#ctor
+  name: RuntimeObjectSaveData()
+  href: api/api/GameFramework.SaveSystem.Data.RuntimeObjectSaveData.html#GameFramework_SaveSystem_Data_RuntimeObjectSaveData__ctor
+  commentId: M:GameFramework.SaveSystem.Data.RuntimeObjectSaveData.#ctor
+  name.vb: New()
+  fullName: GameFramework.SaveSystem.Data.RuntimeObjectSaveData.RuntimeObjectSaveData()
+  fullName.vb: GameFramework.SaveSystem.Data.RuntimeObjectSaveData.New()
+  nameWithType: RuntimeObjectSaveData.RuntimeObjectSaveData()
+  nameWithType.vb: RuntimeObjectSaveData.New()
+- uid: GameFramework.SaveSystem.Data.RuntimeObjectSaveData.#ctor(System.String,System.String,System.String)
+  name: RuntimeObjectSaveData(string, string, string)
+  href: api/api/GameFramework.SaveSystem.Data.RuntimeObjectSaveData.html#GameFramework_SaveSystem_Data_RuntimeObjectSaveData__ctor_System_String_System_String_System_String_
+  commentId: M:GameFramework.SaveSystem.Data.RuntimeObjectSaveData.#ctor(System.String,System.String,System.String)
+  name.vb: New(String, String, String)
+  fullName: GameFramework.SaveSystem.Data.RuntimeObjectSaveData.RuntimeObjectSaveData(string, string, string)
+  fullName.vb: GameFramework.SaveSystem.Data.RuntimeObjectSaveData.New(String, String, String)
+  nameWithType: RuntimeObjectSaveData.RuntimeObjectSaveData(string, string, string)
+  nameWithType.vb: RuntimeObjectSaveData.New(String, String, String)
+- uid: GameFramework.SaveSystem.Data.RuntimeObjectSaveData.#ctor*
+  name: RuntimeObjectSaveData
+  href: api/api/GameFramework.SaveSystem.Data.RuntimeObjectSaveData.html#GameFramework_SaveSystem_Data_RuntimeObjectSaveData__ctor_
+  commentId: Overload:GameFramework.SaveSystem.Data.RuntimeObjectSaveData.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: GameFramework.SaveSystem.Data.RuntimeObjectSaveData.RuntimeObjectSaveData
+  fullName.vb: GameFramework.SaveSystem.Data.RuntimeObjectSaveData.New
+  nameWithType: RuntimeObjectSaveData.RuntimeObjectSaveData
+  nameWithType.vb: RuntimeObjectSaveData.New
+- uid: GameFramework.SaveSystem.Data.RuntimeObjectSaveData.isActive
+  name: isActive
+  href: api/api/GameFramework.SaveSystem.Data.RuntimeObjectSaveData.html#GameFramework_SaveSystem_Data_RuntimeObjectSaveData_isActive
+  commentId: F:GameFramework.SaveSystem.Data.RuntimeObjectSaveData.isActive
+  fullName: GameFramework.SaveSystem.Data.RuntimeObjectSaveData.isActive
+  nameWithType: RuntimeObjectSaveData.isActive
+- uid: GameFramework.SaveSystem.Data.RuntimeObjectSaveData.objectDataJson
+  name: objectDataJson
+  href: api/api/GameFramework.SaveSystem.Data.RuntimeObjectSaveData.html#GameFramework_SaveSystem_Data_RuntimeObjectSaveData_objectDataJson
+  commentId: F:GameFramework.SaveSystem.Data.RuntimeObjectSaveData.objectDataJson
+  fullName: GameFramework.SaveSystem.Data.RuntimeObjectSaveData.objectDataJson
+  nameWithType: RuntimeObjectSaveData.objectDataJson
+- uid: GameFramework.SaveSystem.Data.RuntimeObjectSaveData.position
+  name: position
+  href: api/api/GameFramework.SaveSystem.Data.RuntimeObjectSaveData.html#GameFramework_SaveSystem_Data_RuntimeObjectSaveData_position
+  commentId: F:GameFramework.SaveSystem.Data.RuntimeObjectSaveData.position
+  fullName: GameFramework.SaveSystem.Data.RuntimeObjectSaveData.position
+  nameWithType: RuntimeObjectSaveData.position
+- uid: GameFramework.SaveSystem.Data.RuntimeObjectSaveData.prefabGUID
+  name: prefabGUID
+  href: api/api/GameFramework.SaveSystem.Data.RuntimeObjectSaveData.html#GameFramework_SaveSystem_Data_RuntimeObjectSaveData_prefabGUID
+  commentId: F:GameFramework.SaveSystem.Data.RuntimeObjectSaveData.prefabGUID
+  fullName: GameFramework.SaveSystem.Data.RuntimeObjectSaveData.prefabGUID
+  nameWithType: RuntimeObjectSaveData.prefabGUID
+- uid: GameFramework.SaveSystem.Data.RuntimeObjectSaveData.rotation
+  name: rotation
+  href: api/api/GameFramework.SaveSystem.Data.RuntimeObjectSaveData.html#GameFramework_SaveSystem_Data_RuntimeObjectSaveData_rotation
+  commentId: F:GameFramework.SaveSystem.Data.RuntimeObjectSaveData.rotation
+  fullName: GameFramework.SaveSystem.Data.RuntimeObjectSaveData.rotation
+  nameWithType: RuntimeObjectSaveData.rotation
+- uid: GameFramework.SaveSystem.Data.RuntimeObjectSaveData.scale
+  name: scale
+  href: api/api/GameFramework.SaveSystem.Data.RuntimeObjectSaveData.html#GameFramework_SaveSystem_Data_RuntimeObjectSaveData_scale
+  commentId: F:GameFramework.SaveSystem.Data.RuntimeObjectSaveData.scale
+  fullName: GameFramework.SaveSystem.Data.RuntimeObjectSaveData.scale
+  nameWithType: RuntimeObjectSaveData.scale
+- uid: GameFramework.SaveSystem.Data.RuntimeObjectSaveData.typeName
+  name: typeName
+  href: api/api/GameFramework.SaveSystem.Data.RuntimeObjectSaveData.html#GameFramework_SaveSystem_Data_RuntimeObjectSaveData_typeName
+  commentId: F:GameFramework.SaveSystem.Data.RuntimeObjectSaveData.typeName
+  fullName: GameFramework.SaveSystem.Data.RuntimeObjectSaveData.typeName
+  nameWithType: RuntimeObjectSaveData.typeName
+- uid: GameFramework.SaveSystem.Data.RuntimeObjectSaveData.uniqueID
+  name: uniqueID
+  href: api/api/GameFramework.SaveSystem.Data.RuntimeObjectSaveData.html#GameFramework_SaveSystem_Data_RuntimeObjectSaveData_uniqueID
+  commentId: F:GameFramework.SaveSystem.Data.RuntimeObjectSaveData.uniqueID
+  fullName: GameFramework.SaveSystem.Data.RuntimeObjectSaveData.uniqueID
+  nameWithType: RuntimeObjectSaveData.uniqueID
 - uid: GameFramework.SaveSystem.Data.SaveFileData
   name: SaveFileData
   href: api/api/GameFramework.SaveSystem.Data.SaveFileData.html
@@ -11717,66 +12366,114 @@ references:
   fullName.vb: GameFramework.SaveSystem.Data.SaveFileData.New
   nameWithType: SaveFileData.SaveFileData
   nameWithType.vb: SaveFileData.New
-- uid: GameFramework.SaveSystem.Data.SaveFileData.DynamicSaveableObjects
-  name: DynamicSaveableObjects
-  href: api/api/GameFramework.SaveSystem.Data.SaveFileData.html#GameFramework_SaveSystem_Data_SaveFileData_DynamicSaveableObjects
-  commentId: F:GameFramework.SaveSystem.Data.SaveFileData.DynamicSaveableObjects
-  fullName: GameFramework.SaveSystem.Data.SaveFileData.DynamicSaveableObjects
-  nameWithType: SaveFileData.DynamicSaveableObjects
 - uid: GameFramework.SaveSystem.Data.SaveFileData.GameSessionData
   name: GameSessionData
   href: api/api/GameFramework.SaveSystem.Data.SaveFileData.html#GameFramework_SaveSystem_Data_SaveFileData_GameSessionData
   commentId: F:GameFramework.SaveSystem.Data.SaveFileData.GameSessionData
   fullName: GameFramework.SaveSystem.Data.SaveFileData.GameSessionData
   nameWithType: SaveFileData.GameSessionData
-- uid: GameFramework.SaveSystem.Data.SaveFileData.GetAllDynamicSaveKeys
-  name: GetAllDynamicSaveKeys()
-  href: api/api/GameFramework.SaveSystem.Data.SaveFileData.html#GameFramework_SaveSystem_Data_SaveFileData_GetAllDynamicSaveKeys
-  commentId: M:GameFramework.SaveSystem.Data.SaveFileData.GetAllDynamicSaveKeys
-  fullName: GameFramework.SaveSystem.Data.SaveFileData.GetAllDynamicSaveKeys()
-  nameWithType: SaveFileData.GetAllDynamicSaveKeys()
-- uid: GameFramework.SaveSystem.Data.SaveFileData.GetAllDynamicSaveKeys*
-  name: GetAllDynamicSaveKeys
-  href: api/api/GameFramework.SaveSystem.Data.SaveFileData.html#GameFramework_SaveSystem_Data_SaveFileData_GetAllDynamicSaveKeys_
-  commentId: Overload:GameFramework.SaveSystem.Data.SaveFileData.GetAllDynamicSaveKeys
+- uid: GameFramework.SaveSystem.Data.SaveFileData.GetAllRuntimeObjects
+  name: GetAllRuntimeObjects()
+  href: api/api/GameFramework.SaveSystem.Data.SaveFileData.html#GameFramework_SaveSystem_Data_SaveFileData_GetAllRuntimeObjects
+  commentId: M:GameFramework.SaveSystem.Data.SaveFileData.GetAllRuntimeObjects
+  fullName: GameFramework.SaveSystem.Data.SaveFileData.GetAllRuntimeObjects()
+  nameWithType: SaveFileData.GetAllRuntimeObjects()
+- uid: GameFramework.SaveSystem.Data.SaveFileData.GetAllRuntimeObjects*
+  name: GetAllRuntimeObjects
+  href: api/api/GameFramework.SaveSystem.Data.SaveFileData.html#GameFramework_SaveSystem_Data_SaveFileData_GetAllRuntimeObjects_
+  commentId: Overload:GameFramework.SaveSystem.Data.SaveFileData.GetAllRuntimeObjects
   isSpec: "True"
-  fullName: GameFramework.SaveSystem.Data.SaveFileData.GetAllDynamicSaveKeys
-  nameWithType: SaveFileData.GetAllDynamicSaveKeys
-- uid: GameFramework.SaveSystem.Data.SaveFileData.GetDynamicObjectCount
-  name: GetDynamicObjectCount()
-  href: api/api/GameFramework.SaveSystem.Data.SaveFileData.html#GameFramework_SaveSystem_Data_SaveFileData_GetDynamicObjectCount
-  commentId: M:GameFramework.SaveSystem.Data.SaveFileData.GetDynamicObjectCount
-  fullName: GameFramework.SaveSystem.Data.SaveFileData.GetDynamicObjectCount()
-  nameWithType: SaveFileData.GetDynamicObjectCount()
-- uid: GameFramework.SaveSystem.Data.SaveFileData.GetDynamicObjectCount*
-  name: GetDynamicObjectCount
-  href: api/api/GameFramework.SaveSystem.Data.SaveFileData.html#GameFramework_SaveSystem_Data_SaveFileData_GetDynamicObjectCount_
-  commentId: Overload:GameFramework.SaveSystem.Data.SaveFileData.GetDynamicObjectCount
+  fullName: GameFramework.SaveSystem.Data.SaveFileData.GetAllRuntimeObjects
+  nameWithType: SaveFileData.GetAllRuntimeObjects
+- uid: GameFramework.SaveSystem.Data.SaveFileData.GetAllRuntimeObjectsOfType*
+  name: GetAllRuntimeObjectsOfType
+  href: api/api/GameFramework.SaveSystem.Data.SaveFileData.html#GameFramework_SaveSystem_Data_SaveFileData_GetAllRuntimeObjectsOfType_
+  commentId: Overload:GameFramework.SaveSystem.Data.SaveFileData.GetAllRuntimeObjectsOfType
   isSpec: "True"
-  fullName: GameFramework.SaveSystem.Data.SaveFileData.GetDynamicObjectCount
-  nameWithType: SaveFileData.GetDynamicObjectCount
-- uid: GameFramework.SaveSystem.Data.SaveFileData.GetSaveData*
-  name: GetSaveData
-  href: api/api/GameFramework.SaveSystem.Data.SaveFileData.html#GameFramework_SaveSystem_Data_SaveFileData_GetSaveData_
-  commentId: Overload:GameFramework.SaveSystem.Data.SaveFileData.GetSaveData
+  fullName: GameFramework.SaveSystem.Data.SaveFileData.GetAllRuntimeObjectsOfType
+  nameWithType: SaveFileData.GetAllRuntimeObjectsOfType
+- uid: GameFramework.SaveSystem.Data.SaveFileData.GetAllRuntimeObjectsOfType``1
+  name: GetAllRuntimeObjectsOfType<T>()
+  href: api/api/GameFramework.SaveSystem.Data.SaveFileData.html#GameFramework_SaveSystem_Data_SaveFileData_GetAllRuntimeObjectsOfType__1
+  commentId: M:GameFramework.SaveSystem.Data.SaveFileData.GetAllRuntimeObjectsOfType``1
+  name.vb: GetAllRuntimeObjectsOfType(Of T)()
+  fullName: GameFramework.SaveSystem.Data.SaveFileData.GetAllRuntimeObjectsOfType<T>()
+  fullName.vb: GameFramework.SaveSystem.Data.SaveFileData.GetAllRuntimeObjectsOfType(Of T)()
+  nameWithType: SaveFileData.GetAllRuntimeObjectsOfType<T>()
+  nameWithType.vb: SaveFileData.GetAllRuntimeObjectsOfType(Of T)()
+- uid: GameFramework.SaveSystem.Data.SaveFileData.GetRuntimeObjectByID(System.String)
+  name: GetRuntimeObjectByID(string)
+  href: api/api/GameFramework.SaveSystem.Data.SaveFileData.html#GameFramework_SaveSystem_Data_SaveFileData_GetRuntimeObjectByID_System_String_
+  commentId: M:GameFramework.SaveSystem.Data.SaveFileData.GetRuntimeObjectByID(System.String)
+  name.vb: GetRuntimeObjectByID(String)
+  fullName: GameFramework.SaveSystem.Data.SaveFileData.GetRuntimeObjectByID(string)
+  fullName.vb: GameFramework.SaveSystem.Data.SaveFileData.GetRuntimeObjectByID(String)
+  nameWithType: SaveFileData.GetRuntimeObjectByID(string)
+  nameWithType.vb: SaveFileData.GetRuntimeObjectByID(String)
+- uid: GameFramework.SaveSystem.Data.SaveFileData.GetRuntimeObjectByID*
+  name: GetRuntimeObjectByID
+  href: api/api/GameFramework.SaveSystem.Data.SaveFileData.html#GameFramework_SaveSystem_Data_SaveFileData_GetRuntimeObjectByID_
+  commentId: Overload:GameFramework.SaveSystem.Data.SaveFileData.GetRuntimeObjectByID
   isSpec: "True"
-  fullName: GameFramework.SaveSystem.Data.SaveFileData.GetSaveData
-  nameWithType: SaveFileData.GetSaveData
-- uid: GameFramework.SaveSystem.Data.SaveFileData.GetSaveData``1(System.String)
-  name: GetSaveData<T>(string)
-  href: api/api/GameFramework.SaveSystem.Data.SaveFileData.html#GameFramework_SaveSystem_Data_SaveFileData_GetSaveData__1_System_String_
-  commentId: M:GameFramework.SaveSystem.Data.SaveFileData.GetSaveData``1(System.String)
-  name.vb: GetSaveData(Of T)(String)
-  fullName: GameFramework.SaveSystem.Data.SaveFileData.GetSaveData<T>(string)
-  fullName.vb: GameFramework.SaveSystem.Data.SaveFileData.GetSaveData(Of T)(String)
-  nameWithType: SaveFileData.GetSaveData<T>(string)
-  nameWithType.vb: SaveFileData.GetSaveData(Of T)(String)
+  fullName: GameFramework.SaveSystem.Data.SaveFileData.GetRuntimeObjectByID
+  nameWithType: SaveFileData.GetRuntimeObjectByID
+- uid: GameFramework.SaveSystem.Data.SaveFileData.GetRuntimeObjectData*
+  name: GetRuntimeObjectData
+  href: api/api/GameFramework.SaveSystem.Data.SaveFileData.html#GameFramework_SaveSystem_Data_SaveFileData_GetRuntimeObjectData_
+  commentId: Overload:GameFramework.SaveSystem.Data.SaveFileData.GetRuntimeObjectData
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.Data.SaveFileData.GetRuntimeObjectData
+  nameWithType: SaveFileData.GetRuntimeObjectData
+- uid: GameFramework.SaveSystem.Data.SaveFileData.GetRuntimeObjectData``1(System.String)
+  name: GetRuntimeObjectData<T>(string)
+  href: api/api/GameFramework.SaveSystem.Data.SaveFileData.html#GameFramework_SaveSystem_Data_SaveFileData_GetRuntimeObjectData__1_System_String_
+  commentId: M:GameFramework.SaveSystem.Data.SaveFileData.GetRuntimeObjectData``1(System.String)
+  name.vb: GetRuntimeObjectData(Of T)(String)
+  fullName: GameFramework.SaveSystem.Data.SaveFileData.GetRuntimeObjectData<T>(string)
+  fullName.vb: GameFramework.SaveSystem.Data.SaveFileData.GetRuntimeObjectData(Of T)(String)
+  nameWithType: SaveFileData.GetRuntimeObjectData<T>(string)
+  nameWithType.vb: SaveFileData.GetRuntimeObjectData(Of T)(String)
+- uid: GameFramework.SaveSystem.Data.SaveFileData.GetTypeStatistics
+  name: GetTypeStatistics()
+  href: api/api/GameFramework.SaveSystem.Data.SaveFileData.html#GameFramework_SaveSystem_Data_SaveFileData_GetTypeStatistics
+  commentId: M:GameFramework.SaveSystem.Data.SaveFileData.GetTypeStatistics
+  fullName: GameFramework.SaveSystem.Data.SaveFileData.GetTypeStatistics()
+  nameWithType: SaveFileData.GetTypeStatistics()
+- uid: GameFramework.SaveSystem.Data.SaveFileData.GetTypeStatistics*
+  name: GetTypeStatistics
+  href: api/api/GameFramework.SaveSystem.Data.SaveFileData.html#GameFramework_SaveSystem_Data_SaveFileData_GetTypeStatistics_
+  commentId: Overload:GameFramework.SaveSystem.Data.SaveFileData.GetTypeStatistics
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.Data.SaveFileData.GetTypeStatistics
+  nameWithType: SaveFileData.GetTypeStatistics
 - uid: GameFramework.SaveSystem.Data.SaveFileData.PlayerData
   name: PlayerData
   href: api/api/GameFramework.SaveSystem.Data.SaveFileData.html#GameFramework_SaveSystem_Data_SaveFileData_PlayerData
   commentId: F:GameFramework.SaveSystem.Data.SaveFileData.PlayerData
   fullName: GameFramework.SaveSystem.Data.SaveFileData.PlayerData
   nameWithType: SaveFileData.PlayerData
+- uid: GameFramework.SaveSystem.Data.SaveFileData.RemoveRuntimeObject(System.String)
+  name: RemoveRuntimeObject(string)
+  href: api/api/GameFramework.SaveSystem.Data.SaveFileData.html#GameFramework_SaveSystem_Data_SaveFileData_RemoveRuntimeObject_System_String_
+  commentId: M:GameFramework.SaveSystem.Data.SaveFileData.RemoveRuntimeObject(System.String)
+  name.vb: RemoveRuntimeObject(String)
+  fullName: GameFramework.SaveSystem.Data.SaveFileData.RemoveRuntimeObject(string)
+  fullName.vb: GameFramework.SaveSystem.Data.SaveFileData.RemoveRuntimeObject(String)
+  nameWithType: SaveFileData.RemoveRuntimeObject(string)
+  nameWithType.vb: SaveFileData.RemoveRuntimeObject(String)
+- uid: GameFramework.SaveSystem.Data.SaveFileData.RemoveRuntimeObject*
+  name: RemoveRuntimeObject
+  href: api/api/GameFramework.SaveSystem.Data.SaveFileData.html#GameFramework_SaveSystem_Data_SaveFileData_RemoveRuntimeObject_
+  commentId: Overload:GameFramework.SaveSystem.Data.SaveFileData.RemoveRuntimeObject
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.Data.SaveFileData.RemoveRuntimeObject
+  nameWithType: SaveFileData.RemoveRuntimeObject
+- uid: GameFramework.SaveSystem.Data.SaveFileData.RuntimeObjects
+  name: RuntimeObjects
+  href: api/api/GameFramework.SaveSystem.Data.SaveFileData.html#GameFramework_SaveSystem_Data_SaveFileData_RuntimeObjects
+  commentId: F:GameFramework.SaveSystem.Data.SaveFileData.RuntimeObjects
+  fullName: GameFramework.SaveSystem.Data.SaveFileData.RuntimeObjects
+  nameWithType: SaveFileData.RuntimeObjects
 - uid: GameFramework.SaveSystem.Data.SaveFileData.SaveTime
   name: SaveTime
   href: api/api/GameFramework.SaveSystem.Data.SaveFileData.html#GameFramework_SaveSystem_Data_SaveFileData_SaveTime
@@ -11796,22 +12493,32 @@ references:
   commentId: F:GameFramework.SaveSystem.Data.SaveFileData.SaveTimeTicks
   fullName: GameFramework.SaveSystem.Data.SaveFileData.SaveTimeTicks
   nameWithType: SaveFileData.SaveTimeTicks
-- uid: GameFramework.SaveSystem.Data.SaveFileData.SetSaveData(System.String,System.Object)
-  name: SetSaveData(string, object)
-  href: api/api/GameFramework.SaveSystem.Data.SaveFileData.html#GameFramework_SaveSystem_Data_SaveFileData_SetSaveData_System_String_System_Object_
-  commentId: M:GameFramework.SaveSystem.Data.SaveFileData.SetSaveData(System.String,System.Object)
-  name.vb: SetSaveData(String, Object)
-  fullName: GameFramework.SaveSystem.Data.SaveFileData.SetSaveData(string, object)
-  fullName.vb: GameFramework.SaveSystem.Data.SaveFileData.SetSaveData(String, Object)
-  nameWithType: SaveFileData.SetSaveData(string, object)
-  nameWithType.vb: SaveFileData.SetSaveData(String, Object)
-- uid: GameFramework.SaveSystem.Data.SaveFileData.SetSaveData*
-  name: SetSaveData
-  href: api/api/GameFramework.SaveSystem.Data.SaveFileData.html#GameFramework_SaveSystem_Data_SaveFileData_SetSaveData_
-  commentId: Overload:GameFramework.SaveSystem.Data.SaveFileData.SetSaveData
+- uid: GameFramework.SaveSystem.Data.SaveFileData.SetRuntimeObjectData(GameFramework.SaveSystem.Data.RuntimeObjectSaveData)
+  name: SetRuntimeObjectData(RuntimeObjectSaveData)
+  href: api/api/GameFramework.SaveSystem.Data.SaveFileData.html#GameFramework_SaveSystem_Data_SaveFileData_SetRuntimeObjectData_GameFramework_SaveSystem_Data_RuntimeObjectSaveData_
+  commentId: M:GameFramework.SaveSystem.Data.SaveFileData.SetRuntimeObjectData(GameFramework.SaveSystem.Data.RuntimeObjectSaveData)
+  fullName: GameFramework.SaveSystem.Data.SaveFileData.SetRuntimeObjectData(GameFramework.SaveSystem.Data.RuntimeObjectSaveData)
+  nameWithType: SaveFileData.SetRuntimeObjectData(RuntimeObjectSaveData)
+- uid: GameFramework.SaveSystem.Data.SaveFileData.SetRuntimeObjectData*
+  name: SetRuntimeObjectData
+  href: api/api/GameFramework.SaveSystem.Data.SaveFileData.html#GameFramework_SaveSystem_Data_SaveFileData_SetRuntimeObjectData_
+  commentId: Overload:GameFramework.SaveSystem.Data.SaveFileData.SetRuntimeObjectData
   isSpec: "True"
-  fullName: GameFramework.SaveSystem.Data.SaveFileData.SetSaveData
-  nameWithType: SaveFileData.SetSaveData
+  fullName: GameFramework.SaveSystem.Data.SaveFileData.SetRuntimeObjectData
+  nameWithType: SaveFileData.SetRuntimeObjectData
+- uid: GameFramework.SaveSystem.Data.SaveFileData.TotalRuntimeObjects
+  name: TotalRuntimeObjects
+  href: api/api/GameFramework.SaveSystem.Data.SaveFileData.html#GameFramework_SaveSystem_Data_SaveFileData_TotalRuntimeObjects
+  commentId: P:GameFramework.SaveSystem.Data.SaveFileData.TotalRuntimeObjects
+  fullName: GameFramework.SaveSystem.Data.SaveFileData.TotalRuntimeObjects
+  nameWithType: SaveFileData.TotalRuntimeObjects
+- uid: GameFramework.SaveSystem.Data.SaveFileData.TotalRuntimeObjects*
+  name: TotalRuntimeObjects
+  href: api/api/GameFramework.SaveSystem.Data.SaveFileData.html#GameFramework_SaveSystem_Data_SaveFileData_TotalRuntimeObjects_
+  commentId: Overload:GameFramework.SaveSystem.Data.SaveFileData.TotalRuntimeObjects
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.Data.SaveFileData.TotalRuntimeObjects
+  nameWithType: SaveFileData.TotalRuntimeObjects
 - uid: GameFramework.SaveSystem.Data.SaveFileData.ValidateData
   name: ValidateData()
   href: api/api/GameFramework.SaveSystem.Data.SaveFileData.html#GameFramework_SaveSystem_Data_SaveFileData_ValidateData
@@ -11831,286 +12538,180 @@ references:
   commentId: F:GameFramework.SaveSystem.Data.SaveFileData.WasAutoSave
   fullName: GameFramework.SaveSystem.Data.SaveFileData.WasAutoSave
   nameWithType: SaveFileData.WasAutoSave
-- uid: GameFramework.SaveSystem.Data.SavedObjectEntry
-  name: SavedObjectEntry
-  href: api/api/GameFramework.SaveSystem.Data.SavedObjectEntry.html
-  commentId: T:GameFramework.SaveSystem.Data.SavedObjectEntry
-  fullName: GameFramework.SaveSystem.Data.SavedObjectEntry
-  nameWithType: SavedObjectEntry
-- uid: GameFramework.SaveSystem.Data.SavedObjectEntry.Key
-  name: Key
-  href: api/api/GameFramework.SaveSystem.Data.SavedObjectEntry.html#GameFramework_SaveSystem_Data_SavedObjectEntry_Key
-  commentId: F:GameFramework.SaveSystem.Data.SavedObjectEntry.Key
-  fullName: GameFramework.SaveSystem.Data.SavedObjectEntry.Key
-  nameWithType: SavedObjectEntry.Key
-- uid: GameFramework.SaveSystem.Data.SavedObjectEntry.Value
-  name: Value
-  href: api/api/GameFramework.SaveSystem.Data.SavedObjectEntry.html#GameFramework_SaveSystem_Data_SavedObjectEntry_Value
-  commentId: F:GameFramework.SaveSystem.Data.SavedObjectEntry.Value
-  fullName: GameFramework.SaveSystem.Data.SavedObjectEntry.Value
-  nameWithType: SavedObjectEntry.Value
+- uid: GameFramework.SaveSystem.Data.SerializedRuntimeObject
+  name: SerializedRuntimeObject
+  href: api/api/GameFramework.SaveSystem.Data.SerializedRuntimeObject.html
+  commentId: T:GameFramework.SaveSystem.Data.SerializedRuntimeObject
+  fullName: GameFramework.SaveSystem.Data.SerializedRuntimeObject
+  nameWithType: SerializedRuntimeObject
+- uid: GameFramework.SaveSystem.Data.SerializedRuntimeObject.#ctor
+  name: SerializedRuntimeObject()
+  href: api/api/GameFramework.SaveSystem.Data.SerializedRuntimeObject.html#GameFramework_SaveSystem_Data_SerializedRuntimeObject__ctor
+  commentId: M:GameFramework.SaveSystem.Data.SerializedRuntimeObject.#ctor
+  name.vb: New()
+  fullName: GameFramework.SaveSystem.Data.SerializedRuntimeObject.SerializedRuntimeObject()
+  fullName.vb: GameFramework.SaveSystem.Data.SerializedRuntimeObject.New()
+  nameWithType: SerializedRuntimeObject.SerializedRuntimeObject()
+  nameWithType.vb: SerializedRuntimeObject.New()
+- uid: GameFramework.SaveSystem.Data.SerializedRuntimeObject.#ctor(GameFramework.SaveSystem.Data.RuntimeObjectSaveData)
+  name: SerializedRuntimeObject(RuntimeObjectSaveData)
+  href: api/api/GameFramework.SaveSystem.Data.SerializedRuntimeObject.html#GameFramework_SaveSystem_Data_SerializedRuntimeObject__ctor_GameFramework_SaveSystem_Data_RuntimeObjectSaveData_
+  commentId: M:GameFramework.SaveSystem.Data.SerializedRuntimeObject.#ctor(GameFramework.SaveSystem.Data.RuntimeObjectSaveData)
+  name.vb: New(RuntimeObjectSaveData)
+  fullName: GameFramework.SaveSystem.Data.SerializedRuntimeObject.SerializedRuntimeObject(GameFramework.SaveSystem.Data.RuntimeObjectSaveData)
+  fullName.vb: GameFramework.SaveSystem.Data.SerializedRuntimeObject.New(GameFramework.SaveSystem.Data.RuntimeObjectSaveData)
+  nameWithType: SerializedRuntimeObject.SerializedRuntimeObject(RuntimeObjectSaveData)
+  nameWithType.vb: SerializedRuntimeObject.New(RuntimeObjectSaveData)
+- uid: GameFramework.SaveSystem.Data.SerializedRuntimeObject.#ctor*
+  name: SerializedRuntimeObject
+  href: api/api/GameFramework.SaveSystem.Data.SerializedRuntimeObject.html#GameFramework_SaveSystem_Data_SerializedRuntimeObject__ctor_
+  commentId: Overload:GameFramework.SaveSystem.Data.SerializedRuntimeObject.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: GameFramework.SaveSystem.Data.SerializedRuntimeObject.SerializedRuntimeObject
+  fullName.vb: GameFramework.SaveSystem.Data.SerializedRuntimeObject.New
+  nameWithType: SerializedRuntimeObject.SerializedRuntimeObject
+  nameWithType.vb: SerializedRuntimeObject.New
+- uid: GameFramework.SaveSystem.Data.SerializedRuntimeObject.Deserialize
+  name: Deserialize()
+  href: api/api/GameFramework.SaveSystem.Data.SerializedRuntimeObject.html#GameFramework_SaveSystem_Data_SerializedRuntimeObject_Deserialize
+  commentId: M:GameFramework.SaveSystem.Data.SerializedRuntimeObject.Deserialize
+  fullName: GameFramework.SaveSystem.Data.SerializedRuntimeObject.Deserialize()
+  nameWithType: SerializedRuntimeObject.Deserialize()
+- uid: GameFramework.SaveSystem.Data.SerializedRuntimeObject.Deserialize*
+  name: Deserialize
+  href: api/api/GameFramework.SaveSystem.Data.SerializedRuntimeObject.html#GameFramework_SaveSystem_Data_SerializedRuntimeObject_Deserialize_
+  commentId: Overload:GameFramework.SaveSystem.Data.SerializedRuntimeObject.Deserialize
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.Data.SerializedRuntimeObject.Deserialize
+  nameWithType: SerializedRuntimeObject.Deserialize
+- uid: GameFramework.SaveSystem.Data.SerializedRuntimeObject.IsValid
+  name: IsValid()
+  href: api/api/GameFramework.SaveSystem.Data.SerializedRuntimeObject.html#GameFramework_SaveSystem_Data_SerializedRuntimeObject_IsValid
+  commentId: M:GameFramework.SaveSystem.Data.SerializedRuntimeObject.IsValid
+  fullName: GameFramework.SaveSystem.Data.SerializedRuntimeObject.IsValid()
+  nameWithType: SerializedRuntimeObject.IsValid()
+- uid: GameFramework.SaveSystem.Data.SerializedRuntimeObject.IsValid*
+  name: IsValid
+  href: api/api/GameFramework.SaveSystem.Data.SerializedRuntimeObject.html#GameFramework_SaveSystem_Data_SerializedRuntimeObject_IsValid_
+  commentId: Overload:GameFramework.SaveSystem.Data.SerializedRuntimeObject.IsValid
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.Data.SerializedRuntimeObject.IsValid
+  nameWithType: SerializedRuntimeObject.IsValid
+- uid: GameFramework.SaveSystem.Data.SerializedRuntimeObject.ToString
+  name: ToString()
+  href: api/api/GameFramework.SaveSystem.Data.SerializedRuntimeObject.html#GameFramework_SaveSystem_Data_SerializedRuntimeObject_ToString
+  commentId: M:GameFramework.SaveSystem.Data.SerializedRuntimeObject.ToString
+  fullName: GameFramework.SaveSystem.Data.SerializedRuntimeObject.ToString()
+  nameWithType: SerializedRuntimeObject.ToString()
+- uid: GameFramework.SaveSystem.Data.SerializedRuntimeObject.ToString*
+  name: ToString
+  href: api/api/GameFramework.SaveSystem.Data.SerializedRuntimeObject.html#GameFramework_SaveSystem_Data_SerializedRuntimeObject_ToString_
+  commentId: Overload:GameFramework.SaveSystem.Data.SerializedRuntimeObject.ToString
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.Data.SerializedRuntimeObject.ToString
+  nameWithType: SerializedRuntimeObject.ToString
+- uid: GameFramework.SaveSystem.Data.SerializedRuntimeObject.UpdateFrom(GameFramework.SaveSystem.Data.RuntimeObjectSaveData)
+  name: UpdateFrom(RuntimeObjectSaveData)
+  href: api/api/GameFramework.SaveSystem.Data.SerializedRuntimeObject.html#GameFramework_SaveSystem_Data_SerializedRuntimeObject_UpdateFrom_GameFramework_SaveSystem_Data_RuntimeObjectSaveData_
+  commentId: M:GameFramework.SaveSystem.Data.SerializedRuntimeObject.UpdateFrom(GameFramework.SaveSystem.Data.RuntimeObjectSaveData)
+  fullName: GameFramework.SaveSystem.Data.SerializedRuntimeObject.UpdateFrom(GameFramework.SaveSystem.Data.RuntimeObjectSaveData)
+  nameWithType: SerializedRuntimeObject.UpdateFrom(RuntimeObjectSaveData)
+- uid: GameFramework.SaveSystem.Data.SerializedRuntimeObject.UpdateFrom*
+  name: UpdateFrom
+  href: api/api/GameFramework.SaveSystem.Data.SerializedRuntimeObject.html#GameFramework_SaveSystem_Data_SerializedRuntimeObject_UpdateFrom_
+  commentId: Overload:GameFramework.SaveSystem.Data.SerializedRuntimeObject.UpdateFrom
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.Data.SerializedRuntimeObject.UpdateFrom
+  nameWithType: SerializedRuntimeObject.UpdateFrom
+- uid: GameFramework.SaveSystem.Data.SerializedRuntimeObject.dataLength
+  name: dataLength
+  href: api/api/GameFramework.SaveSystem.Data.SerializedRuntimeObject.html#GameFramework_SaveSystem_Data_SerializedRuntimeObject_dataLength
+  commentId: F:GameFramework.SaveSystem.Data.SerializedRuntimeObject.dataLength
+  fullName: GameFramework.SaveSystem.Data.SerializedRuntimeObject.dataLength
+  nameWithType: SerializedRuntimeObject.dataLength
+- uid: GameFramework.SaveSystem.Data.SerializedRuntimeObject.jsonData
+  name: jsonData
+  href: api/api/GameFramework.SaveSystem.Data.SerializedRuntimeObject.html#GameFramework_SaveSystem_Data_SerializedRuntimeObject_jsonData
+  commentId: F:GameFramework.SaveSystem.Data.SerializedRuntimeObject.jsonData
+  fullName: GameFramework.SaveSystem.Data.SerializedRuntimeObject.jsonData
+  nameWithType: SerializedRuntimeObject.jsonData
+- uid: GameFramework.SaveSystem.Data.SerializedRuntimeObject.saveDataTypeName
+  name: saveDataTypeName
+  href: api/api/GameFramework.SaveSystem.Data.SerializedRuntimeObject.html#GameFramework_SaveSystem_Data_SerializedRuntimeObject_saveDataTypeName
+  commentId: F:GameFramework.SaveSystem.Data.SerializedRuntimeObject.saveDataTypeName
+  fullName: GameFramework.SaveSystem.Data.SerializedRuntimeObject.saveDataTypeName
+  nameWithType: SerializedRuntimeObject.saveDataTypeName
+- uid: GameFramework.SaveSystem.Data.SerializedRuntimeObject.typeName
+  name: typeName
+  href: api/api/GameFramework.SaveSystem.Data.SerializedRuntimeObject.html#GameFramework_SaveSystem_Data_SerializedRuntimeObject_typeName
+  commentId: F:GameFramework.SaveSystem.Data.SerializedRuntimeObject.typeName
+  fullName: GameFramework.SaveSystem.Data.SerializedRuntimeObject.typeName
+  nameWithType: SerializedRuntimeObject.typeName
+- uid: GameFramework.SaveSystem.Data.SerializedRuntimeObject.uniqueID
+  name: uniqueID
+  href: api/api/GameFramework.SaveSystem.Data.SerializedRuntimeObject.html#GameFramework_SaveSystem_Data_SerializedRuntimeObject_uniqueID
+  commentId: F:GameFramework.SaveSystem.Data.SerializedRuntimeObject.uniqueID
+  fullName: GameFramework.SaveSystem.Data.SerializedRuntimeObject.uniqueID
+  nameWithType: SerializedRuntimeObject.uniqueID
+- uid: GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData
+  name: TestGenericRuntimeSaveData
+  href: api/api/GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.html
+  commentId: T:GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData
+  fullName: GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData
+  nameWithType: TestGenericRuntimeSaveData
+- uid: GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.#ctor
+  name: TestGenericRuntimeSaveData()
+  href: api/api/GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.html#GameFramework_SaveSystem_Data_TestGenericRuntimeSaveData__ctor
+  commentId: M:GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.#ctor
+  name.vb: New()
+  fullName: GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.TestGenericRuntimeSaveData()
+  fullName.vb: GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.New()
+  nameWithType: TestGenericRuntimeSaveData.TestGenericRuntimeSaveData()
+  nameWithType.vb: TestGenericRuntimeSaveData.New()
+- uid: GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.#ctor(System.String,System.String)
+  name: TestGenericRuntimeSaveData(string, string)
+  href: api/api/GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.html#GameFramework_SaveSystem_Data_TestGenericRuntimeSaveData__ctor_System_String_System_String_
+  commentId: M:GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.#ctor(System.String,System.String)
+  name.vb: New(String, String)
+  fullName: GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.TestGenericRuntimeSaveData(string, string)
+  fullName.vb: GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.New(String, String)
+  nameWithType: TestGenericRuntimeSaveData.TestGenericRuntimeSaveData(string, string)
+  nameWithType.vb: TestGenericRuntimeSaveData.New(String, String)
+- uid: GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.#ctor*
+  name: TestGenericRuntimeSaveData
+  href: api/api/GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.html#GameFramework_SaveSystem_Data_TestGenericRuntimeSaveData__ctor_
+  commentId: Overload:GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.TestGenericRuntimeSaveData
+  fullName.vb: GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.New
+  nameWithType: TestGenericRuntimeSaveData.TestGenericRuntimeSaveData
+  nameWithType.vb: TestGenericRuntimeSaveData.New
+- uid: GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.testBool
+  name: testBool
+  href: api/api/GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.html#GameFramework_SaveSystem_Data_TestGenericRuntimeSaveData_testBool
+  commentId: F:GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.testBool
+  fullName: GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.testBool
+  nameWithType: TestGenericRuntimeSaveData.testBool
+- uid: GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.testString
+  name: testString
+  href: api/api/GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.html#GameFramework_SaveSystem_Data_TestGenericRuntimeSaveData_testString
+  commentId: F:GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.testString
+  fullName: GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.testString
+  nameWithType: TestGenericRuntimeSaveData.testString
+- uid: GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.testValue
+  name: testValue
+  href: api/api/GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.html#GameFramework_SaveSystem_Data_TestGenericRuntimeSaveData_testValue
+  commentId: F:GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.testValue
+  fullName: GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.testValue
+  nameWithType: TestGenericRuntimeSaveData.testValue
 - uid: GameFramework.SaveSystem.Examples
   name: GameFramework.SaveSystem.Examples
   href: api/api/GameFramework.SaveSystem.Examples.html
   commentId: N:GameFramework.SaveSystem.Examples
   fullName: GameFramework.SaveSystem.Examples
   nameWithType: GameFramework.SaveSystem.Examples
-- uid: GameFramework.SaveSystem.Examples.SaveableExample
-  name: SaveableExample
-  href: api/api/GameFramework.SaveSystem.Examples.SaveableExample.html
-  commentId: T:GameFramework.SaveSystem.Examples.SaveableExample
-  fullName: GameFramework.SaveSystem.Examples.SaveableExample
-  nameWithType: SaveableExample
-- uid: GameFramework.SaveSystem.Examples.SaveableExample.GetSaveData
-  name: GetSaveData()
-  href: api/api/GameFramework.SaveSystem.Examples.SaveableExample.html#GameFramework_SaveSystem_Examples_SaveableExample_GetSaveData
-  commentId: M:GameFramework.SaveSystem.Examples.SaveableExample.GetSaveData
-  fullName: GameFramework.SaveSystem.Examples.SaveableExample.GetSaveData()
-  nameWithType: SaveableExample.GetSaveData()
-- uid: GameFramework.SaveSystem.Examples.SaveableExample.GetSaveData*
-  name: GetSaveData
-  href: api/api/GameFramework.SaveSystem.Examples.SaveableExample.html#GameFramework_SaveSystem_Examples_SaveableExample_GetSaveData_
-  commentId: Overload:GameFramework.SaveSystem.Examples.SaveableExample.GetSaveData
-  isSpec: "True"
-  fullName: GameFramework.SaveSystem.Examples.SaveableExample.GetSaveData
-  nameWithType: SaveableExample.GetSaveData
-- uid: GameFramework.SaveSystem.Examples.SaveableExample.GetUniqueIdPrefix
-  name: GetUniqueIdPrefix()
-  href: api/api/GameFramework.SaveSystem.Examples.SaveableExample.html#GameFramework_SaveSystem_Examples_SaveableExample_GetUniqueIdPrefix
-  commentId: M:GameFramework.SaveSystem.Examples.SaveableExample.GetUniqueIdPrefix
-  fullName: GameFramework.SaveSystem.Examples.SaveableExample.GetUniqueIdPrefix()
-  nameWithType: SaveableExample.GetUniqueIdPrefix()
-- uid: GameFramework.SaveSystem.Examples.SaveableExample.GetUniqueIdPrefix*
-  name: GetUniqueIdPrefix
-  href: api/api/GameFramework.SaveSystem.Examples.SaveableExample.html#GameFramework_SaveSystem_Examples_SaveableExample_GetUniqueIdPrefix_
-  commentId: Overload:GameFramework.SaveSystem.Examples.SaveableExample.GetUniqueIdPrefix
-  isSpec: "True"
-  fullName: GameFramework.SaveSystem.Examples.SaveableExample.GetUniqueIdPrefix
-  nameWithType: SaveableExample.GetUniqueIdPrefix
-- uid: GameFramework.SaveSystem.Examples.SaveableExample.Health
-  name: Health
-  href: api/api/GameFramework.SaveSystem.Examples.SaveableExample.html#GameFramework_SaveSystem_Examples_SaveableExample_Health
-  commentId: P:GameFramework.SaveSystem.Examples.SaveableExample.Health
-  fullName: GameFramework.SaveSystem.Examples.SaveableExample.Health
-  nameWithType: SaveableExample.Health
-- uid: GameFramework.SaveSystem.Examples.SaveableExample.Health*
-  name: Health
-  href: api/api/GameFramework.SaveSystem.Examples.SaveableExample.html#GameFramework_SaveSystem_Examples_SaveableExample_Health_
-  commentId: Overload:GameFramework.SaveSystem.Examples.SaveableExample.Health
-  isSpec: "True"
-  fullName: GameFramework.SaveSystem.Examples.SaveableExample.Health
-  nameWithType: SaveableExample.Health
-- uid: GameFramework.SaveSystem.Examples.SaveableExample.IsActive
-  name: IsActive
-  href: api/api/GameFramework.SaveSystem.Examples.SaveableExample.html#GameFramework_SaveSystem_Examples_SaveableExample_IsActive
-  commentId: P:GameFramework.SaveSystem.Examples.SaveableExample.IsActive
-  fullName: GameFramework.SaveSystem.Examples.SaveableExample.IsActive
-  nameWithType: SaveableExample.IsActive
-- uid: GameFramework.SaveSystem.Examples.SaveableExample.IsActive*
-  name: IsActive
-  href: api/api/GameFramework.SaveSystem.Examples.SaveableExample.html#GameFramework_SaveSystem_Examples_SaveableExample_IsActive_
-  commentId: Overload:GameFramework.SaveSystem.Examples.SaveableExample.IsActive
-  isSpec: "True"
-  fullName: GameFramework.SaveSystem.Examples.SaveableExample.IsActive
-  nameWithType: SaveableExample.IsActive
-- uid: GameFramework.SaveSystem.Examples.SaveableExample.LoadSaveData(System.Object)
-  name: LoadSaveData(object)
-  href: api/api/GameFramework.SaveSystem.Examples.SaveableExample.html#GameFramework_SaveSystem_Examples_SaveableExample_LoadSaveData_System_Object_
-  commentId: M:GameFramework.SaveSystem.Examples.SaveableExample.LoadSaveData(System.Object)
-  name.vb: LoadSaveData(Object)
-  fullName: GameFramework.SaveSystem.Examples.SaveableExample.LoadSaveData(object)
-  fullName.vb: GameFramework.SaveSystem.Examples.SaveableExample.LoadSaveData(Object)
-  nameWithType: SaveableExample.LoadSaveData(object)
-  nameWithType.vb: SaveableExample.LoadSaveData(Object)
-- uid: GameFramework.SaveSystem.Examples.SaveableExample.LoadSaveData*
-  name: LoadSaveData
-  href: api/api/GameFramework.SaveSystem.Examples.SaveableExample.html#GameFramework_SaveSystem_Examples_SaveableExample_LoadSaveData_
-  commentId: Overload:GameFramework.SaveSystem.Examples.SaveableExample.LoadSaveData
-  isSpec: "True"
-  fullName: GameFramework.SaveSystem.Examples.SaveableExample.LoadSaveData
-  nameWithType: SaveableExample.LoadSaveData
-- uid: GameFramework.SaveSystem.Examples.SaveableExample.OnAfterLoad
-  name: OnAfterLoad()
-  href: api/api/GameFramework.SaveSystem.Examples.SaveableExample.html#GameFramework_SaveSystem_Examples_SaveableExample_OnAfterLoad
-  commentId: M:GameFramework.SaveSystem.Examples.SaveableExample.OnAfterLoad
-  fullName: GameFramework.SaveSystem.Examples.SaveableExample.OnAfterLoad()
-  nameWithType: SaveableExample.OnAfterLoad()
-- uid: GameFramework.SaveSystem.Examples.SaveableExample.OnAfterLoad*
-  name: OnAfterLoad
-  href: api/api/GameFramework.SaveSystem.Examples.SaveableExample.html#GameFramework_SaveSystem_Examples_SaveableExample_OnAfterLoad_
-  commentId: Overload:GameFramework.SaveSystem.Examples.SaveableExample.OnAfterLoad
-  isSpec: "True"
-  fullName: GameFramework.SaveSystem.Examples.SaveableExample.OnAfterLoad
-  nameWithType: SaveableExample.OnAfterLoad
-- uid: GameFramework.SaveSystem.Examples.SaveableExample.OnAwakeCustom
-  name: OnAwakeCustom()
-  href: api/api/GameFramework.SaveSystem.Examples.SaveableExample.html#GameFramework_SaveSystem_Examples_SaveableExample_OnAwakeCustom
-  commentId: M:GameFramework.SaveSystem.Examples.SaveableExample.OnAwakeCustom
-  fullName: GameFramework.SaveSystem.Examples.SaveableExample.OnAwakeCustom()
-  nameWithType: SaveableExample.OnAwakeCustom()
-- uid: GameFramework.SaveSystem.Examples.SaveableExample.OnAwakeCustom*
-  name: OnAwakeCustom
-  href: api/api/GameFramework.SaveSystem.Examples.SaveableExample.html#GameFramework_SaveSystem_Examples_SaveableExample_OnAwakeCustom_
-  commentId: Overload:GameFramework.SaveSystem.Examples.SaveableExample.OnAwakeCustom
-  isSpec: "True"
-  fullName: GameFramework.SaveSystem.Examples.SaveableExample.OnAwakeCustom
-  nameWithType: SaveableExample.OnAwakeCustom
-- uid: GameFramework.SaveSystem.Examples.SaveableExample.OnBeforeSave
-  name: OnBeforeSave()
-  href: api/api/GameFramework.SaveSystem.Examples.SaveableExample.html#GameFramework_SaveSystem_Examples_SaveableExample_OnBeforeSave
-  commentId: M:GameFramework.SaveSystem.Examples.SaveableExample.OnBeforeSave
-  fullName: GameFramework.SaveSystem.Examples.SaveableExample.OnBeforeSave()
-  nameWithType: SaveableExample.OnBeforeSave()
-- uid: GameFramework.SaveSystem.Examples.SaveableExample.OnBeforeSave*
-  name: OnBeforeSave
-  href: api/api/GameFramework.SaveSystem.Examples.SaveableExample.html#GameFramework_SaveSystem_Examples_SaveableExample_OnBeforeSave_
-  commentId: Overload:GameFramework.SaveSystem.Examples.SaveableExample.OnBeforeSave
-  isSpec: "True"
-  fullName: GameFramework.SaveSystem.Examples.SaveableExample.OnBeforeSave
-  nameWithType: SaveableExample.OnBeforeSave
-- uid: GameFramework.SaveSystem.Examples.SaveableExample.OnLoadError(System.Exception)
-  name: OnLoadError(Exception)
-  href: api/api/GameFramework.SaveSystem.Examples.SaveableExample.html#GameFramework_SaveSystem_Examples_SaveableExample_OnLoadError_System_Exception_
-  commentId: M:GameFramework.SaveSystem.Examples.SaveableExample.OnLoadError(System.Exception)
-  fullName: GameFramework.SaveSystem.Examples.SaveableExample.OnLoadError(System.Exception)
-  nameWithType: SaveableExample.OnLoadError(Exception)
-- uid: GameFramework.SaveSystem.Examples.SaveableExample.OnLoadError*
-  name: OnLoadError
-  href: api/api/GameFramework.SaveSystem.Examples.SaveableExample.html#GameFramework_SaveSystem_Examples_SaveableExample_OnLoadError_
-  commentId: Overload:GameFramework.SaveSystem.Examples.SaveableExample.OnLoadError
-  isSpec: "True"
-  fullName: GameFramework.SaveSystem.Examples.SaveableExample.OnLoadError
-  nameWithType: SaveableExample.OnLoadError
-- uid: GameFramework.SaveSystem.Examples.SaveableExample.OnSaveError(System.Exception)
-  name: OnSaveError(Exception)
-  href: api/api/GameFramework.SaveSystem.Examples.SaveableExample.html#GameFramework_SaveSystem_Examples_SaveableExample_OnSaveError_System_Exception_
-  commentId: M:GameFramework.SaveSystem.Examples.SaveableExample.OnSaveError(System.Exception)
-  fullName: GameFramework.SaveSystem.Examples.SaveableExample.OnSaveError(System.Exception)
-  nameWithType: SaveableExample.OnSaveError(Exception)
-- uid: GameFramework.SaveSystem.Examples.SaveableExample.OnSaveError*
-  name: OnSaveError
-  href: api/api/GameFramework.SaveSystem.Examples.SaveableExample.html#GameFramework_SaveSystem_Examples_SaveableExample_OnSaveError_
-  commentId: Overload:GameFramework.SaveSystem.Examples.SaveableExample.OnSaveError
-  isSpec: "True"
-  fullName: GameFramework.SaveSystem.Examples.SaveableExample.OnSaveError
-  nameWithType: SaveableExample.OnSaveError
-- uid: GameFramework.SaveSystem.Examples.SaveableExample.OnStartCustom
-  name: OnStartCustom()
-  href: api/api/GameFramework.SaveSystem.Examples.SaveableExample.html#GameFramework_SaveSystem_Examples_SaveableExample_OnStartCustom
-  commentId: M:GameFramework.SaveSystem.Examples.SaveableExample.OnStartCustom
-  fullName: GameFramework.SaveSystem.Examples.SaveableExample.OnStartCustom()
-  nameWithType: SaveableExample.OnStartCustom()
-- uid: GameFramework.SaveSystem.Examples.SaveableExample.OnStartCustom*
-  name: OnStartCustom
-  href: api/api/GameFramework.SaveSystem.Examples.SaveableExample.html#GameFramework_SaveSystem_Examples_SaveableExample_OnStartCustom_
-  commentId: Overload:GameFramework.SaveSystem.Examples.SaveableExample.OnStartCustom
-  isSpec: "True"
-  fullName: GameFramework.SaveSystem.Examples.SaveableExample.OnStartCustom
-  nameWithType: SaveableExample.OnStartCustom
-- uid: GameFramework.SaveSystem.Examples.SaveableExample.PlayerName
-  name: PlayerName
-  href: api/api/GameFramework.SaveSystem.Examples.SaveableExample.html#GameFramework_SaveSystem_Examples_SaveableExample_PlayerName
-  commentId: P:GameFramework.SaveSystem.Examples.SaveableExample.PlayerName
-  fullName: GameFramework.SaveSystem.Examples.SaveableExample.PlayerName
-  nameWithType: SaveableExample.PlayerName
-- uid: GameFramework.SaveSystem.Examples.SaveableExample.PlayerName*
-  name: PlayerName
-  href: api/api/GameFramework.SaveSystem.Examples.SaveableExample.html#GameFramework_SaveSystem_Examples_SaveableExample_PlayerName_
-  commentId: Overload:GameFramework.SaveSystem.Examples.SaveableExample.PlayerName
-  isSpec: "True"
-  fullName: GameFramework.SaveSystem.Examples.SaveableExample.PlayerName
-  nameWithType: SaveableExample.PlayerName
-- uid: GameFramework.SaveSystem.Examples.SaveableExample.ResetToDefaults
-  name: ResetToDefaults()
-  href: api/api/GameFramework.SaveSystem.Examples.SaveableExample.html#GameFramework_SaveSystem_Examples_SaveableExample_ResetToDefaults
-  commentId: M:GameFramework.SaveSystem.Examples.SaveableExample.ResetToDefaults
-  fullName: GameFramework.SaveSystem.Examples.SaveableExample.ResetToDefaults()
-  nameWithType: SaveableExample.ResetToDefaults()
-- uid: GameFramework.SaveSystem.Examples.SaveableExample.ResetToDefaults*
-  name: ResetToDefaults
-  href: api/api/GameFramework.SaveSystem.Examples.SaveableExample.html#GameFramework_SaveSystem_Examples_SaveableExample_ResetToDefaults_
-  commentId: Overload:GameFramework.SaveSystem.Examples.SaveableExample.ResetToDefaults
-  isSpec: "True"
-  fullName: GameFramework.SaveSystem.Examples.SaveableExample.ResetToDefaults
-  nameWithType: SaveableExample.ResetToDefaults
-- uid: GameFramework.SaveSystem.Examples.SaveableExample.Respawn
-  name: Respawn()
-  href: api/api/GameFramework.SaveSystem.Examples.SaveableExample.html#GameFramework_SaveSystem_Examples_SaveableExample_Respawn
-  commentId: M:GameFramework.SaveSystem.Examples.SaveableExample.Respawn
-  fullName: GameFramework.SaveSystem.Examples.SaveableExample.Respawn()
-  nameWithType: SaveableExample.Respawn()
-- uid: GameFramework.SaveSystem.Examples.SaveableExample.Respawn*
-  name: Respawn
-  href: api/api/GameFramework.SaveSystem.Examples.SaveableExample.html#GameFramework_SaveSystem_Examples_SaveableExample_Respawn_
-  commentId: Overload:GameFramework.SaveSystem.Examples.SaveableExample.Respawn
-  isSpec: "True"
-  fullName: GameFramework.SaveSystem.Examples.SaveableExample.Respawn
-  nameWithType: SaveableExample.Respawn
-- uid: GameFramework.SaveSystem.Examples.SaveableExample.SpawnPosition
-  name: SpawnPosition
-  href: api/api/GameFramework.SaveSystem.Examples.SaveableExample.html#GameFramework_SaveSystem_Examples_SaveableExample_SpawnPosition
-  commentId: P:GameFramework.SaveSystem.Examples.SaveableExample.SpawnPosition
-  fullName: GameFramework.SaveSystem.Examples.SaveableExample.SpawnPosition
-  nameWithType: SaveableExample.SpawnPosition
-- uid: GameFramework.SaveSystem.Examples.SaveableExample.SpawnPosition*
-  name: SpawnPosition
-  href: api/api/GameFramework.SaveSystem.Examples.SaveableExample.html#GameFramework_SaveSystem_Examples_SaveableExample_SpawnPosition_
-  commentId: Overload:GameFramework.SaveSystem.Examples.SaveableExample.SpawnPosition
-  isSpec: "True"
-  fullName: GameFramework.SaveSystem.Examples.SaveableExample.SpawnPosition
-  nameWithType: SaveableExample.SpawnPosition
-- uid: GameFramework.SaveSystem.Examples.SaveableExample.TakeDamage(System.Single)
-  name: TakeDamage(float)
-  href: api/api/GameFramework.SaveSystem.Examples.SaveableExample.html#GameFramework_SaveSystem_Examples_SaveableExample_TakeDamage_System_Single_
-  commentId: M:GameFramework.SaveSystem.Examples.SaveableExample.TakeDamage(System.Single)
-  name.vb: TakeDamage(Single)
-  fullName: GameFramework.SaveSystem.Examples.SaveableExample.TakeDamage(float)
-  fullName.vb: GameFramework.SaveSystem.Examples.SaveableExample.TakeDamage(Single)
-  nameWithType: SaveableExample.TakeDamage(float)
-  nameWithType.vb: SaveableExample.TakeDamage(Single)
-- uid: GameFramework.SaveSystem.Examples.SaveableExample.TakeDamage*
-  name: TakeDamage
-  href: api/api/GameFramework.SaveSystem.Examples.SaveableExample.html#GameFramework_SaveSystem_Examples_SaveableExample_TakeDamage_
-  commentId: Overload:GameFramework.SaveSystem.Examples.SaveableExample.TakeDamage
-  isSpec: "True"
-  fullName: GameFramework.SaveSystem.Examples.SaveableExample.TakeDamage
-  nameWithType: SaveableExample.TakeDamage
-- uid: GameFramework.SaveSystem.Examples.SaveableExampleData
-  name: SaveableExampleData
-  href: api/api/GameFramework.SaveSystem.Examples.SaveableExampleData.html
-  commentId: T:GameFramework.SaveSystem.Examples.SaveableExampleData
-  fullName: GameFramework.SaveSystem.Examples.SaveableExampleData
-  nameWithType: SaveableExampleData
-- uid: GameFramework.SaveSystem.Examples.SaveableExampleData.health
-  name: health
-  href: api/api/GameFramework.SaveSystem.Examples.SaveableExampleData.html#GameFramework_SaveSystem_Examples_SaveableExampleData_health
-  commentId: F:GameFramework.SaveSystem.Examples.SaveableExampleData.health
-  fullName: GameFramework.SaveSystem.Examples.SaveableExampleData.health
-  nameWithType: SaveableExampleData.health
-- uid: GameFramework.SaveSystem.Examples.SaveableExampleData.isActive
-  name: isActive
-  href: api/api/GameFramework.SaveSystem.Examples.SaveableExampleData.html#GameFramework_SaveSystem_Examples_SaveableExampleData_isActive
-  commentId: F:GameFramework.SaveSystem.Examples.SaveableExampleData.isActive
-  fullName: GameFramework.SaveSystem.Examples.SaveableExampleData.isActive
-  nameWithType: SaveableExampleData.isActive
-- uid: GameFramework.SaveSystem.Examples.SaveableExampleData.playerName
-  name: playerName
-  href: api/api/GameFramework.SaveSystem.Examples.SaveableExampleData.html#GameFramework_SaveSystem_Examples_SaveableExampleData_playerName
-  commentId: F:GameFramework.SaveSystem.Examples.SaveableExampleData.playerName
-  fullName: GameFramework.SaveSystem.Examples.SaveableExampleData.playerName
-  nameWithType: SaveableExampleData.playerName
-- uid: GameFramework.SaveSystem.Examples.SaveableExampleData.spawnPosition
-  name: spawnPosition
-  href: api/api/GameFramework.SaveSystem.Examples.SaveableExampleData.html#GameFramework_SaveSystem_Examples_SaveableExampleData_spawnPosition
-  commentId: F:GameFramework.SaveSystem.Examples.SaveableExampleData.spawnPosition
-  fullName: GameFramework.SaveSystem.Examples.SaveableExampleData.spawnPosition
-  nameWithType: SaveableExampleData.spawnPosition
-- uid: GameFramework.SaveSystem.Examples.SaveableExampleData.uniqueID
-  name: uniqueID
-  href: api/api/GameFramework.SaveSystem.Examples.SaveableExampleData.html#GameFramework_SaveSystem_Examples_SaveableExampleData_uniqueID
-  commentId: F:GameFramework.SaveSystem.Examples.SaveableExampleData.uniqueID
-  fullName: GameFramework.SaveSystem.Examples.SaveableExampleData.uniqueID
-  nameWithType: SaveableExampleData.uniqueID
 - uid: GameFramework.SaveSystem.Examples.TestGenericSaveData
   name: TestGenericSaveData
   href: api/api/GameFramework.SaveSystem.Examples.TestGenericSaveData.html
@@ -12147,19 +12748,19 @@ references:
   commentId: T:GameFramework.SaveSystem.Examples.TestGenericSaveable
   fullName: GameFramework.SaveSystem.Examples.TestGenericSaveable
   nameWithType: TestGenericSaveable
-- uid: GameFramework.SaveSystem.Examples.TestGenericSaveable.GetSaveData
-  name: GetSaveData()
-  href: api/api/GameFramework.SaveSystem.Examples.TestGenericSaveable.html#GameFramework_SaveSystem_Examples_TestGenericSaveable_GetSaveData
-  commentId: M:GameFramework.SaveSystem.Examples.TestGenericSaveable.GetSaveData
-  fullName: GameFramework.SaveSystem.Examples.TestGenericSaveable.GetSaveData()
-  nameWithType: TestGenericSaveable.GetSaveData()
-- uid: GameFramework.SaveSystem.Examples.TestGenericSaveable.GetSaveData*
-  name: GetSaveData
-  href: api/api/GameFramework.SaveSystem.Examples.TestGenericSaveable.html#GameFramework_SaveSystem_Examples_TestGenericSaveable_GetSaveData_
-  commentId: Overload:GameFramework.SaveSystem.Examples.TestGenericSaveable.GetSaveData
+- uid: GameFramework.SaveSystem.Examples.TestGenericSaveable.CreateSpecificRuntimeSaveData
+  name: CreateSpecificRuntimeSaveData()
+  href: api/api/GameFramework.SaveSystem.Examples.TestGenericSaveable.html#GameFramework_SaveSystem_Examples_TestGenericSaveable_CreateSpecificRuntimeSaveData
+  commentId: M:GameFramework.SaveSystem.Examples.TestGenericSaveable.CreateSpecificRuntimeSaveData
+  fullName: GameFramework.SaveSystem.Examples.TestGenericSaveable.CreateSpecificRuntimeSaveData()
+  nameWithType: TestGenericSaveable.CreateSpecificRuntimeSaveData()
+- uid: GameFramework.SaveSystem.Examples.TestGenericSaveable.CreateSpecificRuntimeSaveData*
+  name: CreateSpecificRuntimeSaveData
+  href: api/api/GameFramework.SaveSystem.Examples.TestGenericSaveable.html#GameFramework_SaveSystem_Examples_TestGenericSaveable_CreateSpecificRuntimeSaveData_
+  commentId: Overload:GameFramework.SaveSystem.Examples.TestGenericSaveable.CreateSpecificRuntimeSaveData
   isSpec: "True"
-  fullName: GameFramework.SaveSystem.Examples.TestGenericSaveable.GetSaveData
-  nameWithType: TestGenericSaveable.GetSaveData
+  fullName: GameFramework.SaveSystem.Examples.TestGenericSaveable.CreateSpecificRuntimeSaveData
+  nameWithType: TestGenericSaveable.CreateSpecificRuntimeSaveData
 - uid: GameFramework.SaveSystem.Examples.TestGenericSaveable.GetTestBool
   name: GetTestBool()
   href: api/api/GameFramework.SaveSystem.Examples.TestGenericSaveable.html#GameFramework_SaveSystem_Examples_TestGenericSaveable_GetTestBool
@@ -12212,22 +12813,19 @@ references:
   isSpec: "True"
   fullName: GameFramework.SaveSystem.Examples.TestGenericSaveable.GetUniqueIdPrefix
   nameWithType: TestGenericSaveable.GetUniqueIdPrefix
-- uid: GameFramework.SaveSystem.Examples.TestGenericSaveable.LoadSaveData(System.Object)
-  name: LoadSaveData(object)
-  href: api/api/GameFramework.SaveSystem.Examples.TestGenericSaveable.html#GameFramework_SaveSystem_Examples_TestGenericSaveable_LoadSaveData_System_Object_
-  commentId: M:GameFramework.SaveSystem.Examples.TestGenericSaveable.LoadSaveData(System.Object)
-  name.vb: LoadSaveData(Object)
-  fullName: GameFramework.SaveSystem.Examples.TestGenericSaveable.LoadSaveData(object)
-  fullName.vb: GameFramework.SaveSystem.Examples.TestGenericSaveable.LoadSaveData(Object)
-  nameWithType: TestGenericSaveable.LoadSaveData(object)
-  nameWithType.vb: TestGenericSaveable.LoadSaveData(Object)
-- uid: GameFramework.SaveSystem.Examples.TestGenericSaveable.LoadSaveData*
-  name: LoadSaveData
-  href: api/api/GameFramework.SaveSystem.Examples.TestGenericSaveable.html#GameFramework_SaveSystem_Examples_TestGenericSaveable_LoadSaveData_
-  commentId: Overload:GameFramework.SaveSystem.Examples.TestGenericSaveable.LoadSaveData
+- uid: GameFramework.SaveSystem.Examples.TestGenericSaveable.LoadSpecificRuntimeSaveData(GameFramework.SaveSystem.Data.RuntimeObjectSaveData)
+  name: LoadSpecificRuntimeSaveData(RuntimeObjectSaveData)
+  href: api/api/GameFramework.SaveSystem.Examples.TestGenericSaveable.html#GameFramework_SaveSystem_Examples_TestGenericSaveable_LoadSpecificRuntimeSaveData_GameFramework_SaveSystem_Data_RuntimeObjectSaveData_
+  commentId: M:GameFramework.SaveSystem.Examples.TestGenericSaveable.LoadSpecificRuntimeSaveData(GameFramework.SaveSystem.Data.RuntimeObjectSaveData)
+  fullName: GameFramework.SaveSystem.Examples.TestGenericSaveable.LoadSpecificRuntimeSaveData(GameFramework.SaveSystem.Data.RuntimeObjectSaveData)
+  nameWithType: TestGenericSaveable.LoadSpecificRuntimeSaveData(RuntimeObjectSaveData)
+- uid: GameFramework.SaveSystem.Examples.TestGenericSaveable.LoadSpecificRuntimeSaveData*
+  name: LoadSpecificRuntimeSaveData
+  href: api/api/GameFramework.SaveSystem.Examples.TestGenericSaveable.html#GameFramework_SaveSystem_Examples_TestGenericSaveable_LoadSpecificRuntimeSaveData_
+  commentId: Overload:GameFramework.SaveSystem.Examples.TestGenericSaveable.LoadSpecificRuntimeSaveData
   isSpec: "True"
-  fullName: GameFramework.SaveSystem.Examples.TestGenericSaveable.LoadSaveData
-  nameWithType: TestGenericSaveable.LoadSaveData
+  fullName: GameFramework.SaveSystem.Examples.TestGenericSaveable.LoadSpecificRuntimeSaveData
+  nameWithType: TestGenericSaveable.LoadSpecificRuntimeSaveData
 - uid: GameFramework.SaveSystem.Examples.TestGenericSaveable.SetTestBool(System.Boolean)
   name: SetTestBool(bool)
   href: api/api/GameFramework.SaveSystem.Examples.TestGenericSaveable.html#GameFramework_SaveSystem_Examples_TestGenericSaveable_SetTestBool_System_Boolean_
@@ -12474,6 +13072,32 @@ references:
   isSpec: "True"
   fullName: GameFramework.SaveSystem.SaveableBase.Awake
   nameWithType: SaveableBase.Awake
+- uid: GameFramework.SaveSystem.SaveableBase.CreateRuntimeSaveData
+  name: CreateRuntimeSaveData()
+  href: api/api/GameFramework.SaveSystem.SaveableBase.html#GameFramework_SaveSystem_SaveableBase_CreateRuntimeSaveData
+  commentId: M:GameFramework.SaveSystem.SaveableBase.CreateRuntimeSaveData
+  fullName: GameFramework.SaveSystem.SaveableBase.CreateRuntimeSaveData()
+  nameWithType: SaveableBase.CreateRuntimeSaveData()
+- uid: GameFramework.SaveSystem.SaveableBase.CreateRuntimeSaveData*
+  name: CreateRuntimeSaveData
+  href: api/api/GameFramework.SaveSystem.SaveableBase.html#GameFramework_SaveSystem_SaveableBase_CreateRuntimeSaveData_
+  commentId: Overload:GameFramework.SaveSystem.SaveableBase.CreateRuntimeSaveData
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.SaveableBase.CreateRuntimeSaveData
+  nameWithType: SaveableBase.CreateRuntimeSaveData
+- uid: GameFramework.SaveSystem.SaveableBase.CreateSpecificRuntimeSaveData
+  name: CreateSpecificRuntimeSaveData()
+  href: api/api/GameFramework.SaveSystem.SaveableBase.html#GameFramework_SaveSystem_SaveableBase_CreateSpecificRuntimeSaveData
+  commentId: M:GameFramework.SaveSystem.SaveableBase.CreateSpecificRuntimeSaveData
+  fullName: GameFramework.SaveSystem.SaveableBase.CreateSpecificRuntimeSaveData()
+  nameWithType: SaveableBase.CreateSpecificRuntimeSaveData()
+- uid: GameFramework.SaveSystem.SaveableBase.CreateSpecificRuntimeSaveData*
+  name: CreateSpecificRuntimeSaveData
+  href: api/api/GameFramework.SaveSystem.SaveableBase.html#GameFramework_SaveSystem_SaveableBase_CreateSpecificRuntimeSaveData_
+  commentId: Overload:GameFramework.SaveSystem.SaveableBase.CreateSpecificRuntimeSaveData
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.SaveableBase.CreateSpecificRuntimeSaveData
+  nameWithType: SaveableBase.CreateSpecificRuntimeSaveData
 - uid: GameFramework.SaveSystem.SaveableBase.ForceReregisterWithSaveSystem
   name: ForceReregisterWithSaveSystem()
   href: api/api/GameFramework.SaveSystem.SaveableBase.html#GameFramework_SaveSystem_SaveableBase_ForceReregisterWithSaveSystem
@@ -12513,6 +13137,19 @@ references:
   isSpec: "True"
   fullName: GameFramework.SaveSystem.SaveableBase.GetSaveData
   nameWithType: SaveableBase.GetSaveData
+- uid: GameFramework.SaveSystem.SaveableBase.GetSaveableTypeName
+  name: GetSaveableTypeName()
+  href: api/api/GameFramework.SaveSystem.SaveableBase.html#GameFramework_SaveSystem_SaveableBase_GetSaveableTypeName
+  commentId: M:GameFramework.SaveSystem.SaveableBase.GetSaveableTypeName
+  fullName: GameFramework.SaveSystem.SaveableBase.GetSaveableTypeName()
+  nameWithType: SaveableBase.GetSaveableTypeName()
+- uid: GameFramework.SaveSystem.SaveableBase.GetSaveableTypeName*
+  name: GetSaveableTypeName
+  href: api/api/GameFramework.SaveSystem.SaveableBase.html#GameFramework_SaveSystem_SaveableBase_GetSaveableTypeName_
+  commentId: Overload:GameFramework.SaveSystem.SaveableBase.GetSaveableTypeName
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.SaveableBase.GetSaveableTypeName
+  nameWithType: SaveableBase.GetSaveableTypeName
 - uid: GameFramework.SaveSystem.SaveableBase.GetUniqueIdPrefix
   name: GetUniqueIdPrefix()
   href: api/api/GameFramework.SaveSystem.SaveableBase.html#GameFramework_SaveSystem_SaveableBase_GetUniqueIdPrefix
@@ -12539,6 +13176,19 @@ references:
   isSpec: "True"
   fullName: GameFramework.SaveSystem.SaveableBase.IsRegisteredWithSaveSystem
   nameWithType: SaveableBase.IsRegisteredWithSaveSystem
+- uid: GameFramework.SaveSystem.SaveableBase.LoadRuntimeSaveData(GameFramework.SaveSystem.Data.RuntimeObjectSaveData)
+  name: LoadRuntimeSaveData(RuntimeObjectSaveData)
+  href: api/api/GameFramework.SaveSystem.SaveableBase.html#GameFramework_SaveSystem_SaveableBase_LoadRuntimeSaveData_GameFramework_SaveSystem_Data_RuntimeObjectSaveData_
+  commentId: M:GameFramework.SaveSystem.SaveableBase.LoadRuntimeSaveData(GameFramework.SaveSystem.Data.RuntimeObjectSaveData)
+  fullName: GameFramework.SaveSystem.SaveableBase.LoadRuntimeSaveData(GameFramework.SaveSystem.Data.RuntimeObjectSaveData)
+  nameWithType: SaveableBase.LoadRuntimeSaveData(RuntimeObjectSaveData)
+- uid: GameFramework.SaveSystem.SaveableBase.LoadRuntimeSaveData*
+  name: LoadRuntimeSaveData
+  href: api/api/GameFramework.SaveSystem.SaveableBase.html#GameFramework_SaveSystem_SaveableBase_LoadRuntimeSaveData_
+  commentId: Overload:GameFramework.SaveSystem.SaveableBase.LoadRuntimeSaveData
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.SaveableBase.LoadRuntimeSaveData
+  nameWithType: SaveableBase.LoadRuntimeSaveData
 - uid: GameFramework.SaveSystem.SaveableBase.LoadSaveData(System.Object)
   name: LoadSaveData(object)
   href: api/api/GameFramework.SaveSystem.SaveableBase.html#GameFramework_SaveSystem_SaveableBase_LoadSaveData_System_Object_
@@ -12555,6 +13205,19 @@ references:
   isSpec: "True"
   fullName: GameFramework.SaveSystem.SaveableBase.LoadSaveData
   nameWithType: SaveableBase.LoadSaveData
+- uid: GameFramework.SaveSystem.SaveableBase.LoadSpecificRuntimeSaveData(GameFramework.SaveSystem.Data.RuntimeObjectSaveData)
+  name: LoadSpecificRuntimeSaveData(RuntimeObjectSaveData)
+  href: api/api/GameFramework.SaveSystem.SaveableBase.html#GameFramework_SaveSystem_SaveableBase_LoadSpecificRuntimeSaveData_GameFramework_SaveSystem_Data_RuntimeObjectSaveData_
+  commentId: M:GameFramework.SaveSystem.SaveableBase.LoadSpecificRuntimeSaveData(GameFramework.SaveSystem.Data.RuntimeObjectSaveData)
+  fullName: GameFramework.SaveSystem.SaveableBase.LoadSpecificRuntimeSaveData(GameFramework.SaveSystem.Data.RuntimeObjectSaveData)
+  nameWithType: SaveableBase.LoadSpecificRuntimeSaveData(RuntimeObjectSaveData)
+- uid: GameFramework.SaveSystem.SaveableBase.LoadSpecificRuntimeSaveData*
+  name: LoadSpecificRuntimeSaveData
+  href: api/api/GameFramework.SaveSystem.SaveableBase.html#GameFramework_SaveSystem_SaveableBase_LoadSpecificRuntimeSaveData_
+  commentId: Overload:GameFramework.SaveSystem.SaveableBase.LoadSpecificRuntimeSaveData
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.SaveableBase.LoadSpecificRuntimeSaveData
+  nameWithType: SaveableBase.LoadSpecificRuntimeSaveData
 - uid: GameFramework.SaveSystem.SaveableBase.OnAfterLoad
   name: OnAfterLoad()
   href: api/api/GameFramework.SaveSystem.SaveableBase.html#GameFramework_SaveSystem_SaveableBase_OnAfterLoad
@@ -12698,6 +13361,19 @@ references:
   isSpec: "True"
   fullName: GameFramework.SaveSystem.SaveableBase.OnStartCustom
   nameWithType: SaveableBase.OnStartCustom
+- uid: GameFramework.SaveSystem.SaveableBase.PrefabGUID
+  name: PrefabGUID
+  href: api/api/GameFramework.SaveSystem.SaveableBase.html#GameFramework_SaveSystem_SaveableBase_PrefabGUID
+  commentId: P:GameFramework.SaveSystem.SaveableBase.PrefabGUID
+  fullName: GameFramework.SaveSystem.SaveableBase.PrefabGUID
+  nameWithType: SaveableBase.PrefabGUID
+- uid: GameFramework.SaveSystem.SaveableBase.PrefabGUID*
+  name: PrefabGUID
+  href: api/api/GameFramework.SaveSystem.SaveableBase.html#GameFramework_SaveSystem_SaveableBase_PrefabGUID_
+  commentId: Overload:GameFramework.SaveSystem.SaveableBase.PrefabGUID
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.SaveableBase.PrefabGUID
+  nameWithType: SaveableBase.PrefabGUID
 - uid: GameFramework.SaveSystem.SaveableBase.SaveKey
   name: SaveKey
   href: api/api/GameFramework.SaveSystem.SaveableBase.html#GameFramework_SaveSystem_SaveableBase_SaveKey
@@ -12935,15 +13611,15 @@ references:
   commentId: T:GameFramework.SaveSystem.Services.SaveService
   fullName: GameFramework.SaveSystem.Services.SaveService
   nameWithType: SaveService
-- uid: GameFramework.SaveSystem.Services.SaveService.#ctor(GameFramework.EventSystem.Interfaces.IEventSystem,GameFramework.SaveSystem.Interfaces.ISaveDataRegistry,GameFramework.FileSystem.Interfaces.IFileService)
-  name: SaveService(IEventSystem, ISaveDataRegistry, IFileService)
-  href: api/api/GameFramework.SaveSystem.Services.SaveService.html#GameFramework_SaveSystem_Services_SaveService__ctor_GameFramework_EventSystem_Interfaces_IEventSystem_GameFramework_SaveSystem_Interfaces_ISaveDataRegistry_GameFramework_FileSystem_Interfaces_IFileService_
-  commentId: M:GameFramework.SaveSystem.Services.SaveService.#ctor(GameFramework.EventSystem.Interfaces.IEventSystem,GameFramework.SaveSystem.Interfaces.ISaveDataRegistry,GameFramework.FileSystem.Interfaces.IFileService)
-  name.vb: New(IEventSystem, ISaveDataRegistry, IFileService)
-  fullName: GameFramework.SaveSystem.Services.SaveService.SaveService(GameFramework.EventSystem.Interfaces.IEventSystem, GameFramework.SaveSystem.Interfaces.ISaveDataRegistry, GameFramework.FileSystem.Interfaces.IFileService)
-  fullName.vb: GameFramework.SaveSystem.Services.SaveService.New(GameFramework.EventSystem.Interfaces.IEventSystem, GameFramework.SaveSystem.Interfaces.ISaveDataRegistry, GameFramework.FileSystem.Interfaces.IFileService)
-  nameWithType: SaveService.SaveService(IEventSystem, ISaveDataRegistry, IFileService)
-  nameWithType.vb: SaveService.New(IEventSystem, ISaveDataRegistry, IFileService)
+- uid: GameFramework.SaveSystem.Services.SaveService.#ctor(GameFramework.Services.Interfaces.IGameDataService,GameFramework.EventSystem.Interfaces.IEventSystem,GameFramework.SaveSystem.Interfaces.ISaveDataRegistry)
+  name: SaveService(IGameDataService, IEventSystem, ISaveDataRegistry)
+  href: api/api/GameFramework.SaveSystem.Services.SaveService.html#GameFramework_SaveSystem_Services_SaveService__ctor_GameFramework_Services_Interfaces_IGameDataService_GameFramework_EventSystem_Interfaces_IEventSystem_GameFramework_SaveSystem_Interfaces_ISaveDataRegistry_
+  commentId: M:GameFramework.SaveSystem.Services.SaveService.#ctor(GameFramework.Services.Interfaces.IGameDataService,GameFramework.EventSystem.Interfaces.IEventSystem,GameFramework.SaveSystem.Interfaces.ISaveDataRegistry)
+  name.vb: New(IGameDataService, IEventSystem, ISaveDataRegistry)
+  fullName: GameFramework.SaveSystem.Services.SaveService.SaveService(GameFramework.Services.Interfaces.IGameDataService, GameFramework.EventSystem.Interfaces.IEventSystem, GameFramework.SaveSystem.Interfaces.ISaveDataRegistry)
+  fullName.vb: GameFramework.SaveSystem.Services.SaveService.New(GameFramework.Services.Interfaces.IGameDataService, GameFramework.EventSystem.Interfaces.IEventSystem, GameFramework.SaveSystem.Interfaces.ISaveDataRegistry)
+  nameWithType: SaveService.SaveService(IGameDataService, IEventSystem, ISaveDataRegistry)
+  nameWithType.vb: SaveService.New(IGameDataService, IEventSystem, ISaveDataRegistry)
 - uid: GameFramework.SaveSystem.Services.SaveService.#ctor*
   name: SaveService
   href: api/api/GameFramework.SaveSystem.Services.SaveService.html#GameFramework_SaveSystem_Services_SaveService__ctor_
@@ -12993,6 +13669,22 @@ references:
   isSpec: "True"
   fullName: GameFramework.SaveSystem.Services.SaveService.OnSaveRequested
   nameWithType: SaveService.OnSaveRequested
+- uid: GameFramework.SaveSystem.Services.SaveService.SaveGameStateAsync(System.String,System.Boolean)
+  name: SaveGameStateAsync(string, bool)
+  href: api/api/GameFramework.SaveSystem.Services.SaveService.html#GameFramework_SaveSystem_Services_SaveService_SaveGameStateAsync_System_String_System_Boolean_
+  commentId: M:GameFramework.SaveSystem.Services.SaveService.SaveGameStateAsync(System.String,System.Boolean)
+  name.vb: SaveGameStateAsync(String, Boolean)
+  fullName: GameFramework.SaveSystem.Services.SaveService.SaveGameStateAsync(string, bool)
+  fullName.vb: GameFramework.SaveSystem.Services.SaveService.SaveGameStateAsync(String, Boolean)
+  nameWithType: SaveService.SaveGameStateAsync(string, bool)
+  nameWithType.vb: SaveService.SaveGameStateAsync(String, Boolean)
+- uid: GameFramework.SaveSystem.Services.SaveService.SaveGameStateAsync*
+  name: SaveGameStateAsync
+  href: api/api/GameFramework.SaveSystem.Services.SaveService.html#GameFramework_SaveSystem_Services_SaveService_SaveGameStateAsync_
+  commentId: Overload:GameFramework.SaveSystem.Services.SaveService.SaveGameStateAsync
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.Services.SaveService.SaveGameStateAsync
+  nameWithType: SaveService.SaveGameStateAsync
 - uid: GameFramework.SaveSystem.Services.SaveService.Shutdown
   name: Shutdown()
   href: api/api/GameFramework.SaveSystem.Services.SaveService.html#GameFramework_SaveSystem_Services_SaveService_Shutdown
@@ -13006,6 +13698,172 @@ references:
   isSpec: "True"
   fullName: GameFramework.SaveSystem.Services.SaveService.Shutdown
   nameWithType: SaveService.Shutdown
+- uid: GameFramework.SaveSystem.Services.SavingCompletedEvent
+  name: SavingCompletedEvent
+  href: api/api/GameFramework.SaveSystem.Services.SavingCompletedEvent.html
+  commentId: T:GameFramework.SaveSystem.Services.SavingCompletedEvent
+  fullName: GameFramework.SaveSystem.Services.SavingCompletedEvent
+  nameWithType: SavingCompletedEvent
+- uid: GameFramework.SaveSystem.Services.SavingCompletedEvent.#ctor(System.String,System.Boolean)
+  name: SavingCompletedEvent(string, bool)
+  href: api/api/GameFramework.SaveSystem.Services.SavingCompletedEvent.html#GameFramework_SaveSystem_Services_SavingCompletedEvent__ctor_System_String_System_Boolean_
+  commentId: M:GameFramework.SaveSystem.Services.SavingCompletedEvent.#ctor(System.String,System.Boolean)
+  name.vb: New(String, Boolean)
+  fullName: GameFramework.SaveSystem.Services.SavingCompletedEvent.SavingCompletedEvent(string, bool)
+  fullName.vb: GameFramework.SaveSystem.Services.SavingCompletedEvent.New(String, Boolean)
+  nameWithType: SavingCompletedEvent.SavingCompletedEvent(string, bool)
+  nameWithType.vb: SavingCompletedEvent.New(String, Boolean)
+- uid: GameFramework.SaveSystem.Services.SavingCompletedEvent.#ctor*
+  name: SavingCompletedEvent
+  href: api/api/GameFramework.SaveSystem.Services.SavingCompletedEvent.html#GameFramework_SaveSystem_Services_SavingCompletedEvent__ctor_
+  commentId: Overload:GameFramework.SaveSystem.Services.SavingCompletedEvent.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: GameFramework.SaveSystem.Services.SavingCompletedEvent.SavingCompletedEvent
+  fullName.vb: GameFramework.SaveSystem.Services.SavingCompletedEvent.New
+  nameWithType: SavingCompletedEvent.SavingCompletedEvent
+  nameWithType.vb: SavingCompletedEvent.New
+- uid: GameFramework.SaveSystem.Services.SavingCompletedEvent.FileName
+  name: FileName
+  href: api/api/GameFramework.SaveSystem.Services.SavingCompletedEvent.html#GameFramework_SaveSystem_Services_SavingCompletedEvent_FileName
+  commentId: P:GameFramework.SaveSystem.Services.SavingCompletedEvent.FileName
+  fullName: GameFramework.SaveSystem.Services.SavingCompletedEvent.FileName
+  nameWithType: SavingCompletedEvent.FileName
+- uid: GameFramework.SaveSystem.Services.SavingCompletedEvent.FileName*
+  name: FileName
+  href: api/api/GameFramework.SaveSystem.Services.SavingCompletedEvent.html#GameFramework_SaveSystem_Services_SavingCompletedEvent_FileName_
+  commentId: Overload:GameFramework.SaveSystem.Services.SavingCompletedEvent.FileName
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.Services.SavingCompletedEvent.FileName
+  nameWithType: SavingCompletedEvent.FileName
+- uid: GameFramework.SaveSystem.Services.SavingCompletedEvent.WasAutoSave
+  name: WasAutoSave
+  href: api/api/GameFramework.SaveSystem.Services.SavingCompletedEvent.html#GameFramework_SaveSystem_Services_SavingCompletedEvent_WasAutoSave
+  commentId: P:GameFramework.SaveSystem.Services.SavingCompletedEvent.WasAutoSave
+  fullName: GameFramework.SaveSystem.Services.SavingCompletedEvent.WasAutoSave
+  nameWithType: SavingCompletedEvent.WasAutoSave
+- uid: GameFramework.SaveSystem.Services.SavingCompletedEvent.WasAutoSave*
+  name: WasAutoSave
+  href: api/api/GameFramework.SaveSystem.Services.SavingCompletedEvent.html#GameFramework_SaveSystem_Services_SavingCompletedEvent_WasAutoSave_
+  commentId: Overload:GameFramework.SaveSystem.Services.SavingCompletedEvent.WasAutoSave
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.Services.SavingCompletedEvent.WasAutoSave
+  nameWithType: SavingCompletedEvent.WasAutoSave
+- uid: GameFramework.SaveSystem.Services.SavingFailedEvent
+  name: SavingFailedEvent
+  href: api/api/GameFramework.SaveSystem.Services.SavingFailedEvent.html
+  commentId: T:GameFramework.SaveSystem.Services.SavingFailedEvent
+  fullName: GameFramework.SaveSystem.Services.SavingFailedEvent
+  nameWithType: SavingFailedEvent
+- uid: GameFramework.SaveSystem.Services.SavingFailedEvent.#ctor(System.Exception,System.String,System.Boolean)
+  name: SavingFailedEvent(Exception, string, bool)
+  href: api/api/GameFramework.SaveSystem.Services.SavingFailedEvent.html#GameFramework_SaveSystem_Services_SavingFailedEvent__ctor_System_Exception_System_String_System_Boolean_
+  commentId: M:GameFramework.SaveSystem.Services.SavingFailedEvent.#ctor(System.Exception,System.String,System.Boolean)
+  name.vb: New(Exception, String, Boolean)
+  fullName: GameFramework.SaveSystem.Services.SavingFailedEvent.SavingFailedEvent(System.Exception, string, bool)
+  fullName.vb: GameFramework.SaveSystem.Services.SavingFailedEvent.New(System.Exception, String, Boolean)
+  nameWithType: SavingFailedEvent.SavingFailedEvent(Exception, string, bool)
+  nameWithType.vb: SavingFailedEvent.New(Exception, String, Boolean)
+- uid: GameFramework.SaveSystem.Services.SavingFailedEvent.#ctor*
+  name: SavingFailedEvent
+  href: api/api/GameFramework.SaveSystem.Services.SavingFailedEvent.html#GameFramework_SaveSystem_Services_SavingFailedEvent__ctor_
+  commentId: Overload:GameFramework.SaveSystem.Services.SavingFailedEvent.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: GameFramework.SaveSystem.Services.SavingFailedEvent.SavingFailedEvent
+  fullName.vb: GameFramework.SaveSystem.Services.SavingFailedEvent.New
+  nameWithType: SavingFailedEvent.SavingFailedEvent
+  nameWithType.vb: SavingFailedEvent.New
+- uid: GameFramework.SaveSystem.Services.SavingFailedEvent.Exception
+  name: Exception
+  href: api/api/GameFramework.SaveSystem.Services.SavingFailedEvent.html#GameFramework_SaveSystem_Services_SavingFailedEvent_Exception
+  commentId: P:GameFramework.SaveSystem.Services.SavingFailedEvent.Exception
+  fullName: GameFramework.SaveSystem.Services.SavingFailedEvent.Exception
+  nameWithType: SavingFailedEvent.Exception
+- uid: GameFramework.SaveSystem.Services.SavingFailedEvent.Exception*
+  name: Exception
+  href: api/api/GameFramework.SaveSystem.Services.SavingFailedEvent.html#GameFramework_SaveSystem_Services_SavingFailedEvent_Exception_
+  commentId: Overload:GameFramework.SaveSystem.Services.SavingFailedEvent.Exception
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.Services.SavingFailedEvent.Exception
+  nameWithType: SavingFailedEvent.Exception
+- uid: GameFramework.SaveSystem.Services.SavingFailedEvent.FileName
+  name: FileName
+  href: api/api/GameFramework.SaveSystem.Services.SavingFailedEvent.html#GameFramework_SaveSystem_Services_SavingFailedEvent_FileName
+  commentId: P:GameFramework.SaveSystem.Services.SavingFailedEvent.FileName
+  fullName: GameFramework.SaveSystem.Services.SavingFailedEvent.FileName
+  nameWithType: SavingFailedEvent.FileName
+- uid: GameFramework.SaveSystem.Services.SavingFailedEvent.FileName*
+  name: FileName
+  href: api/api/GameFramework.SaveSystem.Services.SavingFailedEvent.html#GameFramework_SaveSystem_Services_SavingFailedEvent_FileName_
+  commentId: Overload:GameFramework.SaveSystem.Services.SavingFailedEvent.FileName
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.Services.SavingFailedEvent.FileName
+  nameWithType: SavingFailedEvent.FileName
+- uid: GameFramework.SaveSystem.Services.SavingFailedEvent.WasAutoSave
+  name: WasAutoSave
+  href: api/api/GameFramework.SaveSystem.Services.SavingFailedEvent.html#GameFramework_SaveSystem_Services_SavingFailedEvent_WasAutoSave
+  commentId: P:GameFramework.SaveSystem.Services.SavingFailedEvent.WasAutoSave
+  fullName: GameFramework.SaveSystem.Services.SavingFailedEvent.WasAutoSave
+  nameWithType: SavingFailedEvent.WasAutoSave
+- uid: GameFramework.SaveSystem.Services.SavingFailedEvent.WasAutoSave*
+  name: WasAutoSave
+  href: api/api/GameFramework.SaveSystem.Services.SavingFailedEvent.html#GameFramework_SaveSystem_Services_SavingFailedEvent_WasAutoSave_
+  commentId: Overload:GameFramework.SaveSystem.Services.SavingFailedEvent.WasAutoSave
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.Services.SavingFailedEvent.WasAutoSave
+  nameWithType: SavingFailedEvent.WasAutoSave
+- uid: GameFramework.SaveSystem.Services.SavingProgressEvent
+  name: SavingProgressEvent
+  href: api/api/GameFramework.SaveSystem.Services.SavingProgressEvent.html
+  commentId: T:GameFramework.SaveSystem.Services.SavingProgressEvent
+  fullName: GameFramework.SaveSystem.Services.SavingProgressEvent
+  nameWithType: SavingProgressEvent
+- uid: GameFramework.SaveSystem.Services.SavingProgressEvent.#ctor(System.String,System.Single)
+  name: SavingProgressEvent(string, float)
+  href: api/api/GameFramework.SaveSystem.Services.SavingProgressEvent.html#GameFramework_SaveSystem_Services_SavingProgressEvent__ctor_System_String_System_Single_
+  commentId: M:GameFramework.SaveSystem.Services.SavingProgressEvent.#ctor(System.String,System.Single)
+  name.vb: New(String, Single)
+  fullName: GameFramework.SaveSystem.Services.SavingProgressEvent.SavingProgressEvent(string, float)
+  fullName.vb: GameFramework.SaveSystem.Services.SavingProgressEvent.New(String, Single)
+  nameWithType: SavingProgressEvent.SavingProgressEvent(string, float)
+  nameWithType.vb: SavingProgressEvent.New(String, Single)
+- uid: GameFramework.SaveSystem.Services.SavingProgressEvent.#ctor*
+  name: SavingProgressEvent
+  href: api/api/GameFramework.SaveSystem.Services.SavingProgressEvent.html#GameFramework_SaveSystem_Services_SavingProgressEvent__ctor_
+  commentId: Overload:GameFramework.SaveSystem.Services.SavingProgressEvent.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: GameFramework.SaveSystem.Services.SavingProgressEvent.SavingProgressEvent
+  fullName.vb: GameFramework.SaveSystem.Services.SavingProgressEvent.New
+  nameWithType: SavingProgressEvent.SavingProgressEvent
+  nameWithType.vb: SavingProgressEvent.New
+- uid: GameFramework.SaveSystem.Services.SavingProgressEvent.Message
+  name: Message
+  href: api/api/GameFramework.SaveSystem.Services.SavingProgressEvent.html#GameFramework_SaveSystem_Services_SavingProgressEvent_Message
+  commentId: P:GameFramework.SaveSystem.Services.SavingProgressEvent.Message
+  fullName: GameFramework.SaveSystem.Services.SavingProgressEvent.Message
+  nameWithType: SavingProgressEvent.Message
+- uid: GameFramework.SaveSystem.Services.SavingProgressEvent.Message*
+  name: Message
+  href: api/api/GameFramework.SaveSystem.Services.SavingProgressEvent.html#GameFramework_SaveSystem_Services_SavingProgressEvent_Message_
+  commentId: Overload:GameFramework.SaveSystem.Services.SavingProgressEvent.Message
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.Services.SavingProgressEvent.Message
+  nameWithType: SavingProgressEvent.Message
+- uid: GameFramework.SaveSystem.Services.SavingProgressEvent.Progress
+  name: Progress
+  href: api/api/GameFramework.SaveSystem.Services.SavingProgressEvent.html#GameFramework_SaveSystem_Services_SavingProgressEvent_Progress
+  commentId: P:GameFramework.SaveSystem.Services.SavingProgressEvent.Progress
+  fullName: GameFramework.SaveSystem.Services.SavingProgressEvent.Progress
+  nameWithType: SavingProgressEvent.Progress
+- uid: GameFramework.SaveSystem.Services.SavingProgressEvent.Progress*
+  name: Progress
+  href: api/api/GameFramework.SaveSystem.Services.SavingProgressEvent.html#GameFramework_SaveSystem_Services_SavingProgressEvent_Progress_
+  commentId: Overload:GameFramework.SaveSystem.Services.SavingProgressEvent.Progress
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.Services.SavingProgressEvent.Progress
+  nameWithType: SavingProgressEvent.Progress
 - uid: GameFramework.SaveSystem.Utilities
   name: GameFramework.SaveSystem.Utilities
   href: api/api/GameFramework.SaveSystem.Utilities.html
@@ -13018,6 +13876,47 @@ references:
   commentId: T:GameFramework.SaveSystem.Utilities.JsonSerializationHelper
   fullName: GameFramework.SaveSystem.Utilities.JsonSerializationHelper
   nameWithType: JsonSerializationHelper
+- uid: GameFramework.SaveSystem.Utilities.JsonSerializationHelper.AttemptJsonRepair(System.String)
+  name: AttemptJsonRepair(string)
+  href: api/api/GameFramework.SaveSystem.Utilities.JsonSerializationHelper.html#GameFramework_SaveSystem_Utilities_JsonSerializationHelper_AttemptJsonRepair_System_String_
+  commentId: M:GameFramework.SaveSystem.Utilities.JsonSerializationHelper.AttemptJsonRepair(System.String)
+  name.vb: AttemptJsonRepair(String)
+  fullName: GameFramework.SaveSystem.Utilities.JsonSerializationHelper.AttemptJsonRepair(string)
+  fullName.vb: GameFramework.SaveSystem.Utilities.JsonSerializationHelper.AttemptJsonRepair(String)
+  nameWithType: JsonSerializationHelper.AttemptJsonRepair(string)
+  nameWithType.vb: JsonSerializationHelper.AttemptJsonRepair(String)
+- uid: GameFramework.SaveSystem.Utilities.JsonSerializationHelper.AttemptJsonRepair*
+  name: AttemptJsonRepair
+  href: api/api/GameFramework.SaveSystem.Utilities.JsonSerializationHelper.html#GameFramework_SaveSystem_Utilities_JsonSerializationHelper_AttemptJsonRepair_
+  commentId: Overload:GameFramework.SaveSystem.Utilities.JsonSerializationHelper.AttemptJsonRepair
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.Utilities.JsonSerializationHelper.AttemptJsonRepair
+  nameWithType: JsonSerializationHelper.AttemptJsonRepair
+- uid: GameFramework.SaveSystem.Utilities.JsonSerializationHelper.CreateCorruptedSaveData(System.String)
+  name: CreateCorruptedSaveData(string)
+  href: api/api/GameFramework.SaveSystem.Utilities.JsonSerializationHelper.html#GameFramework_SaveSystem_Utilities_JsonSerializationHelper_CreateCorruptedSaveData_System_String_
+  commentId: M:GameFramework.SaveSystem.Utilities.JsonSerializationHelper.CreateCorruptedSaveData(System.String)
+  name.vb: CreateCorruptedSaveData(String)
+  fullName: GameFramework.SaveSystem.Utilities.JsonSerializationHelper.CreateCorruptedSaveData(string)
+  fullName.vb: GameFramework.SaveSystem.Utilities.JsonSerializationHelper.CreateCorruptedSaveData(String)
+  nameWithType: JsonSerializationHelper.CreateCorruptedSaveData(string)
+  nameWithType.vb: JsonSerializationHelper.CreateCorruptedSaveData(String)
+- uid: GameFramework.SaveSystem.Utilities.JsonSerializationHelper.CreateCorruptedSaveData*
+  name: CreateCorruptedSaveData
+  href: api/api/GameFramework.SaveSystem.Utilities.JsonSerializationHelper.html#GameFramework_SaveSystem_Utilities_JsonSerializationHelper_CreateCorruptedSaveData_
+  commentId: Overload:GameFramework.SaveSystem.Utilities.JsonSerializationHelper.CreateCorruptedSaveData
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.Utilities.JsonSerializationHelper.CreateCorruptedSaveData
+  nameWithType: JsonSerializationHelper.CreateCorruptedSaveData
+- uid: GameFramework.SaveSystem.Utilities.JsonSerializationHelper.DeserializeFromJson(System.String)
+  name: DeserializeFromJson(string)
+  href: api/api/GameFramework.SaveSystem.Utilities.JsonSerializationHelper.html#GameFramework_SaveSystem_Utilities_JsonSerializationHelper_DeserializeFromJson_System_String_
+  commentId: M:GameFramework.SaveSystem.Utilities.JsonSerializationHelper.DeserializeFromJson(System.String)
+  name.vb: DeserializeFromJson(String)
+  fullName: GameFramework.SaveSystem.Utilities.JsonSerializationHelper.DeserializeFromJson(string)
+  fullName.vb: GameFramework.SaveSystem.Utilities.JsonSerializationHelper.DeserializeFromJson(String)
+  nameWithType: JsonSerializationHelper.DeserializeFromJson(string)
+  nameWithType.vb: JsonSerializationHelper.DeserializeFromJson(String)
 - uid: GameFramework.SaveSystem.Utilities.JsonSerializationHelper.DeserializeFromJson*
   name: DeserializeFromJson
   href: api/api/GameFramework.SaveSystem.Utilities.JsonSerializationHelper.html#GameFramework_SaveSystem_Utilities_JsonSerializationHelper_DeserializeFromJson_
@@ -13034,22 +13933,12 @@ references:
   fullName.vb: GameFramework.SaveSystem.Utilities.JsonSerializationHelper.DeserializeFromJson(Of T)(String)
   nameWithType: JsonSerializationHelper.DeserializeFromJson<T>(string)
   nameWithType.vb: JsonSerializationHelper.DeserializeFromJson(Of T)(String)
-- uid: GameFramework.SaveSystem.Utilities.JsonSerializationHelper.IsValidJson(System.String)
-  name: IsValidJson(string)
-  href: api/api/GameFramework.SaveSystem.Utilities.JsonSerializationHelper.html#GameFramework_SaveSystem_Utilities_JsonSerializationHelper_IsValidJson_System_String_
-  commentId: M:GameFramework.SaveSystem.Utilities.JsonSerializationHelper.IsValidJson(System.String)
-  name.vb: IsValidJson(String)
-  fullName: GameFramework.SaveSystem.Utilities.JsonSerializationHelper.IsValidJson(string)
-  fullName.vb: GameFramework.SaveSystem.Utilities.JsonSerializationHelper.IsValidJson(String)
-  nameWithType: JsonSerializationHelper.IsValidJson(string)
-  nameWithType.vb: JsonSerializationHelper.IsValidJson(String)
-- uid: GameFramework.SaveSystem.Utilities.JsonSerializationHelper.IsValidJson*
-  name: IsValidJson
-  href: api/api/GameFramework.SaveSystem.Utilities.JsonSerializationHelper.html#GameFramework_SaveSystem_Utilities_JsonSerializationHelper_IsValidJson_
-  commentId: Overload:GameFramework.SaveSystem.Utilities.JsonSerializationHelper.IsValidJson
-  isSpec: "True"
-  fullName: GameFramework.SaveSystem.Utilities.JsonSerializationHelper.IsValidJson
-  nameWithType: JsonSerializationHelper.IsValidJson
+- uid: GameFramework.SaveSystem.Utilities.JsonSerializationHelper.SerializeToJson(GameFramework.SaveSystem.Data.SaveFileData)
+  name: SerializeToJson(SaveFileData)
+  href: api/api/GameFramework.SaveSystem.Utilities.JsonSerializationHelper.html#GameFramework_SaveSystem_Utilities_JsonSerializationHelper_SerializeToJson_GameFramework_SaveSystem_Data_SaveFileData_
+  commentId: M:GameFramework.SaveSystem.Utilities.JsonSerializationHelper.SerializeToJson(GameFramework.SaveSystem.Data.SaveFileData)
+  fullName: GameFramework.SaveSystem.Utilities.JsonSerializationHelper.SerializeToJson(GameFramework.SaveSystem.Data.SaveFileData)
+  nameWithType: JsonSerializationHelper.SerializeToJson(SaveFileData)
 - uid: GameFramework.SaveSystem.Utilities.JsonSerializationHelper.SerializeToJson*
   name: SerializeToJson
   href: api/api/GameFramework.SaveSystem.Utilities.JsonSerializationHelper.html#GameFramework_SaveSystem_Utilities_JsonSerializationHelper_SerializeToJson_
@@ -13057,53 +13946,195 @@ references:
   isSpec: "True"
   fullName: GameFramework.SaveSystem.Utilities.JsonSerializationHelper.SerializeToJson
   nameWithType: JsonSerializationHelper.SerializeToJson
-- uid: GameFramework.SaveSystem.Utilities.JsonSerializationHelper.SerializeToJson``1(``0,System.Boolean)
-  name: SerializeToJson<T>(T, bool)
-  href: api/api/GameFramework.SaveSystem.Utilities.JsonSerializationHelper.html#GameFramework_SaveSystem_Utilities_JsonSerializationHelper_SerializeToJson__1___0_System_Boolean_
-  commentId: M:GameFramework.SaveSystem.Utilities.JsonSerializationHelper.SerializeToJson``1(``0,System.Boolean)
-  name.vb: SerializeToJson(Of T)(T, Boolean)
-  fullName: GameFramework.SaveSystem.Utilities.JsonSerializationHelper.SerializeToJson<T>(T, bool)
-  fullName.vb: GameFramework.SaveSystem.Utilities.JsonSerializationHelper.SerializeToJson(Of T)(T, Boolean)
-  nameWithType: JsonSerializationHelper.SerializeToJson<T>(T, bool)
-  nameWithType.vb: JsonSerializationHelper.SerializeToJson(Of T)(T, Boolean)
-- uid: GameFramework.SaveSystem.Utilities.JsonSerializationHelper.TryDeserialize*
-  name: TryDeserialize
-  href: api/api/GameFramework.SaveSystem.Utilities.JsonSerializationHelper.html#GameFramework_SaveSystem_Utilities_JsonSerializationHelper_TryDeserialize_
-  commentId: Overload:GameFramework.SaveSystem.Utilities.JsonSerializationHelper.TryDeserialize
+- uid: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry
+  name: SaveableTypeRegistry
+  href: api/api/GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.html
+  commentId: T:GameFramework.SaveSystem.Utilities.SaveableTypeRegistry
+  fullName: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry
+  nameWithType: SaveableTypeRegistry
+- uid: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.CreateSaveDataInstance(System.String)
+  name: CreateSaveDataInstance(string)
+  href: api/api/GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.html#GameFramework_SaveSystem_Utilities_SaveableTypeRegistry_CreateSaveDataInstance_System_String_
+  commentId: M:GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.CreateSaveDataInstance(System.String)
+  name.vb: CreateSaveDataInstance(String)
+  fullName: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.CreateSaveDataInstance(string)
+  fullName.vb: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.CreateSaveDataInstance(String)
+  nameWithType: SaveableTypeRegistry.CreateSaveDataInstance(string)
+  nameWithType.vb: SaveableTypeRegistry.CreateSaveDataInstance(String)
+- uid: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.CreateSaveDataInstance(System.Type)
+  name: CreateSaveDataInstance(Type)
+  href: api/api/GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.html#GameFramework_SaveSystem_Utilities_SaveableTypeRegistry_CreateSaveDataInstance_System_Type_
+  commentId: M:GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.CreateSaveDataInstance(System.Type)
+  fullName: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.CreateSaveDataInstance(System.Type)
+  nameWithType: SaveableTypeRegistry.CreateSaveDataInstance(Type)
+- uid: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.CreateSaveDataInstance*
+  name: CreateSaveDataInstance
+  href: api/api/GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.html#GameFramework_SaveSystem_Utilities_SaveableTypeRegistry_CreateSaveDataInstance_
+  commentId: Overload:GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.CreateSaveDataInstance
   isSpec: "True"
-  fullName: GameFramework.SaveSystem.Utilities.JsonSerializationHelper.TryDeserialize
-  nameWithType: JsonSerializationHelper.TryDeserialize
-- uid: GameFramework.SaveSystem.Utilities.JsonSerializationHelper.TryDeserialize``1(System.String,``0@)
-  name: TryDeserialize<T>(string, out T)
-  href: api/api/GameFramework.SaveSystem.Utilities.JsonSerializationHelper.html#GameFramework_SaveSystem_Utilities_JsonSerializationHelper_TryDeserialize__1_System_String___0__
-  commentId: M:GameFramework.SaveSystem.Utilities.JsonSerializationHelper.TryDeserialize``1(System.String,``0@)
-  name.vb: TryDeserialize(Of T)(String, T)
-  fullName: GameFramework.SaveSystem.Utilities.JsonSerializationHelper.TryDeserialize<T>(string, out T)
-  fullName.vb: GameFramework.SaveSystem.Utilities.JsonSerializationHelper.TryDeserialize(Of T)(String, T)
-  nameWithType: JsonSerializationHelper.TryDeserialize<T>(string, out T)
-  nameWithType.vb: JsonSerializationHelper.TryDeserialize(Of T)(String, T)
-- uid: GameFramework.SaveSystem.Utilities.NewGameSaveDataCreator
-  name: NewGameSaveDataCreator
-  href: api/api/GameFramework.SaveSystem.Utilities.NewGameSaveDataCreator.html
-  commentId: T:GameFramework.SaveSystem.Utilities.NewGameSaveDataCreator
-  fullName: GameFramework.SaveSystem.Utilities.NewGameSaveDataCreator
-  nameWithType: NewGameSaveDataCreator
-- uid: GameFramework.SaveSystem.Utilities.NewGameSaveDataCreator.CreateNewGameSaveData(System.String,System.String,System.String)
-  name: CreateNewGameSaveData(string, string, string)
-  href: api/api/GameFramework.SaveSystem.Utilities.NewGameSaveDataCreator.html#GameFramework_SaveSystem_Utilities_NewGameSaveDataCreator_CreateNewGameSaveData_System_String_System_String_System_String_
-  commentId: M:GameFramework.SaveSystem.Utilities.NewGameSaveDataCreator.CreateNewGameSaveData(System.String,System.String,System.String)
-  name.vb: CreateNewGameSaveData(String, String, String)
-  fullName: GameFramework.SaveSystem.Utilities.NewGameSaveDataCreator.CreateNewGameSaveData(string, string, string)
-  fullName.vb: GameFramework.SaveSystem.Utilities.NewGameSaveDataCreator.CreateNewGameSaveData(String, String, String)
-  nameWithType: NewGameSaveDataCreator.CreateNewGameSaveData(string, string, string)
-  nameWithType.vb: NewGameSaveDataCreator.CreateNewGameSaveData(String, String, String)
-- uid: GameFramework.SaveSystem.Utilities.NewGameSaveDataCreator.CreateNewGameSaveData*
-  name: CreateNewGameSaveData
-  href: api/api/GameFramework.SaveSystem.Utilities.NewGameSaveDataCreator.html#GameFramework_SaveSystem_Utilities_NewGameSaveDataCreator_CreateNewGameSaveData_
-  commentId: Overload:GameFramework.SaveSystem.Utilities.NewGameSaveDataCreator.CreateNewGameSaveData
+  fullName: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.CreateSaveDataInstance
+  nameWithType: SaveableTypeRegistry.CreateSaveDataInstance
+- uid: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.ForceReinitialize
+  name: ForceReinitialize()
+  href: api/api/GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.html#GameFramework_SaveSystem_Utilities_SaveableTypeRegistry_ForceReinitialize
+  commentId: M:GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.ForceReinitialize
+  fullName: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.ForceReinitialize()
+  nameWithType: SaveableTypeRegistry.ForceReinitialize()
+- uid: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.ForceReinitialize*
+  name: ForceReinitialize
+  href: api/api/GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.html#GameFramework_SaveSystem_Utilities_SaveableTypeRegistry_ForceReinitialize_
+  commentId: Overload:GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.ForceReinitialize
   isSpec: "True"
-  fullName: GameFramework.SaveSystem.Utilities.NewGameSaveDataCreator.CreateNewGameSaveData
-  nameWithType: NewGameSaveDataCreator.CreateNewGameSaveData
+  fullName: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.ForceReinitialize
+  nameWithType: SaveableTypeRegistry.ForceReinitialize
+- uid: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.GetSaveDataType(System.String)
+  name: GetSaveDataType(string)
+  href: api/api/GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.html#GameFramework_SaveSystem_Utilities_SaveableTypeRegistry_GetSaveDataType_System_String_
+  commentId: M:GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.GetSaveDataType(System.String)
+  name.vb: GetSaveDataType(String)
+  fullName: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.GetSaveDataType(string)
+  fullName.vb: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.GetSaveDataType(String)
+  nameWithType: SaveableTypeRegistry.GetSaveDataType(string)
+  nameWithType.vb: SaveableTypeRegistry.GetSaveDataType(String)
+- uid: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.GetSaveDataType(System.Type)
+  name: GetSaveDataType(Type)
+  href: api/api/GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.html#GameFramework_SaveSystem_Utilities_SaveableTypeRegistry_GetSaveDataType_System_Type_
+  commentId: M:GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.GetSaveDataType(System.Type)
+  fullName: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.GetSaveDataType(System.Type)
+  nameWithType: SaveableTypeRegistry.GetSaveDataType(Type)
+- uid: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.GetSaveDataType*
+  name: GetSaveDataType
+  href: api/api/GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.html#GameFramework_SaveSystem_Utilities_SaveableTypeRegistry_GetSaveDataType_
+  commentId: Overload:GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.GetSaveDataType
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.GetSaveDataType
+  nameWithType: SaveableTypeRegistry.GetSaveDataType
+- uid: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.GetTypeName(System.Type)
+  name: GetTypeName(Type)
+  href: api/api/GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.html#GameFramework_SaveSystem_Utilities_SaveableTypeRegistry_GetTypeName_System_Type_
+  commentId: M:GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.GetTypeName(System.Type)
+  fullName: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.GetTypeName(System.Type)
+  nameWithType: SaveableTypeRegistry.GetTypeName(Type)
+- uid: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.GetTypeName*
+  name: GetTypeName
+  href: api/api/GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.html#GameFramework_SaveSystem_Utilities_SaveableTypeRegistry_GetTypeName_
+  commentId: Overload:GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.GetTypeName
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.GetTypeName
+  nameWithType: SaveableTypeRegistry.GetTypeName
+- uid: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.Initialize
+  name: Initialize()
+  href: api/api/GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.html#GameFramework_SaveSystem_Utilities_SaveableTypeRegistry_Initialize
+  commentId: M:GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.Initialize
+  fullName: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.Initialize()
+  nameWithType: SaveableTypeRegistry.Initialize()
+- uid: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.Initialize*
+  name: Initialize
+  href: api/api/GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.html#GameFramework_SaveSystem_Utilities_SaveableTypeRegistry_Initialize_
+  commentId: Overload:GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.Initialize
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.Initialize
+  nameWithType: SaveableTypeRegistry.Initialize
+- uid: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.IsTypeRegistered(System.String)
+  name: IsTypeRegistered(string)
+  href: api/api/GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.html#GameFramework_SaveSystem_Utilities_SaveableTypeRegistry_IsTypeRegistered_System_String_
+  commentId: M:GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.IsTypeRegistered(System.String)
+  name.vb: IsTypeRegistered(String)
+  fullName: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.IsTypeRegistered(string)
+  fullName.vb: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.IsTypeRegistered(String)
+  nameWithType: SaveableTypeRegistry.IsTypeRegistered(string)
+  nameWithType.vb: SaveableTypeRegistry.IsTypeRegistered(String)
+- uid: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.IsTypeRegistered(System.Type)
+  name: IsTypeRegistered(Type)
+  href: api/api/GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.html#GameFramework_SaveSystem_Utilities_SaveableTypeRegistry_IsTypeRegistered_System_Type_
+  commentId: M:GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.IsTypeRegistered(System.Type)
+  fullName: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.IsTypeRegistered(System.Type)
+  nameWithType: SaveableTypeRegistry.IsTypeRegistered(Type)
+- uid: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.IsTypeRegistered*
+  name: IsTypeRegistered
+  href: api/api/GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.html#GameFramework_SaveSystem_Utilities_SaveableTypeRegistry_IsTypeRegistered_
+  commentId: Overload:GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.IsTypeRegistered
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.IsTypeRegistered
+  nameWithType: SaveableTypeRegistry.IsTypeRegistered
+- uid: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.LogRegisteredTypes
+  name: LogRegisteredTypes()
+  href: api/api/GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.html#GameFramework_SaveSystem_Utilities_SaveableTypeRegistry_LogRegisteredTypes
+  commentId: M:GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.LogRegisteredTypes
+  fullName: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.LogRegisteredTypes()
+  nameWithType: SaveableTypeRegistry.LogRegisteredTypes()
+- uid: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.LogRegisteredTypes*
+  name: LogRegisteredTypes
+  href: api/api/GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.html#GameFramework_SaveSystem_Utilities_SaveableTypeRegistry_LogRegisteredTypes_
+  commentId: Overload:GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.LogRegisteredTypes
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.LogRegisteredTypes
+  nameWithType: SaveableTypeRegistry.LogRegisteredTypes
+- uid: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.RegisteredCount
+  name: RegisteredCount
+  href: api/api/GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.html#GameFramework_SaveSystem_Utilities_SaveableTypeRegistry_RegisteredCount
+  commentId: P:GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.RegisteredCount
+  fullName: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.RegisteredCount
+  nameWithType: SaveableTypeRegistry.RegisteredCount
+- uid: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.RegisteredCount*
+  name: RegisteredCount
+  href: api/api/GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.html#GameFramework_SaveSystem_Utilities_SaveableTypeRegistry_RegisteredCount_
+  commentId: Overload:GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.RegisteredCount
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.RegisteredCount
+  nameWithType: SaveableTypeRegistry.RegisteredCount
+- uid: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.RegisteredSaveDataTypes
+  name: RegisteredSaveDataTypes
+  href: api/api/GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.html#GameFramework_SaveSystem_Utilities_SaveableTypeRegistry_RegisteredSaveDataTypes
+  commentId: P:GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.RegisteredSaveDataTypes
+  fullName: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.RegisteredSaveDataTypes
+  nameWithType: SaveableTypeRegistry.RegisteredSaveDataTypes
+- uid: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.RegisteredSaveDataTypes*
+  name: RegisteredSaveDataTypes
+  href: api/api/GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.html#GameFramework_SaveSystem_Utilities_SaveableTypeRegistry_RegisteredSaveDataTypes_
+  commentId: Overload:GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.RegisteredSaveDataTypes
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.RegisteredSaveDataTypes
+  nameWithType: SaveableTypeRegistry.RegisteredSaveDataTypes
+- uid: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.RegisteredSaveableTypes
+  name: RegisteredSaveableTypes
+  href: api/api/GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.html#GameFramework_SaveSystem_Utilities_SaveableTypeRegistry_RegisteredSaveableTypes
+  commentId: P:GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.RegisteredSaveableTypes
+  fullName: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.RegisteredSaveableTypes
+  nameWithType: SaveableTypeRegistry.RegisteredSaveableTypes
+- uid: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.RegisteredSaveableTypes*
+  name: RegisteredSaveableTypes
+  href: api/api/GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.html#GameFramework_SaveSystem_Utilities_SaveableTypeRegistry_RegisteredSaveableTypes_
+  commentId: Overload:GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.RegisteredSaveableTypes
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.RegisteredSaveableTypes
+  nameWithType: SaveableTypeRegistry.RegisteredSaveableTypes
+- uid: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.RegisteredTypeNames
+  name: RegisteredTypeNames
+  href: api/api/GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.html#GameFramework_SaveSystem_Utilities_SaveableTypeRegistry_RegisteredTypeNames
+  commentId: P:GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.RegisteredTypeNames
+  fullName: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.RegisteredTypeNames
+  nameWithType: SaveableTypeRegistry.RegisteredTypeNames
+- uid: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.RegisteredTypeNames*
+  name: RegisteredTypeNames
+  href: api/api/GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.html#GameFramework_SaveSystem_Utilities_SaveableTypeRegistry_RegisteredTypeNames_
+  commentId: Overload:GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.RegisteredTypeNames
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.RegisteredTypeNames
+  nameWithType: SaveableTypeRegistry.RegisteredTypeNames
+- uid: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.ValidateRegisteredTypes
+  name: ValidateRegisteredTypes()
+  href: api/api/GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.html#GameFramework_SaveSystem_Utilities_SaveableTypeRegistry_ValidateRegisteredTypes
+  commentId: M:GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.ValidateRegisteredTypes
+  fullName: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.ValidateRegisteredTypes()
+  nameWithType: SaveableTypeRegistry.ValidateRegisteredTypes()
+- uid: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.ValidateRegisteredTypes*
+  name: ValidateRegisteredTypes
+  href: api/api/GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.html#GameFramework_SaveSystem_Utilities_SaveableTypeRegistry_ValidateRegisteredTypes_
+  commentId: Overload:GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.ValidateRegisteredTypes
+  isSpec: "True"
+  fullName: GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.ValidateRegisteredTypes
+  nameWithType: SaveableTypeRegistry.ValidateRegisteredTypes
 - uid: GameFramework.SaveSystem.Utilities.UniqueIDGenerator
   name: UniqueIDGenerator
   href: api/api/GameFramework.SaveSystem.Utilities.UniqueIDGenerator.html

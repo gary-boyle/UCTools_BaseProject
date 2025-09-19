@@ -95,7 +95,7 @@ Supports both raycast-based placement and fixed depth placement.</p>
       <h4><a class="xref" href="GameFramework.Components.ClickableCube.html">ClickableCube</a></h4>
       <section><p>MonoBehaviour that can be attached to a cube to make it clickable.
 When clicked, changes the cube's color and increments an integer value.
-Implements ISaveable to persist state between game sessions.</p>
+Uses the new clean save system with direct field storage instead of nested JSON.</p>
 </section>
       <h4><a class="xref" href="GameFramework.Components.PlayerController.html">PlayerController</a></h4>
       <section><p>Simple PlayerController that handles WASD movement on X and Z axes using Rigidbody physics.

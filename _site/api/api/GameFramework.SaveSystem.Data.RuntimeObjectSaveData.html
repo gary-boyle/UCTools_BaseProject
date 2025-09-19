@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class JsonSerializationHelper | UCTools Base Project </title>
+    <title>Class RuntimeObjectSaveData | UCTools Base Project </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class JsonSerializationHelper | UCTools Base Project ">
+    <meta name="title" content="Class RuntimeObjectSaveData | UCTools Base Project ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -79,20 +79,22 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="GameFramework.SaveSystem.Utilities.JsonSerializationHelper">
+            <article class="content wrap" id="_content" data-uid="GameFramework.SaveSystem.Data.RuntimeObjectSaveData">
 
 
 
-  <h1 id="GameFramework_SaveSystem_Utilities_JsonSerializationHelper" data-uid="GameFramework.SaveSystem.Utilities.JsonSerializationHelper" class="text-break">Class JsonSerializationHelper</h1>
-  <div class="markdown level0 summary"><p>Helper utility for JSON serialization/deserialization of complex SaveFileData structures.
-Handles the serialization issues with Unity's JsonUtility when dealing with complex nested objects
-and Lists that contain SerializedRuntimeObject instances.</p>
+  <h1 id="GameFramework_SaveSystem_Data_RuntimeObjectSaveData" data-uid="GameFramework.SaveSystem.Data.RuntimeObjectSaveData" class="text-break">Class RuntimeObjectSaveData</h1>
+  <div class="markdown level0 summary"><p>Clean save data structure for runtime objects that need to be instantiated or modified.
+Replaces the nested JSON string approach with direct field storage.
+Each object type will have its own specific data fields instead of being serialized as JSON.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><span class="xref">JsonSerializationHelper</span></div>
+    <div class="level1"><span class="xref">RuntimeObjectSaveData</span></div>
+      <div class="level2"><a class="xref" href="GameFramework.SaveSystem.Data.ClickableCubeRuntimeSaveData.html">ClickableCubeRuntimeSaveData</a></div>
+      <div class="level2"><a class="xref" href="GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.html">TestGenericRuntimeSaveData</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -118,22 +120,30 @@ and Lists that contain SerializedRuntimeObject instances.</p>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
     </div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.SaveSystem.html">SaveSystem</a>.<a class="xref" href="GameFramework.SaveSystem.Utilities.html">Utilities</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.SaveSystem.html">SaveSystem</a>.<a class="xref" href="GameFramework.SaveSystem.Data.html">Data</a></h6>
   <h6><strong>Assembly</strong>: .dll</h6>
-  <h5 id="GameFramework_SaveSystem_Utilities_JsonSerializationHelper_syntax">Syntax</h5>
+  <h5 id="GameFramework_SaveSystem_Data_RuntimeObjectSaveData_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class JsonSerializationHelper</code></pre>
+    <pre><code class="lang-csharp hljs">[Serializable]
+public class RuntimeObjectSaveData</code></pre>
   </div>
-  <h3 id="methods">Methods
+  <h3 id="constructors">Constructors
 </h3>
-  <a id="GameFramework_SaveSystem_Utilities_JsonSerializationHelper_AttemptJsonRepair_" data-uid="GameFramework.SaveSystem.Utilities.JsonSerializationHelper.AttemptJsonRepair*"></a>
-  <h4 id="GameFramework_SaveSystem_Utilities_JsonSerializationHelper_AttemptJsonRepair_System_String_" data-uid="GameFramework.SaveSystem.Utilities.JsonSerializationHelper.AttemptJsonRepair(System.String)">AttemptJsonRepair(string)</h4>
-  <div class="markdown level1 summary"><p>Attempts to repair corrupted JSON by fixing common issues</p>
-</div>
+  <a id="GameFramework_SaveSystem_Data_RuntimeObjectSaveData__ctor_" data-uid="GameFramework.SaveSystem.Data.RuntimeObjectSaveData.#ctor*"></a>
+  <h4 id="GameFramework_SaveSystem_Data_RuntimeObjectSaveData__ctor" data-uid="GameFramework.SaveSystem.Data.RuntimeObjectSaveData.#ctor">RuntimeObjectSaveData()</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static string AttemptJsonRepair(string json)</code></pre>
+    <pre><code class="lang-csharp hljs">public RuntimeObjectSaveData()</code></pre>
+  </div>
+  <a id="GameFramework_SaveSystem_Data_RuntimeObjectSaveData__ctor_" data-uid="GameFramework.SaveSystem.Data.RuntimeObjectSaveData.#ctor*"></a>
+  <h4 id="GameFramework_SaveSystem_Data_RuntimeObjectSaveData__ctor_System_String_System_String_System_String_" data-uid="GameFramework.SaveSystem.Data.RuntimeObjectSaveData.#ctor(System.String,System.String,System.String)">RuntimeObjectSaveData(string, string, string)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RuntimeObjectSaveData(string uniqueID, string prefabGUID, string typeName)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -147,56 +157,31 @@ and Lists that contain SerializedRuntimeObject instances.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">json</span></td>
-        <td><p>Potentially corrupted JSON</p>
-</td>
+        <td><span class="parametername">uniqueID</span></td>
+        <td></td>
       </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><p>Repaired JSON or original if no repair was possible</p>
-</td>
+        <td><span class="parametername">prefabGUID</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">typeName</span></td>
+        <td></td>
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_SaveSystem_Utilities_JsonSerializationHelper_CreateCorruptedSaveData_" data-uid="GameFramework.SaveSystem.Utilities.JsonSerializationHelper.CreateCorruptedSaveData*"></a>
-  <h4 id="GameFramework_SaveSystem_Utilities_JsonSerializationHelper_CreateCorruptedSaveData_System_String_" data-uid="GameFramework.SaveSystem.Utilities.JsonSerializationHelper.CreateCorruptedSaveData(System.String)">CreateCorruptedSaveData(string)</h4>
-  <div class="markdown level1 summary"><p>Creates a SaveFileData instance from corrupted or partial JSON data</p>
-</div>
+  <h3 id="fields">Fields
+</h3>
+  <h4 id="GameFramework_SaveSystem_Data_RuntimeObjectSaveData_isActive" data-uid="GameFramework.SaveSystem.Data.RuntimeObjectSaveData.isActive">isActive</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static SaveFileData CreateCorruptedSaveData(string fileName)</code></pre>
+    <pre><code class="lang-csharp hljs">public bool isActive</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">fileName</span></td>
-        <td><p>The filename this data is from</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
+  <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
@@ -206,84 +191,41 @@ and Lists that contain SerializedRuntimeObject instances.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="GameFramework.SaveSystem.Data.SaveFileData.html">SaveFileData</a></td>
-        <td><p>A SaveFileData with minimal valid structure</p>
-</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_SaveSystem_Utilities_JsonSerializationHelper_DeserializeFromJson_" data-uid="GameFramework.SaveSystem.Utilities.JsonSerializationHelper.DeserializeFromJson*"></a>
-  <h4 id="GameFramework_SaveSystem_Utilities_JsonSerializationHelper_DeserializeFromJson_System_String_" data-uid="GameFramework.SaveSystem.Utilities.JsonSerializationHelper.DeserializeFromJson(System.String)">DeserializeFromJson(string)</h4>
-  <div class="markdown level1 summary"><p>Deserializes SaveFileData from JSON string, handling all complex nested structures properly.
-This method works around Unity JsonUtility limitations with complex object graphs.</p>
-</div>
+  <h4 id="GameFramework_SaveSystem_Data_RuntimeObjectSaveData_objectDataJson" data-uid="GameFramework.SaveSystem.Data.RuntimeObjectSaveData.objectDataJson">objectDataJson</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static SaveFileData DeserializeFromJson(string json)</code></pre>
+    <pre><code class="lang-csharp hljs">public string objectDataJson</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
+  <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Name</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">json</span></td>
-        <td><p>The JSON string to deserialize</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="GameFramework.SaveSystem.Data.SaveFileData.html">SaveFileData</a></td>
-        <td><p>Deserialized SaveFileData or null if deserialization fails</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_SaveSystem_Utilities_JsonSerializationHelper_DeserializeFromJson_" data-uid="GameFramework.SaveSystem.Utilities.JsonSerializationHelper.DeserializeFromJson*"></a>
-  <h4 id="GameFramework_SaveSystem_Utilities_JsonSerializationHelper_DeserializeFromJson__1_System_String_" data-uid="GameFramework.SaveSystem.Utilities.JsonSerializationHelper.DeserializeFromJson``1(System.String)">DeserializeFromJson&lt;T&gt;(string)</h4>
-  <div class="markdown level1 summary"><p>Deserializes SaveFileData from JSON with type validation</p>
-</div>
+  <h4 id="GameFramework_SaveSystem_Data_RuntimeObjectSaveData_position" data-uid="GameFramework.SaveSystem.Data.RuntimeObjectSaveData.position">position</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T DeserializeFromJson&lt;T&gt;(string json) where T : class</code></pre>
+    <pre><code class="lang-csharp hljs">public Vector3 position</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">json</span></td>
-        <td><p>The JSON string to deserialize</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
+  <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
@@ -293,56 +235,19 @@ This method works around Unity JsonUtility limitations with complex object graph
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">T</span></td>
-        <td><p>Deserialized data or null if failed</p>
-</td>
+        <td><span class="xref">Vector3</span></td>
+        <td></td>
       </tr>
     </tbody>
   </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">T</span></td>
-        <td><p>Expected type (must be SaveFileData)</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_SaveSystem_Utilities_JsonSerializationHelper_SerializeToJson_" data-uid="GameFramework.SaveSystem.Utilities.JsonSerializationHelper.SerializeToJson*"></a>
-  <h4 id="GameFramework_SaveSystem_Utilities_JsonSerializationHelper_SerializeToJson_GameFramework_SaveSystem_Data_SaveFileData_" data-uid="GameFramework.SaveSystem.Utilities.JsonSerializationHelper.SerializeToJson(GameFramework.SaveSystem.Data.SaveFileData)">SerializeToJson(SaveFileData)</h4>
-  <div class="markdown level1 summary"><p>Serializes SaveFileData to JSON string</p>
-</div>
+  <h4 id="GameFramework_SaveSystem_Data_RuntimeObjectSaveData_prefabGUID" data-uid="GameFramework.SaveSystem.Data.RuntimeObjectSaveData.prefabGUID">prefabGUID</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static string SerializeToJson(SaveFileData saveData)</code></pre>
+    <pre><code class="lang-csharp hljs">public string prefabGUID</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="GameFramework.SaveSystem.Data.SaveFileData.html">SaveFileData</a></td>
-        <td><span class="parametername">saveData</span></td>
-        <td><p>The SaveFileData to serialize</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
+  <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
@@ -353,8 +258,95 @@ This method works around Unity JsonUtility limitations with complex object graph
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><p>JSON string or null if serialization fails</p>
-</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_SaveSystem_Data_RuntimeObjectSaveData_rotation" data-uid="GameFramework.SaveSystem.Data.RuntimeObjectSaveData.rotation">rotation</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector3 rotation</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector3</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_SaveSystem_Data_RuntimeObjectSaveData_scale" data-uid="GameFramework.SaveSystem.Data.RuntimeObjectSaveData.scale">scale</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector3 scale</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector3</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_SaveSystem_Data_RuntimeObjectSaveData_typeName" data-uid="GameFramework.SaveSystem.Data.RuntimeObjectSaveData.typeName">typeName</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string typeName</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_SaveSystem_Data_RuntimeObjectSaveData_uniqueID" data-uid="GameFramework.SaveSystem.Data.RuntimeObjectSaveData.uniqueID">uniqueID</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string uniqueID</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td></td>
       </tr>
     </tbody>
   </table>

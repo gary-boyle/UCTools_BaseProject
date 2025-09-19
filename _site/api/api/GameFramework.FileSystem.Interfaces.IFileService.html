@@ -176,49 +176,6 @@ Handles file I/O, directory management, and file metadata</p>
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_FileSystem_Interfaces_IFileService_ReadSaveFileAsync_" data-uid="GameFramework.FileSystem.Interfaces.IFileService.ReadSaveFileAsync*"></a>
-  <h4 id="GameFramework_FileSystem_Interfaces_IFileService_ReadSaveFileAsync_System_String_" data-uid="GameFramework.FileSystem.Interfaces.IFileService.ReadSaveFileAsync(System.String)">ReadSaveFileAsync(string)</h4>
-  <div class="markdown level1 summary"><p>Reads and deserializes a save file to SaveFileData</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;SaveFileData&gt; ReadSaveFileAsync(string fileName)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">fileName</span></td>
-        <td><p>Name of the save file to read</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="GameFramework.SaveSystem.Data.SaveFileData.html">SaveFileData</a>&gt;</td>
-        <td><p>SaveFileData or null if reading failed</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <a id="GameFramework_FileSystem_Interfaces_IFileService_SaveFileExists_" data-uid="GameFramework.FileSystem.Interfaces.IFileService.SaveFileExists*"></a>
   <h4 id="GameFramework_FileSystem_Interfaces_IFileService_SaveFileExists_System_String_" data-uid="GameFramework.FileSystem.Interfaces.IFileService.SaveFileExists(System.String)">SaveFileExists(string)</h4>
   <div class="markdown level1 summary"><p>Checks if a save file exists</p>
@@ -258,55 +215,6 @@ Handles file I/O, directory management, and file metadata</p>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><p>True if file exists</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_FileSystem_Interfaces_IFileService_WriteSaveFileAsync_" data-uid="GameFramework.FileSystem.Interfaces.IFileService.WriteSaveFileAsync*"></a>
-  <h4 id="GameFramework_FileSystem_Interfaces_IFileService_WriteSaveFileAsync_System_String_GameFramework_SaveSystem_Data_SaveFileData_" data-uid="GameFramework.FileSystem.Interfaces.IFileService.WriteSaveFileAsync(System.String,GameFramework.SaveSystem.Data.SaveFileData)">WriteSaveFileAsync(string, SaveFileData)</h4>
-  <div class="markdown level1 summary"><p>Writes SaveFileData to a save file</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; WriteSaveFileAsync(string fileName, SaveFileData saveFileData)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">fileName</span></td>
-        <td><p>Name of the save file to write</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GameFramework.SaveSystem.Data.SaveFileData.html">SaveFileData</a></td>
-        <td><span class="parametername">saveFileData</span></td>
-        <td><p>Data to write</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
-        <td><p>True if writing succeeded</p>
 </td>
       </tr>
     </tbody>

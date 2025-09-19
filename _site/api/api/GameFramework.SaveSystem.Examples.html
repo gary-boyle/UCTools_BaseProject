@@ -88,26 +88,11 @@
     <h3 id="classes">
 Classes
 </h3>
-      <h4><a class="xref" href="GameFramework.SaveSystem.Examples.SaveableExample.html">SaveableExample</a></h4>
-      <section><p>Example implementation of SaveableBase showing how to extend the base class
-for custom saving and loading functionality.</p>
-<p>This example demonstrates:</p>
-<ul>
-<li>Basic save/load implementation</li>
-<li>Custom initialization logic</li>
-<li>Extension points usage</li>
-<li>Custom save data class</li>
-</ul>
-</section>
-      <h4><a class="xref" href="GameFramework.SaveSystem.Examples.SaveableExampleData.html">SaveableExampleData</a></h4>
-      <section><p>Serializable save data class for SaveableExample.
-This is what gets saved to/loaded from the save file.</p>
-</section>
       <h4><a class="xref" href="GameFramework.SaveSystem.Examples.TestGenericSaveData.html">TestGenericSaveData</a></h4>
       <section></section>
       <h4><a class="xref" href="GameFramework.SaveSystem.Examples.TestGenericSaveable.html">TestGenericSaveable</a></h4>
-      <section><p>Simple test class to verify SaveableBase works with the fixed save system
-This should reproduce the SaveKey that was failing: &quot;GenericSaveable_genericsaveable_...&quot;</p>
+      <section><p>Simple test class to verify the new clean save system works properly.
+Uses SaveableBaseV2 with direct field storage instead of nested JSON strings.</p>
 </section>
 
 

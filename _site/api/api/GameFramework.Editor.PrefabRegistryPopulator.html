@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class SaveFileDisplayConfig | UCTools Base Project </title>
+    <title>Class PrefabRegistryPopulator | UCTools Base Project </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class SaveFileDisplayConfig | UCTools Base Project ">
+    <meta name="title" content="Class PrefabRegistryPopulator | UCTools Base Project ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -79,138 +79,97 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig">
+            <article class="content wrap" id="_content" data-uid="GameFramework.Editor.PrefabRegistryPopulator">
 
 
 
-  <h1 id="GameFramework_Editor_SaveFileManager_ScriptableObjects_SaveFileDisplayConfig" data-uid="GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig" class="text-break">Class SaveFileDisplayConfig</h1>
-  <div class="markdown level0 summary"><p>Configuration ScriptableObject for customizing save file display
-Allows adding new fields without modifying the editor code</p>
+  <h1 id="GameFramework_Editor_PrefabRegistryPopulator" data-uid="GameFramework.Editor.PrefabRegistryPopulator" class="text-break">Class PrefabRegistryPopulator</h1>
+  <div class="markdown level0 summary"><p>Editor tool for automatically populating PrefabRegistry with SaveableBase prefabs.
+Provides menu options under &quot;UCTools/Game Framework&quot; for easy prefab management.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><span class="xref">SaveFileDisplayConfig</span></div>
+    <div class="level1"><span class="xref">PrefabRegistryPopulator</span></div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.Editor.html">Editor</a>.<a class="xref" href="GameFramework.Editor.SaveFileManager.html">SaveFileManager</a>.<a class="xref" href="GameFramework.Editor.SaveFileManager.ScriptableObjects.html">ScriptableObjects</a></h6>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.Editor.html">Editor</a></h6>
   <h6><strong>Assembly</strong>: .dll</h6>
-  <h5 id="GameFramework_Editor_SaveFileManager_ScriptableObjects_SaveFileDisplayConfig_syntax">Syntax</h5>
+  <h5 id="GameFramework_Editor_PrefabRegistryPopulator_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class SaveFileDisplayConfig : ScriptableObject</code></pre>
+    <pre><code class="lang-csharp hljs">public static class PrefabRegistryPopulator</code></pre>
   </div>
-  <h3 id="fields">Fields
+  <h3 id="methods">Methods
 </h3>
-  <h4 id="GameFramework_Editor_SaveFileManager_ScriptableObjects_SaveFileDisplayConfig_DisplayFields" data-uid="GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.DisplayFields">DisplayFields</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="GameFramework_Editor_PrefabRegistryPopulator_AutoPopulatePrefabRegistry_" data-uid="GameFramework.Editor.PrefabRegistryPopulator.AutoPopulatePrefabRegistry*"></a>
+  <h4 id="GameFramework_Editor_PrefabRegistryPopulator_AutoPopulatePrefabRegistry" data-uid="GameFramework.Editor.PrefabRegistryPopulator.AutoPopulatePrefabRegistry">AutoPopulatePrefabRegistry()</h4>
+  <div class="markdown level1 summary"><p>Finds and registers all prefabs containing SaveableBase components</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public List&lt;SaveFileDisplayConfig.FieldDisplayConfig&gt; DisplayFields</code></pre>
+    <pre><code class="lang-csharp hljs">public static void AutoPopulatePrefabRegistry()</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.html">SaveFileDisplayConfig</a>.<a class="xref" href="GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.FieldDisplayConfig.html">FieldDisplayConfig</a>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h4 id="GameFramework_Editor_SaveFileManager_ScriptableObjects_SaveFileDisplayConfig_MaxRuntimeObjectsDisplay" data-uid="GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.MaxRuntimeObjectsDisplay">MaxRuntimeObjectsDisplay</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="GameFramework_Editor_PrefabRegistryPopulator_ClearPrefabRegistry_" data-uid="GameFramework.Editor.PrefabRegistryPopulator.ClearPrefabRegistry*"></a>
+  <h4 id="GameFramework_Editor_PrefabRegistryPopulator_ClearPrefabRegistry" data-uid="GameFramework.Editor.PrefabRegistryPopulator.ClearPrefabRegistry">ClearPrefabRegistry()</h4>
+  <div class="markdown level1 summary"><p>Clears all entries from the PrefabRegistry</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int MaxRuntimeObjectsDisplay</code></pre>
+    <pre><code class="lang-csharp hljs">public static void ClearPrefabRegistry()</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h4 id="GameFramework_Editor_SaveFileManager_ScriptableObjects_SaveFileDisplayConfig_ShowDynamicFieldDiscovery" data-uid="GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.ShowDynamicFieldDiscovery">ShowDynamicFieldDiscovery</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="GameFramework_Editor_PrefabRegistryPopulator_SelectPrefabRegistry_" data-uid="GameFramework.Editor.PrefabRegistryPopulator.SelectPrefabRegistry*"></a>
+  <h4 id="GameFramework_Editor_PrefabRegistryPopulator_SelectPrefabRegistry" data-uid="GameFramework.Editor.PrefabRegistryPopulator.SelectPrefabRegistry">SelectPrefabRegistry()</h4>
+  <div class="markdown level1 summary"><p>Opens the PrefabRegistry asset in the Inspector</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool ShowDynamicFieldDiscovery</code></pre>
+    <pre><code class="lang-csharp hljs">public static void SelectPrefabRegistry()</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h4 id="GameFramework_Editor_SaveFileManager_ScriptableObjects_SaveFileDisplayConfig_ShowRuntimeObjectSpecificFields" data-uid="GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.ShowRuntimeObjectSpecificFields">ShowRuntimeObjectSpecificFields</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="GameFramework_Editor_PrefabRegistryPopulator_ShowPrefabRegistryInfo_" data-uid="GameFramework.Editor.PrefabRegistryPopulator.ShowPrefabRegistryInfo*"></a>
+  <h4 id="GameFramework_Editor_PrefabRegistryPopulator_ShowPrefabRegistryInfo" data-uid="GameFramework.Editor.PrefabRegistryPopulator.ShowPrefabRegistryInfo">ShowPrefabRegistryInfo()</h4>
+  <div class="markdown level1 summary"><p>Shows detailed information about the current PrefabRegistry</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool ShowRuntimeObjectSpecificFields</code></pre>
+    <pre><code class="lang-csharp hljs">public static void ShowPrefabRegistryInfo()</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h4 id="GameFramework_Editor_SaveFileManager_ScriptableObjects_SaveFileDisplayConfig_ShowRuntimeObjectTransforms" data-uid="GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.ShowRuntimeObjectTransforms">ShowRuntimeObjectTransforms</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="GameFramework_Editor_PrefabRegistryPopulator_ValidatePrefabRegistry_" data-uid="GameFramework.Editor.PrefabRegistryPopulator.ValidatePrefabRegistry*"></a>
+  <h4 id="GameFramework_Editor_PrefabRegistryPopulator_ValidatePrefabRegistry" data-uid="GameFramework.Editor.PrefabRegistryPopulator.ValidatePrefabRegistry">ValidatePrefabRegistry()</h4>
+  <div class="markdown level1 summary"><p>Validates the current PrefabRegistry entries</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool ShowRuntimeObjectTransforms</code></pre>
+    <pre><code class="lang-csharp hljs">public static void ValidatePrefabRegistry()</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
 
 </article>
           </div>

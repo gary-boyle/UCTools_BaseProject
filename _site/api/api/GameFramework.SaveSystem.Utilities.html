@@ -89,12 +89,14 @@
 Classes
 </h3>
       <h4><a class="xref" href="GameFramework.SaveSystem.Utilities.JsonSerializationHelper.html">JsonSerializationHelper</a></h4>
-      <section><p>Static utility class for JSON serialization operations
-Provides centralized, consistent JSON handling with error management
-Uses Unity's JsonUtility for performance and compatibility</p>
+      <section><p>Helper utility for JSON serialization/deserialization of complex SaveFileData structures.
+Handles the serialization issues with Unity's JsonUtility when dealing with complex nested objects
+and Lists that contain SerializedRuntimeObject instances.</p>
 </section>
-      <h4><a class="xref" href="GameFramework.SaveSystem.Utilities.NewGameSaveDataCreator.html">NewGameSaveDataCreator</a></h4>
-      <section></section>
+      <h4><a class="xref" href="GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.html">SaveableTypeRegistry</a></h4>
+      <section><p>Registry for automatic discovery and management of SaveableBase types and their associated save data types.
+Uses reflection to scan for SaveableType attributes and builds lookup tables for efficient type resolution.</p>
+</section>
       <h4><a class="xref" href="GameFramework.SaveSystem.Utilities.UniqueIDGenerator.html">UniqueIDGenerator</a></h4>
       <section><p>Utility class for generating unique IDs for saveable objects</p>
 </section>

@@ -89,10 +89,15 @@
 Classes
 </h3>
       <h4><a class="xref" href="GameFramework.LoadSystem.Services.LoadService.html">LoadService</a></h4>
-      <section><p>Service responsible for transforming save data into live game state
-Handles game logic for loading, delegates file operations to FileService
-Integrates with SceneService for scene transitions during loading
-Publishes progress events for UI updates</p>
+      <section><p>Enhanced LoadService that uses the new clean save system and runtime object instantiation.
+Supports both legacy SaveFileData and new SaveFileDataV2 formats.
+Uses PrefabRegistry and RuntimeObjectInstantiator instead of Resources folder.</p>
+</section>
+      <h4><a class="xref" href="GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.html">RuntimeObjectInstantiator</a></h4>
+      <section><p>Service responsible for instantiating and configuring runtime objects from save data.
+Uses the PrefabRegistry to map GUIDs to prefab assets, eliminating Resources folder usage.
+Uses SaveableTypeRegistry for automatic type discovery, eliminating the need for ObjectFactories.
+Supports both object instantiation and in-place data loading for existing objects.</p>
 </section>
 
 

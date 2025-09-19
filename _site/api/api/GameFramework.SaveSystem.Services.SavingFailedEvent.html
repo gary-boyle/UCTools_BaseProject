@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class SaveFileDetailsPanel | UCTools Base Project </title>
+    <title>Class SavingFailedEvent | UCTools Base Project </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class SaveFileDetailsPanel | UCTools Base Project ">
+    <meta name="title" content="Class SavingFailedEvent | UCTools Base Project ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -79,59 +79,57 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel">
+            <article class="content wrap" id="_content" data-uid="GameFramework.SaveSystem.Services.SavingFailedEvent">
 
 
 
-  <h1 id="GameFramework_Editor_SaveFileManager_UI_SaveFileDetailsPanel" data-uid="GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel" class="text-break">Class SaveFileDetailsPanel</h1>
-  <div class="markdown level0 summary"><p>Enhanced panel for displaying detailed information about a selected save file</p>
-<p>Features:</p>
-<ul>
-<li>Loads full SaveFileData directly from JSON for complete information access</li>
-<li>Displays nested objects (GameSessionData, PlayerData) with all their fields</li>
-<li>Supports Vector3, DateTime, and other Unity/complex types with proper formatting</li>
-<li>Configurable field display through SaveFileDisplayConfig (supports nested field paths)</li>
-<li>Dynamic field discovery to automatically show all available data (extensible for future arbitrary data)</li>
-<li>Uses reflection-based field display for maximum flexibility with changing save structures</li>
-</ul>
-<p>Configuration:</p>
-<ul>
-<li>Use dot notation in SaveFileDisplayConfig for nested fields (e.g., &quot;PlayerData.uniqueID&quot;)</li>
-<li>Toggle ShowDynamicFieldDiscovery to show/hide complete data structure discovery</li>
-<li>System automatically handles new fields added to SaveFileData structure</li>
-</ul>
-</div>
+  <h1 id="GameFramework_SaveSystem_Services_SavingFailedEvent" data-uid="GameFramework.SaveSystem.Services.SavingFailedEvent" class="text-break">Class SavingFailedEvent</h1>
+  <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><span class="xref">SaveFileDetailsPanel</span></div>
+    <div class="level1"><span class="xref">SavingFailedEvent</span></div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.Editor.html">Editor</a>.<a class="xref" href="GameFramework.Editor.SaveFileManager.html">SaveFileManager</a>.<a class="xref" href="GameFramework.Editor.SaveFileManager.UI.html">UI</a></h6>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.SaveSystem.html">SaveSystem</a>.<a class="xref" href="GameFramework.SaveSystem.Services.html">Services</a></h6>
   <h6><strong>Assembly</strong>: .dll</h6>
-  <h5 id="GameFramework_Editor_SaveFileManager_UI_SaveFileDetailsPanel_syntax">Syntax</h5>
+  <h5 id="GameFramework_SaveSystem_Services_SavingFailedEvent_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class SaveFileDetailsPanel : VisualElement</code></pre>
+    <pre><code class="lang-csharp hljs">public class SavingFailedEvent</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
-  <a id="GameFramework_Editor_SaveFileManager_UI_SaveFileDetailsPanel__ctor_" data-uid="GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.#ctor*"></a>
-  <h4 id="GameFramework_Editor_SaveFileManager_UI_SaveFileDetailsPanel__ctor" data-uid="GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.#ctor">SaveFileDetailsPanel()</h4>
+  <a id="GameFramework_SaveSystem_Services_SavingFailedEvent__ctor_" data-uid="GameFramework.SaveSystem.Services.SavingFailedEvent.#ctor*"></a>
+  <h4 id="GameFramework_SaveSystem_Services_SavingFailedEvent__ctor_System_Exception_System_String_System_Boolean_" data-uid="GameFramework.SaveSystem.Services.SavingFailedEvent.#ctor(System.Exception,System.String,System.Boolean)">SavingFailedEvent(Exception, string, bool)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public SaveFileDetailsPanel()</code></pre>
-  </div>
-  <h3 id="methods">Methods
-</h3>
-  <a id="GameFramework_Editor_SaveFileManager_UI_SaveFileDetailsPanel_LoadSaveFile_" data-uid="GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.LoadSaveFile*"></a>
-  <h4 id="GameFramework_Editor_SaveFileManager_UI_SaveFileDetailsPanel_LoadSaveFile_GameFramework_DataStructures_SaveFileInfo_GameFramework_Editor_SaveFileManager_ScriptableObjects_SaveFileDisplayConfig_System_Boolean_System_Boolean_" data-uid="GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.LoadSaveFile(GameFramework.DataStructures.SaveFileInfo,GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig,System.Boolean,System.Boolean)">LoadSaveFile(SaveFileInfo, SaveFileDisplayConfig, bool, bool)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void LoadSaveFile(SaveFileInfo saveInfo, SaveFileDisplayConfig displayConfig, bool showRawData, bool isEditMode = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public SavingFailedEvent(Exception exception, string fileName, bool wasAutoSave)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -144,37 +142,33 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="GameFramework.DataStructures.SaveFileInfo.html">SaveFileInfo</a></td>
-        <td><span class="parametername">saveInfo</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></td>
+        <td><span class="parametername">exception</span></td>
         <td></td>
       </tr>
       <tr>
-        <td><a class="xref" href="GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.html">SaveFileDisplayConfig</a></td>
-        <td><span class="parametername">displayConfig</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><span class="parametername">showRawData</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">fileName</span></td>
         <td></td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><span class="parametername">isEditMode</span></td>
+        <td><span class="parametername">wasAutoSave</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <h3 id="events">Events
+  <h3 id="properties">Properties
 </h3>
-  <h4 id="GameFramework_Editor_SaveFileManager_UI_SaveFileDetailsPanel_OnDeleteRequested" data-uid="GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.OnDeleteRequested">OnDeleteRequested</h4>
+  <a id="GameFramework_SaveSystem_Services_SavingFailedEvent_Exception_" data-uid="GameFramework.SaveSystem.Services.SavingFailedEvent.Exception*"></a>
+  <h4 id="GameFramework_SaveSystem_Services_SavingFailedEvent_Exception" data-uid="GameFramework.SaveSystem.Services.SavingFailedEvent.Exception">Exception</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event Action&lt;SaveFileInfo&gt; OnDeleteRequested</code></pre>
+    <pre><code class="lang-csharp hljs">public Exception Exception { get; }</code></pre>
   </div>
-  <h5 class="eventType">Event Type</h5>
+  <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
@@ -184,19 +178,20 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="GameFramework.DataStructures.SaveFileInfo.html">SaveFileInfo</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <h4 id="GameFramework_Editor_SaveFileManager_UI_SaveFileDetailsPanel_OnLoadRequested" data-uid="GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.OnLoadRequested">OnLoadRequested</h4>
+  <a id="GameFramework_SaveSystem_Services_SavingFailedEvent_FileName_" data-uid="GameFramework.SaveSystem.Services.SavingFailedEvent.FileName*"></a>
+  <h4 id="GameFramework_SaveSystem_Services_SavingFailedEvent_FileName" data-uid="GameFramework.SaveSystem.Services.SavingFailedEvent.FileName">FileName</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event Action&lt;SaveFileInfo&gt; OnLoadRequested</code></pre>
+    <pre><code class="lang-csharp hljs">public string FileName { get; }</code></pre>
   </div>
-  <h5 class="eventType">Event Type</h5>
+  <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
@@ -206,19 +201,20 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="GameFramework.DataStructures.SaveFileInfo.html">SaveFileInfo</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <h4 id="GameFramework_Editor_SaveFileManager_UI_SaveFileDetailsPanel_OnSaveRequested" data-uid="GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.OnSaveRequested">OnSaveRequested</h4>
+  <a id="GameFramework_SaveSystem_Services_SavingFailedEvent_WasAutoSave_" data-uid="GameFramework.SaveSystem.Services.SavingFailedEvent.WasAutoSave*"></a>
+  <h4 id="GameFramework_SaveSystem_Services_SavingFailedEvent_WasAutoSave" data-uid="GameFramework.SaveSystem.Services.SavingFailedEvent.WasAutoSave">WasAutoSave</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event Action&lt;SaveFileInfo&gt; OnSaveRequested</code></pre>
+    <pre><code class="lang-csharp hljs">public bool WasAutoSave { get; }</code></pre>
   </div>
-  <h5 class="eventType">Event Type</h5>
+  <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
@@ -228,29 +224,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="GameFramework.DataStructures.SaveFileInfo.html">SaveFileInfo</a>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h4 id="GameFramework_Editor_SaveFileManager_UI_SaveFileDetailsPanel_OnShowInExplorerRequested" data-uid="GameFramework.Editor.SaveFileManager.UI.SaveFileDetailsPanel.OnShowInExplorerRequested">OnShowInExplorerRequested</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event Action&lt;SaveFileInfo&gt; OnShowInExplorerRequested</code></pre>
-  </div>
-  <h5 class="eventType">Event Type</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="GameFramework.DataStructures.SaveFileInfo.html">SaveFileInfo</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td></td>
       </tr>
     </tbody>

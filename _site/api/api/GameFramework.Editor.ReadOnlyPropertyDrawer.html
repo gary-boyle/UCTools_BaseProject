@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class ClickableCubeSaveData | UCTools Base Project </title>
+    <title>Class ReadOnlyPropertyDrawer | UCTools Base Project </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class ClickableCubeSaveData | UCTools Base Project ">
+    <meta name="title" content="Class ReadOnlyPropertyDrawer | UCTools Base Project ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -79,68 +79,34 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="GameFramework.SaveSystem.Data.ClickableCubeSaveData">
+            <article class="content wrap" id="_content" data-uid="GameFramework.Editor.ReadOnlyPropertyDrawer">
 
 
 
-  <h1 id="GameFramework_SaveSystem_Data_ClickableCubeSaveData" data-uid="GameFramework.SaveSystem.Data.ClickableCubeSaveData" class="text-break">Class ClickableCubeSaveData</h1>
-  <div class="markdown level0 summary"><p>Serializable save data for ClickableCube component
-Stores the cube's color and integer value for persistence</p>
+  <h1 id="GameFramework_Editor_ReadOnlyPropertyDrawer" data-uid="GameFramework.Editor.ReadOnlyPropertyDrawer" class="text-break">Class ReadOnlyPropertyDrawer</h1>
+  <div class="markdown level0 summary"><p>Custom property drawer for ReadOnly attribute that makes fields uneditable in the Inspector</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><span class="xref">ClickableCubeSaveData</span></div>
+    <div class="level1"><span class="xref">ReadOnlyPropertyDrawer</span></div>
   </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
-    </div>
-  </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.SaveSystem.html">SaveSystem</a>.<a class="xref" href="GameFramework.SaveSystem.Data.html">Data</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.Editor.html">Editor</a></h6>
   <h6><strong>Assembly</strong>: .dll</h6>
-  <h5 id="GameFramework_SaveSystem_Data_ClickableCubeSaveData_syntax">Syntax</h5>
+  <h5 id="GameFramework_Editor_ReadOnlyPropertyDrawer_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Serializable]
-public class ClickableCubeSaveData</code></pre>
+    <pre><code class="lang-csharp hljs">public class ReadOnlyPropertyDrawer : PropertyDrawer</code></pre>
   </div>
-  <h3 id="constructors">Constructors
+  <h3 id="methods">Methods
 </h3>
-  <a id="GameFramework_SaveSystem_Data_ClickableCubeSaveData__ctor_" data-uid="GameFramework.SaveSystem.Data.ClickableCubeSaveData.#ctor*"></a>
-  <h4 id="GameFramework_SaveSystem_Data_ClickableCubeSaveData__ctor" data-uid="GameFramework.SaveSystem.Data.ClickableCubeSaveData.#ctor">ClickableCubeSaveData()</h4>
+  <a id="GameFramework_Editor_ReadOnlyPropertyDrawer_GetPropertyHeight_" data-uid="GameFramework.Editor.ReadOnlyPropertyDrawer.GetPropertyHeight*"></a>
+  <h4 id="GameFramework_Editor_ReadOnlyPropertyDrawer_GetPropertyHeight_SerializedProperty_GUIContent_" data-uid="GameFramework.Editor.ReadOnlyPropertyDrawer.GetPropertyHeight(SerializedProperty,GUIContent)">GetPropertyHeight(SerializedProperty, GUIContent)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ClickableCubeSaveData()</code></pre>
-  </div>
-  <a id="GameFramework_SaveSystem_Data_ClickableCubeSaveData__ctor_" data-uid="GameFramework.SaveSystem.Data.ClickableCubeSaveData.#ctor*"></a>
-  <h4 id="GameFramework_SaveSystem_Data_ClickableCubeSaveData__ctor_System_String_Color_System_Int32_" data-uid="GameFramework.SaveSystem.Data.ClickableCubeSaveData.#ctor(System.String,Color,System.Int32)">ClickableCubeSaveData(string, Color, int)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ClickableCubeSaveData(string uniqueID, Color color, int value)</code></pre>
+    <pre><code class="lang-csharp hljs">public override float GetPropertyHeight(SerializedProperty property, GUIContent label)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -153,32 +119,18 @@ public class ClickableCubeSaveData</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">uniqueID</span></td>
+        <td><span class="xref">SerializedProperty</span></td>
+        <td><span class="parametername">property</span></td>
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">Color</span></td>
-        <td><span class="parametername">color</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">value</span></td>
+        <td><span class="xref">GUIContent</span></td>
+        <td><span class="parametername">label</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <h3 id="fields">Fields
-</h3>
-  <h4 id="GameFramework_SaveSystem_Data_ClickableCubeSaveData_cubeColor" data-uid="GameFramework.SaveSystem.Data.ClickableCubeSaveData.cubeColor">cubeColor</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Color cubeColor</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
+  <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
@@ -188,51 +140,42 @@ public class ClickableCubeSaveData</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Color</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <h4 id="GameFramework_SaveSystem_Data_ClickableCubeSaveData_cubeValue" data-uid="GameFramework.SaveSystem.Data.ClickableCubeSaveData.cubeValue">cubeValue</h4>
+  <a id="GameFramework_Editor_ReadOnlyPropertyDrawer_OnGUI_" data-uid="GameFramework.Editor.ReadOnlyPropertyDrawer.OnGUI*"></a>
+  <h4 id="GameFramework_Editor_ReadOnlyPropertyDrawer_OnGUI_Rect_SerializedProperty_GUIContent_" data-uid="GameFramework.Editor.ReadOnlyPropertyDrawer.OnGUI(Rect,SerializedProperty,GUIContent)">OnGUI(Rect, SerializedProperty, GUIContent)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int cubeValue</code></pre>
+    <pre><code class="lang-csharp hljs">public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
+  <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
+        <th>Name</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="xref">Rect</span></td>
+        <td><span class="parametername">position</span></td>
         <td></td>
       </tr>
-    </tbody>
-  </table>
-  <h4 id="GameFramework_SaveSystem_Data_ClickableCubeSaveData_uniqueID" data-uid="GameFramework.SaveSystem.Data.ClickableCubeSaveData.uniqueID">uniqueID</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string uniqueID</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
       <tr>
-        <th>Type</th>
-        <th>Description</th>
+        <td><span class="xref">SerializedProperty</span></td>
+        <td><span class="parametername">property</span></td>
+        <td></td>
       </tr>
-    </thead>
-    <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="xref">GUIContent</span></td>
+        <td><span class="parametername">label</span></td>
         <td></td>
       </tr>
     </tbody>

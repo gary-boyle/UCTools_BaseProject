@@ -176,7 +176,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.Components.ClickableCube",
-      "Summary": "<p sourcefile=\"api/GameFramework.Components.ClickableCube.yml\" sourcestartlinenumber=\"1\">MonoBehaviour that can be attached to a cube to make it clickable.\nWhen clicked, changes the cube's color and increments an integer value.\nImplements ISaveable to persist state between game sessions.</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.Components.ClickableCube.yml\" sourcestartlinenumber=\"1\">MonoBehaviour that can be attached to a cube to make it clickable.\nWhen clicked, changes the cube's color and increments an integer value.\nUses the new clean save system with direct field storage instead of nested JSON.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -219,20 +219,6 @@
       "IsMRef": true,
       "Title": "GameFramework.Components.PlayerSpawnPoint",
       "Summary": "<p sourcefile=\"api/GameFramework.Components.PlayerSpawnPoint.yml\" sourcestartlinenumber=\"1\">Marks a GameObject as a player spawn point for new games.\nThe InstantiationService will look for this component to determine where to spawn the player.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFramework.Components.Saveable.GenericSaveable.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/GameFramework.Components.Saveable.GenericSaveable.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFramework.Components.Saveable.GenericSaveable",
-      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1188,6 +1174,62 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Editor.PrefabRegistryEditor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Editor.PrefabRegistryEditor.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Editor.PrefabRegistryEditor",
+      "Summary": "<p sourcefile=\"api/GameFramework.Editor.PrefabRegistryEditor.yml\" sourcestartlinenumber=\"1\">Custom editor for PrefabRegistry that provides easy management of prefab mappings.\nIncludes tools for auto-generating GUIDs, validating entries, and organizing prefabs.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Editor.PrefabRegistryPopulator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Editor.PrefabRegistryPopulator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Editor.PrefabRegistryPopulator",
+      "Summary": "<p sourcefile=\"api/GameFramework.Editor.PrefabRegistryPopulator.yml\" sourcestartlinenumber=\"1\">Editor tool for automatically populating PrefabRegistry with SaveableBase prefabs.\nProvides menu options under &quot;UCTools/Game Framework&quot; for easy prefab management.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Editor.PrefabRegistryValidator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Editor.PrefabRegistryValidator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Editor.PrefabRegistryValidator",
+      "Summary": "<p sourcefile=\"api/GameFramework.Editor.PrefabRegistryValidator.yml\" sourcestartlinenumber=\"1\">Automatic validation system for PrefabRegistry.\nRuns validation checks when assets are imported/reimported.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Editor.PrefabRegistryWindow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Editor.PrefabRegistryWindow.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Editor.PrefabRegistryWindow",
+      "Summary": "<p sourcefile=\"api/GameFramework.Editor.PrefabRegistryWindow.yml\" sourcestartlinenumber=\"1\">Editor window for managing PrefabRegistry with a visual interface.\nProvides an easy way to view, add, remove, and validate prefab entries.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFramework.Editor.ProfilerSessionManager.ProfilingSessionData.yml",
       "output": {
         ".html": {
@@ -1300,6 +1342,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Editor.ReadOnlyPropertyDrawer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Editor.ReadOnlyPropertyDrawer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Editor.ReadOnlyPropertyDrawer",
+      "Summary": "<p sourcefile=\"api/GameFramework.Editor.ReadOnlyPropertyDrawer.yml\" sourcestartlinenumber=\"1\">Custom property drawer for ReadOnly attribute that makes fields uneditable in the Inspector</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFramework.Editor.SaveFileManager.ScriptableObjects.SaveFileDisplayConfig.FieldDisplayConfig.yml",
       "output": {
         ".html": {
@@ -1381,6 +1437,34 @@
       "IsMRef": true,
       "Title": "GameFramework.Editor.SaveFileManager.UI",
       "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Editor.SaveableBasePostProcessor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Editor.SaveableBasePostProcessor.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Editor.SaveableBasePostProcessor",
+      "Summary": "<p sourcefile=\"api/GameFramework.Editor.SaveableBasePostProcessor.yml\" sourcestartlinenumber=\"1\">Simple post-processor that automatically generates UniqueIDs for SaveableBase objects\nwhen they are added to scenes (via drag/drop, copy/paste, etc.)</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Editor.SaveableValidationTool.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Editor.SaveableValidationTool.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Editor.SaveableValidationTool",
+      "Summary": "<p sourcefile=\"api/GameFramework.Editor.SaveableValidationTool.yml\" sourcestartlinenumber=\"1\">Editor tool for validating UniqueIDs in SaveableBase objects within the current scene.\nChecks for empty and duplicate UniqueIDs and provides options to fix them.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2658,6 +2742,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.LoadSystem.Interfaces.IRuntimeObjectInstantiator",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFramework.LoadSystem.Interfaces.yml",
       "output": {
         ".html": {
@@ -2682,7 +2780,21 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.LoadSystem.Services.LoadService",
-      "Summary": "<p sourcefile=\"api/GameFramework.LoadSystem.Services.LoadService.yml\" sourcestartlinenumber=\"1\">Service responsible for transforming save data into live game state\nHandles game logic for loading, delegates file operations to FileService\nIntegrates with SceneService for scene transitions during loading\nPublishes progress events for UI updates</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.LoadSystem.Services.LoadService.yml\" sourcestartlinenumber=\"1\">Enhanced LoadService that uses the new clean save system and runtime object instantiation.\nSupports both legacy SaveFileData and new SaveFileDataV2 formats.\nUses PrefabRegistry and RuntimeObjectInstantiator instead of Resources folder.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.LoadSystem.Services.RuntimeObjectInstantiator",
+      "Summary": "<p sourcefile=\"api/GameFramework.LoadSystem.Services.RuntimeObjectInstantiator.yml\" sourcestartlinenumber=\"1\">Service responsible for instantiating and configuring runtime objects from save data.\nUses the PrefabRegistry to map GUIDs to prefab assets, eliminating Resources folder usage.\nUses SaveableTypeRegistry for automatic type discovery, eliminating the need for ObjectFactories.\nSupports both object instantiation and in-place data loading for existing objects.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2700,17 +2812,45 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFramework.SaveSystem.Data.ClickableCubeSaveData.yml",
+      "source_relative_path": "api/GameFramework.SaveSystem.Attributes.SaveableTypeAttribute.yml",
       "output": {
         ".html": {
-          "relative_path": "api/api/GameFramework.SaveSystem.Data.ClickableCubeSaveData.html"
+          "relative_path": "api/api/GameFramework.SaveSystem.Attributes.SaveableTypeAttribute.html"
         }
       },
       "version": "",
       "Uid": null,
       "IsMRef": true,
-      "Title": "GameFramework.SaveSystem.Data.ClickableCubeSaveData",
-      "Summary": "<p sourcefile=\"api/GameFramework.SaveSystem.Data.ClickableCubeSaveData.yml\" sourcestartlinenumber=\"1\">Serializable save data for ClickableCube component\nStores the cube's color and integer value for persistence</p>\n"
+      "Title": "GameFramework.SaveSystem.Attributes.SaveableTypeAttribute",
+      "Summary": "<p sourcefile=\"api/GameFramework.SaveSystem.Attributes.SaveableTypeAttribute.yml\" sourcestartlinenumber=\"1\">Attribute to specify the RuntimeObjectSaveData type associated with a SaveableBase class.\nThis enables automatic type discovery and eliminates the need for manual registration.</p>\n<p sourcefile=\"api/GameFramework.SaveSystem.Attributes.SaveableTypeAttribute.yml\" sourcestartlinenumber=\"4\">Usage:\n[SaveableType(typeof(MyObjectRuntimeSaveData))]\npublic class MyObject : SaveableBase\n{\n// Implementation...\n}</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.SaveSystem.Attributes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.SaveSystem.Attributes.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.SaveSystem.Attributes",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.SaveSystem.Data.ClickableCubeRuntimeSaveData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.SaveSystem.Data.ClickableCubeRuntimeSaveData.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.SaveSystem.Data.ClickableCubeRuntimeSaveData",
+      "Summary": "<p sourcefile=\"api/GameFramework.SaveSystem.Data.ClickableCubeRuntimeSaveData.yml\" sourcestartlinenumber=\"1\">Specialized save data for ClickableCube objects with clean structure</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2756,6 +2896,62 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.SaveSystem.Data.PrefabEntry.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.SaveSystem.Data.PrefabEntry.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.SaveSystem.Data.PrefabEntry",
+      "Summary": "<p sourcefile=\"api/GameFramework.SaveSystem.Data.PrefabEntry.yml\" sourcestartlinenumber=\"1\">Individual entry in the prefab registry</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.SaveSystem.Data.PrefabRegistry.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.SaveSystem.Data.PrefabRegistry.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.SaveSystem.Data.PrefabRegistry",
+      "Summary": "<p sourcefile=\"api/GameFramework.SaveSystem.Data.PrefabRegistry.yml\" sourcestartlinenumber=\"1\">ScriptableObject that maintains a registry of all prefabs that can be instantiated at runtime.\nMaps prefab GUIDs to prefab assets, eliminating the need for Resources folder usage.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.SaveSystem.Data.ReadOnlyAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.SaveSystem.Data.ReadOnlyAttribute.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.SaveSystem.Data.ReadOnlyAttribute",
+      "Summary": "<p sourcefile=\"api/GameFramework.SaveSystem.Data.ReadOnlyAttribute.yml\" sourcestartlinenumber=\"1\">Custom attribute to mark fields as read-only in the Inspector</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.SaveSystem.Data.RuntimeObjectSaveData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.SaveSystem.Data.RuntimeObjectSaveData.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.SaveSystem.Data.RuntimeObjectSaveData",
+      "Summary": "<p sourcefile=\"api/GameFramework.SaveSystem.Data.RuntimeObjectSaveData.yml\" sourcestartlinenumber=\"1\">Clean save data structure for runtime objects that need to be instantiated or modified.\nReplaces the nested JSON string approach with direct field storage.\nEach object type will have its own specific data fields instead of being serialized as JSON.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFramework.SaveSystem.Data.SaveFileData.yml",
       "output": {
         ".html": {
@@ -2766,21 +2962,35 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.SaveSystem.Data.SaveFileData",
-      "Summary": "<p sourcefile=\"api/GameFramework.SaveSystem.Data.SaveFileData.yml\" sourcestartlinenumber=\"1\">Container for all save file data with clean JSON structure\nUses direct field mapping for core system data and Dictionary for dynamic saveables\nSupports both static system data and runtime-generated saveable objects</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.SaveSystem.Data.SaveFileData.yml\" sourcestartlinenumber=\"1\">New clean save file data structure with dynamic runtime object storage.\nUses unified SerializedRuntimeObject collection that can store any type of RuntimeObjectSaveData.\nAutomatically extensible - no code changes needed for new saveable types!\nMaintains compatibility with PlayerData and GameSessionData as requested.</p>\n"
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFramework.SaveSystem.Data.SavedObjectEntry.yml",
+      "source_relative_path": "api/GameFramework.SaveSystem.Data.SerializedRuntimeObject.yml",
       "output": {
         ".html": {
-          "relative_path": "api/api/GameFramework.SaveSystem.Data.SavedObjectEntry.html"
+          "relative_path": "api/api/GameFramework.SaveSystem.Data.SerializedRuntimeObject.html"
         }
       },
       "version": "",
       "Uid": null,
       "IsMRef": true,
-      "Title": "GameFramework.SaveSystem.Data.SavedObjectEntry",
-      "Summary": "<p sourcefile=\"api/GameFramework.SaveSystem.Data.SavedObjectEntry.yml\" sourcestartlinenumber=\"1\">Helper class for serializing Dictionary as List\nJsonUtility doesn't serialize Dictionary directly</p>\n"
+      "Title": "GameFramework.SaveSystem.Data.SerializedRuntimeObject",
+      "Summary": "<p sourcefile=\"api/GameFramework.SaveSystem.Data.SerializedRuntimeObject.yml\" sourcestartlinenumber=\"1\">Serialized wrapper for RuntimeObjectSaveData that enables dynamic storage in SaveFileDataV2.\nThis allows SaveFileDataV2 to store any type of RuntimeObjectSaveData without requiring\nspecific typed collections for each saveable type.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData",
+      "Summary": "<p sourcefile=\"api/GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.yml\" sourcestartlinenumber=\"1\">Specialized save data for TestGenericSaveable objects</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2795,34 +3005,6 @@
       "IsMRef": true,
       "Title": "GameFramework.SaveSystem.Data",
       "Summary": null
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFramework.SaveSystem.Examples.SaveableExample.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/GameFramework.SaveSystem.Examples.SaveableExample.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFramework.SaveSystem.Examples.SaveableExample",
-      "Summary": "<p sourcefile=\"api/GameFramework.SaveSystem.Examples.SaveableExample.yml\" sourcestartlinenumber=\"1\">Example implementation of SaveableBase showing how to extend the base class\nfor custom saving and loading functionality.</p>\n<p sourcefile=\"api/GameFramework.SaveSystem.Examples.SaveableExample.yml\" sourcestartlinenumber=\"4\">This example demonstrates:</p>\n<ul sourcefile=\"api/GameFramework.SaveSystem.Examples.SaveableExample.yml\" sourcestartlinenumber=\"5\">\n<li sourcefile=\"api/GameFramework.SaveSystem.Examples.SaveableExample.yml\" sourcestartlinenumber=\"5\">Basic save/load implementation</li>\n<li sourcefile=\"api/GameFramework.SaveSystem.Examples.SaveableExample.yml\" sourcestartlinenumber=\"6\">Custom initialization logic</li>\n<li sourcefile=\"api/GameFramework.SaveSystem.Examples.SaveableExample.yml\" sourcestartlinenumber=\"7\">Extension points usage</li>\n<li sourcefile=\"api/GameFramework.SaveSystem.Examples.SaveableExample.yml\" sourcestartlinenumber=\"8\">Custom save data class</li>\n</ul>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFramework.SaveSystem.Examples.SaveableExampleData.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/GameFramework.SaveSystem.Examples.SaveableExampleData.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFramework.SaveSystem.Examples.SaveableExampleData",
-      "Summary": "<p sourcefile=\"api/GameFramework.SaveSystem.Examples.SaveableExampleData.yml\" sourcestartlinenumber=\"1\">Serializable save data class for SaveableExample.\nThis is what gets saved to/loaded from the save file.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2850,7 +3032,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.SaveSystem.Examples.TestGenericSaveable",
-      "Summary": "<p sourcefile=\"api/GameFramework.SaveSystem.Examples.TestGenericSaveable.yml\" sourcestartlinenumber=\"1\">Simple test class to verify SaveableBase works with the fixed save system\nThis should reproduce the SaveKey that was failing: &quot;GenericSaveable_genericsaveable_...&quot;</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.SaveSystem.Examples.TestGenericSaveable.yml\" sourcestartlinenumber=\"1\">Simple test class to verify the new clean save system works properly.\nUses SaveableBaseV2 with direct field storage instead of nested JSON strings.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2920,7 +3102,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.SaveSystem.SaveableBase",
-      "Summary": "<p sourcefile=\"api/GameFramework.SaveSystem.SaveableBase.yml\" sourcestartlinenumber=\"1\">Abstract base class for MonoBehaviours that need to be saved.\nProvides common ISaveable implementation with automatic save system registration,\nUniqueID management, and extension points for custom save/load logic.</p>\n<p sourcefile=\"api/GameFramework.SaveSystem.SaveableBase.yml\" sourcestartlinenumber=\"5\">To use: inherit from SaveableBase and implement GetSaveData() and LoadSaveData()</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.SaveSystem.SaveableBase.yml\" sourcestartlinenumber=\"1\">Base class for MonoBehaviours that work with the new clean save system.\nProvides RuntimeObjectSaveData support and automatic prefab registry integration.\nObjects that inherit from this will automatically work with the V2 save/load system.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2948,7 +3130,49 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.SaveSystem.Services.SaveService",
-      "Summary": "<p sourcefile=\"api/GameFramework.SaveSystem.Services.SaveService.yml\" sourcestartlinenumber=\"1\">Main save service responsible for orchestrating save operations\nHandles event-driven save requests and coordinates with registry and file service\nDelegates file I/O operations to FileService for separation of concerns</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.SaveSystem.Services.SaveService.yml\" sourcestartlinenumber=\"1\">Enhanced SaveService that uses the new clean save system with direct field storage.\nCreates SaveFileDataV2 with typed runtime object collections instead of nested JSON strings.\nWorks with SaveableBase objects and the new RuntimeObjectSaveData system.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.SaveSystem.Services.SavingCompletedEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.SaveSystem.Services.SavingCompletedEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.SaveSystem.Services.SavingCompletedEvent",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.SaveSystem.Services.SavingFailedEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.SaveSystem.Services.SavingFailedEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.SaveSystem.Services.SavingFailedEvent",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.SaveSystem.Services.SavingProgressEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.SaveSystem.Services.SavingProgressEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.SaveSystem.Services.SavingProgressEvent",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -2976,21 +3200,21 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.SaveSystem.Utilities.JsonSerializationHelper",
-      "Summary": "<p sourcefile=\"api/GameFramework.SaveSystem.Utilities.JsonSerializationHelper.yml\" sourcestartlinenumber=\"1\">Static utility class for JSON serialization operations\nProvides centralized, consistent JSON handling with error management\nUses Unity's JsonUtility for performance and compatibility</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.SaveSystem.Utilities.JsonSerializationHelper.yml\" sourcestartlinenumber=\"1\">Helper utility for JSON serialization/deserialization of complex SaveFileData structures.\nHandles the serialization issues with Unity's JsonUtility when dealing with complex nested objects\nand Lists that contain SerializedRuntimeObject instances.</p>\n"
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFramework.SaveSystem.Utilities.NewGameSaveDataCreator.yml",
+      "source_relative_path": "api/GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.yml",
       "output": {
         ".html": {
-          "relative_path": "api/api/GameFramework.SaveSystem.Utilities.NewGameSaveDataCreator.html"
+          "relative_path": "api/api/GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.html"
         }
       },
       "version": "",
       "Uid": null,
       "IsMRef": true,
-      "Title": "GameFramework.SaveSystem.Utilities.NewGameSaveDataCreator",
-      "Summary": null
+      "Title": "GameFramework.SaveSystem.Utilities.SaveableTypeRegistry",
+      "Summary": "<p sourcefile=\"api/GameFramework.SaveSystem.Utilities.SaveableTypeRegistry.yml\" sourcestartlinenumber=\"1\">Registry for automatic discovery and management of SaveableBase types and their associated save data types.\nUses reflection to scan for SaveableType attributes and builds lookup tables for efficient type resolution.</p>\n"
     },
     {
       "type": "ManagedReference",

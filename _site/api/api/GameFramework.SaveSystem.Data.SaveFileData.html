@@ -84,9 +84,10 @@
 
 
   <h1 id="GameFramework_SaveSystem_Data_SaveFileData" data-uid="GameFramework.SaveSystem.Data.SaveFileData" class="text-break">Class SaveFileData</h1>
-  <div class="markdown level0 summary"><p>Container for all save file data with clean JSON structure
-Uses direct field mapping for core system data and Dictionary for dynamic saveables
-Supports both static system data and runtime-generated saveable objects</p>
+  <div class="markdown level0 summary"><p>New clean save file data structure with dynamic runtime object storage.
+Uses unified SerializedRuntimeObject collection that can store any type of RuntimeObjectSaveData.
+Automatically extensible - no code changes needed for new saveable types!
+Maintains compatibility with PlayerData and GameSessionData as requested.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -137,28 +138,6 @@ public class SaveFileData</code></pre>
   </div>
   <h3 id="fields">Fields
 </h3>
-  <h4 id="GameFramework_SaveSystem_Data_SaveFileData_DynamicSaveableObjects" data-uid="GameFramework.SaveSystem.Data.SaveFileData.DynamicSaveableObjects">DynamicSaveableObjects</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public SavedObjectEntry[] DynamicSaveableObjects</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="GameFramework.SaveSystem.Data.SavedObjectEntry.html">SavedObjectEntry</a>[]</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <h4 id="GameFramework_SaveSystem_Data_SaveFileData_GameSessionData" data-uid="GameFramework.SaveSystem.Data.SaveFileData.GameSessionData">GameSessionData</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -199,6 +178,28 @@ public class SaveFileData</code></pre>
     <tbody>
       <tr>
         <td><a class="xref" href="GameFramework.SaveSystem.Data.PlayerSaveData.html">PlayerSaveData</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_SaveSystem_Data_SaveFileData_RuntimeObjects" data-uid="GameFramework.SaveSystem.Data.SaveFileData.RuntimeObjects">RuntimeObjects</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;SerializedRuntimeObject&gt; RuntimeObjects</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="GameFramework.SaveSystem.Data.SerializedRuntimeObject.html">SerializedRuntimeObject</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -273,42 +274,16 @@ public class SaveFileData</code></pre>
       </tr>
     </tbody>
   </table>
-  <h3 id="methods">Methods
-</h3>
-  <a id="GameFramework_SaveSystem_Data_SaveFileData_GetAllDynamicSaveKeys_" data-uid="GameFramework.SaveSystem.Data.SaveFileData.GetAllDynamicSaveKeys*"></a>
-  <h4 id="GameFramework_SaveSystem_Data_SaveFileData_GetAllDynamicSaveKeys" data-uid="GameFramework.SaveSystem.Data.SaveFileData.GetAllDynamicSaveKeys">GetAllDynamicSaveKeys()</h4>
-  <div class="markdown level1 summary"><p>Gets all dynamic save keys for debugging purposes</p>
+  <a id="GameFramework_SaveSystem_Data_SaveFileData_TotalRuntimeObjects_" data-uid="GameFramework.SaveSystem.Data.SaveFileData.TotalRuntimeObjects*"></a>
+  <h4 id="GameFramework_SaveSystem_Data_SaveFileData_TotalRuntimeObjects" data-uid="GameFramework.SaveSystem.Data.SaveFileData.TotalRuntimeObjects">TotalRuntimeObjects</h4>
+  <div class="markdown level1 summary"><p>Total number of runtime objects in this save file</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string[] GetAllDynamicSaveKeys()</code></pre>
+    <pre><code class="lang-csharp hljs">public int TotalRuntimeObjects { get; }</code></pre>
   </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_SaveSystem_Data_SaveFileData_GetDynamicObjectCount_" data-uid="GameFramework.SaveSystem.Data.SaveFileData.GetDynamicObjectCount*"></a>
-  <h4 id="GameFramework_SaveSystem_Data_SaveFileData_GetDynamicObjectCount" data-uid="GameFramework.SaveSystem.Data.SaveFileData.GetDynamicObjectCount">GetDynamicObjectCount()</h4>
-  <div class="markdown level1 summary"><p>Gets count of dynamic saveable objects</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int GetDynamicObjectCount()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
+  <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
@@ -323,32 +298,18 @@ public class SaveFileData</code></pre>
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_SaveSystem_Data_SaveFileData_GetSaveData_" data-uid="GameFramework.SaveSystem.Data.SaveFileData.GetSaveData*"></a>
-  <h4 id="GameFramework_SaveSystem_Data_SaveFileData_GetSaveData__1_System_String_" data-uid="GameFramework.SaveSystem.Data.SaveFileData.GetSaveData``1(System.String)">GetSaveData&lt;T&gt;(string)</h4>
-  <div class="markdown level1 summary"><p>Gets save data by key - handles both static fields and dynamic saveable objects</p>
+  <h3 id="methods">Methods
+</h3>
+  <a id="GameFramework_SaveSystem_Data_SaveFileData_GetAllRuntimeObjects_" data-uid="GameFramework.SaveSystem.Data.SaveFileData.GetAllRuntimeObjects*"></a>
+  <h4 id="GameFramework_SaveSystem_Data_SaveFileData_GetAllRuntimeObjects" data-uid="GameFramework.SaveSystem.Data.SaveFileData.GetAllRuntimeObjects">GetAllRuntimeObjects()</h4>
+  <div class="markdown level1 summary"><p>Gets all runtime objects deserialized from the unified storage.
+This provides a unified way to access all runtime objects regardless of their specific type.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public T GetSaveData&lt;T&gt;(string saveKey) where T : class</code></pre>
+    <pre><code class="lang-csharp hljs">public List&lt;RuntimeObjectSaveData&gt; GetAllRuntimeObjects()</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">saveKey</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-condensed">
     <thead>
@@ -359,8 +320,34 @@ public class SaveFileData</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">T</span></td>
-        <td></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="GameFramework.SaveSystem.Data.RuntimeObjectSaveData.html">RuntimeObjectSaveData</a>&gt;</td>
+        <td><p>List containing all deserialized runtime objects</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_SaveSystem_Data_SaveFileData_GetAllRuntimeObjectsOfType_" data-uid="GameFramework.SaveSystem.Data.SaveFileData.GetAllRuntimeObjectsOfType*"></a>
+  <h4 id="GameFramework_SaveSystem_Data_SaveFileData_GetAllRuntimeObjectsOfType__1" data-uid="GameFramework.SaveSystem.Data.SaveFileData.GetAllRuntimeObjectsOfType``1">GetAllRuntimeObjectsOfType&lt;T&gt;()</h4>
+  <div class="markdown level1 summary"><p>Gets all runtime objects of a specific type from the unified storage</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;T&gt; GetAllRuntimeObjectsOfType&lt;T&gt;() where T : RuntimeObjectSaveData</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;T&gt;</td>
+        <td><p>List of objects of the specified type</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -375,20 +362,19 @@ public class SaveFileData</code></pre>
     <tbody>
       <tr>
         <td><span class="parametername">T</span></td>
-        <td></td>
+        <td><p>The type of runtime save data</p>
+</td>
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_SaveSystem_Data_SaveFileData_SetSaveData_" data-uid="GameFramework.SaveSystem.Data.SaveFileData.SetSaveData*"></a>
-  <h4 id="GameFramework_SaveSystem_Data_SaveFileData_SetSaveData_System_String_System_Object_" data-uid="GameFramework.SaveSystem.Data.SaveFileData.SetSaveData(System.String,System.Object)">SetSaveData(string, object)</h4>
-  <div class="markdown level1 summary"><p>Sets save data by key - handles both static fields and dynamic saveable objects
-Static fields: GameSessionData, PlayerData (use reflection)
-Dynamic objects: SaveableBase instances (store in DynamicSaveableObjects array)</p>
+  <a id="GameFramework_SaveSystem_Data_SaveFileData_GetRuntimeObjectByID_" data-uid="GameFramework.SaveSystem.Data.SaveFileData.GetRuntimeObjectByID*"></a>
+  <h4 id="GameFramework_SaveSystem_Data_SaveFileData_GetRuntimeObjectByID_System_String_" data-uid="GameFramework.SaveSystem.Data.SaveFileData.GetRuntimeObjectByID(System.String)">GetRuntimeObjectByID(string)</h4>
+  <div class="markdown level1 summary"><p>Gets a runtime object by unique ID from the unified storage.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool SetSaveData(string saveKey, object data)</code></pre>
+    <pre><code class="lang-csharp hljs">public RuntimeObjectSaveData GetRuntimeObjectByID(string uniqueID)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -402,13 +388,136 @@ Dynamic objects: SaveableBase instances (store in DynamicSaveableObjects array)<
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">saveKey</span></td>
-        <td></td>
+        <td><span class="parametername">uniqueID</span></td>
+        <td><p>The unique ID to search for</p>
+</td>
       </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
-        <td><span class="parametername">data</span></td>
-        <td></td>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.SaveSystem.Data.RuntimeObjectSaveData.html">RuntimeObjectSaveData</a></td>
+        <td><p>The deserialized runtime object if found, null otherwise</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_SaveSystem_Data_SaveFileData_GetRuntimeObjectData_" data-uid="GameFramework.SaveSystem.Data.SaveFileData.GetRuntimeObjectData*"></a>
+  <h4 id="GameFramework_SaveSystem_Data_SaveFileData_GetRuntimeObjectData__1_System_String_" data-uid="GameFramework.SaveSystem.Data.SaveFileData.GetRuntimeObjectData``1(System.String)">GetRuntimeObjectData&lt;T&gt;(string)</h4>
+  <div class="markdown level1 summary"><p>Gets runtime object save data by unique ID and type using the unified storage</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T GetRuntimeObjectData&lt;T&gt;(string uniqueID) where T : RuntimeObjectSaveData</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">uniqueID</span></td>
+        <td><p>The unique ID of the object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>The save data, or null if not found or wrong type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of runtime save data</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_SaveSystem_Data_SaveFileData_GetTypeStatistics_" data-uid="GameFramework.SaveSystem.Data.SaveFileData.GetTypeStatistics*"></a>
+  <h4 id="GameFramework_SaveSystem_Data_SaveFileData_GetTypeStatistics" data-uid="GameFramework.SaveSystem.Data.SaveFileData.GetTypeStatistics">GetTypeStatistics()</h4>
+  <div class="markdown level1 summary"><p>Gets type statistics for debugging purposes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Dictionary&lt;string, int&gt; GetTypeStatistics()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</td>
+        <td><p>Dictionary mapping type names to counts</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_SaveSystem_Data_SaveFileData_RemoveRuntimeObject_" data-uid="GameFramework.SaveSystem.Data.SaveFileData.RemoveRuntimeObject*"></a>
+  <h4 id="GameFramework_SaveSystem_Data_SaveFileData_RemoveRuntimeObject_System_String_" data-uid="GameFramework.SaveSystem.Data.SaveFileData.RemoveRuntimeObject(System.String)">RemoveRuntimeObject(string)</h4>
+  <div class="markdown level1 summary"><p>Removes a runtime object by unique ID from the unified storage</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool RemoveRuntimeObject(string uniqueID)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">uniqueID</span></td>
+        <td><p>The unique ID of the object to remove</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -423,13 +532,58 @@ Dynamic objects: SaveableBase instances (store in DynamicSaveableObjects array)<
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
+        <td><p>True if the object was found and removed</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_SaveSystem_Data_SaveFileData_SetRuntimeObjectData_" data-uid="GameFramework.SaveSystem.Data.SaveFileData.SetRuntimeObjectData*"></a>
+  <h4 id="GameFramework_SaveSystem_Data_SaveFileData_SetRuntimeObjectData_GameFramework_SaveSystem_Data_RuntimeObjectSaveData_" data-uid="GameFramework.SaveSystem.Data.SaveFileData.SetRuntimeObjectData(GameFramework.SaveSystem.Data.RuntimeObjectSaveData)">SetRuntimeObjectData(RuntimeObjectSaveData)</h4>
+  <div class="markdown level1 summary"><p>Adds or updates a runtime object's save data using the unified storage system.
+Automatically handles any type of RuntimeObjectSaveData without needing code changes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool SetRuntimeObjectData(RuntimeObjectSaveData saveData)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.SaveSystem.Data.RuntimeObjectSaveData.html">RuntimeObjectSaveData</a></td>
+        <td><span class="parametername">saveData</span></td>
+        <td><p>The runtime object save data</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>True if the object was added or updated successfully</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="GameFramework_SaveSystem_Data_SaveFileData_ValidateData_" data-uid="GameFramework.SaveSystem.Data.SaveFileData.ValidateData*"></a>
   <h4 id="GameFramework_SaveSystem_Data_SaveFileData_ValidateData" data-uid="GameFramework.SaveSystem.Data.SaveFileData.ValidateData">ValidateData()</h4>
-  <div class="markdown level1 summary"><p>Validates that all expected save data is present</p>
+  <div class="markdown level1 summary"><p>Validates that all expected save data is present and properly structured</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>

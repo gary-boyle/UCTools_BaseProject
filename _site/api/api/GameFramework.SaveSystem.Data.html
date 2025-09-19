@@ -88,9 +88,8 @@
     <h3 id="classes">
 Classes
 </h3>
-      <h4><a class="xref" href="GameFramework.SaveSystem.Data.ClickableCubeSaveData.html">ClickableCubeSaveData</a></h4>
-      <section><p>Serializable save data for ClickableCube component
-Stores the cube's color and integer value for persistence</p>
+      <h4><a class="xref" href="GameFramework.SaveSystem.Data.ClickableCubeRuntimeSaveData.html">ClickableCubeRuntimeSaveData</a></h4>
+      <section><p>Specialized save data for ClickableCube objects with clean structure</p>
 </section>
       <h4><a class="xref" href="GameFramework.SaveSystem.Data.GameSessionSaveData.html">GameSessionSaveData</a></h4>
       <section></section>
@@ -99,14 +98,34 @@ Stores the cube's color and integer value for persistence</p>
 </section>
       <h4><a class="xref" href="GameFramework.SaveSystem.Data.PlayerSaveData.html">PlayerSaveData</a></h4>
       <section></section>
-      <h4><a class="xref" href="GameFramework.SaveSystem.Data.SaveFileData.html">SaveFileData</a></h4>
-      <section><p>Container for all save file data with clean JSON structure
-Uses direct field mapping for core system data and Dictionary for dynamic saveables
-Supports both static system data and runtime-generated saveable objects</p>
+      <h4><a class="xref" href="GameFramework.SaveSystem.Data.PrefabEntry.html">PrefabEntry</a></h4>
+      <section><p>Individual entry in the prefab registry</p>
 </section>
-      <h4><a class="xref" href="GameFramework.SaveSystem.Data.SavedObjectEntry.html">SavedObjectEntry</a></h4>
-      <section><p>Helper class for serializing Dictionary as List
-JsonUtility doesn't serialize Dictionary directly</p>
+      <h4><a class="xref" href="GameFramework.SaveSystem.Data.PrefabRegistry.html">PrefabRegistry</a></h4>
+      <section><p>ScriptableObject that maintains a registry of all prefabs that can be instantiated at runtime.
+Maps prefab GUIDs to prefab assets, eliminating the need for Resources folder usage.</p>
+</section>
+      <h4><a class="xref" href="GameFramework.SaveSystem.Data.ReadOnlyAttribute.html">ReadOnlyAttribute</a></h4>
+      <section><p>Custom attribute to mark fields as read-only in the Inspector</p>
+</section>
+      <h4><a class="xref" href="GameFramework.SaveSystem.Data.RuntimeObjectSaveData.html">RuntimeObjectSaveData</a></h4>
+      <section><p>Clean save data structure for runtime objects that need to be instantiated or modified.
+Replaces the nested JSON string approach with direct field storage.
+Each object type will have its own specific data fields instead of being serialized as JSON.</p>
+</section>
+      <h4><a class="xref" href="GameFramework.SaveSystem.Data.SaveFileData.html">SaveFileData</a></h4>
+      <section><p>New clean save file data structure with dynamic runtime object storage.
+Uses unified SerializedRuntimeObject collection that can store any type of RuntimeObjectSaveData.
+Automatically extensible - no code changes needed for new saveable types!
+Maintains compatibility with PlayerData and GameSessionData as requested.</p>
+</section>
+      <h4><a class="xref" href="GameFramework.SaveSystem.Data.SerializedRuntimeObject.html">SerializedRuntimeObject</a></h4>
+      <section><p>Serialized wrapper for RuntimeObjectSaveData that enables dynamic storage in SaveFileDataV2.
+This allows SaveFileDataV2 to store any type of RuntimeObjectSaveData without requiring
+specific typed collections for each saveable type.</p>
+</section>
+      <h4><a class="xref" href="GameFramework.SaveSystem.Data.TestGenericRuntimeSaveData.html">TestGenericRuntimeSaveData</a></h4>
+      <section><p>Specialized save data for TestGenericSaveable objects</p>
 </section>
 
 
