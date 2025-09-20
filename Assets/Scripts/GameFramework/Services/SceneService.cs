@@ -108,6 +108,8 @@ namespace GameFramework.Services
                     await Task.Yield();
                 }
                 
+                // find any camera in the scene and delete them
+                
                 // Ensure final progress is reported
                 progressCallback?.Invoke(1.0f);
                 
