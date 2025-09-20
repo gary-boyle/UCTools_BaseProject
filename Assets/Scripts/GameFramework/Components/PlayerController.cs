@@ -2,12 +2,17 @@ using UnityEngine;
 using GameFramework.Core;
 using GameFramework.EventSystem.Interfaces;
 using GameFramework.EventSystem.Events;
+using GameFramework.Services.Interfaces;
+using GameFramework.Input;
+using GameFramework.Input.Interfaces;
 using UnityEngine.InputSystem;
 
 namespace GameFramework.Components
 {
     /// <summary>
-    /// Simple PlayerController that handles WASD movement on X and Z axes using Rigidbody physics.
+    /// Comprehensive PlayerController that handles WASD movement, jumping, sprinting, crouching,
+    /// attacking, and interaction using Rigidbody physics. Focuses purely on player movement mechanics.
+    /// Camera/look functionality is handled by a separate CameraController component.
     /// Integrates with the game's event-driven input system.
     /// </summary>
     [RequireComponent(typeof(Rigidbody))]
@@ -16,11 +21,28 @@ namespace GameFramework.Components
         #region Serialized Fields
         [Header("Movement Settings")]
         [SerializeField] private float _moveSpeed = 5.0f;
+        [SerializeField] private float _sprintMultiplier = 1.5f;
+        [SerializeField] private float _crouchMultiplier = 0.5f;
+        [SerializeField] private float _jumpForce = 5.0f;
         
         [Header("Ground Detection")]
         [SerializeField] private LayerMask _groundLayerMask = 1;
         [SerializeField] private float _groundCheckDistance = 0.1f;
         [SerializeField] private Transform _groundCheckPoint;
+        
+        [Header("Crouching")]
+        [SerializeField] private float _crouchHeight = 1.0f;
+        [SerializeField] private float _standingHeight = 2.0f;
+        [SerializeField] private float _crouchTransitionSpeed = 5.0f;
+        
+        [Header("Attack Settings")]
+        [SerializeField] private float _attackRange = 2.0f;
+        [SerializeField] private LayerMask _attackLayerMask = -1;
+        [SerializeField] private float _attackCooldown = 0.5f;
+        
+        [Header("Interaction Settings")]
+        [SerializeField] private float _interactionRange = 3.0f;
+        [SerializeField] private LayerMask _interactionLayerMask = -1;
         
         [Header("Debug")]
         [SerializeField] private bool _showDebugInfo = false;
@@ -28,15 +50,28 @@ namespace GameFramework.Components
 
         #region Private Fields
         private IEventSystem _eventSystem;
+        private IInputManager _inputManager;
+        private IPauseService _pauseService;
         private Rigidbody _rigidbody;
+        private CapsuleCollider _capsuleCollider;
         
         // Movement state
         private Vector2 _inputVector = Vector2.zero;
         private Vector3 _targetVelocity = Vector3.zero;
         private bool _isGrounded = true;
+        private bool _isSprinting = false;
+        private bool _isCrouching = false;
+        private bool _wantsToJump = false;
+        
+        // Action states
+        private float _lastAttackTime = 0f;
+        private int _currentItemIndex = 0;
         
         // Component state
         private bool _isInitialized = false;
+        
+        // Original height for crouching
+        private float _originalHeight;
         #endregion
 
         #region Public Properties
@@ -50,6 +85,24 @@ namespace GameFramework.Components
         public Vector2 InputVector => _inputVector;
         public bool IsMoving => _inputVector.magnitude > 0.01f;
         public bool IsGrounded => _isGrounded;
+        public bool IsSprinting => _isSprinting;
+        public bool IsCrouching => _isCrouching;
+        public int CurrentItemIndex => _currentItemIndex;
+        public bool IsPaused => _pauseService?.IsPaused ?? false;
+        
+        /// <summary>
+        /// Get the effective move speed based on current modifiers
+        /// </summary>
+        public float EffectiveMoveSpeed
+        {
+            get
+            {
+                float speed = _moveSpeed;
+                if (_isSprinting && !_isCrouching) speed *= _sprintMultiplier;
+                if (_isCrouching) speed *= _crouchMultiplier;
+                return speed;
+            }
+        }
         #endregion
 
         #region Unity Lifecycle
@@ -62,17 +115,27 @@ namespace GameFramework.Components
                 return;
             }
             
+            _capsuleCollider = GetComponent<CapsuleCollider>();
+            if (_capsuleCollider == null)
+            {
+                Debug.LogError($"[PlayerController] CapsuleCollider component not found on {gameObject.name}");
+                return;
+            }
+            
             // Configure rigidbody for character movement
             _rigidbody.freezeRotation = true; // Prevent physics rotation
             
+            // Store original height for crouching
+            _originalHeight = _capsuleCollider.height;
+            
             // Create ground check point if not assigned
-            // if (_groundCheckPoint == null)
-            // {
-            //     GameObject groundCheck = new GameObject("GroundCheckPoint");
-            //     groundCheck.transform.SetParent(transform);
-            //     groundCheck.transform.localPosition = new Vector3(0, -0.5f, 0);
-            //     _groundCheckPoint = groundCheck.transform;
-            // }
+            if (_groundCheckPoint == null)
+            {
+                GameObject groundCheck = new GameObject("GroundCheckPoint");
+                groundCheck.transform.SetParent(transform);
+                groundCheck.transform.localPosition = new Vector3(0, 0, 0);
+                _groundCheckPoint = groundCheck.transform;
+            }
         }
 
         private void Start()
@@ -83,17 +146,21 @@ namespace GameFramework.Components
         private void Update()
         {
             if (!_isInitialized) return;
+            if (_pauseService != null && _pauseService.IsPaused) return;
             
-            //CheckGrounded();
+            CheckGrounded();
             ProcessMovement();
+            ProcessCrouching();
         }
 
         private void FixedUpdate()
         {
             if (!_isInitialized) return;
+            if (_pauseService != null && _pauseService.IsPaused) return;
             
             // Physics-based movement should happen in FixedUpdate
             ApplyMovement();
+            ProcessJump();
         }
 
         private void OnDestroy()
@@ -115,14 +182,45 @@ namespace GameFramework.Components
                 Debug.LogError($"[PlayerController] EventSystem not available.");
                 return;
             }
+            
+            // Get InputManager from GameContext
+            _inputManager = GameManager.GetService<IInputManager>();
+            if (_inputManager == null)
+            {
+                Debug.LogError($"[PlayerController] InputManager not available.");
+                return;
+            }
+            
+            // Get PauseService from GameContext
+            _pauseService = GameManager.GetService<IPauseService>();
+            if (_pauseService == null)
+            {
+                Debug.LogError($"[PlayerController] PauseService not available.");
+                return;
+            }
 
-            // Subscribe to player movement input events
+            // Subscribe to all player input events
             _eventSystem.Subscribe<PlayerMoveInputEvent>(OnPlayerMoveInput);
+            _eventSystem.Subscribe<PlayerJumpInputEvent>(OnPlayerJumpInput);
+            _eventSystem.Subscribe<PlayerSprintInputEvent>(OnPlayerSprintInput);
+            _eventSystem.Subscribe<PlayerCrouchInputEvent>(OnPlayerCrouchInput);
+            _eventSystem.Subscribe<PlayerAttackInputEvent>(OnPlayerAttackInput);
+            _eventSystem.Subscribe<PlayerInteractInputEvent>(OnPlayerInteractInput);
+            _eventSystem.Subscribe<PlayerPreviousInputEvent>(OnPlayerPreviousInput);
+            _eventSystem.Subscribe<PlayerNextInputEvent>(OnPlayerNextInput);
+            
+            // Subscribe to pause/resume events
+            _eventSystem.Subscribe<GamePausedEvent>(OnGamePaused);
+            _eventSystem.Subscribe<GameResumedEvent>(OnGameResumed);
+            
+            // Activate Player input context so PlayerInputHandler can receive input events
+            // This ensures pause functionality works when the player is active
+            _inputManager.SetInputContext(InputContext.Player);
             
             _isInitialized = true;
             
             if (_showDebugInfo)
-                Debug.Log($"[PlayerController] Initialized successfully on {gameObject.name}");
+                Debug.Log($"[PlayerController] Initialized successfully on {gameObject.name} - Player input context activated, pause-aware");
         }
 
         /// <summary>
@@ -133,10 +231,32 @@ namespace GameFramework.Components
             if (_eventSystem != null)
             {
                 _eventSystem.Unsubscribe<PlayerMoveInputEvent>(OnPlayerMoveInput);
+                _eventSystem.Unsubscribe<PlayerJumpInputEvent>(OnPlayerJumpInput);
+                _eventSystem.Unsubscribe<PlayerSprintInputEvent>(OnPlayerSprintInput);
+                _eventSystem.Unsubscribe<PlayerCrouchInputEvent>(OnPlayerCrouchInput);
+                _eventSystem.Unsubscribe<PlayerAttackInputEvent>(OnPlayerAttackInput);
+                _eventSystem.Unsubscribe<PlayerInteractInputEvent>(OnPlayerInteractInput);
+                _eventSystem.Unsubscribe<PlayerPreviousInputEvent>(OnPlayerPreviousInput);
+                _eventSystem.Unsubscribe<PlayerNextInputEvent>(OnPlayerNextInput);
+                
+                // Unsubscribe from pause/resume events
+                _eventSystem.Unsubscribe<GamePausedEvent>(OnGamePaused);
+                _eventSystem.Unsubscribe<GameResumedEvent>(OnGameResumed);
             }
             
+            // When PlayerController is destroyed, revert to None input context
+            // This ensures we don't stay in Player context when no player exists
+            if (_inputManager != null)
+            {
+                _inputManager.SetInputContext(InputContext.None);
+            }
+            
+            // Clear references
+            _inputManager = null;
+            _pauseService = null;
+            
             if (_showDebugInfo)
-                Debug.Log($"[PlayerController] Cleaned up on {gameObject.name}");
+                Debug.Log($"[PlayerController] Cleaned up on {gameObject.name} - Input context reset");
         }
         #endregion
 
@@ -147,6 +267,7 @@ namespace GameFramework.Components
         private void OnPlayerMoveInput(PlayerMoveInputEvent inputEvent)
         {
             if (!_isInitialized) return;
+            if (_pauseService != null && _pauseService.IsPaused) return;
 
             // Handle all phases and check for zero vector
             if (inputEvent.Phase == InputActionPhase.Performed || 
@@ -169,6 +290,161 @@ namespace GameFramework.Components
             if (_showDebugInfo)
             {
                 Debug.Log($"[PlayerController] Movement Input: {_inputVector}, Phase: {inputEvent.Phase}");
+            }
+        }
+        
+        /// <summary>
+        /// Handle player jump input events
+        /// </summary>
+        private void OnPlayerJumpInput(PlayerJumpInputEvent inputEvent)
+        {
+            if (!_isInitialized) return;
+            if (_pauseService != null && _pauseService.IsPaused) return;
+
+            if (_isGrounded && !_wantsToJump)
+            {
+                _wantsToJump = true;
+                
+                if (_showDebugInfo)
+                {
+                    Debug.Log("[PlayerController] Jump Input Received");
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Handle player sprint input events
+        /// </summary>
+        private void OnPlayerSprintInput(PlayerSprintInputEvent inputEvent)
+        {
+            if (!_isInitialized) return;
+            if (_pauseService != null && _pauseService.IsPaused) return;
+
+            switch (inputEvent.Phase)
+            {
+                case InputActionPhase.Started:
+                case InputActionPhase.Performed:
+                    _isSprinting = true;
+                    break;
+                case InputActionPhase.Canceled:
+                    _isSprinting = false;
+                    break;
+            }
+
+            if (_showDebugInfo)
+            {
+                Debug.Log($"[PlayerController] Sprint: {_isSprinting}, Phase: {inputEvent.Phase}");
+            }
+        }
+        
+        /// <summary>
+        /// Handle player crouch input events
+        /// </summary>
+        private void OnPlayerCrouchInput(PlayerCrouchInputEvent inputEvent)
+        {
+            if (!_isInitialized) return;
+            if (_pauseService != null && _pauseService.IsPaused) return;
+
+            switch (inputEvent.Phase)
+            {
+                case InputActionPhase.Started:
+                case InputActionPhase.Performed:
+                    _isCrouching = !_isCrouching; // Toggle crouch
+                    break;
+            }
+
+            if (_showDebugInfo)
+            {
+                Debug.Log($"[PlayerController] Crouch: {_isCrouching}, Phase: {inputEvent.Phase}");
+            }
+        }
+        
+        /// <summary>
+        /// Handle player attack input events
+        /// </summary>
+        private void OnPlayerAttackInput(PlayerAttackInputEvent inputEvent)
+        {
+            if (!_isInitialized) return;
+            if (_pauseService != null && _pauseService.IsPaused) return;
+
+            if (inputEvent.Phase == InputActionPhase.Performed)
+            {
+                PerformAttack();
+            }
+        }
+        
+        /// <summary>
+        /// Handle player interact input events
+        /// </summary>
+        private void OnPlayerInteractInput(PlayerInteractInputEvent inputEvent)
+        {
+            if (!_isInitialized) return;
+            if (_pauseService != null && _pauseService.IsPaused) return;
+
+            if (inputEvent.Phase == InputActionPhase.Performed)
+            {
+                PerformInteraction();
+            }
+        }
+        
+        /// <summary>
+        /// Handle player previous item input events
+        /// </summary>
+        private void OnPlayerPreviousInput(PlayerPreviousInputEvent inputEvent)
+        {
+            if (!_isInitialized) return;
+            if (_pauseService != null && _pauseService.IsPaused) return;
+
+            _currentItemIndex = Mathf.Max(0, _currentItemIndex - 1);
+            
+            if (_showDebugInfo)
+            {
+                Debug.Log($"[PlayerController] Previous Item: Index {_currentItemIndex}");
+            }
+        }
+        
+        /// <summary>
+        /// Handle player next item input events
+        /// </summary>
+        private void OnPlayerNextInput(PlayerNextInputEvent inputEvent)
+        {
+            if (!_isInitialized) return;
+            if (_pauseService != null && _pauseService.IsPaused) return;
+
+            _currentItemIndex++; // Could add max limit if needed
+            
+            if (_showDebugInfo)
+            {
+                Debug.Log($"[PlayerController] Next Item: Index {_currentItemIndex}");
+            }
+        }
+        
+        /// <summary>
+        /// Handle game paused events
+        /// </summary>
+        private void OnGamePaused(GamePausedEvent pausedEvent)
+        {
+            if (!_isInitialized) return;
+            
+            // Stop all movement when game pauses
+            StopMovement();
+            
+            if (_showDebugInfo)
+            {
+                Debug.Log("[PlayerController] Game paused - movement stopped");
+            }
+        }
+        
+        /// <summary>
+        /// Handle game resumed events
+        /// </summary>
+        private void OnGameResumed(GameResumedEvent resumedEvent)
+        {
+            if (!_isInitialized) return;
+            
+            if (_showDebugInfo)
+            {
+                Debug.Log("[PlayerController] Game resumed");
             }
         }
         #endregion
@@ -198,18 +474,63 @@ namespace GameFramework.Components
             // Convert 2D input to 3D movement (X and Z axes only)
             Vector3 inputDirection = new Vector3(_inputVector.x, 0f, _inputVector.y);
             
-            // Calculate target velocity based on input (only horizontal movement)
-            _targetVelocity = inputDirection * _moveSpeed;
+            // Transform input direction relative to player facing direction
+            Vector3 worldDirection = transform.TransformDirection(inputDirection);
+            worldDirection.y = 0f; // Keep movement horizontal
+            
+            // Calculate target velocity based on input using effective move speed
+            _targetVelocity = worldDirection * EffectiveMoveSpeed;
             
             // Debug info
             if (_showDebugInfo)
             {
-                Debug.Log($"[PlayerController] Input: {_inputVector}, Target Velocity: {_targetVelocity}, IsMoving: {IsMoving}");
+                Debug.Log($"[PlayerController] Input: {_inputVector}, Target Velocity: {_targetVelocity}, Speed: {EffectiveMoveSpeed}, Sprint: {_isSprinting}, Crouch: {_isCrouching}");
                 
                 if (IsMoving)
                 {
                     Debug.DrawRay(transform.position, _targetVelocity.normalized * 2f, Color.green);
                 }
+            }
+        }
+        
+        /// <summary>
+        /// Process jumping in FixedUpdate
+        /// </summary>
+        private void ProcessJump()
+        {
+            if (_wantsToJump && _isGrounded && _rigidbody != null)
+            {
+                // Apply jump force
+                _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+                _wantsToJump = false;
+                
+                if (_showDebugInfo)
+                {
+                    Debug.Log($"[PlayerController] Jump executed with force {_jumpForce}");
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Process crouching height changes
+        /// </summary>
+        private void ProcessCrouching()
+        {
+            if (_capsuleCollider == null) return;
+
+            float targetHeight = _isCrouching ? _crouchHeight : _standingHeight;
+            float currentHeight = _capsuleCollider.height;
+            
+            if (Mathf.Abs(currentHeight - targetHeight) > 0.01f)
+            {
+                float newHeight = Mathf.Lerp(currentHeight, targetHeight, Time.deltaTime * _crouchTransitionSpeed);
+                _capsuleCollider.height = newHeight;
+                
+                // Adjust center to keep feet on ground
+                _capsuleCollider.center = new Vector3(
+                    _capsuleCollider.center.x, 
+                    newHeight * 0.5f, 
+                    _capsuleCollider.center.z);
             }
         }
 
@@ -237,6 +558,54 @@ namespace GameFramework.Components
             {
                 Debug.Log($"[PlayerController] Applied Velocity: {newVelocity} (was: {currentVelocity})");
                 Debug.DrawRay(transform.position, _rigidbody.linearVelocity, Color.blue);
+            }
+        }
+        
+        /// <summary>
+        /// Perform an attack action
+        /// </summary>
+        private void PerformAttack()
+        {
+            if (Time.time < _lastAttackTime + _attackCooldown) return;
+            
+            _lastAttackTime = Time.time;
+            
+            // Raycast forward to detect attackable objects
+            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, _attackRange, _attackLayerMask))
+            {
+                if (_showDebugInfo)
+                {
+                    Debug.Log($"[PlayerController] Attack hit: {hit.collider.name}");
+                }
+                
+                // Could publish an attack event or call methods on hit objects here
+                // Example: hit.collider.GetComponent<IDamageable>()?.TakeDamage(attackDamage);
+            }
+            else if (_showDebugInfo)
+            {
+                Debug.Log("[PlayerController] Attack missed");
+            }
+        }
+        
+        /// <summary>
+        /// Perform an interaction action
+        /// </summary>
+        private void PerformInteraction()
+        {
+            // Raycast forward to detect interactable objects
+            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, _interactionRange, _interactionLayerMask))
+            {
+                if (_showDebugInfo)
+                {
+                    Debug.Log($"[PlayerController] Interaction with: {hit.collider.name}");
+                }
+                
+                // Could publish an interaction event or call methods on hit objects here
+                // Example: hit.collider.GetComponent<IInteractable>()?.Interact(this);
+            }
+            else if (_showDebugInfo)
+            {
+                Debug.Log("[PlayerController] No interactable object found");
             }
         }
         #endregion
@@ -277,6 +646,57 @@ namespace GameFramework.Components
             Vector3 horizontalVelocity = new Vector3(_rigidbody.linearVelocity.x, 0f, _rigidbody.linearVelocity.z);
             return horizontalVelocity.normalized;
         }
+        
+        /// <summary>
+        /// Manually trigger jump
+        /// </summary>
+        public void Jump()
+        {
+            if (_isGrounded && !_wantsToJump)
+            {
+                _wantsToJump = true;
+            }
+        }
+        
+        /// <summary>
+        /// Set sprint state
+        /// </summary>
+        public void SetSprinting(bool sprinting)
+        {
+            _isSprinting = sprinting;
+        }
+        
+        /// <summary>
+        /// Set crouch state
+        /// </summary>
+        public void SetCrouching(bool crouching)
+        {
+            _isCrouching = crouching;
+        }
+        
+        /// <summary>
+        /// Set current item index
+        /// </summary>
+        public void SetItemIndex(int index)
+        {
+            _currentItemIndex = Mathf.Max(0, index);
+        }
+        
+        /// <summary>
+        /// Trigger attack manually
+        /// </summary>
+        public void Attack()
+        {
+            PerformAttack();
+        }
+        
+        /// <summary>
+        /// Trigger interaction manually
+        /// </summary>
+        public void Interact()
+        {
+            PerformInteraction();
+        }
         #endregion
 
         #region Debug
@@ -298,6 +718,7 @@ namespace GameFramework.Components
             // Draw input direction
             Gizmos.color = Color.red;
             Vector3 inputDir = new Vector3(_inputVector.x, 0f, _inputVector.y);
+            inputDir = transform.TransformDirection(inputDir);
             Gizmos.DrawLine(transform.position, transform.position + inputDir * 2f);
             
             // Draw ground check
@@ -306,6 +727,28 @@ namespace GameFramework.Components
                 Gizmos.color = _isGrounded ? Color.green : Color.red;
                 Gizmos.DrawLine(_groundCheckPoint.position, _groundCheckPoint.position + Vector3.down * _groundCheckDistance);
                 Gizmos.DrawWireSphere(_groundCheckPoint.position + Vector3.down * _groundCheckDistance, 0.1f);
+            }
+            
+            // Draw attack range
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position + transform.forward * _attackRange, 0.2f);
+            Gizmos.DrawLine(transform.position, transform.position + transform.forward * _attackRange);
+            
+            // Draw interaction range
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position + transform.forward * _interactionRange, 0.15f);
+            
+            // Show state indicators
+            Vector3 statusPos = transform.position + Vector3.up * 2.5f;
+            if (_isSprinting)
+            {
+                Gizmos.color = Color.green;
+                Gizmos.DrawWireCube(statusPos, Vector3.one * 0.2f);
+            }
+            if (_isCrouching)
+            {
+                Gizmos.color = Color.blue;
+                Gizmos.DrawWireCube(statusPos + Vector3.right * 0.5f, Vector3.one * 0.2f);
             }
         }
         #endregion

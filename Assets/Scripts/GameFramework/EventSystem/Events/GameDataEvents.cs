@@ -1,6 +1,7 @@
 ﻿using GameFramework.Components;
 using GameFramework.DataStructures;
 using GameFramework.SaveSystem.Data;
+using UnityEngine;
 
 namespace GameFramework.GameData.Events
 {
@@ -57,6 +58,21 @@ namespace GameFramework.GameData.Events
         {
             GameSessionData = gameSessionData;
             PlayerSaveData = playerSaveData;
+        }
+    }
+    
+    /// <summary>
+    /// Event published when the main camera reference changes
+    /// </summary>
+    public class MainCameraChangedEvent
+    {
+        public Camera NewCamera { get; }
+        public Camera PreviousCamera { get; }
+
+        public MainCameraChangedEvent(Camera newCamera, Camera previousCamera)
+        {
+            NewCamera = newCamera;
+            PreviousCamera = previousCamera;
         }
     }
 }

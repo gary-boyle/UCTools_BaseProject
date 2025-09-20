@@ -4,6 +4,7 @@ using GameFramework.Components;
 using GameFramework.DataStructures;
 using UnityEngine;
 using GameFramework.GameData.Events;
+using UnityEngine.SceneManagement;
 using GameFramework.EventSystem.Interfaces;
 using GameFramework.SaveSystem.Interfaces;
 using GameFramework.SaveSystem.Data;
@@ -24,6 +25,9 @@ namespace GameFramework.Services
         private PlayerSaveData _pendingPlayerSaveData; // Stores player data from save files before instantiation
         private ISaveDataRegistry _saveDataRegistry;
         private IEventSystem _eventSystem;
+        
+        // Scene resources
+        private Camera _mainCamera;
         #endregion
 
         #region IGameService Implementation
@@ -45,9 +49,15 @@ namespace GameFramework.Services
             
             // Initialize with default data
             InitializeDefaultGameData();
+            
+            // Detect main camera in the current scene
+            DetectMainCamera();
 
             // Register the initialized data with the save system
             RegisterWithSaveSystem();
+            
+            // Subscribe to scene loaded events for automatic camera detection
+            SceneManager.sceneLoaded += OnSceneLoaded;
 
             IsInitialized = true;
         }
@@ -55,6 +65,9 @@ namespace GameFramework.Services
         public void Shutdown()
         {
             if (!IsInitialized) return;
+            
+            // Unsubscribe from scene events
+            SceneManager.sceneLoaded -= OnSceneLoaded;
             
             // Deregister from save system if registry is available
             if (_saveDataRegistry != null)
@@ -68,6 +81,7 @@ namespace GameFramework.Services
             _pendingPlayerSaveData = null;
             _saveDataRegistry = null;
             _eventSystem = null;
+            _mainCamera = null;
 
             IsInitialized = false;
         }
@@ -260,6 +274,127 @@ namespace GameFramework.Services
         }
         #endregion
 
+        #region Scene Resources
+        /// <summary>
+        /// Gets the main camera reference (read-only access)
+        /// </summary>
+        public Camera GetMainCamera()
+        {
+            if (!IsInitialized)
+            {
+                Debug.LogWarning("[GameDataService] Service not initialized, returning null camera");
+                return null;
+            }
+            
+            // Auto-detect if not set
+            if (_mainCamera == null)
+            {
+                DetectMainCamera();
+            }
+            
+            return _mainCamera;
+        }
+        
+        /// <summary>
+        /// Sets the main camera reference (typically called during scene initialization)
+        /// </summary>
+        public void SetMainCamera(Camera camera)
+        {
+            if (!IsInitialized)
+            {
+                Debug.LogError("[GameDataService] Cannot set main camera - service not initialized");
+                return;
+            }
+            
+            var previousCamera = _mainCamera;
+            _mainCamera = camera;
+            
+            if (_mainCamera != null)
+            {
+                Debug.Log($"[GameDataService] Main camera set to: {_mainCamera.name}");
+            }
+            else
+            {
+                Debug.Log("[GameDataService] Main camera cleared");
+            }
+            
+            // Publish camera changed event if needed
+            if (previousCamera != _mainCamera)
+            {
+                _eventSystem?.Publish(new MainCameraChangedEvent(_mainCamera, previousCamera));
+            }
+        }
+        
+        /// <summary>
+        /// Checks if a main camera reference is available
+        /// </summary>
+        public bool HasMainCamera()
+        {
+            if (!IsInitialized) return false;
+            
+            // Auto-detect if not set
+            if (_mainCamera == null)
+            {
+                DetectMainCamera();
+            }
+            
+            return _mainCamera != null;
+        }
+        
+        /// <summary>
+        /// Detects and stores the main camera from the current scene
+        /// </summary>
+        public bool DetectMainCamera()
+        {
+            if (!IsInitialized)
+            {
+                Debug.LogError("[GameDataService] Cannot detect main camera - service not initialized");
+                return false;
+            }
+            
+            Camera detectedCamera = null;
+            
+            // First try Camera.main
+            detectedCamera = Camera.main;
+            
+            // If no Camera.main, find any camera with MainCamera tag
+            if (detectedCamera == null)
+            {
+                GameObject mainCameraObject = GameObject.FindGameObjectWithTag("MainCamera");
+                if (mainCameraObject != null)
+                {
+                    detectedCamera = mainCameraObject.GetComponent<Camera>();
+                }
+            }
+            
+            // If still no camera, find any active camera in the scene
+            if (detectedCamera == null)
+            {
+                Camera[] allCameras = UnityEngine.Object.FindObjectsOfType<Camera>();
+                foreach (var cam in allCameras)
+                {
+                    if (cam.gameObject.activeInHierarchy && cam.enabled)
+                    {
+                        detectedCamera = cam;
+                        break;
+                    }
+                }
+            }
+            
+            if (detectedCamera != null)
+            {
+                SetMainCamera(detectedCamera);
+                Debug.Log($"[GameDataService] Auto-detected main camera: {detectedCamera.name}");
+                return true;
+            }
+            else
+            {
+                Debug.LogWarning("[GameDataService] No main camera found in scene");
+                return false;
+            }
+        }
+        #endregion
+
         #region Data Lifecycle
 
         /// <summary>
@@ -349,6 +484,21 @@ namespace GameFramework.Services
             {
                 _saveDataRegistry.DeregisterSaveable(_currentPlayerData);
             }
+        }
+        #endregion
+        
+        #region Scene Event Handlers
+        /// <summary>
+        /// Called when a new scene is loaded - automatically detects main camera
+        /// </summary>
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            if (!IsInitialized) return;
+            
+            Debug.Log($"[GameDataService] Scene loaded: {scene.name}, detecting main camera...");
+            
+            // Detect main camera in the newly loaded scene
+            DetectMainCamera();
         }
         #endregion
 
