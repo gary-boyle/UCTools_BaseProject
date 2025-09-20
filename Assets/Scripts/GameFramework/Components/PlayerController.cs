@@ -2,12 +2,17 @@ using UnityEngine;
 using GameFramework.Core;
 using GameFramework.EventSystem.Interfaces;
 using GameFramework.EventSystem.Events;
+using GameFramework.Services.Interfaces;
+using GameFramework.Input;
+using GameFramework.Input.Interfaces;
 using UnityEngine.InputSystem;
 
 namespace GameFramework.Components
 {
     /// <summary>
-    /// Simple PlayerController that handles WASD movement on X and Z axes using Rigidbody physics.
+    /// Comprehensive PlayerController that handles WASD movement, jumping, sprinting, crouching,
+    /// attacking, and interaction using Rigidbody physics. Focuses purely on player movement mechanics.
+    /// Camera/look functionality is handled by a separate CameraController component.
     /// Integrates with the game's event-driven input system.
     /// </summary>
     [RequireComponent(typeof(Rigidbody))]
@@ -19,11 +24,6 @@ namespace GameFramework.Components
         [SerializeField] private float _sprintMultiplier = 1.5f;
         [SerializeField] private float _crouchMultiplier = 0.5f;
         [SerializeField] private float _jumpForce = 5.0f;
-        
-        [Header("Look Settings")]
-        [SerializeField] private Transform _cameraTransform;
-        [SerializeField] private float _mouseSensitivity = 2.0f;
-        [SerializeField] private float _verticalLookRange = 80f;
         
         [Header("Ground Detection")]
         [SerializeField] private LayerMask _groundLayerMask = 1;
@@ -50,6 +50,8 @@ namespace GameFramework.Components
 
         #region Private Fields
         private IEventSystem _eventSystem;
+        private IInputManager _inputManager;
+        private IPauseService _pauseService;
         private Rigidbody _rigidbody;
         private CapsuleCollider _capsuleCollider;
         
@@ -60,10 +62,6 @@ namespace GameFramework.Components
         private bool _isSprinting = false;
         private bool _isCrouching = false;
         private bool _wantsToJump = false;
-        
-        // Look state
-        private Vector2 _lookInput = Vector2.zero;
-        private float _verticalRotation = 0f;
         
         // Action states
         private float _lastAttackTime = 0f;
@@ -85,12 +83,12 @@ namespace GameFramework.Components
         
         public Vector3 CurrentVelocity => _rigidbody != null ? _rigidbody.linearVelocity : Vector3.zero;
         public Vector2 InputVector => _inputVector;
-        public Vector2 LookInput => _lookInput;
         public bool IsMoving => _inputVector.magnitude > 0.01f;
         public bool IsGrounded => _isGrounded;
         public bool IsSprinting => _isSprinting;
         public bool IsCrouching => _isCrouching;
         public int CurrentItemIndex => _currentItemIndex;
+        public bool IsPaused => _pauseService?.IsPaused ?? false;
         
         /// <summary>
         /// Get the effective move speed based on current modifiers
@@ -130,17 +128,6 @@ namespace GameFramework.Components
             // Store original height for crouching
             _originalHeight = _capsuleCollider.height;
             
-            // Set up camera transform if not assigned
-            if (_cameraTransform == null)
-            {
-                _cameraTransform = Camera.main?.transform;
-                if (_cameraTransform == null)
-                {
-                    // Try to find camera as child
-                    _cameraTransform = GetComponentInChildren<Camera>()?.transform;
-                }
-            }
-            
             // Create ground check point if not assigned
             if (_groundCheckPoint == null)
             {
@@ -159,16 +146,17 @@ namespace GameFramework.Components
         private void Update()
         {
             if (!_isInitialized) return;
+            if (_pauseService != null && _pauseService.IsPaused) return;
             
             CheckGrounded();
             ProcessMovement();
-            ProcessLook();
             ProcessCrouching();
         }
 
         private void FixedUpdate()
         {
             if (!_isInitialized) return;
+            if (_pauseService != null && _pauseService.IsPaused) return;
             
             // Physics-based movement should happen in FixedUpdate
             ApplyMovement();
@@ -194,10 +182,25 @@ namespace GameFramework.Components
                 Debug.LogError($"[PlayerController] EventSystem not available.");
                 return;
             }
+            
+            // Get InputManager from GameContext
+            _inputManager = GameManager.GetService<IInputManager>();
+            if (_inputManager == null)
+            {
+                Debug.LogError($"[PlayerController] InputManager not available.");
+                return;
+            }
+            
+            // Get PauseService from GameContext
+            _pauseService = GameManager.GetService<IPauseService>();
+            if (_pauseService == null)
+            {
+                Debug.LogError($"[PlayerController] PauseService not available.");
+                return;
+            }
 
             // Subscribe to all player input events
             _eventSystem.Subscribe<PlayerMoveInputEvent>(OnPlayerMoveInput);
-            _eventSystem.Subscribe<PlayerLookInputEvent>(OnPlayerLookInput);
             _eventSystem.Subscribe<PlayerJumpInputEvent>(OnPlayerJumpInput);
             _eventSystem.Subscribe<PlayerSprintInputEvent>(OnPlayerSprintInput);
             _eventSystem.Subscribe<PlayerCrouchInputEvent>(OnPlayerCrouchInput);
@@ -206,10 +209,18 @@ namespace GameFramework.Components
             _eventSystem.Subscribe<PlayerPreviousInputEvent>(OnPlayerPreviousInput);
             _eventSystem.Subscribe<PlayerNextInputEvent>(OnPlayerNextInput);
             
+            // Subscribe to pause/resume events
+            _eventSystem.Subscribe<GamePausedEvent>(OnGamePaused);
+            _eventSystem.Subscribe<GameResumedEvent>(OnGameResumed);
+            
+            // Activate Player input context so PlayerInputHandler can receive input events
+            // This ensures pause functionality works when the player is active
+            _inputManager.SetInputContext(InputContext.Player);
+            
             _isInitialized = true;
             
             if (_showDebugInfo)
-                Debug.Log($"[PlayerController] Initialized successfully on {gameObject.name}");
+                Debug.Log($"[PlayerController] Initialized successfully on {gameObject.name} - Player input context activated, pause-aware");
         }
 
         /// <summary>
@@ -220,7 +231,6 @@ namespace GameFramework.Components
             if (_eventSystem != null)
             {
                 _eventSystem.Unsubscribe<PlayerMoveInputEvent>(OnPlayerMoveInput);
-                _eventSystem.Unsubscribe<PlayerLookInputEvent>(OnPlayerLookInput);
                 _eventSystem.Unsubscribe<PlayerJumpInputEvent>(OnPlayerJumpInput);
                 _eventSystem.Unsubscribe<PlayerSprintInputEvent>(OnPlayerSprintInput);
                 _eventSystem.Unsubscribe<PlayerCrouchInputEvent>(OnPlayerCrouchInput);
@@ -228,10 +238,25 @@ namespace GameFramework.Components
                 _eventSystem.Unsubscribe<PlayerInteractInputEvent>(OnPlayerInteractInput);
                 _eventSystem.Unsubscribe<PlayerPreviousInputEvent>(OnPlayerPreviousInput);
                 _eventSystem.Unsubscribe<PlayerNextInputEvent>(OnPlayerNextInput);
+                
+                // Unsubscribe from pause/resume events
+                _eventSystem.Unsubscribe<GamePausedEvent>(OnGamePaused);
+                _eventSystem.Unsubscribe<GameResumedEvent>(OnGameResumed);
             }
             
+            // When PlayerController is destroyed, revert to None input context
+            // This ensures we don't stay in Player context when no player exists
+            if (_inputManager != null)
+            {
+                _inputManager.SetInputContext(InputContext.None);
+            }
+            
+            // Clear references
+            _inputManager = null;
+            _pauseService = null;
+            
             if (_showDebugInfo)
-                Debug.Log($"[PlayerController] Cleaned up on {gameObject.name}");
+                Debug.Log($"[PlayerController] Cleaned up on {gameObject.name} - Input context reset");
         }
         #endregion
 
@@ -242,6 +267,7 @@ namespace GameFramework.Components
         private void OnPlayerMoveInput(PlayerMoveInputEvent inputEvent)
         {
             if (!_isInitialized) return;
+            if (_pauseService != null && _pauseService.IsPaused) return;
 
             // Handle all phases and check for zero vector
             if (inputEvent.Phase == InputActionPhase.Performed || 
@@ -268,26 +294,12 @@ namespace GameFramework.Components
         }
         
         /// <summary>
-        /// Handle player look input events for camera/mouse look
-        /// </summary>
-        private void OnPlayerLookInput(PlayerLookInputEvent inputEvent)
-        {
-            if (!_isInitialized) return;
-
-            _lookInput = inputEvent.LookDelta;
-
-            if (_showDebugInfo)
-            {
-                Debug.Log($"[PlayerController] Look Input: {_lookInput}, Phase: {inputEvent.Phase}");
-            }
-        }
-        
-        /// <summary>
         /// Handle player jump input events
         /// </summary>
         private void OnPlayerJumpInput(PlayerJumpInputEvent inputEvent)
         {
             if (!_isInitialized) return;
+            if (_pauseService != null && _pauseService.IsPaused) return;
 
             if (_isGrounded && !_wantsToJump)
             {
@@ -306,6 +318,7 @@ namespace GameFramework.Components
         private void OnPlayerSprintInput(PlayerSprintInputEvent inputEvent)
         {
             if (!_isInitialized) return;
+            if (_pauseService != null && _pauseService.IsPaused) return;
 
             switch (inputEvent.Phase)
             {
@@ -330,6 +343,7 @@ namespace GameFramework.Components
         private void OnPlayerCrouchInput(PlayerCrouchInputEvent inputEvent)
         {
             if (!_isInitialized) return;
+            if (_pauseService != null && _pauseService.IsPaused) return;
 
             switch (inputEvent.Phase)
             {
@@ -351,6 +365,7 @@ namespace GameFramework.Components
         private void OnPlayerAttackInput(PlayerAttackInputEvent inputEvent)
         {
             if (!_isInitialized) return;
+            if (_pauseService != null && _pauseService.IsPaused) return;
 
             if (inputEvent.Phase == InputActionPhase.Performed)
             {
@@ -364,6 +379,7 @@ namespace GameFramework.Components
         private void OnPlayerInteractInput(PlayerInteractInputEvent inputEvent)
         {
             if (!_isInitialized) return;
+            if (_pauseService != null && _pauseService.IsPaused) return;
 
             if (inputEvent.Phase == InputActionPhase.Performed)
             {
@@ -377,6 +393,7 @@ namespace GameFramework.Components
         private void OnPlayerPreviousInput(PlayerPreviousInputEvent inputEvent)
         {
             if (!_isInitialized) return;
+            if (_pauseService != null && _pauseService.IsPaused) return;
 
             _currentItemIndex = Mathf.Max(0, _currentItemIndex - 1);
             
@@ -392,12 +409,42 @@ namespace GameFramework.Components
         private void OnPlayerNextInput(PlayerNextInputEvent inputEvent)
         {
             if (!_isInitialized) return;
+            if (_pauseService != null && _pauseService.IsPaused) return;
 
             _currentItemIndex++; // Could add max limit if needed
             
             if (_showDebugInfo)
             {
                 Debug.Log($"[PlayerController] Next Item: Index {_currentItemIndex}");
+            }
+        }
+        
+        /// <summary>
+        /// Handle game paused events
+        /// </summary>
+        private void OnGamePaused(GamePausedEvent pausedEvent)
+        {
+            if (!_isInitialized) return;
+            
+            // Stop all movement when game pauses
+            StopMovement();
+            
+            if (_showDebugInfo)
+            {
+                Debug.Log("[PlayerController] Game paused - movement stopped");
+            }
+        }
+        
+        /// <summary>
+        /// Handle game resumed events
+        /// </summary>
+        private void OnGameResumed(GameResumedEvent resumedEvent)
+        {
+            if (!_isInitialized) return;
+            
+            if (_showDebugInfo)
+            {
+                Debug.Log("[PlayerController] Game resumed");
             }
         }
         #endregion
@@ -444,25 +491,6 @@ namespace GameFramework.Components
                     Debug.DrawRay(transform.position, _targetVelocity.normalized * 2f, Color.green);
                 }
             }
-        }
-        
-        /// <summary>
-        /// Process look input for camera rotation
-        /// </summary>
-        private void ProcessLook()
-        {
-            if (_cameraTransform == null || _lookInput.magnitude < 0.01f) return;
-
-            // Apply mouse sensitivity (note: InputManager already applies settings)
-            Vector2 lookDelta = _lookInput * Time.deltaTime;
-
-            // Rotate player horizontally
-            transform.Rotate(Vector3.up, lookDelta.x, Space.World);
-
-            // Rotate camera vertically
-            _verticalRotation -= lookDelta.y;
-            _verticalRotation = Mathf.Clamp(_verticalRotation, -_verticalLookRange, _verticalLookRange);
-            _cameraTransform.localRotation = Quaternion.Euler(_verticalRotation, 0f, 0f);
         }
         
         /// <summary>
@@ -620,14 +648,6 @@ namespace GameFramework.Components
         }
         
         /// <summary>
-        /// Manually set look input (useful for testing or external control)
-        /// </summary>
-        public void SetLookInput(Vector2 lookInput)
-        {
-            _lookInput = lookInput;
-        }
-        
-        /// <summary>
         /// Manually trigger jump
         /// </summary>
         public void Jump()
@@ -717,13 +737,6 @@ namespace GameFramework.Components
             // Draw interaction range
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position + transform.forward * _interactionRange, 0.15f);
-            
-            // Draw look direction if camera exists
-            if (_cameraTransform != null)
-            {
-                Gizmos.color = Color.magenta;
-                Gizmos.DrawRay(_cameraTransform.position, _cameraTransform.forward * 3f);
-            }
             
             // Show state indicators
             Vector3 statusPos = transform.position + Vector3.up * 2.5f;

@@ -806,6 +806,7 @@ GameObject:
   - component: {fileID: 1215660048992525934}
   - component: {fileID: 6835960619841895384}
   - component: {fileID: 5379233185566107137}
+  - component: {fileID: 3053802108157205829}
   - component: {fileID: 3421404348651573308}
   - component: {fileID: -5461148792396654546}
   m_Layer: 0
@@ -865,9 +866,6 @@ MonoBehaviour:
   _sprintMultiplier: 1.5
   _crouchMultiplier: 0.5
   _jumpForce: 5
-  _cameraTransform: {fileID: 0}
-  _mouseSensitivity: 67.13
-  _verticalLookRange: 6.29
   _groundLayerMask:
     serializedVersion: 2
     m_Bits: 8
@@ -886,6 +884,24 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   _showDebugInfo: 1
+--- !u!114 &3053802108157205829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8851619217007553581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b240cd00e82d20c47b74fafa8a5a9d45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameFramework.Components.CameraController
+  _cameraTransform: {fileID: 0}
+  _playerTransform: {fileID: 1215660048992525934}
+  _verticalLookRange: 80
+  _mouseSensitivityMultiplier: 2
+  _lockCursor: 1
+  _showDebugInfo: 0
 --- !u!54 &3421404348651573308
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -75,8 +75,17 @@ namespace GameFramework.Input.Handlers
         
         private void OnPlayerPause(PlayerPauseInputEvent evt)
         {
-            // Pause input should work even when paused (to unpause)
-            _eventSystem.Publish(new PauseRequestedEvent());
+            // Escape key should toggle between pause and unpause
+            if (_pauseService.IsPaused)
+            {
+                // Game is paused, so unpause it
+                _eventSystem.Publish(new ResumeRequestedEvent());
+            }
+            else
+            {
+                // Game is not paused, so pause it
+                _eventSystem.Publish(new PauseRequestedEvent());
+            }
         }
     }
 }

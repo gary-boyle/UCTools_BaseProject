@@ -37,6 +37,28 @@ namespace GameFramework.Services.Interfaces
         
         #endregion
 
+        #region Scene Resources
+        /// <summary>
+        /// Gets the main camera reference (read-only access)
+        /// </summary>
+        Camera GetMainCamera();
+        
+        /// <summary>
+        /// Sets the main camera reference (typically called during scene initialization)
+        /// </summary>
+        void SetMainCamera(Camera camera);
+        
+        /// <summary>
+        /// Checks if a main camera reference is available
+        /// </summary>
+        bool HasMainCamera();
+        
+        /// <summary>
+        /// Detects and stores the main camera from the current scene
+        /// </summary>
+        bool DetectMainCamera();
+        #endregion
+
         #region Data Lifecycle
 
         /// <summary>
