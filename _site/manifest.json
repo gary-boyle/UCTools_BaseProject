@@ -124,6 +124,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Components.CameraController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Components.CameraController.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Components.CameraController",
+      "Summary": "<p sourcefile=\"api/GameFramework.Components.CameraController.yml\" sourcestartlinenumber=\"1\">Dedicated camera controller that handles mouse look and camera rotation.\nIntegrates with the game's event-driven input system.\nSeparates camera concerns from player movement for better modularity.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFramework.Components.ClickToInstantiate.MouseButton.yml",
       "output": {
         ".html": {
@@ -190,7 +204,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.Components.PlayerController",
-      "Summary": "<p sourcefile=\"api/GameFramework.Components.PlayerController.yml\" sourcestartlinenumber=\"1\">Simple PlayerController that handles WASD movement on X and Z axes using Rigidbody physics.\nIntegrates with the game's event-driven input system.</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.Components.PlayerController.yml\" sourcestartlinenumber=\"1\">Comprehensive PlayerController that handles WASD movement, jumping, sprinting, crouching,\nattacking, and interaction using Rigidbody physics. Focuses purely on player movement mechanics.\nCamera/look functionality is handled by a separate CameraController component.\nIntegrates with the game's event-driven input system.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2557,6 +2571,20 @@
       "IsMRef": true,
       "Title": "GameFramework.GameData.Events.GameSessionDataChangedEvent",
       "Summary": "<p sourcefile=\"api/GameFramework.GameData.Events.GameSessionDataChangedEvent.yml\" sourcestartlinenumber=\"1\">Event published when GameSessionData changes</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.GameData.Events.MainCameraChangedEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.GameData.Events.MainCameraChangedEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.GameData.Events.MainCameraChangedEvent",
+      "Summary": "<p sourcefile=\"api/GameFramework.GameData.Events.MainCameraChangedEvent.yml\" sourcestartlinenumber=\"1\">Event published when the main camera reference changes</p>\n"
     },
     {
       "type": "ManagedReference",

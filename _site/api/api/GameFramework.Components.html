@@ -88,6 +88,11 @@
     <h3 id="classes">
 Classes
 </h3>
+      <h4><a class="xref" href="GameFramework.Components.CameraController.html">CameraController</a></h4>
+      <section><p>Dedicated camera controller that handles mouse look and camera rotation.
+Integrates with the game's event-driven input system.
+Separates camera concerns from player movement for better modularity.</p>
+</section>
       <h4><a class="xref" href="GameFramework.Components.ClickToInstantiate.html">ClickToInstantiate</a></h4>
       <section><p>MonoBehaviour that instantiates a prefab at the location where the user clicks.
 Supports both raycast-based placement and fixed depth placement.</p>
@@ -98,7 +103,9 @@ When clicked, changes the cube's color and increments an integer value.
 Uses the new clean save system with direct field storage instead of nested JSON.</p>
 </section>
       <h4><a class="xref" href="GameFramework.Components.PlayerController.html">PlayerController</a></h4>
-      <section><p>Simple PlayerController that handles WASD movement on X and Z axes using Rigidbody physics.
+      <section><p>Comprehensive PlayerController that handles WASD movement, jumping, sprinting, crouching,
+attacking, and interaction using Rigidbody physics. Focuses purely on player movement mechanics.
+Camera/look functionality is handled by a separate CameraController component.
 Integrates with the game's event-driven input system.</p>
 </section>
       <h4><a class="xref" href="GameFramework.Components.PlayerData.html">PlayerData</a></h4>

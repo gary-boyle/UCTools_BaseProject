@@ -575,6 +575,174 @@ references:
   commentId: N:GameFramework.Components
   fullName: GameFramework.Components
   nameWithType: GameFramework.Components
+- uid: GameFramework.Components.CameraController
+  name: CameraController
+  href: api/api/GameFramework.Components.CameraController.html
+  commentId: T:GameFramework.Components.CameraController
+  fullName: GameFramework.Components.CameraController
+  nameWithType: CameraController
+- uid: GameFramework.Components.CameraController.CameraTransform
+  name: CameraTransform
+  href: api/api/GameFramework.Components.CameraController.html#GameFramework_Components_CameraController_CameraTransform
+  commentId: P:GameFramework.Components.CameraController.CameraTransform
+  fullName: GameFramework.Components.CameraController.CameraTransform
+  nameWithType: CameraController.CameraTransform
+- uid: GameFramework.Components.CameraController.CameraTransform*
+  name: CameraTransform
+  href: api/api/GameFramework.Components.CameraController.html#GameFramework_Components_CameraController_CameraTransform_
+  commentId: Overload:GameFramework.Components.CameraController.CameraTransform
+  isSpec: "True"
+  fullName: GameFramework.Components.CameraController.CameraTransform
+  nameWithType: CameraController.CameraTransform
+- uid: GameFramework.Components.CameraController.EffectiveMouseSensitivity
+  name: EffectiveMouseSensitivity
+  href: api/api/GameFramework.Components.CameraController.html#GameFramework_Components_CameraController_EffectiveMouseSensitivity
+  commentId: P:GameFramework.Components.CameraController.EffectiveMouseSensitivity
+  fullName: GameFramework.Components.CameraController.EffectiveMouseSensitivity
+  nameWithType: CameraController.EffectiveMouseSensitivity
+- uid: GameFramework.Components.CameraController.EffectiveMouseSensitivity*
+  name: EffectiveMouseSensitivity
+  href: api/api/GameFramework.Components.CameraController.html#GameFramework_Components_CameraController_EffectiveMouseSensitivity_
+  commentId: Overload:GameFramework.Components.CameraController.EffectiveMouseSensitivity
+  isSpec: "True"
+  fullName: GameFramework.Components.CameraController.EffectiveMouseSensitivity
+  nameWithType: CameraController.EffectiveMouseSensitivity
+- uid: GameFramework.Components.CameraController.IsInitialized
+  name: IsInitialized
+  href: api/api/GameFramework.Components.CameraController.html#GameFramework_Components_CameraController_IsInitialized
+  commentId: P:GameFramework.Components.CameraController.IsInitialized
+  fullName: GameFramework.Components.CameraController.IsInitialized
+  nameWithType: CameraController.IsInitialized
+- uid: GameFramework.Components.CameraController.IsInitialized*
+  name: IsInitialized
+  href: api/api/GameFramework.Components.CameraController.html#GameFramework_Components_CameraController_IsInitialized_
+  commentId: Overload:GameFramework.Components.CameraController.IsInitialized
+  isSpec: "True"
+  fullName: GameFramework.Components.CameraController.IsInitialized
+  nameWithType: CameraController.IsInitialized
+- uid: GameFramework.Components.CameraController.LookInput
+  name: LookInput
+  href: api/api/GameFramework.Components.CameraController.html#GameFramework_Components_CameraController_LookInput
+  commentId: P:GameFramework.Components.CameraController.LookInput
+  fullName: GameFramework.Components.CameraController.LookInput
+  nameWithType: CameraController.LookInput
+- uid: GameFramework.Components.CameraController.LookInput*
+  name: LookInput
+  href: api/api/GameFramework.Components.CameraController.html#GameFramework_Components_CameraController_LookInput_
+  commentId: Overload:GameFramework.Components.CameraController.LookInput
+  isSpec: "True"
+  fullName: GameFramework.Components.CameraController.LookInput
+  nameWithType: CameraController.LookInput
+- uid: GameFramework.Components.CameraController.MouseSensitivityMultiplier
+  name: MouseSensitivityMultiplier
+  href: api/api/GameFramework.Components.CameraController.html#GameFramework_Components_CameraController_MouseSensitivityMultiplier
+  commentId: P:GameFramework.Components.CameraController.MouseSensitivityMultiplier
+  fullName: GameFramework.Components.CameraController.MouseSensitivityMultiplier
+  nameWithType: CameraController.MouseSensitivityMultiplier
+- uid: GameFramework.Components.CameraController.MouseSensitivityMultiplier*
+  name: MouseSensitivityMultiplier
+  href: api/api/GameFramework.Components.CameraController.html#GameFramework_Components_CameraController_MouseSensitivityMultiplier_
+  commentId: Overload:GameFramework.Components.CameraController.MouseSensitivityMultiplier
+  isSpec: "True"
+  fullName: GameFramework.Components.CameraController.MouseSensitivityMultiplier
+  nameWithType: CameraController.MouseSensitivityMultiplier
+- uid: GameFramework.Components.CameraController.ResetVerticalRotation
+  name: ResetVerticalRotation()
+  href: api/api/GameFramework.Components.CameraController.html#GameFramework_Components_CameraController_ResetVerticalRotation
+  commentId: M:GameFramework.Components.CameraController.ResetVerticalRotation
+  fullName: GameFramework.Components.CameraController.ResetVerticalRotation()
+  nameWithType: CameraController.ResetVerticalRotation()
+- uid: GameFramework.Components.CameraController.ResetVerticalRotation*
+  name: ResetVerticalRotation
+  href: api/api/GameFramework.Components.CameraController.html#GameFramework_Components_CameraController_ResetVerticalRotation_
+  commentId: Overload:GameFramework.Components.CameraController.ResetVerticalRotation
+  isSpec: "True"
+  fullName: GameFramework.Components.CameraController.ResetVerticalRotation
+  nameWithType: CameraController.ResetVerticalRotation
+- uid: GameFramework.Components.CameraController.SetCameraTransform(Transform,System.Boolean)
+  name: SetCameraTransform(Transform, bool)
+  href: api/api/GameFramework.Components.CameraController.html#GameFramework_Components_CameraController_SetCameraTransform_Transform_System_Boolean_
+  commentId: M:GameFramework.Components.CameraController.SetCameraTransform(Transform,System.Boolean)
+  name.vb: SetCameraTransform(Transform, Boolean)
+  fullName: GameFramework.Components.CameraController.SetCameraTransform(Transform, bool)
+  fullName.vb: GameFramework.Components.CameraController.SetCameraTransform(Transform, Boolean)
+  nameWithType: CameraController.SetCameraTransform(Transform, bool)
+  nameWithType.vb: CameraController.SetCameraTransform(Transform, Boolean)
+- uid: GameFramework.Components.CameraController.SetCameraTransform*
+  name: SetCameraTransform
+  href: api/api/GameFramework.Components.CameraController.html#GameFramework_Components_CameraController_SetCameraTransform_
+  commentId: Overload:GameFramework.Components.CameraController.SetCameraTransform
+  isSpec: "True"
+  fullName: GameFramework.Components.CameraController.SetCameraTransform
+  nameWithType: CameraController.SetCameraTransform
+- uid: GameFramework.Components.CameraController.SetCursorLock(System.Boolean)
+  name: SetCursorLock(bool)
+  href: api/api/GameFramework.Components.CameraController.html#GameFramework_Components_CameraController_SetCursorLock_System_Boolean_
+  commentId: M:GameFramework.Components.CameraController.SetCursorLock(System.Boolean)
+  name.vb: SetCursorLock(Boolean)
+  fullName: GameFramework.Components.CameraController.SetCursorLock(bool)
+  fullName.vb: GameFramework.Components.CameraController.SetCursorLock(Boolean)
+  nameWithType: CameraController.SetCursorLock(bool)
+  nameWithType.vb: CameraController.SetCursorLock(Boolean)
+- uid: GameFramework.Components.CameraController.SetCursorLock*
+  name: SetCursorLock
+  href: api/api/GameFramework.Components.CameraController.html#GameFramework_Components_CameraController_SetCursorLock_
+  commentId: Overload:GameFramework.Components.CameraController.SetCursorLock
+  isSpec: "True"
+  fullName: GameFramework.Components.CameraController.SetCursorLock
+  nameWithType: CameraController.SetCursorLock
+- uid: GameFramework.Components.CameraController.SetLookInput(Vector2)
+  name: SetLookInput(Vector2)
+  href: api/api/GameFramework.Components.CameraController.html#GameFramework_Components_CameraController_SetLookInput_Vector2_
+  commentId: M:GameFramework.Components.CameraController.SetLookInput(Vector2)
+  fullName: GameFramework.Components.CameraController.SetLookInput(Vector2)
+  nameWithType: CameraController.SetLookInput(Vector2)
+- uid: GameFramework.Components.CameraController.SetLookInput*
+  name: SetLookInput
+  href: api/api/GameFramework.Components.CameraController.html#GameFramework_Components_CameraController_SetLookInput_
+  commentId: Overload:GameFramework.Components.CameraController.SetLookInput
+  isSpec: "True"
+  fullName: GameFramework.Components.CameraController.SetLookInput
+  nameWithType: CameraController.SetLookInput
+- uid: GameFramework.Components.CameraController.SetPlayerTransform(Transform)
+  name: SetPlayerTransform(Transform)
+  href: api/api/GameFramework.Components.CameraController.html#GameFramework_Components_CameraController_SetPlayerTransform_Transform_
+  commentId: M:GameFramework.Components.CameraController.SetPlayerTransform(Transform)
+  fullName: GameFramework.Components.CameraController.SetPlayerTransform(Transform)
+  nameWithType: CameraController.SetPlayerTransform(Transform)
+- uid: GameFramework.Components.CameraController.SetPlayerTransform*
+  name: SetPlayerTransform
+  href: api/api/GameFramework.Components.CameraController.html#GameFramework_Components_CameraController_SetPlayerTransform_
+  commentId: Overload:GameFramework.Components.CameraController.SetPlayerTransform
+  isSpec: "True"
+  fullName: GameFramework.Components.CameraController.SetPlayerTransform
+  nameWithType: CameraController.SetPlayerTransform
+- uid: GameFramework.Components.CameraController.ToggleCursorLock
+  name: ToggleCursorLock()
+  href: api/api/GameFramework.Components.CameraController.html#GameFramework_Components_CameraController_ToggleCursorLock
+  commentId: M:GameFramework.Components.CameraController.ToggleCursorLock
+  fullName: GameFramework.Components.CameraController.ToggleCursorLock()
+  nameWithType: CameraController.ToggleCursorLock()
+- uid: GameFramework.Components.CameraController.ToggleCursorLock*
+  name: ToggleCursorLock
+  href: api/api/GameFramework.Components.CameraController.html#GameFramework_Components_CameraController_ToggleCursorLock_
+  commentId: Overload:GameFramework.Components.CameraController.ToggleCursorLock
+  isSpec: "True"
+  fullName: GameFramework.Components.CameraController.ToggleCursorLock
+  nameWithType: CameraController.ToggleCursorLock
+- uid: GameFramework.Components.CameraController.VerticalRotation
+  name: VerticalRotation
+  href: api/api/GameFramework.Components.CameraController.html#GameFramework_Components_CameraController_VerticalRotation
+  commentId: P:GameFramework.Components.CameraController.VerticalRotation
+  fullName: GameFramework.Components.CameraController.VerticalRotation
+  nameWithType: CameraController.VerticalRotation
+- uid: GameFramework.Components.CameraController.VerticalRotation*
+  name: VerticalRotation
+  href: api/api/GameFramework.Components.CameraController.html#GameFramework_Components_CameraController_VerticalRotation_
+  commentId: Overload:GameFramework.Components.CameraController.VerticalRotation
+  isSpec: "True"
+  fullName: GameFramework.Components.CameraController.VerticalRotation
+  nameWithType: CameraController.VerticalRotation
 - uid: GameFramework.Components.ClickToInstantiate
   name: ClickToInstantiate
   href: api/api/GameFramework.Components.ClickToInstantiate.html
@@ -781,6 +949,32 @@ references:
   commentId: T:GameFramework.Components.PlayerController
   fullName: GameFramework.Components.PlayerController
   nameWithType: PlayerController
+- uid: GameFramework.Components.PlayerController.Attack
+  name: Attack()
+  href: api/api/GameFramework.Components.PlayerController.html#GameFramework_Components_PlayerController_Attack
+  commentId: M:GameFramework.Components.PlayerController.Attack
+  fullName: GameFramework.Components.PlayerController.Attack()
+  nameWithType: PlayerController.Attack()
+- uid: GameFramework.Components.PlayerController.Attack*
+  name: Attack
+  href: api/api/GameFramework.Components.PlayerController.html#GameFramework_Components_PlayerController_Attack_
+  commentId: Overload:GameFramework.Components.PlayerController.Attack
+  isSpec: "True"
+  fullName: GameFramework.Components.PlayerController.Attack
+  nameWithType: PlayerController.Attack
+- uid: GameFramework.Components.PlayerController.CurrentItemIndex
+  name: CurrentItemIndex
+  href: api/api/GameFramework.Components.PlayerController.html#GameFramework_Components_PlayerController_CurrentItemIndex
+  commentId: P:GameFramework.Components.PlayerController.CurrentItemIndex
+  fullName: GameFramework.Components.PlayerController.CurrentItemIndex
+  nameWithType: PlayerController.CurrentItemIndex
+- uid: GameFramework.Components.PlayerController.CurrentItemIndex*
+  name: CurrentItemIndex
+  href: api/api/GameFramework.Components.PlayerController.html#GameFramework_Components_PlayerController_CurrentItemIndex_
+  commentId: Overload:GameFramework.Components.PlayerController.CurrentItemIndex
+  isSpec: "True"
+  fullName: GameFramework.Components.PlayerController.CurrentItemIndex
+  nameWithType: PlayerController.CurrentItemIndex
 - uid: GameFramework.Components.PlayerController.CurrentVelocity
   name: CurrentVelocity
   href: api/api/GameFramework.Components.PlayerController.html#GameFramework_Components_PlayerController_CurrentVelocity
@@ -794,6 +988,19 @@ references:
   isSpec: "True"
   fullName: GameFramework.Components.PlayerController.CurrentVelocity
   nameWithType: PlayerController.CurrentVelocity
+- uid: GameFramework.Components.PlayerController.EffectiveMoveSpeed
+  name: EffectiveMoveSpeed
+  href: api/api/GameFramework.Components.PlayerController.html#GameFramework_Components_PlayerController_EffectiveMoveSpeed
+  commentId: P:GameFramework.Components.PlayerController.EffectiveMoveSpeed
+  fullName: GameFramework.Components.PlayerController.EffectiveMoveSpeed
+  nameWithType: PlayerController.EffectiveMoveSpeed
+- uid: GameFramework.Components.PlayerController.EffectiveMoveSpeed*
+  name: EffectiveMoveSpeed
+  href: api/api/GameFramework.Components.PlayerController.html#GameFramework_Components_PlayerController_EffectiveMoveSpeed_
+  commentId: Overload:GameFramework.Components.PlayerController.EffectiveMoveSpeed
+  isSpec: "True"
+  fullName: GameFramework.Components.PlayerController.EffectiveMoveSpeed
+  nameWithType: PlayerController.EffectiveMoveSpeed
 - uid: GameFramework.Components.PlayerController.GetMovementDirection
   name: GetMovementDirection()
   href: api/api/GameFramework.Components.PlayerController.html#GameFramework_Components_PlayerController_GetMovementDirection
@@ -820,6 +1027,32 @@ references:
   isSpec: "True"
   fullName: GameFramework.Components.PlayerController.InputVector
   nameWithType: PlayerController.InputVector
+- uid: GameFramework.Components.PlayerController.Interact
+  name: Interact()
+  href: api/api/GameFramework.Components.PlayerController.html#GameFramework_Components_PlayerController_Interact
+  commentId: M:GameFramework.Components.PlayerController.Interact
+  fullName: GameFramework.Components.PlayerController.Interact()
+  nameWithType: PlayerController.Interact()
+- uid: GameFramework.Components.PlayerController.Interact*
+  name: Interact
+  href: api/api/GameFramework.Components.PlayerController.html#GameFramework_Components_PlayerController_Interact_
+  commentId: Overload:GameFramework.Components.PlayerController.Interact
+  isSpec: "True"
+  fullName: GameFramework.Components.PlayerController.Interact
+  nameWithType: PlayerController.Interact
+- uid: GameFramework.Components.PlayerController.IsCrouching
+  name: IsCrouching
+  href: api/api/GameFramework.Components.PlayerController.html#GameFramework_Components_PlayerController_IsCrouching
+  commentId: P:GameFramework.Components.PlayerController.IsCrouching
+  fullName: GameFramework.Components.PlayerController.IsCrouching
+  nameWithType: PlayerController.IsCrouching
+- uid: GameFramework.Components.PlayerController.IsCrouching*
+  name: IsCrouching
+  href: api/api/GameFramework.Components.PlayerController.html#GameFramework_Components_PlayerController_IsCrouching_
+  commentId: Overload:GameFramework.Components.PlayerController.IsCrouching
+  isSpec: "True"
+  fullName: GameFramework.Components.PlayerController.IsCrouching
+  nameWithType: PlayerController.IsCrouching
 - uid: GameFramework.Components.PlayerController.IsGrounded
   name: IsGrounded
   href: api/api/GameFramework.Components.PlayerController.html#GameFramework_Components_PlayerController_IsGrounded
@@ -846,6 +1079,45 @@ references:
   isSpec: "True"
   fullName: GameFramework.Components.PlayerController.IsMoving
   nameWithType: PlayerController.IsMoving
+- uid: GameFramework.Components.PlayerController.IsPaused
+  name: IsPaused
+  href: api/api/GameFramework.Components.PlayerController.html#GameFramework_Components_PlayerController_IsPaused
+  commentId: P:GameFramework.Components.PlayerController.IsPaused
+  fullName: GameFramework.Components.PlayerController.IsPaused
+  nameWithType: PlayerController.IsPaused
+- uid: GameFramework.Components.PlayerController.IsPaused*
+  name: IsPaused
+  href: api/api/GameFramework.Components.PlayerController.html#GameFramework_Components_PlayerController_IsPaused_
+  commentId: Overload:GameFramework.Components.PlayerController.IsPaused
+  isSpec: "True"
+  fullName: GameFramework.Components.PlayerController.IsPaused
+  nameWithType: PlayerController.IsPaused
+- uid: GameFramework.Components.PlayerController.IsSprinting
+  name: IsSprinting
+  href: api/api/GameFramework.Components.PlayerController.html#GameFramework_Components_PlayerController_IsSprinting
+  commentId: P:GameFramework.Components.PlayerController.IsSprinting
+  fullName: GameFramework.Components.PlayerController.IsSprinting
+  nameWithType: PlayerController.IsSprinting
+- uid: GameFramework.Components.PlayerController.IsSprinting*
+  name: IsSprinting
+  href: api/api/GameFramework.Components.PlayerController.html#GameFramework_Components_PlayerController_IsSprinting_
+  commentId: Overload:GameFramework.Components.PlayerController.IsSprinting
+  isSpec: "True"
+  fullName: GameFramework.Components.PlayerController.IsSprinting
+  nameWithType: PlayerController.IsSprinting
+- uid: GameFramework.Components.PlayerController.Jump
+  name: Jump()
+  href: api/api/GameFramework.Components.PlayerController.html#GameFramework_Components_PlayerController_Jump
+  commentId: M:GameFramework.Components.PlayerController.Jump
+  fullName: GameFramework.Components.PlayerController.Jump()
+  nameWithType: PlayerController.Jump()
+- uid: GameFramework.Components.PlayerController.Jump*
+  name: Jump
+  href: api/api/GameFramework.Components.PlayerController.html#GameFramework_Components_PlayerController_Jump_
+  commentId: Overload:GameFramework.Components.PlayerController.Jump
+  isSpec: "True"
+  fullName: GameFramework.Components.PlayerController.Jump
+  nameWithType: PlayerController.Jump
 - uid: GameFramework.Components.PlayerController.MoveSpeed
   name: MoveSpeed
   href: api/api/GameFramework.Components.PlayerController.html#GameFramework_Components_PlayerController_MoveSpeed
@@ -859,6 +1131,38 @@ references:
   isSpec: "True"
   fullName: GameFramework.Components.PlayerController.MoveSpeed
   nameWithType: PlayerController.MoveSpeed
+- uid: GameFramework.Components.PlayerController.SetCrouching(System.Boolean)
+  name: SetCrouching(bool)
+  href: api/api/GameFramework.Components.PlayerController.html#GameFramework_Components_PlayerController_SetCrouching_System_Boolean_
+  commentId: M:GameFramework.Components.PlayerController.SetCrouching(System.Boolean)
+  name.vb: SetCrouching(Boolean)
+  fullName: GameFramework.Components.PlayerController.SetCrouching(bool)
+  fullName.vb: GameFramework.Components.PlayerController.SetCrouching(Boolean)
+  nameWithType: PlayerController.SetCrouching(bool)
+  nameWithType.vb: PlayerController.SetCrouching(Boolean)
+- uid: GameFramework.Components.PlayerController.SetCrouching*
+  name: SetCrouching
+  href: api/api/GameFramework.Components.PlayerController.html#GameFramework_Components_PlayerController_SetCrouching_
+  commentId: Overload:GameFramework.Components.PlayerController.SetCrouching
+  isSpec: "True"
+  fullName: GameFramework.Components.PlayerController.SetCrouching
+  nameWithType: PlayerController.SetCrouching
+- uid: GameFramework.Components.PlayerController.SetItemIndex(System.Int32)
+  name: SetItemIndex(int)
+  href: api/api/GameFramework.Components.PlayerController.html#GameFramework_Components_PlayerController_SetItemIndex_System_Int32_
+  commentId: M:GameFramework.Components.PlayerController.SetItemIndex(System.Int32)
+  name.vb: SetItemIndex(Integer)
+  fullName: GameFramework.Components.PlayerController.SetItemIndex(int)
+  fullName.vb: GameFramework.Components.PlayerController.SetItemIndex(Integer)
+  nameWithType: PlayerController.SetItemIndex(int)
+  nameWithType.vb: PlayerController.SetItemIndex(Integer)
+- uid: GameFramework.Components.PlayerController.SetItemIndex*
+  name: SetItemIndex
+  href: api/api/GameFramework.Components.PlayerController.html#GameFramework_Components_PlayerController_SetItemIndex_
+  commentId: Overload:GameFramework.Components.PlayerController.SetItemIndex
+  isSpec: "True"
+  fullName: GameFramework.Components.PlayerController.SetItemIndex
+  nameWithType: PlayerController.SetItemIndex
 - uid: GameFramework.Components.PlayerController.SetMovementInput(Vector2)
   name: SetMovementInput(Vector2)
   href: api/api/GameFramework.Components.PlayerController.html#GameFramework_Components_PlayerController_SetMovementInput_Vector2_
@@ -872,6 +1176,22 @@ references:
   isSpec: "True"
   fullName: GameFramework.Components.PlayerController.SetMovementInput
   nameWithType: PlayerController.SetMovementInput
+- uid: GameFramework.Components.PlayerController.SetSprinting(System.Boolean)
+  name: SetSprinting(bool)
+  href: api/api/GameFramework.Components.PlayerController.html#GameFramework_Components_PlayerController_SetSprinting_System_Boolean_
+  commentId: M:GameFramework.Components.PlayerController.SetSprinting(System.Boolean)
+  name.vb: SetSprinting(Boolean)
+  fullName: GameFramework.Components.PlayerController.SetSprinting(bool)
+  fullName.vb: GameFramework.Components.PlayerController.SetSprinting(Boolean)
+  nameWithType: PlayerController.SetSprinting(bool)
+  nameWithType.vb: PlayerController.SetSprinting(Boolean)
+- uid: GameFramework.Components.PlayerController.SetSprinting*
+  name: SetSprinting
+  href: api/api/GameFramework.Components.PlayerController.html#GameFramework_Components_PlayerController_SetSprinting_
+  commentId: Overload:GameFramework.Components.PlayerController.SetSprinting
+  isSpec: "True"
+  fullName: GameFramework.Components.PlayerController.SetSprinting
+  nameWithType: PlayerController.SetSprinting
 - uid: GameFramework.Components.PlayerController.StopMovement
   name: StopMovement()
   href: api/api/GameFramework.Components.PlayerController.html#GameFramework_Components_PlayerController_StopMovement
@@ -10817,6 +11137,57 @@ references:
   isSpec: "True"
   fullName: GameFramework.GameData.Events.GameSessionDataChangedEvent.GameSessionData
   nameWithType: GameSessionDataChangedEvent.GameSessionData
+- uid: GameFramework.GameData.Events.MainCameraChangedEvent
+  name: MainCameraChangedEvent
+  href: api/api/GameFramework.GameData.Events.MainCameraChangedEvent.html
+  commentId: T:GameFramework.GameData.Events.MainCameraChangedEvent
+  fullName: GameFramework.GameData.Events.MainCameraChangedEvent
+  nameWithType: MainCameraChangedEvent
+- uid: GameFramework.GameData.Events.MainCameraChangedEvent.#ctor(Camera,Camera)
+  name: MainCameraChangedEvent(Camera, Camera)
+  href: api/api/GameFramework.GameData.Events.MainCameraChangedEvent.html#GameFramework_GameData_Events_MainCameraChangedEvent__ctor_Camera_Camera_
+  commentId: M:GameFramework.GameData.Events.MainCameraChangedEvent.#ctor(Camera,Camera)
+  name.vb: New(Camera, Camera)
+  fullName: GameFramework.GameData.Events.MainCameraChangedEvent.MainCameraChangedEvent(Camera, Camera)
+  fullName.vb: GameFramework.GameData.Events.MainCameraChangedEvent.New(Camera, Camera)
+  nameWithType: MainCameraChangedEvent.MainCameraChangedEvent(Camera, Camera)
+  nameWithType.vb: MainCameraChangedEvent.New(Camera, Camera)
+- uid: GameFramework.GameData.Events.MainCameraChangedEvent.#ctor*
+  name: MainCameraChangedEvent
+  href: api/api/GameFramework.GameData.Events.MainCameraChangedEvent.html#GameFramework_GameData_Events_MainCameraChangedEvent__ctor_
+  commentId: Overload:GameFramework.GameData.Events.MainCameraChangedEvent.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: GameFramework.GameData.Events.MainCameraChangedEvent.MainCameraChangedEvent
+  fullName.vb: GameFramework.GameData.Events.MainCameraChangedEvent.New
+  nameWithType: MainCameraChangedEvent.MainCameraChangedEvent
+  nameWithType.vb: MainCameraChangedEvent.New
+- uid: GameFramework.GameData.Events.MainCameraChangedEvent.NewCamera
+  name: NewCamera
+  href: api/api/GameFramework.GameData.Events.MainCameraChangedEvent.html#GameFramework_GameData_Events_MainCameraChangedEvent_NewCamera
+  commentId: P:GameFramework.GameData.Events.MainCameraChangedEvent.NewCamera
+  fullName: GameFramework.GameData.Events.MainCameraChangedEvent.NewCamera
+  nameWithType: MainCameraChangedEvent.NewCamera
+- uid: GameFramework.GameData.Events.MainCameraChangedEvent.NewCamera*
+  name: NewCamera
+  href: api/api/GameFramework.GameData.Events.MainCameraChangedEvent.html#GameFramework_GameData_Events_MainCameraChangedEvent_NewCamera_
+  commentId: Overload:GameFramework.GameData.Events.MainCameraChangedEvent.NewCamera
+  isSpec: "True"
+  fullName: GameFramework.GameData.Events.MainCameraChangedEvent.NewCamera
+  nameWithType: MainCameraChangedEvent.NewCamera
+- uid: GameFramework.GameData.Events.MainCameraChangedEvent.PreviousCamera
+  name: PreviousCamera
+  href: api/api/GameFramework.GameData.Events.MainCameraChangedEvent.html#GameFramework_GameData_Events_MainCameraChangedEvent_PreviousCamera
+  commentId: P:GameFramework.GameData.Events.MainCameraChangedEvent.PreviousCamera
+  fullName: GameFramework.GameData.Events.MainCameraChangedEvent.PreviousCamera
+  nameWithType: MainCameraChangedEvent.PreviousCamera
+- uid: GameFramework.GameData.Events.MainCameraChangedEvent.PreviousCamera*
+  name: PreviousCamera
+  href: api/api/GameFramework.GameData.Events.MainCameraChangedEvent.html#GameFramework_GameData_Events_MainCameraChangedEvent_PreviousCamera_
+  commentId: Overload:GameFramework.GameData.Events.MainCameraChangedEvent.PreviousCamera
+  isSpec: "True"
+  fullName: GameFramework.GameData.Events.MainCameraChangedEvent.PreviousCamera
+  nameWithType: MainCameraChangedEvent.PreviousCamera
 - uid: GameFramework.GameData.Events.NewGameStartedEvent
   name: NewGameStartedEvent
   href: api/api/GameFramework.GameData.Events.NewGameStartedEvent.html
@@ -14915,6 +15286,19 @@ references:
   isSpec: "True"
   fullName: GameFramework.Services.GameDataService.ClearPendingPlayerData
   nameWithType: GameDataService.ClearPendingPlayerData
+- uid: GameFramework.Services.GameDataService.DetectMainCamera
+  name: DetectMainCamera()
+  href: api/api/GameFramework.Services.GameDataService.html#GameFramework_Services_GameDataService_DetectMainCamera
+  commentId: M:GameFramework.Services.GameDataService.DetectMainCamera
+  fullName: GameFramework.Services.GameDataService.DetectMainCamera()
+  nameWithType: GameDataService.DetectMainCamera()
+- uid: GameFramework.Services.GameDataService.DetectMainCamera*
+  name: DetectMainCamera
+  href: api/api/GameFramework.Services.GameDataService.html#GameFramework_Services_GameDataService_DetectMainCamera_
+  commentId: Overload:GameFramework.Services.GameDataService.DetectMainCamera
+  isSpec: "True"
+  fullName: GameFramework.Services.GameDataService.DetectMainCamera
+  nameWithType: GameDataService.DetectMainCamera
 - uid: GameFramework.Services.GameDataService.ForceDeregisterPlayerData(GameFramework.Components.PlayerData)
   name: ForceDeregisterPlayerData(PlayerData)
   href: api/api/GameFramework.Services.GameDataService.html#GameFramework_Services_GameDataService_ForceDeregisterPlayerData_GameFramework_Components_PlayerData_
@@ -14941,6 +15325,19 @@ references:
   isSpec: "True"
   fullName: GameFramework.Services.GameDataService.GetGameSessionData
   nameWithType: GameDataService.GetGameSessionData
+- uid: GameFramework.Services.GameDataService.GetMainCamera
+  name: GetMainCamera()
+  href: api/api/GameFramework.Services.GameDataService.html#GameFramework_Services_GameDataService_GetMainCamera
+  commentId: M:GameFramework.Services.GameDataService.GetMainCamera
+  fullName: GameFramework.Services.GameDataService.GetMainCamera()
+  nameWithType: GameDataService.GetMainCamera()
+- uid: GameFramework.Services.GameDataService.GetMainCamera*
+  name: GetMainCamera
+  href: api/api/GameFramework.Services.GameDataService.html#GameFramework_Services_GameDataService_GetMainCamera_
+  commentId: Overload:GameFramework.Services.GameDataService.GetMainCamera
+  isSpec: "True"
+  fullName: GameFramework.Services.GameDataService.GetMainCamera
+  nameWithType: GameDataService.GetMainCamera
 - uid: GameFramework.Services.GameDataService.GetPendingPlayerSaveData
   name: GetPendingPlayerSaveData()
   href: api/api/GameFramework.Services.GameDataService.html#GameFramework_Services_GameDataService_GetPendingPlayerSaveData
@@ -14980,6 +15377,19 @@ references:
   isSpec: "True"
   fullName: GameFramework.Services.GameDataService.HasActiveSession
   nameWithType: GameDataService.HasActiveSession
+- uid: GameFramework.Services.GameDataService.HasMainCamera
+  name: HasMainCamera()
+  href: api/api/GameFramework.Services.GameDataService.html#GameFramework_Services_GameDataService_HasMainCamera
+  commentId: M:GameFramework.Services.GameDataService.HasMainCamera
+  fullName: GameFramework.Services.GameDataService.HasMainCamera()
+  nameWithType: GameDataService.HasMainCamera()
+- uid: GameFramework.Services.GameDataService.HasMainCamera*
+  name: HasMainCamera
+  href: api/api/GameFramework.Services.GameDataService.html#GameFramework_Services_GameDataService_HasMainCamera_
+  commentId: Overload:GameFramework.Services.GameDataService.HasMainCamera
+  isSpec: "True"
+  fullName: GameFramework.Services.GameDataService.HasMainCamera
+  nameWithType: GameDataService.HasMainCamera
 - uid: GameFramework.Services.GameDataService.InitializeAsync
   name: InitializeAsync()
   href: api/api/GameFramework.Services.GameDataService.html#GameFramework_Services_GameDataService_InitializeAsync
@@ -15032,6 +15442,19 @@ references:
   isSpec: "True"
   fullName: GameFramework.Services.GameDataService.SetGameSessionData
   nameWithType: GameDataService.SetGameSessionData
+- uid: GameFramework.Services.GameDataService.SetMainCamera(Camera)
+  name: SetMainCamera(Camera)
+  href: api/api/GameFramework.Services.GameDataService.html#GameFramework_Services_GameDataService_SetMainCamera_Camera_
+  commentId: M:GameFramework.Services.GameDataService.SetMainCamera(Camera)
+  fullName: GameFramework.Services.GameDataService.SetMainCamera(Camera)
+  nameWithType: GameDataService.SetMainCamera(Camera)
+- uid: GameFramework.Services.GameDataService.SetMainCamera*
+  name: SetMainCamera
+  href: api/api/GameFramework.Services.GameDataService.html#GameFramework_Services_GameDataService_SetMainCamera_
+  commentId: Overload:GameFramework.Services.GameDataService.SetMainCamera
+  isSpec: "True"
+  fullName: GameFramework.Services.GameDataService.SetMainCamera
+  nameWithType: GameDataService.SetMainCamera
 - uid: GameFramework.Services.GameDataService.SetPlayerData(GameFramework.Components.PlayerData)
   name: SetPlayerData(PlayerData)
   href: api/api/GameFramework.Services.GameDataService.html#GameFramework_Services_GameDataService_SetPlayerData_GameFramework_Components_PlayerData_
@@ -15472,6 +15895,19 @@ references:
   isSpec: "True"
   fullName: GameFramework.Services.Interfaces.IGameDataService.ClearPendingPlayerData
   nameWithType: IGameDataService.ClearPendingPlayerData
+- uid: GameFramework.Services.Interfaces.IGameDataService.DetectMainCamera
+  name: DetectMainCamera()
+  href: api/api/GameFramework.Services.Interfaces.IGameDataService.html#GameFramework_Services_Interfaces_IGameDataService_DetectMainCamera
+  commentId: M:GameFramework.Services.Interfaces.IGameDataService.DetectMainCamera
+  fullName: GameFramework.Services.Interfaces.IGameDataService.DetectMainCamera()
+  nameWithType: IGameDataService.DetectMainCamera()
+- uid: GameFramework.Services.Interfaces.IGameDataService.DetectMainCamera*
+  name: DetectMainCamera
+  href: api/api/GameFramework.Services.Interfaces.IGameDataService.html#GameFramework_Services_Interfaces_IGameDataService_DetectMainCamera_
+  commentId: Overload:GameFramework.Services.Interfaces.IGameDataService.DetectMainCamera
+  isSpec: "True"
+  fullName: GameFramework.Services.Interfaces.IGameDataService.DetectMainCamera
+  nameWithType: IGameDataService.DetectMainCamera
 - uid: GameFramework.Services.Interfaces.IGameDataService.ForceDeregisterPlayerData(GameFramework.Components.PlayerData)
   name: ForceDeregisterPlayerData(PlayerData)
   href: api/api/GameFramework.Services.Interfaces.IGameDataService.html#GameFramework_Services_Interfaces_IGameDataService_ForceDeregisterPlayerData_GameFramework_Components_PlayerData_
@@ -15498,6 +15934,19 @@ references:
   isSpec: "True"
   fullName: GameFramework.Services.Interfaces.IGameDataService.GetGameSessionData
   nameWithType: IGameDataService.GetGameSessionData
+- uid: GameFramework.Services.Interfaces.IGameDataService.GetMainCamera
+  name: GetMainCamera()
+  href: api/api/GameFramework.Services.Interfaces.IGameDataService.html#GameFramework_Services_Interfaces_IGameDataService_GetMainCamera
+  commentId: M:GameFramework.Services.Interfaces.IGameDataService.GetMainCamera
+  fullName: GameFramework.Services.Interfaces.IGameDataService.GetMainCamera()
+  nameWithType: IGameDataService.GetMainCamera()
+- uid: GameFramework.Services.Interfaces.IGameDataService.GetMainCamera*
+  name: GetMainCamera
+  href: api/api/GameFramework.Services.Interfaces.IGameDataService.html#GameFramework_Services_Interfaces_IGameDataService_GetMainCamera_
+  commentId: Overload:GameFramework.Services.Interfaces.IGameDataService.GetMainCamera
+  isSpec: "True"
+  fullName: GameFramework.Services.Interfaces.IGameDataService.GetMainCamera
+  nameWithType: IGameDataService.GetMainCamera
 - uid: GameFramework.Services.Interfaces.IGameDataService.GetPendingPlayerSaveData
   name: GetPendingPlayerSaveData()
   href: api/api/GameFramework.Services.Interfaces.IGameDataService.html#GameFramework_Services_Interfaces_IGameDataService_GetPendingPlayerSaveData
@@ -15537,6 +15986,19 @@ references:
   isSpec: "True"
   fullName: GameFramework.Services.Interfaces.IGameDataService.HasActiveSession
   nameWithType: IGameDataService.HasActiveSession
+- uid: GameFramework.Services.Interfaces.IGameDataService.HasMainCamera
+  name: HasMainCamera()
+  href: api/api/GameFramework.Services.Interfaces.IGameDataService.html#GameFramework_Services_Interfaces_IGameDataService_HasMainCamera
+  commentId: M:GameFramework.Services.Interfaces.IGameDataService.HasMainCamera
+  fullName: GameFramework.Services.Interfaces.IGameDataService.HasMainCamera()
+  nameWithType: IGameDataService.HasMainCamera()
+- uid: GameFramework.Services.Interfaces.IGameDataService.HasMainCamera*
+  name: HasMainCamera
+  href: api/api/GameFramework.Services.Interfaces.IGameDataService.html#GameFramework_Services_Interfaces_IGameDataService_HasMainCamera_
+  commentId: Overload:GameFramework.Services.Interfaces.IGameDataService.HasMainCamera
+  isSpec: "True"
+  fullName: GameFramework.Services.Interfaces.IGameDataService.HasMainCamera
+  nameWithType: IGameDataService.HasMainCamera
 - uid: GameFramework.Services.Interfaces.IGameDataService.LoadGameData(GameFramework.DataStructures.GameSessionData,GameFramework.SaveSystem.Data.PlayerSaveData)
   name: LoadGameData(GameSessionData, PlayerSaveData)
   href: api/api/GameFramework.Services.Interfaces.IGameDataService.html#GameFramework_Services_Interfaces_IGameDataService_LoadGameData_GameFramework_DataStructures_GameSessionData_GameFramework_SaveSystem_Data_PlayerSaveData_
@@ -15550,6 +16012,19 @@ references:
   isSpec: "True"
   fullName: GameFramework.Services.Interfaces.IGameDataService.LoadGameData
   nameWithType: IGameDataService.LoadGameData
+- uid: GameFramework.Services.Interfaces.IGameDataService.SetMainCamera(Camera)
+  name: SetMainCamera(Camera)
+  href: api/api/GameFramework.Services.Interfaces.IGameDataService.html#GameFramework_Services_Interfaces_IGameDataService_SetMainCamera_Camera_
+  commentId: M:GameFramework.Services.Interfaces.IGameDataService.SetMainCamera(Camera)
+  fullName: GameFramework.Services.Interfaces.IGameDataService.SetMainCamera(Camera)
+  nameWithType: IGameDataService.SetMainCamera(Camera)
+- uid: GameFramework.Services.Interfaces.IGameDataService.SetMainCamera*
+  name: SetMainCamera
+  href: api/api/GameFramework.Services.Interfaces.IGameDataService.html#GameFramework_Services_Interfaces_IGameDataService_SetMainCamera_
+  commentId: Overload:GameFramework.Services.Interfaces.IGameDataService.SetMainCamera
+  isSpec: "True"
+  fullName: GameFramework.Services.Interfaces.IGameDataService.SetMainCamera
+  nameWithType: IGameDataService.SetMainCamera
 - uid: GameFramework.Services.Interfaces.IGameDataService.SetPlayerData(GameFramework.Components.PlayerData)
   name: SetPlayerData(PlayerData)
   href: api/api/GameFramework.Services.Interfaces.IGameDataService.html#GameFramework_Services_Interfaces_IGameDataService_SetPlayerData_GameFramework_Components_PlayerData_

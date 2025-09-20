@@ -197,6 +197,30 @@ Uses EventSystem for change notifications and automatic save system registration
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void ClearPendingPlayerData()</code></pre>
   </div>
+  <a id="GameFramework_Services_GameDataService_DetectMainCamera_" data-uid="GameFramework.Services.GameDataService.DetectMainCamera*"></a>
+  <h4 id="GameFramework_Services_GameDataService_DetectMainCamera" data-uid="GameFramework.Services.GameDataService.DetectMainCamera">DetectMainCamera()</h4>
+  <div class="markdown level1 summary"><p>Detects and stores the main camera from the current scene</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool DetectMainCamera()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <a id="GameFramework_Services_GameDataService_ForceDeregisterPlayerData_" data-uid="GameFramework.Services.GameDataService.ForceDeregisterPlayerData*"></a>
   <h4 id="GameFramework_Services_GameDataService_ForceDeregisterPlayerData_GameFramework_Components_PlayerData_" data-uid="GameFramework.Services.GameDataService.ForceDeregisterPlayerData(GameFramework.Components.PlayerData)">ForceDeregisterPlayerData(PlayerData)</h4>
   <div class="markdown level1 summary"><p>Forces deregistration of a specific PlayerData from the save system
@@ -244,6 +268,30 @@ Used when destroying player objects to prevent duplicate registrations</p>
     <tbody>
       <tr>
         <td><a class="xref" href="GameFramework.DataStructures.GameSessionData.html">GameSessionData</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Services_GameDataService_GetMainCamera_" data-uid="GameFramework.Services.GameDataService.GetMainCamera*"></a>
+  <h4 id="GameFramework_Services_GameDataService_GetMainCamera" data-uid="GameFramework.Services.GameDataService.GetMainCamera">GetMainCamera()</h4>
+  <div class="markdown level1 summary"><p>Gets the main camera reference (read-only access)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Camera GetMainCamera()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Camera</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -303,6 +351,30 @@ Used when destroying player objects to prevent duplicate registrations</p>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public bool HasActiveSession()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Services_GameDataService_HasMainCamera_" data-uid="GameFramework.Services.GameDataService.HasMainCamera*"></a>
+  <h4 id="GameFramework_Services_GameDataService_HasMainCamera" data-uid="GameFramework.Services.GameDataService.HasMainCamera">HasMainCamera()</h4>
+  <div class="markdown level1 summary"><p>Checks if a main camera reference is available</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasMainCamera()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-condensed">
@@ -395,6 +467,32 @@ Used when destroying player objects to prevent duplicate registrations</p>
       <tr>
         <td><a class="xref" href="GameFramework.DataStructures.GameSessionData.html">GameSessionData</a></td>
         <td><span class="parametername">gameSessionData</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Services_GameDataService_SetMainCamera_" data-uid="GameFramework.Services.GameDataService.SetMainCamera*"></a>
+  <h4 id="GameFramework_Services_GameDataService_SetMainCamera_Camera_" data-uid="GameFramework.Services.GameDataService.SetMainCamera(Camera)">SetMainCamera(Camera)</h4>
+  <div class="markdown level1 summary"><p>Sets the main camera reference (typically called during scene initialization)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetMainCamera(Camera camera)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Camera</span></td>
+        <td><span class="parametername">camera</span></td>
         <td></td>
       </tr>
     </tbody>

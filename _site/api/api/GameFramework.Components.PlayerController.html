@@ -84,7 +84,9 @@
 
 
   <h1 id="GameFramework_Components_PlayerController" data-uid="GameFramework.Components.PlayerController" class="text-break">Class PlayerController</h1>
-  <div class="markdown level0 summary"><p>Simple PlayerController that handles WASD movement on X and Z axes using Rigidbody physics.
+  <div class="markdown level0 summary"><p>Comprehensive PlayerController that handles WASD movement, jumping, sprinting, crouching,
+attacking, and interaction using Rigidbody physics. Focuses purely on player movement mechanics.
+Camera/look functionality is handled by a separate CameraController component.
 Integrates with the game's event-driven input system.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
@@ -101,6 +103,29 @@ Integrates with the game's event-driven input system.</p>
   </div>
   <h3 id="properties">Properties
 </h3>
+  <a id="GameFramework_Components_PlayerController_CurrentItemIndex_" data-uid="GameFramework.Components.PlayerController.CurrentItemIndex*"></a>
+  <h4 id="GameFramework_Components_PlayerController_CurrentItemIndex" data-uid="GameFramework.Components.PlayerController.CurrentItemIndex">CurrentItemIndex</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int CurrentItemIndex { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <a id="GameFramework_Components_PlayerController_CurrentVelocity_" data-uid="GameFramework.Components.PlayerController.CurrentVelocity*"></a>
   <h4 id="GameFramework_Components_PlayerController_CurrentVelocity" data-uid="GameFramework.Components.PlayerController.CurrentVelocity">CurrentVelocity</h4>
   <div class="markdown level1 summary"></div>
@@ -124,6 +149,30 @@ Integrates with the game's event-driven input system.</p>
       </tr>
     </tbody>
   </table>
+  <a id="GameFramework_Components_PlayerController_EffectiveMoveSpeed_" data-uid="GameFramework.Components.PlayerController.EffectiveMoveSpeed*"></a>
+  <h4 id="GameFramework_Components_PlayerController_EffectiveMoveSpeed" data-uid="GameFramework.Components.PlayerController.EffectiveMoveSpeed">EffectiveMoveSpeed</h4>
+  <div class="markdown level1 summary"><p>Get the effective move speed based on current modifiers</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float EffectiveMoveSpeed { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <a id="GameFramework_Components_PlayerController_InputVector_" data-uid="GameFramework.Components.PlayerController.InputVector*"></a>
   <h4 id="GameFramework_Components_PlayerController_InputVector" data-uid="GameFramework.Components.PlayerController.InputVector">InputVector</h4>
   <div class="markdown level1 summary"></div>
@@ -143,6 +192,29 @@ Integrates with the game's event-driven input system.</p>
     <tbody>
       <tr>
         <td><span class="xref">Vector2</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Components_PlayerController_IsCrouching_" data-uid="GameFramework.Components.PlayerController.IsCrouching*"></a>
+  <h4 id="GameFramework_Components_PlayerController_IsCrouching" data-uid="GameFramework.Components.PlayerController.IsCrouching">IsCrouching</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsCrouching { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -193,6 +265,52 @@ Integrates with the game's event-driven input system.</p>
       </tr>
     </tbody>
   </table>
+  <a id="GameFramework_Components_PlayerController_IsPaused_" data-uid="GameFramework.Components.PlayerController.IsPaused*"></a>
+  <h4 id="GameFramework_Components_PlayerController_IsPaused" data-uid="GameFramework.Components.PlayerController.IsPaused">IsPaused</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsPaused { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Components_PlayerController_IsSprinting_" data-uid="GameFramework.Components.PlayerController.IsSprinting*"></a>
+  <h4 id="GameFramework_Components_PlayerController_IsSprinting" data-uid="GameFramework.Components.PlayerController.IsSprinting">IsSprinting</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsSprinting { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <a id="GameFramework_Components_PlayerController_MoveSpeed_" data-uid="GameFramework.Components.PlayerController.MoveSpeed*"></a>
   <h4 id="GameFramework_Components_PlayerController_MoveSpeed" data-uid="GameFramework.Components.PlayerController.MoveSpeed">MoveSpeed</h4>
   <div class="markdown level1 summary"></div>
@@ -218,6 +336,15 @@ Integrates with the game's event-driven input system.</p>
   </table>
   <h3 id="methods">Methods
 </h3>
+  <a id="GameFramework_Components_PlayerController_Attack_" data-uid="GameFramework.Components.PlayerController.Attack*"></a>
+  <h4 id="GameFramework_Components_PlayerController_Attack" data-uid="GameFramework.Components.PlayerController.Attack">Attack()</h4>
+  <div class="markdown level1 summary"><p>Trigger attack manually</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Attack()</code></pre>
+  </div>
   <a id="GameFramework_Components_PlayerController_GetMovementDirection_" data-uid="GameFramework.Components.PlayerController.GetMovementDirection*"></a>
   <h4 id="GameFramework_Components_PlayerController_GetMovementDirection" data-uid="GameFramework.Components.PlayerController.GetMovementDirection">GetMovementDirection()</h4>
   <div class="markdown level1 summary"><p>Get current movement direction in world space</p>
@@ -238,6 +365,76 @@ Integrates with the game's event-driven input system.</p>
     <tbody>
       <tr>
         <td><span class="xref">Vector3</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Components_PlayerController_Interact_" data-uid="GameFramework.Components.PlayerController.Interact*"></a>
+  <h4 id="GameFramework_Components_PlayerController_Interact" data-uid="GameFramework.Components.PlayerController.Interact">Interact()</h4>
+  <div class="markdown level1 summary"><p>Trigger interaction manually</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Interact()</code></pre>
+  </div>
+  <a id="GameFramework_Components_PlayerController_Jump_" data-uid="GameFramework.Components.PlayerController.Jump*"></a>
+  <h4 id="GameFramework_Components_PlayerController_Jump" data-uid="GameFramework.Components.PlayerController.Jump">Jump()</h4>
+  <div class="markdown level1 summary"><p>Manually trigger jump</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Jump()</code></pre>
+  </div>
+  <a id="GameFramework_Components_PlayerController_SetCrouching_" data-uid="GameFramework.Components.PlayerController.SetCrouching*"></a>
+  <h4 id="GameFramework_Components_PlayerController_SetCrouching_System_Boolean_" data-uid="GameFramework.Components.PlayerController.SetCrouching(System.Boolean)">SetCrouching(bool)</h4>
+  <div class="markdown level1 summary"><p>Set crouch state</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetCrouching(bool crouching)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">crouching</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Components_PlayerController_SetItemIndex_" data-uid="GameFramework.Components.PlayerController.SetItemIndex*"></a>
+  <h4 id="GameFramework_Components_PlayerController_SetItemIndex_System_Int32_" data-uid="GameFramework.Components.PlayerController.SetItemIndex(System.Int32)">SetItemIndex(int)</h4>
+  <div class="markdown level1 summary"><p>Set current item index</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetItemIndex(int index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">index</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -264,6 +461,32 @@ Integrates with the game's event-driven input system.</p>
       <tr>
         <td><span class="xref">Vector2</span></td>
         <td><span class="parametername">input</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Components_PlayerController_SetSprinting_" data-uid="GameFramework.Components.PlayerController.SetSprinting*"></a>
+  <h4 id="GameFramework_Components_PlayerController_SetSprinting_System_Boolean_" data-uid="GameFramework.Components.PlayerController.SetSprinting(System.Boolean)">SetSprinting(bool)</h4>
+  <div class="markdown level1 summary"><p>Set sprint state</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetSprinting(bool sprinting)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">sprinting</span></td>
         <td></td>
       </tr>
     </tbody>
