@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Unity.Cinemachine;
-using GameFramework.Components.Controllers.Movement;
 using GameFramework.Components.Controllers.Camera;
 using GameFramework.Core;
 using GameFramework.EventSystem.Events;
@@ -13,27 +12,19 @@ using UnityEngine.InputSystem;
 namespace GameFramework.Components.Controllers
 {
     /// <summary>
-    /// Real-Time Strategy controller that focuses on camera movement and unit management.
-    /// Does not control a character directly, but manages camera movement and unit selection.
-    /// Uses Cinemachine 3.1+ for enhanced camera management.
+    /// Real-Time Strategy controller that manages camera movement and unit selection.
+    /// Uses a single RTSCameraControl component for all camera functionality.
+    /// Handles unit selection with mouse clicks and selection boxes.
     /// </summary>
     public class RTSController : BasePlayerController
     {
         #region Serialized Fields
-        [Header("Movement Component")]
-        [SerializeField] private RTSMovement _movementComponent;
-        
         [Header("Camera Component")]
-        [SerializeField] private RTSCameraControl _cameraComponent;
-        
-        [Header("RTS Settings")]
-        [SerializeField] private CinemachineCamera _cinemachineCamera;
-        [SerializeField] private Transform _cameraRig;
+        [SerializeField] private RTSCameraControl _cameraControl;
         
         [Header("Unit Selection")]
         [SerializeField] private bool _enableUnitSelection = true;
         [SerializeField] private LayerMask _selectableLayerMask = -1;
-        [SerializeField] private Material _selectionBoxMaterial;
         [SerializeField] private Color _selectionBoxColor = new Color(0, 1, 0, 0.3f);
         
         [Header("Camera Focus")]
@@ -67,24 +58,15 @@ namespace GameFramework.Components.Controllers
         {
             base.Awake();
             
+            _mainCamera = GameManager.GetService<IGameDataService>().GetMainCamera();
+
             // Override input context for RTS
             _requiredInputContext = InputContext.Mixed; // RTS needs both camera and UI input
             
-            // Find components if not assigned
-            if (_movementComponent == null)
+            // Find camera control component if not assigned
+            if (_cameraControl == null)
             {
-                _movementComponent = GetComponent<RTSMovement>();
-            }
-            
-            if (_cameraComponent == null)
-            {
-                _cameraComponent = GetComponent<RTSCameraControl>();
-            }
-            
-            // Find camera rig if not assigned
-            if (_cameraRig == null)
-            {
-                _cameraRig = transform.Find("CameraRig");
+                _cameraControl = GetComponent<RTSCameraControl>();
             }
             
             // Create selection box texture
@@ -133,9 +115,9 @@ namespace GameFramework.Components.Controllers
         #region Component Creation
         protected override void CreateComponents()
         {
-            // Components are now assigned from inspector or found in Awake()
+            // Camera control component is assigned from inspector or found in Awake()
             if (_showDebugInfo)
-                Debug.Log("[RTSController] Components initialized successfully");
+                Debug.Log($"[RTSController] RTS Controller initialized - Camera: {(_cameraControl != null ? "Found" : "Missing")}");
         }
 
 
@@ -162,20 +144,22 @@ namespace GameFramework.Components.Controllers
 
         private void HandleCameraFocus()
         {
-            if (!_enableCameraFocus || !_isFocusing) return;
+            if (!_enableCameraFocus || !_isFocusing || _cameraControl == null) return;
             
             float elapsedTime = Time.time - _focusStartTime;
             float t = elapsedTime * _focusSpeed;
             
             if (t >= 1.0f)
             {
-                _cameraRig.position = _focusTarget;
+                _cameraControl.FocusOnPosition(_focusTarget);
                 _isFocusing = false;
             }
             else
             {
-                Vector3 startPos = _cameraRig.position;
-                _cameraRig.position = Vector3.Lerp(startPos, _focusTarget, t);
+                // Smoothly interpolate camera position using the camera control component
+                Vector3 currentPos = _cameraControl.GetCameraTransform().position;
+                Vector3 targetPos = Vector3.Lerp(currentPos, _focusTarget, t);
+                _cameraControl.FocusOnPosition(targetPos);
             }
         }
         #endregion
@@ -308,10 +292,10 @@ namespace GameFramework.Components.Controllers
         #region Input Event Handlers - Override for RTS-specific behavior
         protected override void OnPlayerMoveInput(PlayerMoveInputEvent inputEvent)
         {
-            // In RTS, move input controls camera, not character
-            if (_movementComponent != null)
+            // In RTS, move input controls camera movement (WASD)
+            if (_cameraControl != null)
             {
-                _movementComponent.HandleMoveInput(inputEvent);
+                _cameraControl.HandleMoveInput(inputEvent);
             }
         }
         #endregion
@@ -322,10 +306,9 @@ namespace GameFramework.Components.Controllers
         /// </summary>
         public void FocusOnPosition(Vector3 worldPosition)
         {
-            if (!_enableCameraFocus) return;
+            if (!_enableCameraFocus || _cameraControl == null) return;
             
             _focusTarget = worldPosition;
-            _focusTarget.y = _cameraRig.position.y; // Maintain camera height
             _focusStartTime = Time.time;
             _isFocusing = true;
         }
@@ -359,19 +342,11 @@ namespace GameFramework.Components.Controllers
         }
 
         /// <summary>
-        /// Get the camera rig transform
+        /// Get the camera control component
         /// </summary>
-        public Transform GetCameraRig()
+        public RTSCameraControl GetCameraControl()
         {
-            return _cameraRig;
-        }
-
-        /// <summary>
-        /// Get the Cinemachine camera
-        /// </summary>
-        public CinemachineCamera GetCinemachineCamera()
-        {
-            return _cinemachineCamera;
+            return _cameraControl;
         }
 
         /// <summary>
@@ -384,30 +359,34 @@ namespace GameFramework.Components.Controllers
         }
 
         /// <summary>
-        /// Get reference to the RTS movement component
+        /// Enable or disable unit selection
         /// </summary>
-        public RTSMovement GetRTSMovement()
+        public void SetUnitSelectionEnabled(bool enabled)
         {
-            return _movementComponent;
+            _enableUnitSelection = enabled;
+            if (!enabled)
+            {
+                ClearSelection();
+            }
         }
 
         /// <summary>
-        /// Get reference to the RTS camera component
+        /// Enable or disable camera focus functionality
         /// </summary>
-        public RTSCameraControl GetRTSCamera()
+        public void SetCameraFocusEnabled(bool enabled)
         {
-            return _cameraComponent;
+            _enableCameraFocus = enabled;
+            if (!enabled)
+            {
+                _isFocusing = false;
+            }
         }
         #endregion
 
         #region Debug
         protected override void OnDrawGizmos()
         {
-            if (_mainCamera == null)
-            {
-                _mainCamera = GameManager.GetService<IGameDataService>().GetMainCamera();
-            }
-            
+
             base.OnDrawGizmos();
             
             if (!_showDebugInfo) return;
