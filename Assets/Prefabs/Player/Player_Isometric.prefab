@@ -135,8 +135,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4949717909976932613}
   - component: {fileID: 9083194349371853835}
-  - component: {fileID: 5119663349180903875}
-  - component: {fileID: 9163521614359970017}
+  - component: {fileID: 3211519418486693149}
+  - component: {fileID: 2557784997938913634}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -152,8 +152,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5299225434946933788}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.32597747, y: 0, z: 0, w: 0.9453775}
-  m_LocalPosition: {x: 0, y: 10.4, z: -12}
+  m_LocalRotation: {x: 0.3582638, y: -0.0000000115251, z: 0.0000000044225943, w: 0.93362045}
+  m_LocalPosition: {x: 0, y: 10, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -202,7 +202,7 @@ MonoBehaviour:
       BarrelClipping: 0.25
       Anamorphism: 0
   BlendHint: 0
---- !u!114 &5119663349180903875
+--- !u!114 &3211519418486693149
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -211,36 +211,45 @@ MonoBehaviour:
   m_GameObject: {fileID: 5299225434946933788}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 625c14eee3ad46c99df7c7c891ef668a, type: 3}
+  m_Script: {fileID: 11500000, guid: b617507da6d07e749b7efdb34e1173e1, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineThirdPersonFollow
-  Damping: {x: 0.1, y: 0.5, z: 0.3}
-  ShoulderOffset: {x: 0, y: 10, z: -10}
-  VerticalArmLength: 0.4
-  CameraSide: 1
-  CameraDistance: 2
-  AvoidObstacles:
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineFollow
+  TrackerSettings:
+    BindingMode: 4
+    PositionDamping: {x: 0, y: 0, z: 0}
+    AngularDampingMode: 0
+    RotationDamping: {x: 1, y: 1, z: 1}
+    QuaternionDamping: 1
+  FollowOffset: {x: 0, y: 10, z: -10}
+--- !u!114 &2557784997938913634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5299225434946933788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f38bda98361e1de48a4ca2bd86ea3c17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineRotationComposer
+  Composition:
+    ScreenPosition: {x: 0, y: 0}
+    DeadZone:
+      Enabled: 0
+      Size: {x: 0.2, y: 0.2}
+    HardLimits:
+      Enabled: 0
+      Size: {x: 0.8, y: 0.8}
+      Offset: {x: 0, y: 0}
+  CenterOnActivate: 1
+  TargetOffset: {x: 0, y: 1, z: 0}
+  Damping: {x: 0.5, y: 0.5}
+  Lookahead:
     Enabled: 0
-    CollisionFilter:
-      serializedVersion: 2
-      m_Bits: 1
-    IgnoreTag: 
-    CameraRadius: 0.2
-    DampingIntoCollision: 0
-    DampingFromCollision: 0.5
---- !u!114 &9163521614359970017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5299225434946933788}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e8b78ac948f05a46a6d8339a503172b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineHardLookAt
-  LookAtOffset: {x: 0, y: 1, z: 0}
+    Time: 0
+    Smoothing: 0
+    IgnoreY: 0
 --- !u!1 &5932763661422473085
 GameObject:
   m_ObjectHideFlags: 0
@@ -838,25 +847,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameFramework.Components.Controllers.Movement.IsometricMovement
   _moveSpeed: 5
-  _sprintMultiplier: 1.5
-  _crouchMultiplier: 0.5
-  _normalizeDiagonalMovement: 1
-  _rotateTowardsMovement: 1
-  _rotationSpeed: 10
-  _rotationSmoothTime: 0.1
-  _snapRotation: 0
-  _snapAngleThreshold: 45
-  _usePhysics: 1
-  _acceleration: 10
-  _deceleration: 10
-  _groundLayerMask:
-    serializedVersion: 2
-    m_Bits: 9
-  _groundCheckDistance: 0.1
-  _crouchHeight: 1
-  _standingHeight: 2
-  _crouchTransitionSpeed: 5
-  _showDebugInfo: 0
 --- !u!114 &5628599198394151982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -864,7 +854,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8851619217007553581}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c1600a421afd78d48b15ef3ddd01ea31, type: 3}
   m_Name: 

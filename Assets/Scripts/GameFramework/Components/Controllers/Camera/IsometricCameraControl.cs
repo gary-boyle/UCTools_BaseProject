@@ -23,7 +23,7 @@ namespace GameFramework.Components.Controllers.Camera
         [Header("Isometric Settings")]
         [SerializeField] private float _isometricAngle = 30f; // Standard isometric angle
         [SerializeField] private float _cameraRotationY = 45f; // Y rotation for isometric view
-        [SerializeField] private bool _lockRotation = true;
+        [SerializeField] private bool _lockRotation = true; // Keep camera locked for classic isometric gameplay
         
         [Header("Follow Settings")]
         [SerializeField] private bool _followPlayer = true;
@@ -32,7 +32,7 @@ namespace GameFramework.Components.Controllers.Camera
         [SerializeField] private Vector3 _lookAtOffset = new Vector3(0, 1, 0);
         
         [Header("Manual Pan Settings")]
-        [SerializeField] private bool _enableManualPan = false;
+        [SerializeField] private bool _enableManualPan = false; // Disabled for classic isometric gameplay
         [SerializeField] private float _mouseSensitivityMultiplier = 1.0f;
         [SerializeField] private float _panSpeed = 5.0f;
         [SerializeField] private float _panSmoothTime = 0.2f;
@@ -141,8 +141,8 @@ namespace GameFramework.Components.Controllers.Camera
                 return;
             }
             
-            // Setup Cinemachine camera for isometric view
-            //SetupCinemachineCamera();
+            // Simple camera setup - just follow and orthographic projection
+            SetupSimpleCamera();
             
             // Initialize zoom
             _currentZoom = _minZoom + (_maxZoom - _minZoom) * 0.5f;
@@ -183,22 +183,17 @@ namespace GameFramework.Components.Controllers.Camera
 
         public void HandleLookInput(PlayerLookInputEvent inputEvent)
         {
-            if (!_isInitialized || !_inputEnabled || IsPaused) return;
-            
-            _lookInput = inputEvent.LookDelta;
+            // Disabled for classic isometric gameplay - camera should remain locked
+            // Look input is ignored to keep camera at fixed rotation
         }
 
         public void UpdateCamera()
         {
             if (!_isInitialized || !_inputEnabled || IsPaused) return;
             
-            ProcessInputs();
-            HandleManualPan();
-            UpdateCameraPosition();
+            // Only handle zoom for classic isometric gameplay
+            // Camera rotation is locked, no manual panning
             UpdateZoom();
-            
-            // Reset input after processing
-            _lookInput = Vector2.zero;
         }
 
         public void SetTarget(Transform target)
@@ -209,10 +204,6 @@ namespace GameFramework.Components.Controllers.Camera
             {
                 _cinemachineCamera.Follow = target;
                 _cinemachineCamera.LookAt = target;
-                
-                // Reset manual offset when switching targets
-                _manualOffset = Vector3.zero;
-                _targetOffset = Vector3.zero;
             }
         }
 
@@ -233,101 +224,34 @@ namespace GameFramework.Components.Controllers.Camera
         #endregion
 
         #region Private Methods
-        private void SetupCinemachineCamera()
+        private void SetupSimpleCamera()
         {
             if (_cinemachineCamera == null) return;
             
-            // Set follow target
-            if (_followTarget != null)
-            {
-                _cinemachineCamera.Follow = _followTarget;
-                _cinemachineCamera.LookAt = _followTarget;
-            }
+            // // Set follow target
+            // if (_followTarget != null)
+            // {
+            //     _cinemachineCamera.Follow = _followTarget;
+            //     _cinemachineCamera.LookAt = _followTarget;
+            // }
             
-            // Configure projection
-            if (_orthographicProjection)
+            // Configure projection via GameDataService
+            var gameDataService = GameManager.GetService<IGameDataService>();
+            if (gameDataService != null && _orthographicProjection)
             {
-                var cam = GameManager.GetService<IGameDataService>().GetMainCamera();
-                cam.orthographic = true;
+                gameDataService.SetCameraOrthographic(true, _currentZoom);
                 _cinemachineCamera.Lens.OrthographicSize = _currentZoom;
             }
-            else
-            {
-                var cam = GameManager.GetService<IGameDataService>().GetMainCamera();
-                cam.orthographic = false;
-                _cinemachineCamera.Lens.FieldOfView = 60f;
-            }
             
-            // Set isometric camera angle and rotation
-            Transform cameraTransform = _cinemachineCamera.transform;
-            cameraTransform.rotation = Quaternion.Euler(_isometricAngle, _cameraRotationY, 0f);
-            
-            if (_followPlayer && _followTarget != null)
-            {
-                SetupFollowMode();
-            }
-            else
-            {
-                SetupFreeMode();
-            }
-            
-            if (_showDebugInfo)
-                Debug.Log("[IsometricCameraControl] Cinemachine camera configured for isometric view");
+            // // Set fixed isometric camera angle and rotation
+            // Transform cameraTransform = _cinemachineCamera.transform;
+            // cameraTransform.rotation = Quaternion.Euler(_isometricAngle, _cameraRotationY, 0f);
+            // cameraTransform.position = (_followTarget?.position ?? Vector3.zero) + _followOffset;
+            //
+            // if (_showDebugInfo)
+            //     Debug.Log("[IsometricCameraControl] Simple camera setup completed");
         }
-
-        private void SetupFollowMode()
-        {
-            // Remove hard lock if it exists
-            if (_hardLock != null)
-            {
-                Object.DestroyImmediate(_hardLock);
-                _hardLock = null;
-            }
-            
-            // Setup position composer for smooth following with dead zones
-            _positionComposer = _cinemachineCamera.GetComponent<CinemachinePositionComposer>();
-            if (_positionComposer == null)
-            {
-                _positionComposer = _cinemachineCamera.gameObject.AddComponent<CinemachinePositionComposer>();
-            }
-            
-            _positionComposer.Composition.ScreenPosition = new Vector2(_screenX, _screenY);
-            _positionComposer.Composition.DeadZone = new ScreenComposerSettings.DeadZoneSettings
-            {
-                Enabled = true,
-                Size = new Vector2(_deadZoneWidth, _deadZoneHeight)
-            };
-            _positionComposer.Composition.ScreenPosition = new Vector2(_screenX, _screenY);
-            //_positionComposer.Composition.HorizontalPosition = _screenX;
-            //_positionComposer.Composition.VerticalPosition = _screenY;
-            //_positionComposer.Composition.DeadZoneWidth = _deadZoneWidth;
-            //_positionComposer.Composition.DeadZoneHeight = _deadZoneHeight;
-            //_positionComposer.Composition.HorizontalDamping = _horizontalDamping;
-            //_positionComposer.Composition.VerticalDamping = _verticalDamping;
-            //_positionComposer.Composition.ScreenPosition = new Vector2(_screenX, _screenY);
-            
-            // Set follow offset
-            Transform cameraTransform = _cinemachineCamera.transform;
-            cameraTransform.position = _followTarget.position + _followOffset;
-        }
-
-        private void SetupFreeMode()
-        {
-            // Remove position composer
-            if (_positionComposer != null)
-            {
-                Object.DestroyImmediate(_positionComposer);
-                _positionComposer = null;
-            }
-            
-            // Add hard lock for direct control
-            _hardLock = _cinemachineCamera.GetComponent<CinemachineHardLockToTarget>();
-            if (_hardLock == null)
-            {
-                _hardLock = _cinemachineCamera.gameObject.AddComponent<CinemachineHardLockToTarget>();
-            }
-        }
-
+        
         private void ApplyInputSettings()
         {
             if (_inputSettings == null) return;
@@ -340,13 +264,13 @@ namespace GameFramework.Components.Controllers.Camera
             }
         }
 
-        private void ProcessInputs()
-        {
-            if (!_enableManualPan) return;
-            
-            // Convert look input to pan input
-            _panInput = _lookInput * EffectiveMouseSensitivity * _panSpeed;
-        }
+        // private void ProcessInputs()
+        // {
+        //     if (!_enableManualPan) return;
+        //     
+        //     // Convert look input to pan input
+        //     _panInput = _lookInput * EffectiveMouseSensitivity * _panSpeed;
+        // }
 
         private void OnScrollWheel(UIScrollWheelInputEvent scrollEvent)
         {
@@ -367,9 +291,17 @@ namespace GameFramework.Components.Controllers.Camera
             // Apply smooth zoom
             _currentZoom = Mathf.SmoothDamp(_currentZoom, _targetZoom, ref _zoomVelocity, _zoomSmoothTime);
             
+            // Update both Cinemachine lens and main camera via GameDataService
+            var gameDataService = GameManager.GetService<IGameDataService>();
+            
             if (_cinemachineCamera.Lens.Orthographic)
             {
                 _cinemachineCamera.Lens.OrthographicSize = _currentZoom;
+                // Also update main camera if using orthographic projection
+                if (gameDataService != null)
+                {
+                    gameDataService.SetCameraOrthographic(true, _currentZoom);
+                }
             }
             else
             {
@@ -385,92 +317,72 @@ namespace GameFramework.Components.Controllers.Camera
             }
         }
 
-        private void HandleManualPan()
-        {
-            if (!_enableManualPan || _panInput.magnitude < 0.01f) return;
-            
-            // Convert screen space pan input to world space
-            Transform cameraTransform = _cinemachineCamera.transform;
-            Vector3 right = cameraTransform.right;
-            Vector3 forward = Vector3.Cross(right, Vector3.up); // Get forward direction on horizontal plane
-            
-            // Calculate world space movement
-            Vector3 worldPan = (right * _panInput.x + forward * _panInput.y) * Time.deltaTime;
-            _targetOffset += worldPan;
-            
-            // Apply boundaries if enabled
-            if (_useBoundaries)
-            {
-                _targetOffset.x = Mathf.Clamp(_targetOffset.x, _cameraBounds.min.x, _cameraBounds.max.x);
-                _targetOffset.z = Mathf.Clamp(_targetOffset.z, _cameraBounds.min.z, _cameraBounds.max.z);
-            }
-        }
+        // private void HandleManualPan()
+        // {
+        //     if (!_enableManualPan || _panInput.magnitude < 0.01f) return;
+        //     
+        //     // Convert screen space pan input to world space
+        //     Transform cameraTransform = _cinemachineCamera.transform;
+        //     Vector3 right = cameraTransform.right;
+        //     Vector3 forward = Vector3.Cross(right, Vector3.up); // Get forward direction on horizontal plane
+        //     
+        //     // Calculate world space movement
+        //     Vector3 worldPan = (right * _panInput.x + forward * _panInput.y) * Time.deltaTime;
+        //     _targetOffset += worldPan;
+        //     
+        //     // Apply boundaries if enabled
+        //     if (_useBoundaries)
+        //     {
+        //         _targetOffset.x = Mathf.Clamp(_targetOffset.x, _cameraBounds.min.x, _cameraBounds.max.x);
+        //         _targetOffset.z = Mathf.Clamp(_targetOffset.z, _cameraBounds.min.z, _cameraBounds.max.z);
+        //     }
+        // }
 
-        private void UpdateCameraPosition()
-        {
-            if (!_enableManualPan) return;
-            
-            // Smooth manual offset
-            _manualOffset = Vector3.SmoothDamp(_manualOffset, _targetOffset, ref _offsetVelocity, _panSmoothTime);
-            
-            // Apply offset to camera
-            if (_followPlayer && _followTarget != null && _positionComposer != null)
-            {
-                // For follow mode, adjust the composer's screen position based on offset
-                // This is a bit complex as we need to convert world offset to screen offset
-                Vector2 screenOffset = WorldToScreenOffset(_manualOffset);
-                _positionComposer.Composition.ScreenPosition = new Vector2(_screenX + screenOffset.x, _screenY + screenOffset.y);
-            }
-            else if (!_followPlayer)
-            {
-                // For free mode, directly adjust camera position
-                Transform cameraTransform = _cinemachineCamera.transform;
-                Vector3 basePosition = _followTarget != null ? _followTarget.position + _followOffset : _followOffset;
-                cameraTransform.position = basePosition + _manualOffset;
-            }
-        }
+        // private void UpdateCameraPosition()
+        // {
+        //     if (!_enableManualPan) return;
+        //     
+        //     // Smooth manual offset
+        //     _manualOffset = Vector3.SmoothDamp(_manualOffset, _targetOffset, ref _offsetVelocity, _panSmoothTime);
+        //     
+        //     // Apply offset to camera
+        //     if (_followPlayer && _followTarget != null && _positionComposer != null)
+        //     {
+        //         // For follow mode, adjust the composer's screen position based on offset
+        //         // This is a bit complex as we need to convert world offset to screen offset
+        //         Vector2 screenOffset = WorldToScreenOffset(_manualOffset);
+        //         _positionComposer.Composition.ScreenPosition = new Vector2(_screenX + screenOffset.x, _screenY + screenOffset.y);
+        //     }
+        //     else if (!_followPlayer)
+        //     {
+        //         // For free mode, directly adjust camera position
+        //         Transform cameraTransform = _cinemachineCamera.transform;
+        //         Vector3 basePosition = _followTarget != null ? _followTarget.position + _followOffset : _followOffset;
+        //         cameraTransform.position = basePosition + _manualOffset;
+        //     }
+        // }
 
-        private Vector2 WorldToScreenOffset(Vector3 worldOffset)
-        {
-            // Simple approximation - convert world offset to screen-space offset
-            // This could be more sophisticated but works for basic cases
-            // UnityEngine.Camera camera = UnityEngine.Camera.main;
-            if (_main == null) return Vector2.zero;
-            
-            Vector3 screenCenter = _main.WorldToScreenPoint(Vector3.zero);
-            Vector3 screenWithOffset = _main.WorldToScreenPoint(worldOffset);
-            Vector2 screenDelta = (screenWithOffset - screenCenter);
-            
-            // Normalize to screen coordinates (0-1)
-            screenDelta.x /= Screen.width;
-            screenDelta.y /= Screen.height;
-            
-            return screenDelta;
-        }
+        // private Vector2 WorldToScreenOffset(Vector3 worldOffset)
+        // {
+        //     // Simple approximation - convert world offset to screen-space offset
+        //     // This could be more sophisticated but works for basic cases
+        //     // UnityEngine.Camera camera = UnityEngine.Camera.main;
+        //     if (_main == null) return Vector2.zero;
+        //     
+        //     Vector3 screenCenter = _main.WorldToScreenPoint(Vector3.zero);
+        //     Vector3 screenWithOffset = _main.WorldToScreenPoint(worldOffset);
+        //     Vector2 screenDelta = (screenWithOffset - screenCenter);
+        //     
+        //     // Normalize to screen coordinates (0-1)
+        //     screenDelta.x /= Screen.width;
+        //     screenDelta.y /= Screen.height;
+        //     
+        //     return screenDelta;
+        // }
         #endregion
 
         #region Public Methods
-        /// <summary>
-        /// Set whether the camera should follow the player
-        /// </summary>
-        public void SetFollowPlayer(bool follow)
-        {
-            if (_followPlayer == follow) return;
-            
-            _followPlayer = follow;
-            
-            if (_isInitialized)
-            {
-                if (_followPlayer)
-                {
-                    SetupFollowMode();
-                }
-                else
-                {
-                    SetupFreeMode();
-                }
-            }
-        }
+  
         
         /// <summary>
         /// Set the follow offset

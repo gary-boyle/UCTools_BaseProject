@@ -35,7 +35,7 @@ namespace GameFramework.Components.Controllers
         [SerializeField] private SpriteRenderer _characterSprite; // For sprite-based characters
         
         [Header("Grid Movement")]
-        [SerializeField] private bool _useGridMovement = false;
+        [SerializeField] private bool _useGridMovement = false; // Disabled for smooth classic isometric movement
         [SerializeField] private float _gridSize = 1.0f;
         [SerializeField] private float _gridMoveSpeed = 5.0f;
         
@@ -121,13 +121,17 @@ namespace GameFramework.Components.Controllers
         #region Component Setup
         protected override void CreateComponents()
         {
+            // Assign the found components to the base class fields
+            base._movementComponent = _movementComponent;
+            base._cameraComponent = _cameraComponent;
+
             // Components are now assigned from inspector or found in Awake()
             if (_movementComponent != null)
             {
                 // Configure for grid movement if enabled
                 if (_useGridMovement)
                 {
-                    _movementComponent.SetUsePhysics(false); // Grid movement typically doesn't use physics
+                    //_movementComponent.SetUsePhysics(false); // Grid movement typically doesn't use physics
                     _movementComponent.SetMoveSpeed(_gridMoveSpeed);
                 }
             }
@@ -265,6 +269,17 @@ namespace GameFramework.Components.Controllers
                 _lastMovementWasRight = velocity.x > 0;
                 _characterSprite.flipX = !_lastMovementWasRight;
             }
+        }        
+        #endregion
+
+        #region Input Event Overrides
+        /// <summary>
+        /// Override to disable look input for locked camera - isometric games typically have fixed cameras
+        /// </summary>
+        protected override void OnPlayerLookInput(PlayerLookInputEvent inputEvent)
+        {
+            // Disabled - isometric camera should be locked, player rotates instead
+            // No input routing needed for classic isometric gameplay
         }
         #endregion
 
@@ -304,10 +319,10 @@ namespace GameFramework.Components.Controllers
             _useGridMovement = useGrid;
             _gridSize = gridSize;
             
-            if (_movementComponent != null)
-            {
-                _movementComponent.SetUsePhysics(!useGrid);
-            }
+            // if (_movementComponent != null)
+            // {
+            //     _movementComponent.SetUsePhysics(!useGrid);
+            // }
             
             if (useGrid)
             {

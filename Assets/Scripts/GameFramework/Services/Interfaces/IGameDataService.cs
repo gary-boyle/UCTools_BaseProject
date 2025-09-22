@@ -57,6 +57,11 @@ namespace GameFramework.Services.Interfaces
         /// Detects and stores the main camera from the current scene
         /// </summary>
         bool DetectMainCamera();
+        
+        /// <summary>
+        /// Sets the main camera to orthographic or perspective projection
+        /// </summary>
+        void SetCameraOrthographic(bool orthographic, float sizeOrFOV);
         #endregion
 
         #region Data Lifecycle
