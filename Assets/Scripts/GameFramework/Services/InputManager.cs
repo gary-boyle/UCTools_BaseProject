@@ -193,7 +193,7 @@ namespace GameFramework.Input
                 _eventSystem.Publish(new PlayerLookInputEvent(processedInput, ctx.phase));
             };
             _onAttackInput = ctx => _eventSystem.Publish(new PlayerAttackInputEvent(ctx.phase));
-            _onJumpInput = ctx => _eventSystem.Publish(new PlayerJumpInputEvent());
+            _onJumpInput = ctx => _eventSystem.Publish(new PlayerJumpInputEvent(ctx.phase));
             _onPauseInput = ctx => _eventSystem.Publish(new PlayerPauseInputEvent(ctx.phase));
             _onInteractInput = ctx => _eventSystem.Publish(new PlayerInteractInputEvent(ctx.phase));
             _onCrouchInput = ctx => _eventSystem.Publish(new PlayerCrouchInputEvent(ctx.phase));

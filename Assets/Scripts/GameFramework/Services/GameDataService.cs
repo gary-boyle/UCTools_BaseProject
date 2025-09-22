@@ -300,11 +300,11 @@ namespace GameFramework.Services
         /// </summary>
         public void SetMainCamera(Camera camera)
         {
-            if (!IsInitialized)
-            {
-                Debug.LogError("[GameDataService] Cannot set main camera - service not initialized");
-                return;
-            }
+            // if (!IsInitialized)
+            // {
+            //     Debug.LogError("[GameDataService] Cannot set main camera - service not initialized");
+            //     return;
+            // }
             
             var previousCamera = _mainCamera;
             _mainCamera = camera;
@@ -346,11 +346,11 @@ namespace GameFramework.Services
         /// </summary>
         public bool DetectMainCamera()
         {
-            if (!IsInitialized)
-            {
-                Debug.LogError("[GameDataService] Cannot detect main camera - service not initialized");
-                return false;
-            }
+            // if (!IsInitialized)
+            // {
+            //     Debug.LogError("[GameDataService] Cannot detect main camera - service not initialized");
+            //     return false;
+            // }
             
             Camera detectedCamera = null;
             

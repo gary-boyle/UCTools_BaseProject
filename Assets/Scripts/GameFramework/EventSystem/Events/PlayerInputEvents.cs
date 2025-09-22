@@ -62,8 +62,14 @@ namespace GameFramework.EventSystem.Events
         }
     }
     
-    public class PlayerJumpInputEvent { }
-
+    public class PlayerJumpInputEvent    {
+        public InputActionPhase Phase { get; }
+        
+        public PlayerJumpInputEvent(InputActionPhase phase)
+        {
+            Phase = phase;
+        }
+    }
     public class PlayerPreviousInputEvent { }
 
     public class PlayerNextInputEvent { }
