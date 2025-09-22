@@ -904,7 +904,7 @@ MonoBehaviour:
   _panDeceleration: 10
   _invertPanX: 0
   _invertPanY: 0
-  _enableEdgeScrolling: 1
+  _enableEdgeScrolling: 0
   _edgeScrollBorder: 15
   _edgeScrollSpeed: 3
   _zoomSpeed: 2

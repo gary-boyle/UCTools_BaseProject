@@ -22,7 +22,7 @@ namespace GameFramework.Components.Controllers.Camera
         [SerializeField] private Transform _lookAtTarget;
         
         [Header("Orbit Settings")]
-        [SerializeField] private float _mouseSensitivityMultiplier = 1.0f;
+        [SerializeField] private float _mouseSensitivityMultiplier = 0.01f;
         [SerializeField] private float _orbitSpeed = 2.0f;
         [SerializeField] private float _minVerticalAngle = -30f;
         [SerializeField] private float _maxVerticalAngle = 60f;
@@ -53,15 +53,9 @@ namespace GameFramework.Components.Controllers.Camera
         private InputSettings_SO _inputSettings;
         private IEventSystem _eventSystem;
         
-        // Character rotation
-        private Transform _characterTransform; // The character to rotate with mouse input
-        
-        // Look state
+        // Look state  
         private Vector2 _lookInput = Vector2.zero;
-        private float _currentOrbitX = 0f;
         private float _currentOrbitY = 0f;
-        private float _processedHorizontalInput = 0f;
-        private float _processedVerticalInput = 0f;
         
         // Distance state
         private float _currentDistance = 5.0f;
@@ -201,7 +195,6 @@ namespace GameFramework.Components.Controllers.Camera
             if (!_isInitialized || !_inputEnabled || IsPaused) return;
             
             ProcessLookInput();
-            ApplyCharacterRotation();
             ApplyOrbitRotation();
             UpdateDistance();
             
@@ -213,7 +206,6 @@ namespace GameFramework.Components.Controllers.Camera
         {
             _followTarget = target;
             _lookAtTarget = target; // Also use as look target
-            _characterTransform = target; // Use the same target as the character to rotate
             
             if (_cinemachineCamera != null && target != null)
             {
@@ -221,9 +213,9 @@ namespace GameFramework.Components.Controllers.Camera
                 _cinemachineCamera.LookAt = target;
             }
             
-            if (_showDebugInfo && _characterTransform != null)
+            if (_showDebugInfo && target != null)
             {
-                Debug.Log($"[ThirdPersonCameraControl] Set character transform to: {_characterTransform.name}");
+                Debug.Log($"[ThirdPersonCameraControl] Set camera follow target to: {target.name}");
             }
         }
 
@@ -327,41 +319,40 @@ namespace GameFramework.Components.Controllers.Camera
         {
             if (_lookInput.magnitude < 0.01f) return;
             
-            // Apply sensitivity
-            Vector2 processedInput = _lookInput * EffectiveMouseSensitivity * _orbitSpeed;
+            // Apply sensitivity - only process vertical input for camera orbit
+            float verticalInput = _lookInput.y * EffectiveMouseSensitivity * _orbitSpeed;
             
             // Apply Y-axis inversion for vertical input
             if (_globalInvertYAxis || _invertYAxis)
             {
-                processedInput.y *= -1f;
+                verticalInput *= -1f;
             }
             
-            // Store processed input for character rotation (horizontal) and camera orbit (vertical)
-            _processedHorizontalInput = processedInput.x;
-            _processedVerticalInput = processedInput.y;
-            
-            // Update vertical orbit only (horizontal will be handled by character rotation)
-            _currentOrbitY -= _processedVerticalInput;
+            // Update vertical orbit only (horizontal rotation is now handled by movement component)
+            _currentOrbitY -= verticalInput;
             
             // Clamp vertical orbit
             _currentOrbitY = Mathf.Clamp(_currentOrbitY, _minVerticalAngle, _maxVerticalAngle);
-        }
-
-        private void ApplyCharacterRotation()
-        {
-            if (_characterTransform == null || Mathf.Abs(_processedHorizontalInput) < 0.01f) return;
             
-            // Rotate character horizontally based on mouse input
-            _characterTransform.Rotate(Vector3.up, _processedHorizontalInput, Space.World);
+            if (_showDebugInfo)
+            {
+                Debug.Log($"[ThirdPersonCameraControl] Camera vertical orbit: {_currentOrbitY}°");
+            }
         }
 
         private void ApplyOrbitRotation()
         {
             if (_orbitalFollow == null) return;
             
-            // Apply orbital rotation - only vertical since character handles horizontal
+            // Apply only vertical orbital rotation - character handles its own horizontal rotation
+            // The camera will automatically follow the character's rotation via Cinemachine Follow
             _orbitalFollow.HorizontalAxis.Value = 0f; // Keep camera behind character
             _orbitalFollow.VerticalAxis.Value = _currentOrbitY;
+            
+            if (_showDebugInfo)
+            {
+                Debug.Log($"[ThirdPersonCameraControl] Applied camera orbit - Vertical: {_currentOrbitY}°");
+            }
         }
 
         private void OnScrollWheel(UIScrollWheelInputEvent scrollEvent)
@@ -502,11 +493,11 @@ namespace GameFramework.Components.Controllers.Camera
         }
         
         /// <summary>
-        /// Get the current orbit angles in degrees
+        /// Get the current vertical orbit angle in degrees
         /// </summary>
-        public Vector2 GetCurrentOrbit()
+        public float GetCurrentVerticalOrbit()
         {
-            return new Vector2(_currentOrbitX, _currentOrbitY);
+            return _currentOrbitY;
         }
         
         /// <summary>

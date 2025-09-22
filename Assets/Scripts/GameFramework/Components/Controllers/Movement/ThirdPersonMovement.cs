@@ -26,6 +26,10 @@ namespace GameFramework.Components.Controllers.Movement
         [SerializeField] private bool _rotateTowardsMovement = true;
         [SerializeField] private float _rotationSmoothTime = 0.1f;
         
+        [Header("Mouse Look Settings")]
+        [SerializeField] private float _mouseSensitivityMultiplier = 1.0f;
+        [SerializeField] private bool _enableMouseRotation = true;
+        
         [Header("Ground Detection")]
         [SerializeField] private LayerMask _groundLayerMask = 1;
         [SerializeField] private float _groundCheckDistance = 0.1f;
@@ -56,6 +60,10 @@ namespace GameFramework.Components.Controllers.Movement
         private float _targetRotation = 0f;
         private float _rotationVelocity = 0f;
         
+        // Mouse look state
+        private Vector2 _lookInput = Vector2.zero;
+        private float _currentYaw = 0f;
+        
         // Ground detection
         private bool _isGrounded = false;
         private Transform _groundCheckPoint;
@@ -69,6 +77,7 @@ namespace GameFramework.Components.Controllers.Movement
         public Transform MovementTransform => transform;
         public Vector3 CurrentVelocity => _rigidbody != null ? _rigidbody.linearVelocity : Vector3.zero;
         public bool IsGrounded => _isGrounded;
+        public float CurrentYaw => _currentYaw;
         #endregion
 
         #region Unity Lifecycle
@@ -127,6 +136,9 @@ namespace GameFramework.Components.Controllers.Movement
             // Configure rigidbody
             _rigidbody.freezeRotation = true;
             
+            // Initialize current yaw from transform
+            _currentYaw = transform.eulerAngles.y;
+            
             _isInitialized = true;
             
             if (_showDebugInfo)
@@ -145,7 +157,9 @@ namespace GameFramework.Components.Controllers.Movement
 
         public void HandleMoveInput(PlayerMoveInputEvent inputEvent)
         {
-            Debug.Log("HandleMoveInput: " + inputEvent.MovementVector);
+            if (_showDebugInfo)
+                Debug.Log($"[ThirdPersonMovement] HandleMoveInput: {inputEvent.MovementVector}");
+            
             if (!_isInitialized || IsPaused) return;
             
             _moveInput = inputEvent.MovementVector;
@@ -174,6 +188,16 @@ namespace GameFramework.Components.Controllers.Movement
             
             _isCrouching = inputEvent.Phase == InputActionPhase.Performed;
         }
+        
+        public void HandleLookInput(PlayerLookInputEvent inputEvent)
+        {
+            if (!_isInitialized || IsPaused || !_enableMouseRotation) return;
+            
+            _lookInput = inputEvent.LookDelta;
+            
+            if (_showDebugInfo)
+                Debug.Log($"[ThirdPersonMovement] HandleLookInput: {_lookInput}");
+        }
 
         public void UpdateMovement()
         {
@@ -181,7 +205,8 @@ namespace GameFramework.Components.Controllers.Movement
             
             CheckGrounded();
             HandleCrouchTransition();
-            HandleRotation();
+            HandleMouseRotation();
+            HandleMovementRotation();
         }
 
         public void FixedUpdateMovement()
@@ -297,9 +322,30 @@ namespace GameFramework.Components.Controllers.Movement
             }
         }
 
-        private void HandleRotation()
+        private void HandleMouseRotation()
         {
-            if (!_rotateTowardsMovement || _moveDirection.magnitude < 0.01f) return;
+            if (!_enableMouseRotation || _lookInput.magnitude < 0.01f) return;
+            
+            // Process horizontal mouse input for character rotation
+            float horizontalInput = _lookInput.x * _mouseSensitivityMultiplier;
+            
+            // Apply rotation directly to character
+            _currentYaw += horizontalInput;
+            transform.rotation = Quaternion.Euler(0f, _currentYaw, 0f);
+            
+            if (_showDebugInfo)
+            {
+                Debug.Log($"[ThirdPersonMovement] Mouse rotation applied: {horizontalInput}° - Current yaw: {_currentYaw}°");
+            }
+            
+            // Reset look input after processing
+            _lookInput = Vector2.zero;
+        }
+        
+        private void HandleMovementRotation()
+        {
+            // Only rotate towards movement if mouse rotation is disabled and we're moving
+            if (_enableMouseRotation || !_rotateTowardsMovement || _moveDirection.magnitude < 0.01f) return;
             
             // Calculate target rotation based on movement direction
             _targetRotation = Mathf.Atan2(_moveDirection.x, _moveDirection.z) * Mathf.Rad2Deg;
@@ -314,6 +360,12 @@ namespace GameFramework.Components.Controllers.Movement
             );
             
             transform.rotation = Quaternion.Euler(0f, smoothedRotation, 0f);
+            _currentYaw = smoothedRotation; // Keep yaw in sync
+            
+            if (_showDebugInfo)
+            {
+                Debug.Log($"[ThirdPersonMovement] Rotating towards movement direction: {smoothedRotation}°");
+            }
         }
 
         private void HandleJump()

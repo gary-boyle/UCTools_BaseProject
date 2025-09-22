@@ -86,13 +86,7 @@ namespace GameFramework.Components.Controllers
             // Assign the found components to the base class fields
             base._movementComponent = _movementComponent;
             base._cameraComponent = _cameraComponent;
-            
-            // Set the target for the camera component (use this transform as the character to rotate)
-            if (_cameraComponent != null)
-            {
-                _cameraComponent.SetTarget(transform);
-            }
-            
+
             if (_showDebugInfo)
                 Debug.Log("[ThirdPersonController] Components initialized successfully");
         }
@@ -192,6 +186,25 @@ namespace GameFramework.Components.Controllers
         public ThirdPersonCameraControl GetThirdPersonCamera()
         {
             return _cameraComponent;
+        }
+        #endregion
+
+        #region Input Event Overrides
+        /// <summary>
+        /// Override to route look input to movement component for character rotation
+        /// </summary>
+        protected override void OnPlayerLookInput(PlayerLookInputEvent inputEvent)
+        {
+            if (!_isInitialized || !_isEnabled) return;
+            
+            // Route horizontal input to movement component for character rotation
+            if (_movementComponent is ThirdPersonMovement thirdPersonMovement)
+            {
+                thirdPersonMovement.HandleLookInput(inputEvent);
+            }
+            
+            // Still route to camera for any camera-specific handling (like vertical orbit)
+            _cameraComponent?.HandleLookInput(inputEvent);
         }
         #endregion
 
