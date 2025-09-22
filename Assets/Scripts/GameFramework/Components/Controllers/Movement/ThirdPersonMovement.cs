@@ -145,6 +145,7 @@ namespace GameFramework.Components.Controllers.Movement
 
         public void HandleMoveInput(PlayerMoveInputEvent inputEvent)
         {
+            Debug.Log("HandleMoveInput: " + inputEvent.MovementVector);
             if (!_isInitialized || IsPaused) return;
             
             _moveInput = inputEvent.MovementVector;
@@ -185,7 +186,7 @@ namespace GameFramework.Components.Controllers.Movement
 
         public void FixedUpdateMovement()
         {
-            if (!_isInitialized || IsPaused) return;
+           if (!_isInitialized || IsPaused) return;
             
             HandleMovement();
             HandleJump();
@@ -238,8 +239,12 @@ namespace GameFramework.Components.Controllers.Movement
                 if (_isGrounded)
                 {
                     Vector3 velocity = _rigidbody.linearVelocity;
+                    //Debug.Log("movespeed: " + _moveSpeed);
+                    //Debug.Log("velocity before: " + velocity);
                     velocity.x = Mathf.MoveTowards(velocity.x, 0, _moveSpeed * Time.fixedDeltaTime);
                     velocity.z = Mathf.MoveTowards(velocity.z, 0, _moveSpeed * Time.fixedDeltaTime);
+                    //Debug.Log("velocity: " + velocity + " moveSpeed: " + _moveSpeed + " deltaTime: " +
+                    //Time.fixedDeltaTime + " grounded: " + _isGrounded + " rigidbody: " + _rigidbody);    
                     _rigidbody.linearVelocity = velocity;
                 }
                 return;

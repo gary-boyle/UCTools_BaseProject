@@ -20,7 +20,7 @@ namespace GameFramework.Components.Controllers.Camera
         [SerializeField] private Transform _followTarget;
         
         [Header("Look Settings")]
-        [SerializeField] private float _mouseSensitivityMultiplier = 1.0f;
+        [SerializeField] private float _mouseSensitivityMultiplier = 0.01f;
         [SerializeField] private float _minVerticalAngle = -80f;
         [SerializeField] private float _maxVerticalAngle = 80f;
         [SerializeField] private bool _invertYAxis = false;
@@ -36,6 +36,9 @@ namespace GameFramework.Components.Controllers.Camera
         #region Private Fields
         private IPauseService _pauseService;
         private InputSettings_SO _inputSettings;
+        
+        // Player and camera targets
+        private Transform _playerTransform; // The player character (parent of camera mount)
         
         // Look state
         private Vector2 _lookInput = Vector2.zero;
@@ -60,7 +63,7 @@ namespace GameFramework.Components.Controllers.Camera
         public float MouseSensitivityMultiplier 
         { 
             get => _mouseSensitivityMultiplier; 
-            set => _mouseSensitivityMultiplier = Mathf.Clamp(value, 0.1f, 5.0f); 
+            set => _mouseSensitivityMultiplier = value; 
         }
         public float EffectiveMouseSensitivity => _globalMouseSensitivity * _mouseSensitivityMultiplier;
         #endregion
@@ -110,12 +113,16 @@ namespace GameFramework.Components.Controllers.Camera
                 SetCursorLocked(true);
             }
             
-            // Initialize rotation from current transform
+            // Initialize rotation from current transforms
+            if (_playerTransform != null)
+            {
+                _currentYaw = _playerTransform.eulerAngles.y;
+            }
+            
             if (_followTarget != null)
             {
-                Vector3 eulerAngles = _followTarget.eulerAngles;
-                _currentYaw = eulerAngles.y;
-                _currentPitch = eulerAngles.x;
+                Vector3 localEulerAngles = _followTarget.localEulerAngles;
+                _currentPitch = localEulerAngles.x;
                 
                 // Handle wrap-around for pitch
                 if (_currentPitch > 180f)
@@ -165,10 +172,26 @@ namespace GameFramework.Components.Controllers.Camera
         {
             _followTarget = target;
             
+            // If the target is a camera mount, get the player transform (its parent)
+            if (target != null && target.name.Contains("CameraMount") && target.parent != null)
+            {
+                _playerTransform = target.parent;
+            }
+            else if (target != null)
+            {
+                // If no camera mount pattern, use the target itself as the player
+                _playerTransform = target;
+            }
+            
             if (_cinemachineCamera != null && target != null)
             {
                 _cinemachineCamera.Follow = target;
                 _cinemachineCamera.LookAt = target;
+            }
+            
+            if (_showDebugInfo && _playerTransform != null)
+            {
+                Debug.Log($"[FirstPersonCameraControl] Set player transform to: {_playerTransform.name}");
             }
         }
 
@@ -188,43 +211,6 @@ namespace GameFramework.Components.Controllers.Camera
         #endregion
 
         #region Private Methods
-        private void SetupCinemachineCamera()
-        {
-            if (_cinemachineCamera == null) return;
-            
-            // Set follow and look at targets
-            if (_followTarget != null)
-            {
-                _cinemachineCamera.Follow = _followTarget;
-                _cinemachineCamera.LookAt = _followTarget;
-            }
-            
-            // Configure for first-person view
-            _cinemachineCamera.Lens.FieldOfView = 60f; // Standard FPS FOV
-            
-            // Remove any existing composer or aim components that might interfere
-            var composer = _cinemachineCamera.GetComponent<CinemachineComposer>();
-            if (composer != null)
-            {
-                Object.DestroyImmediate(composer);
-            }
-            
-            var groupComposer = _cinemachineCamera.GetComponent<CinemachineGroupComposer>();
-            if (groupComposer != null)
-            {
-                Object.DestroyImmediate(groupComposer);
-            }
-            
-            // Add hard constraint to lock camera to follow target
-            var hardConstraint = _cinemachineCamera.GetComponent<CinemachineHardLockToTarget>();
-            if (hardConstraint == null)
-            {
-                hardConstraint = _cinemachineCamera.gameObject.AddComponent<CinemachineHardLockToTarget>();
-            }
-            
-            if (_showDebugInfo)
-                Debug.Log("[FirstPersonCameraControl] Cinemachine camera configured for first-person");
-        }
 
         private void ApplyInputSettings()
         {
@@ -262,11 +248,19 @@ namespace GameFramework.Components.Controllers.Camera
 
         private void ApplyRotation()
         {
-            if (_followTarget == null) return;
+            // Apply horizontal rotation (yaw) to the player character
+            if (_playerTransform != null)
+            {
+                Quaternion playerRotation = Quaternion.Euler(0f, _currentYaw, 0f);
+                _playerTransform.rotation = playerRotation;
+            }
             
-            // Apply rotation to the follow target
-            Quaternion targetRotation = Quaternion.Euler(_currentPitch, _currentYaw, 0f);
-            _followTarget.rotation = targetRotation;
+            // Apply vertical rotation (pitch) to the camera mount
+            if (_followTarget != null)
+            {
+                Quaternion cameraRotation = Quaternion.Euler(_currentPitch, 0f, 0f);
+                _followTarget.localRotation = cameraRotation;
+            }
         }
 
         private void SetCursorLocked(bool locked)

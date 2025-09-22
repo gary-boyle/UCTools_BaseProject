@@ -282,6 +282,7 @@ namespace GameFramework.Components.Controllers
         #region Input Event Handlers
         protected virtual void OnPlayerMoveInput(PlayerMoveInputEvent inputEvent)
         {
+            Debug.Log("OnPlayerMoveInput recieved" + _isInitialized + " " + _isEnabled);
             if (!_isInitialized || !_isEnabled) return;
             _movementComponent?.HandleMoveInput(inputEvent);
         }

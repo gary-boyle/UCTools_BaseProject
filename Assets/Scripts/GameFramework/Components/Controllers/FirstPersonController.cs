@@ -54,7 +54,16 @@ namespace GameFramework.Components.Controllers
         #region Component Creation
         protected override void CreateComponents()
         {
-            // Components are now assigned from inspector or found in Awake()
+            // Assign the found components to the base class fields
+            base._movementComponent = _movementComponent;
+            base._cameraComponent = _cameraComponent;
+            
+            // Set the camera mount target for the camera component
+            if (_cameraComponent != null && _cameraMount != null)
+            {
+                _cameraComponent.SetTarget(_cameraMount);
+            }
+            
             if (_showDebugInfo)
                 Debug.Log("[FirstPersonController] Components initialized successfully");
         }
