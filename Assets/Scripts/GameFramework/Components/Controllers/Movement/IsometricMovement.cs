@@ -3,6 +3,7 @@ using GameFramework.Components.Controllers.Interfaces;
 using GameFramework.EventSystem.Events;
 using GameFramework.Services.Interfaces;
 using GameFramework.Core;
+using UnityEngine.InputSystem;
 
 namespace GameFramework.Components.Controllers.Movement
 {
@@ -18,9 +19,21 @@ namespace GameFramework.Components.Controllers.Movement
         #region Serialized Fields
         [Header("Movement Settings")]
         [SerializeField] private float _moveSpeed = 5.0f;
+        [SerializeField] private float _sprintMultiplier = 1.5f;
+        [SerializeField] private float _crouchMultiplier = 0.5f;
+        [SerializeField] private float _jumpForce = 5.0f;
         
         [Header("Rotation Settings")]
         [SerializeField] private bool _use45DegreeOffset = true; // Enable for isometric camera alignment
+        
+        [Header("Ground Detection")]
+        [SerializeField] private LayerMask _groundLayerMask = 1;
+        [SerializeField] private float _groundCheckDistance = 0.1f;
+        
+        [Header("Crouching")]
+        [SerializeField] private float _crouchHeight = 1.0f;
+        [SerializeField] private float _standingHeight = 2.0f;
+        [SerializeField] private float _crouchTransitionSpeed = 5.0f;
         #endregion
 
         #region Private Fields
@@ -33,13 +46,20 @@ namespace GameFramework.Components.Controllers.Movement
         private Vector2 _moveInput = Vector2.zero;
         private bool _isInitialized = false;
         private Vector3 _currentVelocity = Vector3.zero;
+        private bool _isJumpRequested = false;
+        private bool _isSprinting = false;
+        private bool _isCrouching = false;
+        
+        // Ground detection
+        private bool _isGrounded = false;
+        private Transform _groundCheckPoint;
         #endregion
 
         #region Public Properties
         public bool IsPaused => _pauseService?.IsPaused ?? false;
         public Transform MovementTransform => transform;
         public Vector3 CurrentVelocity => _currentVelocity;
-        public bool IsGrounded => true;
+        public bool IsGrounded => _isGrounded;
         public bool Use45DegreeOffset => _use45DegreeOffset;
         public float MoveSpeed => _moveSpeed;
         
@@ -63,12 +83,21 @@ namespace GameFramework.Components.Controllers.Movement
         {
             UpdateMovement();
         }
+        
+        private void FixedUpdate()
+        {
+            FixedUpdateMovement();
+        }
         #endregion
 
         #region IPlayerMovement Implementation
         public void Initialize()
         {
             if (_isInitialized) return;
+            
+            // Setup ground check point
+            SetupGroundCheck();
+            
             _isInitialized = true;
         }
 
@@ -88,36 +117,50 @@ namespace GameFramework.Components.Controllers.Movement
 
         public void HandleJumpInput(PlayerJumpInputEvent inputEvent)
         {
-            // No jump in isometric movement
+            if (!_isInitialized || IsPaused) return;
+            
+            if (inputEvent.Phase == InputActionPhase.Performed && _isGrounded)
+            {
+                _isJumpRequested = true;
+            }
         }
 
         public void HandleSprintInput(PlayerSprintInputEvent inputEvent)
         {
-            // No sprint in simplified version
+            if (!_isInitialized || IsPaused) return;
+            
+            _isSprinting = inputEvent.Phase == InputActionPhase.Performed;
         }
 
         public void HandleCrouchInput(PlayerCrouchInputEvent inputEvent)
         {
-            // No crouch in simplified version
+            if (!_isInitialized || IsPaused) return;
+            
+            _isCrouching = inputEvent.Phase == InputActionPhase.Performed;
         }
 
         public void UpdateMovement()
         {
             if (!_isInitialized || IsPaused) return;
             
+            CheckGrounded();
             HandleMovement();
             HandleRotation();
+            HandleCrouchTransition();
         }
 
         public void FixedUpdateMovement()
         {
-            // Not used in simplified version
+            if (!_isInitialized || IsPaused) return;
+            
+            HandleJump();
         }
 
         public void StopMovement()
         {
             _moveInput = Vector2.zero;
             _currentVelocity = Vector3.zero;
+            _isJumpRequested = false;
         }
         #endregion
 
@@ -139,8 +182,13 @@ namespace GameFramework.Components.Controllers.Movement
                 movement = Quaternion.Euler(0f, 45f, 0f) * movement;
             }
             
+            // Calculate movement speed with modifiers
+            float currentSpeed = _moveSpeed;
+            if (_isSprinting && !_isCrouching) currentSpeed *= _sprintMultiplier;
+            if (_isCrouching) currentSpeed *= _crouchMultiplier;
+            
             // Calculate velocity for this frame
-            Vector3 velocity = movement * _moveSpeed;
+            Vector3 velocity = movement * currentSpeed;
             _currentVelocity = velocity;
             
             // Apply movement
@@ -192,6 +240,59 @@ namespace GameFramework.Components.Controllers.Movement
             }
             
             return nearestAngle;
+        }
+        
+        private void SetupGroundCheck()
+        {
+            // Create ground check point if it doesn't exist
+            _groundCheckPoint = transform.Find("GroundCheckPoint");
+            if (_groundCheckPoint == null)
+            {
+                GameObject groundCheck = new GameObject("GroundCheckPoint");
+                groundCheck.transform.SetParent(transform);
+                groundCheck.transform.localPosition = new Vector3(0, -_collider.bounds.extents.y, 0);
+                _groundCheckPoint = groundCheck.transform;
+            }
+        }
+
+        private void CheckGrounded()
+        {
+            if (_groundCheckPoint == null) return;
+            
+            _isGrounded = Physics.Raycast(
+                _groundCheckPoint.position,
+                Vector3.down,
+                _groundCheckDistance,
+                _groundLayerMask
+            );
+        }
+
+        private void HandleJump()
+        {
+            if (_isJumpRequested && _isGrounded && _rigidbody != null)
+            {
+                _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+                _isJumpRequested = false;
+            }
+            
+            _isJumpRequested = false;
+        }
+
+        private void HandleCrouchTransition()
+        {
+            float targetHeight = _isCrouching ? _crouchHeight : _standingHeight;
+            float currentHeight = _collider.height;
+            
+            if (Mathf.Abs(currentHeight - targetHeight) > 0.01f)
+            {
+                float newHeight = Mathf.MoveTowards(currentHeight, targetHeight, _crouchTransitionSpeed * Time.deltaTime);
+                _collider.height = newHeight;
+                
+                // Adjust center to keep feet on ground
+                Vector3 center = _collider.center;
+                center.y = newHeight * 0.5f;
+                _collider.center = center;
+            }
         }
         #endregion
 

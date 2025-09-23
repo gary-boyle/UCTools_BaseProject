@@ -206,6 +206,23 @@ namespace GameFramework.Components.Controllers
 
         #region Animation Control
         /// <summary>
+        /// Trigger attack animation
+        /// </summary>
+        public void TriggerAttack()
+        {
+            _animatorController?.TriggerAttack();
+        }
+        
+        /// <summary>
+        /// Set crouching state
+        /// </summary>
+        /// <param name="isCrouching">Whether the player is crouching</param>
+        public void SetCrouching(bool isCrouching)
+        {
+            _animatorController?.SetCrouching(isCrouching);
+        }
+        
+        /// <summary>
         /// Get access to the animator controller for advanced animation control
         /// </summary>
         public PlayerAnimatorController AnimatorController => _animatorController;
