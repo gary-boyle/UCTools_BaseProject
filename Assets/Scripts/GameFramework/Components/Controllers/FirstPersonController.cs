@@ -2,6 +2,7 @@ using UnityEngine;
 using Unity.Cinemachine;
 using GameFramework.Components.Controllers.Movement;
 using GameFramework.Components.Controllers.Camera;
+using GameFramework.Components.Controllers.Enum;
 
 namespace GameFramework.Components.Controllers
 {
@@ -28,6 +29,9 @@ namespace GameFramework.Components.Controllers
         #region Unity Lifecycle
         protected override void Awake()
         {
+            // Set cursor lock requirement for first person controllers
+            _cursorLockRequirement = CursorLockRequirement.DuringGameplay;
+            
             base.Awake();
             
             // Find components if not assigned

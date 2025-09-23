@@ -27,10 +27,6 @@ namespace GameFramework.Components.Controllers.Camera
         [SerializeField] private float _maxVerticalAngle = 80f;
         [SerializeField] private bool _invertYAxis = false;
         
-        [Header("Cursor Settings")]
-        [SerializeField] private bool _lockCursor = true;
-        [SerializeField] private bool _hideCursor = true;
-        
         [Header("Debug")]
         [SerializeField] private bool _showDebugInfo = false;
         #endregion
@@ -108,13 +104,7 @@ namespace GameFramework.Components.Controllers.Camera
                 Debug.LogError("[FirstPersonCameraControl] CinemachineCamera is required but not assigned.");
                 return;
             }
-            
-            // // Initialize cursor state
-            // if (_lockCursor)
-            // {
-            //     SetCursorLocked(true);
-            // }
-            
+
             // Initialize rotation from current transforms
             if (_playerTransform != null)
             {
@@ -138,9 +128,6 @@ namespace GameFramework.Components.Controllers.Camera
 
         public void Cleanup()
         {
-            // Ensure cursor is unlocked
-            //SetCursorLocked(false);
-            
             // Clear references
             _pauseService = null;
             _inputSettings = null;
@@ -225,20 +212,6 @@ namespace GameFramework.Components.Controllers.Camera
             _cinemachinePanTilt.TiltAxis.Value = _currentPitch;
         }
 
-        // private void SetCursorLocked(bool locked)
-        // {
-        //     if (locked)
-        //     {
-        //         Cursor.lockState = CursorLockMode.Locked;
-        //         if (_hideCursor)
-        //             Cursor.visible = false;
-        //     }
-        //     else
-        //     {
-        //         Cursor.lockState = CursorLockMode.None;
-        //         Cursor.visible = true;
-        //     }
-        // }
         #endregion
     }
 }

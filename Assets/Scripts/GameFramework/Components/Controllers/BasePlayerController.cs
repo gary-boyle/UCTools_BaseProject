@@ -6,6 +6,7 @@ using GameFramework.Services.Interfaces;
 using GameFramework.Core;
 using GameFramework.Input;
 using GameFramework.Input.Interfaces;
+using GameFramework.Components.Controllers.Enum;
 
 namespace GameFramework.Components.Controllers
 {
@@ -25,6 +26,9 @@ namespace GameFramework.Components.Controllers
         
         [Header("Input Context")]
         [SerializeField] protected InputContext _requiredInputContext = InputContext.Player;
+        
+        [Header("Cursor Management")]
+        [SerializeField] protected CursorLockRequirement _cursorLockRequirement = CursorLockRequirement.Never;
         #endregion
 
         #region Protected Fields
@@ -48,6 +52,7 @@ namespace GameFramework.Components.Controllers
         public bool IsInitialized => _isInitialized;
         public bool IsEnabled => _isEnabled;
         public bool IsPaused => _pauseService?.IsPaused ?? false;
+        public CursorLockRequirement CursorLockRequirement => _cursorLockRequirement;
         #endregion
 
         #region Unity Lifecycle
@@ -138,6 +143,9 @@ namespace GameFramework.Components.Controllers
             //SetInputContext();
             
             _isInitialized = true;
+            
+            // Notify UIService about cursor lock requirements
+            _eventSystem?.Publish(new PlayerControllerChangedEvent(this, _cursorLockRequirement));
             
             if (_showDebugInfo)
                 Debug.Log($"[{GetType().Name}] Initialized successfully on {gameObject.name}");

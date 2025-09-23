@@ -2,6 +2,7 @@ using UnityEngine;
 using Unity.Cinemachine;
 using GameFramework.Components.Controllers.Movement;
 using GameFramework.Components.Controllers.Camera;
+using GameFramework.Components.Controllers.Enum;
 using GameFramework.EventSystem.Events;
 using System.Collections.Generic;
 using GameFramework.Core;
@@ -74,6 +75,9 @@ namespace GameFramework.Components.Controllers
         #region Unity Lifecycle
         protected override void Awake()
         {
+            // Set cursor lock requirement for isometric controllers (never lock cursor)
+            _cursorLockRequirement = CursorLockRequirement.Never;
+            
             base.Awake();
             
             // Find components if not assigned

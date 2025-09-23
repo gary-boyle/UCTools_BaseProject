@@ -72,14 +72,17 @@ namespace GameFramework.Components.Controllers.Movement
         
         // Component state
         private bool _isInitialized = false;
+        
         #endregion
 
         #region Public Properties
+        
         public bool IsPaused => _pauseService?.IsPaused ?? false;
         public Transform MovementTransform => transform;
         public Vector3 CurrentVelocity => _rigidbody != null ? _rigidbody.linearVelocity : Vector3.zero;
         public bool IsGrounded => _isGrounded;
         public float CurrentYaw => _currentYaw;
+        
         #endregion
 
         #region Unity Lifecycle
@@ -114,19 +117,6 @@ namespace GameFramework.Components.Controllers.Movement
         public void Initialize()
         {
             if (_isInitialized) return;
-
-            if (_rigidbody == null)
-            {
-                Debug.LogError($"[ThirdPersonMovement] Rigidbody component required on {gameObject.name}");
-                return;
-            }
-            
-            if (_collider == null)
-            {
-                Debug.LogError($"[ThirdPersonMovement] CapsuleCollider component required on {gameObject.name}");
-                return;
-            }
-
             if (_mainCamera == null)
             {
                 Debug.LogWarning($"[ThirdPersonMovement] No main camera found. Movement will be relative to world space.");
@@ -142,9 +132,6 @@ namespace GameFramework.Components.Controllers.Movement
             _currentYaw = transform.eulerAngles.y;
             
             _isInitialized = true;
-            
-            if (_showDebugInfo)
-                Debug.Log($"[ThirdPersonMovement] Initialized on {gameObject.name}");
         }
 
         public void Cleanup()
@@ -152,16 +139,10 @@ namespace GameFramework.Components.Controllers.Movement
             _pauseService = null;
             _mainCamera = null;
             _isInitialized = false;
-            
-            if (_showDebugInfo)
-                Debug.Log($"[ThirdPersonMovement] Cleaned up on {gameObject.name}");
         }
 
         public void HandleMoveInput(PlayerMoveInputEvent inputEvent)
         {
-            if (_showDebugInfo)
-                Debug.Log($"[ThirdPersonMovement] HandleMoveInput: {inputEvent.MovementVector}");
-            
             if (!_isInitialized || IsPaused) return;
             
             _moveInput = inputEvent.MovementVector;
@@ -196,9 +177,6 @@ namespace GameFramework.Components.Controllers.Movement
             if (!_isInitialized || IsPaused || !_enableMouseRotation) return;
             
             _lookInput = inputEvent.LookDelta;
-            
-            if (_showDebugInfo)
-                Debug.Log($"[ThirdPersonMovement] HandleLookInput: {_lookInput}");
         }
 
         public void UpdateMovement()
@@ -266,12 +244,8 @@ namespace GameFramework.Components.Controllers.Movement
                 if (_isGrounded)
                 {
                     Vector3 velocity = _rigidbody.linearVelocity;
-                    //Debug.Log("movespeed: " + _moveSpeed);
-                    //Debug.Log("velocity before: " + velocity);
                     velocity.x = Mathf.MoveTowards(velocity.x, 0, _moveSpeed * Time.fixedDeltaTime);
                     velocity.z = Mathf.MoveTowards(velocity.z, 0, _moveSpeed * Time.fixedDeltaTime);
-                    //Debug.Log("velocity: " + velocity + " moveSpeed: " + _moveSpeed + " deltaTime: " +
-                    //Time.fixedDeltaTime + " grounded: " + _isGrounded + " rigidbody: " + _rigidbody);    
                     _rigidbody.linearVelocity = velocity;
                 }
                 return;
@@ -335,11 +309,6 @@ namespace GameFramework.Components.Controllers.Movement
             _currentYaw += horizontalInput;
             transform.rotation = Quaternion.Euler(0f, _currentYaw, 0f);
             
-            if (_showDebugInfo)
-            {
-                Debug.Log($"[ThirdPersonMovement] Mouse rotation applied: {horizontalInput}° - Current yaw: {_currentYaw}°");
-            }
-            
             // Reset look input after processing
             _lookInput = Vector2.zero;
         }
@@ -363,11 +332,6 @@ namespace GameFramework.Components.Controllers.Movement
             
             transform.rotation = Quaternion.Euler(0f, smoothedRotation, 0f);
             _currentYaw = smoothedRotation; // Keep yaw in sync
-            
-            if (_showDebugInfo)
-            {
-                Debug.Log($"[ThirdPersonMovement] Rotating towards movement direction: {smoothedRotation}°");
-            }
         }
 
         private void HandleJump()
@@ -376,9 +340,6 @@ namespace GameFramework.Components.Controllers.Movement
             {
                 _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
                 _isJumpRequested = false;
-                
-                if (_showDebugInfo)
-                    Debug.Log("[ThirdPersonMovement] Jump executed");
             }
             
             _isJumpRequested = false;
@@ -399,26 +360,6 @@ namespace GameFramework.Components.Controllers.Movement
                 center.y = newHeight * 0.5f;
                 _collider.center = center;
             }
-        }
-        #endregion
-
-        #region Public Methods
-        /// <summary>
-        /// Set the camera reference for camera-relative movement
-        /// </summary>
-        public void SetCamera(UnityEngine.Camera camera)
-        {
-            _mainCamera = camera;
-            if (_showDebugInfo)
-                Debug.Log($"[ThirdPersonMovement] Camera reference set to: {camera?.name ?? "null"}");
-        }
-        
-        /// <summary>
-        /// Set whether the character should rotate towards movement direction
-        /// </summary>
-        public void SetRotateTowardsMovement(bool rotate)
-        {
-            _rotateTowardsMovement = rotate;
         }
         #endregion
 

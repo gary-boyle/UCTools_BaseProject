@@ -845,6 +845,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   _requiredInputContext: 3
+  _cursorLockRequirement: 2
   _movementComponent: {fileID: 1140652679981138305}
   _cameraComponent: {fileID: 2364472277237615958}
   _cinemachineCamera: {fileID: 9083194349371853835}
@@ -869,10 +870,10 @@ MonoBehaviour:
   _jumpForce: 5
   _airControl: 0.3
   _rotationSpeed: 10
-  _rotateTowardsMovement: 0
+  _rotateTowardsMovement: 1
   _rotationSmoothTime: 0.1
-  _mouseSensitivityMultiplier: 1
-  _enableMouseRotation: 1
+  _mouseSensitivityMultiplier: 0.01
+  _enableMouseRotation: 0
   _groundLayerMask:
     serializedVersion: 2
     m_Bits: 9
