@@ -3,7 +3,6 @@ using GameFramework.Components.Controllers.Interfaces;
 using GameFramework.EventSystem.Events;
 using GameFramework.Services.Interfaces;
 using GameFramework.Core;
-using UnityEngine.InputSystem;
 
 namespace GameFramework.Components.Controllers.Movement
 {
@@ -13,7 +12,7 @@ namespace GameFramework.Components.Controllers.Movement
     /// Optional 45-degree offset for isometric camera alignment.
     /// </summary>
     ///
-    /// 
+    [RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
     public class IsometricMovement : MonoBehaviour, IPlayerMovement
     {
         #region Serialized Fields
@@ -37,6 +36,7 @@ namespace GameFramework.Components.Controllers.Movement
         public Transform MovementTransform => transform;
         public Vector3 CurrentVelocity => Vector3.zero;
         public bool IsGrounded => true;
+        public bool Use45DegreeOffset => _use45DegreeOffset;
         #endregion
 
         #region Unity Lifecycle
@@ -182,14 +182,7 @@ namespace GameFramework.Components.Controllers.Movement
         {
             _moveSpeed = Mathf.Max(0f, speed);
         }
-        
-        /// <summary>
-        /// Enable or disable 45-degree offset for isometric camera alignment
-        /// </summary>
-        public void SetUse45DegreeOffset(bool useOffset)
-        {
-            _use45DegreeOffset = useOffset;
-        }
+
         #endregion
     }
 }

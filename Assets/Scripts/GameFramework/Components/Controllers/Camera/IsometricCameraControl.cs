@@ -4,7 +4,6 @@ using GameFramework.Components.Controllers.Interfaces;
 using GameFramework.EventSystem.Events;
 using GameFramework.Services.Interfaces;
 using GameFramework.Core;
-using GameFramework.Config.ScriptableObjects;
 using GameFramework.EventSystem.Interfaces;
 
 namespace GameFramework.Components.Controllers.Camera
@@ -116,20 +115,6 @@ namespace GameFramework.Components.Controllers.Camera
             UpdateZoom();
         }
 
-        public void SetTarget(Transform target)
-        {
-            if (_cinemachineCamera != null && target != null)
-            {
-                _cinemachineCamera.Follow = target;
-                _cinemachineCamera.LookAt = target;
-            }
-        }
-
-        public Transform GetCameraTransform()
-        {
-            return _cinemachineCamera.transform;
-        }
-
         public void SetInputEnabled(bool enabled)
         {
             _inputEnabled = enabled;
@@ -156,33 +141,6 @@ namespace GameFramework.Components.Controllers.Camera
             
             // Update Cinemachine orthographic size
             _cinemachineCamera.Lens.OrthographicSize = _currentZoom;
-        }
-        #endregion
-
-        #region Public Methods
-        /// <summary>
-        /// Set zoom level
-        /// </summary>
-        public void SetZoom(float zoom)
-        {
-            _targetZoom = Mathf.Clamp(zoom, _minZoom, _maxZoom);
-        }
-        
-        /// <summary>
-        /// Get current zoom level
-        /// </summary>
-        public float GetCurrentZoom()
-        {
-            return _currentZoom;
-        }
-        
-        /// <summary>
-        /// Reset zoom to default level
-        /// </summary>
-        public void ResetZoom()
-        {
-            _currentZoom = _minZoom + (_maxZoom - _minZoom) * 0.5f;
-            _targetZoom = _currentZoom;
         }
         #endregion
     }

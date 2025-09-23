@@ -41,8 +41,16 @@ namespace GameFramework.EventSystem.Events
     }
     
     public class UIRightClickInputEvent { }
-    
-    public class UIMiddleClickInputEvent { }
+
+    public class UIMiddleClickInputEvent
+    {
+        public InputActionPhase Phase { get; }
+
+        public UIMiddleClickInputEvent(InputActionPhase phase)
+        {
+            Phase = phase;
+        }
+    }
     
     public class UIScrollWheelInputEvent
     {

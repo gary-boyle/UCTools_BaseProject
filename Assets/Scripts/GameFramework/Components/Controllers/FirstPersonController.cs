@@ -35,16 +35,9 @@ namespace GameFramework.Components.Controllers
             base.Awake();
             
             // Find components if not assigned
-            if (_movementComponent == null)
-            {
-                _movementComponent = GetComponent<FirstPersonMovement>();
-            }
-            
-            if (_cameraComponent == null)
-            {
-                _cameraComponent = GetComponent<FirstPersonCameraControl>();
-            }
-            
+            if (_movementComponent == null) _movementComponent = GetComponent<FirstPersonMovement>();
+            if (_cameraComponent == null) _cameraComponent = GetComponent<FirstPersonCameraControl>();
+
             // Find camera mount if not assigned
             if (_cameraMount == null)
             {

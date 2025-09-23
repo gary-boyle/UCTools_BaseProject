@@ -14,12 +14,12 @@ namespace GameFramework.Components.Controllers.Enum
         None = 0,
         
         /// <summary>
-        /// Character automatically rotates to face the direction they're moving.
-        /// Left/Right input without forward movement provides direct rotation control.
-        /// Diagonal or forward movement makes character face movement direction.
-        /// Best for tank-like controls or traditional third-person movement.
+        /// Character rotation controlled by A/D keys (tank-like controls).
+        /// A/D keys provide direct rotation control when pressed alone.
+        /// Movement is always relative to character's facing direction.
+        /// Best for classic tank-like controls or traditional third-person movement.
         /// </summary>
-        FaceMovementDirection = 1,
+        TankControls = 1,
         
         /// <summary>
         /// Character rotation is directly controlled by mouse horizontal input.

@@ -262,6 +262,33 @@ namespace GameFramework.Components.Controllers.Movement
         #endregion
 
         #region Private Methods
+        
+        /// <summary>
+        /// Determines if A/D input should be used for rotation instead of movement
+        /// </summary>
+        private bool ShouldUseADForRotation()
+        {
+            bool hasHorizontalInput = Mathf.Abs(_moveInput.x) > 0.01f;
+            bool hasForwardInput = Mathf.Abs(_moveInput.y) > 0.01f;
+            
+            // A/D is only used for rotation when pressed alone (not with W/S)
+            bool horizontalOnly = hasHorizontalInput && !hasForwardInput;
+            if (!horizontalOnly) return false;
+            
+            switch (_rotationSettings.rotationMode)
+            {
+                case CharacterRotationMode.TankControls:
+                    return true; // Always use A/D for rotation in tank mode
+                    
+                case CharacterRotationMode.MouseWithMovementFallback:
+                    // Only use A/D for rotation when mouse is inactive
+                    return _timeSinceLastMouseInput >= _rotationSettings.mouseInactivityThreshold;
+                    
+                default:
+                    return false; // Other modes don't use A/D for rotation
+            }
+        }
+        
         private void SetupGroundCheck()
         {
             // Create ground check point if it doesn't exist
@@ -289,19 +316,22 @@ namespace GameFramework.Components.Controllers.Movement
 
         private void HandleMovement()
         {
-            // Check if we should ignore horizontal input for movement (used for rotation instead)
-            Vector2 effectiveMoveInput = _moveInput;
-            bool isUsingHorizontalForRotation = _rotationSettings.rotationMode == CharacterRotationMode.FaceMovementDirection && 
-                                                Mathf.Abs(_moveInput.x) > 0.01f && 
-                                                Mathf.Abs(_moveInput.y) < 0.01f;
+            // Determine effective movement input based on rotation mode
+            Vector2 effectiveInput = _moveInput;
             
-            if (isUsingHorizontalForRotation)
+            // Check if A/D input should be used for rotation instead of movement
+            if (ShouldUseADForRotation())
             {
-                // Don't use horizontal input for movement when it's being used for rotation
-                effectiveMoveInput.x = 0f;
+                // A/D is being used for rotation, don't use it for movement
+                effectiveInput.x = 0f;
+                
+                if (_showDebugInfo)
+                {
+                    Debug.Log($"[ThirdPersonMovement] A/D input intercepted for rotation (mode: {_rotationSettings.rotationMode})");
+                }
             }
             
-            if (effectiveMoveInput.magnitude < 0.01f)
+            if (effectiveInput.magnitude < 0.01f)
             {
                 // Apply ground friction when not moving
                 if (_isGrounded)
@@ -314,28 +344,16 @@ namespace GameFramework.Components.Controllers.Movement
                 return;
             }
 
-            // Convert input to camera-relative movement
-            Vector3 inputDirection = new Vector3(effectiveMoveInput.x, 0f, effectiveMoveInput.y).normalized;
+            // Calculate movement direction relative to character's facing direction
+            Vector3 forward = transform.forward;
+            Vector3 right = transform.right;
             
-            if (_mainCamera != null)
+            // W/S = forward/backward, A/D = strafe left/right (when not used for rotation)
+            _moveDirection = (forward * effectiveInput.y + right * effectiveInput.x).normalized;
+            
+            if (_showDebugInfo && effectiveInput.magnitude > 0.5f)
             {
-                // Get camera's forward and right directions (flattened to horizontal plane)
-                Vector3 cameraForward = _mainCamera.transform.forward;
-                Vector3 cameraRight = _mainCamera.transform.right;
-                
-                cameraForward.y = 0f;
-                cameraRight.y = 0f;
-                
-                cameraForward.Normalize();
-                cameraRight.Normalize();
-                
-                // Calculate movement direction relative to camera
-                _moveDirection = (cameraForward * inputDirection.z + cameraRight * inputDirection.x).normalized;
-            }
-            else
-            {
-                // Fallback to world space movement
-                _moveDirection = inputDirection;
+                Debug.Log($"[ThirdPersonMovement] Movement - Input: {effectiveInput}, Direction: {_moveDirection}");
             }
             
             // Calculate movement speed with modifiers
@@ -343,14 +361,13 @@ namespace GameFramework.Components.Controllers.Movement
             if (_isSprinting && !_isCrouching) currentSpeed *= _sprintMultiplier;
             if (_isCrouching) currentSpeed *= _crouchMultiplier;
             
-            // Apply movement force
+            // Apply movement
             Vector3 targetVelocity = _moveDirection * currentSpeed;
             Vector3 currentVelocity = _rigidbody.linearVelocity;
             
-            // Different handling for grounded vs airborne movement
             if (_isGrounded)
             {
-                // Direct velocity assignment for responsive ground movement
+                // Direct movement on ground
                 _rigidbody.linearVelocity = new Vector3(targetVelocity.x, currentVelocity.y, targetVelocity.z);
             }
             else
@@ -372,7 +389,7 @@ namespace GameFramework.Components.Controllers.Movement
                     // No rotation updates
                     break;
                     
-                case CharacterRotationMode.FaceMovementDirection:
+                case CharacterRotationMode.TankControls:
                     HandleMovementDirectionRotation();
                     break;
                     
@@ -386,7 +403,7 @@ namespace GameFramework.Components.Controllers.Movement
             }
             
             // Reset look input after processing
-            //_lookInput = Vector2.zero;
+            _lookInput = Vector2.zero;
         }
         
         private void HandleMouseRotation()
@@ -403,26 +420,22 @@ namespace GameFramework.Components.Controllers.Movement
         
         private void HandleMovementDirectionRotation()
         {
-            // Check if we have horizontal input (left/right) without forward movement
-            bool hasHorizontalInput = Mathf.Abs(_moveInput.x) > 0.01f;
-            bool hasForwardInput = Mathf.Abs(_moveInput.y) > 0.01f;
-            
-            if (hasHorizontalInput && !hasForwardInput)
+            // Use the consistent helper method
+            if (ShouldUseADForRotation())
             {
-                // Direct rotational input - rotate the character directly with left/right keys
+                // Direct rotational input - rotate the character with A/D keys
                 float rotationInput = _moveInput.x * _rotationSettings.movementRotationSpeed * 100f;
                 _currentYaw += rotationInput * Time.deltaTime;
                 transform.rotation = Quaternion.Euler(0f, _currentYaw, 0f);
-            }
-            else if (_moveDirection.magnitude > 0.01f)
-            {
-                // Movement-based rotation - directly face the direction of movement
-                float targetRotation = Mathf.Atan2(_moveDirection.x, _moveDirection.z) * Mathf.Rad2Deg;
                 
-                // Apply rotation directly without smoothing
-                _currentYaw = targetRotation;
-                transform.rotation = Quaternion.Euler(0f, _currentYaw, 0f);
+                if (_showDebugInfo)
+                {
+                    Debug.Log($"[ThirdPersonMovement] Tank rotation: {rotationInput:F1}°/s (A/D keys)");
+                }
             }
+            // Note: With simplified character-relative movement, we don't need
+            // to auto-rotate to face movement direction since A/D now moves
+            // left/right relative to where the character is facing
         }
         
         private void HandleHybridRotation()
@@ -432,33 +445,25 @@ namespace GameFramework.Components.Controllers.Movement
             
             if (shouldUseMouseRotation)
             {
-                // Use mouse rotation
+                // Use mouse rotation when mouse is active or recently used
                 if (hasMouseInput)
                 {
                     HandleMouseRotation();
                 }
             }
-            else
+            else if (ShouldUseADForRotation())
             {
-                // Check if we have horizontal input without forward movement
-                bool hasHorizontalInput = Mathf.Abs(_moveInput.x) > 0.01f;
-                bool hasForwardInput = Mathf.Abs(_moveInput.y) > 0.01f;
+                // Mouse is inactive and A/D should be used for rotation
+                float rotationInput = _moveInput.x * _rotationSettings.movementRotationSpeed * 100f;
+                _currentYaw += rotationInput * Time.deltaTime;
+                transform.rotation = Quaternion.Euler(0f, _currentYaw, 0f);
                 
-                if (hasHorizontalInput && !hasForwardInput)
+                if (_showDebugInfo)
                 {
-                    // Direct rotational input in hybrid mode
-                    float rotationInput = _moveInput.x * _rotationSettings.movementRotationSpeed * 100f;
-                    _currentYaw += rotationInput * Time.deltaTime;
-                    transform.rotation = Quaternion.Euler(0f, _currentYaw, 0f);
-                }
-                else if (_moveDirection.magnitude > 0.01f)
-                {
-                    // Movement-based rotation - directly face the direction of movement
-                    float targetRotation = Mathf.Atan2(_moveDirection.x, _moveDirection.z) * Mathf.Rad2Deg;
-                    _currentYaw = targetRotation;
-                    transform.rotation = Quaternion.Euler(0f, _currentYaw, 0f);
+                    Debug.Log($"[ThirdPersonMovement] Hybrid A/D rotation: {rotationInput:F1}°/s (mouse inactive)");
                 }
             }
+            // When moving diagonally (W+A, W+D), A/D is used for movement, not rotation
         }
 
         private void HandleJump()
@@ -525,7 +530,7 @@ namespace GameFramework.Components.Controllers.Movement
                     Gizmos.DrawWireSphere(basePosition, 0.3f);
                     break;
                     
-                case CharacterRotationMode.FaceMovementDirection:
+                case CharacterRotationMode.TankControls:
                     // Check if we're using direct rotation input
                     bool isUsingDirectRotation = Mathf.Abs(_moveInput.x) > 0.01f && Mathf.Abs(_moveInput.y) < 0.01f;
                     

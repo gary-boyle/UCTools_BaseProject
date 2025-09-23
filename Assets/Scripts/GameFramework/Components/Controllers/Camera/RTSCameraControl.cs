@@ -6,12 +6,13 @@ using GameFramework.Services.Interfaces;
 using GameFramework.Core;
 using GameFramework.Config.ScriptableObjects;
 using GameFramework.EventSystem.Interfaces;
+using UnityEngine.InputSystem;
 
 namespace GameFramework.Components.Controllers.Camera
 {
     /// <summary>
     /// Complete RTS camera control system.
-    /// Handles WASD movement, edge scrolling, mouse wheel zooming, and optional rotation.
+    /// Handles WASD movement, edge scrolling, mouse wheel zooming, and optional middle mouse button rotation.
     /// All camera functionality is consolidated in this single component.
     /// </summary>
     public class RTSCameraControl : MonoBehaviour, ICameraControl
@@ -68,7 +69,7 @@ namespace GameFramework.Components.Controllers.Camera
         private Vector2 _moveInput = Vector2.zero;
         private Vector2 _edgeScrollInput = Vector2.zero;
         private Vector2 _currentMousePosition = Vector2.zero;
-        private float _rotationInput = 0f;
+        private Vector2 _mouseDelta = Vector2.zero;
         
         // Movement state
         private Vector3 _currentVelocity = Vector3.zero;
@@ -131,29 +132,25 @@ namespace GameFramework.Components.Controllers.Camera
                 CreateCameraRig();
             }
             
-            // Setup Cinemachine camera if provided
-            if (_cinemachineCamera != null)
-            {
-                SetupCinemachineCamera();
-            }
-            
             // Initialize zoom to middle range
             _currentZoom = (_minZoom + _maxZoom) * 0.5f;
             _targetZoom = _currentZoom;
+            
+            SetupCinemachineCamera();
             
             // Subscribe to input events
             if (_eventSystem != null)
             {
                 _eventSystem.Subscribe<UIScrollWheelInputEvent>(OnScrollWheel);
                 _eventSystem.Subscribe<UIPointInputEvent>(OnMousePosition);
-                _eventSystem.Subscribe<PlayerPreviousInputEvent>(OnRotateLeft); // Q key for rotation
-                _eventSystem.Subscribe<PlayerNextInputEvent>(OnRotateRight); // E key for rotation
+                _eventSystem.Subscribe<UIMiddleClickInputEvent>(OnMiddleMouseClick);
+                _eventSystem.Subscribe<PlayerLookInputEvent>(OnMouseLook);
             }
             
             _isInitialized = true;
             
             if (_showDebugInfo)
-                Debug.Log($"[RTSCameraControl] Initialized - WASD movement, edge scrolling: {_enableEdgeScrolling}, rotation: {_enableRotation}");
+                Debug.Log($"[RTSCameraControl] Initialized - WASD movement, edge scrolling: {_enableEdgeScrolling}, middle mouse rotation: {_enableRotation}");
         }
 
         public void Cleanup()
@@ -163,8 +160,8 @@ namespace GameFramework.Components.Controllers.Camera
             {
                 _eventSystem.Unsubscribe<UIScrollWheelInputEvent>(OnScrollWheel);
                 _eventSystem.Unsubscribe<UIPointInputEvent>(OnMousePosition);
-                _eventSystem.Unsubscribe<PlayerPreviousInputEvent>(OnRotateLeft);
-                _eventSystem.Unsubscribe<PlayerNextInputEvent>(OnRotateRight);
+                _eventSystem.Unsubscribe<UIMiddleClickInputEvent>(OnMiddleMouseClick);
+                _eventSystem.Unsubscribe<PlayerLookInputEvent>(OnMouseLook);
             }
 
             // Clear references
@@ -179,6 +176,37 @@ namespace GameFramework.Components.Controllers.Camera
                 Debug.Log("[RTSCameraControl] Cleaned up");
         }
 
+        private void SetupCinemachineCamera()
+        {
+            if (_cinemachineCamera == null || _cameraRig == null) return;
+            
+            // Set camera rig as follow target
+            _cinemachineCamera.Follow = _cameraRig;
+            
+            // Configure camera projection and angle
+            if (_mainCamera != null)
+            {
+                _mainCamera.orthographic = _orthographicProjection;
+                
+                if (_orthographicProjection)
+                {
+                    _cinemachineCamera.Lens.OrthographicSize = _currentZoom;
+                }
+                else
+                {
+                    _cinemachineCamera.Lens.FieldOfView = 60f;
+                }
+            }
+            
+            // Set RTS camera angle
+            Vector3 cameraRotation = _cinemachineCamera.transform.localEulerAngles;
+            cameraRotation.x = _cameraAngle;
+            _cinemachineCamera.transform.localEulerAngles = cameraRotation;
+            
+            if (_showDebugInfo)
+                Debug.Log($"[RTSCameraControl] Cinemachine camera setup - Orthographic: {_orthographicProjection}, Angle: {_cameraAngle}°");
+        }
+        
         /// <summary>
         /// Handle WASD movement input for camera panning
         /// </summary>
@@ -213,17 +241,17 @@ namespace GameFramework.Components.Controllers.Camera
             
             UpdateCameraHeight();
         }
-
+        
         public void SetTarget(Transform target)
         {
             // RTS cameras typically don't follow a specific target
-            // Could be used to focus on a specific unit or building
+            // But can be used to focus on a specific unit or building
             if (target != null)
             {
-                //FocusOnTarget(target.position);
+                FocusOnPosition(target.position);
             }
         }
-
+        
         public Transform GetCameraTransform()
         {
             return _cinemachineCamera.transform;
@@ -234,9 +262,7 @@ namespace GameFramework.Components.Controllers.Camera
             _inputEnabled = enabled;
             if (!enabled)
             {
-                //_lookInput = Vector2.zero;
-                //_panInput = Vector2.zero;
-                _rotationInput = 0f;
+                _mouseDelta = Vector2.zero;
             }
         }
         #endregion
@@ -251,38 +277,7 @@ namespace GameFramework.Components.Controllers.Camera
             if (_showDebugInfo)
                 Debug.Log("[RTSCameraControl] Created camera rig at height " + _cameraHeight);
         }
-
-        private void SetupCinemachineCamera()
-        {
-            if (_cinemachineCamera == null || _cameraRig == null) return;
-            
-            // Set camera rig as follow target
-            _cinemachineCamera.Follow = _cameraRig;
-            
-            // Configure camera projection and angle
-            if (_mainCamera != null)
-            {
-                _mainCamera.orthographic = _orthographicProjection;
-                
-                if (_orthographicProjection)
-                {
-                    _cinemachineCamera.Lens.OrthographicSize = _currentZoom;
-                }
-                else
-                {
-                    _cinemachineCamera.Lens.FieldOfView = 60f;
-                }
-            }
-            
-            // Set RTS camera angle
-            Vector3 cameraRotation = _cinemachineCamera.transform.localEulerAngles;
-            cameraRotation.x = _cameraAngle;
-            _cinemachineCamera.transform.localEulerAngles = cameraRotation;
-            
-            if (_showDebugInfo)
-                Debug.Log($"[RTSCameraControl] Cinemachine camera setup - Orthographic: {_orthographicProjection}, Angle: {_cameraAngle}°");
-        }
-
+        
         /// <summary>
         /// Handle edge scrolling when mouse is near screen edges
         /// </summary>
@@ -377,23 +372,24 @@ namespace GameFramework.Components.Controllers.Camera
                 }
                 else
                 {
-                    // For perspective cameras, we could adjust field of view or height
-                    // For now, just adjust the rig height based on zoom
-                    UpdateCameraHeight();
+                    // For perspective cameras, adjust the camera height based on zoom level
+                    // This is handled in UpdateCameraHeight() which is called every frame
                 }
             }
         }
 
         /// <summary>
-        /// Handle camera rotation (if enabled)
+        /// Handle camera rotation (if enabled) using middle mouse button and mouse movement
         /// </summary>
         private void HandleRotation()
         {
             if (!_enableRotation || _cameraRig == null) return;
-            
-            if (Mathf.Abs(_rotationInput) > 0.01f)
+            // Only rotate when middle mouse button is held down
+            if (Mouse.current.middleButton.IsPressed() && _mouseDelta.magnitude > 0.01f)
             {
-                _targetRotation += _rotationInput * _rotationSpeed * Time.deltaTime;
+                // Use horizontal mouse movement for rotation
+                float rotationDelta = _mouseDelta.x * _rotationSpeed * Time.deltaTime;
+                _targetRotation += rotationDelta;
             }
             
             // Smooth rotation
@@ -402,21 +398,35 @@ namespace GameFramework.Components.Controllers.Camera
             Vector3 rotation = _cameraRig.eulerAngles;
             rotation.y = _currentRotation;
             _cameraRig.rotation = Quaternion.Euler(rotation);
-            
-            // Reset rotation input after processing
-            _rotationInput = 0f;
         }
 
 
         /// <summary>
-        /// Update camera height (maintains constant height for RTS)
+        /// Update camera height - maintains constant height for orthographic, adjusts based on zoom for perspective
         /// </summary>
         private void UpdateCameraHeight()
         {
             if (_cameraRig == null) return;
             
             Vector3 position = _cameraRig.position;
-            position.y = _cameraHeight;
+            
+            if (_orthographicProjection)
+            {
+                // For orthographic cameras, maintain constant height
+                position.y = _cameraHeight;
+            }
+            else
+            {
+                // For perspective cameras, adjust height based on zoom level
+                // Higher zoom values = higher camera position (more zoomed out)
+                // Lower zoom values = lower camera position (more zoomed in)
+                float zoomMultiplier = _currentZoom / ((_minZoom + _maxZoom) * 0.5f); // Normalize around middle zoom
+                position.y = _cameraHeight * zoomMultiplier;
+                
+                // Ensure minimum height to prevent camera going underground
+                position.y = Mathf.Max(position.y, 2.0f);
+            }
+            
             _cameraRig.position = position;
         }
 
@@ -446,23 +456,21 @@ namespace GameFramework.Components.Controllers.Camera
         }
 
         /// <summary>
-        /// Handle Q key for left rotation
+        /// Handle middle mouse button click for rotation control
+        /// This event is triggered when middle mouse is clicked, but we track state in UpdateCamera
         /// </summary>
-        private void OnRotateLeft(PlayerPreviousInputEvent rotateEvent)
+        private void OnMiddleMouseClick(UIMiddleClickInputEvent middleClickEvent)
         {
-            if (!_isInitialized || !_inputEnabled || IsPaused || !_enableRotation) return;
-            
-            _rotationInput = -1f;
         }
 
         /// <summary>
-        /// Handle E key for right rotation
+        /// Handle mouse look input for rotation when middle mouse is pressed
         /// </summary>
-        private void OnRotateRight(PlayerNextInputEvent rotateEvent)
+        private void OnMouseLook(PlayerLookInputEvent lookEvent)
         {
-            if (!_isInitialized || !_inputEnabled || IsPaused || !_enableRotation) return;
+            if (!_isInitialized || !_inputEnabled || IsPaused) return;
             
-            _rotationInput = 1f;
+            _mouseDelta = lookEvent.LookDelta;
         }
         #endregion
 
@@ -490,20 +498,11 @@ namespace GameFramework.Components.Controllers.Camera
         }
         
         /// <summary>
-        /// Set the zoom level
+        /// Set the zoom level programmatically
         /// </summary>
         public void SetZoom(float zoom)
         {
             _targetZoom = Mathf.Clamp(zoom, _minZoom, _maxZoom);
-        }
-        
-        /// <summary>
-        /// Set the movement boundaries
-        /// </summary>
-        public void SetBoundaries(Vector2 minBounds, Vector2 maxBounds)
-        {
-            _minBounds = minBounds;
-            _maxBounds = maxBounds;
         }
         
         /// <summary>
@@ -520,10 +519,15 @@ namespace GameFramework.Components.Controllers.Camera
         public void SetRotationEnabled(bool enabled)
         {
             _enableRotation = enabled;
-            if (!enabled)
-            {
-                _rotationInput = 0f;
-            }
+        }
+        
+        /// <summary>
+        /// Set the movement boundaries
+        /// </summary>
+        public void SetBoundaries(Vector2 minBounds, Vector2 maxBounds)
+        {
+            _minBounds = minBounds;
+            _maxBounds = maxBounds;
         }
         
         /// <summary>
@@ -535,7 +539,7 @@ namespace GameFramework.Components.Controllers.Camera
             _edgeScrollInput = Vector2.zero;
             _currentVelocity = Vector3.zero;
             _targetVelocity = Vector3.zero;
-            _rotationInput = 0f;
+            _mouseDelta = Vector2.zero;
         }
         #endregion
 

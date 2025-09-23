@@ -4,10 +4,6 @@ using GameFramework.Components.Controllers.Movement;
 using GameFramework.Components.Controllers.Camera;
 using GameFramework.Components.Controllers.Enum;
 using GameFramework.EventSystem.Events;
-using System.Collections.Generic;
-using GameFramework.Core;
-using GameFramework.Services.Interfaces;
-using UnityEngine.InputSystem;
 
 namespace GameFramework.Components.Controllers
 {
@@ -33,16 +29,11 @@ namespace GameFramework.Components.Controllers
         [Header("Character Model")]
         [SerializeField] private GameObject _characterModel;
         [SerializeField] private Animator _animator;
-        [SerializeField] private SpriteRenderer _characterSprite; // For sprite-based characters
         
         [Header("Grid Movement")]
         [SerializeField] private bool _useGridMovement = false; // Disabled for smooth classic isometric movement
         [SerializeField] private float _gridSize = 1.0f;
         [SerializeField] private float _gridMoveSpeed = 5.0f;
-        
-        [Header("Sprite Settings")]
-        [SerializeField] private bool _useSpriteRenderer = false;
-        [SerializeField] private bool _flipSpriteWithMovement = true;
         #endregion
 
         #region Private Fields
@@ -50,9 +41,6 @@ namespace GameFramework.Components.Controllers
         private Vector3 _gridTargetPosition;
         private bool _isMovingToGrid = false;
         private float _gridMoveStartTime;
-        
-        // Sprite handling
-        private bool _lastMovementWasRight = true;
         
         // Animation parameters
         private static readonly int SpeedParam = Animator.StringToHash("Speed");
@@ -81,25 +69,9 @@ namespace GameFramework.Components.Controllers
             base.Awake();
             
             // Find components if not assigned
-            if (_movementComponent == null)
-            {
-                _movementComponent = GetComponent<IsometricMovement>();
-            }
-            
-            if (_cameraComponent == null)
-            {
-                _cameraComponent = GetComponent<IsometricCameraControl>();
-            }
-            
-            if (_animator == null)
-            {
-                _animator = GetComponentInChildren<Animator>();
-            }
-            
-            if (_characterSprite == null)
-            {
-                _characterSprite = GetComponentInChildren<SpriteRenderer>();
-            }
+            if (_movementComponent == null) _movementComponent = GetComponent<IsometricMovement>();
+            if (_cameraComponent == null) _cameraComponent = GetComponent<IsometricCameraControl>();
+            if (_animator == null) _animator = GetComponentInChildren<Animator>();
             
             // Initialize grid position
             if (_useGridMovement)
@@ -117,7 +89,6 @@ namespace GameFramework.Components.Controllers
             {
                 UpdateAnimations();
                 UpdateGridMovement();
-                UpdateSpriteFlipping();
             }
         }
         #endregion
@@ -139,9 +110,6 @@ namespace GameFramework.Components.Controllers
                     _movementComponent.SetMoveSpeed(_gridMoveSpeed);
                 }
             }
-            
-            if (_showDebugInfo)
-                Debug.Log("[IsometricController] Components initialized successfully");
         }
 
         #endregion
@@ -178,6 +146,12 @@ namespace GameFramework.Components.Controllers
             {
                 // Vertical movement  
                 direction = input.y > 0 ? Vector3.forward : Vector3.back;
+            }
+            
+            // Apply 45-degree offset if the movement component uses it
+            if (_movementComponent != null && _movementComponent.Use45DegreeOffset)
+            {
+                direction = Quaternion.Euler(0f, 45f, 0f) * direction;
             }
             
             // Calculate target position
@@ -262,119 +236,6 @@ namespace GameFramework.Components.Controllers
             return direction;
         }
 
-        private void UpdateSpriteFlipping()
-        {
-            if (!_useSpriteRenderer || _characterSprite == null || !_flipSpriteWithMovement) return;
-            
-            Vector3 velocity = _movementComponent?.CurrentVelocity ?? Vector3.zero;
-            
-            if (Mathf.Abs(velocity.x) > 0.1f)
-            {
-                _lastMovementWasRight = velocity.x > 0;
-                _characterSprite.flipX = !_lastMovementWasRight;
-            }
-        }        
-        #endregion
-
-        #region Input Event Overrides
-        /// <summary>
-        /// Override to disable look input for locked camera - isometric games typically have fixed cameras
-        /// </summary>
-        protected override void OnPlayerLookInput(PlayerLookInputEvent inputEvent)
-        {
-            // Disabled - isometric camera should be locked, player rotates instead
-            // No input routing needed for classic isometric gameplay
-        }
-        #endregion
-
-        #region Public Methods
-        /// <summary>
-        /// Set the camera look-at target transform
-        /// </summary>
-        public void SetCameraLookAtTarget(Transform target)
-        {
-            _cameraLookAtTarget = target;
-            
-            if (_cameraComponent != null)
-            {
-                _cameraComponent.SetTarget(target);
-            }
-        }
-
-        /// <summary>
-        /// Set the Cinemachine camera reference
-        /// </summary>
-        public void SetCinemachineCamera(CinemachineCamera camera)
-        {
-            _cinemachineCamera = camera;
-            
-            // Update the camera component if it exists
-            if (_cameraComponent != null)
-            {
-                _cameraComponent.SetTarget(transform);
-            }
-        }
-
-        /// <summary>
-        /// Set whether to use grid-based movement
-        /// </summary>
-        public void SetGridMovement(bool useGrid, float gridSize = 1.0f)
-        {
-            _useGridMovement = useGrid;
-            _gridSize = gridSize;
-            
-            // if (_movementComponent != null)
-            // {
-            //     _movementComponent.SetUsePhysics(!useGrid);
-            // }
-            
-            if (useGrid)
-            {
-                _gridTargetPosition = SnapToGrid(transform.position);
-                transform.position = _gridTargetPosition;
-            }
-        }
-
-        /// <summary>
-        /// Set the character animator
-        /// </summary>
-        public void SetAnimator(Animator animator)
-        {
-            _animator = animator;
-        }
-
-        /// <summary>
-        /// Set the character sprite renderer
-        /// </summary>
-        public void SetSpriteRenderer(SpriteRenderer spriteRenderer)
-        {
-            _characterSprite = spriteRenderer;
-        }
-
-        /// <summary>
-        /// Get reference to the isometric movement component
-        /// </summary>
-        public IsometricMovement GetIsometricMovement()
-        {
-            return _movementComponent;
-        }
-
-        /// <summary>
-        /// Get reference to the isometric camera component
-        /// </summary>
-        public IsometricCameraControl GetIsometricCamera()
-        {
-            return _cameraComponent;
-        }
-
-        /// <summary>
-        /// Check if currently moving in grid mode
-        /// </summary>
-        public bool IsMovingToGrid()
-        {
-            return _isMovingToGrid;
-        }
-        
         #endregion
 
         #region Debug

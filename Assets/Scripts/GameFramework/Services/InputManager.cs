@@ -208,7 +208,7 @@ namespace GameFramework.Input
             _onUIClickInput = ctx => _eventSystem.Publish(new UIClickInputEvent(ctx.phase));
             _onUIPointInput = ctx => _eventSystem.Publish(new UIPointInputEvent(ctx.ReadValue<Vector2>()));
             _onUIRightClickInput = ctx => _eventSystem.Publish(new UIRightClickInputEvent());
-            _onUIMiddleClickInput = ctx => _eventSystem.Publish(new UIMiddleClickInputEvent());
+            _onUIMiddleClickInput = ctx => _eventSystem.Publish(new UIMiddleClickInputEvent(ctx.phase));
             _onUIScrollWheelInput = ctx => _eventSystem.Publish(new UIScrollWheelInputEvent(ctx.ReadValue<Vector2>()));
 
             _onConsoleToggleInput = ctx => Debug.Log("Console Toggle Input Received");

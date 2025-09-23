@@ -50,27 +50,10 @@ namespace GameFramework.Components.Controllers
             base.Awake();
             
             // Find components if not assigned
-            if (_movementComponent == null)
-            {
-                _movementComponent = GetComponent<ThirdPersonMovement>();
-            }
-            
-            if (_cameraComponent == null)
-            {
-                _cameraComponent = GetComponent<ThirdPersonCameraControl>();
-            }
-            
-            // Find camera look-at target if not assigned
-            if (_cameraLookAtTarget == null)
-            {
-                _cameraLookAtTarget = transform.Find("CameraLookAtTarget");
-            }
-            
-            // Find animator if not assigned
-            if (_animator == null)
-            {
-                _animator = GetComponentInChildren<Animator>();
-            }
+            if (_movementComponent == null) _movementComponent = GetComponent<ThirdPersonMovement>();
+            if (_cameraComponent == null)  _cameraComponent = GetComponent<ThirdPersonCameraControl>();
+            if (_cameraLookAtTarget == null) _cameraLookAtTarget = transform.Find("CameraLookAtTarget");
+            if (_animator == null)  _animator = GetComponentInChildren<Animator>();
         }
 
         protected override void Update()

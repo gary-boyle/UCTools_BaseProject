@@ -152,7 +152,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5299225434946933788}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.3582638, y: -0.0000000115251, z: 0.0000000044225943, w: 0.93362045}
+  m_LocalRotation: {x: 0.35826376, y: -0, z: -0, w: 0.93362045}
   m_LocalPosition: {x: 0, y: 10, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -761,7 +761,7 @@ GameObject:
   - component: {fileID: 6835960619841895384}
   - component: {fileID: 9219110668683939715}
   - component: {fileID: -7305239206249418644}
-  - component: {fileID: 5628599198394151982}
+  - component: {fileID: 4725031403868475171}
   - component: {fileID: 3421404348651573308}
   - component: {fileID: -5461148792396654546}
   m_Layer: 0
@@ -822,10 +822,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   _requiredInputContext: 2
+  _cursorLockRequirement: 0
   _cinemachineCamera: {fileID: 9083194349371853835}
   _cameraLookAtTarget: {fileID: 1215660048992525934}
   _movementComponent: {fileID: -7305239206249418644}
-  _cameraComponent: {fileID: 5628599198394151982}
+  _cameraComponent: {fileID: 0}
   _characterModel: {fileID: 1446662224772573595}
   _animator: {fileID: 0}
   _characterSprite: {fileID: 0}
@@ -847,48 +848,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameFramework.Components.Controllers.Movement.IsometricMovement
   _moveSpeed: 5
---- !u!114 &5628599198394151982
+  _use45DegreeOffset: 1
+--- !u!114 &4725031403868475171
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8851619217007553581}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c1600a421afd78d48b15ef3ddd01ea31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameFramework.Components.Controllers.Camera.IsometricCameraControl
   _cinemachineCamera: {fileID: 9083194349371853835}
-  _followTarget: {fileID: 1215660048992525934}
-  _isometricAngle: 30
-  _cameraRotationY: 45
-  _lockRotation: 1
-  _followPlayer: 1
-  _followOffset: {x: 0, y: 15, z: -10}
-  _followSmoothTime: 0.3
-  _lookAtOffset: {x: 0, y: 1, z: 0}
-  _enableManualPan: 0
-  _mouseSensitivityMultiplier: 1
-  _panSpeed: 5
-  _panSmoothTime: 0.2
-  _enableZoom: 1
   _zoomSpeed: 2
   _minZoom: 5
   _maxZoom: 20
   _zoomSmoothTime: 0.2
-  _orthographicProjection: 1
-  _useBoundaries: 0
-  _cameraBounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 25, y: 5, z: 25}
-  _horizontalDamping: 1
-  _verticalDamping: 1
-  _screenX: 0.5
-  _screenY: 0.5
-  _deadZoneWidth: 0.1
-  _deadZoneHeight: 0.1
-  _showDebugInfo: 0
 --- !u!54 &3421404348651573308
 Rigidbody:
   m_ObjectHideFlags: 0

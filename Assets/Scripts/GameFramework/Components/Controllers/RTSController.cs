@@ -64,10 +64,7 @@ namespace GameFramework.Components.Controllers
             _requiredInputContext = InputContext.Mixed; // RTS needs both camera and UI input
             
             // Find camera control component if not assigned
-            if (_cameraControl == null)
-            {
-                _cameraControl = GetComponent<RTSCameraControl>();
-            }
+            if (_cameraControl == null) _cameraControl = GetComponent<RTSCameraControl>();
             
             // Create selection box texture
             CreateSelectionBoxTexture();
