@@ -61,7 +61,7 @@ namespace GameFramework.Services.Interfaces
         /// <summary>
         /// Sets the main camera to orthographic or perspective projection
         /// </summary>
-        void SetCameraOrthographic(bool orthographic, float sizeOrFOV);
+        void SetCameraOrthographic(bool orthographic);
         #endregion
 
         #region Data Lifecycle

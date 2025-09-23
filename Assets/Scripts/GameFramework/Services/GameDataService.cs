@@ -397,7 +397,7 @@ namespace GameFramework.Services
         /// <summary>
         /// Sets the main camera to orthographic or perspective projection
         /// </summary>
-        public void SetCameraOrthographic(bool orthographic, float sizeOrFOV)
+        public void SetCameraOrthographic(bool orthographic)
         {
             if (_mainCamera == null)
             {
@@ -412,17 +412,6 @@ namespace GameFramework.Services
             if (_mainCamera != null)
             {
                 _mainCamera.orthographic = orthographic;
-                
-                if (orthographic)
-                {
-                    _mainCamera.orthographicSize = sizeOrFOV;
-                    Debug.Log($"[GameDataService] Set main camera to orthographic with size: {sizeOrFOV}");
-                }
-                else
-                {
-                    _mainCamera.fieldOfView = sizeOrFOV;
-                    Debug.Log($"[GameDataService] Set main camera to perspective with FOV: {sizeOrFOV}");
-                }
             }
         }
         #endregion

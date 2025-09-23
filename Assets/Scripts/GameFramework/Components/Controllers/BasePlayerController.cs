@@ -96,14 +96,14 @@ namespace GameFramework.Components.Controllers
             if (_isInitialized)
             {
                 SubscribeToEvents();
-                SetInputContext();
+                //SetInputContext();
             }
         }
 
         protected virtual void OnDisable()
         {
             UnsubscribeFromEvents();
-            ResetInputContext();
+            //ResetInputContext();
         }
 
         protected virtual void OnDestroy()
@@ -135,7 +135,7 @@ namespace GameFramework.Components.Controllers
             SubscribeToEvents();
             
             // Set input context
-            SetInputContext();
+            //SetInputContext();
             
             _isInitialized = true;
             
@@ -151,7 +151,7 @@ namespace GameFramework.Components.Controllers
             if (!_isInitialized) return;
             
             UnsubscribeFromEvents();
-            ResetInputContext();
+            //ResetInputContext();
             
             // Cleanup components
             _movementComponent?.Cleanup();
@@ -173,20 +173,20 @@ namespace GameFramework.Components.Controllers
         /// <summary>
         /// Enable or disable the controller
         /// </summary>
-        public virtual void SetEnabled(bool enabled)
-        {
-            _isEnabled = enabled;
-            
-            if (enabled)
-            {
-                SetInputContext();
-            }
-            else
-            {
-                ResetInputContext();
-                StopAllMovement();
-            }
-        }
+        // public virtual void SetEnabled(bool enabled)
+        // {
+        //     _isEnabled = enabled;
+        //     
+        //     if (enabled)
+        //     {
+        //         SetInputContext();
+        //     }
+        //     else
+        //     {
+        //         ResetInputContext();
+        //         StopAllMovement();
+        //     }
+        // }
 
         /// <summary>
         /// Stop all movement and camera input
@@ -256,27 +256,27 @@ namespace GameFramework.Components.Controllers
             _eventSystem.Unsubscribe<GameResumedEvent>(OnGameResumed);
         }
 
-        /// <summary>
-        /// Set the required input context for this controller
-        /// </summary>
-        protected virtual void SetInputContext()
-        {
-            if (_inputManager != null && _isEnabled)
-            {
-                _inputManager.SetInputContext(_requiredInputContext);
-            }
-        }
-
-        /// <summary>
-        /// Reset input context to None
-        /// </summary>
-        protected virtual void ResetInputContext()
-        {
-            if (_inputManager != null)
-            {
-                _inputManager.SetInputContext(InputContext.None);
-            }
-        }
+        // /// <summary>
+        // /// Set the required input context for this controller
+        // /// </summary>
+        // protected virtual void SetInputContext()
+        // {
+        //     if (_inputManager != null && _isEnabled)
+        //     {
+        //         _inputManager.SetInputContext(_requiredInputContext);
+        //     }
+        // }
+        //
+        // /// <summary>
+        // /// Reset input context to None
+        // /// </summary>
+        // protected virtual void ResetInputContext()
+        // {
+        //     if (_inputManager != null)
+        //     {
+        //         _inputManager.SetInputContext(InputContext.None);
+        //     }
+        // }
         #endregion
 
         #region Input Event Handlers

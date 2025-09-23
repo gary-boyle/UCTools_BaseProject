@@ -167,6 +167,7 @@ GameObject:
   - component: {fileID: 4949717909976932613}
   - component: {fileID: 9083194349371853835}
   - component: {fileID: 921335804535703396}
+  - component: {fileID: 1473351981527730912}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -251,6 +252,40 @@ MonoBehaviour:
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
   FollowOffset: {x: 0, y: 0, z: 0}
+--- !u!114 &1473351981527730912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5299225434946933788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62d54399b04b4fa48a73e121d4937dd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachinePanTilt
+  ReferenceFrame: 0
+  RecenterTarget: 0
+  PanAxis:
+    Value: 0
+    Center: 0
+    Range: {x: -180, y: 180}
+    Wrap: 1
+    Recentering:
+      Enabled: 0
+      Wait: 1
+      Time: 2
+    Restrictions: 0
+  TiltAxis:
+    Value: 0
+    Center: 0
+    Range: {x: -70, y: 70}
+    Wrap: 0
+    Recentering:
+      Enabled: 0
+      Wait: 1
+      Time: 2
+    Restrictions: 0
 --- !u!1 &5932763661422473085
 GameObject:
   m_ObjectHideFlags: 0
@@ -840,6 +875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d617054747a8a084cb7eb8ee7495c90a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameFramework.Components.Controllers.Movement.FirstPersonMovement
+  _groundCheckPoint: {fileID: 955883634854685664}
   _moveSpeed: 5
   _sprintMultiplier: 1.5
   _crouchMultiplier: 0.5
@@ -867,11 +903,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameFramework.Components.Controllers.Camera.FirstPersonCameraControl
   _cinemachineCamera: {fileID: 9083194349371853835}
   _followTarget: {fileID: 3211111535652922911}
-  _mouseSensitivityMultiplier: 1
+  _playerTransform: {fileID: 1215660048992525934}
+  _mouseSensitivityMultiplier: 0.01
   _minVerticalAngle: -80
   _maxVerticalAngle: 80
   _invertYAxis: 0
-  _lockCursor: 0
+  _lockCursor: 1
   _hideCursor: 1
   _showDebugInfo: 0
 --- !u!54 &3421404348651573308

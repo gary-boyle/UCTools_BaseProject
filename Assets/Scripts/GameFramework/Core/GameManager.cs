@@ -59,6 +59,9 @@ namespace GameFramework.Core
         [SerializeField] private InputSettings_SO _inputSettingsSo;
         [SerializeField] private DebugSettings_SO _debugSettingsSo;
 
+        [Header("Other Settings")]
+        [SerializeField] private bool _lockCameraDuringPlay;
+        
         #endregion
 
         #region Singleton Implementation

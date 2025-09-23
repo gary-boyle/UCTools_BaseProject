@@ -17,6 +17,8 @@ namespace GameFramework.Services.Interfaces
         Task InitializeAsync();
         void Shutdown();
         void Update();
+
+        void SetCursorState(bool visible, bool locked);
         
         // Screen Management
         Task ShowScreenAsync<T>() where T : UIScreen;

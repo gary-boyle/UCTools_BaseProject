@@ -60,16 +60,6 @@ namespace GameFramework.Components.Controllers.Interfaces
         bool IsPaused { get; }
 
         /// <summary>
-        /// The transform being moved by this component
-        /// </summary>
-        Transform MovementTransform { get; }
-
-        /// <summary>
-        /// Current movement vector
-        /// </summary>
-        Vector3 CurrentVelocity { get; }
-
-        /// <summary>
         /// Is the player currently grounded (if applicable)
         /// </summary>
         bool IsGrounded { get; }

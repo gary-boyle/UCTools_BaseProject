@@ -2,8 +2,6 @@ using UnityEngine;
 using Unity.Cinemachine;
 using GameFramework.Components.Controllers.Movement;
 using GameFramework.Components.Controllers.Camera;
-using GameFramework.EventSystem.Events;
-using UnityEngine.InputSystem;
 
 namespace GameFramework.Components.Controllers
 {
@@ -57,73 +55,8 @@ namespace GameFramework.Components.Controllers
             // Assign the found components to the base class fields
             base._movementComponent = _movementComponent;
             base._cameraComponent = _cameraComponent;
-            
-            // Set the camera mount target for the camera component
-            if (_cameraComponent != null && _cameraMount != null)
-            {
-                _cameraComponent.SetTarget(_cameraMount);
-            }
-            
-            if (_showDebugInfo)
-                Debug.Log("[FirstPersonController] Components initialized successfully");
         }
 
-        #endregion
-
-
-        #region Public Methods
-        /// <summary>
-        /// Set the camera mount transform (useful for external setup)
-        /// </summary>
-        public void SetCameraMount(Transform cameraMount)
-        {
-            _cameraMount = cameraMount;
-            
-            if (_cameraComponent != null)
-            {
-                _cameraComponent.SetTarget(cameraMount);
-            }
-        }
-
-        /// <summary>
-        /// Set the Cinemachine camera reference
-        /// </summary>
-        public void SetCinemachineCamera(CinemachineCamera camera)
-        {
-            _cinemachineCamera = camera;
-        }
-
-        /// <summary>
-        /// Get the current camera mount transform
-        /// </summary>
-        public Transform GetCameraMount()
-        {
-            return _cameraMount;
-        }
-
-        /// <summary>
-        /// Get the Cinemachine camera
-        /// </summary>
-        public CinemachineCamera GetCinemachineCamera()
-        {
-            return _cinemachineCamera;
-        }
-
-        /// <summary>
-        /// Get reference to the first-person movement component
-        /// </summary>
-        public FirstPersonMovement GetFirstPersonMovement()
-        {
-            return _movementComponent;
-        }
-
-        /// <summary>
-        /// Get reference to the first-person camera component
-        /// </summary>
-        public FirstPersonCameraControl GetFirstPersonCamera()
-        {
-            return _cameraComponent;
-        }
         #endregion
 
         #region Debug

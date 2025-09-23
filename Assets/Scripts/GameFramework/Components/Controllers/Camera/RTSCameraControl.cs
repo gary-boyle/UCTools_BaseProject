@@ -90,8 +90,6 @@ namespace GameFramework.Components.Controllers.Camera
         #region Public Properties
         public bool IsPaused => _pauseService?.IsPaused ?? false;
         
-        public Vector2 CurrentLookInput { get; }
-        
         public float MouseSensitivityMultiplier { get; set; }
         public Vector2 CurrentMoveInput => _moveInput;
         public float CurrentZoom => _currentZoom;

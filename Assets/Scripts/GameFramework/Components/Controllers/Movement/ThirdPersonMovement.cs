@@ -11,6 +11,8 @@ namespace GameFramework.Components.Controllers.Movement
     /// Third-person movement component that handles character movement relative to camera direction.
     /// Includes smooth rotation towards movement direction and camera-relative input.
     /// </summary>
+
+    [RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
     public class ThirdPersonMovement : MonoBehaviour, IPlayerMovement
     {
         #region Serialized Fields

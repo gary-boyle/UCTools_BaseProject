@@ -9,13 +9,19 @@ namespace GameFramework.Components.Controllers.Movement
 {
     /// <summary>
     /// Simple isometric movement component for top-down games.
-    /// Handles basic movement with 4-directional rotation (North, South, East, West).
+    /// Handles basic movement with 4-directional rotation.
+    /// Optional 45-degree offset for isometric camera alignment.
     /// </summary>
+    ///
+    /// 
     public class IsometricMovement : MonoBehaviour, IPlayerMovement
     {
         #region Serialized Fields
         [Header("Movement Settings")]
         [SerializeField] private float _moveSpeed = 5.0f;
+        
+        [Header("Rotation Settings")]
+        [SerializeField] private bool _use45DegreeOffset = true; // Enable for isometric camera alignment
         #endregion
 
         #region Private Fields
@@ -24,9 +30,6 @@ namespace GameFramework.Components.Controllers.Movement
         // Movement state
         private Vector2 _moveInput = Vector2.zero;
         private bool _isInitialized = false;
-        
-        // 4-directional movement angles (North, East, South, West)
-        private readonly float[] _cardinalAngles = { 0f, 90f, 180f, 270f };
         #endregion
 
         #region Public Properties
@@ -112,8 +115,15 @@ namespace GameFramework.Components.Controllers.Movement
             if (_moveInput.magnitude < 0.01f) return;
             
             // Convert 2D input to 3D movement (isometric uses XZ plane)
-            Vector3 movement = new Vector3(_moveInput.x, 0f, _moveInput.y).normalized * _moveSpeed * Time.deltaTime;
-            transform.position += movement;
+            Vector3 movement = new Vector3(_moveInput.x, 0f, _moveInput.y).normalized;
+            
+            // Optionally rotate movement 45 degrees for isometric camera perspective
+            if (_use45DegreeOffset)
+            {
+                movement = Quaternion.Euler(0f, 45f, 0f) * movement;
+            }
+            
+            transform.position += movement * _moveSpeed * Time.deltaTime;
         }
 
         private void HandleRotation()
@@ -123,7 +133,13 @@ namespace GameFramework.Components.Controllers.Movement
             // Calculate angle from input
             float angle = Mathf.Atan2(_moveInput.x, _moveInput.y) * Mathf.Rad2Deg;
             
-            // Snap to nearest cardinal direction (North=0°, East=90°, South=180°, West=270°)
+            // Optionally add 45 degree offset to match isometric movement
+            if (_use45DegreeOffset)
+            {
+                angle += 45f;
+            }
+            
+            // Snap to nearest cardinal direction
             float targetAngle = GetNearestCardinalAngle(angle);
             
             // Set rotation directly to cardinal direction
@@ -132,20 +148,25 @@ namespace GameFramework.Components.Controllers.Movement
 
         private float GetNearestCardinalAngle(float angle)
         {
+            // Get cardinal angles based on offset setting
+            float[] cardinalAngles = _use45DegreeOffset 
+                ? new float[] { 45f, 135f, 225f, 315f }    // NE, SE, SW, NW for isometric
+                : new float[] { 0f, 90f, 180f, 270f };     // N, E, S, W for standard top-down
+            
             // Normalize angle to 0-360 range
             while (angle < 0f) angle += 360f;
             while (angle >= 360f) angle -= 360f;
             
-            float nearestAngle = _cardinalAngles[0];
+            float nearestAngle = cardinalAngles[0];
             float smallestDifference = Mathf.Abs(Mathf.DeltaAngle(angle, nearestAngle));
             
-            for (int i = 1; i < _cardinalAngles.Length; i++)
+            for (int i = 1; i < cardinalAngles.Length; i++)
             {
-                float difference = Mathf.Abs(Mathf.DeltaAngle(angle, _cardinalAngles[i]));
+                float difference = Mathf.Abs(Mathf.DeltaAngle(angle, cardinalAngles[i]));
                 if (difference < smallestDifference)
                 {
                     smallestDifference = difference;
-                    nearestAngle = _cardinalAngles[i];
+                    nearestAngle = cardinalAngles[i];
                 }
             }
             
@@ -160,6 +181,14 @@ namespace GameFramework.Components.Controllers.Movement
         public void SetMoveSpeed(float speed)
         {
             _moveSpeed = Mathf.Max(0f, speed);
+        }
+        
+        /// <summary>
+        /// Enable or disable 45-degree offset for isometric camera alignment
+        /// </summary>
+        public void SetUse45DegreeOffset(bool useOffset)
+        {
+            _use45DegreeOffset = useOffset;
         }
         #endregion
     }

@@ -81,13 +81,13 @@ namespace GameFramework.Components.Controllers.Camera
 
         #region Public Properties
         public bool IsPaused => _pauseService?.IsPaused ?? false;
-        public Vector2 CurrentLookInput => _lookInput;
         public float MouseSensitivityMultiplier 
         { 
             get => _mouseSensitivityMultiplier; 
             set => _mouseSensitivityMultiplier = Mathf.Clamp(value, 0.1f, 5.0f); 
         }
         public float EffectiveMouseSensitivity => _globalMouseSensitivity * _mouseSensitivityMultiplier;
+        
         #endregion
 
         #region Unity Lifecycle

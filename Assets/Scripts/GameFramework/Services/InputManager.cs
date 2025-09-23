@@ -31,7 +31,7 @@ namespace GameFramework.Input
         private Action<InputAction.CallbackContext> _onSprintInput;
         private Action<InputAction.CallbackContext> _onPreviousInput;
         private Action<InputAction.CallbackContext> _onNextInput;
-        
+
         private Action<InputAction.CallbackContext> _onUINavigateInput;
         private Action<InputAction.CallbackContext> _onUISubmitInput;
         private Action<InputAction.CallbackContext> _onUICancelInput;
@@ -41,6 +41,7 @@ namespace GameFramework.Input
         private Action<InputAction.CallbackContext> _onUIMiddleClickInput;
         private Action<InputAction.CallbackContext> _onUIScrollWheelInput;
         
+
         private Action<InputAction.CallbackContext> _onConsoleToggleInput;
         private Action<InputAction.CallbackContext> _onConsoleSubmitInput;
         private Action<InputAction.CallbackContext> _onConsoleTabCompleteInput;
@@ -209,7 +210,7 @@ namespace GameFramework.Input
             _onUIRightClickInput = ctx => _eventSystem.Publish(new UIRightClickInputEvent());
             _onUIMiddleClickInput = ctx => _eventSystem.Publish(new UIMiddleClickInputEvent());
             _onUIScrollWheelInput = ctx => _eventSystem.Publish(new UIScrollWheelInputEvent(ctx.ReadValue<Vector2>()));
-            
+
             _onConsoleToggleInput = ctx => Debug.Log("Console Toggle Input Received");
 
             _onConsoleToggleInput = ctx => _eventSystem.Publish(new ConsoleToggleInputEvent(ctx.phase));

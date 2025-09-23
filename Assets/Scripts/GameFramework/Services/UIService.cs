@@ -14,6 +14,7 @@ using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine.Interfaces;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Cursor = UnityEngine.Cursor;
 
 namespace GameFramework.Services
 {
@@ -160,6 +161,12 @@ namespace GameFramework.Services
             _popupStack.Clear();
             
             IsInitialized = false;
+        }
+        
+        public void SetCursorState(bool visible, bool locked)
+        {
+            Cursor.visible = visible;
+            Cursor.lockState = locked ? CursorLockMode.Locked : CursorLockMode.None;
         }
         
         private void InitializeScreensAndPopups()

@@ -11,9 +11,14 @@ namespace GameFramework.Components.Controllers.Movement
     /// First-person movement component that handles WASD movement, jumping, sprinting, and crouching.
     /// Uses Rigidbody physics for realistic movement.
     /// </summary>
+    [RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
     public class FirstPersonMovement : MonoBehaviour, IPlayerMovement
     {
         #region Serialized Fields
+        
+        [Header("GameObject References")]
+        [SerializeField] private Transform _groundCheckPoint;
+        
         [Header("Movement Settings")]
         [SerializeField] private float _moveSpeed = 5.0f;
         [SerializeField] private float _sprintMultiplier = 1.5f;
@@ -48,17 +53,16 @@ namespace GameFramework.Components.Controllers.Movement
         
         // Ground detection
         private bool _isGrounded = false;
-        private Transform _groundCheckPoint;
         
         // Component state
         private bool _isInitialized = false;
         #endregion
 
         #region Public Properties
+        
         public bool IsPaused => _pauseService?.IsPaused ?? false;
-        public Transform MovementTransform => transform;
-        public Vector3 CurrentVelocity => _rigidbody != null ? _rigidbody.linearVelocity : Vector3.zero;
         public bool IsGrounded => _isGrounded;
+        
         #endregion
 
         #region Unity Lifecycle
@@ -67,7 +71,7 @@ namespace GameFramework.Components.Controllers.Movement
             // Get required components
             _rigidbody = GetComponent<Rigidbody>();
             _collider = GetComponent<CapsuleCollider>();
-            
+
             // Get services
             _pauseService = GameManager.GetService<IPauseService>();
         }
@@ -89,41 +93,27 @@ namespace GameFramework.Components.Controllers.Movement
         #endregion
 
         #region IPlayerMovement Implementation
+
         public void Initialize()
         {
             if (_isInitialized) return;
 
-            if (_rigidbody == null)
+            if (_groundCheckPoint == null)
             {
-                Debug.LogError($"[FirstPersonMovement] Rigidbody component required on {gameObject.name}");
-                return;
-            }
-            
-            if (_collider == null)
-            {
-                Debug.LogError($"[FirstPersonMovement] CapsuleCollider component required on {gameObject.name}");
+                Debug.LogError("[FirstPersonMovement] GroundCheckPoint is required but not assigned.");
                 return;
             }
 
-            // Setup ground check point
-            SetupGroundCheck();
-            
             // Configure rigidbody
             _rigidbody.freezeRotation = true;
             
             _isInitialized = true;
-            
-            if (_showDebugInfo)
-                Debug.Log($"[FirstPersonMovement] Initialized on {gameObject.name}");
         }
 
         public void Cleanup()
         {
             _pauseService = null;
             _isInitialized = false;
-            
-            if (_showDebugInfo)
-                Debug.Log($"[FirstPersonMovement] Cleaned up on {gameObject.name}");
         }
 
         public void HandleMoveInput(PlayerMoveInputEvent inputEvent)
@@ -187,18 +177,6 @@ namespace GameFramework.Components.Controllers.Movement
         #endregion
 
         #region Private Methods
-        private void SetupGroundCheck()
-        {
-            // Create ground check point if it doesn't exist
-            _groundCheckPoint = transform.Find("GroundCheckPoint");
-            if (_groundCheckPoint == null)
-            {
-                GameObject groundCheck = new GameObject("GroundCheckPoint");
-                groundCheck.transform.SetParent(transform);
-                groundCheck.transform.localPosition = new Vector3(0, -_collider.bounds.extents.y, 0);
-                _groundCheckPoint = groundCheck.transform;
-            }
-        }
 
         private void CheckGrounded()
         {

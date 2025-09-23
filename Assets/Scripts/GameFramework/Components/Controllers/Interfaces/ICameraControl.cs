@@ -28,32 +28,12 @@ namespace GameFramework.Components.Controllers.Interfaces
         /// Update camera logic (called from Update)
         /// </summary>
         void UpdateCamera();
-
-        /// <summary>
-        /// Set the target transform to follow/look at
-        /// </summary>
-        void SetTarget(Transform target);
-
-        /// <summary>
-        /// Get the camera transform controlled by this component
-        /// </summary>
-        Transform GetCameraTransform();
-
+        
         /// <summary>
         /// Whether the camera component is currently paused
         /// </summary>
         bool IsPaused { get; }
-
-        /// <summary>
-        /// Current look input being processed
-        /// </summary>
-        Vector2 CurrentLookInput { get; }
-
-        /// <summary>
-        /// Mouse sensitivity multiplier specific to this camera
-        /// </summary>
-        float MouseSensitivityMultiplier { get; set; }
-
+        
         /// <summary>
         /// Enable or disable camera input processing
         /// </summary>
