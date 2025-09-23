@@ -49,15 +49,6 @@ namespace GameFramework.Components.Controllers
         private static readonly int IsMovingParam = Animator.StringToHash("IsMoving");
         private static readonly int DirectionParam = Animator.StringToHash("Direction");
         
-        // Direction constants for 8-directional animation
-        private const int DIR_SOUTH = 0;
-        private const int DIR_SOUTH_WEST = 1;
-        private const int DIR_WEST = 2;
-        private const int DIR_NORTH_WEST = 3;
-        private const int DIR_NORTH = 4;
-        private const int DIR_NORTH_EAST = 5;
-        private const int DIR_EAST = 6;
-        private const int DIR_SOUTH_EAST = 7;
         #endregion
 
         #region Unity Lifecycle

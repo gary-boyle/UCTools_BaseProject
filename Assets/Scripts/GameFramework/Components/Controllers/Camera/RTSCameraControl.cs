@@ -71,6 +71,10 @@ namespace GameFramework.Components.Controllers.Camera
         private Vector2 _currentMousePosition = Vector2.zero;
         private Vector2 _mouseDelta = Vector2.zero;
         
+        // Input processing
+        private float _globalMouseSensitivity = 1.0f;
+        private float _mouseSensitivityMultiplier = 1.0f;
+        
         // Movement state
         private Vector3 _currentVelocity = Vector3.zero;
         private Vector3 _targetVelocity = Vector3.zero;
@@ -91,11 +95,13 @@ namespace GameFramework.Components.Controllers.Camera
         #region Public Properties
         public bool IsPaused => _pauseService?.IsPaused ?? false;
         
-        public float MouseSensitivityMultiplier { get; set; }
-        public Vector2 CurrentMoveInput => _moveInput;
-        public float CurrentZoom => _currentZoom;
-        public float CurrentRotation => _currentRotation;
-        public bool IsInputEnabled => _inputEnabled;
+        public float MouseSensitivityMultiplier 
+        { 
+            get => _mouseSensitivityMultiplier; 
+            set => _mouseSensitivityMultiplier = Mathf.Clamp(value, 0.001f, 2.0f); 
+        }
+        public float EffectiveMouseSensitivity => _globalMouseSensitivity * _mouseSensitivityMultiplier;
+
         #endregion
 
         #region Unity Lifecycle
@@ -126,31 +132,25 @@ namespace GameFramework.Components.Controllers.Camera
         {
             if (_isInitialized) return;
             
-            // Create camera rig if not provided
-            if (_cameraRig == null)
-            {
-                CreateCameraRig();
-            }
-            
             // Initialize zoom to middle range
             _currentZoom = (_minZoom + _maxZoom) * 0.5f;
             _targetZoom = _currentZoom;
             
             SetupCinemachineCamera();
             
+            // Apply input settings for mouse sensitivity
+            ApplyInputSettings();
+            
             // Subscribe to input events
             if (_eventSystem != null)
             {
                 _eventSystem.Subscribe<UIScrollWheelInputEvent>(OnScrollWheel);
                 _eventSystem.Subscribe<UIPointInputEvent>(OnMousePosition);
-                _eventSystem.Subscribe<UIMiddleClickInputEvent>(OnMiddleMouseClick);
                 _eventSystem.Subscribe<PlayerLookInputEvent>(OnMouseLook);
+                _eventSystem.Subscribe<OptionsChangedEvent>(OnOptionsChanged);
             }
             
             _isInitialized = true;
-            
-            if (_showDebugInfo)
-                Debug.Log($"[RTSCameraControl] Initialized - WASD movement, edge scrolling: {_enableEdgeScrolling}, middle mouse rotation: {_enableRotation}");
         }
 
         public void Cleanup()
@@ -160,8 +160,8 @@ namespace GameFramework.Components.Controllers.Camera
             {
                 _eventSystem.Unsubscribe<UIScrollWheelInputEvent>(OnScrollWheel);
                 _eventSystem.Unsubscribe<UIPointInputEvent>(OnMousePosition);
-                _eventSystem.Unsubscribe<UIMiddleClickInputEvent>(OnMiddleMouseClick);
                 _eventSystem.Unsubscribe<PlayerLookInputEvent>(OnMouseLook);
+                _eventSystem.Unsubscribe<OptionsChangedEvent>(OnOptionsChanged);
             }
 
             // Clear references
@@ -171,9 +171,6 @@ namespace GameFramework.Components.Controllers.Camera
             _mainCamera = null;
             
             _isInitialized = false;
-            
-            if (_showDebugInfo)
-                Debug.Log("[RTSCameraControl] Cleaned up");
         }
 
         private void SetupCinemachineCamera()
@@ -202,9 +199,6 @@ namespace GameFramework.Components.Controllers.Camera
             Vector3 cameraRotation = _cinemachineCamera.transform.localEulerAngles;
             cameraRotation.x = _cameraAngle;
             _cinemachineCamera.transform.localEulerAngles = cameraRotation;
-            
-            if (_showDebugInfo)
-                Debug.Log($"[RTSCameraControl] Cinemachine camera setup - Orthographic: {_orthographicProjection}, Angle: {_cameraAngle}°");
         }
         
         /// <summary>
@@ -268,14 +262,15 @@ namespace GameFramework.Components.Controllers.Camera
         #endregion
 
         #region Private Methods
-        private void CreateCameraRig()
+        
+        /// <summary>
+        /// Apply input settings from the global InputSettings_SO for mouse sensitivity
+        /// </summary>
+        private void ApplyInputSettings()
         {
-            GameObject rigObject = new GameObject("RTS_CameraRig");
-            _cameraRig = rigObject.transform;
-            _cameraRig.position = new Vector3(0, _cameraHeight, 0);
+            if (_inputSettings == null) return;
             
-            if (_showDebugInfo)
-                Debug.Log("[RTSCameraControl] Created camera rig at height " + _cameraHeight);
+            _globalMouseSensitivity = _inputSettings.GetMouseSensitivity();
         }
         
         /// <summary>
@@ -387,8 +382,8 @@ namespace GameFramework.Components.Controllers.Camera
             // Only rotate when middle mouse button is held down
             if (Mouse.current.middleButton.IsPressed() && _mouseDelta.magnitude > 0.01f)
             {
-                // Use horizontal mouse movement for rotation
-                float rotationDelta = _mouseDelta.x * _rotationSpeed * Time.deltaTime;
+                // Use horizontal mouse movement for rotation with mouse sensitivity applied
+                float rotationDelta = _mouseDelta.x * EffectiveMouseSensitivity * _rotationSpeed * Time.deltaTime;
                 _targetRotation += rotationDelta;
             }
             
@@ -454,15 +449,7 @@ namespace GameFramework.Components.Controllers.Camera
             
             _currentMousePosition = pointEvent.Position;
         }
-
-        /// <summary>
-        /// Handle middle mouse button click for rotation control
-        /// This event is triggered when middle mouse is clicked, but we track state in UpdateCamera
-        /// </summary>
-        private void OnMiddleMouseClick(UIMiddleClickInputEvent middleClickEvent)
-        {
-        }
-
+        
         /// <summary>
         /// Handle mouse look input for rotation when middle mouse is pressed
         /// </summary>
@@ -471,6 +458,14 @@ namespace GameFramework.Components.Controllers.Camera
             if (!_isInitialized || !_inputEnabled || IsPaused) return;
             
             _mouseDelta = lookEvent.LookDelta;
+        }
+        
+        /// <summary>
+        /// Handle options changed event to update mouse sensitivity
+        /// </summary>
+        private void OnOptionsChanged(OptionsChangedEvent optionsEvent)
+        {
+            ApplyInputSettings();
         }
         #endregion
 
@@ -497,50 +492,6 @@ namespace GameFramework.Components.Controllers.Camera
             _currentVelocity = Vector3.zero;
         }
         
-        /// <summary>
-        /// Set the zoom level programmatically
-        /// </summary>
-        public void SetZoom(float zoom)
-        {
-            _targetZoom = Mathf.Clamp(zoom, _minZoom, _maxZoom);
-        }
-        
-        /// <summary>
-        /// Enable or disable edge scrolling
-        /// </summary>
-        public void SetEdgeScrolling(bool enabled)
-        {
-            _enableEdgeScrolling = enabled;
-        }
-        
-        /// <summary>
-        /// Enable or disable camera rotation
-        /// </summary>
-        public void SetRotationEnabled(bool enabled)
-        {
-            _enableRotation = enabled;
-        }
-        
-        /// <summary>
-        /// Set the movement boundaries
-        /// </summary>
-        public void SetBoundaries(Vector2 minBounds, Vector2 maxBounds)
-        {
-            _minBounds = minBounds;
-            _maxBounds = maxBounds;
-        }
-        
-        /// <summary>
-        /// Stop all camera movement
-        /// </summary>
-        public void StopMovement()
-        {
-            _moveInput = Vector2.zero;
-            _edgeScrollInput = Vector2.zero;
-            _currentVelocity = Vector3.zero;
-            _targetVelocity = Vector3.zero;
-            _mouseDelta = Vector2.zero;
-        }
         #endregion
 
         #region Debug

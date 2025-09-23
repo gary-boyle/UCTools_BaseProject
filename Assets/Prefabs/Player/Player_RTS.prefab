@@ -304,11 +304,6 @@ MonoBehaviour:
   _requiredInputContext: 2
   _cursorLockRequirement: 0
   _cameraControl: {fileID: 173339487120783886}
-  _enableUnitSelection: 0
-  _selectableLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  _selectionBoxColor: {r: 0, g: 1, b: 0, a: 0.3}
   _enableCameraFocus: 1
   _focusSpeed: 5
 --- !u!114 &173339487120783886
@@ -331,7 +326,7 @@ MonoBehaviour:
   _moveDeceleration: 200
   _invertXAxis: 0
   _invertYAxis: 0
-  _enableEdgeScrolling: 0
+  _enableEdgeScrolling: 1
   _edgeScrollBorder: 50
   _edgeScrollSpeed: 25
   _zoomSpeed: 2
