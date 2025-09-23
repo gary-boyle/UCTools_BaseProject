@@ -2,6 +2,7 @@ using UnityEngine;
 using Unity.Cinemachine;
 using GameFramework.Components.Controllers.Movement;
 using GameFramework.Components.Controllers.Camera;
+using GameFramework.Components.Controllers.Animation;
 using GameFramework.Components.Controllers.Enum;
 using GameFramework.EventSystem.Events;
 
@@ -26,9 +27,11 @@ namespace GameFramework.Components.Controllers
         [Header("Camera Component")]
         [SerializeField] private IsometricCameraControl _cameraComponent;
         
+        [Header("Animation")]
+        [SerializeField] private PlayerAnimatorController _animatorController;
+        
         [Header("Character Model")]
         [SerializeField] private GameObject _characterModel;
-        [SerializeField] private Animator _animator;
         
         [Header("Grid Movement")]
         [SerializeField] private bool _useGridMovement = false; // Disabled for smooth classic isometric movement
@@ -41,14 +44,6 @@ namespace GameFramework.Components.Controllers
         private Vector3 _gridTargetPosition;
         private bool _isMovingToGrid = false;
         private float _gridMoveStartTime;
-        
-        // Animation parameters
-        private static readonly int SpeedParam = Animator.StringToHash("Speed");
-        private static readonly int HorizontalParam = Animator.StringToHash("Horizontal");
-        private static readonly int VerticalParam = Animator.StringToHash("Vertical");
-        private static readonly int IsMovingParam = Animator.StringToHash("IsMoving");
-        private static readonly int DirectionParam = Animator.StringToHash("Direction");
-        
         #endregion
 
         #region Unity Lifecycle
@@ -62,7 +57,7 @@ namespace GameFramework.Components.Controllers
             // Find components if not assigned
             if (_movementComponent == null) _movementComponent = GetComponent<IsometricMovement>();
             if (_cameraComponent == null) _cameraComponent = GetComponent<IsometricCameraControl>();
-            if (_animator == null) _animator = GetComponentInChildren<Animator>();
+            if (_animatorController == null) _animatorController = GetComponentInChildren<PlayerAnimatorController>();
             
             // Initialize grid position
             if (_useGridMovement)
@@ -78,7 +73,10 @@ namespace GameFramework.Components.Controllers
             
             if (_isInitialized)
             {
-                UpdateAnimations();
+                if (_animatorController != null)
+                {
+                    _animatorController.UpdateAnimations();
+                }
                 UpdateGridMovement();
             }
         }
@@ -90,6 +88,13 @@ namespace GameFramework.Components.Controllers
             // Assign the found components to the base class fields
             base._movementComponent = _movementComponent;
             base._cameraComponent = _cameraComponent;
+
+            // Initialize animator controller
+            if (_animatorController != null && _movementComponent != null)
+            {
+                Animator animator = GetComponentInChildren<Animator>();
+                _animatorController.Initialize(PlayerPrefabType.Isometric, _movementComponent, animator);
+            }
 
             // Components are now assigned from inspector or found in Awake()
             if (_movementComponent != null)
@@ -199,39 +204,11 @@ namespace GameFramework.Components.Controllers
         }
         #endregion
 
-        #region Animation Updates
-        private void UpdateAnimations()
-        {
-            if (_animator == null) return;
-            
-            Vector3 velocity = _movementComponent?.CurrentVelocity ?? Vector3.zero;
-            
-            // Update movement parameters
-            _animator.SetFloat(SpeedParam, velocity.magnitude);
-            _animator.SetFloat(HorizontalParam, velocity.x);
-            _animator.SetFloat(VerticalParam, velocity.z);
-            _animator.SetBool(IsMovingParam, velocity.magnitude > 0.1f);
-            
-            // Update 8-directional animation
-            if (velocity.magnitude > 0.1f)
-            {
-                int direction = GetDirectionFromVelocity(velocity);
-                _animator.SetInteger(DirectionParam, direction);
-            }
-        }
-
-        private int GetDirectionFromVelocity(Vector3 velocity)
-        {
-            float angle = Mathf.Atan2(velocity.x, velocity.z) * Mathf.Rad2Deg;
-            if (angle < 0) angle += 360f;
-            
-            // Convert angle to 8-direction index
-            angle += 22.5f; // Offset for rounding
-            int direction = (int)(angle / 45f) % 8;
-            
-            return direction;
-        }
-
+        #region Animation Control
+        /// <summary>
+        /// Get access to the animator controller for advanced animation control
+        /// </summary>
+        public PlayerAnimatorController AnimatorController => _animatorController;
         #endregion
 
         #region Debug

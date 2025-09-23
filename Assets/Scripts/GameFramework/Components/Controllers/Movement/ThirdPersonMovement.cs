@@ -82,6 +82,8 @@ namespace GameFramework.Components.Controllers.Movement
         public CharacterRotationMode RotationMode => _rotationSettings.rotationMode;
         public bool IsUsingMouseRotation => _isUsingMouseRotation;
         
+        public float MoveSpeed => _moveSpeed;
+        
         #endregion
 
         #region Unity Lifecycle

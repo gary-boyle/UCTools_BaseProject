@@ -62,6 +62,9 @@ namespace GameFramework.Components.Controllers.Movement
         
         public bool IsPaused => _pauseService?.IsPaused ?? false;
         public bool IsGrounded => _isGrounded;
+        public Vector3 CurrentVelocity => _rigidbody != null ? _rigidbody.linearVelocity : Vector3.zero;
+
+        public float MoveSpeed => _moveSpeed;
         
         #endregion
 

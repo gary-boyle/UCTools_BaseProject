@@ -48,7 +48,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7794249365499132122
 Transform:
   m_ObjectHideFlags: 0
@@ -784,6 +784,7 @@ GameObject:
   - component: {fileID: -3327007484622919362}
   - component: {fileID: 1140652679981138305}
   - component: {fileID: 2364472277237615958}
+  - component: {fileID: 598407191801688701}
   - component: {fileID: 3421404348651573308}
   - component: {fileID: -5461148792396654546}
   m_Layer: 0
@@ -806,6 +807,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 132982684993796943}
   - {fileID: 7794249365499132122}
   - {fileID: 51924904132924267}
   - {fileID: 4949717909976932613}
@@ -845,13 +847,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   _requiredInputContext: 3
-  _cursorLockRequirement: 2
+  _cursorLockRequirement: 1
   _movementComponent: {fileID: 1140652679981138305}
   _cameraComponent: {fileID: 2364472277237615958}
   _cinemachineCamera: {fileID: 9083194349371853835}
   _cameraLookAtTarget: {fileID: 8409531038902378997}
-  _characterModel: {fileID: 1446662224772573595}
-  _animator: {fileID: 0}
+  _animatorController: {fileID: 598407191801688701}
+  _characterModel: {fileID: 130237965959941423}
 --- !u!114 &1140652679981138305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -864,8 +866,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 270564d961856514992b9cd5b5dab274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameFramework.Components.Controllers.Movement.ThirdPersonMovement
-  _moveSpeed: 5
-  _sprintMultiplier: 1.5
+  _moveSpeed: 2.5
+  _sprintMultiplier: 2
   _crouchMultiplier: 0.5
   _jumpForce: 5
   _airControl: 0.3
@@ -908,6 +910,25 @@ MonoBehaviour:
   _zoomSpeed: 2
   _zoomSmoothTime: 0.2
   _showDebugInfo: 0
+--- !u!114 &598407191801688701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8851619217007553581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ad97fc2e9aa93a48ac928bdbef0fda2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameFramework.Components.Controllers.Animation.PlayerAnimatorController
+  _animator: {fileID: 43160466296213697}
+  _controllerType: 1
+  _enableDebugLogs: 1
+  _useSpeedParameter: 1
+  _useGroundedParameter: 0
+  _useJumpingParameter: 0
+  _useMovingParameter: 1
 --- !u!54 &3421404348651573308
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -958,3 +979,79 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!1001 &128617967503304757
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1215660048992525934}
+    m_Modifications:
+    - target: {fileID: 1269969655095048, guid: 086eb706c3edcf447aa2a9e0e0155538, type: 3}
+      propertyPath: m_Name
+      value: MiniCharacter_BusinessMan_Suit_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1269969655095048, guid: 086eb706c3edcf447aa2a9e0e0155538, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646879947215738, guid: 086eb706c3edcf447aa2a9e0e0155538, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646879947215738, guid: 086eb706c3edcf447aa2a9e0e0155538, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646879947215738, guid: 086eb706c3edcf447aa2a9e0e0155538, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646879947215738, guid: 086eb706c3edcf447aa2a9e0e0155538, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646879947215738, guid: 086eb706c3edcf447aa2a9e0e0155538, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646879947215738, guid: 086eb706c3edcf447aa2a9e0e0155538, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646879947215738, guid: 086eb706c3edcf447aa2a9e0e0155538, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646879947215738, guid: 086eb706c3edcf447aa2a9e0e0155538, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646879947215738, guid: 086eb706c3edcf447aa2a9e0e0155538, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646879947215738, guid: 086eb706c3edcf447aa2a9e0e0155538, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 086eb706c3edcf447aa2a9e0e0155538, type: 3}
+--- !u!95 &43160466296213697 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95041145375652084, guid: 086eb706c3edcf447aa2a9e0e0155538, type: 3}
+  m_PrefabInstance: {fileID: 128617967503304757}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &130237965959941423 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1763485009290522, guid: 086eb706c3edcf447aa2a9e0e0155538, type: 3}
+  m_PrefabInstance: {fileID: 128617967503304757}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &132982684993796943 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4646879947215738, guid: 086eb706c3edcf447aa2a9e0e0155538, type: 3}
+  m_PrefabInstance: {fileID: 128617967503304757}
+  m_PrefabAsset: {fileID: 0}

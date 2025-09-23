@@ -25,23 +25,32 @@ namespace GameFramework.Components.Controllers.Movement
 
         #region Private Fields
         private IPauseService _pauseService;
+        private Rigidbody _rigidbody;
+        private CapsuleCollider _collider;
+
         
         // Movement state
         private Vector2 _moveInput = Vector2.zero;
         private bool _isInitialized = false;
+        private Vector3 _currentVelocity = Vector3.zero;
         #endregion
 
         #region Public Properties
         public bool IsPaused => _pauseService?.IsPaused ?? false;
         public Transform MovementTransform => transform;
-        public Vector3 CurrentVelocity => Vector3.zero;
+        public Vector3 CurrentVelocity => _currentVelocity;
         public bool IsGrounded => true;
         public bool Use45DegreeOffset => _use45DegreeOffset;
+        public float MoveSpeed => _moveSpeed;
+        
         #endregion
 
         #region Unity Lifecycle
         private void Awake()
         {
+            _rigidbody = GetComponent<Rigidbody>();
+            _collider = GetComponent<CapsuleCollider>();
+
             _pauseService = GameManager.GetService<IPauseService>();
         }
 
@@ -67,6 +76,8 @@ namespace GameFramework.Components.Controllers.Movement
         {
             _pauseService = null;
             _isInitialized = false;
+            _currentVelocity = Vector3.zero;
+            _moveInput = Vector2.zero;
         }
 
         public void HandleMoveInput(PlayerMoveInputEvent inputEvent)
@@ -106,13 +117,18 @@ namespace GameFramework.Components.Controllers.Movement
         public void StopMovement()
         {
             _moveInput = Vector2.zero;
+            _currentVelocity = Vector3.zero;
         }
         #endregion
 
         #region Private Methods
         private void HandleMovement()
         {
-            if (_moveInput.magnitude < 0.01f) return;
+            if (_moveInput.magnitude < 0.01f)
+            {
+                _currentVelocity = Vector3.zero;
+                return;
+            }
             
             // Convert 2D input to 3D movement (isometric uses XZ plane)
             Vector3 movement = new Vector3(_moveInput.x, 0f, _moveInput.y).normalized;
@@ -123,7 +139,12 @@ namespace GameFramework.Components.Controllers.Movement
                 movement = Quaternion.Euler(0f, 45f, 0f) * movement;
             }
             
-            transform.position += movement * _moveSpeed * Time.deltaTime;
+            // Calculate velocity for this frame
+            Vector3 velocity = movement * _moveSpeed;
+            _currentVelocity = velocity;
+            
+            // Apply movement
+            transform.position += velocity * Time.deltaTime;
         }
 
         private void HandleRotation()

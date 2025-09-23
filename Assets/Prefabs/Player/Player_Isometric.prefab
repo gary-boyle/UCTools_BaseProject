@@ -48,7 +48,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7794249365499132122
 Transform:
   m_ObjectHideFlags: 0
@@ -762,6 +762,7 @@ GameObject:
   - component: {fileID: 9219110668683939715}
   - component: {fileID: -7305239206249418644}
   - component: {fileID: 4725031403868475171}
+  - component: {fileID: 4057273833555259924}
   - component: {fileID: 3421404348651573308}
   - component: {fileID: -5461148792396654546}
   m_Layer: 0
@@ -784,6 +785,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4775831232529245647}
   - {fileID: 7794249365499132122}
   - {fileID: 51924904132924267}
   - {fileID: 4949717909976932613}
@@ -826,15 +828,12 @@ MonoBehaviour:
   _cinemachineCamera: {fileID: 9083194349371853835}
   _cameraLookAtTarget: {fileID: 1215660048992525934}
   _movementComponent: {fileID: -7305239206249418644}
-  _cameraComponent: {fileID: 0}
-  _characterModel: {fileID: 1446662224772573595}
-  _animator: {fileID: 0}
-  _characterSprite: {fileID: 0}
+  _cameraComponent: {fileID: 4725031403868475171}
+  _animatorController: {fileID: 4057273833555259924}
+  _characterModel: {fileID: 4779208039744186813}
   _useGridMovement: 0
   _gridSize: 1
-  _gridMoveSpeed: 5
-  _useSpriteRenderer: 0
-  _flipSpriteWithMovement: 1
+  _gridMoveSpeed: 2.5
 --- !u!114 &-7305239206249418644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -847,7 +846,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2f611ad4604bb945a54869522e5cc76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameFramework.Components.Controllers.Movement.IsometricMovement
-  _moveSpeed: 5
+  _moveSpeed: 2.5
   _use45DegreeOffset: 1
 --- !u!114 &4725031403868475171
 MonoBehaviour:
@@ -866,6 +865,24 @@ MonoBehaviour:
   _minZoom: 5
   _maxZoom: 20
   _zoomSmoothTime: 0.2
+--- !u!114 &4057273833555259924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8851619217007553581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ad97fc2e9aa93a48ac928bdbef0fda2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameFramework.Components.Controllers.Animation.PlayerAnimatorController
+  _animator: {fileID: 4829560882585865793}
+  _enableDebugLogs: 0
+  _useSpeedParameter: 1
+  _useGroundedParameter: 1
+  _useJumpingParameter: 1
+  _useMovingParameter: 1
 --- !u!54 &3421404348651573308
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -916,3 +933,79 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!1001 &4780477974766843573
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1215660048992525934}
+    m_Modifications:
+    - target: {fileID: 1269969655095048, guid: 086eb706c3edcf447aa2a9e0e0155538, type: 3}
+      propertyPath: m_Name
+      value: MiniCharacter_BusinessMan_Suit_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1269969655095048, guid: 086eb706c3edcf447aa2a9e0e0155538, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646879947215738, guid: 086eb706c3edcf447aa2a9e0e0155538, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646879947215738, guid: 086eb706c3edcf447aa2a9e0e0155538, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646879947215738, guid: 086eb706c3edcf447aa2a9e0e0155538, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646879947215738, guid: 086eb706c3edcf447aa2a9e0e0155538, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646879947215738, guid: 086eb706c3edcf447aa2a9e0e0155538, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646879947215738, guid: 086eb706c3edcf447aa2a9e0e0155538, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646879947215738, guid: 086eb706c3edcf447aa2a9e0e0155538, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646879947215738, guid: 086eb706c3edcf447aa2a9e0e0155538, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646879947215738, guid: 086eb706c3edcf447aa2a9e0e0155538, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646879947215738, guid: 086eb706c3edcf447aa2a9e0e0155538, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 086eb706c3edcf447aa2a9e0e0155538, type: 3}
+--- !u!4 &4775831232529245647 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4646879947215738, guid: 086eb706c3edcf447aa2a9e0e0155538, type: 3}
+  m_PrefabInstance: {fileID: 4780477974766843573}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4779208039744186813 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1269969655095048, guid: 086eb706c3edcf447aa2a9e0e0155538, type: 3}
+  m_PrefabInstance: {fileID: 4780477974766843573}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &4829560882585865793 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95041145375652084, guid: 086eb706c3edcf447aa2a9e0e0155538, type: 3}
+  m_PrefabInstance: {fileID: 4780477974766843573}
+  m_PrefabAsset: {fileID: 0}

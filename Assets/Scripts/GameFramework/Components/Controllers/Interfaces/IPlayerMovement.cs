@@ -63,5 +63,9 @@ namespace GameFramework.Components.Controllers.Interfaces
         /// Is the player currently grounded (if applicable)
         /// </summary>
         bool IsGrounded { get; }
+
+        Vector3 CurrentVelocity { get; }
+        float MoveSpeed { get;  }
+
     }
 }

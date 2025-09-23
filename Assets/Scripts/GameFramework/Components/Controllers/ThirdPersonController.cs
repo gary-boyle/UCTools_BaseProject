@@ -2,6 +2,7 @@ using UnityEngine;
 using Unity.Cinemachine;
 using GameFramework.Components.Controllers.Movement;
 using GameFramework.Components.Controllers.Camera;
+using GameFramework.Components.Controllers.Animation;
 using GameFramework.Components.Controllers.Enum;
 using GameFramework.EventSystem.Events;
 using UnityEngine.InputSystem;
@@ -26,19 +27,15 @@ namespace GameFramework.Components.Controllers
         [SerializeField] private CinemachineCamera _cinemachineCamera;
         [SerializeField] private Transform _cameraLookAtTarget;
         
+        [Header("Animation")]
+        [SerializeField] private PlayerAnimatorController _animatorController;
+        
         [Header("Character Model")]
         [SerializeField] private GameObject _characterModel;
-        [SerializeField] private Animator _animator;
         #endregion
 
         #region Private Fields
-        
-        // Animation parameters
-        private static readonly int SpeedParam = Animator.StringToHash("Speed");
-        private static readonly int IsGroundedParam = Animator.StringToHash("IsGrounded");
-        private static readonly int IsJumpingParam = Animator.StringToHash("IsJumping");
-        private static readonly int IsCrouchingParam = Animator.StringToHash("IsCrouching");
-        private static readonly int AttackTrigger = Animator.StringToHash("Attack");
+        // Private fields for component references and state
         #endregion
 
         #region Unity Lifecycle
@@ -53,16 +50,16 @@ namespace GameFramework.Components.Controllers
             if (_movementComponent == null) _movementComponent = GetComponent<ThirdPersonMovement>();
             if (_cameraComponent == null)  _cameraComponent = GetComponent<ThirdPersonCameraControl>();
             if (_cameraLookAtTarget == null) _cameraLookAtTarget = transform.Find("CameraLookAtTarget");
-            if (_animator == null)  _animator = GetComponentInChildren<Animator>();
+            if (_animatorController == null) _animatorController = GetComponentInChildren<PlayerAnimatorController>();
         }
 
         protected override void Update()
         {
             base.Update();
             
-            if (_isInitialized && _animator != null)
+            if (_isInitialized && _animatorController != null)
             {
-                UpdateAnimations();
+                _animatorController.UpdateAnimations();
             }
         }
         #endregion
@@ -73,6 +70,13 @@ namespace GameFramework.Components.Controllers
             // Assign the found components to the base class fields
             base._movementComponent = _movementComponent;
             base._cameraComponent = _cameraComponent;
+            
+            // Initialize animator controller
+            if (_animatorController != null && _movementComponent != null)
+            {
+                Animator animator = GetComponentInChildren<Animator>();
+                _animatorController.Initialize(PlayerPrefabType.ThirdPerson, _movementComponent, animator);
+            }
         }
         
         protected override PlayerPrefabType GetControllerType()
@@ -82,24 +86,29 @@ namespace GameFramework.Components.Controllers
 
         #endregion
 
-        #region Animation Updates
-        private void UpdateAnimations()
+        #region Animation Control
+        /// <summary>
+        /// Trigger attack animation
+        /// </summary>
+        public void TriggerAttack()
         {
-            if (_movementComponent == null) return;
-            
-            // Update speed parameter
-            float speed = _movementComponent.CurrentVelocity.magnitude;
-            _animator.SetFloat(SpeedParam, speed);
-            
-            // Update grounded state
-            _animator.SetBool(IsGroundedParam, _movementComponent.IsGrounded);
-            
-            // Update jumping state (simplified - could be more sophisticated)
-            bool isJumping = !_movementComponent.IsGrounded && _movementComponent.CurrentVelocity.y > 0.1f;
-            _animator.SetBool(IsJumpingParam, isJumping);
+            _animatorController?.TriggerAttack();
         }
-        #endregion
         
+        /// <summary>
+        /// Set crouching state
+        /// </summary>
+        /// <param name="isCrouching">Whether the player is crouching</param>
+        public void SetCrouching(bool isCrouching)
+        {
+            _animatorController?.SetCrouching(isCrouching);
+        }
+        
+        /// <summary>
+        /// Get access to the animator controller for advanced animation control
+        /// </summary>
+        public PlayerAnimatorController AnimatorController => _animatorController;
+        #endregion
 
         #region Input Event Overrides
         
