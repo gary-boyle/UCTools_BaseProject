@@ -7,6 +7,7 @@ using GameFramework.Core;
 using GameFramework.Input;
 using GameFramework.Input.Interfaces;
 using GameFramework.Components.Controllers.Enum;
+using GameFramework.Components.Interactables;
 
 namespace GameFramework.Components.Controllers
 {
@@ -40,6 +41,9 @@ namespace GameFramework.Components.Controllers
         protected IPlayerMovement _movementComponent;
         protected ICameraControl _cameraComponent;
         
+        // Interaction system
+        protected InteractionDetector _interactionDetector;
+        
         // State
         protected bool _isInitialized = false;
         protected bool _isEnabled = true;
@@ -49,6 +53,7 @@ namespace GameFramework.Components.Controllers
         #region Public Properties
         public IPlayerMovement MovementComponent => _movementComponent;
         public ICameraControl CameraComponent => _cameraComponent;
+        public InteractionDetector InteractionDetector => _interactionDetector;
         public bool IsInitialized => _isInitialized;
         public bool IsEnabled => _isEnabled;
         public bool IsPaused => _pauseService?.IsPaused ?? false;
@@ -86,6 +91,9 @@ namespace GameFramework.Components.Controllers
             // Update components
             _movementComponent?.UpdateMovement();
             _cameraComponent?.UpdateCamera();
+            
+            // Update interaction detection
+            _interactionDetector?.UpdateDetection();
         }
 
         protected virtual void FixedUpdate()
@@ -136,6 +144,9 @@ namespace GameFramework.Components.Controllers
             _movementComponent?.Initialize();
             _cameraComponent?.Initialize();
             
+            // Initialize interaction system
+            InitializeInteractionSystem();
+            
             // Subscribe to events
             SubscribeToEvents();
             
@@ -165,6 +176,7 @@ namespace GameFramework.Components.Controllers
             // Clear references
             _movementComponent = null;
             _cameraComponent = null;
+            _interactionDetector = null;
             _eventSystem = null;
             _inputManager = null;
             _pauseService = null;
@@ -198,6 +210,11 @@ namespace GameFramework.Components.Controllers
         /// Create the movement and camera components for this controller type
         /// </summary>
         protected abstract void CreateComponents();
+        
+        /// <summary>
+        /// Get the controller type for interaction system
+        /// </summary>
+        protected abstract PlayerPrefabType GetControllerType();
         #endregion
 
         #region Virtual Methods
@@ -243,6 +260,30 @@ namespace GameFramework.Components.Controllers
             _eventSystem.Unsubscribe<GameResumedEvent>(OnGameResumed);
         }
         
+        /// <summary>
+        /// Initialize the interaction system for this controller
+        /// </summary>
+        protected virtual void InitializeInteractionSystem()
+        {
+            // Get main camera for interaction detection
+            var gameDataService = GameManager.GetService<IGameDataService>();
+            UnityEngine.Camera mainCamera = gameDataService?.GetMainCamera();
+            
+            if (mainCamera == null)
+            {
+                Debug.LogWarning($"[{GetType().Name}] Main camera not found. Interaction system may not work properly.");
+            }
+            
+            // Create interaction detector
+            _interactionDetector = new InteractionDetector(
+                transform,
+                mainCamera,
+                GetControllerType(),
+                _interactionLayerMask,
+                _eventSystem
+            );
+        }
+        
         #endregion
 
         #region Input Event Handlers
@@ -286,7 +327,13 @@ namespace GameFramework.Components.Controllers
 
         protected virtual void OnPlayerInteractInput(PlayerInteractInputEvent inputEvent)
         {
-            // Override in derived classes if interaction functionality is needed
+            if (!_isInitialized || !_isEnabled) return;
+            
+            // Trigger interaction on key press
+            if (inputEvent.Phase == UnityEngine.InputSystem.InputActionPhase.Performed)
+            {
+                _interactionDetector?.TriggerInteraction();
+            }
         }
 
         protected virtual void OnGamePaused(GamePausedEvent pausedEvent)
@@ -320,6 +367,9 @@ namespace GameFramework.Components.Controllers
                     System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic);
                 drawGizmosMethod?.Invoke(movementMB, null);
             }
+            
+            // Draw interaction gizmos
+            _interactionDetector?.DrawDebugGizmos();
         }
         #endregion
     }

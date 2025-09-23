@@ -53,6 +53,11 @@ namespace GameFramework.Components.Controllers
             base._movementComponent = _movementComponent;
             base._cameraComponent = _cameraComponent;
         }
+        
+        protected override PlayerPrefabType GetControllerType()
+        {
+            return PlayerPrefabType.FPS;
+        }
 
         #endregion
 

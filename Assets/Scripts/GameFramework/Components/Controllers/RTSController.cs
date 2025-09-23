@@ -1,5 +1,6 @@
 using UnityEngine;
 using GameFramework.Components.Controllers.Camera;
+using GameFramework.Components.Controllers.Enum;
 using GameFramework.Core;
 using GameFramework.EventSystem.Events;
 using GameFramework.Input;
@@ -78,6 +79,13 @@ namespace GameFramework.Components.Controllers
         #region Component Creation
         protected override void CreateComponents()
         {
+            // RTS controller uses RTSCameraControl instead of standard movement/camera components
+            base._cameraComponent = _cameraControl;
+        }
+        
+        protected override PlayerPrefabType GetControllerType()
+        {
+            return PlayerPrefabType.RTS;
         }
         
         #endregion
@@ -113,6 +121,20 @@ namespace GameFramework.Components.Controllers
             if (_cameraControl != null)
             {
                 _cameraControl.HandleMoveInput(inputEvent);
+            }
+        }
+        
+        /// <summary>
+        /// Override interaction input for RTS - trigger interaction via mouse click
+        /// </summary>
+        protected override void OnPlayerInteractInput(PlayerInteractInputEvent inputEvent)
+        {
+            if (!_isInitialized || !_isEnabled) return;
+            
+            // For RTS, we trigger interaction on mouse click (left click is typically the interact input)
+            if (inputEvent.Phase == UnityEngine.InputSystem.InputActionPhase.Performed)
+            {
+                _interactionDetector?.TriggerInteraction();
             }
         }
         #endregion

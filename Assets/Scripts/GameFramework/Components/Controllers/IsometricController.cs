@@ -102,6 +102,11 @@ namespace GameFramework.Components.Controllers
                 }
             }
         }
+        
+        protected override PlayerPrefabType GetControllerType()
+        {
+            return PlayerPrefabType.Isometric;
+        }
 
         #endregion
 

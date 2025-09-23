@@ -232,7 +232,8 @@ namespace GameFramework.Input
             _inputActions.Player.Sprint.performed += _onSprintInput;
             _inputActions.Player.Previous.performed += _onPreviousInput;
             _inputActions.Player.Next.performed += _onNextInput;
-            
+            _inputActions.Player.Interact.performed += ctx => Debug.Log("Interact Input Received");
+
             // UI Actions
             _inputActions.UI.Navigate.performed += _onUINavigateInput;
             _inputActions.UI.Submit.performed += _onUISubmitInput;
