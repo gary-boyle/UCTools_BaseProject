@@ -70,7 +70,7 @@ namespace GameFramework.Components.Controllers.Camera
         public float MouseSensitivityMultiplier 
         { 
             get => _mouseSensitivityMultiplier; 
-            set => _mouseSensitivityMultiplier = Mathf.Clamp(value, 0.1f, 5.0f); 
+            set => _mouseSensitivityMultiplier = Mathf.Clamp(value, 0.001f, 2.0f); 
         }
         public float EffectiveMouseSensitivity => _globalMouseSensitivity * _mouseSensitivityMultiplier;
         

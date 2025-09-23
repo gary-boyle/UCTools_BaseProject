@@ -869,11 +869,15 @@ MonoBehaviour:
   _crouchMultiplier: 0.5
   _jumpForce: 5
   _airControl: 0.3
-  _rotationSpeed: 10
-  _rotateTowardsMovement: 1
-  _rotationSmoothTime: 0.1
-  _mouseSensitivityMultiplier: 0.01
-  _enableMouseRotation: 0
+  _rotationSettings:
+    rotationMode: 2
+    movementRotationSpeed: 0.01
+    movementRotationSmoothTime: 0.1
+    mouseRotationSensitivity: 0.01
+    smoothMouseRotation: 0
+    mouseRotationSmoothTime: 0.05
+    mouseInactivityThreshold: 0.5
+    hybridBlendSpeed: 1
   _groundLayerMask:
     serializedVersion: 2
     m_Bits: 9
@@ -897,7 +901,7 @@ MonoBehaviour:
   _cinemachineCamera: {fileID: 9083194349371853835}
   _followTarget: {fileID: 1215660048992525934}
   _lookAtTarget: {fileID: 1215660048992525934}
-  _mouseSensitivityMultiplier: 1
+  _mouseSensitivityMultiplier: 0.1
   _orbitSpeed: 2
   _minVerticalAngle: -30
   _maxVerticalAngle: 60
@@ -907,13 +911,6 @@ MonoBehaviour:
   _maxDistance: 10
   _zoomSpeed: 2
   _zoomSmoothTime: 0.2
-  _enableCollisionDetection: 1
-  _collisionLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  _collisionRadius: 0.3
-  _lockCursor: 0
-  _hideCursor: 0
   _showDebugInfo: 0
 --- !u!54 &3421404348651573308
 Rigidbody:
