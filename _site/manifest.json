@@ -124,20 +124,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFramework.Components.CameraController.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/GameFramework.Components.CameraController.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFramework.Components.CameraController",
-      "Summary": "<p sourcefile=\"api/GameFramework.Components.CameraController.yml\" sourcestartlinenumber=\"1\">Dedicated camera controller that handles mouse look and camera rotation.\nIntegrates with the game's event-driven input system.\nSeparates camera concerns from player movement for better modularity.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/GameFramework.Components.ClickToInstantiate.MouseButton.yml",
       "output": {
         ".html": {
@@ -194,17 +180,339 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFramework.Components.PlayerController.yml",
+      "source_relative_path": "api/GameFramework.Components.Controllers.BasePlayerController.yml",
       "output": {
         ".html": {
-          "relative_path": "api/api/GameFramework.Components.PlayerController.html"
+          "relative_path": "api/api/GameFramework.Components.Controllers.BasePlayerController.html"
         }
       },
       "version": "",
       "Uid": null,
       "IsMRef": true,
-      "Title": "GameFramework.Components.PlayerController",
-      "Summary": "<p sourcefile=\"api/GameFramework.Components.PlayerController.yml\" sourcestartlinenumber=\"1\">Comprehensive PlayerController that handles WASD movement, jumping, sprinting, crouching,\nattacking, and interaction using Rigidbody physics. Focuses purely on player movement mechanics.\nCamera/look functionality is handled by a separate CameraController component.\nIntegrates with the game's event-driven input system.</p>\n"
+      "Title": "GameFramework.Components.Controllers.BasePlayerController",
+      "Summary": "<p sourcefile=\"api/GameFramework.Components.Controllers.BasePlayerController.yml\" sourcestartlinenumber=\"1\">Base class for all player controllers that combines movement and camera components.\nUses composition over inheritance for maximum flexibility.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Components.Controllers.Camera.FirstPersonCameraControl.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Components.Controllers.Camera.FirstPersonCameraControl.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Components.Controllers.Camera.FirstPersonCameraControl",
+      "Summary": "<p sourcefile=\"api/GameFramework.Components.Controllers.Camera.FirstPersonCameraControl.yml\" sourcestartlinenumber=\"1\">First-person camera control using Cinemachine 3.1+.\nProvides direct mouse look with smooth rotation and sensitivity controls.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Components.Controllers.Camera.IsometricCameraControl.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Components.Controllers.Camera.IsometricCameraControl.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Components.Controllers.Camera.IsometricCameraControl",
+      "Summary": "<p sourcefile=\"api/GameFramework.Components.Controllers.Camera.IsometricCameraControl.yml\" sourcestartlinenumber=\"1\">Simple isometric camera control using Cinemachine 3.1+.\nProvides only zoom functionality for isometric/top-down games.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Components.Controllers.Camera.RTSCameraControl.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Components.Controllers.Camera.RTSCameraControl.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Components.Controllers.Camera.RTSCameraControl",
+      "Summary": "<p sourcefile=\"api/GameFramework.Components.Controllers.Camera.RTSCameraControl.yml\" sourcestartlinenumber=\"1\">Complete RTS camera control system.\nHandles WASD movement, edge scrolling, mouse wheel zooming, and optional middle mouse button rotation.\nAll camera functionality is consolidated in this single component.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Components.Controllers.Camera.ThirdPersonCameraControl.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Components.Controllers.Camera.ThirdPersonCameraControl.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Components.Controllers.Camera.ThirdPersonCameraControl",
+      "Summary": "<p sourcefile=\"api/GameFramework.Components.Controllers.Camera.ThirdPersonCameraControl.yml\" sourcestartlinenumber=\"1\">Third-person camera control using Cinemachine 3.1+.\nProvides orbiting camera with follow behavior and collision detection.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Components.Controllers.Camera.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Components.Controllers.Camera.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Components.Controllers.Camera",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Components.Controllers.Enum.CharacterRotationMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Components.Controllers.Enum.CharacterRotationMode.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Components.Controllers.Enum.CharacterRotationMode",
+      "Summary": "<p sourcefile=\"api/GameFramework.Components.Controllers.Enum.CharacterRotationMode.yml\" sourcestartlinenumber=\"1\">Defines how a character's rotation is controlled in third-person movement.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Components.Controllers.Enum.CharacterRotationSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Components.Controllers.Enum.CharacterRotationSettings.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Components.Controllers.Enum.CharacterRotationSettings",
+      "Summary": "<p sourcefile=\"api/GameFramework.Components.Controllers.Enum.CharacterRotationSettings.yml\" sourcestartlinenumber=\"1\">Configuration settings for character rotation behavior.\nProvides detailed control over rotation parameters for each mode.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Components.Controllers.Enum.CursorLockRequirement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Components.Controllers.Enum.CursorLockRequirement.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Components.Controllers.Enum.CursorLockRequirement",
+      "Summary": "<p sourcefile=\"api/GameFramework.Components.Controllers.Enum.CursorLockRequirement.yml\" sourcestartlinenumber=\"1\">Defines cursor locking requirements for different player controller types</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Components.Controllers.Enum.PlayerPrefabType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Components.Controllers.Enum.PlayerPrefabType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Components.Controllers.Enum.PlayerPrefabType",
+      "Summary": "<p sourcefile=\"api/GameFramework.Components.Controllers.Enum.PlayerPrefabType.yml\" sourcestartlinenumber=\"1\">Enum for different player prefab types available in the game framework.\nMaps to prefabs in the Prefabs/Player folder.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Components.Controllers.Enum.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Components.Controllers.Enum.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Components.Controllers.Enum",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Components.Controllers.FirstPersonController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Components.Controllers.FirstPersonController.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Components.Controllers.FirstPersonController",
+      "Summary": "<p sourcefile=\"api/GameFramework.Components.Controllers.FirstPersonController.yml\" sourcestartlinenumber=\"1\">First-person controller that combines first-person movement with direct camera control.\nUses Cinemachine 3.1+ for enhanced camera management.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Components.Controllers.Interfaces.ICameraControl.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Components.Controllers.Interfaces.ICameraControl.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Components.Controllers.Interfaces.ICameraControl",
+      "Summary": "<p sourcefile=\"api/GameFramework.Components.Controllers.Interfaces.ICameraControl.yml\" sourcestartlinenumber=\"1\">Interface for different camera control behaviors.\nAllows composition of different camera styles without inheritance.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Components.Controllers.Interfaces.IPlayerMovement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Components.Controllers.Interfaces.IPlayerMovement.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Components.Controllers.Interfaces.IPlayerMovement",
+      "Summary": "<p sourcefile=\"api/GameFramework.Components.Controllers.Interfaces.IPlayerMovement.yml\" sourcestartlinenumber=\"1\">Interface for different player movement behaviors.\nAllows composition of different movement styles without inheritance.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Components.Controllers.Interfaces.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Components.Controllers.Interfaces.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Components.Controllers.Interfaces",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Components.Controllers.IsometricController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Components.Controllers.IsometricController.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Components.Controllers.IsometricController",
+      "Summary": "<p sourcefile=\"api/GameFramework.Components.Controllers.IsometricController.yml\" sourcestartlinenumber=\"1\">Isometric controller that combines top-down character movement with fixed-angle isometric camera.\nSuitable for isometric RPGs, puzzle games, and top-down action games.\nUses Cinemachine 3.1+ for enhanced camera management.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Components.Controllers.Movement.FirstPersonMovement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Components.Controllers.Movement.FirstPersonMovement.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Components.Controllers.Movement.FirstPersonMovement",
+      "Summary": "<p sourcefile=\"api/GameFramework.Components.Controllers.Movement.FirstPersonMovement.yml\" sourcestartlinenumber=\"1\">First-person movement component that handles WASD movement, jumping, sprinting, and crouching.\nUses Rigidbody physics for realistic movement.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Components.Controllers.Movement.IsometricMovement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Components.Controllers.Movement.IsometricMovement.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Components.Controllers.Movement.IsometricMovement",
+      "Summary": "<p sourcefile=\"api/GameFramework.Components.Controllers.Movement.IsometricMovement.yml\" sourcestartlinenumber=\"1\">Simple isometric movement component for top-down games.\nHandles basic movement with 4-directional rotation.\nOptional 45-degree offset for isometric camera alignment.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Components.Controllers.Movement.ThirdPersonMovement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Components.Controllers.Movement.ThirdPersonMovement.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Components.Controllers.Movement.ThirdPersonMovement",
+      "Summary": "<p sourcefile=\"api/GameFramework.Components.Controllers.Movement.ThirdPersonMovement.yml\" sourcestartlinenumber=\"1\">Third-person movement component that handles character movement relative to camera direction.\nIncludes smooth rotation towards movement direction and camera-relative input.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Components.Controllers.Movement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Components.Controllers.Movement.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Components.Controllers.Movement",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Components.Controllers.PlayerPrefabSelector.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Components.Controllers.PlayerPrefabSelector.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Components.Controllers.PlayerPrefabSelector",
+      "Summary": "<p sourcefile=\"api/GameFramework.Components.Controllers.PlayerPrefabSelector.yml\" sourcestartlinenumber=\"1\">Manages player prefab selection and automatic loading based on PlayerPrefabType enum.\nAutomatically finds prefabs in the Prefabs/Player folder based on naming conventions.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Components.Controllers.RTSController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Components.Controllers.RTSController.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Components.Controllers.RTSController",
+      "Summary": "<p sourcefile=\"api/GameFramework.Components.Controllers.RTSController.yml\" sourcestartlinenumber=\"1\">Real-Time Strategy controller that manages camera movement and unit selection.\nUses a single RTSCameraControl component for all camera functionality.\nHandles unit selection with mouse clicks and selection boxes.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Components.Controllers.ThirdPersonController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Components.Controllers.ThirdPersonController.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Components.Controllers.ThirdPersonController",
+      "Summary": "<p sourcefile=\"api/GameFramework.Components.Controllers.ThirdPersonController.yml\" sourcestartlinenumber=\"1\">Third-person controller that combines third-person movement with orbital camera control.\nUses Cinemachine 3.1+ for enhanced camera management with collision detection and smooth following.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Components.Controllers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Components.Controllers.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Components.Controllers",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1185,6 +1493,20 @@
       "IsMRef": true,
       "Title": "GameFramework.Editor.ConfigFileEditorWindow",
       "Summary": "<p sourcefile=\"api/GameFramework.Editor.ConfigFileEditorWindow.yml\" sourcestartlinenumber=\"1\">Advanced Unity Editor tool for viewing and editing JSON config files</p>\n<p sourcefile=\"api/GameFramework.Editor.ConfigFileEditorWindow.yml\" sourcestartlinenumber=\"3\">Design:</p>\n<ul sourcefile=\"api/GameFramework.Editor.ConfigFileEditorWindow.yml\" sourcestartlinenumber=\"4\">\n<li sourcefile=\"api/GameFramework.Editor.ConfigFileEditorWindow.yml\" sourcestartlinenumber=\"4\">UIToolkit-based interface with dynamic JSON property display</li>\n<li sourcefile=\"api/GameFramework.Editor.ConfigFileEditorWindow.yml\" sourcestartlinenumber=\"5\">Supports both structured editing and raw JSON editing</li>\n<li sourcefile=\"api/GameFramework.Editor.ConfigFileEditorWindow.yml\" sourcestartlinenumber=\"6\">Real-time validation and auto-save capabilities</li>\n<li sourcefile=\"api/GameFramework.Editor.ConfigFileEditorWindow.yml\" sourcestartlinenumber=\"7\">File management operations (create, delete, open externally)</li>\n</ul>\n<p sourcefile=\"api/GameFramework.Editor.ConfigFileEditorWindow.yml\" sourcestartlinenumber=\"9\">Pros:</p>\n<ul sourcefile=\"api/GameFramework.Editor.ConfigFileEditorWindow.yml\" sourcestartlinenumber=\"10\">\n<li sourcefile=\"api/GameFramework.Editor.ConfigFileEditorWindow.yml\" sourcestartlinenumber=\"10\">Dual editing modes (structured/raw JSON)</li>\n<li sourcefile=\"api/GameFramework.Editor.ConfigFileEditorWindow.yml\" sourcestartlinenumber=\"11\">Deferred value updates for better performance</li>\n<li sourcefile=\"api/GameFramework.Editor.ConfigFileEditorWindow.yml\" sourcestartlinenumber=\"12\">Comprehensive validation and error handling</li>\n<li sourcefile=\"api/GameFramework.Editor.ConfigFileEditorWindow.yml\" sourcestartlinenumber=\"13\">Auto-save functionality</li>\n<li sourcefile=\"api/GameFramework.Editor.ConfigFileEditorWindow.yml\" sourcestartlinenumber=\"14\">File management integration</li>\n</ul>\n<p sourcefile=\"api/GameFramework.Editor.ConfigFileEditorWindow.yml\" sourcestartlinenumber=\"16\">Cons:</p>\n<ul sourcefile=\"api/GameFramework.Editor.ConfigFileEditorWindow.yml\" sourcestartlinenumber=\"17\">\n<li sourcefile=\"api/GameFramework.Editor.ConfigFileEditorWindow.yml\" sourcestartlinenumber=\"17\">Complex UI state management</li>\n<li sourcefile=\"api/GameFramework.Editor.ConfigFileEditorWindow.yml\" sourcestartlinenumber=\"18\">Requires specific JSON structure for config entries</li>\n<li sourcefile=\"api/GameFramework.Editor.ConfigFileEditorWindow.yml\" sourcestartlinenumber=\"19\">Heavy dependency on UIToolkit assets</li>\n</ul>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Editor.PlayerPrefabSelectorDrawer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Editor.PlayerPrefabSelectorDrawer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Editor.PlayerPrefabSelectorDrawer",
+      "Summary": "<p sourcefile=\"api/GameFramework.Editor.PlayerPrefabSelectorDrawer.yml\" sourcestartlinenumber=\"1\">Custom PropertyDrawer for PlayerPrefabSelector to display a clean dropdown in the inspector\nwith automatic prefab loading and validation feedback.</p>\n"
     },
     {
       "type": "ManagedReference",

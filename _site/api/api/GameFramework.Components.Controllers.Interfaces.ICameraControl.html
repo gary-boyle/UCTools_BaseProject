@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class UIMiddleClickInputEvent | UCTools Base Project </title>
+    <title>Interface ICameraControl | UCTools Base Project </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class UIMiddleClickInputEvent | UCTools Base Project ">
+    <meta name="title" content="Interface ICameraControl | UCTools Base Project ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -79,57 +79,66 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="GameFramework.EventSystem.Events.UIMiddleClickInputEvent">
+            <article class="content wrap" id="_content" data-uid="GameFramework.Components.Controllers.Interfaces.ICameraControl">
 
 
 
-  <h1 id="GameFramework_EventSystem_Events_UIMiddleClickInputEvent" data-uid="GameFramework.EventSystem.Events.UIMiddleClickInputEvent" class="text-break">Class UIMiddleClickInputEvent</h1>
-  <div class="markdown level0 summary"></div>
+  <h1 id="GameFramework_Components_Controllers_Interfaces_ICameraControl" data-uid="GameFramework.Components.Controllers.Interfaces.ICameraControl" class="text-break">Interface ICameraControl</h1>
+  <div class="markdown level0 summary"><p>Interface for different camera control behaviors.
+Allows composition of different camera styles without inheritance.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
-  <div class="inheritance">
-    <h5>Inheritance</h5>
-    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><span class="xref">UIMiddleClickInputEvent</span></div>
-  </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
-    </div>
-  </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.EventSystem.html">EventSystem</a>.<a class="xref" href="GameFramework.EventSystem.Events.html">Events</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.Components.html">Components</a>.<a class="xref" href="GameFramework.Components.Controllers.html">Controllers</a>.<a class="xref" href="GameFramework.Components.Controllers.Interfaces.html">Interfaces</a></h6>
   <h6><strong>Assembly</strong>: .dll</h6>
-  <h5 id="GameFramework_EventSystem_Events_UIMiddleClickInputEvent_syntax">Syntax</h5>
+  <h5 id="GameFramework_Components_Controllers_Interfaces_ICameraControl_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class UIMiddleClickInputEvent</code></pre>
+    <pre><code class="lang-csharp hljs">public interface ICameraControl</code></pre>
   </div>
-  <h3 id="constructors">Constructors
+  <h3 id="properties">Properties
 </h3>
-  <a id="GameFramework_EventSystem_Events_UIMiddleClickInputEvent__ctor_" data-uid="GameFramework.EventSystem.Events.UIMiddleClickInputEvent.#ctor*"></a>
-  <h4 id="GameFramework_EventSystem_Events_UIMiddleClickInputEvent__ctor_InputActionPhase_" data-uid="GameFramework.EventSystem.Events.UIMiddleClickInputEvent.#ctor(InputActionPhase)">UIMiddleClickInputEvent(InputActionPhase)</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="GameFramework_Components_Controllers_Interfaces_ICameraControl_IsPaused_" data-uid="GameFramework.Components.Controllers.Interfaces.ICameraControl.IsPaused*"></a>
+  <h4 id="GameFramework_Components_Controllers_Interfaces_ICameraControl_IsPaused" data-uid="GameFramework.Components.Controllers.Interfaces.ICameraControl.IsPaused">IsPaused</h4>
+  <div class="markdown level1 summary"><p>Whether the camera component is currently paused</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public UIMiddleClickInputEvent(InputActionPhase phase)</code></pre>
+    <pre><code class="lang-csharp hljs">bool IsPaused { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+  <a id="GameFramework_Components_Controllers_Interfaces_ICameraControl_Cleanup_" data-uid="GameFramework.Components.Controllers.Interfaces.ICameraControl.Cleanup*"></a>
+  <h4 id="GameFramework_Components_Controllers_Interfaces_ICameraControl_Cleanup" data-uid="GameFramework.Components.Controllers.Interfaces.ICameraControl.Cleanup">Cleanup()</h4>
+  <div class="markdown level1 summary"><p>Clean up the camera component</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void Cleanup()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Controllers_Interfaces_ICameraControl_HandleLookInput_" data-uid="GameFramework.Components.Controllers.Interfaces.ICameraControl.HandleLookInput*"></a>
+  <h4 id="GameFramework_Components_Controllers_Interfaces_ICameraControl_HandleLookInput_GameFramework_EventSystem_Events_PlayerLookInputEvent_" data-uid="GameFramework.Components.Controllers.Interfaces.ICameraControl.HandleLookInput(GameFramework.EventSystem.Events.PlayerLookInputEvent)">HandleLookInput(PlayerLookInputEvent)</h4>
+  <div class="markdown level1 summary"><p>Handle look input from the input system</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void HandleLookInput(PlayerLookInputEvent inputEvent)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -142,37 +151,56 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">InputActionPhase</span></td>
-        <td><span class="parametername">phase</span></td>
+        <td><a class="xref" href="GameFramework.EventSystem.Events.PlayerLookInputEvent.html">PlayerLookInputEvent</a></td>
+        <td><span class="parametername">inputEvent</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <h3 id="properties">Properties
-</h3>
-  <a id="GameFramework_EventSystem_Events_UIMiddleClickInputEvent_Phase_" data-uid="GameFramework.EventSystem.Events.UIMiddleClickInputEvent.Phase*"></a>
-  <h4 id="GameFramework_EventSystem_Events_UIMiddleClickInputEvent_Phase" data-uid="GameFramework.EventSystem.Events.UIMiddleClickInputEvent.Phase">Phase</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="GameFramework_Components_Controllers_Interfaces_ICameraControl_Initialize_" data-uid="GameFramework.Components.Controllers.Interfaces.ICameraControl.Initialize*"></a>
+  <h4 id="GameFramework_Components_Controllers_Interfaces_ICameraControl_Initialize" data-uid="GameFramework.Components.Controllers.Interfaces.ICameraControl.Initialize">Initialize()</h4>
+  <div class="markdown level1 summary"><p>Initialize the camera component</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public InputActionPhase Phase { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">void Initialize()</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
+  <a id="GameFramework_Components_Controllers_Interfaces_ICameraControl_SetInputEnabled_" data-uid="GameFramework.Components.Controllers.Interfaces.ICameraControl.SetInputEnabled*"></a>
+  <h4 id="GameFramework_Components_Controllers_Interfaces_ICameraControl_SetInputEnabled_System_Boolean_" data-uid="GameFramework.Components.Controllers.Interfaces.ICameraControl.SetInputEnabled(System.Boolean)">SetInputEnabled(bool)</h4>
+  <div class="markdown level1 summary"><p>Enable or disable camera input processing</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void SetInputEnabled(bool enabled)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
+        <th>Name</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">InputActionPhase</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">enabled</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
+  <a id="GameFramework_Components_Controllers_Interfaces_ICameraControl_UpdateCamera_" data-uid="GameFramework.Components.Controllers.Interfaces.ICameraControl.UpdateCamera*"></a>
+  <h4 id="GameFramework_Components_Controllers_Interfaces_ICameraControl_UpdateCamera" data-uid="GameFramework.Components.Controllers.Interfaces.ICameraControl.UpdateCamera">UpdateCamera()</h4>
+  <div class="markdown level1 summary"><p>Update camera logic (called from Update)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void UpdateCamera()</code></pre>
+  </div>
 
 </article>
           </div>

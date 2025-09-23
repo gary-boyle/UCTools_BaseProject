@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class BasePlayerController | UCTools Base Project </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class BasePlayerController | UCTools Base Project ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  <meta property="docfx:newtab" content="true">
+
+  
+  </head>
+
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="UCTools">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="GameFramework.Components.Controllers.BasePlayerController">
+
+
+
+  <h1 id="GameFramework_Components_Controllers_BasePlayerController" data-uid="GameFramework.Components.Controllers.BasePlayerController" class="text-break">Class BasePlayerController</h1>
+  <div class="markdown level0 summary"><p>Base class for all player controllers that combines movement and camera components.
+Uses composition over inheritance for maximum flexibility.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+    <div class="level1"><span class="xref">BasePlayerController</span></div>
+      <div class="level2"><a class="xref" href="GameFramework.Components.Controllers.FirstPersonController.html">FirstPersonController</a></div>
+      <div class="level2"><a class="xref" href="GameFramework.Components.Controllers.IsometricController.html">IsometricController</a></div>
+      <div class="level2"><a class="xref" href="GameFramework.Components.Controllers.RTSController.html">RTSController</a></div>
+      <div class="level2"><a class="xref" href="GameFramework.Components.Controllers.ThirdPersonController.html">ThirdPersonController</a></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.Components.html">Components</a>.<a class="xref" href="GameFramework.Components.Controllers.html">Controllers</a></h6>
+  <h6><strong>Assembly</strong>: .dll</h6>
+  <h5 id="GameFramework_Components_Controllers_BasePlayerController_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class BasePlayerController : MonoBehaviour</code></pre>
+  </div>
+  <h3 id="fields">Fields
+</h3>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController__cameraComponent" data-uid="GameFramework.Components.Controllers.BasePlayerController._cameraComponent">_cameraComponent</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ICameraControl _cameraComponent</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Components.Controllers.Interfaces.ICameraControl.html">ICameraControl</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController__cursorLockRequirement" data-uid="GameFramework.Components.Controllers.BasePlayerController._cursorLockRequirement">_cursorLockRequirement</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected CursorLockRequirement _cursorLockRequirement</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Components.Controllers.Enum.CursorLockRequirement.html">CursorLockRequirement</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController__eventSystem" data-uid="GameFramework.Components.Controllers.BasePlayerController._eventSystem">_eventSystem</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected IEventSystem _eventSystem</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.EventSystem.Interfaces.IEventSystem.html">IEventSystem</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController__initializeOnStart" data-uid="GameFramework.Components.Controllers.BasePlayerController._initializeOnStart">_initializeOnStart</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool _initializeOnStart</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController__inputManager" data-uid="GameFramework.Components.Controllers.BasePlayerController._inputManager">_inputManager</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected IInputManager _inputManager</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Input.Interfaces.IInputManager.html">IInputManager</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController__interactionLayerMask" data-uid="GameFramework.Components.Controllers.BasePlayerController._interactionLayerMask">_interactionLayerMask</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected LayerMask _interactionLayerMask</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">LayerMask</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController__isEnabled" data-uid="GameFramework.Components.Controllers.BasePlayerController._isEnabled">_isEnabled</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool _isEnabled</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController__isInitialized" data-uid="GameFramework.Components.Controllers.BasePlayerController._isInitialized">_isInitialized</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool _isInitialized</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController__movementComponent" data-uid="GameFramework.Components.Controllers.BasePlayerController._movementComponent">_movementComponent</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected IPlayerMovement _movementComponent</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Components.Controllers.Interfaces.IPlayerMovement.html">IPlayerMovement</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController__pauseService" data-uid="GameFramework.Components.Controllers.BasePlayerController._pauseService">_pauseService</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected IPauseService _pauseService</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Services.Interfaces.IPauseService.html">IPauseService</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController__requiredInputContext" data-uid="GameFramework.Components.Controllers.BasePlayerController._requiredInputContext">_requiredInputContext</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected InputContext _requiredInputContext</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Input.InputContext.html">InputContext</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController__showDebugInfo" data-uid="GameFramework.Components.Controllers.BasePlayerController._showDebugInfo">_showDebugInfo</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool _showDebugInfo</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+</h3>
+  <a id="GameFramework_Components_Controllers_BasePlayerController_CameraComponent_" data-uid="GameFramework.Components.Controllers.BasePlayerController.CameraComponent*"></a>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController_CameraComponent" data-uid="GameFramework.Components.Controllers.BasePlayerController.CameraComponent">CameraComponent</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ICameraControl CameraComponent { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Components.Controllers.Interfaces.ICameraControl.html">ICameraControl</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Components_Controllers_BasePlayerController_CursorLockRequirement_" data-uid="GameFramework.Components.Controllers.BasePlayerController.CursorLockRequirement*"></a>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController_CursorLockRequirement" data-uid="GameFramework.Components.Controllers.BasePlayerController.CursorLockRequirement">CursorLockRequirement</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CursorLockRequirement CursorLockRequirement { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Components.Controllers.Enum.CursorLockRequirement.html">CursorLockRequirement</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Components_Controllers_BasePlayerController_IsEnabled_" data-uid="GameFramework.Components.Controllers.BasePlayerController.IsEnabled*"></a>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController_IsEnabled" data-uid="GameFramework.Components.Controllers.BasePlayerController.IsEnabled">IsEnabled</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsEnabled { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Components_Controllers_BasePlayerController_IsInitialized_" data-uid="GameFramework.Components.Controllers.BasePlayerController.IsInitialized*"></a>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController_IsInitialized" data-uid="GameFramework.Components.Controllers.BasePlayerController.IsInitialized">IsInitialized</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsInitialized { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Components_Controllers_BasePlayerController_IsPaused_" data-uid="GameFramework.Components.Controllers.BasePlayerController.IsPaused*"></a>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController_IsPaused" data-uid="GameFramework.Components.Controllers.BasePlayerController.IsPaused">IsPaused</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsPaused { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Components_Controllers_BasePlayerController_MovementComponent_" data-uid="GameFramework.Components.Controllers.BasePlayerController.MovementComponent*"></a>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController_MovementComponent" data-uid="GameFramework.Components.Controllers.BasePlayerController.MovementComponent">MovementComponent</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IPlayerMovement MovementComponent { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Components.Controllers.Interfaces.IPlayerMovement.html">IPlayerMovement</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+  <a id="GameFramework_Components_Controllers_BasePlayerController_Awake_" data-uid="GameFramework.Components.Controllers.BasePlayerController.Awake*"></a>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController_Awake" data-uid="GameFramework.Components.Controllers.BasePlayerController.Awake">Awake()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Awake()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Controllers_BasePlayerController_Cleanup_" data-uid="GameFramework.Components.Controllers.BasePlayerController.Cleanup*"></a>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController_Cleanup" data-uid="GameFramework.Components.Controllers.BasePlayerController.Cleanup">Cleanup()</h4>
+  <div class="markdown level1 summary"><p>Cleanup the controller and its components</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void Cleanup()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Controllers_BasePlayerController_CreateComponents_" data-uid="GameFramework.Components.Controllers.BasePlayerController.CreateComponents*"></a>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController_CreateComponents" data-uid="GameFramework.Components.Controllers.BasePlayerController.CreateComponents">CreateComponents()</h4>
+  <div class="markdown level1 summary"><p>Create the movement and camera components for this controller type</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract void CreateComponents()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Controllers_BasePlayerController_FixedUpdate_" data-uid="GameFramework.Components.Controllers.BasePlayerController.FixedUpdate*"></a>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController_FixedUpdate" data-uid="GameFramework.Components.Controllers.BasePlayerController.FixedUpdate">FixedUpdate()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void FixedUpdate()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Controllers_BasePlayerController_Initialize_" data-uid="GameFramework.Components.Controllers.BasePlayerController.Initialize*"></a>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController_Initialize" data-uid="GameFramework.Components.Controllers.BasePlayerController.Initialize">Initialize()</h4>
+  <div class="markdown level1 summary"><p>Initialize the controller and its components</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void Initialize()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Controllers_BasePlayerController_OnDestroy_" data-uid="GameFramework.Components.Controllers.BasePlayerController.OnDestroy*"></a>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController_OnDestroy" data-uid="GameFramework.Components.Controllers.BasePlayerController.OnDestroy">OnDestroy()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnDestroy()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Controllers_BasePlayerController_OnDisable_" data-uid="GameFramework.Components.Controllers.BasePlayerController.OnDisable*"></a>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController_OnDisable" data-uid="GameFramework.Components.Controllers.BasePlayerController.OnDisable">OnDisable()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnDisable()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Controllers_BasePlayerController_OnDrawGizmos_" data-uid="GameFramework.Components.Controllers.BasePlayerController.OnDrawGizmos*"></a>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController_OnDrawGizmos" data-uid="GameFramework.Components.Controllers.BasePlayerController.OnDrawGizmos">OnDrawGizmos()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnDrawGizmos()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Controllers_BasePlayerController_OnEnable_" data-uid="GameFramework.Components.Controllers.BasePlayerController.OnEnable*"></a>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController_OnEnable" data-uid="GameFramework.Components.Controllers.BasePlayerController.OnEnable">OnEnable()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnEnable()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Controllers_BasePlayerController_OnGamePaused_" data-uid="GameFramework.Components.Controllers.BasePlayerController.OnGamePaused*"></a>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController_OnGamePaused_GameFramework_EventSystem_Events_GamePausedEvent_" data-uid="GameFramework.Components.Controllers.BasePlayerController.OnGamePaused(GameFramework.EventSystem.Events.GamePausedEvent)">OnGamePaused(GamePausedEvent)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnGamePaused(GamePausedEvent pausedEvent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.EventSystem.Events.GamePausedEvent.html">GamePausedEvent</a></td>
+        <td><span class="parametername">pausedEvent</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Components_Controllers_BasePlayerController_OnGameResumed_" data-uid="GameFramework.Components.Controllers.BasePlayerController.OnGameResumed*"></a>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController_OnGameResumed_GameFramework_EventSystem_Events_GameResumedEvent_" data-uid="GameFramework.Components.Controllers.BasePlayerController.OnGameResumed(GameFramework.EventSystem.Events.GameResumedEvent)">OnGameResumed(GameResumedEvent)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnGameResumed(GameResumedEvent resumedEvent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.EventSystem.Events.GameResumedEvent.html">GameResumedEvent</a></td>
+        <td><span class="parametername">resumedEvent</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Components_Controllers_BasePlayerController_OnPlayerAttackInput_" data-uid="GameFramework.Components.Controllers.BasePlayerController.OnPlayerAttackInput*"></a>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController_OnPlayerAttackInput_GameFramework_EventSystem_Events_PlayerAttackInputEvent_" data-uid="GameFramework.Components.Controllers.BasePlayerController.OnPlayerAttackInput(GameFramework.EventSystem.Events.PlayerAttackInputEvent)">OnPlayerAttackInput(PlayerAttackInputEvent)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnPlayerAttackInput(PlayerAttackInputEvent inputEvent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.EventSystem.Events.PlayerAttackInputEvent.html">PlayerAttackInputEvent</a></td>
+        <td><span class="parametername">inputEvent</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Components_Controllers_BasePlayerController_OnPlayerCrouchInput_" data-uid="GameFramework.Components.Controllers.BasePlayerController.OnPlayerCrouchInput*"></a>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController_OnPlayerCrouchInput_GameFramework_EventSystem_Events_PlayerCrouchInputEvent_" data-uid="GameFramework.Components.Controllers.BasePlayerController.OnPlayerCrouchInput(GameFramework.EventSystem.Events.PlayerCrouchInputEvent)">OnPlayerCrouchInput(PlayerCrouchInputEvent)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnPlayerCrouchInput(PlayerCrouchInputEvent inputEvent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.EventSystem.Events.PlayerCrouchInputEvent.html">PlayerCrouchInputEvent</a></td>
+        <td><span class="parametername">inputEvent</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Components_Controllers_BasePlayerController_OnPlayerInteractInput_" data-uid="GameFramework.Components.Controllers.BasePlayerController.OnPlayerInteractInput*"></a>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController_OnPlayerInteractInput_GameFramework_EventSystem_Events_PlayerInteractInputEvent_" data-uid="GameFramework.Components.Controllers.BasePlayerController.OnPlayerInteractInput(GameFramework.EventSystem.Events.PlayerInteractInputEvent)">OnPlayerInteractInput(PlayerInteractInputEvent)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnPlayerInteractInput(PlayerInteractInputEvent inputEvent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.EventSystem.Events.PlayerInteractInputEvent.html">PlayerInteractInputEvent</a></td>
+        <td><span class="parametername">inputEvent</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Components_Controllers_BasePlayerController_OnPlayerJumpInput_" data-uid="GameFramework.Components.Controllers.BasePlayerController.OnPlayerJumpInput*"></a>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController_OnPlayerJumpInput_GameFramework_EventSystem_Events_PlayerJumpInputEvent_" data-uid="GameFramework.Components.Controllers.BasePlayerController.OnPlayerJumpInput(GameFramework.EventSystem.Events.PlayerJumpInputEvent)">OnPlayerJumpInput(PlayerJumpInputEvent)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnPlayerJumpInput(PlayerJumpInputEvent inputEvent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.EventSystem.Events.PlayerJumpInputEvent.html">PlayerJumpInputEvent</a></td>
+        <td><span class="parametername">inputEvent</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Components_Controllers_BasePlayerController_OnPlayerLookInput_" data-uid="GameFramework.Components.Controllers.BasePlayerController.OnPlayerLookInput*"></a>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController_OnPlayerLookInput_GameFramework_EventSystem_Events_PlayerLookInputEvent_" data-uid="GameFramework.Components.Controllers.BasePlayerController.OnPlayerLookInput(GameFramework.EventSystem.Events.PlayerLookInputEvent)">OnPlayerLookInput(PlayerLookInputEvent)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnPlayerLookInput(PlayerLookInputEvent inputEvent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.EventSystem.Events.PlayerLookInputEvent.html">PlayerLookInputEvent</a></td>
+        <td><span class="parametername">inputEvent</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Components_Controllers_BasePlayerController_OnPlayerMoveInput_" data-uid="GameFramework.Components.Controllers.BasePlayerController.OnPlayerMoveInput*"></a>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController_OnPlayerMoveInput_GameFramework_EventSystem_Events_PlayerMoveInputEvent_" data-uid="GameFramework.Components.Controllers.BasePlayerController.OnPlayerMoveInput(GameFramework.EventSystem.Events.PlayerMoveInputEvent)">OnPlayerMoveInput(PlayerMoveInputEvent)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnPlayerMoveInput(PlayerMoveInputEvent inputEvent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.EventSystem.Events.PlayerMoveInputEvent.html">PlayerMoveInputEvent</a></td>
+        <td><span class="parametername">inputEvent</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Components_Controllers_BasePlayerController_OnPlayerSprintInput_" data-uid="GameFramework.Components.Controllers.BasePlayerController.OnPlayerSprintInput*"></a>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController_OnPlayerSprintInput_GameFramework_EventSystem_Events_PlayerSprintInputEvent_" data-uid="GameFramework.Components.Controllers.BasePlayerController.OnPlayerSprintInput(GameFramework.EventSystem.Events.PlayerSprintInputEvent)">OnPlayerSprintInput(PlayerSprintInputEvent)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnPlayerSprintInput(PlayerSprintInputEvent inputEvent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.EventSystem.Events.PlayerSprintInputEvent.html">PlayerSprintInputEvent</a></td>
+        <td><span class="parametername">inputEvent</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Components_Controllers_BasePlayerController_ResumeAllMovement_" data-uid="GameFramework.Components.Controllers.BasePlayerController.ResumeAllMovement*"></a>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController_ResumeAllMovement" data-uid="GameFramework.Components.Controllers.BasePlayerController.ResumeAllMovement">ResumeAllMovement()</h4>
+  <div class="markdown level1 summary"><p>Resume all movement and camera input</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void ResumeAllMovement()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Controllers_BasePlayerController_Start_" data-uid="GameFramework.Components.Controllers.BasePlayerController.Start*"></a>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController_Start" data-uid="GameFramework.Components.Controllers.BasePlayerController.Start">Start()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Start()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Controllers_BasePlayerController_StopAllMovement_" data-uid="GameFramework.Components.Controllers.BasePlayerController.StopAllMovement*"></a>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController_StopAllMovement" data-uid="GameFramework.Components.Controllers.BasePlayerController.StopAllMovement">StopAllMovement()</h4>
+  <div class="markdown level1 summary"><p>Stop all movement and camera input</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void StopAllMovement()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Controllers_BasePlayerController_SubscribeToEvents_" data-uid="GameFramework.Components.Controllers.BasePlayerController.SubscribeToEvents*"></a>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController_SubscribeToEvents" data-uid="GameFramework.Components.Controllers.BasePlayerController.SubscribeToEvents">SubscribeToEvents()</h4>
+  <div class="markdown level1 summary"><p>Subscribe to input and game events</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void SubscribeToEvents()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Controllers_BasePlayerController_UnsubscribeFromEvents_" data-uid="GameFramework.Components.Controllers.BasePlayerController.UnsubscribeFromEvents*"></a>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController_UnsubscribeFromEvents" data-uid="GameFramework.Components.Controllers.BasePlayerController.UnsubscribeFromEvents">UnsubscribeFromEvents()</h4>
+  <div class="markdown level1 summary"><p>Unsubscribe from input and game events</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void UnsubscribeFromEvents()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Controllers_BasePlayerController_Update_" data-uid="GameFramework.Components.Controllers.BasePlayerController.Update*"></a>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController_Update" data-uid="GameFramework.Components.Controllers.BasePlayerController.Update">Update()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Update()</code></pre>
+  </div>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In this article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        © 2025 UCTools Base Project Documentation
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

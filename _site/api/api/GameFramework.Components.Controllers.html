@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Namespace GameFramework.Components | UCTools Base Project </title>
+    <title>Namespace GameFramework.Components.Controllers | UCTools Base Project </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Namespace GameFramework.Components | UCTools Base Project ">
+    <meta name="title" content="Namespace GameFramework.Components.Controllers | UCTools Base Project ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -79,39 +79,41 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="GameFramework.Components">
+            <article class="content wrap" id="_content" data-uid="GameFramework.Components.Controllers">
 
-  <h1 id="GameFramework_Components" data-uid="GameFramework.Components" class="text-break">Namespace GameFramework.Components</h1>
+  <h1 id="GameFramework_Components_Controllers" data-uid="GameFramework.Components.Controllers" class="text-break">Namespace GameFramework.Components.Controllers</h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">
 Classes
 </h3>
-      <h4><a class="xref" href="GameFramework.Components.ClickToInstantiate.html">ClickToInstantiate</a></h4>
-      <section><p>MonoBehaviour that instantiates a prefab at the location where the user clicks.
-Supports both raycast-based placement and fixed depth placement.</p>
+      <h4><a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html">BasePlayerController</a></h4>
+      <section><p>Base class for all player controllers that combines movement and camera components.
+Uses composition over inheritance for maximum flexibility.</p>
 </section>
-      <h4><a class="xref" href="GameFramework.Components.ClickableCube.html">ClickableCube</a></h4>
-      <section><p>MonoBehaviour that can be attached to a cube to make it clickable.
-When clicked, changes the cube's color and increments an integer value.
-Uses the new clean save system with direct field storage instead of nested JSON.</p>
+      <h4><a class="xref" href="GameFramework.Components.Controllers.FirstPersonController.html">FirstPersonController</a></h4>
+      <section><p>First-person controller that combines first-person movement with direct camera control.
+Uses Cinemachine 3.1+ for enhanced camera management.</p>
 </section>
-      <h4><a class="xref" href="GameFramework.Components.PlayerData.html">PlayerData</a></h4>
-      <section><p>Player data MonoBehaviour with unique ID for identification and single auto-save per player.
-Attach this to a PlayerPrefab to be instantiated during game loading.</p>
+      <h4><a class="xref" href="GameFramework.Components.Controllers.IsometricController.html">IsometricController</a></h4>
+      <section><p>Isometric controller that combines top-down character movement with fixed-angle isometric camera.
+Suitable for isometric RPGs, puzzle games, and top-down action games.
+Uses Cinemachine 3.1+ for enhanced camera management.</p>
 </section>
-      <h4><a class="xref" href="GameFramework.Components.PlayerSpawnPoint.html">PlayerSpawnPoint</a></h4>
-      <section><p>Marks a GameObject as a player spawn point for new games.
-The InstantiationService will look for this component to determine where to spawn the player.</p>
+      <h4><a class="xref" href="GameFramework.Components.Controllers.PlayerPrefabSelector.html">PlayerPrefabSelector</a></h4>
+      <section><p>Manages player prefab selection and automatic loading based on PlayerPrefabType enum.
+Automatically finds prefabs in the Prefabs/Player folder based on naming conventions.</p>
 </section>
-    <h3 id="enums">
-Enums
-</h3>
-      <h4><a class="xref" href="GameFramework.Components.ClickToInstantiate.MouseButton.html">ClickToInstantiate.MouseButton</a></h4>
-      <section></section>
-      <h4><a class="xref" href="GameFramework.Components.ClickToInstantiate.PlacementMode.html">ClickToInstantiate.PlacementMode</a></h4>
-      <section></section>
+      <h4><a class="xref" href="GameFramework.Components.Controllers.RTSController.html">RTSController</a></h4>
+      <section><p>Real-Time Strategy controller that manages camera movement and unit selection.
+Uses a single RTSCameraControl component for all camera functionality.
+Handles unit selection with mouse clicks and selection boxes.</p>
+</section>
+      <h4><a class="xref" href="GameFramework.Components.Controllers.ThirdPersonController.html">ThirdPersonController</a></h4>
+      <section><p>Third-person controller that combines third-person movement with orbital camera control.
+Uses Cinemachine 3.1+ for enhanced camera management with collision detection and smooth following.</p>
+</section>
 
 
 </article>

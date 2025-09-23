@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Namespace GameFramework.Components | UCTools Base Project </title>
+    <title>Class PlayerPrefabSelectorDrawer | UCTools Base Project </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Namespace GameFramework.Components | UCTools Base Project ">
+    <meta name="title" content="Class PlayerPrefabSelectorDrawer | UCTools Base Project ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -79,40 +79,108 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="GameFramework.Components">
+            <article class="content wrap" id="_content" data-uid="GameFramework.Editor.PlayerPrefabSelectorDrawer">
 
-  <h1 id="GameFramework_Components" data-uid="GameFramework.Components" class="text-break">Namespace GameFramework.Components</h1>
-  <div class="markdown level0 summary"></div>
+
+
+  <h1 id="GameFramework_Editor_PlayerPrefabSelectorDrawer" data-uid="GameFramework.Editor.PlayerPrefabSelectorDrawer" class="text-break">Class PlayerPrefabSelectorDrawer</h1>
+  <div class="markdown level0 summary"><p>Custom PropertyDrawer for PlayerPrefabSelector to display a clean dropdown in the inspector
+with automatic prefab loading and validation feedback.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
-  <div class="markdown level0 remarks"></div>
-    <h3 id="classes">
-Classes
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+    <div class="level1"><span class="xref">PlayerPrefabSelectorDrawer</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.Editor.html">Editor</a></h6>
+  <h6><strong>Assembly</strong>: .dll</h6>
+  <h5 id="GameFramework_Editor_PlayerPrefabSelectorDrawer_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class PlayerPrefabSelectorDrawer : PropertyDrawer</code></pre>
+  </div>
+  <h3 id="methods">Methods
 </h3>
-      <h4><a class="xref" href="GameFramework.Components.ClickToInstantiate.html">ClickToInstantiate</a></h4>
-      <section><p>MonoBehaviour that instantiates a prefab at the location where the user clicks.
-Supports both raycast-based placement and fixed depth placement.</p>
-</section>
-      <h4><a class="xref" href="GameFramework.Components.ClickableCube.html">ClickableCube</a></h4>
-      <section><p>MonoBehaviour that can be attached to a cube to make it clickable.
-When clicked, changes the cube's color and increments an integer value.
-Uses the new clean save system with direct field storage instead of nested JSON.</p>
-</section>
-      <h4><a class="xref" href="GameFramework.Components.PlayerData.html">PlayerData</a></h4>
-      <section><p>Player data MonoBehaviour with unique ID for identification and single auto-save per player.
-Attach this to a PlayerPrefab to be instantiated during game loading.</p>
-</section>
-      <h4><a class="xref" href="GameFramework.Components.PlayerSpawnPoint.html">PlayerSpawnPoint</a></h4>
-      <section><p>Marks a GameObject as a player spawn point for new games.
-The InstantiationService will look for this component to determine where to spawn the player.</p>
-</section>
-    <h3 id="enums">
-Enums
-</h3>
-      <h4><a class="xref" href="GameFramework.Components.ClickToInstantiate.MouseButton.html">ClickToInstantiate.MouseButton</a></h4>
-      <section></section>
-      <h4><a class="xref" href="GameFramework.Components.ClickToInstantiate.PlacementMode.html">ClickToInstantiate.PlacementMode</a></h4>
-      <section></section>
-
+  <a id="GameFramework_Editor_PlayerPrefabSelectorDrawer_GetPropertyHeight_" data-uid="GameFramework.Editor.PlayerPrefabSelectorDrawer.GetPropertyHeight*"></a>
+  <h4 id="GameFramework_Editor_PlayerPrefabSelectorDrawer_GetPropertyHeight_SerializedProperty_GUIContent_" data-uid="GameFramework.Editor.PlayerPrefabSelectorDrawer.GetPropertyHeight(SerializedProperty,GUIContent)">GetPropertyHeight(SerializedProperty, GUIContent)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override float GetPropertyHeight(SerializedProperty property, GUIContent label)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">SerializedProperty</span></td>
+        <td><span class="parametername">property</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">GUIContent</span></td>
+        <td><span class="parametername">label</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Editor_PlayerPrefabSelectorDrawer_OnGUI_" data-uid="GameFramework.Editor.PlayerPrefabSelectorDrawer.OnGUI*"></a>
+  <h4 id="GameFramework_Editor_PlayerPrefabSelectorDrawer_OnGUI_Rect_SerializedProperty_GUIContent_" data-uid="GameFramework.Editor.PlayerPrefabSelectorDrawer.OnGUI(Rect,SerializedProperty,GUIContent)">OnGUI(Rect, SerializedProperty, GUIContent)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Rect</span></td>
+        <td><span class="parametername">position</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">SerializedProperty</span></td>
+        <td><span class="parametername">property</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">GUIContent</span></td>
+        <td><span class="parametername">label</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
 
 </article>
           </div>

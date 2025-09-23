@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class FirstPersonController | UCTools Base Project </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class FirstPersonController | UCTools Base Project ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  <meta property="docfx:newtab" content="true">
+
+  
+  </head>
+
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="UCTools">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="GameFramework.Components.Controllers.FirstPersonController">
+
+
+
+  <h1 id="GameFramework_Components_Controllers_FirstPersonController" data-uid="GameFramework.Components.Controllers.FirstPersonController" class="text-break">Class FirstPersonController</h1>
+  <div class="markdown level0 summary"><p>First-person controller that combines first-person movement with direct camera control.
+Uses Cinemachine 3.1+ for enhanced camera management.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+    <div class="level1"><a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html">BasePlayerController</a></div>
+    <div class="level2"><span class="xref">FirstPersonController</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController__initializeOnStart">BasePlayerController._initializeOnStart</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController__showDebugInfo">BasePlayerController._showDebugInfo</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController__interactionLayerMask">BasePlayerController._interactionLayerMask</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController__requiredInputContext">BasePlayerController._requiredInputContext</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController__cursorLockRequirement">BasePlayerController._cursorLockRequirement</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController__eventSystem">BasePlayerController._eventSystem</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController__inputManager">BasePlayerController._inputManager</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController__pauseService">BasePlayerController._pauseService</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController__movementComponent">BasePlayerController._movementComponent</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController__cameraComponent">BasePlayerController._cameraComponent</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController__isInitialized">BasePlayerController._isInitialized</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController__isEnabled">BasePlayerController._isEnabled</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_MovementComponent">BasePlayerController.MovementComponent</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_CameraComponent">BasePlayerController.CameraComponent</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_IsInitialized">BasePlayerController.IsInitialized</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_IsEnabled">BasePlayerController.IsEnabled</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_IsPaused">BasePlayerController.IsPaused</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_CursorLockRequirement">BasePlayerController.CursorLockRequirement</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_Start">BasePlayerController.Start()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_Update">BasePlayerController.Update()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_FixedUpdate">BasePlayerController.FixedUpdate()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_OnEnable">BasePlayerController.OnEnable()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_OnDisable">BasePlayerController.OnDisable()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_OnDestroy">BasePlayerController.OnDestroy()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_Initialize">BasePlayerController.Initialize()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_Cleanup">BasePlayerController.Cleanup()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_StopAllMovement">BasePlayerController.StopAllMovement()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_ResumeAllMovement">BasePlayerController.ResumeAllMovement()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_SubscribeToEvents">BasePlayerController.SubscribeToEvents()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_UnsubscribeFromEvents">BasePlayerController.UnsubscribeFromEvents()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_OnPlayerMoveInput_GameFramework_EventSystem_Events_PlayerMoveInputEvent_">BasePlayerController.OnPlayerMoveInput(PlayerMoveInputEvent)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_OnPlayerLookInput_GameFramework_EventSystem_Events_PlayerLookInputEvent_">BasePlayerController.OnPlayerLookInput(PlayerLookInputEvent)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_OnPlayerJumpInput_GameFramework_EventSystem_Events_PlayerJumpInputEvent_">BasePlayerController.OnPlayerJumpInput(PlayerJumpInputEvent)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_OnPlayerSprintInput_GameFramework_EventSystem_Events_PlayerSprintInputEvent_">BasePlayerController.OnPlayerSprintInput(PlayerSprintInputEvent)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_OnPlayerCrouchInput_GameFramework_EventSystem_Events_PlayerCrouchInputEvent_">BasePlayerController.OnPlayerCrouchInput(PlayerCrouchInputEvent)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_OnPlayerAttackInput_GameFramework_EventSystem_Events_PlayerAttackInputEvent_">BasePlayerController.OnPlayerAttackInput(PlayerAttackInputEvent)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_OnPlayerInteractInput_GameFramework_EventSystem_Events_PlayerInteractInputEvent_">BasePlayerController.OnPlayerInteractInput(PlayerInteractInputEvent)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_OnGamePaused_GameFramework_EventSystem_Events_GamePausedEvent_">BasePlayerController.OnGamePaused(GamePausedEvent)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_OnGameResumed_GameFramework_EventSystem_Events_GameResumedEvent_">BasePlayerController.OnGameResumed(GameResumedEvent)</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.Components.html">Components</a>.<a class="xref" href="GameFramework.Components.Controllers.html">Controllers</a></h6>
+  <h6><strong>Assembly</strong>: .dll</h6>
+  <h5 id="GameFramework_Components_Controllers_FirstPersonController_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class FirstPersonController : BasePlayerController</code></pre>
+  </div>
+  <h3 id="methods">Methods
+</h3>
+  <a id="GameFramework_Components_Controllers_FirstPersonController_Awake_" data-uid="GameFramework.Components.Controllers.FirstPersonController.Awake*"></a>
+  <h4 id="GameFramework_Components_Controllers_FirstPersonController_Awake" data-uid="GameFramework.Components.Controllers.FirstPersonController.Awake">Awake()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void Awake()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_Awake">BasePlayerController.Awake()</a></div>
+  <a id="GameFramework_Components_Controllers_FirstPersonController_CreateComponents_" data-uid="GameFramework.Components.Controllers.FirstPersonController.CreateComponents*"></a>
+  <h4 id="GameFramework_Components_Controllers_FirstPersonController_CreateComponents" data-uid="GameFramework.Components.Controllers.FirstPersonController.CreateComponents">CreateComponents()</h4>
+  <div class="markdown level1 summary"><p>Create the movement and camera components for this controller type</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void CreateComponents()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_CreateComponents">BasePlayerController.CreateComponents()</a></div>
+  <a id="GameFramework_Components_Controllers_FirstPersonController_OnDrawGizmos_" data-uid="GameFramework.Components.Controllers.FirstPersonController.OnDrawGizmos*"></a>
+  <h4 id="GameFramework_Components_Controllers_FirstPersonController_OnDrawGizmos" data-uid="GameFramework.Components.Controllers.FirstPersonController.OnDrawGizmos">OnDrawGizmos()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void OnDrawGizmos()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_OnDrawGizmos">BasePlayerController.OnDrawGizmos()</a></div>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In this article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        © 2025 UCTools Base Project Documentation
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>
