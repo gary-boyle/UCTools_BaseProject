@@ -111,6 +111,8 @@ namespace GameFramework.Services
             // Apply pause effects
             IsPaused = true;
             Time.timeScale = 0f;
+            // Cursor management is now handled centrally by UIService
+            //Cursor.lockState = CursorLockMode.None;
             
             // Switch to UI-only input to block player interactions (mouse raycasts, movement, etc.)
             // but allow UI interactions like pause menu navigation
@@ -127,7 +129,9 @@ namespace GameFramework.Services
             // Restore pre-pause state
             IsPaused = false;
             Time.timeScale = _prePauseTimeScale;
-            
+            // Cursor management is now handled centrally by UIService
+            //Cursor.lockState = CursorLockMode.Locked;
+
             // Restore previous input context to re-enable player interactions
             _inputManager.SetInputContext(_prePauseInputContext);
             

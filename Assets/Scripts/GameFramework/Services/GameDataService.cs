@@ -300,11 +300,11 @@ namespace GameFramework.Services
         /// </summary>
         public void SetMainCamera(Camera camera)
         {
-            if (!IsInitialized)
-            {
-                Debug.LogError("[GameDataService] Cannot set main camera - service not initialized");
-                return;
-            }
+            // if (!IsInitialized)
+            // {
+            //     Debug.LogError("[GameDataService] Cannot set main camera - service not initialized");
+            //     return;
+            // }
             
             var previousCamera = _mainCamera;
             _mainCamera = camera;
@@ -346,11 +346,11 @@ namespace GameFramework.Services
         /// </summary>
         public bool DetectMainCamera()
         {
-            if (!IsInitialized)
-            {
-                Debug.LogError("[GameDataService] Cannot detect main camera - service not initialized");
-                return false;
-            }
+            // if (!IsInitialized)
+            // {
+            //     Debug.LogError("[GameDataService] Cannot detect main camera - service not initialized");
+            //     return false;
+            // }
             
             Camera detectedCamera = null;
             
@@ -391,6 +391,27 @@ namespace GameFramework.Services
             {
                 Debug.LogWarning("[GameDataService] No main camera found in scene");
                 return false;
+            }
+        }
+        
+        /// <summary>
+        /// Sets the main camera to orthographic or perspective projection
+        /// </summary>
+        public void SetCameraOrthographic(bool orthographic)
+        {
+            if (_mainCamera == null)
+            {
+                // Try to detect main camera if not set
+                if (!DetectMainCamera())
+                {
+                    Debug.LogError("[GameDataService] Cannot set camera projection - no main camera available");
+                    return;
+                }
+            }
+            
+            if (_mainCamera != null)
+            {
+                _mainCamera.orthographic = orthographic;
             }
         }
         #endregion

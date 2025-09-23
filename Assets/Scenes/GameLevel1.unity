@@ -127,37 +127,41 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4210652292807460809, guid: c9011b4a95ad9a04a91d764907604bd2, type: 3}
+      propertyPath: field of view
+      value: 60.000004
+      objectReference: {fileID: 0}
     - target: {fileID: 7695088257719529599, guid: c9011b4a95ad9a04a91d764907604bd2, type: 3}
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
     - target: {fileID: 8589520849269954032, guid: c9011b4a95ad9a04a91d764907604bd2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.538279
+      value: 36.507847
       objectReference: {fileID: 0}
     - target: {fileID: 8589520849269954032, guid: c9011b4a95ad9a04a91d764907604bd2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.923606
+      value: 41.980858
       objectReference: {fileID: 0}
     - target: {fileID: 8589520849269954032, guid: c9011b4a95ad9a04a91d764907604bd2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10.017214
+      value: -10.05197
       objectReference: {fileID: 0}
     - target: {fileID: 8589520849269954032, guid: c9011b4a95ad9a04a91d764907604bd2, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9514432
+      value: -0.8325616
       objectReference: {fileID: 0}
     - target: {fileID: 8589520849269954032, guid: c9011b4a95ad9a04a91d764907604bd2, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.30084068
+      value: -0.0829547
       objectReference: {fileID: 0}
     - target: {fileID: 8589520849269954032, guid: c9011b4a95ad9a04a91d764907604bd2, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.062164146
+      value: 0.54498744
       objectReference: {fileID: 0}
     - target: {fileID: 8589520849269954032, guid: c9011b4a95ad9a04a91d764907604bd2, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.019655932
+      value: -0.054298453
       objectReference: {fileID: 0}
     - target: {fileID: 8589520849269954032, guid: c9011b4a95ad9a04a91d764907604bd2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

@@ -17,6 +17,7 @@ using GameFramework.LoadSystem.Services;
 using GameFramework.SaveSystem.Interfaces;
 using GameFramework.SaveSystem.Services;
 using GameFramework.SaveSystem.Data;
+using GameFramework.Components.Controllers;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System;
@@ -50,7 +51,7 @@ namespace GameFramework.Core
         [SerializeField] private UIDocument _UIPrefab;
         [SerializeField] private ConsoleGUI _consoleGUIPrefab;
         [SerializeField] private AudioManager _audioManagerPrefab;
-        [SerializeField] private GameObject _playerPrefab;
+        [SerializeField] private PlayerPrefabSelector _playerPrefabSelector = new PlayerPrefabSelector();
 
         [Header("Configuration Settings")]
         [SerializeField] private AudioSettings_SO _audioSettingsSo;
@@ -59,6 +60,9 @@ namespace GameFramework.Core
         [SerializeField] private InputSettings_SO _inputSettingsSo;
         [SerializeField] private DebugSettings_SO _debugSettingsSo;
 
+        [Header("Other Settings")]
+        [SerializeField] private bool _lockCameraDuringPlay;
+        
         #endregion
 
         #region Singleton Implementation
@@ -632,20 +636,28 @@ namespace GameFramework.Core
         }
         
         /// <summary>
-        /// Configures the InstantiationService with the player prefab
+        /// Configures the InstantiationService with the selected player prefab
         /// </summary>
         private void ConfigurePlayerPrefab(IInstantiationService instantiationService)
         {
-            if (_playerPrefab == null)
-            {
-                Debug.LogError("[GameManager] Player Prefab is not assigned! Please assign it in the inspector.");
-                return;
-            }
-
             try
             {
-                instantiationService.SetPlayerPrefab(_playerPrefab);
-                Debug.Log($"[GameManager] Player prefab configured: {_playerPrefab.name}");
+                // Load prefabs if not already loaded
+                if (!_playerPrefabSelector.PrefabsLoaded)
+                {
+                    _playerPrefabSelector.LoadPrefabs();
+                }
+
+                var selectedPrefab = _playerPrefabSelector.SelectedPrefab;
+                
+                if (selectedPrefab == null)
+                {
+                    Debug.LogError($"[GameManager] Selected player prefab ({_playerPrefabSelector.SelectedPlayerType}) is null! Make sure the prefab exists in the project.");
+                    return;
+                }
+
+                instantiationService.SetPlayerPrefab(selectedPrefab);
+                Debug.Log($"[GameManager] Player prefab configured: {selectedPrefab.name} (Type: {_playerPrefabSelector.SelectedPlayerType})");
             }
             catch (System.Exception e)
             {

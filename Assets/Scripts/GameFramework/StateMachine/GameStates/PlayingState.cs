@@ -33,7 +33,7 @@ namespace GameFramework.StateMachine.GameStates
         public override async Task EnterAsync(GameContext context)
         {
             await base.EnterAsync(context);
-    
+
             // Configure input for gameplay
             InputManager.SetInputContext(InputContext.Player);
     
@@ -78,6 +78,9 @@ namespace GameFramework.StateMachine.GameStates
                 await Task.Yield();
             }
             
+            // Delete the Player
+            await InstantiationService.DestroyPlayerAsync();
+            
             // Reset input context
             InputManager.SetInputContext(InputContext.UI);
             
@@ -115,7 +118,7 @@ namespace GameFramework.StateMachine.GameStates
             
             // Pause is valid - show pause UI
             await UIService.ShowPopupAsync<PausePopup>();
-            InputManager.SetInputContext(InputContext.Mixed);
+            InputManager.SetInputContext(InputContext.UI);
         }
 
         /// <summary>

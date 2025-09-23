@@ -46,9 +46,6 @@ namespace GameFramework.Input.Handlers
         private void OnPlayerMove(PlayerMoveInputEvent evt)
         {
             if (_pauseService.IsPaused) return;
-            
-            // Forward to player movement system
-            Debug.Log($"[PlayerInputHandler] Move: {evt.MovementVector}");
         }
         
         private void OnPlayerLook(PlayerLookInputEvent evt)

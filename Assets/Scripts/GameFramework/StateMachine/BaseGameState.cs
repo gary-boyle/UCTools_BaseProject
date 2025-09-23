@@ -56,7 +56,9 @@ namespace GameFramework.StateMachine
         {
             Context = context ?? throw new ArgumentNullException(nameof(context));
             IsActive = true;
-
+            //Cursor.lockState = CursorLockMode.None;
+            //Cursor.visible = true;
+            
             // Subscribe to universal load game events
             SubscribeToLoadGameEvents();
 

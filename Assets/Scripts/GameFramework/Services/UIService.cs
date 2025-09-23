@@ -12,8 +12,11 @@ using GameFramework.UI.Popups;
 using GameFramework.UI.Screens;
 using GameFramework.Services.Interfaces;
 using GameFramework.StateMachine.Interfaces;
+using GameFramework.StateMachine.Enum;
+using GameFramework.Components.Controllers.Enum;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Cursor = UnityEngine.Cursor;
 
 namespace GameFramework.Services
 {
@@ -41,6 +44,10 @@ namespace GameFramework.Services
 
         private IPauseService _pauseService;
 
+        // Centralized cursor management fields
+        private CursorLockRequirement _currentControllerCursorRequirement = CursorLockRequirement.Never;
+        private GameStateType _currentGameState = GameStateType.Bootstrap;
+
         /// <summary>
         /// Constructor injection - receives required dependencies
         /// </summary>
@@ -67,6 +74,7 @@ namespace GameFramework.Services
             // Subscribe to events
             SubscribeToLoadingEvents();
             SubscribeToDebugEvents();
+            SubscribeToCursorEvents();
 
             // Apply initial config state (including debug popup)
             await ApplyInitialConfigState();
@@ -138,6 +146,7 @@ namespace GameFramework.Services
             // Unsubscribe from events
             UnsubscribeFromLoadingEvents();
             UnsubscribeFromDebugEvents();
+            UnsubscribeFromCursorEvents();
 
             // Clean up all screens
             foreach (var screen in _screens.Values)
@@ -160,6 +169,53 @@ namespace GameFramework.Services
             _popupStack.Clear();
             
             IsInitialized = false;
+        }
+        
+        public void SetCursorState(bool visible, bool locked)
+        {
+            // Allow manual override but log for debugging
+            Debug.Log($"[UIService] Manual cursor override - Visible: {visible}, Locked: {locked}");
+            Cursor.visible = visible;
+            Cursor.lockState = locked ? CursorLockMode.Locked : CursorLockMode.None;
+        }
+
+        /// <summary>
+        /// Centralized cursor state management based on game state, controller type, and popup visibility
+        /// </summary>
+        private void UpdateCursorState()
+        {
+            bool shouldLockCursor = false;
+            bool shouldShowCursor = true;
+
+            // Determine cursor behavior based on controller requirements and game state
+            switch (_currentControllerCursorRequirement)
+            {
+                case CursorLockRequirement.Never:
+                    // Always visible and unlocked (RTS, Isometric)
+                    shouldLockCursor = false;
+                    shouldShowCursor = true;
+                    break;
+
+                case CursorLockRequirement.DuringGameplay:
+                    // Lock only during Playing state and no popups (First Person)
+                    shouldLockCursor = _currentGameState == GameStateType.Playing && !HasOpenPopups();
+                    shouldShowCursor = !shouldLockCursor;
+                    break;
+
+                case CursorLockRequirement.DuringGameplayWithUIExceptions:
+                    // Lock during Playing state but allow unlocking for popups (Third Person)
+                    shouldLockCursor = _currentGameState == GameStateType.Playing && !HasOpenPopups();
+                    shouldShowCursor = true; // Keep cursor visible but may be locked
+                    break;
+            }
+
+            // Apply the cursor state
+            Cursor.visible = shouldShowCursor;
+            Cursor.lockState = shouldLockCursor ? CursorLockMode.Locked : CursorLockMode.None;
+
+            Debug.Log($"[UIService] Cursor updated - Controller: {_currentControllerCursorRequirement}, " +
+                      $"State: {_currentGameState}, Popups: {HasOpenPopups()}, " +
+                      $"Visible: {shouldShowCursor}, Locked: {shouldLockCursor}");
         }
         
         private void InitializeScreensAndPopups()
@@ -238,6 +294,9 @@ namespace GameFramework.Services
                 _currentPopup = popup;
                 popup.Show();
                 
+                // Update cursor state when popup is shown
+                UpdateCursorState();
+                
                 await Task.CompletedTask;
             }
             else
@@ -264,6 +323,9 @@ namespace GameFramework.Services
                     {
                         _currentPopup = null;
                     }
+
+                    // Update cursor state after hiding popup
+                    UpdateCursorState();
                 }
                 else if (_popupStack.Contains(popup))
                 {
@@ -407,6 +469,9 @@ namespace GameFramework.Services
                 var popup = _popupStack.Pop();
                 popup.Hide();
             }
+
+            // Update cursor state after closing all popups
+            UpdateCursorState();
             
             await Task.CompletedTask;
         }
@@ -500,11 +565,36 @@ namespace GameFramework.Services
         }
 
         /// <summary>
+        /// Subscribe to cursor management events
+        /// </summary>
+        private void SubscribeToCursorEvents()
+        {
+            _eventSystem.Subscribe<GameStateChangeEvent>(OnGameStateChanged);
+        }
+
+        /// <summary>
+        /// Unsubscribe from cursor management events
+        /// </summary>
+        private void UnsubscribeFromCursorEvents()
+        {
+            _eventSystem.Unsubscribe<GameStateChangeEvent>(OnGameStateChanged);
+        }
+
+        /// <summary>
         /// Handle options changed events for debug UI
         /// </summary>
         private async void OnOptionsChanged(OptionsChangedEvent evt)
         {
             await ApplyDebugSettings();
+        }
+        
+        /// <summary>
+        /// Handle game state changes for cursor management
+        /// </summary>
+        private void OnGameStateChanged(GameStateChangeEvent evt)
+        {
+            _currentGameState = evt.NewState;
+            UpdateCursorState();
         }
 
         /// <summary>
