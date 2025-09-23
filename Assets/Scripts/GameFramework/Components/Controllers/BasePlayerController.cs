@@ -144,9 +144,6 @@ namespace GameFramework.Components.Controllers
             
             _isInitialized = true;
             
-            // Notify UIService about cursor lock requirements
-            _eventSystem?.Publish(new PlayerControllerChangedEvent(this, _cursorLockRequirement));
-            
             if (_showDebugInfo)
                 Debug.Log($"[{GetType().Name}] Initialized successfully on {gameObject.name}");
         }

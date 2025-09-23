@@ -569,7 +569,6 @@ namespace GameFramework.Services
         /// </summary>
         private void SubscribeToCursorEvents()
         {
-            _eventSystem.Subscribe<PlayerControllerChangedEvent>(OnPlayerControllerChanged);
             _eventSystem.Subscribe<GameStateChangeEvent>(OnGameStateChanged);
         }
 
@@ -578,7 +577,6 @@ namespace GameFramework.Services
         /// </summary>
         private void UnsubscribeFromCursorEvents()
         {
-            _eventSystem.Unsubscribe<PlayerControllerChangedEvent>(OnPlayerControllerChanged);
             _eventSystem.Unsubscribe<GameStateChangeEvent>(OnGameStateChanged);
         }
 
@@ -589,16 +587,7 @@ namespace GameFramework.Services
         {
             await ApplyDebugSettings();
         }
-
-        /// <summary>
-        /// Handle player controller changes for cursor management
-        /// </summary>
-        private void OnPlayerControllerChanged(PlayerControllerChangedEvent evt)
-        {
-            _currentControllerCursorRequirement = evt.CursorLockRequirement;
-            UpdateCursorState();
-        }
-
+        
         /// <summary>
         /// Handle game state changes for cursor management
         /// </summary>

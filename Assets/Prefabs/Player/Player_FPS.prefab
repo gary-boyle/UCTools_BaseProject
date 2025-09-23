@@ -365,12 +365,10 @@ MonoBehaviour:
   _cinemachineCamera: {fileID: 9083194349371853835}
   _followTarget: {fileID: 3211111535652922911}
   _playerTransform: {fileID: 1215660048992525934}
-  _mouseSensitivityMultiplier: 0.01
+  _mouseSensitivityMultiplier: 0.005
   _minVerticalAngle: -80
   _maxVerticalAngle: 80
   _invertYAxis: 0
-  _lockCursor: 1
-  _hideCursor: 1
   _showDebugInfo: 0
 --- !u!54 &3421404348651573308
 Rigidbody:
