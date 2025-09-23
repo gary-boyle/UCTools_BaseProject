@@ -870,9 +870,9 @@ MonoBehaviour:
   _jumpForce: 5
   _airControl: 0.3
   _rotationSettings:
-    rotationMode: 2
-    movementRotationSpeed: 0.01
-    movementRotationSmoothTime: 0.1
+    rotationMode: 1
+    movementRotationSpeed: 1
+    movementRotationSmoothTime: 0
     mouseRotationSensitivity: 0.01
     smoothMouseRotation: 0
     mouseRotationSmoothTime: 0.05

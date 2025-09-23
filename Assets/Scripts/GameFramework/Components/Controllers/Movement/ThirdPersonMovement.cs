@@ -53,10 +53,7 @@ namespace GameFramework.Components.Controllers.Movement
         private bool _isSprinting = false;
         private bool _isCrouching = false;
         
-        // Rotation state
-        private float _targetRotation = 0f;
-        private float _rotationVelocity = 0f;
-        private float _mouseRotationVelocity = 0f;
+        // Rotation state - simplified
         
         // Input state
         private Vector2 _lookInput = Vector2.zero;
@@ -65,7 +62,6 @@ namespace GameFramework.Components.Controllers.Movement
         
         // Hybrid mode state
         private bool _isUsingMouseRotation = false;
-        private float _hybridBlendWeight = 0f;
         
         // Ground detection
         private bool _isGrounded = false;
@@ -85,7 +81,6 @@ namespace GameFramework.Components.Controllers.Movement
         public float CurrentYaw => _currentYaw;
         public CharacterRotationMode RotationMode => _rotationSettings.rotationMode;
         public bool IsUsingMouseRotation => _isUsingMouseRotation;
-        public float HybridBlendWeight => _hybridBlendWeight;
         
         #endregion
 
@@ -136,6 +131,12 @@ namespace GameFramework.Components.Controllers.Movement
             _currentYaw = transform.eulerAngles.y;
             
             _isInitialized = true;
+            
+            if (_showDebugInfo)
+            {
+                Debug.Log($"[ThirdPersonMovement] Initialized with rotation mode: {_rotationSettings.rotationMode}");
+                LogRotationSettings();
+            }
         }
 
         public void Cleanup()
@@ -229,11 +230,11 @@ namespace GameFramework.Components.Controllers.Movement
             // Reset state when switching modes
             _timeSinceLastMouseInput = 0f;
             _isUsingMouseRotation = false;
-            _hybridBlendWeight = mode == CharacterRotationMode.MouseControl ? 1f : 0f;
             
             if (_showDebugInfo)
             {
                 Debug.Log($"[ThirdPersonMovement] Rotation mode changed to: {mode}");
+                LogRotationSettings();
             }
         }
         
@@ -243,6 +244,20 @@ namespace GameFramework.Components.Controllers.Movement
         public CharacterRotationSettings GetRotationSettings()
         {
             return _rotationSettings;
+        }
+        
+        private void LogRotationSettings()
+        {
+            if (!_showDebugInfo) return;
+            
+            Debug.Log($"[ThirdPersonMovement] Rotation Settings - Mode: {_rotationSettings.rotationMode}");
+            Debug.Log($"  Movement Rotation Speed: {_rotationSettings.movementRotationSpeed} " +
+                     $"(Direct Input: {_rotationSettings.movementRotationSpeed * 100f}°/s)");
+            Debug.Log($"  Mouse Sensitivity: {_rotationSettings.mouseRotationSensitivity}");
+            if (_rotationSettings.rotationMode == CharacterRotationMode.MouseWithMovementFallback)
+            {
+                Debug.Log($"  Hybrid Inactivity Threshold: {_rotationSettings.mouseInactivityThreshold}s");
+            }
         }
         #endregion
 
@@ -274,7 +289,19 @@ namespace GameFramework.Components.Controllers.Movement
 
         private void HandleMovement()
         {
-            if (_moveInput.magnitude < 0.01f)
+            // Check if we should ignore horizontal input for movement (used for rotation instead)
+            Vector2 effectiveMoveInput = _moveInput;
+            bool isUsingHorizontalForRotation = _rotationSettings.rotationMode == CharacterRotationMode.FaceMovementDirection && 
+                                                Mathf.Abs(_moveInput.x) > 0.01f && 
+                                                Mathf.Abs(_moveInput.y) < 0.01f;
+            
+            if (isUsingHorizontalForRotation)
+            {
+                // Don't use horizontal input for movement when it's being used for rotation
+                effectiveMoveInput.x = 0f;
+            }
+            
+            if (effectiveMoveInput.magnitude < 0.01f)
             {
                 // Apply ground friction when not moving
                 if (_isGrounded)
@@ -288,7 +315,7 @@ namespace GameFramework.Components.Controllers.Movement
             }
 
             // Convert input to camera-relative movement
-            Vector3 inputDirection = new Vector3(_moveInput.x, 0f, _moveInput.y).normalized;
+            Vector3 inputDirection = new Vector3(effectiveMoveInput.x, 0f, effectiveMoveInput.y).normalized;
             
             if (_mainCamera != null)
             {
@@ -359,7 +386,7 @@ namespace GameFramework.Components.Controllers.Movement
             }
             
             // Reset look input after processing
-            _lookInput = Vector2.zero;
+            //_lookInput = Vector2.zero;
         }
         
         private void HandleMouseRotation()
@@ -369,44 +396,33 @@ namespace GameFramework.Components.Controllers.Movement
             // Process horizontal mouse input for character rotation
             float horizontalInput = _lookInput.x * _rotationSettings.mouseRotationSensitivity;
             
-            if (_rotationSettings.smoothMouseRotation)
-            {
-                // Smooth mouse rotation
-                float targetYaw = _currentYaw + horizontalInput;
-                _currentYaw = Mathf.SmoothDampAngle(
-                    _currentYaw, 
-                    targetYaw, 
-                    ref _mouseRotationVelocity, 
-                    _rotationSettings.mouseRotationSmoothTime
-                );
-            }
-            else
-            {
-                // Immediate mouse rotation
-                _currentYaw += horizontalInput;
-            }
-            
+            // Apply mouse rotation directly
+            _currentYaw += horizontalInput;
             transform.rotation = Quaternion.Euler(0f, _currentYaw, 0f);
         }
         
         private void HandleMovementDirectionRotation()
         {
-            if (_moveDirection.magnitude < 0.01f) return;
+            // Check if we have horizontal input (left/right) without forward movement
+            bool hasHorizontalInput = Mathf.Abs(_moveInput.x) > 0.01f;
+            bool hasForwardInput = Mathf.Abs(_moveInput.y) > 0.01f;
             
-            // Calculate target rotation based on movement direction
-            _targetRotation = Mathf.Atan2(_moveDirection.x, _moveDirection.z) * Mathf.Rad2Deg;
-            
-            // Smooth rotation towards target
-            float currentYRotation = transform.eulerAngles.y;
-            float smoothedRotation = Mathf.SmoothDampAngle(
-                currentYRotation, 
-                _targetRotation, 
-                ref _rotationVelocity, 
-                _rotationSettings.movementRotationSmoothTime
-            );
-            
-            transform.rotation = Quaternion.Euler(0f, smoothedRotation, 0f);
-            _currentYaw = smoothedRotation; // Keep yaw in sync
+            if (hasHorizontalInput && !hasForwardInput)
+            {
+                // Direct rotational input - rotate the character directly with left/right keys
+                float rotationInput = _moveInput.x * _rotationSettings.movementRotationSpeed * 100f;
+                _currentYaw += rotationInput * Time.deltaTime;
+                transform.rotation = Quaternion.Euler(0f, _currentYaw, 0f);
+            }
+            else if (_moveDirection.magnitude > 0.01f)
+            {
+                // Movement-based rotation - directly face the direction of movement
+                float targetRotation = Mathf.Atan2(_moveDirection.x, _moveDirection.z) * Mathf.Rad2Deg;
+                
+                // Apply rotation directly without smoothing
+                _currentYaw = targetRotation;
+                transform.rotation = Quaternion.Euler(0f, _currentYaw, 0f);
+            }
         }
         
         private void HandleHybridRotation()
@@ -417,38 +433,31 @@ namespace GameFramework.Components.Controllers.Movement
             if (shouldUseMouseRotation)
             {
                 // Use mouse rotation
-                _hybridBlendWeight = Mathf.MoveTowards(_hybridBlendWeight, 1f, _rotationSettings.hybridBlendSpeed * Time.deltaTime);
-                
                 if (hasMouseInput)
                 {
                     HandleMouseRotation();
                 }
             }
-            else if (_moveDirection.magnitude > 0.01f)
+            else
             {
-                // Blend towards movement direction
-                _hybridBlendWeight = Mathf.MoveTowards(_hybridBlendWeight, 0f, _rotationSettings.hybridBlendSpeed * Time.deltaTime);
+                // Check if we have horizontal input without forward movement
+                bool hasHorizontalInput = Mathf.Abs(_moveInput.x) > 0.01f;
+                bool hasForwardInput = Mathf.Abs(_moveInput.y) > 0.01f;
                 
-                // Calculate target rotation based on movement direction
-                _targetRotation = Mathf.Atan2(_moveDirection.x, _moveDirection.z) * Mathf.Rad2Deg;
-                
-                // Blend between current rotation and movement-based rotation
-                float currentYRotation = transform.eulerAngles.y;
-                float blendedRotation = Mathf.LerpAngle(
-                    _targetRotation,
-                    currentYRotation, 
-                    _hybridBlendWeight
-                );
-                
-                float smoothedRotation = Mathf.SmoothDampAngle(
-                    currentYRotation, 
-                    blendedRotation, 
-                    ref _rotationVelocity, 
-                    _rotationSettings.movementRotationSmoothTime
-                );
-                
-                transform.rotation = Quaternion.Euler(0f, smoothedRotation, 0f);
-                _currentYaw = smoothedRotation;
+                if (hasHorizontalInput && !hasForwardInput)
+                {
+                    // Direct rotational input in hybrid mode
+                    float rotationInput = _moveInput.x * _rotationSettings.movementRotationSpeed * 100f;
+                    _currentYaw += rotationInput * Time.deltaTime;
+                    transform.rotation = Quaternion.Euler(0f, _currentYaw, 0f);
+                }
+                else if (_moveDirection.magnitude > 0.01f)
+                {
+                    // Movement-based rotation - directly face the direction of movement
+                    float targetRotation = Mathf.Atan2(_moveDirection.x, _moveDirection.z) * Mathf.Rad2Deg;
+                    _currentYaw = targetRotation;
+                    transform.rotation = Quaternion.Euler(0f, _currentYaw, 0f);
+                }
             }
         }
 
@@ -517,17 +526,26 @@ namespace GameFramework.Components.Controllers.Movement
                     break;
                     
                 case CharacterRotationMode.FaceMovementDirection:
-                    if (_moveDirection.magnitude > 0.01f)
+                    // Check if we're using direct rotation input
+                    bool isUsingDirectRotation = Mathf.Abs(_moveInput.x) > 0.01f && Mathf.Abs(_moveInput.y) < 0.01f;
+                    
+                    if (isUsingDirectRotation)
                     {
-                        // Draw target rotation direction in yellow
-                        Vector3 targetDirection = Quaternion.Euler(0f, _targetRotation, 0f) * Vector3.forward;
-                        Gizmos.color = Color.yellow;
-                        Gizmos.DrawRay(basePosition, targetDirection * 1.5f);
+                        // Draw current facing direction in cyan for direct rotation
+                        Gizmos.color = Color.cyan;
+                        Gizmos.DrawRay(basePosition, transform.forward * 1.5f);
                         
-                        // Draw current facing direction in orange
+                        // Draw rotation input indicator
+                        Gizmos.color = Color.white;
+                        Vector3 inputDirection = transform.right * _moveInput.x;
+                        Gizmos.DrawRay(basePosition + Vector3.up * 0.2f, inputDirection * 0.8f);
+                    }
+                    else if (_moveDirection.magnitude > 0.01f)
+                    {
+                        // Draw current facing direction in yellow for movement-based rotation
                         Vector3 currentDirection = transform.forward;
-                        Gizmos.color = Color.red;
-                        Gizmos.DrawRay(basePosition, currentDirection * 1.2f);
+                        Gizmos.color = Color.yellow;
+                        Gizmos.DrawRay(basePosition, currentDirection * 1.5f);
                     }
                     break;
                     
@@ -547,17 +565,15 @@ namespace GameFramework.Components.Controllers.Movement
                     break;
                     
                 case CharacterRotationMode.MouseWithMovementFallback:
-                    // Show blend state with colors
-                    Color blendColor = Color.Lerp(Color.yellow, Color.cyan, _hybridBlendWeight);
-                    Gizmos.color = blendColor;
+                    // Show current facing direction, color indicates control method
+                    Gizmos.color = _isUsingMouseRotation ? Color.cyan : Color.yellow;
                     Gizmos.DrawRay(basePosition, transform.forward * 1.5f);
                     
-                    // Show movement target when blending
-                    if (_moveDirection.magnitude > 0.01f && _hybridBlendWeight < 0.5f)
+                    // Show movement direction when available
+                    if (_moveDirection.magnitude > 0.01f)
                     {
-                        Vector3 targetDirection = Quaternion.Euler(0f, _targetRotation, 0f) * Vector3.forward;
                         Gizmos.color = Color.yellow * 0.7f;
-                        Gizmos.DrawRay(basePosition + Vector3.up * 0.2f, targetDirection * 1.2f);
+                        Gizmos.DrawRay(basePosition + Vector3.up * 0.2f, _moveDirection * 1.2f);
                     }
                     
                     // Show mouse activity indicator

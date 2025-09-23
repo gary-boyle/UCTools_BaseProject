@@ -15,8 +15,9 @@ namespace GameFramework.Components.Controllers.Enum
         
         /// <summary>
         /// Character automatically rotates to face the direction they're moving.
-        /// Provides smooth, arcade-style movement with gradual rotation changes.
-        /// Best for casual gameplay where movement feels natural and flowing.
+        /// Left/Right input without forward movement provides direct rotation control.
+        /// Diagonal or forward movement makes character face movement direction.
+        /// Best for tank-like controls or traditional third-person movement.
         /// </summary>
         FaceMovementDirection = 1,
         
@@ -48,33 +49,18 @@ namespace GameFramework.Components.Controllers.Enum
         public CharacterRotationMode rotationMode = CharacterRotationMode.MouseControl;
         
         [Header("Movement Direction Rotation")]
-        [UnityEngine.Tooltip("Speed of rotation when facing movement direction")]
-        [UnityEngine.Range(0.01f, 10f)]
+        [UnityEngine.Tooltip("Speed of rotation for direct input (×100 = degrees/second). Only affects A/D key rotation speed.")]
+        [UnityEngine.Range(0.0001f, 10f)]
         public float movementRotationSpeed = 1.0f;
-        
-        [UnityEngine.Tooltip("Smoothing time for movement-based rotation")]
-        [UnityEngine.Range(0.01f, 1f)]
-        public float movementRotationSmoothTime = 0.1f;
         
         [Header("Mouse Control Rotation")]
         [UnityEngine.Tooltip("Sensitivity multiplier for mouse rotation")]
         [UnityEngine.Range(0.01f, 5f)]
         public float mouseRotationSensitivity = 1.0f;
         
-        [UnityEngine.Tooltip("Whether to apply mouse rotation instantly or smooth it")]
-        public bool smoothMouseRotation = false;
-        
-        [UnityEngine.Tooltip("Smoothing time for mouse rotation (if enabled)")]
-        [UnityEngine.Range(0.01f, 0.5f)]
-        public float mouseRotationSmoothTime = 0.05f;
-        
         [Header("Hybrid Mode Settings")]
         [UnityEngine.Tooltip("Time in seconds without mouse input before falling back to movement direction")]
         [UnityEngine.Range(0.1f, 3f)]
         public float mouseInactivityThreshold = 0.5f;
-        
-        [UnityEngine.Tooltip("How quickly to blend from mouse control to movement direction")]
-        [UnityEngine.Range(0.1f, 2f)]
-        public float hybridBlendSpeed = 1.0f;
     }
 }
