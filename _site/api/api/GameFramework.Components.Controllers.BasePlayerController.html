@@ -215,6 +215,28 @@ Uses composition over inheritance for maximum flexibility.</p>
       </tr>
     </tbody>
   </table>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController__interactionDetector" data-uid="GameFramework.Components.Controllers.BasePlayerController._interactionDetector">_interactionDetector</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected InteractionDetector _interactionDetector</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Components.Interactables.InteractionDetector.html">InteractionDetector</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h4 id="GameFramework_Components_Controllers_BasePlayerController__interactionLayerMask" data-uid="GameFramework.Components.Controllers.BasePlayerController._interactionLayerMask">_interactionLayerMask</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -417,6 +439,29 @@ Uses composition over inheritance for maximum flexibility.</p>
       </tr>
     </tbody>
   </table>
+  <a id="GameFramework_Components_Controllers_BasePlayerController_InteractionDetector_" data-uid="GameFramework.Components.Controllers.BasePlayerController.InteractionDetector*"></a>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController_InteractionDetector" data-uid="GameFramework.Components.Controllers.BasePlayerController.InteractionDetector">InteractionDetector</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public InteractionDetector InteractionDetector { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Components.Interactables.InteractionDetector.html">InteractionDetector</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <a id="GameFramework_Components_Controllers_BasePlayerController_IsEnabled_" data-uid="GameFramework.Components.Controllers.BasePlayerController.IsEnabled*"></a>
   <h4 id="GameFramework_Components_Controllers_BasePlayerController_IsEnabled" data-uid="GameFramework.Components.Controllers.BasePlayerController.IsEnabled">IsEnabled</h4>
   <div class="markdown level1 summary"></div>
@@ -545,6 +590,30 @@ Uses composition over inheritance for maximum flexibility.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">protected virtual void FixedUpdate()</code></pre>
   </div>
+  <a id="GameFramework_Components_Controllers_BasePlayerController_GetControllerType_" data-uid="GameFramework.Components.Controllers.BasePlayerController.GetControllerType*"></a>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController_GetControllerType" data-uid="GameFramework.Components.Controllers.BasePlayerController.GetControllerType">GetControllerType()</h4>
+  <div class="markdown level1 summary"><p>Get the controller type for interaction system</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract PlayerPrefabType GetControllerType()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Components.Controllers.Enum.PlayerPrefabType.html">PlayerPrefabType</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <a id="GameFramework_Components_Controllers_BasePlayerController_Initialize_" data-uid="GameFramework.Components.Controllers.BasePlayerController.Initialize*"></a>
   <h4 id="GameFramework_Components_Controllers_BasePlayerController_Initialize" data-uid="GameFramework.Components.Controllers.BasePlayerController.Initialize">Initialize()</h4>
   <div class="markdown level1 summary"><p>Initialize the controller and its components</p>
@@ -553,6 +622,15 @@ Uses composition over inheritance for maximum flexibility.</p>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public virtual void Initialize()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Controllers_BasePlayerController_InitializeInteractionSystem_" data-uid="GameFramework.Components.Controllers.BasePlayerController.InitializeInteractionSystem*"></a>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController_InitializeInteractionSystem" data-uid="GameFramework.Components.Controllers.BasePlayerController.InitializeInteractionSystem">InitializeInteractionSystem()</h4>
+  <div class="markdown level1 summary"><p>Initialize the interaction system for this controller</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void InitializeInteractionSystem()</code></pre>
   </div>
   <a id="GameFramework_Components_Controllers_BasePlayerController_OnDestroy_" data-uid="GameFramework.Components.Controllers.BasePlayerController.OnDestroy*"></a>
   <h4 id="GameFramework_Components_Controllers_BasePlayerController_OnDestroy" data-uid="GameFramework.Components.Controllers.BasePlayerController.OnDestroy">OnDestroy()</h4>

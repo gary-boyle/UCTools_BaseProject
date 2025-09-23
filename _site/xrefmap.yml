@@ -865,6 +865,19 @@ references:
   isSpec: "True"
   fullName: GameFramework.Components.Controllers.BasePlayerController.FixedUpdate
   nameWithType: BasePlayerController.FixedUpdate
+- uid: GameFramework.Components.Controllers.BasePlayerController.GetControllerType
+  name: GetControllerType()
+  href: api/api/GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_GetControllerType
+  commentId: M:GameFramework.Components.Controllers.BasePlayerController.GetControllerType
+  fullName: GameFramework.Components.Controllers.BasePlayerController.GetControllerType()
+  nameWithType: BasePlayerController.GetControllerType()
+- uid: GameFramework.Components.Controllers.BasePlayerController.GetControllerType*
+  name: GetControllerType
+  href: api/api/GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_GetControllerType_
+  commentId: Overload:GameFramework.Components.Controllers.BasePlayerController.GetControllerType
+  isSpec: "True"
+  fullName: GameFramework.Components.Controllers.BasePlayerController.GetControllerType
+  nameWithType: BasePlayerController.GetControllerType
 - uid: GameFramework.Components.Controllers.BasePlayerController.Initialize
   name: Initialize()
   href: api/api/GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_Initialize
@@ -878,6 +891,32 @@ references:
   isSpec: "True"
   fullName: GameFramework.Components.Controllers.BasePlayerController.Initialize
   nameWithType: BasePlayerController.Initialize
+- uid: GameFramework.Components.Controllers.BasePlayerController.InitializeInteractionSystem
+  name: InitializeInteractionSystem()
+  href: api/api/GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_InitializeInteractionSystem
+  commentId: M:GameFramework.Components.Controllers.BasePlayerController.InitializeInteractionSystem
+  fullName: GameFramework.Components.Controllers.BasePlayerController.InitializeInteractionSystem()
+  nameWithType: BasePlayerController.InitializeInteractionSystem()
+- uid: GameFramework.Components.Controllers.BasePlayerController.InitializeInteractionSystem*
+  name: InitializeInteractionSystem
+  href: api/api/GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_InitializeInteractionSystem_
+  commentId: Overload:GameFramework.Components.Controllers.BasePlayerController.InitializeInteractionSystem
+  isSpec: "True"
+  fullName: GameFramework.Components.Controllers.BasePlayerController.InitializeInteractionSystem
+  nameWithType: BasePlayerController.InitializeInteractionSystem
+- uid: GameFramework.Components.Controllers.BasePlayerController.InteractionDetector
+  name: InteractionDetector
+  href: api/api/GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_InteractionDetector
+  commentId: P:GameFramework.Components.Controllers.BasePlayerController.InteractionDetector
+  fullName: GameFramework.Components.Controllers.BasePlayerController.InteractionDetector
+  nameWithType: BasePlayerController.InteractionDetector
+- uid: GameFramework.Components.Controllers.BasePlayerController.InteractionDetector*
+  name: InteractionDetector
+  href: api/api/GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_InteractionDetector_
+  commentId: Overload:GameFramework.Components.Controllers.BasePlayerController.InteractionDetector
+  isSpec: "True"
+  fullName: GameFramework.Components.Controllers.BasePlayerController.InteractionDetector
+  nameWithType: BasePlayerController.InteractionDetector
 - uid: GameFramework.Components.Controllers.BasePlayerController.IsEnabled
   name: IsEnabled
   href: api/api/GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_IsEnabled
@@ -1207,6 +1246,12 @@ references:
   commentId: F:GameFramework.Components.Controllers.BasePlayerController._inputManager
   fullName: GameFramework.Components.Controllers.BasePlayerController._inputManager
   nameWithType: BasePlayerController._inputManager
+- uid: GameFramework.Components.Controllers.BasePlayerController._interactionDetector
+  name: _interactionDetector
+  href: api/api/GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController__interactionDetector
+  commentId: F:GameFramework.Components.Controllers.BasePlayerController._interactionDetector
+  fullName: GameFramework.Components.Controllers.BasePlayerController._interactionDetector
+  nameWithType: BasePlayerController._interactionDetector
 - uid: GameFramework.Components.Controllers.BasePlayerController._interactionLayerMask
   name: _interactionLayerMask
   href: api/api/GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController__interactionLayerMask
@@ -1911,6 +1956,19 @@ references:
   isSpec: "True"
   fullName: GameFramework.Components.Controllers.FirstPersonController.CreateComponents
   nameWithType: FirstPersonController.CreateComponents
+- uid: GameFramework.Components.Controllers.FirstPersonController.GetControllerType
+  name: GetControllerType()
+  href: api/api/GameFramework.Components.Controllers.FirstPersonController.html#GameFramework_Components_Controllers_FirstPersonController_GetControllerType
+  commentId: M:GameFramework.Components.Controllers.FirstPersonController.GetControllerType
+  fullName: GameFramework.Components.Controllers.FirstPersonController.GetControllerType()
+  nameWithType: FirstPersonController.GetControllerType()
+- uid: GameFramework.Components.Controllers.FirstPersonController.GetControllerType*
+  name: GetControllerType
+  href: api/api/GameFramework.Components.Controllers.FirstPersonController.html#GameFramework_Components_Controllers_FirstPersonController_GetControllerType_
+  commentId: Overload:GameFramework.Components.Controllers.FirstPersonController.GetControllerType
+  isSpec: "True"
+  fullName: GameFramework.Components.Controllers.FirstPersonController.GetControllerType
+  nameWithType: FirstPersonController.GetControllerType
 - uid: GameFramework.Components.Controllers.FirstPersonController.OnDrawGizmos
   name: OnDrawGizmos()
   href: api/api/GameFramework.Components.Controllers.FirstPersonController.html#GameFramework_Components_Controllers_FirstPersonController_OnDrawGizmos
@@ -2017,6 +2075,90 @@ references:
   isSpec: "True"
   fullName: GameFramework.Components.Controllers.Interfaces.ICameraControl.UpdateCamera
   nameWithType: ICameraControl.UpdateCamera
+- uid: GameFramework.Components.Controllers.Interfaces.IInteractable
+  name: IInteractable
+  href: api/api/GameFramework.Components.Controllers.Interfaces.IInteractable.html
+  commentId: T:GameFramework.Components.Controllers.Interfaces.IInteractable
+  fullName: GameFramework.Components.Controllers.Interfaces.IInteractable
+  nameWithType: IInteractable
+- uid: GameFramework.Components.Controllers.Interfaces.IInteractable.CanInteract
+  name: CanInteract
+  href: api/api/GameFramework.Components.Controllers.Interfaces.IInteractable.html#GameFramework_Components_Controllers_Interfaces_IInteractable_CanInteract
+  commentId: P:GameFramework.Components.Controllers.Interfaces.IInteractable.CanInteract
+  fullName: GameFramework.Components.Controllers.Interfaces.IInteractable.CanInteract
+  nameWithType: IInteractable.CanInteract
+- uid: GameFramework.Components.Controllers.Interfaces.IInteractable.CanInteract*
+  name: CanInteract
+  href: api/api/GameFramework.Components.Controllers.Interfaces.IInteractable.html#GameFramework_Components_Controllers_Interfaces_IInteractable_CanInteract_
+  commentId: Overload:GameFramework.Components.Controllers.Interfaces.IInteractable.CanInteract
+  isSpec: "True"
+  fullName: GameFramework.Components.Controllers.Interfaces.IInteractable.CanInteract
+  nameWithType: IInteractable.CanInteract
+- uid: GameFramework.Components.Controllers.Interfaces.IInteractable.InteractionRange
+  name: InteractionRange
+  href: api/api/GameFramework.Components.Controllers.Interfaces.IInteractable.html#GameFramework_Components_Controllers_Interfaces_IInteractable_InteractionRange
+  commentId: P:GameFramework.Components.Controllers.Interfaces.IInteractable.InteractionRange
+  fullName: GameFramework.Components.Controllers.Interfaces.IInteractable.InteractionRange
+  nameWithType: IInteractable.InteractionRange
+- uid: GameFramework.Components.Controllers.Interfaces.IInteractable.InteractionRange*
+  name: InteractionRange
+  href: api/api/GameFramework.Components.Controllers.Interfaces.IInteractable.html#GameFramework_Components_Controllers_Interfaces_IInteractable_InteractionRange_
+  commentId: Overload:GameFramework.Components.Controllers.Interfaces.IInteractable.InteractionRange
+  isSpec: "True"
+  fullName: GameFramework.Components.Controllers.Interfaces.IInteractable.InteractionRange
+  nameWithType: IInteractable.InteractionRange
+- uid: GameFramework.Components.Controllers.Interfaces.IInteractable.OnInteract(GameFramework.Components.Controllers.Enum.PlayerPrefabType)
+  name: OnInteract(PlayerPrefabType)
+  href: api/api/GameFramework.Components.Controllers.Interfaces.IInteractable.html#GameFramework_Components_Controllers_Interfaces_IInteractable_OnInteract_GameFramework_Components_Controllers_Enum_PlayerPrefabType_
+  commentId: M:GameFramework.Components.Controllers.Interfaces.IInteractable.OnInteract(GameFramework.Components.Controllers.Enum.PlayerPrefabType)
+  fullName: GameFramework.Components.Controllers.Interfaces.IInteractable.OnInteract(GameFramework.Components.Controllers.Enum.PlayerPrefabType)
+  nameWithType: IInteractable.OnInteract(PlayerPrefabType)
+- uid: GameFramework.Components.Controllers.Interfaces.IInteractable.OnInteract*
+  name: OnInteract
+  href: api/api/GameFramework.Components.Controllers.Interfaces.IInteractable.html#GameFramework_Components_Controllers_Interfaces_IInteractable_OnInteract_
+  commentId: Overload:GameFramework.Components.Controllers.Interfaces.IInteractable.OnInteract
+  isSpec: "True"
+  fullName: GameFramework.Components.Controllers.Interfaces.IInteractable.OnInteract
+  nameWithType: IInteractable.OnInteract
+- uid: GameFramework.Components.Controllers.Interfaces.IInteractable.OnInteractionAvailable(GameFramework.Components.Controllers.Enum.PlayerPrefabType)
+  name: OnInteractionAvailable(PlayerPrefabType)
+  href: api/api/GameFramework.Components.Controllers.Interfaces.IInteractable.html#GameFramework_Components_Controllers_Interfaces_IInteractable_OnInteractionAvailable_GameFramework_Components_Controllers_Enum_PlayerPrefabType_
+  commentId: M:GameFramework.Components.Controllers.Interfaces.IInteractable.OnInteractionAvailable(GameFramework.Components.Controllers.Enum.PlayerPrefabType)
+  fullName: GameFramework.Components.Controllers.Interfaces.IInteractable.OnInteractionAvailable(GameFramework.Components.Controllers.Enum.PlayerPrefabType)
+  nameWithType: IInteractable.OnInteractionAvailable(PlayerPrefabType)
+- uid: GameFramework.Components.Controllers.Interfaces.IInteractable.OnInteractionAvailable*
+  name: OnInteractionAvailable
+  href: api/api/GameFramework.Components.Controllers.Interfaces.IInteractable.html#GameFramework_Components_Controllers_Interfaces_IInteractable_OnInteractionAvailable_
+  commentId: Overload:GameFramework.Components.Controllers.Interfaces.IInteractable.OnInteractionAvailable
+  isSpec: "True"
+  fullName: GameFramework.Components.Controllers.Interfaces.IInteractable.OnInteractionAvailable
+  nameWithType: IInteractable.OnInteractionAvailable
+- uid: GameFramework.Components.Controllers.Interfaces.IInteractable.OnInteractionUnavailable(GameFramework.Components.Controllers.Enum.PlayerPrefabType)
+  name: OnInteractionUnavailable(PlayerPrefabType)
+  href: api/api/GameFramework.Components.Controllers.Interfaces.IInteractable.html#GameFramework_Components_Controllers_Interfaces_IInteractable_OnInteractionUnavailable_GameFramework_Components_Controllers_Enum_PlayerPrefabType_
+  commentId: M:GameFramework.Components.Controllers.Interfaces.IInteractable.OnInteractionUnavailable(GameFramework.Components.Controllers.Enum.PlayerPrefabType)
+  fullName: GameFramework.Components.Controllers.Interfaces.IInteractable.OnInteractionUnavailable(GameFramework.Components.Controllers.Enum.PlayerPrefabType)
+  nameWithType: IInteractable.OnInteractionUnavailable(PlayerPrefabType)
+- uid: GameFramework.Components.Controllers.Interfaces.IInteractable.OnInteractionUnavailable*
+  name: OnInteractionUnavailable
+  href: api/api/GameFramework.Components.Controllers.Interfaces.IInteractable.html#GameFramework_Components_Controllers_Interfaces_IInteractable_OnInteractionUnavailable_
+  commentId: Overload:GameFramework.Components.Controllers.Interfaces.IInteractable.OnInteractionUnavailable
+  isSpec: "True"
+  fullName: GameFramework.Components.Controllers.Interfaces.IInteractable.OnInteractionUnavailable
+  nameWithType: IInteractable.OnInteractionUnavailable
+- uid: GameFramework.Components.Controllers.Interfaces.IInteractable.Transform
+  name: Transform
+  href: api/api/GameFramework.Components.Controllers.Interfaces.IInteractable.html#GameFramework_Components_Controllers_Interfaces_IInteractable_Transform
+  commentId: P:GameFramework.Components.Controllers.Interfaces.IInteractable.Transform
+  fullName: GameFramework.Components.Controllers.Interfaces.IInteractable.Transform
+  nameWithType: IInteractable.Transform
+- uid: GameFramework.Components.Controllers.Interfaces.IInteractable.Transform*
+  name: Transform
+  href: api/api/GameFramework.Components.Controllers.Interfaces.IInteractable.html#GameFramework_Components_Controllers_Interfaces_IInteractable_Transform_
+  commentId: Overload:GameFramework.Components.Controllers.Interfaces.IInteractable.Transform
+  isSpec: "True"
+  fullName: GameFramework.Components.Controllers.Interfaces.IInteractable.Transform
+  nameWithType: IInteractable.Transform
 - uid: GameFramework.Components.Controllers.Interfaces.IPlayerMovement
   name: IPlayerMovement
   href: api/api/GameFramework.Components.Controllers.Interfaces.IPlayerMovement.html
@@ -2198,6 +2340,19 @@ references:
   isSpec: "True"
   fullName: GameFramework.Components.Controllers.IsometricController.CreateComponents
   nameWithType: IsometricController.CreateComponents
+- uid: GameFramework.Components.Controllers.IsometricController.GetControllerType
+  name: GetControllerType()
+  href: api/api/GameFramework.Components.Controllers.IsometricController.html#GameFramework_Components_Controllers_IsometricController_GetControllerType
+  commentId: M:GameFramework.Components.Controllers.IsometricController.GetControllerType
+  fullName: GameFramework.Components.Controllers.IsometricController.GetControllerType()
+  nameWithType: IsometricController.GetControllerType()
+- uid: GameFramework.Components.Controllers.IsometricController.GetControllerType*
+  name: GetControllerType
+  href: api/api/GameFramework.Components.Controllers.IsometricController.html#GameFramework_Components_Controllers_IsometricController_GetControllerType_
+  commentId: Overload:GameFramework.Components.Controllers.IsometricController.GetControllerType
+  isSpec: "True"
+  fullName: GameFramework.Components.Controllers.IsometricController.GetControllerType
+  nameWithType: IsometricController.GetControllerType
 - uid: GameFramework.Components.Controllers.IsometricController.OnDrawGizmos
   name: OnDrawGizmos()
   href: api/api/GameFramework.Components.Controllers.IsometricController.html#GameFramework_Components_Controllers_IsometricController_OnDrawGizmos
@@ -2939,6 +3094,19 @@ references:
   isSpec: "True"
   fullName: GameFramework.Components.Controllers.RTSController.CreateComponents
   nameWithType: RTSController.CreateComponents
+- uid: GameFramework.Components.Controllers.RTSController.GetControllerType
+  name: GetControllerType()
+  href: api/api/GameFramework.Components.Controllers.RTSController.html#GameFramework_Components_Controllers_RTSController_GetControllerType
+  commentId: M:GameFramework.Components.Controllers.RTSController.GetControllerType
+  fullName: GameFramework.Components.Controllers.RTSController.GetControllerType()
+  nameWithType: RTSController.GetControllerType()
+- uid: GameFramework.Components.Controllers.RTSController.GetControllerType*
+  name: GetControllerType
+  href: api/api/GameFramework.Components.Controllers.RTSController.html#GameFramework_Components_Controllers_RTSController_GetControllerType_
+  commentId: Overload:GameFramework.Components.Controllers.RTSController.GetControllerType
+  isSpec: "True"
+  fullName: GameFramework.Components.Controllers.RTSController.GetControllerType
+  nameWithType: RTSController.GetControllerType
 - uid: GameFramework.Components.Controllers.RTSController.OnDestroy
   name: OnDestroy()
   href: api/api/GameFramework.Components.Controllers.RTSController.html#GameFramework_Components_Controllers_RTSController_OnDestroy
@@ -2965,6 +3133,19 @@ references:
   isSpec: "True"
   fullName: GameFramework.Components.Controllers.RTSController.OnDrawGizmos
   nameWithType: RTSController.OnDrawGizmos
+- uid: GameFramework.Components.Controllers.RTSController.OnPlayerInteractInput(GameFramework.EventSystem.Events.PlayerInteractInputEvent)
+  name: OnPlayerInteractInput(PlayerInteractInputEvent)
+  href: api/api/GameFramework.Components.Controllers.RTSController.html#GameFramework_Components_Controllers_RTSController_OnPlayerInteractInput_GameFramework_EventSystem_Events_PlayerInteractInputEvent_
+  commentId: M:GameFramework.Components.Controllers.RTSController.OnPlayerInteractInput(GameFramework.EventSystem.Events.PlayerInteractInputEvent)
+  fullName: GameFramework.Components.Controllers.RTSController.OnPlayerInteractInput(GameFramework.EventSystem.Events.PlayerInteractInputEvent)
+  nameWithType: RTSController.OnPlayerInteractInput(PlayerInteractInputEvent)
+- uid: GameFramework.Components.Controllers.RTSController.OnPlayerInteractInput*
+  name: OnPlayerInteractInput
+  href: api/api/GameFramework.Components.Controllers.RTSController.html#GameFramework_Components_Controllers_RTSController_OnPlayerInteractInput_
+  commentId: Overload:GameFramework.Components.Controllers.RTSController.OnPlayerInteractInput
+  isSpec: "True"
+  fullName: GameFramework.Components.Controllers.RTSController.OnPlayerInteractInput
+  nameWithType: RTSController.OnPlayerInteractInput
 - uid: GameFramework.Components.Controllers.RTSController.OnPlayerMoveInput(GameFramework.EventSystem.Events.PlayerMoveInputEvent)
   name: OnPlayerMoveInput(PlayerMoveInputEvent)
   href: api/api/GameFramework.Components.Controllers.RTSController.html#GameFramework_Components_Controllers_RTSController_OnPlayerMoveInput_GameFramework_EventSystem_Events_PlayerMoveInputEvent_
@@ -3023,6 +3204,19 @@ references:
   isSpec: "True"
   fullName: GameFramework.Components.Controllers.ThirdPersonController.CreateComponents
   nameWithType: ThirdPersonController.CreateComponents
+- uid: GameFramework.Components.Controllers.ThirdPersonController.GetControllerType
+  name: GetControllerType()
+  href: api/api/GameFramework.Components.Controllers.ThirdPersonController.html#GameFramework_Components_Controllers_ThirdPersonController_GetControllerType
+  commentId: M:GameFramework.Components.Controllers.ThirdPersonController.GetControllerType
+  fullName: GameFramework.Components.Controllers.ThirdPersonController.GetControllerType()
+  nameWithType: ThirdPersonController.GetControllerType()
+- uid: GameFramework.Components.Controllers.ThirdPersonController.GetControllerType*
+  name: GetControllerType
+  href: api/api/GameFramework.Components.Controllers.ThirdPersonController.html#GameFramework_Components_Controllers_ThirdPersonController_GetControllerType_
+  commentId: Overload:GameFramework.Components.Controllers.ThirdPersonController.GetControllerType
+  isSpec: "True"
+  fullName: GameFramework.Components.Controllers.ThirdPersonController.GetControllerType
+  nameWithType: ThirdPersonController.GetControllerType
 - uid: GameFramework.Components.Controllers.ThirdPersonController.OnDrawGizmos
   name: OnDrawGizmos()
   href: api/api/GameFramework.Components.Controllers.ThirdPersonController.html#GameFramework_Components_Controllers_ThirdPersonController_OnDrawGizmos
@@ -3062,6 +3256,334 @@ references:
   isSpec: "True"
   fullName: GameFramework.Components.Controllers.ThirdPersonController.Update
   nameWithType: ThirdPersonController.Update
+- uid: GameFramework.Components.Interactables
+  name: GameFramework.Components.Interactables
+  href: api/api/GameFramework.Components.Interactables.html
+  commentId: N:GameFramework.Components.Interactables
+  fullName: GameFramework.Components.Interactables
+  nameWithType: GameFramework.Components.Interactables
+- uid: GameFramework.Components.Interactables.BaseInteractable
+  name: BaseInteractable
+  href: api/api/GameFramework.Components.Interactables.BaseInteractable.html
+  commentId: T:GameFramework.Components.Interactables.BaseInteractable
+  fullName: GameFramework.Components.Interactables.BaseInteractable
+  nameWithType: BaseInteractable
+- uid: GameFramework.Components.Interactables.BaseInteractable.Awake
+  name: Awake()
+  href: api/api/GameFramework.Components.Interactables.BaseInteractable.html#GameFramework_Components_Interactables_BaseInteractable_Awake
+  commentId: M:GameFramework.Components.Interactables.BaseInteractable.Awake
+  fullName: GameFramework.Components.Interactables.BaseInteractable.Awake()
+  nameWithType: BaseInteractable.Awake()
+- uid: GameFramework.Components.Interactables.BaseInteractable.Awake*
+  name: Awake
+  href: api/api/GameFramework.Components.Interactables.BaseInteractable.html#GameFramework_Components_Interactables_BaseInteractable_Awake_
+  commentId: Overload:GameFramework.Components.Interactables.BaseInteractable.Awake
+  isSpec: "True"
+  fullName: GameFramework.Components.Interactables.BaseInteractable.Awake
+  nameWithType: BaseInteractable.Awake
+- uid: GameFramework.Components.Interactables.BaseInteractable.CanInteract
+  name: CanInteract
+  href: api/api/GameFramework.Components.Interactables.BaseInteractable.html#GameFramework_Components_Interactables_BaseInteractable_CanInteract
+  commentId: P:GameFramework.Components.Interactables.BaseInteractable.CanInteract
+  fullName: GameFramework.Components.Interactables.BaseInteractable.CanInteract
+  nameWithType: BaseInteractable.CanInteract
+- uid: GameFramework.Components.Interactables.BaseInteractable.CanInteract*
+  name: CanInteract
+  href: api/api/GameFramework.Components.Interactables.BaseInteractable.html#GameFramework_Components_Interactables_BaseInteractable_CanInteract_
+  commentId: Overload:GameFramework.Components.Interactables.BaseInteractable.CanInteract
+  isSpec: "True"
+  fullName: GameFramework.Components.Interactables.BaseInteractable.CanInteract
+  nameWithType: BaseInteractable.CanInteract
+- uid: GameFramework.Components.Interactables.BaseInteractable.InteractionCount
+  name: InteractionCount
+  href: api/api/GameFramework.Components.Interactables.BaseInteractable.html#GameFramework_Components_Interactables_BaseInteractable_InteractionCount
+  commentId: P:GameFramework.Components.Interactables.BaseInteractable.InteractionCount
+  fullName: GameFramework.Components.Interactables.BaseInteractable.InteractionCount
+  nameWithType: BaseInteractable.InteractionCount
+- uid: GameFramework.Components.Interactables.BaseInteractable.InteractionCount*
+  name: InteractionCount
+  href: api/api/GameFramework.Components.Interactables.BaseInteractable.html#GameFramework_Components_Interactables_BaseInteractable_InteractionCount_
+  commentId: Overload:GameFramework.Components.Interactables.BaseInteractable.InteractionCount
+  isSpec: "True"
+  fullName: GameFramework.Components.Interactables.BaseInteractable.InteractionCount
+  nameWithType: BaseInteractable.InteractionCount
+- uid: GameFramework.Components.Interactables.BaseInteractable.InteractionRange
+  name: InteractionRange
+  href: api/api/GameFramework.Components.Interactables.BaseInteractable.html#GameFramework_Components_Interactables_BaseInteractable_InteractionRange
+  commentId: P:GameFramework.Components.Interactables.BaseInteractable.InteractionRange
+  fullName: GameFramework.Components.Interactables.BaseInteractable.InteractionRange
+  nameWithType: BaseInteractable.InteractionRange
+- uid: GameFramework.Components.Interactables.BaseInteractable.InteractionRange*
+  name: InteractionRange
+  href: api/api/GameFramework.Components.Interactables.BaseInteractable.html#GameFramework_Components_Interactables_BaseInteractable_InteractionRange_
+  commentId: Overload:GameFramework.Components.Interactables.BaseInteractable.InteractionRange
+  isSpec: "True"
+  fullName: GameFramework.Components.Interactables.BaseInteractable.InteractionRange
+  nameWithType: BaseInteractable.InteractionRange
+- uid: GameFramework.Components.Interactables.BaseInteractable.OnDestroy
+  name: OnDestroy()
+  href: api/api/GameFramework.Components.Interactables.BaseInteractable.html#GameFramework_Components_Interactables_BaseInteractable_OnDestroy
+  commentId: M:GameFramework.Components.Interactables.BaseInteractable.OnDestroy
+  fullName: GameFramework.Components.Interactables.BaseInteractable.OnDestroy()
+  nameWithType: BaseInteractable.OnDestroy()
+- uid: GameFramework.Components.Interactables.BaseInteractable.OnDestroy*
+  name: OnDestroy
+  href: api/api/GameFramework.Components.Interactables.BaseInteractable.html#GameFramework_Components_Interactables_BaseInteractable_OnDestroy_
+  commentId: Overload:GameFramework.Components.Interactables.BaseInteractable.OnDestroy
+  isSpec: "True"
+  fullName: GameFramework.Components.Interactables.BaseInteractable.OnDestroy
+  nameWithType: BaseInteractable.OnDestroy
+- uid: GameFramework.Components.Interactables.BaseInteractable.OnInteract(GameFramework.Components.Controllers.Enum.PlayerPrefabType)
+  name: OnInteract(PlayerPrefabType)
+  href: api/api/GameFramework.Components.Interactables.BaseInteractable.html#GameFramework_Components_Interactables_BaseInteractable_OnInteract_GameFramework_Components_Controllers_Enum_PlayerPrefabType_
+  commentId: M:GameFramework.Components.Interactables.BaseInteractable.OnInteract(GameFramework.Components.Controllers.Enum.PlayerPrefabType)
+  fullName: GameFramework.Components.Interactables.BaseInteractable.OnInteract(GameFramework.Components.Controllers.Enum.PlayerPrefabType)
+  nameWithType: BaseInteractable.OnInteract(PlayerPrefabType)
+- uid: GameFramework.Components.Interactables.BaseInteractable.OnInteract*
+  name: OnInteract
+  href: api/api/GameFramework.Components.Interactables.BaseInteractable.html#GameFramework_Components_Interactables_BaseInteractable_OnInteract_
+  commentId: Overload:GameFramework.Components.Interactables.BaseInteractable.OnInteract
+  isSpec: "True"
+  fullName: GameFramework.Components.Interactables.BaseInteractable.OnInteract
+  nameWithType: BaseInteractable.OnInteract
+- uid: GameFramework.Components.Interactables.BaseInteractable.OnInteractionAvailable(GameFramework.Components.Controllers.Enum.PlayerPrefabType)
+  name: OnInteractionAvailable(PlayerPrefabType)
+  href: api/api/GameFramework.Components.Interactables.BaseInteractable.html#GameFramework_Components_Interactables_BaseInteractable_OnInteractionAvailable_GameFramework_Components_Controllers_Enum_PlayerPrefabType_
+  commentId: M:GameFramework.Components.Interactables.BaseInteractable.OnInteractionAvailable(GameFramework.Components.Controllers.Enum.PlayerPrefabType)
+  fullName: GameFramework.Components.Interactables.BaseInteractable.OnInteractionAvailable(GameFramework.Components.Controllers.Enum.PlayerPrefabType)
+  nameWithType: BaseInteractable.OnInteractionAvailable(PlayerPrefabType)
+- uid: GameFramework.Components.Interactables.BaseInteractable.OnInteractionAvailable*
+  name: OnInteractionAvailable
+  href: api/api/GameFramework.Components.Interactables.BaseInteractable.html#GameFramework_Components_Interactables_BaseInteractable_OnInteractionAvailable_
+  commentId: Overload:GameFramework.Components.Interactables.BaseInteractable.OnInteractionAvailable
+  isSpec: "True"
+  fullName: GameFramework.Components.Interactables.BaseInteractable.OnInteractionAvailable
+  nameWithType: BaseInteractable.OnInteractionAvailable
+- uid: GameFramework.Components.Interactables.BaseInteractable.OnInteractionUnavailable(GameFramework.Components.Controllers.Enum.PlayerPrefabType)
+  name: OnInteractionUnavailable(PlayerPrefabType)
+  href: api/api/GameFramework.Components.Interactables.BaseInteractable.html#GameFramework_Components_Interactables_BaseInteractable_OnInteractionUnavailable_GameFramework_Components_Controllers_Enum_PlayerPrefabType_
+  commentId: M:GameFramework.Components.Interactables.BaseInteractable.OnInteractionUnavailable(GameFramework.Components.Controllers.Enum.PlayerPrefabType)
+  fullName: GameFramework.Components.Interactables.BaseInteractable.OnInteractionUnavailable(GameFramework.Components.Controllers.Enum.PlayerPrefabType)
+  nameWithType: BaseInteractable.OnInteractionUnavailable(PlayerPrefabType)
+- uid: GameFramework.Components.Interactables.BaseInteractable.OnInteractionUnavailable*
+  name: OnInteractionUnavailable
+  href: api/api/GameFramework.Components.Interactables.BaseInteractable.html#GameFramework_Components_Interactables_BaseInteractable_OnInteractionUnavailable_
+  commentId: Overload:GameFramework.Components.Interactables.BaseInteractable.OnInteractionUnavailable
+  isSpec: "True"
+  fullName: GameFramework.Components.Interactables.BaseInteractable.OnInteractionUnavailable
+  nameWithType: BaseInteractable.OnInteractionUnavailable
+- uid: GameFramework.Components.Interactables.BaseInteractable.Transform
+  name: Transform
+  href: api/api/GameFramework.Components.Interactables.BaseInteractable.html#GameFramework_Components_Interactables_BaseInteractable_Transform
+  commentId: P:GameFramework.Components.Interactables.BaseInteractable.Transform
+  fullName: GameFramework.Components.Interactables.BaseInteractable.Transform
+  nameWithType: BaseInteractable.Transform
+- uid: GameFramework.Components.Interactables.BaseInteractable.Transform*
+  name: Transform
+  href: api/api/GameFramework.Components.Interactables.BaseInteractable.html#GameFramework_Components_Interactables_BaseInteractable_Transform_
+  commentId: Overload:GameFramework.Components.Interactables.BaseInteractable.Transform
+  isSpec: "True"
+  fullName: GameFramework.Components.Interactables.BaseInteractable.Transform
+  nameWithType: BaseInteractable.Transform
+- uid: GameFramework.Components.Interactables.ExampleInteractable
+  name: ExampleInteractable
+  href: api/api/GameFramework.Components.Interactables.ExampleInteractable.html
+  commentId: T:GameFramework.Components.Interactables.ExampleInteractable
+  fullName: GameFramework.Components.Interactables.ExampleInteractable
+  nameWithType: ExampleInteractable
+- uid: GameFramework.Components.Interactables.ExampleInteractable.OnInteract(GameFramework.Components.Controllers.Enum.PlayerPrefabType)
+  name: OnInteract(PlayerPrefabType)
+  href: api/api/GameFramework.Components.Interactables.ExampleInteractable.html#GameFramework_Components_Interactables_ExampleInteractable_OnInteract_GameFramework_Components_Controllers_Enum_PlayerPrefabType_
+  commentId: M:GameFramework.Components.Interactables.ExampleInteractable.OnInteract(GameFramework.Components.Controllers.Enum.PlayerPrefabType)
+  fullName: GameFramework.Components.Interactables.ExampleInteractable.OnInteract(GameFramework.Components.Controllers.Enum.PlayerPrefabType)
+  nameWithType: ExampleInteractable.OnInteract(PlayerPrefabType)
+- uid: GameFramework.Components.Interactables.ExampleInteractable.OnInteract*
+  name: OnInteract
+  href: api/api/GameFramework.Components.Interactables.ExampleInteractable.html#GameFramework_Components_Interactables_ExampleInteractable_OnInteract_
+  commentId: Overload:GameFramework.Components.Interactables.ExampleInteractable.OnInteract
+  isSpec: "True"
+  fullName: GameFramework.Components.Interactables.ExampleInteractable.OnInteract
+  nameWithType: ExampleInteractable.OnInteract
+- uid: GameFramework.Components.Interactables.ExampleInteractable.OnInteractionAvailable(GameFramework.Components.Controllers.Enum.PlayerPrefabType)
+  name: OnInteractionAvailable(PlayerPrefabType)
+  href: api/api/GameFramework.Components.Interactables.ExampleInteractable.html#GameFramework_Components_Interactables_ExampleInteractable_OnInteractionAvailable_GameFramework_Components_Controllers_Enum_PlayerPrefabType_
+  commentId: M:GameFramework.Components.Interactables.ExampleInteractable.OnInteractionAvailable(GameFramework.Components.Controllers.Enum.PlayerPrefabType)
+  fullName: GameFramework.Components.Interactables.ExampleInteractable.OnInteractionAvailable(GameFramework.Components.Controllers.Enum.PlayerPrefabType)
+  nameWithType: ExampleInteractable.OnInteractionAvailable(PlayerPrefabType)
+- uid: GameFramework.Components.Interactables.ExampleInteractable.OnInteractionAvailable*
+  name: OnInteractionAvailable
+  href: api/api/GameFramework.Components.Interactables.ExampleInteractable.html#GameFramework_Components_Interactables_ExampleInteractable_OnInteractionAvailable_
+  commentId: Overload:GameFramework.Components.Interactables.ExampleInteractable.OnInteractionAvailable
+  isSpec: "True"
+  fullName: GameFramework.Components.Interactables.ExampleInteractable.OnInteractionAvailable
+  nameWithType: ExampleInteractable.OnInteractionAvailable
+- uid: GameFramework.Components.Interactables.ExampleInteractable.OnInteractionUnavailable(GameFramework.Components.Controllers.Enum.PlayerPrefabType)
+  name: OnInteractionUnavailable(PlayerPrefabType)
+  href: api/api/GameFramework.Components.Interactables.ExampleInteractable.html#GameFramework_Components_Interactables_ExampleInteractable_OnInteractionUnavailable_GameFramework_Components_Controllers_Enum_PlayerPrefabType_
+  commentId: M:GameFramework.Components.Interactables.ExampleInteractable.OnInteractionUnavailable(GameFramework.Components.Controllers.Enum.PlayerPrefabType)
+  fullName: GameFramework.Components.Interactables.ExampleInteractable.OnInteractionUnavailable(GameFramework.Components.Controllers.Enum.PlayerPrefabType)
+  nameWithType: ExampleInteractable.OnInteractionUnavailable(PlayerPrefabType)
+- uid: GameFramework.Components.Interactables.ExampleInteractable.OnInteractionUnavailable*
+  name: OnInteractionUnavailable
+  href: api/api/GameFramework.Components.Interactables.ExampleInteractable.html#GameFramework_Components_Interactables_ExampleInteractable_OnInteractionUnavailable_
+  commentId: Overload:GameFramework.Components.Interactables.ExampleInteractable.OnInteractionUnavailable
+  isSpec: "True"
+  fullName: GameFramework.Components.Interactables.ExampleInteractable.OnInteractionUnavailable
+  nameWithType: ExampleInteractable.OnInteractionUnavailable
+- uid: GameFramework.Components.Interactables.InteractionDebugger
+  name: InteractionDebugger
+  href: api/api/GameFramework.Components.Interactables.InteractionDebugger.html
+  commentId: T:GameFramework.Components.Interactables.InteractionDebugger
+  fullName: GameFramework.Components.Interactables.InteractionDebugger
+  nameWithType: InteractionDebugger
+- uid: GameFramework.Components.Interactables.InteractionDetector
+  name: InteractionDetector
+  href: api/api/GameFramework.Components.Interactables.InteractionDetector.html
+  commentId: T:GameFramework.Components.Interactables.InteractionDetector
+  fullName: GameFramework.Components.Interactables.InteractionDetector
+  nameWithType: InteractionDetector
+- uid: GameFramework.Components.Interactables.InteractionDetector.#ctor(Transform,Camera,GameFramework.Components.Controllers.Enum.PlayerPrefabType,LayerMask,GameFramework.EventSystem.Interfaces.IEventSystem,System.Single,System.Single)
+  name: InteractionDetector(Transform, Camera, PlayerPrefabType, LayerMask, IEventSystem, float, float)
+  href: api/api/GameFramework.Components.Interactables.InteractionDetector.html#GameFramework_Components_Interactables_InteractionDetector__ctor_Transform_Camera_GameFramework_Components_Controllers_Enum_PlayerPrefabType_LayerMask_GameFramework_EventSystem_Interfaces_IEventSystem_System_Single_System_Single_
+  commentId: M:GameFramework.Components.Interactables.InteractionDetector.#ctor(Transform,Camera,GameFramework.Components.Controllers.Enum.PlayerPrefabType,LayerMask,GameFramework.EventSystem.Interfaces.IEventSystem,System.Single,System.Single)
+  name.vb: New(Transform, Camera, PlayerPrefabType, LayerMask, IEventSystem, Single, Single)
+  fullName: GameFramework.Components.Interactables.InteractionDetector.InteractionDetector(Transform, Camera, GameFramework.Components.Controllers.Enum.PlayerPrefabType, LayerMask, GameFramework.EventSystem.Interfaces.IEventSystem, float, float)
+  fullName.vb: GameFramework.Components.Interactables.InteractionDetector.New(Transform, Camera, GameFramework.Components.Controllers.Enum.PlayerPrefabType, LayerMask, GameFramework.EventSystem.Interfaces.IEventSystem, Single, Single)
+  nameWithType: InteractionDetector.InteractionDetector(Transform, Camera, PlayerPrefabType, LayerMask, IEventSystem, float, float)
+  nameWithType.vb: InteractionDetector.New(Transform, Camera, PlayerPrefabType, LayerMask, IEventSystem, Single, Single)
+- uid: GameFramework.Components.Interactables.InteractionDetector.#ctor*
+  name: InteractionDetector
+  href: api/api/GameFramework.Components.Interactables.InteractionDetector.html#GameFramework_Components_Interactables_InteractionDetector__ctor_
+  commentId: Overload:GameFramework.Components.Interactables.InteractionDetector.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: GameFramework.Components.Interactables.InteractionDetector.InteractionDetector
+  fullName.vb: GameFramework.Components.Interactables.InteractionDetector.New
+  nameWithType: InteractionDetector.InteractionDetector
+  nameWithType.vb: InteractionDetector.New
+- uid: GameFramework.Components.Interactables.InteractionDetector.CurrentInteractable
+  name: CurrentInteractable
+  href: api/api/GameFramework.Components.Interactables.InteractionDetector.html#GameFramework_Components_Interactables_InteractionDetector_CurrentInteractable
+  commentId: P:GameFramework.Components.Interactables.InteractionDetector.CurrentInteractable
+  fullName: GameFramework.Components.Interactables.InteractionDetector.CurrentInteractable
+  nameWithType: InteractionDetector.CurrentInteractable
+- uid: GameFramework.Components.Interactables.InteractionDetector.CurrentInteractable*
+  name: CurrentInteractable
+  href: api/api/GameFramework.Components.Interactables.InteractionDetector.html#GameFramework_Components_Interactables_InteractionDetector_CurrentInteractable_
+  commentId: Overload:GameFramework.Components.Interactables.InteractionDetector.CurrentInteractable
+  isSpec: "True"
+  fullName: GameFramework.Components.Interactables.InteractionDetector.CurrentInteractable
+  nameWithType: InteractionDetector.CurrentInteractable
+- uid: GameFramework.Components.Interactables.InteractionDetector.DrawDebugGizmos
+  name: DrawDebugGizmos()
+  href: api/api/GameFramework.Components.Interactables.InteractionDetector.html#GameFramework_Components_Interactables_InteractionDetector_DrawDebugGizmos
+  commentId: M:GameFramework.Components.Interactables.InteractionDetector.DrawDebugGizmos
+  fullName: GameFramework.Components.Interactables.InteractionDetector.DrawDebugGizmos()
+  nameWithType: InteractionDetector.DrawDebugGizmos()
+- uid: GameFramework.Components.Interactables.InteractionDetector.DrawDebugGizmos*
+  name: DrawDebugGizmos
+  href: api/api/GameFramework.Components.Interactables.InteractionDetector.html#GameFramework_Components_Interactables_InteractionDetector_DrawDebugGizmos_
+  commentId: Overload:GameFramework.Components.Interactables.InteractionDetector.DrawDebugGizmos
+  isSpec: "True"
+  fullName: GameFramework.Components.Interactables.InteractionDetector.DrawDebugGizmos
+  nameWithType: InteractionDetector.DrawDebugGizmos
+- uid: GameFramework.Components.Interactables.InteractionDetector.HandleMousePosition(Vector2)
+  name: HandleMousePosition(Vector2)
+  href: api/api/GameFramework.Components.Interactables.InteractionDetector.html#GameFramework_Components_Interactables_InteractionDetector_HandleMousePosition_Vector2_
+  commentId: M:GameFramework.Components.Interactables.InteractionDetector.HandleMousePosition(Vector2)
+  fullName: GameFramework.Components.Interactables.InteractionDetector.HandleMousePosition(Vector2)
+  nameWithType: InteractionDetector.HandleMousePosition(Vector2)
+- uid: GameFramework.Components.Interactables.InteractionDetector.HandleMousePosition*
+  name: HandleMousePosition
+  href: api/api/GameFramework.Components.Interactables.InteractionDetector.html#GameFramework_Components_Interactables_InteractionDetector_HandleMousePosition_
+  commentId: Overload:GameFramework.Components.Interactables.InteractionDetector.HandleMousePosition
+  isSpec: "True"
+  fullName: GameFramework.Components.Interactables.InteractionDetector.HandleMousePosition
+  nameWithType: InteractionDetector.HandleMousePosition
+- uid: GameFramework.Components.Interactables.InteractionDetector.TriggerInteraction
+  name: TriggerInteraction()
+  href: api/api/GameFramework.Components.Interactables.InteractionDetector.html#GameFramework_Components_Interactables_InteractionDetector_TriggerInteraction
+  commentId: M:GameFramework.Components.Interactables.InteractionDetector.TriggerInteraction
+  fullName: GameFramework.Components.Interactables.InteractionDetector.TriggerInteraction()
+  nameWithType: InteractionDetector.TriggerInteraction()
+- uid: GameFramework.Components.Interactables.InteractionDetector.TriggerInteraction*
+  name: TriggerInteraction
+  href: api/api/GameFramework.Components.Interactables.InteractionDetector.html#GameFramework_Components_Interactables_InteractionDetector_TriggerInteraction_
+  commentId: Overload:GameFramework.Components.Interactables.InteractionDetector.TriggerInteraction
+  isSpec: "True"
+  fullName: GameFramework.Components.Interactables.InteractionDetector.TriggerInteraction
+  nameWithType: InteractionDetector.TriggerInteraction
+- uid: GameFramework.Components.Interactables.InteractionDetector.UpdateDetection
+  name: UpdateDetection()
+  href: api/api/GameFramework.Components.Interactables.InteractionDetector.html#GameFramework_Components_Interactables_InteractionDetector_UpdateDetection
+  commentId: M:GameFramework.Components.Interactables.InteractionDetector.UpdateDetection
+  fullName: GameFramework.Components.Interactables.InteractionDetector.UpdateDetection()
+  nameWithType: InteractionDetector.UpdateDetection()
+- uid: GameFramework.Components.Interactables.InteractionDetector.UpdateDetection*
+  name: UpdateDetection
+  href: api/api/GameFramework.Components.Interactables.InteractionDetector.html#GameFramework_Components_Interactables_InteractionDetector_UpdateDetection_
+  commentId: Overload:GameFramework.Components.Interactables.InteractionDetector.UpdateDetection
+  isSpec: "True"
+  fullName: GameFramework.Components.Interactables.InteractionDetector.UpdateDetection
+  nameWithType: InteractionDetector.UpdateDetection
+- uid: GameFramework.Components.Interactables.OutlineRenderer
+  name: OutlineRenderer
+  href: api/api/GameFramework.Components.Interactables.OutlineRenderer.html
+  commentId: T:GameFramework.Components.Interactables.OutlineRenderer
+  fullName: GameFramework.Components.Interactables.OutlineRenderer
+  nameWithType: OutlineRenderer
+- uid: GameFramework.Components.Interactables.OutlineRenderer.Cleanup
+  name: Cleanup()
+  href: api/api/GameFramework.Components.Interactables.OutlineRenderer.html#GameFramework_Components_Interactables_OutlineRenderer_Cleanup
+  commentId: M:GameFramework.Components.Interactables.OutlineRenderer.Cleanup
+  fullName: GameFramework.Components.Interactables.OutlineRenderer.Cleanup()
+  nameWithType: OutlineRenderer.Cleanup()
+- uid: GameFramework.Components.Interactables.OutlineRenderer.Cleanup*
+  name: Cleanup
+  href: api/api/GameFramework.Components.Interactables.OutlineRenderer.html#GameFramework_Components_Interactables_OutlineRenderer_Cleanup_
+  commentId: Overload:GameFramework.Components.Interactables.OutlineRenderer.Cleanup
+  isSpec: "True"
+  fullName: GameFramework.Components.Interactables.OutlineRenderer.Cleanup
+  nameWithType: OutlineRenderer.Cleanup
+- uid: GameFramework.Components.Interactables.OutlineRenderer.HideOutline
+  name: HideOutline()
+  href: api/api/GameFramework.Components.Interactables.OutlineRenderer.html#GameFramework_Components_Interactables_OutlineRenderer_HideOutline
+  commentId: M:GameFramework.Components.Interactables.OutlineRenderer.HideOutline
+  fullName: GameFramework.Components.Interactables.OutlineRenderer.HideOutline()
+  nameWithType: OutlineRenderer.HideOutline()
+- uid: GameFramework.Components.Interactables.OutlineRenderer.HideOutline*
+  name: HideOutline
+  href: api/api/GameFramework.Components.Interactables.OutlineRenderer.html#GameFramework_Components_Interactables_OutlineRenderer_HideOutline_
+  commentId: Overload:GameFramework.Components.Interactables.OutlineRenderer.HideOutline
+  isSpec: "True"
+  fullName: GameFramework.Components.Interactables.OutlineRenderer.HideOutline
+  nameWithType: OutlineRenderer.HideOutline
+- uid: GameFramework.Components.Interactables.OutlineRenderer.Initialize(Renderer)
+  name: Initialize(Renderer)
+  href: api/api/GameFramework.Components.Interactables.OutlineRenderer.html#GameFramework_Components_Interactables_OutlineRenderer_Initialize_Renderer_
+  commentId: M:GameFramework.Components.Interactables.OutlineRenderer.Initialize(Renderer)
+  fullName: GameFramework.Components.Interactables.OutlineRenderer.Initialize(Renderer)
+  nameWithType: OutlineRenderer.Initialize(Renderer)
+- uid: GameFramework.Components.Interactables.OutlineRenderer.Initialize*
+  name: Initialize
+  href: api/api/GameFramework.Components.Interactables.OutlineRenderer.html#GameFramework_Components_Interactables_OutlineRenderer_Initialize_
+  commentId: Overload:GameFramework.Components.Interactables.OutlineRenderer.Initialize
+  isSpec: "True"
+  fullName: GameFramework.Components.Interactables.OutlineRenderer.Initialize
+  nameWithType: OutlineRenderer.Initialize
+- uid: GameFramework.Components.Interactables.OutlineRenderer.ShowOutline
+  name: ShowOutline()
+  href: api/api/GameFramework.Components.Interactables.OutlineRenderer.html#GameFramework_Components_Interactables_OutlineRenderer_ShowOutline
+  commentId: M:GameFramework.Components.Interactables.OutlineRenderer.ShowOutline
+  fullName: GameFramework.Components.Interactables.OutlineRenderer.ShowOutline()
+  nameWithType: OutlineRenderer.ShowOutline()
+- uid: GameFramework.Components.Interactables.OutlineRenderer.ShowOutline*
+  name: ShowOutline
+  href: api/api/GameFramework.Components.Interactables.OutlineRenderer.html#GameFramework_Components_Interactables_OutlineRenderer_ShowOutline_
+  commentId: Overload:GameFramework.Components.Interactables.OutlineRenderer.ShowOutline
+  isSpec: "True"
+  fullName: GameFramework.Components.Interactables.OutlineRenderer.ShowOutline
+  nameWithType: OutlineRenderer.ShowOutline
 - uid: GameFramework.Components.PlayerData
   name: PlayerData
   href: api/api/GameFramework.Components.PlayerData.html
@@ -11075,6 +11597,159 @@ references:
   isSpec: "True"
   fullName: GameFramework.EventSystem.Events.InstantiatePlayerEvent.UseDefaultSettings
   nameWithType: InstantiatePlayerEvent.UseDefaultSettings
+- uid: GameFramework.EventSystem.Events.InteractionAvailableEvent
+  name: InteractionAvailableEvent
+  href: api/api/GameFramework.EventSystem.Events.InteractionAvailableEvent.html
+  commentId: T:GameFramework.EventSystem.Events.InteractionAvailableEvent
+  fullName: GameFramework.EventSystem.Events.InteractionAvailableEvent
+  nameWithType: InteractionAvailableEvent
+- uid: GameFramework.EventSystem.Events.InteractionAvailableEvent.#ctor(GameFramework.Components.Controllers.Interfaces.IInteractable,GameFramework.Components.Controllers.Enum.PlayerPrefabType)
+  name: InteractionAvailableEvent(IInteractable, PlayerPrefabType)
+  href: api/api/GameFramework.EventSystem.Events.InteractionAvailableEvent.html#GameFramework_EventSystem_Events_InteractionAvailableEvent__ctor_GameFramework_Components_Controllers_Interfaces_IInteractable_GameFramework_Components_Controllers_Enum_PlayerPrefabType_
+  commentId: M:GameFramework.EventSystem.Events.InteractionAvailableEvent.#ctor(GameFramework.Components.Controllers.Interfaces.IInteractable,GameFramework.Components.Controllers.Enum.PlayerPrefabType)
+  name.vb: New(IInteractable, PlayerPrefabType)
+  fullName: GameFramework.EventSystem.Events.InteractionAvailableEvent.InteractionAvailableEvent(GameFramework.Components.Controllers.Interfaces.IInteractable, GameFramework.Components.Controllers.Enum.PlayerPrefabType)
+  fullName.vb: GameFramework.EventSystem.Events.InteractionAvailableEvent.New(GameFramework.Components.Controllers.Interfaces.IInteractable, GameFramework.Components.Controllers.Enum.PlayerPrefabType)
+  nameWithType: InteractionAvailableEvent.InteractionAvailableEvent(IInteractable, PlayerPrefabType)
+  nameWithType.vb: InteractionAvailableEvent.New(IInteractable, PlayerPrefabType)
+- uid: GameFramework.EventSystem.Events.InteractionAvailableEvent.#ctor*
+  name: InteractionAvailableEvent
+  href: api/api/GameFramework.EventSystem.Events.InteractionAvailableEvent.html#GameFramework_EventSystem_Events_InteractionAvailableEvent__ctor_
+  commentId: Overload:GameFramework.EventSystem.Events.InteractionAvailableEvent.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: GameFramework.EventSystem.Events.InteractionAvailableEvent.InteractionAvailableEvent
+  fullName.vb: GameFramework.EventSystem.Events.InteractionAvailableEvent.New
+  nameWithType: InteractionAvailableEvent.InteractionAvailableEvent
+  nameWithType.vb: InteractionAvailableEvent.New
+- uid: GameFramework.EventSystem.Events.InteractionAvailableEvent.ControllerType
+  name: ControllerType
+  href: api/api/GameFramework.EventSystem.Events.InteractionAvailableEvent.html#GameFramework_EventSystem_Events_InteractionAvailableEvent_ControllerType
+  commentId: P:GameFramework.EventSystem.Events.InteractionAvailableEvent.ControllerType
+  fullName: GameFramework.EventSystem.Events.InteractionAvailableEvent.ControllerType
+  nameWithType: InteractionAvailableEvent.ControllerType
+- uid: GameFramework.EventSystem.Events.InteractionAvailableEvent.ControllerType*
+  name: ControllerType
+  href: api/api/GameFramework.EventSystem.Events.InteractionAvailableEvent.html#GameFramework_EventSystem_Events_InteractionAvailableEvent_ControllerType_
+  commentId: Overload:GameFramework.EventSystem.Events.InteractionAvailableEvent.ControllerType
+  isSpec: "True"
+  fullName: GameFramework.EventSystem.Events.InteractionAvailableEvent.ControllerType
+  nameWithType: InteractionAvailableEvent.ControllerType
+- uid: GameFramework.EventSystem.Events.InteractionAvailableEvent.Interactable
+  name: Interactable
+  href: api/api/GameFramework.EventSystem.Events.InteractionAvailableEvent.html#GameFramework_EventSystem_Events_InteractionAvailableEvent_Interactable
+  commentId: P:GameFramework.EventSystem.Events.InteractionAvailableEvent.Interactable
+  fullName: GameFramework.EventSystem.Events.InteractionAvailableEvent.Interactable
+  nameWithType: InteractionAvailableEvent.Interactable
+- uid: GameFramework.EventSystem.Events.InteractionAvailableEvent.Interactable*
+  name: Interactable
+  href: api/api/GameFramework.EventSystem.Events.InteractionAvailableEvent.html#GameFramework_EventSystem_Events_InteractionAvailableEvent_Interactable_
+  commentId: Overload:GameFramework.EventSystem.Events.InteractionAvailableEvent.Interactable
+  isSpec: "True"
+  fullName: GameFramework.EventSystem.Events.InteractionAvailableEvent.Interactable
+  nameWithType: InteractionAvailableEvent.Interactable
+- uid: GameFramework.EventSystem.Events.InteractionPerformedEvent
+  name: InteractionPerformedEvent
+  href: api/api/GameFramework.EventSystem.Events.InteractionPerformedEvent.html
+  commentId: T:GameFramework.EventSystem.Events.InteractionPerformedEvent
+  fullName: GameFramework.EventSystem.Events.InteractionPerformedEvent
+  nameWithType: InteractionPerformedEvent
+- uid: GameFramework.EventSystem.Events.InteractionPerformedEvent.#ctor(GameFramework.Components.Controllers.Interfaces.IInteractable,GameFramework.Components.Controllers.Enum.PlayerPrefabType)
+  name: InteractionPerformedEvent(IInteractable, PlayerPrefabType)
+  href: api/api/GameFramework.EventSystem.Events.InteractionPerformedEvent.html#GameFramework_EventSystem_Events_InteractionPerformedEvent__ctor_GameFramework_Components_Controllers_Interfaces_IInteractable_GameFramework_Components_Controllers_Enum_PlayerPrefabType_
+  commentId: M:GameFramework.EventSystem.Events.InteractionPerformedEvent.#ctor(GameFramework.Components.Controllers.Interfaces.IInteractable,GameFramework.Components.Controllers.Enum.PlayerPrefabType)
+  name.vb: New(IInteractable, PlayerPrefabType)
+  fullName: GameFramework.EventSystem.Events.InteractionPerformedEvent.InteractionPerformedEvent(GameFramework.Components.Controllers.Interfaces.IInteractable, GameFramework.Components.Controllers.Enum.PlayerPrefabType)
+  fullName.vb: GameFramework.EventSystem.Events.InteractionPerformedEvent.New(GameFramework.Components.Controllers.Interfaces.IInteractable, GameFramework.Components.Controllers.Enum.PlayerPrefabType)
+  nameWithType: InteractionPerformedEvent.InteractionPerformedEvent(IInteractable, PlayerPrefabType)
+  nameWithType.vb: InteractionPerformedEvent.New(IInteractable, PlayerPrefabType)
+- uid: GameFramework.EventSystem.Events.InteractionPerformedEvent.#ctor*
+  name: InteractionPerformedEvent
+  href: api/api/GameFramework.EventSystem.Events.InteractionPerformedEvent.html#GameFramework_EventSystem_Events_InteractionPerformedEvent__ctor_
+  commentId: Overload:GameFramework.EventSystem.Events.InteractionPerformedEvent.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: GameFramework.EventSystem.Events.InteractionPerformedEvent.InteractionPerformedEvent
+  fullName.vb: GameFramework.EventSystem.Events.InteractionPerformedEvent.New
+  nameWithType: InteractionPerformedEvent.InteractionPerformedEvent
+  nameWithType.vb: InteractionPerformedEvent.New
+- uid: GameFramework.EventSystem.Events.InteractionPerformedEvent.ControllerType
+  name: ControllerType
+  href: api/api/GameFramework.EventSystem.Events.InteractionPerformedEvent.html#GameFramework_EventSystem_Events_InteractionPerformedEvent_ControllerType
+  commentId: P:GameFramework.EventSystem.Events.InteractionPerformedEvent.ControllerType
+  fullName: GameFramework.EventSystem.Events.InteractionPerformedEvent.ControllerType
+  nameWithType: InteractionPerformedEvent.ControllerType
+- uid: GameFramework.EventSystem.Events.InteractionPerformedEvent.ControllerType*
+  name: ControllerType
+  href: api/api/GameFramework.EventSystem.Events.InteractionPerformedEvent.html#GameFramework_EventSystem_Events_InteractionPerformedEvent_ControllerType_
+  commentId: Overload:GameFramework.EventSystem.Events.InteractionPerformedEvent.ControllerType
+  isSpec: "True"
+  fullName: GameFramework.EventSystem.Events.InteractionPerformedEvent.ControllerType
+  nameWithType: InteractionPerformedEvent.ControllerType
+- uid: GameFramework.EventSystem.Events.InteractionPerformedEvent.Interactable
+  name: Interactable
+  href: api/api/GameFramework.EventSystem.Events.InteractionPerformedEvent.html#GameFramework_EventSystem_Events_InteractionPerformedEvent_Interactable
+  commentId: P:GameFramework.EventSystem.Events.InteractionPerformedEvent.Interactable
+  fullName: GameFramework.EventSystem.Events.InteractionPerformedEvent.Interactable
+  nameWithType: InteractionPerformedEvent.Interactable
+- uid: GameFramework.EventSystem.Events.InteractionPerformedEvent.Interactable*
+  name: Interactable
+  href: api/api/GameFramework.EventSystem.Events.InteractionPerformedEvent.html#GameFramework_EventSystem_Events_InteractionPerformedEvent_Interactable_
+  commentId: Overload:GameFramework.EventSystem.Events.InteractionPerformedEvent.Interactable
+  isSpec: "True"
+  fullName: GameFramework.EventSystem.Events.InteractionPerformedEvent.Interactable
+  nameWithType: InteractionPerformedEvent.Interactable
+- uid: GameFramework.EventSystem.Events.InteractionUnavailableEvent
+  name: InteractionUnavailableEvent
+  href: api/api/GameFramework.EventSystem.Events.InteractionUnavailableEvent.html
+  commentId: T:GameFramework.EventSystem.Events.InteractionUnavailableEvent
+  fullName: GameFramework.EventSystem.Events.InteractionUnavailableEvent
+  nameWithType: InteractionUnavailableEvent
+- uid: GameFramework.EventSystem.Events.InteractionUnavailableEvent.#ctor(GameFramework.Components.Controllers.Interfaces.IInteractable,GameFramework.Components.Controllers.Enum.PlayerPrefabType)
+  name: InteractionUnavailableEvent(IInteractable, PlayerPrefabType)
+  href: api/api/GameFramework.EventSystem.Events.InteractionUnavailableEvent.html#GameFramework_EventSystem_Events_InteractionUnavailableEvent__ctor_GameFramework_Components_Controllers_Interfaces_IInteractable_GameFramework_Components_Controllers_Enum_PlayerPrefabType_
+  commentId: M:GameFramework.EventSystem.Events.InteractionUnavailableEvent.#ctor(GameFramework.Components.Controllers.Interfaces.IInteractable,GameFramework.Components.Controllers.Enum.PlayerPrefabType)
+  name.vb: New(IInteractable, PlayerPrefabType)
+  fullName: GameFramework.EventSystem.Events.InteractionUnavailableEvent.InteractionUnavailableEvent(GameFramework.Components.Controllers.Interfaces.IInteractable, GameFramework.Components.Controllers.Enum.PlayerPrefabType)
+  fullName.vb: GameFramework.EventSystem.Events.InteractionUnavailableEvent.New(GameFramework.Components.Controllers.Interfaces.IInteractable, GameFramework.Components.Controllers.Enum.PlayerPrefabType)
+  nameWithType: InteractionUnavailableEvent.InteractionUnavailableEvent(IInteractable, PlayerPrefabType)
+  nameWithType.vb: InteractionUnavailableEvent.New(IInteractable, PlayerPrefabType)
+- uid: GameFramework.EventSystem.Events.InteractionUnavailableEvent.#ctor*
+  name: InteractionUnavailableEvent
+  href: api/api/GameFramework.EventSystem.Events.InteractionUnavailableEvent.html#GameFramework_EventSystem_Events_InteractionUnavailableEvent__ctor_
+  commentId: Overload:GameFramework.EventSystem.Events.InteractionUnavailableEvent.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: GameFramework.EventSystem.Events.InteractionUnavailableEvent.InteractionUnavailableEvent
+  fullName.vb: GameFramework.EventSystem.Events.InteractionUnavailableEvent.New
+  nameWithType: InteractionUnavailableEvent.InteractionUnavailableEvent
+  nameWithType.vb: InteractionUnavailableEvent.New
+- uid: GameFramework.EventSystem.Events.InteractionUnavailableEvent.ControllerType
+  name: ControllerType
+  href: api/api/GameFramework.EventSystem.Events.InteractionUnavailableEvent.html#GameFramework_EventSystem_Events_InteractionUnavailableEvent_ControllerType
+  commentId: P:GameFramework.EventSystem.Events.InteractionUnavailableEvent.ControllerType
+  fullName: GameFramework.EventSystem.Events.InteractionUnavailableEvent.ControllerType
+  nameWithType: InteractionUnavailableEvent.ControllerType
+- uid: GameFramework.EventSystem.Events.InteractionUnavailableEvent.ControllerType*
+  name: ControllerType
+  href: api/api/GameFramework.EventSystem.Events.InteractionUnavailableEvent.html#GameFramework_EventSystem_Events_InteractionUnavailableEvent_ControllerType_
+  commentId: Overload:GameFramework.EventSystem.Events.InteractionUnavailableEvent.ControllerType
+  isSpec: "True"
+  fullName: GameFramework.EventSystem.Events.InteractionUnavailableEvent.ControllerType
+  nameWithType: InteractionUnavailableEvent.ControllerType
+- uid: GameFramework.EventSystem.Events.InteractionUnavailableEvent.Interactable
+  name: Interactable
+  href: api/api/GameFramework.EventSystem.Events.InteractionUnavailableEvent.html#GameFramework_EventSystem_Events_InteractionUnavailableEvent_Interactable
+  commentId: P:GameFramework.EventSystem.Events.InteractionUnavailableEvent.Interactable
+  fullName: GameFramework.EventSystem.Events.InteractionUnavailableEvent.Interactable
+  nameWithType: InteractionUnavailableEvent.Interactable
+- uid: GameFramework.EventSystem.Events.InteractionUnavailableEvent.Interactable*
+  name: Interactable
+  href: api/api/GameFramework.EventSystem.Events.InteractionUnavailableEvent.html#GameFramework_EventSystem_Events_InteractionUnavailableEvent_Interactable_
+  commentId: Overload:GameFramework.EventSystem.Events.InteractionUnavailableEvent.Interactable
+  isSpec: "True"
+  fullName: GameFramework.EventSystem.Events.InteractionUnavailableEvent.Interactable
+  nameWithType: InteractionUnavailableEvent.Interactable
 - uid: GameFramework.EventSystem.Events.LoadSaveFileEvent
   name: LoadSaveFileEvent
   href: api/api/GameFramework.EventSystem.Events.LoadSaveFileEvent.html

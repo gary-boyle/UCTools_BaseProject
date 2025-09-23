@@ -316,7 +316,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.Components.Controllers.Enum.PlayerPrefabType",
-      "Summary": "<p sourcefile=\"api/GameFramework.Components.Controllers.Enum.PlayerPrefabType.yml\" sourcestartlinenumber=\"1\">Enum for different player prefab types available in the game framework.\nMaps to prefabs in the Prefabs/Player folder.</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFramework.Components.Controllers.Enum.PlayerPrefabType.yml\" sourcestartlinenumber=\"1\">Enum for different player controller types available in the game framework.\nMaps to prefabs in the Prefabs/Player folder and determines interaction behavior.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -359,6 +359,20 @@
       "IsMRef": true,
       "Title": "GameFramework.Components.Controllers.Interfaces.ICameraControl",
       "Summary": "<p sourcefile=\"api/GameFramework.Components.Controllers.Interfaces.ICameraControl.yml\" sourcestartlinenumber=\"1\">Interface for different camera control behaviors.\nAllows composition of different camera styles without inheritance.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Components.Controllers.Interfaces.IInteractable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Components.Controllers.Interfaces.IInteractable.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Components.Controllers.Interfaces.IInteractable",
+      "Summary": "<p sourcefile=\"api/GameFramework.Components.Controllers.Interfaces.IInteractable.yml\" sourcestartlinenumber=\"1\">Interface for objects that can be interacted with by players.\nProvides different interaction behaviors based on controller type.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -512,6 +526,90 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.Components.Controllers",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Components.Interactables.BaseInteractable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Components.Interactables.BaseInteractable.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Components.Interactables.BaseInteractable",
+      "Summary": "<p sourcefile=\"api/GameFramework.Components.Interactables.BaseInteractable.yml\" sourcestartlinenumber=\"1\">Base implementation of IInteractable that handles common interaction logic.\nProvides outline rendering and basic interaction counting for demonstration.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Components.Interactables.ExampleInteractable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Components.Interactables.ExampleInteractable.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Components.Interactables.ExampleInteractable",
+      "Summary": "<p sourcefile=\"api/GameFramework.Components.Interactables.ExampleInteractable.yml\" sourcestartlinenumber=\"1\">Example interactable object for testing the interaction system.\nDemonstrates basic interaction counting and debug output.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Components.Interactables.InteractionDebugger.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Components.Interactables.InteractionDebugger.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Components.Interactables.InteractionDebugger",
+      "Summary": "<p sourcefile=\"api/GameFramework.Components.Interactables.InteractionDebugger.yml\" sourcestartlinenumber=\"1\">Temporary debugging helper for interaction system.\nAttach to player controller to debug interaction issues.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Components.Interactables.InteractionDetector.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Components.Interactables.InteractionDetector.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Components.Interactables.InteractionDetector",
+      "Summary": "<p sourcefile=\"api/GameFramework.Components.Interactables.InteractionDetector.yml\" sourcestartlinenumber=\"1\">Handles detection of interactable objects based on controller type.\nSupports distance-based detection with facing requirements for character controllers and mouse-based detection for RTS.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Components.Interactables.OutlineRenderer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Components.Interactables.OutlineRenderer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Components.Interactables.OutlineRenderer",
+      "Summary": "<p sourcefile=\"api/GameFramework.Components.Interactables.OutlineRenderer.yml\" sourcestartlinenumber=\"1\">Simple outline renderer for interactable objects.\nUses material swapping for basic outline effect.\nCan be extended with more sophisticated outline methods.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Components.Interactables.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Components.Interactables.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Components.Interactables",
       "Summary": null
     },
     {
@@ -2137,6 +2235,48 @@
       "IsMRef": true,
       "Title": "GameFramework.EventSystem.Events.InstantiatePlayerEvent",
       "Summary": "<p sourcefile=\"api/GameFramework.EventSystem.Events.InstantiatePlayerEvent.yml\" sourcestartlinenumber=\"1\">Event published to request player instantiation during loading</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.EventSystem.Events.InteractionAvailableEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.EventSystem.Events.InteractionAvailableEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.EventSystem.Events.InteractionAvailableEvent",
+      "Summary": "<p sourcefile=\"api/GameFramework.EventSystem.Events.InteractionAvailableEvent.yml\" sourcestartlinenumber=\"1\">Event published when an interactable object becomes available for interaction</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.EventSystem.Events.InteractionPerformedEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.EventSystem.Events.InteractionPerformedEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.EventSystem.Events.InteractionPerformedEvent",
+      "Summary": "<p sourcefile=\"api/GameFramework.EventSystem.Events.InteractionPerformedEvent.yml\" sourcestartlinenumber=\"1\">Event published when an interaction is performed on an object</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.EventSystem.Events.InteractionUnavailableEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.EventSystem.Events.InteractionUnavailableEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.EventSystem.Events.InteractionUnavailableEvent",
+      "Summary": "<p sourcefile=\"api/GameFramework.EventSystem.Events.InteractionUnavailableEvent.yml\" sourcestartlinenumber=\"1\">Event published when an interactable object is no longer available for interaction</p>\n"
     },
     {
       "type": "ManagedReference",

@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Enum PlayerPrefabType | UCTools Base Project </title>
+    <title>Class OutlineRenderer | UCTools Base Project </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Enum PlayerPrefabType | UCTools Base Project ">
+    <meta name="title" content="Class OutlineRenderer | UCTools Base Project ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -79,62 +79,108 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="GameFramework.Components.Controllers.Enum.PlayerPrefabType">
+            <article class="content wrap" id="_content" data-uid="GameFramework.Components.Interactables.OutlineRenderer">
 
 
 
-
-  <h1 id="GameFramework_Components_Controllers_Enum_PlayerPrefabType" data-uid="GameFramework.Components.Controllers.Enum.PlayerPrefabType" class="text-break">Enum PlayerPrefabType</h1>
-  <div class="markdown level0 summary"><p>Enum for different player controller types available in the game framework.
-Maps to prefabs in the Prefabs/Player folder and determines interaction behavior.</p>
+  <h1 id="GameFramework_Components_Interactables_OutlineRenderer" data-uid="GameFramework.Components.Interactables.OutlineRenderer" class="text-break">Class OutlineRenderer</h1>
+  <div class="markdown level0 summary"><p>Simple outline renderer for interactable objects.
+Uses material swapping for basic outline effect.
+Can be extended with more sophisticated outline methods.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.Components.html">Components</a>.<a class="xref" href="GameFramework.Components.Controllers.html">Controllers</a>.<a class="xref" href="GameFramework.Components.Controllers.Enum.html">Enum</a></h6>
-  <h6><strong>Assembly</strong>: .dll</h6>
-  <h5 id="GameFramework_Components_Controllers_Enum_PlayerPrefabType_syntax">Syntax</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public enum PlayerPrefabType</code></pre>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+    <div class="level1"><span class="xref">OutlineRenderer</span></div>
   </div>
-  <h3 id="fields">Fields
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.Components.html">Components</a>.<a class="xref" href="GameFramework.Components.Interactables.html">Interactables</a></h6>
+  <h6><strong>Assembly</strong>: .dll</h6>
+  <h5 id="GameFramework_Components_Interactables_OutlineRenderer_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Serializable]
+public class OutlineRenderer</code></pre>
+  </div>
+  <h3 id="methods">Methods
 </h3>
+  <a id="GameFramework_Components_Interactables_OutlineRenderer_Cleanup_" data-uid="GameFramework.Components.Interactables.OutlineRenderer.Cleanup*"></a>
+  <h4 id="GameFramework_Components_Interactables_OutlineRenderer_Cleanup" data-uid="GameFramework.Components.Interactables.OutlineRenderer.Cleanup">Cleanup()</h4>
+  <div class="markdown level1 summary"><p>Clean up resources</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Cleanup()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Interactables_OutlineRenderer_HideOutline_" data-uid="GameFramework.Components.Interactables.OutlineRenderer.HideOutline*"></a>
+  <h4 id="GameFramework_Components_Interactables_OutlineRenderer_HideOutline" data-uid="GameFramework.Components.Interactables.OutlineRenderer.HideOutline">HideOutline()</h4>
+  <div class="markdown level1 summary"><p>Hide the outline effect</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void HideOutline()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Interactables_OutlineRenderer_Initialize_" data-uid="GameFramework.Components.Interactables.OutlineRenderer.Initialize*"></a>
+  <h4 id="GameFramework_Components_Interactables_OutlineRenderer_Initialize_Renderer_" data-uid="GameFramework.Components.Interactables.OutlineRenderer.Initialize(Renderer)">Initialize(Renderer)</h4>
+  <div class="markdown level1 summary"><p>Initialize the outline renderer with the target renderer</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Initialize(Renderer targetRenderer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
+        <th>Type</th>
         <th>Name</th>
         <th>Description</th>
       </tr>
-    <thead>
-    </thead></thead><tbody>
+    </thead>
+    <tbody>
       <tr>
-        <td id="GameFramework_Components_Controllers_Enum_PlayerPrefabType_FPS">FPS</td>
-        <td><p>First-person shooter style controller with direct camera control.
-Maps to Player_FPS.prefab
-Uses distance and facing detection for interactions.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="GameFramework_Components_Controllers_Enum_PlayerPrefabType_Isometric">Isometric</td>
-        <td><p>Isometric top-down controller with fixed camera angle.
-Maps to Player_Isometric.prefab
-Uses distance and facing detection for interactions.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="GameFramework_Components_Controllers_Enum_PlayerPrefabType_RTS">RTS</td>
-        <td><p>Real-time strategy style controller with camera control.
-Maps to Player_RTS.prefab
-Uses mouse hover detection for interactions.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="GameFramework_Components_Controllers_Enum_PlayerPrefabType_ThirdPerson">ThirdPerson</td>
-        <td><p>Third-person controller with orbital camera control.
-Maps to Player_3rdPerson.prefab
-Uses distance and facing detection for interactions.</p>
-</td>
+        <td><span class="xref">Renderer</span></td>
+        <td><span class="parametername">targetRenderer</span></td>
+        <td></td>
       </tr>
     </tbody>
   </table>
+  <a id="GameFramework_Components_Interactables_OutlineRenderer_ShowOutline_" data-uid="GameFramework.Components.Interactables.OutlineRenderer.ShowOutline*"></a>
+  <h4 id="GameFramework_Components_Interactables_OutlineRenderer_ShowOutline" data-uid="GameFramework.Components.Interactables.OutlineRenderer.ShowOutline">ShowOutline()</h4>
+  <div class="markdown level1 summary"><p>Show the outline effect</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ShowOutline()</code></pre>
+  </div>
+
 </article>
           </div>
 
