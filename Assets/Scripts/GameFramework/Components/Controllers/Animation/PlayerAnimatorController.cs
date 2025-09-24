@@ -24,6 +24,7 @@ namespace GameFramework.Components.Controllers.Animation
         [SerializeField] private bool _useGroundedParameter = true;
         [SerializeField] private bool _useJumpingParameter = true;
         [SerializeField] private bool _useMovingParameter = true;
+        [SerializeField] private bool _useCrouchingParameter = true;
         #endregion
 
         #region Animation Parameter Hashes
@@ -108,17 +109,20 @@ namespace GameFramework.Components.Controllers.Animation
             UpdateCommonParameters(velocity, speed);
 
             // Update shared animation parameters for both ThirdPerson and Isometric
-            UpdateSharedParameters(velocity, speed);
+            UpdateSharedParameters();
         }
 
         private void UpdateCommonParameters(Vector3 velocity, float speed)
         {
             if (_useSpeedParameter)
             {
-                Debug.Log($"[PlayerAnimatorController] Speed: {speed}, MoveSpeed: {_movementComponent.MoveSpeed}");
-                Debug.Log("velocity: " + velocity);
                 var remappedSpeed = math.remap(0f, _movementComponent.MoveSpeed, 0f, 1f, speed);
                 _animator.SetFloat(SpeedParam, remappedSpeed);
+                
+                if (_enableDebugLogs)
+                {
+                    Debug.Log($"[PlayerAnimatorController] Speed: {speed:F2}, Remapped: {remappedSpeed:F2}");
+                }
             }
             
             if (_useMovingParameter)
@@ -128,38 +132,24 @@ namespace GameFramework.Components.Controllers.Animation
             }
         }
 
-        private void UpdateSharedParameters(Vector3 velocity, float speed)
+        private void UpdateSharedParameters()
         {
-            // Try to get grounded state from ThirdPersonMovement
-            if (_movementComponent is ThirdPersonMovement thirdPersonMovement)
+            // Set grounded state
+            if (_useGroundedParameter)
             {
-                if (_useGroundedParameter)
-                {
-                    _animator.SetBool(IsGroundedParam, thirdPersonMovement.IsGrounded);
-                }
-                
-                if (_useJumpingParameter)
-                {
-                    bool isJumping = !thirdPersonMovement.IsGrounded && velocity.y > 0.1f;
-                    _animator.SetBool(IsJumpingParam, isJumping);
-                }
+                _animator.SetBool(IsGroundedParam, _movementComponent.IsGrounded);
             }
-            // For IsometricMovement, we can try to check if it has ground detection too
-            else if (_movementComponent is IsometricMovement)
+            
+            // Set jumping state
+            if (_useJumpingParameter)
             {
-                // For isometric, we might not have ground detection, so use velocity for jumping
-                if (_useJumpingParameter)
-                {
-                    bool isJumping = velocity.y > 0.1f;
-                    _animator.SetBool(IsJumpingParam, isJumping);
-                }
-                
-                if (_useGroundedParameter)
-                {
-                    // Assume grounded for isometric unless falling
-                    bool isGrounded = velocity.y > -0.1f;
-                    _animator.SetBool(IsGroundedParam, isGrounded);
-                }
+                _animator.SetBool(IsJumpingParam, _movementComponent.IsJumping);
+            }
+            
+            // Set crouching state
+            if (_useCrouchingParameter)
+            {
+                _animator.SetBool(IsCrouchingParam, _movementComponent.IsCrouching);
             }
         }
         #endregion
@@ -173,13 +163,6 @@ namespace GameFramework.Components.Controllers.Animation
             }
         }
 
-        public void SetCrouching(bool isCrouching)
-        {
-            if (_animator != null)
-            {
-                _animator.SetBool(IsCrouchingParam, isCrouching);
-            }
-        }
         #endregion
 
         #region Public Configuration
@@ -210,6 +193,9 @@ namespace GameFramework.Components.Controllers.Animation
                     break;
                 case "moving":
                     _useMovingParameter = enable;
+                    break;
+                case "crouching":
+                    _useCrouchingParameter = enable;
                     break;
             }
         }

@@ -229,7 +229,9 @@ namespace GameFramework.Input
             _inputActions.Player.Pause.performed += _onPauseInput;
             _inputActions.Player.Interact.performed += _onInteractInput;
             _inputActions.Player.Crouch.performed += _onCrouchInput;
+            _inputActions.Player.Crouch.canceled += _onCrouchInput;
             _inputActions.Player.Sprint.performed += _onSprintInput;
+            _inputActions.Player.Sprint.canceled += _onSprintInput;
             _inputActions.Player.Previous.performed += _onPreviousInput;
             _inputActions.Player.Next.performed += _onNextInput;
             _inputActions.Player.Interact.performed += ctx => Debug.Log("Interact Input Received");
@@ -273,9 +275,15 @@ namespace GameFramework.Input
             if (_onInteractInput != null)
                 _inputActions.Player.Interact.performed -= _onInteractInput;
             if (_onCrouchInput != null)
+            {
                 _inputActions.Player.Crouch.performed -= _onCrouchInput;
+                _inputActions.Player.Crouch.canceled -= _onCrouchInput;
+            }
             if (_onSprintInput != null)
+            {
                 _inputActions.Player.Sprint.performed -= _onSprintInput;
+                _inputActions.Player.Sprint.canceled -= _onSprintInput;
+            }
             if (_onPreviousInput != null)
                 _inputActions.Player.Previous.performed -= _onPreviousInput;
             if (_onNextInput != null)

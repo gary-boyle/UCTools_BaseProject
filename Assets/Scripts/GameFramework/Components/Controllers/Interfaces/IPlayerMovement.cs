@@ -64,6 +64,16 @@ namespace GameFramework.Components.Controllers.Interfaces
         /// </summary>
         bool IsGrounded { get; }
 
+        /// <summary>
+        /// Is the player currently crouching
+        /// </summary>
+        bool IsCrouching { get; }
+
+        /// <summary>
+        /// Is the player currently jumping (airborne from jump input)
+        /// </summary>
+        bool IsJumping { get; }
+
         Vector3 CurrentVelocity { get; }
         float MoveSpeed { get;  }
 

@@ -213,14 +213,6 @@ namespace GameFramework.Components.Controllers
             _animatorController?.TriggerAttack();
         }
         
-        /// <summary>
-        /// Set crouching state
-        /// </summary>
-        /// <param name="isCrouching">Whether the player is crouching</param>
-        public void SetCrouching(bool isCrouching)
-        {
-            _animatorController?.SetCrouching(isCrouching);
-        }
         
         /// <summary>
         /// Get access to the animator controller for advanced animation control

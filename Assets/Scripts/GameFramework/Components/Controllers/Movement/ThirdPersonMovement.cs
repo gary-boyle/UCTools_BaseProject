@@ -78,6 +78,8 @@ namespace GameFramework.Components.Controllers.Movement
         public Transform MovementTransform => transform;
         public Vector3 CurrentVelocity => _rigidbody != null ? _rigidbody.linearVelocity : Vector3.zero;
         public bool IsGrounded => _isGrounded;
+        public bool IsCrouching => _isCrouching;
+        public bool IsJumping => !_isGrounded && _rigidbody != null && _rigidbody.linearVelocity.y > 0.1f;
         public float CurrentYaw => _currentYaw;
         public CharacterRotationMode RotationMode => _rotationSettings.rotationMode;
         public bool IsUsingMouseRotation => _isUsingMouseRotation;
@@ -169,14 +171,20 @@ namespace GameFramework.Components.Controllers.Movement
         {
             if (!_isInitialized || IsPaused) return;
             
-            _isSprinting = inputEvent.Phase == InputActionPhase.Performed;
+            if (inputEvent.Phase == InputActionPhase.Performed)
+                _isSprinting = true;
+            else if (inputEvent.Phase == InputActionPhase.Canceled)
+                _isSprinting = false;
         }
 
         public void HandleCrouchInput(PlayerCrouchInputEvent inputEvent)
         {
             if (!_isInitialized || IsPaused) return;
             
-            _isCrouching = inputEvent.Phase == InputActionPhase.Performed;
+            if (inputEvent.Phase == InputActionPhase.Performed)
+                _isCrouching = true;
+            else if (inputEvent.Phase == InputActionPhase.Canceled)
+                _isCrouching = false;
         }
         
         public void HandleLookInput(PlayerLookInputEvent inputEvent)
@@ -196,7 +204,7 @@ namespace GameFramework.Components.Controllers.Movement
         public void UpdateMovement()
         {
             if (!_isInitialized || IsPaused) return;
-            
+            Debug.Log("crouching" + _isCrouching);
             CheckGrounded();
             HandleCrouchTransition();
             UpdateRotation();
@@ -435,9 +443,6 @@ namespace GameFramework.Components.Controllers.Movement
                     Debug.Log($"[ThirdPersonMovement] Tank rotation: {rotationInput:F1}°/s (A/D keys)");
                 }
             }
-            // Note: With simplified character-relative movement, we don't need
-            // to auto-rotate to face movement direction since A/D now moves
-            // left/right relative to where the character is facing
         }
         
         private void HandleHybridRotation()

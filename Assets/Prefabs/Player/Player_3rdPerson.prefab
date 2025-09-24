@@ -868,7 +868,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameFramework.Components.Controllers.Movement.ThirdPersonMovement
   _moveSpeed: 2.5
   _sprintMultiplier: 2
-  _crouchMultiplier: 0.5
+  _crouchMultiplier: 0.4
   _jumpForce: 5
   _airControl: 0.3
   _rotationSettings:
@@ -923,12 +923,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameFramework.Components.Controllers.Animation.PlayerAnimatorController
   _animator: {fileID: 43160466296213697}
-  _controllerType: 1
   _enableDebugLogs: 1
   _useSpeedParameter: 1
-  _useGroundedParameter: 0
-  _useJumpingParameter: 0
+  _useGroundedParameter: 1
+  _useJumpingParameter: 1
   _useMovingParameter: 1
+  _useCrouchingParameter: 1
 --- !u!54 &3421404348651573308
 Rigidbody:
   m_ObjectHideFlags: 0

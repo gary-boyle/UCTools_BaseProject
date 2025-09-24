@@ -60,6 +60,8 @@ namespace GameFramework.Components.Controllers.Movement
         public Transform MovementTransform => transform;
         public Vector3 CurrentVelocity => _currentVelocity;
         public bool IsGrounded => _isGrounded;
+        public bool IsCrouching => _isCrouching;
+        public bool IsJumping => _rigidbody != null && _rigidbody.linearVelocity.y > 0.1f;
         public bool Use45DegreeOffset => _use45DegreeOffset;
         public float MoveSpeed => _moveSpeed;
         
@@ -129,14 +131,20 @@ namespace GameFramework.Components.Controllers.Movement
         {
             if (!_isInitialized || IsPaused) return;
             
-            _isSprinting = inputEvent.Phase == InputActionPhase.Performed;
+            if (inputEvent.Phase == InputActionPhase.Performed)
+                _isSprinting = true;
+            else if (inputEvent.Phase == InputActionPhase.Canceled)
+                _isSprinting = false;
         }
 
         public void HandleCrouchInput(PlayerCrouchInputEvent inputEvent)
         {
             if (!_isInitialized || IsPaused) return;
             
-            _isCrouching = inputEvent.Phase == InputActionPhase.Performed;
+            if (inputEvent.Phase == InputActionPhase.Performed)
+                _isCrouching = true;
+            else if (inputEvent.Phase == InputActionPhase.Canceled)
+                _isCrouching = false;
         }
 
         public void UpdateMovement()
