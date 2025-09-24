@@ -24,6 +24,7 @@
     height: 90%;
     align-self: center;
     justify-content: center;
+    display: none;
 }
 
 .ui-container {
@@ -619,6 +620,7 @@
     padding: 24px;
     picking-mode: Ignore;
     z-index: 1000;
+    display: none;
 }
 
 .debug-text {

@@ -21,11 +21,11 @@
     <engine:Instance template="UI_NewGameMenuWindow" name="UI_NewGameScreen" class="ui-screen" />
     <engine:Instance template="UI_CreditsScreen" name="UI_CreditScreen" class="ui-screen" />
     <engine:Instance template="UI_GameOverScreen" name="UI_GameOverScreen" class="ui-screen" />
-    <engine:Instance template="UI_PausedWindow" name="UI_PausePopup" class="ui-popup" style="flex-grow: 1; justify-content: center; display: flex;" />
+    <engine:Instance template="UI_PausedWindow" name="UI_PausePopup" class="ui-popup" style="flex-grow: 1; justify-content: center;" />
     <engine:Instance template="UI_VictoryScreen" name="UI_VictoryScreen" class="ui-screen" />
     <engine:Instance template="UI_QuitScreen" name="UI_QuitScreen" class="ui-screen" />
-    <engine:Instance template="UI_LoadGamePopup" name="UI_LoadGamePopup" class="ui-popup" style="flex-grow: 1; justify-content: center; display: flex;" />
-    <engine:Instance template="UI_SaveGamePopup" name="UI_SaveGamePopup" class="ui-popup" style="flex-grow: 1; display: flex;" />
+    <engine:Instance template="UI_LoadGamePopup" name="UI_LoadGamePopup" class="ui-popup" style="flex-grow: 1; justify-content: center;" />
+    <engine:Instance template="UI_SaveGamePopup" name="UI_SaveGamePopup" class="ui-popup" style="flex-grow: 1;" />
     <engine:Instance template="UI_OptionsPopup" name="UI_OptionsPopup" class="ui-popup" />
     <engine:Instance template="UI_DebugScreen" name="UI_DebugPopup" picking-mode="Ignore" class="debug-overlay" />
 </engine:UXML>
