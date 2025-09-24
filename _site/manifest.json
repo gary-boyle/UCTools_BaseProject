@@ -180,6 +180,34 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Components.Controllers.Animation.PlayerAnimatorController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Components.Controllers.Animation.PlayerAnimatorController.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Components.Controllers.Animation.PlayerAnimatorController",
+      "Summary": "<p sourcefile=\"api/GameFramework.Components.Controllers.Animation.PlayerAnimatorController.yml\" sourcestartlinenumber=\"1\">Unified animator controller that handles animation state updates for different player controller types.\nSupports both ThirdPerson and Isometric controllers with shared and controller-specific parameters.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Components.Controllers.Animation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Components.Controllers.Animation.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Components.Controllers.Animation",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFramework.Components.Controllers.BasePlayerController.yml",
       "output": {
         ".html": {
@@ -555,20 +583,6 @@
       "IsMRef": true,
       "Title": "GameFramework.Components.Interactables.ExampleInteractable",
       "Summary": "<p sourcefile=\"api/GameFramework.Components.Interactables.ExampleInteractable.yml\" sourcestartlinenumber=\"1\">Example interactable object for testing the interaction system.\nDemonstrates basic interaction counting and debug output.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFramework.Components.Interactables.InteractionDebugger.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/api/GameFramework.Components.Interactables.InteractionDebugger.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFramework.Components.Interactables.InteractionDebugger",
-      "Summary": "<p sourcefile=\"api/GameFramework.Components.Interactables.InteractionDebugger.yml\" sourcestartlinenumber=\"1\">Temporary debugging helper for interaction system.\nAttach to player controller to debug interaction issues.</p>\n"
     },
     {
       "type": "ManagedReference",

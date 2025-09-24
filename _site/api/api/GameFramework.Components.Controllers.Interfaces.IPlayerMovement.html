@@ -96,6 +96,53 @@ Allows composition of different movement styles without inheritance.</p>
   </div>
   <h3 id="properties">Properties
 </h3>
+  <a id="GameFramework_Components_Controllers_Interfaces_IPlayerMovement_CurrentVelocity_" data-uid="GameFramework.Components.Controllers.Interfaces.IPlayerMovement.CurrentVelocity*"></a>
+  <h4 id="GameFramework_Components_Controllers_Interfaces_IPlayerMovement_CurrentVelocity" data-uid="GameFramework.Components.Controllers.Interfaces.IPlayerMovement.CurrentVelocity">CurrentVelocity</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Vector3 CurrentVelocity { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector3</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Components_Controllers_Interfaces_IPlayerMovement_IsCrouching_" data-uid="GameFramework.Components.Controllers.Interfaces.IPlayerMovement.IsCrouching*"></a>
+  <h4 id="GameFramework_Components_Controllers_Interfaces_IPlayerMovement_IsCrouching" data-uid="GameFramework.Components.Controllers.Interfaces.IPlayerMovement.IsCrouching">IsCrouching</h4>
+  <div class="markdown level1 summary"><p>Is the player currently crouching</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool IsCrouching { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <a id="GameFramework_Components_Controllers_Interfaces_IPlayerMovement_IsGrounded_" data-uid="GameFramework.Components.Controllers.Interfaces.IPlayerMovement.IsGrounded*"></a>
   <h4 id="GameFramework_Components_Controllers_Interfaces_IPlayerMovement_IsGrounded" data-uid="GameFramework.Components.Controllers.Interfaces.IPlayerMovement.IsGrounded">IsGrounded</h4>
   <div class="markdown level1 summary"><p>Is the player currently grounded (if applicable)</p>
@@ -104,6 +151,30 @@ Allows composition of different movement styles without inheritance.</p>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">bool IsGrounded { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Components_Controllers_Interfaces_IPlayerMovement_IsJumping_" data-uid="GameFramework.Components.Controllers.Interfaces.IPlayerMovement.IsJumping*"></a>
+  <h4 id="GameFramework_Components_Controllers_Interfaces_IPlayerMovement_IsJumping" data-uid="GameFramework.Components.Controllers.Interfaces.IPlayerMovement.IsJumping">IsJumping</h4>
+  <div class="markdown level1 summary"><p>Is the player currently jumping (airborne from jump input)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool IsJumping { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
@@ -140,6 +211,29 @@ Allows composition of different movement styles without inheritance.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Components_Controllers_Interfaces_IPlayerMovement_MoveSpeed_" data-uid="GameFramework.Components.Controllers.Interfaces.IPlayerMovement.MoveSpeed*"></a>
+  <h4 id="GameFramework_Components_Controllers_Interfaces_IPlayerMovement_MoveSpeed" data-uid="GameFramework.Components.Controllers.Interfaces.IPlayerMovement.MoveSpeed">MoveSpeed</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">float MoveSpeed { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
         <td></td>
       </tr>
     </tbody>

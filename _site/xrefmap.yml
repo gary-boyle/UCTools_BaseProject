@@ -781,6 +781,105 @@ references:
   commentId: N:GameFramework.Components.Controllers
   fullName: GameFramework.Components.Controllers
   nameWithType: GameFramework.Components.Controllers
+- uid: GameFramework.Components.Controllers.Animation
+  name: GameFramework.Components.Controllers.Animation
+  href: api/api/GameFramework.Components.Controllers.Animation.html
+  commentId: N:GameFramework.Components.Controllers.Animation
+  fullName: GameFramework.Components.Controllers.Animation
+  nameWithType: GameFramework.Components.Controllers.Animation
+- uid: GameFramework.Components.Controllers.Animation.PlayerAnimatorController
+  name: PlayerAnimatorController
+  href: api/api/GameFramework.Components.Controllers.Animation.PlayerAnimatorController.html
+  commentId: T:GameFramework.Components.Controllers.Animation.PlayerAnimatorController
+  fullName: GameFramework.Components.Controllers.Animation.PlayerAnimatorController
+  nameWithType: PlayerAnimatorController
+- uid: GameFramework.Components.Controllers.Animation.PlayerAnimatorController.EnableParameter(System.String,System.Boolean)
+  name: EnableParameter(string, bool)
+  href: api/api/GameFramework.Components.Controllers.Animation.PlayerAnimatorController.html#GameFramework_Components_Controllers_Animation_PlayerAnimatorController_EnableParameter_System_String_System_Boolean_
+  commentId: M:GameFramework.Components.Controllers.Animation.PlayerAnimatorController.EnableParameter(System.String,System.Boolean)
+  name.vb: EnableParameter(String, Boolean)
+  fullName: GameFramework.Components.Controllers.Animation.PlayerAnimatorController.EnableParameter(string, bool)
+  fullName.vb: GameFramework.Components.Controllers.Animation.PlayerAnimatorController.EnableParameter(String, Boolean)
+  nameWithType: PlayerAnimatorController.EnableParameter(string, bool)
+  nameWithType.vb: PlayerAnimatorController.EnableParameter(String, Boolean)
+- uid: GameFramework.Components.Controllers.Animation.PlayerAnimatorController.EnableParameter*
+  name: EnableParameter
+  href: api/api/GameFramework.Components.Controllers.Animation.PlayerAnimatorController.html#GameFramework_Components_Controllers_Animation_PlayerAnimatorController_EnableParameter_
+  commentId: Overload:GameFramework.Components.Controllers.Animation.PlayerAnimatorController.EnableParameter
+  isSpec: "True"
+  fullName: GameFramework.Components.Controllers.Animation.PlayerAnimatorController.EnableParameter
+  nameWithType: PlayerAnimatorController.EnableParameter
+- uid: GameFramework.Components.Controllers.Animation.PlayerAnimatorController.Initialize
+  name: Initialize()
+  href: api/api/GameFramework.Components.Controllers.Animation.PlayerAnimatorController.html#GameFramework_Components_Controllers_Animation_PlayerAnimatorController_Initialize
+  commentId: M:GameFramework.Components.Controllers.Animation.PlayerAnimatorController.Initialize
+  fullName: GameFramework.Components.Controllers.Animation.PlayerAnimatorController.Initialize()
+  nameWithType: PlayerAnimatorController.Initialize()
+- uid: GameFramework.Components.Controllers.Animation.PlayerAnimatorController.Initialize(GameFramework.Components.Controllers.Enum.PlayerPrefabType,GameFramework.Components.Controllers.Interfaces.IPlayerMovement,Animator)
+  name: Initialize(PlayerPrefabType, IPlayerMovement, Animator)
+  href: api/api/GameFramework.Components.Controllers.Animation.PlayerAnimatorController.html#GameFramework_Components_Controllers_Animation_PlayerAnimatorController_Initialize_GameFramework_Components_Controllers_Enum_PlayerPrefabType_GameFramework_Components_Controllers_Interfaces_IPlayerMovement_Animator_
+  commentId: M:GameFramework.Components.Controllers.Animation.PlayerAnimatorController.Initialize(GameFramework.Components.Controllers.Enum.PlayerPrefabType,GameFramework.Components.Controllers.Interfaces.IPlayerMovement,Animator)
+  fullName: GameFramework.Components.Controllers.Animation.PlayerAnimatorController.Initialize(GameFramework.Components.Controllers.Enum.PlayerPrefabType, GameFramework.Components.Controllers.Interfaces.IPlayerMovement, Animator)
+  nameWithType: PlayerAnimatorController.Initialize(PlayerPrefabType, IPlayerMovement, Animator)
+- uid: GameFramework.Components.Controllers.Animation.PlayerAnimatorController.Initialize*
+  name: Initialize
+  href: api/api/GameFramework.Components.Controllers.Animation.PlayerAnimatorController.html#GameFramework_Components_Controllers_Animation_PlayerAnimatorController_Initialize_
+  commentId: Overload:GameFramework.Components.Controllers.Animation.PlayerAnimatorController.Initialize
+  isSpec: "True"
+  fullName: GameFramework.Components.Controllers.Animation.PlayerAnimatorController.Initialize
+  nameWithType: PlayerAnimatorController.Initialize
+- uid: GameFramework.Components.Controllers.Animation.PlayerAnimatorController.SetAnimator(Animator)
+  name: SetAnimator(Animator)
+  href: api/api/GameFramework.Components.Controllers.Animation.PlayerAnimatorController.html#GameFramework_Components_Controllers_Animation_PlayerAnimatorController_SetAnimator_Animator_
+  commentId: M:GameFramework.Components.Controllers.Animation.PlayerAnimatorController.SetAnimator(Animator)
+  fullName: GameFramework.Components.Controllers.Animation.PlayerAnimatorController.SetAnimator(Animator)
+  nameWithType: PlayerAnimatorController.SetAnimator(Animator)
+- uid: GameFramework.Components.Controllers.Animation.PlayerAnimatorController.SetAnimator*
+  name: SetAnimator
+  href: api/api/GameFramework.Components.Controllers.Animation.PlayerAnimatorController.html#GameFramework_Components_Controllers_Animation_PlayerAnimatorController_SetAnimator_
+  commentId: Overload:GameFramework.Components.Controllers.Animation.PlayerAnimatorController.SetAnimator
+  isSpec: "True"
+  fullName: GameFramework.Components.Controllers.Animation.PlayerAnimatorController.SetAnimator
+  nameWithType: PlayerAnimatorController.SetAnimator
+- uid: GameFramework.Components.Controllers.Animation.PlayerAnimatorController.SetMovementComponent(GameFramework.Components.Controllers.Interfaces.IPlayerMovement)
+  name: SetMovementComponent(IPlayerMovement)
+  href: api/api/GameFramework.Components.Controllers.Animation.PlayerAnimatorController.html#GameFramework_Components_Controllers_Animation_PlayerAnimatorController_SetMovementComponent_GameFramework_Components_Controllers_Interfaces_IPlayerMovement_
+  commentId: M:GameFramework.Components.Controllers.Animation.PlayerAnimatorController.SetMovementComponent(GameFramework.Components.Controllers.Interfaces.IPlayerMovement)
+  fullName: GameFramework.Components.Controllers.Animation.PlayerAnimatorController.SetMovementComponent(GameFramework.Components.Controllers.Interfaces.IPlayerMovement)
+  nameWithType: PlayerAnimatorController.SetMovementComponent(IPlayerMovement)
+- uid: GameFramework.Components.Controllers.Animation.PlayerAnimatorController.SetMovementComponent*
+  name: SetMovementComponent
+  href: api/api/GameFramework.Components.Controllers.Animation.PlayerAnimatorController.html#GameFramework_Components_Controllers_Animation_PlayerAnimatorController_SetMovementComponent_
+  commentId: Overload:GameFramework.Components.Controllers.Animation.PlayerAnimatorController.SetMovementComponent
+  isSpec: "True"
+  fullName: GameFramework.Components.Controllers.Animation.PlayerAnimatorController.SetMovementComponent
+  nameWithType: PlayerAnimatorController.SetMovementComponent
+- uid: GameFramework.Components.Controllers.Animation.PlayerAnimatorController.TriggerAttack
+  name: TriggerAttack()
+  href: api/api/GameFramework.Components.Controllers.Animation.PlayerAnimatorController.html#GameFramework_Components_Controllers_Animation_PlayerAnimatorController_TriggerAttack
+  commentId: M:GameFramework.Components.Controllers.Animation.PlayerAnimatorController.TriggerAttack
+  fullName: GameFramework.Components.Controllers.Animation.PlayerAnimatorController.TriggerAttack()
+  nameWithType: PlayerAnimatorController.TriggerAttack()
+- uid: GameFramework.Components.Controllers.Animation.PlayerAnimatorController.TriggerAttack*
+  name: TriggerAttack
+  href: api/api/GameFramework.Components.Controllers.Animation.PlayerAnimatorController.html#GameFramework_Components_Controllers_Animation_PlayerAnimatorController_TriggerAttack_
+  commentId: Overload:GameFramework.Components.Controllers.Animation.PlayerAnimatorController.TriggerAttack
+  isSpec: "True"
+  fullName: GameFramework.Components.Controllers.Animation.PlayerAnimatorController.TriggerAttack
+  nameWithType: PlayerAnimatorController.TriggerAttack
+- uid: GameFramework.Components.Controllers.Animation.PlayerAnimatorController.UpdateAnimations
+  name: UpdateAnimations()
+  href: api/api/GameFramework.Components.Controllers.Animation.PlayerAnimatorController.html#GameFramework_Components_Controllers_Animation_PlayerAnimatorController_UpdateAnimations
+  commentId: M:GameFramework.Components.Controllers.Animation.PlayerAnimatorController.UpdateAnimations
+  fullName: GameFramework.Components.Controllers.Animation.PlayerAnimatorController.UpdateAnimations()
+  nameWithType: PlayerAnimatorController.UpdateAnimations()
+- uid: GameFramework.Components.Controllers.Animation.PlayerAnimatorController.UpdateAnimations*
+  name: UpdateAnimations
+  href: api/api/GameFramework.Components.Controllers.Animation.PlayerAnimatorController.html#GameFramework_Components_Controllers_Animation_PlayerAnimatorController_UpdateAnimations_
+  commentId: Overload:GameFramework.Components.Controllers.Animation.PlayerAnimatorController.UpdateAnimations
+  isSpec: "True"
+  fullName: GameFramework.Components.Controllers.Animation.PlayerAnimatorController.UpdateAnimations
+  nameWithType: PlayerAnimatorController.UpdateAnimations
 - uid: GameFramework.Components.Controllers.BasePlayerController
   name: BasePlayerController
   href: api/api/GameFramework.Components.Controllers.BasePlayerController.html
@@ -2178,6 +2277,19 @@ references:
   isSpec: "True"
   fullName: GameFramework.Components.Controllers.Interfaces.IPlayerMovement.Cleanup
   nameWithType: IPlayerMovement.Cleanup
+- uid: GameFramework.Components.Controllers.Interfaces.IPlayerMovement.CurrentVelocity
+  name: CurrentVelocity
+  href: api/api/GameFramework.Components.Controllers.Interfaces.IPlayerMovement.html#GameFramework_Components_Controllers_Interfaces_IPlayerMovement_CurrentVelocity
+  commentId: P:GameFramework.Components.Controllers.Interfaces.IPlayerMovement.CurrentVelocity
+  fullName: GameFramework.Components.Controllers.Interfaces.IPlayerMovement.CurrentVelocity
+  nameWithType: IPlayerMovement.CurrentVelocity
+- uid: GameFramework.Components.Controllers.Interfaces.IPlayerMovement.CurrentVelocity*
+  name: CurrentVelocity
+  href: api/api/GameFramework.Components.Controllers.Interfaces.IPlayerMovement.html#GameFramework_Components_Controllers_Interfaces_IPlayerMovement_CurrentVelocity_
+  commentId: Overload:GameFramework.Components.Controllers.Interfaces.IPlayerMovement.CurrentVelocity
+  isSpec: "True"
+  fullName: GameFramework.Components.Controllers.Interfaces.IPlayerMovement.CurrentVelocity
+  nameWithType: IPlayerMovement.CurrentVelocity
 - uid: GameFramework.Components.Controllers.Interfaces.IPlayerMovement.FixedUpdateMovement
   name: FixedUpdateMovement()
   href: api/api/GameFramework.Components.Controllers.Interfaces.IPlayerMovement.html#GameFramework_Components_Controllers_Interfaces_IPlayerMovement_FixedUpdateMovement
@@ -2256,6 +2368,19 @@ references:
   isSpec: "True"
   fullName: GameFramework.Components.Controllers.Interfaces.IPlayerMovement.Initialize
   nameWithType: IPlayerMovement.Initialize
+- uid: GameFramework.Components.Controllers.Interfaces.IPlayerMovement.IsCrouching
+  name: IsCrouching
+  href: api/api/GameFramework.Components.Controllers.Interfaces.IPlayerMovement.html#GameFramework_Components_Controllers_Interfaces_IPlayerMovement_IsCrouching
+  commentId: P:GameFramework.Components.Controllers.Interfaces.IPlayerMovement.IsCrouching
+  fullName: GameFramework.Components.Controllers.Interfaces.IPlayerMovement.IsCrouching
+  nameWithType: IPlayerMovement.IsCrouching
+- uid: GameFramework.Components.Controllers.Interfaces.IPlayerMovement.IsCrouching*
+  name: IsCrouching
+  href: api/api/GameFramework.Components.Controllers.Interfaces.IPlayerMovement.html#GameFramework_Components_Controllers_Interfaces_IPlayerMovement_IsCrouching_
+  commentId: Overload:GameFramework.Components.Controllers.Interfaces.IPlayerMovement.IsCrouching
+  isSpec: "True"
+  fullName: GameFramework.Components.Controllers.Interfaces.IPlayerMovement.IsCrouching
+  nameWithType: IPlayerMovement.IsCrouching
 - uid: GameFramework.Components.Controllers.Interfaces.IPlayerMovement.IsGrounded
   name: IsGrounded
   href: api/api/GameFramework.Components.Controllers.Interfaces.IPlayerMovement.html#GameFramework_Components_Controllers_Interfaces_IPlayerMovement_IsGrounded
@@ -2269,6 +2394,19 @@ references:
   isSpec: "True"
   fullName: GameFramework.Components.Controllers.Interfaces.IPlayerMovement.IsGrounded
   nameWithType: IPlayerMovement.IsGrounded
+- uid: GameFramework.Components.Controllers.Interfaces.IPlayerMovement.IsJumping
+  name: IsJumping
+  href: api/api/GameFramework.Components.Controllers.Interfaces.IPlayerMovement.html#GameFramework_Components_Controllers_Interfaces_IPlayerMovement_IsJumping
+  commentId: P:GameFramework.Components.Controllers.Interfaces.IPlayerMovement.IsJumping
+  fullName: GameFramework.Components.Controllers.Interfaces.IPlayerMovement.IsJumping
+  nameWithType: IPlayerMovement.IsJumping
+- uid: GameFramework.Components.Controllers.Interfaces.IPlayerMovement.IsJumping*
+  name: IsJumping
+  href: api/api/GameFramework.Components.Controllers.Interfaces.IPlayerMovement.html#GameFramework_Components_Controllers_Interfaces_IPlayerMovement_IsJumping_
+  commentId: Overload:GameFramework.Components.Controllers.Interfaces.IPlayerMovement.IsJumping
+  isSpec: "True"
+  fullName: GameFramework.Components.Controllers.Interfaces.IPlayerMovement.IsJumping
+  nameWithType: IPlayerMovement.IsJumping
 - uid: GameFramework.Components.Controllers.Interfaces.IPlayerMovement.IsPaused
   name: IsPaused
   href: api/api/GameFramework.Components.Controllers.Interfaces.IPlayerMovement.html#GameFramework_Components_Controllers_Interfaces_IPlayerMovement_IsPaused
@@ -2282,6 +2420,19 @@ references:
   isSpec: "True"
   fullName: GameFramework.Components.Controllers.Interfaces.IPlayerMovement.IsPaused
   nameWithType: IPlayerMovement.IsPaused
+- uid: GameFramework.Components.Controllers.Interfaces.IPlayerMovement.MoveSpeed
+  name: MoveSpeed
+  href: api/api/GameFramework.Components.Controllers.Interfaces.IPlayerMovement.html#GameFramework_Components_Controllers_Interfaces_IPlayerMovement_MoveSpeed
+  commentId: P:GameFramework.Components.Controllers.Interfaces.IPlayerMovement.MoveSpeed
+  fullName: GameFramework.Components.Controllers.Interfaces.IPlayerMovement.MoveSpeed
+  nameWithType: IPlayerMovement.MoveSpeed
+- uid: GameFramework.Components.Controllers.Interfaces.IPlayerMovement.MoveSpeed*
+  name: MoveSpeed
+  href: api/api/GameFramework.Components.Controllers.Interfaces.IPlayerMovement.html#GameFramework_Components_Controllers_Interfaces_IPlayerMovement_MoveSpeed_
+  commentId: Overload:GameFramework.Components.Controllers.Interfaces.IPlayerMovement.MoveSpeed
+  isSpec: "True"
+  fullName: GameFramework.Components.Controllers.Interfaces.IPlayerMovement.MoveSpeed
+  nameWithType: IPlayerMovement.MoveSpeed
 - uid: GameFramework.Components.Controllers.Interfaces.IPlayerMovement.StopMovement
   name: StopMovement()
   href: api/api/GameFramework.Components.Controllers.Interfaces.IPlayerMovement.html#GameFramework_Components_Controllers_Interfaces_IPlayerMovement_StopMovement
@@ -2314,6 +2465,19 @@ references:
   commentId: T:GameFramework.Components.Controllers.IsometricController
   fullName: GameFramework.Components.Controllers.IsometricController
   nameWithType: IsometricController
+- uid: GameFramework.Components.Controllers.IsometricController.AnimatorController
+  name: AnimatorController
+  href: api/api/GameFramework.Components.Controllers.IsometricController.html#GameFramework_Components_Controllers_IsometricController_AnimatorController
+  commentId: P:GameFramework.Components.Controllers.IsometricController.AnimatorController
+  fullName: GameFramework.Components.Controllers.IsometricController.AnimatorController
+  nameWithType: IsometricController.AnimatorController
+- uid: GameFramework.Components.Controllers.IsometricController.AnimatorController*
+  name: AnimatorController
+  href: api/api/GameFramework.Components.Controllers.IsometricController.html#GameFramework_Components_Controllers_IsometricController_AnimatorController_
+  commentId: Overload:GameFramework.Components.Controllers.IsometricController.AnimatorController
+  isSpec: "True"
+  fullName: GameFramework.Components.Controllers.IsometricController.AnimatorController
+  nameWithType: IsometricController.AnimatorController
 - uid: GameFramework.Components.Controllers.IsometricController.Awake
   name: Awake()
   href: api/api/GameFramework.Components.Controllers.IsometricController.html#GameFramework_Components_Controllers_IsometricController_Awake
@@ -2379,6 +2543,19 @@ references:
   isSpec: "True"
   fullName: GameFramework.Components.Controllers.IsometricController.OnPlayerMoveInput
   nameWithType: IsometricController.OnPlayerMoveInput
+- uid: GameFramework.Components.Controllers.IsometricController.TriggerAttack
+  name: TriggerAttack()
+  href: api/api/GameFramework.Components.Controllers.IsometricController.html#GameFramework_Components_Controllers_IsometricController_TriggerAttack
+  commentId: M:GameFramework.Components.Controllers.IsometricController.TriggerAttack
+  fullName: GameFramework.Components.Controllers.IsometricController.TriggerAttack()
+  nameWithType: IsometricController.TriggerAttack()
+- uid: GameFramework.Components.Controllers.IsometricController.TriggerAttack*
+  name: TriggerAttack
+  href: api/api/GameFramework.Components.Controllers.IsometricController.html#GameFramework_Components_Controllers_IsometricController_TriggerAttack_
+  commentId: Overload:GameFramework.Components.Controllers.IsometricController.TriggerAttack
+  isSpec: "True"
+  fullName: GameFramework.Components.Controllers.IsometricController.TriggerAttack
+  nameWithType: IsometricController.TriggerAttack
 - uid: GameFramework.Components.Controllers.IsometricController.Update
   name: Update()
   href: api/api/GameFramework.Components.Controllers.IsometricController.html#GameFramework_Components_Controllers_IsometricController_Update
@@ -2417,6 +2594,19 @@ references:
   isSpec: "True"
   fullName: GameFramework.Components.Controllers.Movement.FirstPersonMovement.Cleanup
   nameWithType: FirstPersonMovement.Cleanup
+- uid: GameFramework.Components.Controllers.Movement.FirstPersonMovement.CurrentVelocity
+  name: CurrentVelocity
+  href: api/api/GameFramework.Components.Controllers.Movement.FirstPersonMovement.html#GameFramework_Components_Controllers_Movement_FirstPersonMovement_CurrentVelocity
+  commentId: P:GameFramework.Components.Controllers.Movement.FirstPersonMovement.CurrentVelocity
+  fullName: GameFramework.Components.Controllers.Movement.FirstPersonMovement.CurrentVelocity
+  nameWithType: FirstPersonMovement.CurrentVelocity
+- uid: GameFramework.Components.Controllers.Movement.FirstPersonMovement.CurrentVelocity*
+  name: CurrentVelocity
+  href: api/api/GameFramework.Components.Controllers.Movement.FirstPersonMovement.html#GameFramework_Components_Controllers_Movement_FirstPersonMovement_CurrentVelocity_
+  commentId: Overload:GameFramework.Components.Controllers.Movement.FirstPersonMovement.CurrentVelocity
+  isSpec: "True"
+  fullName: GameFramework.Components.Controllers.Movement.FirstPersonMovement.CurrentVelocity
+  nameWithType: FirstPersonMovement.CurrentVelocity
 - uid: GameFramework.Components.Controllers.Movement.FirstPersonMovement.FixedUpdateMovement
   name: FixedUpdateMovement()
   href: api/api/GameFramework.Components.Controllers.Movement.FirstPersonMovement.html#GameFramework_Components_Controllers_Movement_FirstPersonMovement_FixedUpdateMovement
@@ -2495,6 +2685,19 @@ references:
   isSpec: "True"
   fullName: GameFramework.Components.Controllers.Movement.FirstPersonMovement.Initialize
   nameWithType: FirstPersonMovement.Initialize
+- uid: GameFramework.Components.Controllers.Movement.FirstPersonMovement.IsCrouching
+  name: IsCrouching
+  href: api/api/GameFramework.Components.Controllers.Movement.FirstPersonMovement.html#GameFramework_Components_Controllers_Movement_FirstPersonMovement_IsCrouching
+  commentId: P:GameFramework.Components.Controllers.Movement.FirstPersonMovement.IsCrouching
+  fullName: GameFramework.Components.Controllers.Movement.FirstPersonMovement.IsCrouching
+  nameWithType: FirstPersonMovement.IsCrouching
+- uid: GameFramework.Components.Controllers.Movement.FirstPersonMovement.IsCrouching*
+  name: IsCrouching
+  href: api/api/GameFramework.Components.Controllers.Movement.FirstPersonMovement.html#GameFramework_Components_Controllers_Movement_FirstPersonMovement_IsCrouching_
+  commentId: Overload:GameFramework.Components.Controllers.Movement.FirstPersonMovement.IsCrouching
+  isSpec: "True"
+  fullName: GameFramework.Components.Controllers.Movement.FirstPersonMovement.IsCrouching
+  nameWithType: FirstPersonMovement.IsCrouching
 - uid: GameFramework.Components.Controllers.Movement.FirstPersonMovement.IsGrounded
   name: IsGrounded
   href: api/api/GameFramework.Components.Controllers.Movement.FirstPersonMovement.html#GameFramework_Components_Controllers_Movement_FirstPersonMovement_IsGrounded
@@ -2508,6 +2711,19 @@ references:
   isSpec: "True"
   fullName: GameFramework.Components.Controllers.Movement.FirstPersonMovement.IsGrounded
   nameWithType: FirstPersonMovement.IsGrounded
+- uid: GameFramework.Components.Controllers.Movement.FirstPersonMovement.IsJumping
+  name: IsJumping
+  href: api/api/GameFramework.Components.Controllers.Movement.FirstPersonMovement.html#GameFramework_Components_Controllers_Movement_FirstPersonMovement_IsJumping
+  commentId: P:GameFramework.Components.Controllers.Movement.FirstPersonMovement.IsJumping
+  fullName: GameFramework.Components.Controllers.Movement.FirstPersonMovement.IsJumping
+  nameWithType: FirstPersonMovement.IsJumping
+- uid: GameFramework.Components.Controllers.Movement.FirstPersonMovement.IsJumping*
+  name: IsJumping
+  href: api/api/GameFramework.Components.Controllers.Movement.FirstPersonMovement.html#GameFramework_Components_Controllers_Movement_FirstPersonMovement_IsJumping_
+  commentId: Overload:GameFramework.Components.Controllers.Movement.FirstPersonMovement.IsJumping
+  isSpec: "True"
+  fullName: GameFramework.Components.Controllers.Movement.FirstPersonMovement.IsJumping
+  nameWithType: FirstPersonMovement.IsJumping
 - uid: GameFramework.Components.Controllers.Movement.FirstPersonMovement.IsPaused
   name: IsPaused
   href: api/api/GameFramework.Components.Controllers.Movement.FirstPersonMovement.html#GameFramework_Components_Controllers_Movement_FirstPersonMovement_IsPaused
@@ -2521,6 +2737,19 @@ references:
   isSpec: "True"
   fullName: GameFramework.Components.Controllers.Movement.FirstPersonMovement.IsPaused
   nameWithType: FirstPersonMovement.IsPaused
+- uid: GameFramework.Components.Controllers.Movement.FirstPersonMovement.MoveSpeed
+  name: MoveSpeed
+  href: api/api/GameFramework.Components.Controllers.Movement.FirstPersonMovement.html#GameFramework_Components_Controllers_Movement_FirstPersonMovement_MoveSpeed
+  commentId: P:GameFramework.Components.Controllers.Movement.FirstPersonMovement.MoveSpeed
+  fullName: GameFramework.Components.Controllers.Movement.FirstPersonMovement.MoveSpeed
+  nameWithType: FirstPersonMovement.MoveSpeed
+- uid: GameFramework.Components.Controllers.Movement.FirstPersonMovement.MoveSpeed*
+  name: MoveSpeed
+  href: api/api/GameFramework.Components.Controllers.Movement.FirstPersonMovement.html#GameFramework_Components_Controllers_Movement_FirstPersonMovement_MoveSpeed_
+  commentId: Overload:GameFramework.Components.Controllers.Movement.FirstPersonMovement.MoveSpeed
+  isSpec: "True"
+  fullName: GameFramework.Components.Controllers.Movement.FirstPersonMovement.MoveSpeed
+  nameWithType: FirstPersonMovement.MoveSpeed
 - uid: GameFramework.Components.Controllers.Movement.FirstPersonMovement.StopMovement
   name: StopMovement()
   href: api/api/GameFramework.Components.Controllers.Movement.FirstPersonMovement.html#GameFramework_Components_Controllers_Movement_FirstPersonMovement_StopMovement
@@ -2657,6 +2886,19 @@ references:
   isSpec: "True"
   fullName: GameFramework.Components.Controllers.Movement.IsometricMovement.Initialize
   nameWithType: IsometricMovement.Initialize
+- uid: GameFramework.Components.Controllers.Movement.IsometricMovement.IsCrouching
+  name: IsCrouching
+  href: api/api/GameFramework.Components.Controllers.Movement.IsometricMovement.html#GameFramework_Components_Controllers_Movement_IsometricMovement_IsCrouching
+  commentId: P:GameFramework.Components.Controllers.Movement.IsometricMovement.IsCrouching
+  fullName: GameFramework.Components.Controllers.Movement.IsometricMovement.IsCrouching
+  nameWithType: IsometricMovement.IsCrouching
+- uid: GameFramework.Components.Controllers.Movement.IsometricMovement.IsCrouching*
+  name: IsCrouching
+  href: api/api/GameFramework.Components.Controllers.Movement.IsometricMovement.html#GameFramework_Components_Controllers_Movement_IsometricMovement_IsCrouching_
+  commentId: Overload:GameFramework.Components.Controllers.Movement.IsometricMovement.IsCrouching
+  isSpec: "True"
+  fullName: GameFramework.Components.Controllers.Movement.IsometricMovement.IsCrouching
+  nameWithType: IsometricMovement.IsCrouching
 - uid: GameFramework.Components.Controllers.Movement.IsometricMovement.IsGrounded
   name: IsGrounded
   href: api/api/GameFramework.Components.Controllers.Movement.IsometricMovement.html#GameFramework_Components_Controllers_Movement_IsometricMovement_IsGrounded
@@ -2670,6 +2912,19 @@ references:
   isSpec: "True"
   fullName: GameFramework.Components.Controllers.Movement.IsometricMovement.IsGrounded
   nameWithType: IsometricMovement.IsGrounded
+- uid: GameFramework.Components.Controllers.Movement.IsometricMovement.IsJumping
+  name: IsJumping
+  href: api/api/GameFramework.Components.Controllers.Movement.IsometricMovement.html#GameFramework_Components_Controllers_Movement_IsometricMovement_IsJumping
+  commentId: P:GameFramework.Components.Controllers.Movement.IsometricMovement.IsJumping
+  fullName: GameFramework.Components.Controllers.Movement.IsometricMovement.IsJumping
+  nameWithType: IsometricMovement.IsJumping
+- uid: GameFramework.Components.Controllers.Movement.IsometricMovement.IsJumping*
+  name: IsJumping
+  href: api/api/GameFramework.Components.Controllers.Movement.IsometricMovement.html#GameFramework_Components_Controllers_Movement_IsometricMovement_IsJumping_
+  commentId: Overload:GameFramework.Components.Controllers.Movement.IsometricMovement.IsJumping
+  isSpec: "True"
+  fullName: GameFramework.Components.Controllers.Movement.IsometricMovement.IsJumping
+  nameWithType: IsometricMovement.IsJumping
 - uid: GameFramework.Components.Controllers.Movement.IsometricMovement.IsPaused
   name: IsPaused
   href: api/api/GameFramework.Components.Controllers.Movement.IsometricMovement.html#GameFramework_Components_Controllers_Movement_IsometricMovement_IsPaused
@@ -2683,6 +2938,19 @@ references:
   isSpec: "True"
   fullName: GameFramework.Components.Controllers.Movement.IsometricMovement.IsPaused
   nameWithType: IsometricMovement.IsPaused
+- uid: GameFramework.Components.Controllers.Movement.IsometricMovement.MoveSpeed
+  name: MoveSpeed
+  href: api/api/GameFramework.Components.Controllers.Movement.IsometricMovement.html#GameFramework_Components_Controllers_Movement_IsometricMovement_MoveSpeed
+  commentId: P:GameFramework.Components.Controllers.Movement.IsometricMovement.MoveSpeed
+  fullName: GameFramework.Components.Controllers.Movement.IsometricMovement.MoveSpeed
+  nameWithType: IsometricMovement.MoveSpeed
+- uid: GameFramework.Components.Controllers.Movement.IsometricMovement.MoveSpeed*
+  name: MoveSpeed
+  href: api/api/GameFramework.Components.Controllers.Movement.IsometricMovement.html#GameFramework_Components_Controllers_Movement_IsometricMovement_MoveSpeed_
+  commentId: Overload:GameFramework.Components.Controllers.Movement.IsometricMovement.MoveSpeed
+  isSpec: "True"
+  fullName: GameFramework.Components.Controllers.Movement.IsometricMovement.MoveSpeed
+  nameWithType: IsometricMovement.MoveSpeed
 - uid: GameFramework.Components.Controllers.Movement.IsometricMovement.MovementTransform
   name: MovementTransform
   href: api/api/GameFramework.Components.Controllers.Movement.IsometricMovement.html#GameFramework_Components_Controllers_Movement_IsometricMovement_MovementTransform
@@ -2900,6 +3168,19 @@ references:
   isSpec: "True"
   fullName: GameFramework.Components.Controllers.Movement.ThirdPersonMovement.Initialize
   nameWithType: ThirdPersonMovement.Initialize
+- uid: GameFramework.Components.Controllers.Movement.ThirdPersonMovement.IsCrouching
+  name: IsCrouching
+  href: api/api/GameFramework.Components.Controllers.Movement.ThirdPersonMovement.html#GameFramework_Components_Controllers_Movement_ThirdPersonMovement_IsCrouching
+  commentId: P:GameFramework.Components.Controllers.Movement.ThirdPersonMovement.IsCrouching
+  fullName: GameFramework.Components.Controllers.Movement.ThirdPersonMovement.IsCrouching
+  nameWithType: ThirdPersonMovement.IsCrouching
+- uid: GameFramework.Components.Controllers.Movement.ThirdPersonMovement.IsCrouching*
+  name: IsCrouching
+  href: api/api/GameFramework.Components.Controllers.Movement.ThirdPersonMovement.html#GameFramework_Components_Controllers_Movement_ThirdPersonMovement_IsCrouching_
+  commentId: Overload:GameFramework.Components.Controllers.Movement.ThirdPersonMovement.IsCrouching
+  isSpec: "True"
+  fullName: GameFramework.Components.Controllers.Movement.ThirdPersonMovement.IsCrouching
+  nameWithType: ThirdPersonMovement.IsCrouching
 - uid: GameFramework.Components.Controllers.Movement.ThirdPersonMovement.IsGrounded
   name: IsGrounded
   href: api/api/GameFramework.Components.Controllers.Movement.ThirdPersonMovement.html#GameFramework_Components_Controllers_Movement_ThirdPersonMovement_IsGrounded
@@ -2913,6 +3194,19 @@ references:
   isSpec: "True"
   fullName: GameFramework.Components.Controllers.Movement.ThirdPersonMovement.IsGrounded
   nameWithType: ThirdPersonMovement.IsGrounded
+- uid: GameFramework.Components.Controllers.Movement.ThirdPersonMovement.IsJumping
+  name: IsJumping
+  href: api/api/GameFramework.Components.Controllers.Movement.ThirdPersonMovement.html#GameFramework_Components_Controllers_Movement_ThirdPersonMovement_IsJumping
+  commentId: P:GameFramework.Components.Controllers.Movement.ThirdPersonMovement.IsJumping
+  fullName: GameFramework.Components.Controllers.Movement.ThirdPersonMovement.IsJumping
+  nameWithType: ThirdPersonMovement.IsJumping
+- uid: GameFramework.Components.Controllers.Movement.ThirdPersonMovement.IsJumping*
+  name: IsJumping
+  href: api/api/GameFramework.Components.Controllers.Movement.ThirdPersonMovement.html#GameFramework_Components_Controllers_Movement_ThirdPersonMovement_IsJumping_
+  commentId: Overload:GameFramework.Components.Controllers.Movement.ThirdPersonMovement.IsJumping
+  isSpec: "True"
+  fullName: GameFramework.Components.Controllers.Movement.ThirdPersonMovement.IsJumping
+  nameWithType: ThirdPersonMovement.IsJumping
 - uid: GameFramework.Components.Controllers.Movement.ThirdPersonMovement.IsPaused
   name: IsPaused
   href: api/api/GameFramework.Components.Controllers.Movement.ThirdPersonMovement.html#GameFramework_Components_Controllers_Movement_ThirdPersonMovement_IsPaused
@@ -2939,6 +3233,19 @@ references:
   isSpec: "True"
   fullName: GameFramework.Components.Controllers.Movement.ThirdPersonMovement.IsUsingMouseRotation
   nameWithType: ThirdPersonMovement.IsUsingMouseRotation
+- uid: GameFramework.Components.Controllers.Movement.ThirdPersonMovement.MoveSpeed
+  name: MoveSpeed
+  href: api/api/GameFramework.Components.Controllers.Movement.ThirdPersonMovement.html#GameFramework_Components_Controllers_Movement_ThirdPersonMovement_MoveSpeed
+  commentId: P:GameFramework.Components.Controllers.Movement.ThirdPersonMovement.MoveSpeed
+  fullName: GameFramework.Components.Controllers.Movement.ThirdPersonMovement.MoveSpeed
+  nameWithType: ThirdPersonMovement.MoveSpeed
+- uid: GameFramework.Components.Controllers.Movement.ThirdPersonMovement.MoveSpeed*
+  name: MoveSpeed
+  href: api/api/GameFramework.Components.Controllers.Movement.ThirdPersonMovement.html#GameFramework_Components_Controllers_Movement_ThirdPersonMovement_MoveSpeed_
+  commentId: Overload:GameFramework.Components.Controllers.Movement.ThirdPersonMovement.MoveSpeed
+  isSpec: "True"
+  fullName: GameFramework.Components.Controllers.Movement.ThirdPersonMovement.MoveSpeed
+  nameWithType: ThirdPersonMovement.MoveSpeed
 - uid: GameFramework.Components.Controllers.Movement.ThirdPersonMovement.MovementTransform
   name: MovementTransform
   href: api/api/GameFramework.Components.Controllers.Movement.ThirdPersonMovement.html#GameFramework_Components_Controllers_Movement_ThirdPersonMovement_MovementTransform
@@ -3178,6 +3485,19 @@ references:
   commentId: T:GameFramework.Components.Controllers.ThirdPersonController
   fullName: GameFramework.Components.Controllers.ThirdPersonController
   nameWithType: ThirdPersonController
+- uid: GameFramework.Components.Controllers.ThirdPersonController.AnimatorController
+  name: AnimatorController
+  href: api/api/GameFramework.Components.Controllers.ThirdPersonController.html#GameFramework_Components_Controllers_ThirdPersonController_AnimatorController
+  commentId: P:GameFramework.Components.Controllers.ThirdPersonController.AnimatorController
+  fullName: GameFramework.Components.Controllers.ThirdPersonController.AnimatorController
+  nameWithType: ThirdPersonController.AnimatorController
+- uid: GameFramework.Components.Controllers.ThirdPersonController.AnimatorController*
+  name: AnimatorController
+  href: api/api/GameFramework.Components.Controllers.ThirdPersonController.html#GameFramework_Components_Controllers_ThirdPersonController_AnimatorController_
+  commentId: Overload:GameFramework.Components.Controllers.ThirdPersonController.AnimatorController
+  isSpec: "True"
+  fullName: GameFramework.Components.Controllers.ThirdPersonController.AnimatorController
+  nameWithType: ThirdPersonController.AnimatorController
 - uid: GameFramework.Components.Controllers.ThirdPersonController.Awake
   name: Awake()
   href: api/api/GameFramework.Components.Controllers.ThirdPersonController.html#GameFramework_Components_Controllers_ThirdPersonController_Awake
@@ -3243,6 +3563,19 @@ references:
   isSpec: "True"
   fullName: GameFramework.Components.Controllers.ThirdPersonController.OnPlayerLookInput
   nameWithType: ThirdPersonController.OnPlayerLookInput
+- uid: GameFramework.Components.Controllers.ThirdPersonController.TriggerAttack
+  name: TriggerAttack()
+  href: api/api/GameFramework.Components.Controllers.ThirdPersonController.html#GameFramework_Components_Controllers_ThirdPersonController_TriggerAttack
+  commentId: M:GameFramework.Components.Controllers.ThirdPersonController.TriggerAttack
+  fullName: GameFramework.Components.Controllers.ThirdPersonController.TriggerAttack()
+  nameWithType: ThirdPersonController.TriggerAttack()
+- uid: GameFramework.Components.Controllers.ThirdPersonController.TriggerAttack*
+  name: TriggerAttack
+  href: api/api/GameFramework.Components.Controllers.ThirdPersonController.html#GameFramework_Components_Controllers_ThirdPersonController_TriggerAttack_
+  commentId: Overload:GameFramework.Components.Controllers.ThirdPersonController.TriggerAttack
+  isSpec: "True"
+  fullName: GameFramework.Components.Controllers.ThirdPersonController.TriggerAttack
+  nameWithType: ThirdPersonController.TriggerAttack
 - uid: GameFramework.Components.Controllers.ThirdPersonController.Update
   name: Update()
   href: api/api/GameFramework.Components.Controllers.ThirdPersonController.html#GameFramework_Components_Controllers_ThirdPersonController_Update
@@ -3430,12 +3763,6 @@ references:
   isSpec: "True"
   fullName: GameFramework.Components.Interactables.ExampleInteractable.OnInteractionUnavailable
   nameWithType: ExampleInteractable.OnInteractionUnavailable
-- uid: GameFramework.Components.Interactables.InteractionDebugger
-  name: InteractionDebugger
-  href: api/api/GameFramework.Components.Interactables.InteractionDebugger.html
-  commentId: T:GameFramework.Components.Interactables.InteractionDebugger
-  fullName: GameFramework.Components.Interactables.InteractionDebugger
-  nameWithType: InteractionDebugger
 - uid: GameFramework.Components.Interactables.InteractionDetector
   name: InteractionDetector
   href: api/api/GameFramework.Components.Interactables.InteractionDetector.html
