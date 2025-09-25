@@ -12,7 +12,7 @@ namespace GameFramework.Components.Controllers.Camera
     /// Simple isometric camera control using Cinemachine 3.1+.
     /// Provides only zoom functionality for isometric/top-down games.
     /// </summary>
-    public class IsometricCameraControl : MonoBehaviour, ICameraControl
+    public class IsometricCameraControl : BaseCameraComponent
     {
         #region Serialized Fields
         [Header("Camera Settings")]
@@ -25,65 +25,38 @@ namespace GameFramework.Components.Controllers.Camera
         [SerializeField] private float _zoomSmoothTime = 0.2f;
         #endregion
 
-        #region Private Fields
-        private IPauseService _pauseService;
-        private IEventSystem _eventSystem;
-        
+        #region Isometric Camera Specific Fields
         // Zoom state
         private float _currentZoom = 10.0f;
         private float _targetZoom = 10.0f;
         private float _zoomVelocity = 0f;
-        
-        // Component state
-        private bool _isInitialized = false;
-        private bool _inputEnabled = true;
         #endregion
 
-        #region Public Properties
-        public bool IsPaused => _pauseService?.IsPaused ?? false;
-
-        public float MouseSensitivityMultiplier { get; set; }
-
-        #endregion
-
-        #region Unity Lifecycle
-        private void Awake()
+        #region BaseCameraComponent Implementation
+        protected override void InitializeCameraSpecific()
         {
-            _pauseService = GameManager.GetService<IPauseService>();
-            _eventSystem = GameManager.GetService<IEventSystem>();
-        }
-
-        private void Start()
-        {
-            Initialize();
-        }
-
-        private void Update()
-        {
-            UpdateCamera();
-        }
-        #endregion
-
-        #region ICameraControl Implementation
-        public void Initialize()
-        {
-            if (_isInitialized) return;
-            
             if (_cinemachineCamera == null)
             {
                 Debug.LogError("[IsometricCameraControl] CinemachineCamera is required but not assigned.");
                 return;
             }
             
+            // Set up orthographic camera
+            var camera = GameManager.GetService<IGameDataService>().GetMainCamera();
+            if (camera != null)
+            {
+                camera.orthographic = true;
+            }
+            
             // Initialize zoom
-            _currentZoom = _minZoom + (_maxZoom - _minZoom) * 0.5f;
+            _currentZoom = (_minZoom + _maxZoom) / 2f;
             _targetZoom = _currentZoom;
             
-            // Set orthographic projection
-            GameManager.GetService<IGameDataService>().SetCameraOrthographic(true);
-            _cinemachineCamera.Lens.OrthographicSize = _currentZoom;
-            
-            _isInitialized = true;
+            // Apply initial zoom
+            if (camera != null)
+            {
+                camera.orthographicSize = _currentZoom;
+            }
             
             // Subscribe to scroll wheel events for zoom
             if (_eventSystem != null)
@@ -92,36 +65,53 @@ namespace GameFramework.Components.Controllers.Camera
             }
         }
 
-        public void Cleanup()
+        protected override void CleanupCameraSpecific()
         {
+            // Unsubscribe from events
             if (_eventSystem != null)
             {
                 _eventSystem.Unsubscribe<UIScrollWheelInputEvent>(OnScrollWheel);
             }
-
-            _pauseService = null;
-            _eventSystem = null;
-            _isInitialized = false;
         }
 
-        public void HandleLookInput(PlayerLookInputEvent inputEvent)
+        protected override void ProcessLookInput()
         {
-            // No look input handling for simple zoom-only camera
+            // Isometric cameras typically don't process look input for rotation
+            // Look input is ignored for isometric view
         }
 
-        public void UpdateCamera()
+        protected override void UpdateCameraSpecific()
         {
-            if (!_isInitialized || !_inputEnabled || IsPaused) return;
             UpdateZoom();
         }
-
-        public void SetInputEnabled(bool enabled)
+        #endregion
+        
+        #region Additional Isometric Camera Methods
+        public Transform GetCameraTransform()
         {
-            _inputEnabled = enabled;
+            return _cinemachineCamera?.transform;
         }
         #endregion
 
         #region Private Methods
+        private void UpdateZoom()
+        {
+            if (Mathf.Abs(_currentZoom - _targetZoom) > 0.01f)
+            {
+                _currentZoom = Mathf.SmoothDamp(_currentZoom, _targetZoom, ref _zoomVelocity, _zoomSmoothTime);
+                
+                // Apply zoom to camera (assuming orthographic camera)
+                if (_cinemachineCamera != null)
+                {
+                    var camera = _cinemachineCamera.GetComponent<UnityEngine.Camera>();
+                    if (camera != null && camera.orthographic)
+                    {
+                        camera.orthographicSize = _currentZoom;
+                    }
+                }
+            }
+        }
+
         private void OnScrollWheel(UIScrollWheelInputEvent scrollEvent)
         {
             if (!_isInitialized || !_inputEnabled || IsPaused) return;
@@ -132,15 +122,6 @@ namespace GameFramework.Components.Controllers.Camera
                 _targetZoom -= scrollInput * _zoomSpeed;
                 _targetZoom = Mathf.Clamp(_targetZoom, _minZoom, _maxZoom);
             }
-        }
-
-        private void UpdateZoom()
-        {
-            // Apply smooth zoom
-            _currentZoom = Mathf.SmoothDamp(_currentZoom, _targetZoom, ref _zoomVelocity, _zoomSmoothTime);
-            
-            // Update Cinemachine orthographic size
-            _cinemachineCamera.Lens.OrthographicSize = _currentZoom;
         }
         #endregion
     }

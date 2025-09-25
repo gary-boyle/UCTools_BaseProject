@@ -1,3 +1,4 @@
+using GameFramework.Components.Controllers.Animation;
 using UnityEngine;
 using GameFramework.Components.Controllers.Interfaces;
 using GameFramework.EventSystem.Interfaces;
@@ -30,6 +31,9 @@ namespace GameFramework.Components.Controllers
         
         [Header("Cursor Management")]
         [SerializeField] protected CursorLockRequirement _cursorLockRequirement = CursorLockRequirement.Never;
+        
+        [Header("Animation")]
+        [SerializeField] protected PlayerAnimatorController _animatorController;
         #endregion
 
         #region Protected Fields
@@ -54,6 +58,7 @@ namespace GameFramework.Components.Controllers
         public IPlayerMovement MovementComponent => _movementComponent;
         public ICameraControl CameraComponent => _cameraComponent;
         public InteractionDetector InteractionDetector => _interactionDetector;
+        public PlayerAnimatorController AnimatorController => _animatorController;
         public bool IsInitialized => _isInitialized;
         public bool IsEnabled => _isEnabled;
         public bool IsPaused => _pauseService?.IsPaused ?? false;
@@ -91,6 +96,9 @@ namespace GameFramework.Components.Controllers
             // Update components
             _movementComponent?.UpdateMovement();
             _cameraComponent?.UpdateCamera();
+            
+            // Update animation
+            _animatorController?.UpdateAnimations();
             
             // Update interaction detection
             _interactionDetector?.UpdateDetection();
@@ -137,12 +145,14 @@ namespace GameFramework.Components.Controllers
                 return;
             }
             
-            // Create components
+            // Find and create components
+            FindComponents();
             CreateComponents();
             
             // Initialize components
             _movementComponent?.Initialize();
             _cameraComponent?.Initialize();
+            InitializeAnimation();
             
             // Initialize interaction system
             InitializeInteractionSystem();
@@ -150,13 +160,10 @@ namespace GameFramework.Components.Controllers
             // Subscribe to events
             SubscribeToEvents();
             
-            // Set input context
-            //SetInputContext();
+            // Inform services about this controller's cursor requirements
+            _eventSystem.Publish(new PlayerControllerActivatedEvent(_cursorLockRequirement, GetControllerType()));
             
             _isInitialized = true;
-            
-            if (_showDebugInfo)
-                Debug.Log($"[{GetType().Name}] Initialized successfully on {gameObject.name}");
         }
 
         /// <summary>
@@ -183,8 +190,6 @@ namespace GameFramework.Components.Controllers
             
             _isInitialized = false;
             
-            if (_showDebugInfo)
-                Debug.Log($"[{GetType().Name}] Cleaned up on {gameObject.name}");
         }
 
         /// <summary>
@@ -207,14 +212,52 @@ namespace GameFramework.Components.Controllers
 
         #region Abstract Methods
         /// <summary>
-        /// Create the movement and camera components for this controller type
-        /// </summary>
-        protected abstract void CreateComponents();
-        
-        /// <summary>
         /// Get the controller type for interaction system
         /// </summary>
         protected abstract PlayerPrefabType GetControllerType();
+        #endregion
+        
+        #region Virtual Methods - Component Management
+        /// <summary>
+        /// Find components automatically - can be overridden for controller-specific finding
+        /// </summary>
+        protected virtual void FindComponents()
+        {
+            // Find animation controller
+            if (_animatorController == null)
+                _animatorController = GetComponentInChildren<PlayerAnimatorController>();
+        }
+        
+        /// <summary>
+        /// Create and assign components - override in derived classes
+        /// </summary>
+        protected virtual void CreateComponents()
+        {
+            // Base implementation - derived classes should override this
+            // to assign their specific movement and camera components
+        }
+        
+        /// <summary>
+        /// Initialize animation system
+        /// </summary>
+        protected virtual void InitializeAnimation()
+        {
+            if (_animatorController != null && _movementComponent != null)
+            {
+                Animator animator = GetComponentInChildren<Animator>();
+                _animatorController.Initialize(GetControllerType(), _movementComponent, animator);
+            }
+        }
+        #endregion
+        
+        #region Animation Control
+        /// <summary>
+        /// Trigger attack animation
+        /// </summary>
+        public virtual void TriggerAttack()
+        {
+            _animatorController?.TriggerAttack();
+        }
         #endregion
 
         #region Virtual Methods
@@ -289,10 +332,8 @@ namespace GameFramework.Components.Controllers
         #region Input Event Handlers
         protected virtual void OnPlayerMoveInput(PlayerMoveInputEvent inputEvent)
         {
-            if (_showDebugInfo)
-                Debug.Log($"[{GetType().Name}] OnPlayerMoveInput received: {inputEvent.MovementVector} - Initialized: {_isInitialized}, Enabled: {_isEnabled}");
-            
             if (!_isInitialized || !_isEnabled) return;
+            
             _movementComponent?.HandleMoveInput(inputEvent);
         }
 

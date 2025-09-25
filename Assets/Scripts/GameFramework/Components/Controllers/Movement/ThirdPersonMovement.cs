@@ -12,48 +12,19 @@ namespace GameFramework.Components.Controllers.Movement
     /// Third-person movement component that handles character movement relative to camera direction.
     /// Includes smooth rotation towards movement direction and camera-relative input.
     /// </summary>
-
-    [RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
-    public class ThirdPersonMovement : MonoBehaviour, IPlayerMovement
+    public class ThirdPersonMovement : BaseMovementComponent
     {
-        #region Serialized Fields
-        [Header("Movement Settings")]
-        [SerializeField] private float _moveSpeed = 5.0f;
-        [SerializeField] private float _sprintMultiplier = 1.5f;
-        [SerializeField] private float _crouchMultiplier = 0.5f;
-        [SerializeField] private float _jumpForce = 5.0f;
+        #region Third Person Specific Fields
+        [Header("Third Person Movement")]
         [SerializeField] private float _airControl = 0.3f;
         
         [Header("Rotation Settings")]
         [SerializeField] private CharacterRotationSettings _rotationSettings = new CharacterRotationSettings();
-        
-        [Header("Ground Detection")]
-        [SerializeField] private LayerMask _groundLayerMask = 1;
-        [SerializeField] private float _groundCheckDistance = 0.1f;
-        
-        [Header("Crouching")]
-        [SerializeField] private float _crouchHeight = 1.0f;
-        [SerializeField] private float _standingHeight = 2.0f;
-        [SerializeField] private float _crouchTransitionSpeed = 5.0f;
-        
-        [Header("Debug")]
-        [SerializeField] private bool _showDebugInfo = false;
         #endregion
 
-        #region Private Fields
-        private Rigidbody _rigidbody;
-        private CapsuleCollider _collider;
-        private IPauseService _pauseService;
+        #region Third Person Specific Private Fields
         private UnityEngine.Camera _mainCamera;
-        
-        // Movement state
-        private Vector2 _moveInput = Vector2.zero;
         private Vector3 _moveDirection = Vector3.zero;
-        private bool _isJumpRequested = false;
-        private bool _isSprinting = false;
-        private bool _isCrouching = false;
-        
-        // Rotation state - simplified
         
         // Input state
         private Vector2 _lookInput = Vector2.zero;
@@ -62,129 +33,63 @@ namespace GameFramework.Components.Controllers.Movement
         
         // Hybrid mode state
         private bool _isUsingMouseRotation = false;
-        
-        // Ground detection
-        private bool _isGrounded = false;
-        private Transform _groundCheckPoint;
-        
-        // Component state
-        private bool _isInitialized = false;
-        
         #endregion
 
-        #region Public Properties
-        
-        public bool IsPaused => _pauseService?.IsPaused ?? false;
+        #region Third Person Specific Properties
         public Transform MovementTransform => transform;
-        public Vector3 CurrentVelocity => _rigidbody != null ? _rigidbody.linearVelocity : Vector3.zero;
-        public bool IsGrounded => _isGrounded;
-        public bool IsCrouching => _isCrouching;
-        public bool IsJumping => !_isGrounded && _rigidbody != null && _rigidbody.linearVelocity.y > 0.1f;
         public float CurrentYaw => _currentYaw;
         public CharacterRotationMode RotationMode => _rotationSettings.rotationMode;
         public bool IsUsingMouseRotation => _isUsingMouseRotation;
-        
-        public float MoveSpeed => _moveSpeed;
-        
         #endregion
 
         #region Unity Lifecycle
-        private void Awake()
+        protected override void Awake()
         {
-            // Get required components
-            _rigidbody = GetComponent<Rigidbody>();
-            _collider = GetComponent<CapsuleCollider>();
-            _mainCamera = UnityEngine.Camera.main;
+            base.Awake(); // Get common components and services
             
-            // Get services
-            _pauseService = GameManager.GetService<IPauseService>();
+            // Third person specific initialization
+            _mainCamera = UnityEngine.Camera.main;
         }
 
-        private void Start()
-        {
-            Initialize();
-        }
-
-        private void Update()
-        {
-            UpdateMovement();
-        }
-
-        private void FixedUpdate()
-        {
-            FixedUpdateMovement();
-        }
         #endregion
 
-        #region IPlayerMovement Implementation
-        public void Initialize()
+        #region BaseMovementComponent Implementation
+        public override void Initialize()
         {
-            if (_isInitialized) return;
+            base.Initialize(); // Call base initialization
+            
             if (_mainCamera == null)
             {
                 Debug.LogWarning($"[ThirdPersonMovement] No main camera found. Movement will be relative to world space.");
             }
-
-            // Setup ground check point
-            SetupGroundCheck();
-            
-            // Configure rigidbody
-            _rigidbody.freezeRotation = true;
             
             // Initialize current yaw from transform
             _currentYaw = transform.eulerAngles.y;
-            
-            _isInitialized = true;
-            
-            if (_showDebugInfo)
-            {
-                Debug.Log($"[ThirdPersonMovement] Initialized with rotation mode: {_rotationSettings.rotationMode}");
-                LogRotationSettings();
-            }
         }
 
-        public void Cleanup()
-        {
-            _pauseService = null;
-            _mainCamera = null;
-            _isInitialized = false;
-        }
-
-        public void HandleMoveInput(PlayerMoveInputEvent inputEvent)
+        public override void HandleMoveInput(PlayerMoveInputEvent inputEvent)
         {
             if (!_isInitialized || IsPaused) return;
             
             _moveInput = inputEvent.MovementVector;
         }
-
-        public void HandleJumpInput(PlayerJumpInputEvent inputEvent)
+        
+        protected override void UpdateMovementSpecific()
         {
-            if (!_isInitialized || IsPaused) return;
-            
-            if (inputEvent.Phase == InputActionPhase.Performed && _isGrounded)
-            {
-                _isJumpRequested = true;
-            }
+            UpdateMouseInactivityTimer();
         }
 
-        public void HandleSprintInput(PlayerSprintInputEvent inputEvent)
+        protected override void FixedUpdateMovementSpecific()
         {
-            if (!_isInitialized || IsPaused) return;
-            
-            if (inputEvent.Phase == InputActionPhase.Performed)
-                _isSprinting = true;
-            else if (inputEvent.Phase == InputActionPhase.Canceled)
-                _isSprinting = false;
+            HandleMovement();
         }
 
-        public void HandleCrouchInput(PlayerCrouchInputEvent inputEvent)
+        public override void StopMovement()
         {
-            if (!_isInitialized || IsPaused) return;
+            base.StopMovement(); // Clear base movement state
             
-            if (inputEvent.Phase == InputActionPhase.Performed)
-                _isCrouching = true;
-            else if (inputEvent.Phase == InputActionPhase.Canceled)
-                _isCrouching = false;
+            // Clear third person specific state
+            _moveDirection = Vector3.zero;
         }
         
         public void HandleLookInput(PlayerLookInputEvent inputEvent)
@@ -199,37 +104,13 @@ namespace GameFramework.Components.Controllers.Movement
                 _timeSinceLastMouseInput = 0f;
                 _isUsingMouseRotation = true;
             }
-        }
-
-        public void UpdateMovement()
-        {
-            if (!_isInitialized || IsPaused) return;
-            Debug.Log("crouching" + _isCrouching);
-            CheckGrounded();
-            HandleCrouchTransition();
-            UpdateRotation();
-        }
-
-        public void FixedUpdateMovement()
-        {
-           if (!_isInitialized || IsPaused) return;
             
-            HandleMovement();
-            HandleJump();
+            // Process rotation input immediately
+            ProcessRotationInput();
         }
-
-        public void StopMovement()
-        {
-            _moveInput = Vector2.zero;
-            _moveDirection = Vector3.zero;
-            _isJumpRequested = false;
-            
-            if (_rigidbody != null)
-            {
-                _rigidbody.linearVelocity = new Vector3(0, _rigidbody.linearVelocity.y, 0);
-            }
-        }
+        #endregion
         
+        #region Rotation
         /// <summary>
         /// Changes the character's rotation mode at runtime
         /// </summary>
@@ -241,11 +122,6 @@ namespace GameFramework.Components.Controllers.Movement
             _timeSinceLastMouseInput = 0f;
             _isUsingMouseRotation = false;
             
-            if (_showDebugInfo)
-            {
-                Debug.Log($"[ThirdPersonMovement] Rotation mode changed to: {mode}");
-                LogRotationSettings();
-            }
         }
         
         /// <summary>
@@ -256,19 +132,6 @@ namespace GameFramework.Components.Controllers.Movement
             return _rotationSettings;
         }
         
-        private void LogRotationSettings()
-        {
-            if (!_showDebugInfo) return;
-            
-            Debug.Log($"[ThirdPersonMovement] Rotation Settings - Mode: {_rotationSettings.rotationMode}");
-            Debug.Log($"  Movement Rotation Speed: {_rotationSettings.movementRotationSpeed} " +
-                     $"(Direct Input: {_rotationSettings.movementRotationSpeed * 100f}°/s)");
-            Debug.Log($"  Mouse Sensitivity: {_rotationSettings.mouseRotationSensitivity}");
-            if (_rotationSettings.rotationMode == CharacterRotationMode.MouseWithMovementFallback)
-            {
-                Debug.Log($"  Hybrid Inactivity Threshold: {_rotationSettings.mouseInactivityThreshold}s");
-            }
-        }
         #endregion
 
         #region Private Methods
@@ -335,10 +198,6 @@ namespace GameFramework.Components.Controllers.Movement
                 // A/D is being used for rotation, don't use it for movement
                 effectiveInput.x = 0f;
                 
-                if (_showDebugInfo)
-                {
-                    Debug.Log($"[ThirdPersonMovement] A/D input intercepted for rotation (mode: {_rotationSettings.rotationMode})");
-                }
             }
             
             if (effectiveInput.magnitude < 0.01f)
@@ -361,10 +220,6 @@ namespace GameFramework.Components.Controllers.Movement
             // W/S = forward/backward, A/D = strafe left/right (when not used for rotation)
             _moveDirection = (forward * effectiveInput.y + right * effectiveInput.x).normalized;
             
-            if (_showDebugInfo && effectiveInput.magnitude > 0.5f)
-            {
-                Debug.Log($"[ThirdPersonMovement] Movement - Input: {effectiveInput}, Direction: {_moveDirection}");
-            }
             
             // Calculate movement speed with modifiers
             float currentSpeed = _moveSpeed;
@@ -388,11 +243,11 @@ namespace GameFramework.Components.Controllers.Movement
             }
         }
 
-        private void UpdateRotation()
+        /// <summary>
+        /// Process rotation input immediately when received (input-dependent logic)
+        /// </summary>
+        private void ProcessRotationInput()
         {
-            // Update mouse inactivity timer
-            _timeSinceLastMouseInput += Time.deltaTime;
-            
             switch (_rotationSettings.rotationMode)
             {
                 case CharacterRotationMode.None:
@@ -400,7 +255,7 @@ namespace GameFramework.Components.Controllers.Movement
                     break;
                     
                 case CharacterRotationMode.TankControls:
-                    HandleMovementDirectionRotation();
+                    // Tank controls don't use mouse look input, only A/D keys
                     break;
                     
                 case CharacterRotationMode.MouseControl:
@@ -411,9 +266,21 @@ namespace GameFramework.Components.Controllers.Movement
                     HandleHybridRotation();
                     break;
             }
+        }
+        
+        /// <summary>
+        /// Update time-dependent rotation logic in Update loop
+        /// </summary>
+        private void UpdateMouseInactivityTimer()
+        {
+            // Update mouse inactivity timer
+            _timeSinceLastMouseInput += Time.deltaTime;
             
-            // Reset look input after processing
-            _lookInput = Vector2.zero;
+            // Handle tank controls rotation with A/D keys (time-dependent, not input-event dependent)
+            if (_rotationSettings.rotationMode == CharacterRotationMode.TankControls)
+            {
+                HandleMovementDirectionRotation();
+            }
         }
         
         private void HandleMouseRotation()
@@ -438,10 +305,6 @@ namespace GameFramework.Components.Controllers.Movement
                 _currentYaw += rotationInput * Time.deltaTime;
                 transform.rotation = Quaternion.Euler(0f, _currentYaw, 0f);
                 
-                if (_showDebugInfo)
-                {
-                    Debug.Log($"[ThirdPersonMovement] Tank rotation: {rotationInput:F1}°/s (A/D keys)");
-                }
             }
         }
         
@@ -465,24 +328,10 @@ namespace GameFramework.Components.Controllers.Movement
                 _currentYaw += rotationInput * Time.deltaTime;
                 transform.rotation = Quaternion.Euler(0f, _currentYaw, 0f);
                 
-                if (_showDebugInfo)
-                {
-                    Debug.Log($"[ThirdPersonMovement] Hybrid A/D rotation: {rotationInput:F1}°/s (mouse inactive)");
-                }
             }
             // When moving diagonally (W+A, W+D), A/D is used for movement, not rotation
         }
 
-        private void HandleJump()
-        {
-            if (_isJumpRequested && _isGrounded)
-            {
-                _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
-                _isJumpRequested = false;
-            }
-            
-            _isJumpRequested = false;
-        }
 
         private void HandleCrouchTransition()
         {

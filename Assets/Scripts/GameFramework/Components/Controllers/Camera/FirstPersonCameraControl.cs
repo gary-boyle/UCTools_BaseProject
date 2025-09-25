@@ -13,7 +13,7 @@ namespace GameFramework.Components.Controllers.Camera
     /// First-person camera control using Cinemachine 3.1+.
     /// Provides direct mouse look with smooth rotation and sensitivity controls.
     /// </summary>
-    public class FirstPersonCameraControl : MonoBehaviour, ICameraControl
+    public class FirstPersonCameraControl : BaseCameraComponent
     {
         #region Serialized Fields
         [Header("Player and camera Settings")]
@@ -22,169 +22,121 @@ namespace GameFramework.Components.Controllers.Camera
         [SerializeField] private Transform _playerTransform;
 
         [Header("Look Settings")]
-        [SerializeField] private float _mouseSensitivityMultiplier = 0.01f;
+        [SerializeField] private float _mouseSensitivityMultiplier = 1.0f;
         [SerializeField] private float _minVerticalAngle = -80f;
         [SerializeField] private float _maxVerticalAngle = 80f;
         [SerializeField] private bool _invertYAxis = false;
-        
-        [Header("Debug")]
-        [SerializeField] private bool _showDebugInfo = false;
         #endregion
 
-        #region Private Fields
-        private IPauseService _pauseService;
+        #region First Person Camera Specific Fields
         private InputSettings_SO _inputSettings;
-        private IEventSystem _eventSystem;
-        
+        private CinemachinePanTilt _cinemachinePanTilt;
+
         // Look state
-        private Vector2 _lookInput = Vector2.zero;
         private float _currentPitch = 0f;
         private float _currentYaw = 0f;
         
         // Input processing
         private float _globalMouseSensitivity = 1.0f;
         private bool _globalInvertYAxis = false;
-        private bool _inputEnabled = true;
         
         // Cursor state management
         private bool _wasLockedBeforePause = true;
-        
-        // Component state
-        private bool _isInitialized = false;
 
-        private CinemachinePanTilt _cinemachinePanTilt;
-        
         #endregion
 
-        #region Public Properties
-        public bool IsPaused => _pauseService?.IsPaused ?? false;
+        #region First Person Camera Specific Properties
         public float MouseSensitivityMultiplier 
         { 
             get => _mouseSensitivityMultiplier; 
-            set => _mouseSensitivityMultiplier = value; 
+            set => _mouseSensitivityMultiplier = Mathf.Clamp(value, 0.001f, 5.0f); 
         }
-
-        private float _effectiveMouseSensitivity => _globalMouseSensitivity * _mouseSensitivityMultiplier;
         
+        public float EffectiveMouseSensitivity => _globalMouseSensitivity * _mouseSensitivityMultiplier;
         #endregion
 
         #region Unity Lifecycle
-        private void Awake()
+        protected override void Awake()
         {
-            // Get services
-            _pauseService = GameManager.GetService<IPauseService>();
-            _inputSettings = SettingsRegistry.Get<InputSettings_SO>();
-            _eventSystem = GameManager.GetService<IEventSystem>();
+            base.Awake();
             
+            // Get input settings
+            _inputSettings = SettingsRegistry.Get<InputSettings_SO>();
             if (_inputSettings != null)
             {
                 ApplyInputSettings();
             }
         }
-
-        private void Start()
-        {
-            Initialize();
-        }
-
-        private void Update()
-        {
-            UpdateCamera();
-        }
-        
         #endregion
 
-        #region ICameraControl Implementation
-        public void Initialize()
+        #region BaseCameraComponent Implementation
+        protected override void InitializeCameraSpecific()
         {
-            if (_isInitialized) return;
-            
             if (_cinemachineCamera == null)
             {
                 Debug.LogError("[FirstPersonCameraControl] CinemachineCamera is required but not assigned.");
                 return;
             }
-
-            // Initialize rotation from current transforms
+            
             if (_playerTransform != null)
             {
+                // Initialize yaw from player's current rotation
                 _currentYaw = _playerTransform.eulerAngles.y;
             }
 
-            _cinemachinePanTilt = _cinemachineCamera.GetComponent<CinemachinePanTilt>();
-            
-            if (_followTarget != null)
+            if (_cinemachinePanTilt == null)
             {
-                Vector3 localEulerAngles = _followTarget.localEulerAngles;
-                _currentPitch = localEulerAngles.x;
-                
-                // Handle wrap-around for pitch
-                if (_currentPitch > 180f)
-                    _currentPitch -= 360f;
+                _cinemachinePanTilt = _cinemachineCamera.GetComponent<CinemachinePanTilt>();
             }
-            
-            _isInitialized = true;
         }
 
-        public void Cleanup()
+        protected override void CleanupCameraSpecific()
         {
             // Clear references
-            _pauseService = null;
             _inputSettings = null;
-            
-            _isInitialized = false;
         }
 
-        public void HandleLookInput(PlayerLookInputEvent inputEvent)
-        {
-            if (!_isInitialized || !_inputEnabled || IsPaused) return;
-            
-            _lookInput = inputEvent.LookDelta;
-        }
-
-        public void UpdateCamera()
-        {
-            if (!_isInitialized || !_inputEnabled || IsPaused) return;
-            
-            ProcessLookInput();
-            ApplyRotation();
-            
-            // Reset input after processing to prevent continuous rotation
-            _lookInput = Vector2.zero;
-        }
         
-        public void SetInputEnabled(bool enabled)
-        {
-            _inputEnabled = enabled;
-            if (!enabled)
-            {
-                _lookInput = Vector2.zero;
-            }
-        }
-        
-        #endregion
+        // protected override void ProcessLookInput()
+        // {
+        //     if (_lookInput.magnitude < 0.1f) return;
+        //     
+        //     // Apply sensitivity
+        //     float horizontalInput = _lookInput.x * EffectiveMouseSensitivity;
+        //     float verticalInput = _lookInput.y * EffectiveMouseSensitivity;
+        //     
+        //     // Apply Y-axis inversion
+        //     if (_globalInvertYAxis || _invertYAxis)
+        //     {
+        //         verticalInput *= -1f;
+        //     }
+        //     
+        //     // Update rotation
+        //     _currentYaw += horizontalInput;
+        //     _currentPitch -= verticalInput;
+        //     
+        //     // Clamp pitch
+        //     _currentPitch = Mathf.Clamp(_currentPitch, _minVerticalAngle, _maxVerticalAngle);
+        //     
+        //     // Apply rotation to player and camera
+        //     if (_playerTransform != null)
+        //     {
+        //         _playerTransform.rotation = Quaternion.Euler(0f, _currentYaw, 0f);
+        //     }
+        //     
+        //     //_cinemachinePanTilt.TiltAxis.Value = _currentPitch;
+        //     // if (_followTarget != null)
+        //     // {
+        //     //     _followTarget.localRotation = Quaternion.Euler(_currentPitch, 0f, 0f);
+        //     // }
+        // }
 
-        #region Private Methods
-
-        private void ApplyInputSettings()
-        {
-            if (_inputSettings == null) return;
-            
-            _globalMouseSensitivity = _inputSettings.GetMouseSensitivity();
-            _globalInvertYAxis = _inputSettings.GetInvertYAxis();
-            
-            if (_showDebugInfo)
-            {
-                Debug.Log($"[FirstPersonCameraControl] Applied Input Settings - Global Sensitivity: {_globalMouseSensitivity}, Invert Y: {_globalInvertYAxis}");
-            }
-        }
-
-        private void ProcessLookInput()
+        protected override void ProcessLookInput()
         {
             if (_lookInput.magnitude < 0.01f) return;
             
             // Apply sensitivity
-            Vector2 processedInput = _lookInput * _effectiveMouseSensitivity;
+            Vector2 processedInput = _lookInput * EffectiveMouseSensitivity;
             
             // Apply Y-axis inversion
             if (_globalInvertYAxis || _invertYAxis)
@@ -198,6 +150,8 @@ namespace GameFramework.Components.Controllers.Camera
             
             // Clamp vertical rotation
             _currentPitch = Mathf.Clamp(_currentPitch, _minVerticalAngle, _maxVerticalAngle);
+
+            ApplyRotation();
         }
 
         private void ApplyRotation()
@@ -211,7 +165,44 @@ namespace GameFramework.Components.Controllers.Camera
             
             _cinemachinePanTilt.TiltAxis.Value = _currentPitch;
         }
+        
+        protected override void UpdateCameraSpecific()
+        {
+            // Input processing is now handled immediately in HandleLookInput
+        }
+        #endregion
+        
+        #region Additional First Person Camera Methods
+        public Transform GetCameraTransform()
+        {
+            return _cinemachineCamera?.transform;
+        }
+        
+        public void SetTarget(Transform playerTransform, Transform followTarget)
+        {
+            _playerTransform = playerTransform;
+            _followTarget = followTarget;
+            
+            if (_cinemachineCamera != null && followTarget != null)
+            {
+                _cinemachineCamera.Follow = followTarget;
+            }
+            
+            if (playerTransform != null)
+            {
+                _currentYaw = playerTransform.eulerAngles.y;
+            }
+        }
+        #endregion
 
+        #region Private Methods
+        private void ApplyInputSettings()
+        {
+            if (_inputSettings == null) return;
+            
+            _globalMouseSensitivity = _inputSettings.GetMouseSensitivity();
+            _globalInvertYAxis = _inputSettings.GetInvertYAxis();
+        }
         #endregion
     }
 }

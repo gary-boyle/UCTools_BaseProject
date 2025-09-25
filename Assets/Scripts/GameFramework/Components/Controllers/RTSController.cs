@@ -16,9 +16,6 @@ namespace GameFramework.Components.Controllers
     public class RTSController : BasePlayerController
     {
         #region Serialized Fields
-        [Header("Camera Component")]
-        [SerializeField] private RTSCameraControl _cameraControl;
-        
         [Header("Camera Focus")]
         [SerializeField] private bool _enableCameraFocus = true;
         [SerializeField] private float _focusSpeed = 5.0f;
@@ -31,9 +28,6 @@ namespace GameFramework.Components.Controllers
         private bool _isFocusing = false;
         private Vector3 _focusTarget;
         private float _focusStartTime;
-        
-        // UI and visual feedback
-        private Texture2D _selectionBoxTexture;
         #endregion
 
         #region Unity Lifecycle
@@ -45,14 +39,6 @@ namespace GameFramework.Components.Controllers
 
             // Override input context for RTS
             _requiredInputContext = InputContext.Mixed; // RTS needs both camera and UI input
-            
-            // Find camera control component if not assigned
-            if (_cameraControl == null) _cameraControl = GetComponent<RTSCameraControl>();
-            
-            // Subscribe to UI events for selection
-            if (_eventSystem != null)
-            {
-            }
         }
 
         protected override void Update()
@@ -64,52 +50,51 @@ namespace GameFramework.Components.Controllers
                 HandleCameraFocus();
             }
         }
-        
-        protected override void OnDestroy()
-        {
-            // Unsubscribe from UI events
-            if (_eventSystem != null)
-            {
-            }
-            
-            base.OnDestroy();
-        }
         #endregion
 
-        #region Component Creation
+        #region Component Management
         protected override void CreateComponents()
         {
+            // Find and assign camera component (RTS uses RTSCameraControl instead of standard movement/camera)
+            var cameraComponent = GetComponent<RTSCameraControl>();
+            if (cameraComponent == null)
+            {
+                Debug.LogError($"[{GetType().Name}] RTSCameraControl component not found on {gameObject.name}");
+                return;
+            }
+
             // RTS controller uses RTSCameraControl instead of standard movement/camera components
-            base._cameraComponent = _cameraControl;
+            _cameraComponent = cameraComponent;
         }
         
         protected override PlayerPrefabType GetControllerType()
         {
             return PlayerPrefabType.RTS;
         }
-        
         #endregion
 
         #region Input Handling
-        
         private void HandleCameraFocus()
         {
-            if (!_enableCameraFocus || !_isFocusing || _cameraControl == null) return;
+            if (!_enableCameraFocus || !_isFocusing || _cameraComponent == null) return;
+            
+            var rtsCameraControl = _cameraComponent as RTSCameraControl;
+            if (rtsCameraControl == null) return;
             
             float elapsedTime = Time.time - _focusStartTime;
             float t = elapsedTime * _focusSpeed;
             
             if (t >= 1.0f)
             {
-                _cameraControl.FocusOnPosition(_focusTarget);
+                rtsCameraControl.FocusOnPosition(_focusTarget);
                 _isFocusing = false;
             }
             else
             {
                 // Smoothly interpolate camera position using the camera control component
-                Vector3 currentPos = _cameraControl.GetCameraTransform().position;
+                Vector3 currentPos = rtsCameraControl.GetCameraTransform().position;
                 Vector3 targetPos = Vector3.Lerp(currentPos, _focusTarget, t);
-                _cameraControl.FocusOnPosition(targetPos);
+                rtsCameraControl.FocusOnPosition(targetPos);
             }
         }
         #endregion
@@ -118,9 +103,9 @@ namespace GameFramework.Components.Controllers
         protected override void OnPlayerMoveInput(PlayerMoveInputEvent inputEvent)
         {
             // In RTS, move input controls camera movement (WASD)
-            if (_cameraControl != null)
+            if (_cameraComponent is RTSCameraControl rtsCameraControl)
             {
-                _cameraControl.HandleMoveInput(inputEvent);
+                rtsCameraControl.HandleMoveInput(inputEvent);
             }
         }
         
@@ -142,7 +127,6 @@ namespace GameFramework.Components.Controllers
         #region Debug
         protected override void OnDrawGizmos()
         {
-
             base.OnDrawGizmos();
             
             if (!_showDebugInfo) return;

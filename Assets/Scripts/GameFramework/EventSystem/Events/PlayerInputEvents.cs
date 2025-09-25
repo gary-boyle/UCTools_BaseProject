@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using GameFramework.Components.Controllers.Enum;
 
 namespace GameFramework.EventSystem.Events
 {
@@ -91,6 +92,21 @@ namespace GameFramework.EventSystem.Events
         public PlayerPauseInputEvent(InputActionPhase phase = InputActionPhase.Performed)
         {
             Phase = phase;
+        }
+    }
+    
+    /// <summary>
+    /// Event published when a player controller is activated to inform services of its cursor requirements
+    /// </summary>
+    public class PlayerControllerActivatedEvent
+    {
+        public CursorLockRequirement CursorRequirement { get; }
+        public PlayerPrefabType ControllerType { get; }
+        
+        public PlayerControllerActivatedEvent(CursorLockRequirement cursorRequirement, PlayerPrefabType controllerType)
+        {
+            CursorRequirement = cursorRequirement;
+            ControllerType = controllerType;
         }
     }
 }

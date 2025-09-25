@@ -12,307 +12,105 @@ namespace GameFramework.Components.Controllers.Movement
     /// Handles basic movement with 4-directional rotation.
     /// Optional 45-degree offset for isometric camera alignment.
     /// </summary>
-    ///
-    [RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
-    public class IsometricMovement : MonoBehaviour, IPlayerMovement
+    public class IsometricMovement : BaseMovementComponent
     {
-        #region Serialized Fields
-        [Header("Movement Settings")]
-        [SerializeField] private float _moveSpeed = 5.0f;
-        [SerializeField] private float _sprintMultiplier = 1.5f;
-        [SerializeField] private float _crouchMultiplier = 0.5f;
-        [SerializeField] private float _jumpForce = 5.0f;
-        
+        #region Isometric Specific Fields
         [Header("Rotation Settings")]
         [SerializeField] private bool _use45DegreeOffset = true; // Enable for isometric camera alignment
-        
-        [Header("Ground Detection")]
-        [SerializeField] private LayerMask _groundLayerMask = 1;
-        [SerializeField] private float _groundCheckDistance = 0.1f;
-        
-        [Header("Crouching")]
-        [SerializeField] private float _crouchHeight = 1.0f;
-        [SerializeField] private float _standingHeight = 2.0f;
-        [SerializeField] private float _crouchTransitionSpeed = 5.0f;
         #endregion
 
-        #region Private Fields
-        private IPauseService _pauseService;
-        private Rigidbody _rigidbody;
-        private CapsuleCollider _collider;
-
-        
-        // Movement state
-        private Vector2 _moveInput = Vector2.zero;
-        private bool _isInitialized = false;
-        private Vector3 _currentVelocity = Vector3.zero;
-        private bool _isJumpRequested = false;
-        private bool _isSprinting = false;
-        private bool _isCrouching = false;
-        
-        // Ground detection
-        private bool _isGrounded = false;
-        private Transform _groundCheckPoint;
-        #endregion
-
-        #region Public Properties
-        public bool IsPaused => _pauseService?.IsPaused ?? false;
-        public Transform MovementTransform => transform;
-        public Vector3 CurrentVelocity => _currentVelocity;
-        public bool IsGrounded => _isGrounded;
-        public bool IsCrouching => _isCrouching;
-        public bool IsJumping => _rigidbody != null && _rigidbody.linearVelocity.y > 0.1f;
+        #region Isometric Specific Properties
         public bool Use45DegreeOffset => _use45DegreeOffset;
-        public float MoveSpeed => _moveSpeed;
         
-        #endregion
-
-        #region Unity Lifecycle
-        private void Awake()
+        /// <summary>
+        /// Set move speed at runtime (used by grid movement configuration)
+        /// </summary>
+        public void SetMoveSpeed(float speed)
         {
-            _rigidbody = GetComponent<Rigidbody>();
-            _collider = GetComponent<CapsuleCollider>();
-
-            _pauseService = GameManager.GetService<IPauseService>();
-        }
-
-        private void Start()
-        {
-            Initialize();
-        }
-
-        private void Update()
-        {
-            UpdateMovement();
-        }
-        
-        private void FixedUpdate()
-        {
-            FixedUpdateMovement();
+            _moveSpeed = speed;
         }
         #endregion
 
-        #region IPlayerMovement Implementation
-        public void Initialize()
-        {
-            if (_isInitialized) return;
-            
-            // Setup ground check point
-            SetupGroundCheck();
-            
-            _isInitialized = true;
-        }
-
-        public void Cleanup()
-        {
-            _pauseService = null;
-            _isInitialized = false;
-            _currentVelocity = Vector3.zero;
-            _moveInput = Vector2.zero;
-        }
-
-        public void HandleMoveInput(PlayerMoveInputEvent inputEvent)
+        #region BaseMovementComponent Implementation
+        public override void HandleMoveInput(PlayerMoveInputEvent inputEvent)
         {
             if (!_isInitialized || IsPaused) return;
+            
             _moveInput = inputEvent.MovementVector;
         }
 
-        public void HandleJumpInput(PlayerJumpInputEvent inputEvent)
+        protected override void UpdateMovementSpecific()
         {
-            if (!_isInitialized || IsPaused) return;
-            
-            if (inputEvent.Phase == InputActionPhase.Performed && _isGrounded)
+            // Only update rotation when there's actual movement input to avoid jitter
+            if (_moveInput.magnitude > 0.01f)
             {
-                _isJumpRequested = true;
+                UpdateCharacterRotation();
             }
         }
 
-        public void HandleSprintInput(PlayerSprintInputEvent inputEvent)
+        protected override void FixedUpdateMovementSpecific()
         {
-            if (!_isInitialized || IsPaused) return;
-            
-            if (inputEvent.Phase == InputActionPhase.Performed)
-                _isSprinting = true;
-            else if (inputEvent.Phase == InputActionPhase.Canceled)
-                _isSprinting = false;
-        }
-
-        public void HandleCrouchInput(PlayerCrouchInputEvent inputEvent)
-        {
-            if (!_isInitialized || IsPaused) return;
-            
-            if (inputEvent.Phase == InputActionPhase.Performed)
-                _isCrouching = true;
-            else if (inputEvent.Phase == InputActionPhase.Canceled)
-                _isCrouching = false;
-        }
-
-        public void UpdateMovement()
-        {
-            if (!_isInitialized || IsPaused) return;
-            
-            CheckGrounded();
-            HandleMovement();
-            HandleRotation();
-            HandleCrouchTransition();
-        }
-
-        public void FixedUpdateMovement()
-        {
-            if (!_isInitialized || IsPaused) return;
-            
-            HandleJump();
-        }
-
-        public void StopMovement()
-        {
-            _moveInput = Vector2.zero;
-            _currentVelocity = Vector3.zero;
-            _isJumpRequested = false;
+            ApplyMovement();
         }
         #endregion
 
         #region Private Methods
-        private void HandleMovement()
-        {
-            if (_moveInput.magnitude < 0.01f)
-            {
-                _currentVelocity = Vector3.zero;
-                return;
-            }
-            
-            // Convert 2D input to 3D movement (isometric uses XZ plane)
-            Vector3 movement = new Vector3(_moveInput.x, 0f, _moveInput.y).normalized;
-            
-            // Optionally rotate movement 45 degrees for isometric camera perspective
-            if (_use45DegreeOffset)
-            {
-                movement = Quaternion.Euler(0f, 45f, 0f) * movement;
-            }
-            
-            // Calculate movement speed with modifiers
-            float currentSpeed = _moveSpeed;
-            if (_isSprinting && !_isCrouching) currentSpeed *= _sprintMultiplier;
-            if (_isCrouching) currentSpeed *= _crouchMultiplier;
-            
-            // Calculate velocity for this frame
-            Vector3 velocity = movement * currentSpeed;
-            _currentVelocity = velocity;
-            
-            // Apply movement
-            transform.position += velocity * Time.deltaTime;
-        }
-
-        private void HandleRotation()
+        private void UpdateMovementDirection()
         {
             if (_moveInput.magnitude < 0.01f) return;
+
+            // Convert 2D input to 3D direction
+            Vector3 direction = new Vector3(_moveInput.x, 0f, _moveInput.y);
             
-            // Calculate angle from input
-            float angle = Mathf.Atan2(_moveInput.x, _moveInput.y) * Mathf.Rad2Deg;
-            
-            // Optionally add 45 degree offset to match isometric movement
+            // Apply 45-degree offset for isometric camera alignment
             if (_use45DegreeOffset)
             {
-                angle += 45f;
+                direction = Quaternion.Euler(0f, 45f, 0f) * direction;
             }
             
-            // Snap to nearest cardinal direction
-            float targetAngle = GetNearestCardinalAngle(angle);
-            
-            // Set rotation directly to cardinal direction
-            transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
+            // Normalize for consistent movement speed
+            direction = direction.normalized;
         }
 
-        private float GetNearestCardinalAngle(float angle)
+        private void UpdateCharacterRotation()
         {
-            // Get cardinal angles based on offset setting
-            float[] cardinalAngles = _use45DegreeOffset 
-                ? new float[] { 45f, 135f, 225f, 315f }    // NE, SE, SW, NW for isometric
-                : new float[] { 0f, 90f, 180f, 270f };     // N, E, S, W for standard top-down
+            if (_moveInput.magnitude < 0.01f) return;
+
+            // Simple 4-directional rotation for isometric view
+            Vector3 direction = new Vector3(_moveInput.x, 0f, _moveInput.y);
             
-            // Normalize angle to 0-360 range
-            while (angle < 0f) angle += 360f;
-            while (angle >= 360f) angle -= 360f;
-            
-            float nearestAngle = cardinalAngles[0];
-            float smallestDifference = Mathf.Abs(Mathf.DeltaAngle(angle, nearestAngle));
-            
-            for (int i = 1; i < cardinalAngles.Length; i++)
+            if (_use45DegreeOffset)
             {
-                float difference = Mathf.Abs(Mathf.DeltaAngle(angle, cardinalAngles[i]));
-                if (difference < smallestDifference)
-                {
-                    smallestDifference = difference;
-                    nearestAngle = cardinalAngles[i];
-                }
+                direction = Quaternion.Euler(0f, 45f, 0f) * direction;
             }
             
-            return nearestAngle;
-        }
-        
-        private void SetupGroundCheck()
-        {
-            // Create ground check point if it doesn't exist
-            _groundCheckPoint = transform.Find("GroundCheckPoint");
-            if (_groundCheckPoint == null)
+            if (direction.magnitude > 0.01f)
             {
-                GameObject groundCheck = new GameObject("GroundCheckPoint");
-                groundCheck.transform.SetParent(transform);
-                groundCheck.transform.localPosition = new Vector3(0, -_collider.bounds.extents.y, 0);
-                _groundCheckPoint = groundCheck.transform;
+                transform.rotation = Quaternion.LookRotation(direction);
             }
         }
 
-        private void CheckGrounded()
+        private void ApplyMovement()
         {
-            if (_groundCheckPoint == null) return;
-            
-            _isGrounded = Physics.Raycast(
-                _groundCheckPoint.position,
-                Vector3.down,
-                _groundCheckDistance,
-                _groundLayerMask
-            );
-        }
+            if (_moveInput.magnitude < 0.01f) return;
 
-        private void HandleJump()
-        {
-            if (_isJumpRequested && _isGrounded && _rigidbody != null)
+            Vector3 direction = new Vector3(_moveInput.x, 0f, _moveInput.y);
+            
+            if (_use45DegreeOffset)
             {
-                _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
-                _isJumpRequested = false;
+                direction = Quaternion.Euler(0f, 45f, 0f) * direction;
             }
             
-            _isJumpRequested = false;
-        }
-
-        private void HandleCrouchTransition()
-        {
-            float targetHeight = _isCrouching ? _crouchHeight : _standingHeight;
-            float currentHeight = _collider.height;
+            direction = direction.normalized;
             
-            if (Mathf.Abs(currentHeight - targetHeight) > 0.01f)
-            {
-                float newHeight = Mathf.MoveTowards(currentHeight, targetHeight, _crouchTransitionSpeed * Time.deltaTime);
-                _collider.height = newHeight;
-                
-                // Adjust center to keep feet on ground
-                Vector3 center = _collider.center;
-                center.y = newHeight * 0.5f;
-                _collider.center = center;
-            }
+            // Apply movement with effective speed
+            float effectiveSpeed = GetEffectiveSpeed();
+            Vector3 targetVelocity = direction * effectiveSpeed;
+            Vector3 currentVelocity = _rigidbody.linearVelocity;
+            
+            // Apply movement while preserving Y velocity
+            _rigidbody.linearVelocity = new Vector3(targetVelocity.x, currentVelocity.y, targetVelocity.z);
         }
-        #endregion
-
-        #region Public Methods
-        /// <summary>
-        /// Set movement speed
-        /// </summary>
-        public void SetMoveSpeed(float speed)
-        {
-            _moveSpeed = Mathf.Max(0f, speed);
-        }
-
         #endregion
     }
 }

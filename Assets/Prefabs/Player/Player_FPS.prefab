@@ -319,9 +319,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   _requiredInputContext: 2
-  _cursorLockRequirement: 2
-  _movementComponent: {fileID: 8870780473744314975}
-  _cameraComponent: {fileID: 3805549129066443161}
+  _cursorLockRequirement: 1
+  _animatorController: {fileID: 0}
   _cinemachineCamera: {fileID: 9083194349371853835}
   _cameraMount: {fileID: 3211111535652922911}
 --- !u!114 &8870780473744314975
@@ -336,20 +335,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d617054747a8a084cb7eb8ee7495c90a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameFramework.Components.Controllers.Movement.FirstPersonMovement
-  _groundCheckPoint: {fileID: 955883634854685664}
   _moveSpeed: 5
   _sprintMultiplier: 1.5
   _crouchMultiplier: 0.5
   _jumpForce: 5
-  _airControl: 0.5
   _groundLayerMask:
     serializedVersion: 2
     m_Bits: 9
   _groundCheckDistance: 0.1
+  _groundCheckPoint: {fileID: 955883634854685664}
   _crouchHeight: 1
   _standingHeight: 2
   _crouchTransitionSpeed: 5
   _showDebugInfo: 0
+  _airControl: 0.5
 --- !u!114 &3805549129066443161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,6 +361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be3d623835a67824fa366f02d617cfbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameFramework.Components.Controllers.Camera.FirstPersonCameraControl
+  _showDebugInfo: 0
   _cinemachineCamera: {fileID: 9083194349371853835}
   _followTarget: {fileID: 3211111535652922911}
   _playerTransform: {fileID: 1215660048992525934}
@@ -369,7 +369,6 @@ MonoBehaviour:
   _minVerticalAngle: -80
   _maxVerticalAngle: 80
   _invertYAxis: 0
-  _showDebugInfo: 0
 --- !u!54 &3421404348651573308
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -5,7 +5,6 @@ using GameFramework.Components.Controllers.Camera;
 using GameFramework.Components.Controllers.Animation;
 using GameFramework.Components.Controllers.Enum;
 using GameFramework.EventSystem.Events;
-using UnityEngine.InputSystem;
 
 namespace GameFramework.Components.Controllers
 {
@@ -17,25 +16,12 @@ namespace GameFramework.Components.Controllers
     public class ThirdPersonController : BasePlayerController
     {
         #region Serialized Fields
-        [Header("Movement Component")]
-        [SerializeField] private ThirdPersonMovement _movementComponent;
-        
-        [Header("Camera Component")]
-        [SerializeField] private ThirdPersonCameraControl _cameraComponent;
-        
         [Header("Third Person Settings")]
         [SerializeField] private CinemachineCamera _cinemachineCamera;
         [SerializeField] private Transform _cameraLookAtTarget;
         
-        [Header("Animation")]
-        [SerializeField] private PlayerAnimatorController _animatorController;
-        
         [Header("Character Model")]
         [SerializeField] private GameObject _characterModel;
-        #endregion
-
-        #region Private Fields
-        // Private fields for component references and state
         #endregion
 
         #region Unity Lifecycle
@@ -45,65 +31,49 @@ namespace GameFramework.Components.Controllers
             _cursorLockRequirement = CursorLockRequirement.DuringGameplayWithUIExceptions;
             
             base.Awake();
-            
-            // Find components if not assigned
-            if (_movementComponent == null) _movementComponent = GetComponent<ThirdPersonMovement>();
-            if (_cameraComponent == null)  _cameraComponent = GetComponent<ThirdPersonCameraControl>();
-            if (_cameraLookAtTarget == null) _cameraLookAtTarget = transform.Find("CameraLookAtTarget");
-            if (_animatorController == null) _animatorController = GetComponentInChildren<PlayerAnimatorController>();
-        }
-
-        protected override void Update()
-        {
-            base.Update();
-            
-            if (_isInitialized && _animatorController != null)
-            {
-                _animatorController.UpdateAnimations();
-            }
         }
         #endregion
 
-        #region Component Creation
+        #region Component Management
+        protected override void FindComponents()
+        {
+            base.FindComponents(); // Find common components (animation controller)
+            
+            // Find third person specific components
+            if (_cameraLookAtTarget == null) 
+                _cameraLookAtTarget = transform.Find("CameraLookAtTarget");
+        }
+
         protected override void CreateComponents()
         {
-            // Assign the found components to the base class fields
-            base._movementComponent = _movementComponent;
-            base._cameraComponent = _cameraComponent;
-            
-            // Initialize animator controller
-            if (_animatorController != null && _movementComponent != null)
+            // Find and assign movement component
+            var movementComponent = GetComponent<ThirdPersonMovement>();
+            if (movementComponent == null)
             {
-                Animator animator = GetComponentInChildren<Animator>();
-                _animatorController.Initialize(PlayerPrefabType.ThirdPerson, _movementComponent, animator);
+                Debug.LogError($"[{GetType().Name}] ThirdPersonMovement component not found on {gameObject.name}");
+                return;
             }
+            
+            // Find and assign camera component  
+            var cameraComponent = GetComponent<ThirdPersonCameraControl>();
+            if (cameraComponent == null)
+            {
+                Debug.LogError($"[{GetType().Name}] ThirdPersonCameraControl component not found on {gameObject.name}");
+                return;
+            }
+
+            // Assign to base class fields
+            _movementComponent = movementComponent;
+            _cameraComponent = cameraComponent;
         }
         
         protected override PlayerPrefabType GetControllerType()
         {
             return PlayerPrefabType.ThirdPerson;
         }
-
-        #endregion
-
-        #region Animation Control
-        /// <summary>
-        /// Trigger attack animation
-        /// </summary>
-        public void TriggerAttack()
-        {
-            _animatorController?.TriggerAttack();
-        }
-        
-        
-        /// <summary>
-        /// Get access to the animator controller for advanced animation control
-        /// </summary>
-        public PlayerAnimatorController AnimatorController => _animatorController;
         #endregion
 
         #region Input Event Overrides
-        
         /// <summary>
         /// Override to route look input to movement component for character rotation
         /// </summary>
@@ -117,11 +87,10 @@ namespace GameFramework.Components.Controllers
                 thirdPersonMovement.HandleLookInput(inputEvent);
             }
             
-            // Still route to camera for any camera-specific handling (like vertical orbit)
+            // Route full input to camera for vertical orbit and zoom handling
+            // Camera will only use the vertical component for orbit
             _cameraComponent?.HandleLookInput(inputEvent);
         }
-        
-        
         #endregion
 
         #region Debug

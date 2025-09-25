@@ -848,11 +848,9 @@ MonoBehaviour:
     m_Bits: 4294967295
   _requiredInputContext: 3
   _cursorLockRequirement: 1
-  _movementComponent: {fileID: 1140652679981138305}
-  _cameraComponent: {fileID: 2364472277237615958}
+  _animatorController: {fileID: 598407191801688701}
   _cinemachineCamera: {fileID: 9083194349371853835}
   _cameraLookAtTarget: {fileID: 8409531038902378997}
-  _animatorController: {fileID: 598407191801688701}
   _characterModel: {fileID: 130237965959941423}
 --- !u!114 &1140652679981138305
 MonoBehaviour:
@@ -870,20 +868,21 @@ MonoBehaviour:
   _sprintMultiplier: 2
   _crouchMultiplier: 0.4
   _jumpForce: 5
+  _groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 9
+  _groundCheckDistance: 0.1
+  _groundCheckPoint: {fileID: 955883634854685664}
+  _crouchHeight: 1
+  _standingHeight: 2
+  _crouchTransitionSpeed: 5
+  _showDebugInfo: 0
   _airControl: 0.3
   _rotationSettings:
     rotationMode: 2
     movementRotationSpeed: 1
     mouseRotationSensitivity: 0.01
     mouseInactivityThreshold: 0.1
-  _groundLayerMask:
-    serializedVersion: 2
-    m_Bits: 9
-  _groundCheckDistance: 0.1
-  _crouchHeight: 1
-  _standingHeight: 2
-  _crouchTransitionSpeed: 5
-  _showDebugInfo: 0
 --- !u!114 &2364472277237615958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -896,6 +895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fac7faac82b7064e88e129d2688cb47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameFramework.Components.Controllers.Camera.ThirdPersonCameraControl
+  _showDebugInfo: 0
   _cinemachineCamera: {fileID: 9083194349371853835}
   _followTarget: {fileID: 1215660048992525934}
   _lookAtTarget: {fileID: 1215660048992525934}
@@ -909,7 +909,6 @@ MonoBehaviour:
   _maxDistance: 10
   _zoomSpeed: 2
   _zoomSmoothTime: 0.2
-  _showDebugInfo: 0
 --- !u!114 &598407191801688701
 MonoBehaviour:
   m_ObjectHideFlags: 0

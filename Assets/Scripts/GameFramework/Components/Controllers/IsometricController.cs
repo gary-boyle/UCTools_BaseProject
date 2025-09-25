@@ -21,15 +21,6 @@ namespace GameFramework.Components.Controllers
         [SerializeField] private CinemachineCamera _cinemachineCamera;
         [SerializeField] private Transform _cameraLookAtTarget;
         
-        [Header("Movement Component")]
-        [SerializeField] private IsometricMovement _movementComponent;
-        
-        [Header("Camera Component")]
-        [SerializeField] private IsometricCameraControl _cameraComponent;
-        
-        [Header("Animation")]
-        [SerializeField] private PlayerAnimatorController _animatorController;
-        
         [Header("Character Model")]
         [SerializeField] private GameObject _characterModel;
         
@@ -54,11 +45,6 @@ namespace GameFramework.Components.Controllers
             
             base.Awake();
             
-            // Find components if not assigned
-            if (_movementComponent == null) _movementComponent = GetComponent<IsometricMovement>();
-            if (_cameraComponent == null) _cameraComponent = GetComponent<IsometricCameraControl>();
-            if (_animatorController == null) _animatorController = GetComponentInChildren<PlayerAnimatorController>();
-            
             // Initialize grid position
             if (_useGridMovement)
             {
@@ -73,38 +59,38 @@ namespace GameFramework.Components.Controllers
             
             if (_isInitialized)
             {
-                if (_animatorController != null)
-                {
-                    _animatorController.UpdateAnimations();
-                }
                 UpdateGridMovement();
             }
         }
         #endregion
 
-        #region Component Setup
+        #region Component Management
         protected override void CreateComponents()
         {
-            // Assign the found components to the base class fields
-            base._movementComponent = _movementComponent;
-            base._cameraComponent = _cameraComponent;
-
-            // Initialize animator controller
-            if (_animatorController != null && _movementComponent != null)
+            // Find and assign movement component
+            var movementComponent = GetComponent<IsometricMovement>();
+            if (movementComponent == null)
             {
-                Animator animator = GetComponentInChildren<Animator>();
-                _animatorController.Initialize(PlayerPrefabType.Isometric, _movementComponent, animator);
+                Debug.LogError($"[{GetType().Name}] IsometricMovement component not found on {gameObject.name}");
+                return;
+            }
+            
+            // Find and assign camera component  
+            var cameraComponent = GetComponent<IsometricCameraControl>();
+            if (cameraComponent == null)
+            {
+                Debug.LogError($"[{GetType().Name}] IsometricCameraControl component not found on {gameObject.name}");
+                return;
             }
 
-            // Components are now assigned from inspector or found in Awake()
-            if (_movementComponent != null)
+            // Assign to base class fields
+            _movementComponent = movementComponent;
+            _cameraComponent = cameraComponent;
+            
+            // Configure for grid movement if enabled
+            if (_useGridMovement && movementComponent != null)
             {
-                // Configure for grid movement if enabled
-                if (_useGridMovement)
-                {
-                    //_movementComponent.SetUsePhysics(false); // Grid movement typically doesn't use physics
-                    _movementComponent.SetMoveSpeed(_gridMoveSpeed);
-                }
+                movementComponent.SetMoveSpeed(_gridMoveSpeed);
             }
         }
         
@@ -112,7 +98,6 @@ namespace GameFramework.Components.Controllers
         {
             return PlayerPrefabType.Isometric;
         }
-
         #endregion
 
         #region Movement Handling
@@ -150,7 +135,7 @@ namespace GameFramework.Components.Controllers
             }
             
             // Apply 45-degree offset if the movement component uses it
-            if (_movementComponent != null && _movementComponent.Use45DegreeOffset)
+            if (_movementComponent is IsometricMovement isometricMovement && isometricMovement.Use45DegreeOffset)
             {
                 direction = Quaternion.Euler(0f, 45f, 0f) * direction;
             }
@@ -204,22 +189,6 @@ namespace GameFramework.Components.Controllers
         }
         #endregion
 
-        #region Animation Control
-        /// <summary>
-        /// Trigger attack animation
-        /// </summary>
-        public void TriggerAttack()
-        {
-            _animatorController?.TriggerAttack();
-        }
-        
-        
-        /// <summary>
-        /// Get access to the animator controller for advanced animation control
-        /// </summary>
-        public PlayerAnimatorController AnimatorController => _animatorController;
-        #endregion
-
         #region Debug
         protected override void OnDrawGizmos()
         {
@@ -253,5 +222,4 @@ namespace GameFramework.Components.Controllers
         }
         #endregion
     }
-
 }

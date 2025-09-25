@@ -14,16 +14,9 @@ namespace GameFramework.Components.Controllers
     public class FirstPersonController : BasePlayerController
     {
         #region Serialized Fields
-        [Header("Movement Component")]
-        [SerializeField] private FirstPersonMovement _movementComponent;
-        
-        [Header("Camera Component")]
-        [SerializeField] private FirstPersonCameraControl _cameraComponent;
-        
         [Header("First Person Settings")]
         [SerializeField] private CinemachineCamera _cinemachineCamera;
         [SerializeField] private Transform _cameraMount;
-
         #endregion
 
         #region Unity Lifecycle
@@ -33,32 +26,48 @@ namespace GameFramework.Components.Controllers
             _cursorLockRequirement = CursorLockRequirement.DuringGameplay;
             
             base.Awake();
-            
-            // Find components if not assigned
-            if (_movementComponent == null) _movementComponent = GetComponent<FirstPersonMovement>();
-            if (_cameraComponent == null) _cameraComponent = GetComponent<FirstPersonCameraControl>();
+        }
+        #endregion
 
+        #region Component Management
+        protected override void FindComponents()
+        {
+            base.FindComponents(); // Find common components (animation controller)
+            
             // Find camera mount if not assigned
             if (_cameraMount == null)
             {
                 _cameraMount = transform.Find("CameraMount");
             }
         }
-        #endregion
 
-        #region Component Creation
         protected override void CreateComponents()
         {
-            // Assign the found components to the base class fields
-            base._movementComponent = _movementComponent;
-            base._cameraComponent = _cameraComponent;
+            // Find and assign movement component
+            var movementComponent = GetComponent<FirstPersonMovement>();
+            if (movementComponent == null)
+            {
+                Debug.LogError($"[{GetType().Name}] FirstPersonMovement component not found on {gameObject.name}");
+                return;
+            }
+            
+            // Find and assign camera component  
+            var cameraComponent = GetComponent<FirstPersonCameraControl>();
+            if (cameraComponent == null)
+            {
+                Debug.LogError($"[{GetType().Name}] FirstPersonCameraControl component not found on {gameObject.name}");
+                return;
+            }
+
+            // Assign to base class fields
+            _movementComponent = movementComponent;
+            _cameraComponent = cameraComponent;
         }
         
         protected override PlayerPrefabType GetControllerType()
         {
             return PlayerPrefabType.FPS;
         }
-
         #endregion
 
         #region Debug
@@ -74,5 +83,4 @@ namespace GameFramework.Components.Controllers
         }
         #endregion
     }
-
 }
