@@ -105,6 +105,28 @@ Uses composition over inheritance for maximum flexibility.</p>
   </div>
   <h3 id="fields">Fields
 </h3>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController__animatorController" data-uid="GameFramework.Components.Controllers.BasePlayerController._animatorController">_animatorController</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected PlayerAnimatorController _animatorController</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Components.Controllers.Animation.PlayerAnimatorController.html">PlayerAnimatorController</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h4 id="GameFramework_Components_Controllers_BasePlayerController__cameraComponent" data-uid="GameFramework.Components.Controllers.BasePlayerController._cameraComponent">_cameraComponent</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -393,6 +415,29 @@ Uses composition over inheritance for maximum flexibility.</p>
   </table>
   <h3 id="properties">Properties
 </h3>
+  <a id="GameFramework_Components_Controllers_BasePlayerController_AnimatorController_" data-uid="GameFramework.Components.Controllers.BasePlayerController.AnimatorController*"></a>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController_AnimatorController" data-uid="GameFramework.Components.Controllers.BasePlayerController.AnimatorController">AnimatorController</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PlayerAnimatorController AnimatorController { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Components.Controllers.Animation.PlayerAnimatorController.html">PlayerAnimatorController</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <a id="GameFramework_Components_Controllers_BasePlayerController_CameraComponent_" data-uid="GameFramework.Components.Controllers.BasePlayerController.CameraComponent*"></a>
   <h4 id="GameFramework_Components_Controllers_BasePlayerController_CameraComponent" data-uid="GameFramework.Components.Controllers.BasePlayerController.CameraComponent">CameraComponent</h4>
   <div class="markdown level1 summary"></div>
@@ -575,12 +620,21 @@ Uses composition over inheritance for maximum flexibility.</p>
   </div>
   <a id="GameFramework_Components_Controllers_BasePlayerController_CreateComponents_" data-uid="GameFramework.Components.Controllers.BasePlayerController.CreateComponents*"></a>
   <h4 id="GameFramework_Components_Controllers_BasePlayerController_CreateComponents" data-uid="GameFramework.Components.Controllers.BasePlayerController.CreateComponents">CreateComponents()</h4>
-  <div class="markdown level1 summary"><p>Create the movement and camera components for this controller type</p>
+  <div class="markdown level1 summary"><p>Create and assign components - override in derived classes</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected abstract void CreateComponents()</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual void CreateComponents()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Controllers_BasePlayerController_FindComponents_" data-uid="GameFramework.Components.Controllers.BasePlayerController.FindComponents*"></a>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController_FindComponents" data-uid="GameFramework.Components.Controllers.BasePlayerController.FindComponents">FindComponents()</h4>
+  <div class="markdown level1 summary"><p>Find components automatically - can be overridden for controller-specific finding</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void FindComponents()</code></pre>
   </div>
   <a id="GameFramework_Components_Controllers_BasePlayerController_FixedUpdate_" data-uid="GameFramework.Components.Controllers.BasePlayerController.FixedUpdate*"></a>
   <h4 id="GameFramework_Components_Controllers_BasePlayerController_FixedUpdate" data-uid="GameFramework.Components.Controllers.BasePlayerController.FixedUpdate">FixedUpdate()</h4>
@@ -622,6 +676,15 @@ Uses composition over inheritance for maximum flexibility.</p>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public virtual void Initialize()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Controllers_BasePlayerController_InitializeAnimation_" data-uid="GameFramework.Components.Controllers.BasePlayerController.InitializeAnimation*"></a>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController_InitializeAnimation" data-uid="GameFramework.Components.Controllers.BasePlayerController.InitializeAnimation">InitializeAnimation()</h4>
+  <div class="markdown level1 summary"><p>Initialize animation system</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void InitializeAnimation()</code></pre>
   </div>
   <a id="GameFramework_Components_Controllers_BasePlayerController_InitializeInteractionSystem_" data-uid="GameFramework.Components.Controllers.BasePlayerController.InitializeInteractionSystem*"></a>
   <h4 id="GameFramework_Components_Controllers_BasePlayerController_InitializeInteractionSystem" data-uid="GameFramework.Components.Controllers.BasePlayerController.InitializeInteractionSystem">InitializeInteractionSystem()</h4>
@@ -923,6 +986,15 @@ Uses composition over inheritance for maximum flexibility.</p>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">protected virtual void SubscribeToEvents()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Controllers_BasePlayerController_TriggerAttack_" data-uid="GameFramework.Components.Controllers.BasePlayerController.TriggerAttack*"></a>
+  <h4 id="GameFramework_Components_Controllers_BasePlayerController_TriggerAttack" data-uid="GameFramework.Components.Controllers.BasePlayerController.TriggerAttack">TriggerAttack()</h4>
+  <div class="markdown level1 summary"><p>Trigger attack animation</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void TriggerAttack()</code></pre>
   </div>
   <a id="GameFramework_Components_Controllers_BasePlayerController_UnsubscribeFromEvents_" data-uid="GameFramework.Components.Controllers.BasePlayerController.UnsubscribeFromEvents*"></a>
   <h4 id="GameFramework_Components_Controllers_BasePlayerController_UnsubscribeFromEvents" data-uid="GameFramework.Components.Controllers.BasePlayerController.UnsubscribeFromEvents">UnsubscribeFromEvents()</h4>

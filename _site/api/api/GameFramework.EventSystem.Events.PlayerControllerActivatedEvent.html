@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class CharacterRotationSettings | UCTools Base Project </title>
+    <title>Class PlayerControllerActivatedEvent | UCTools Base Project </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class CharacterRotationSettings | UCTools Base Project ">
+    <meta name="title" content="Class PlayerControllerActivatedEvent | UCTools Base Project ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -79,19 +79,18 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="GameFramework.Components.Controllers.Enum.CharacterRotationSettings">
+            <article class="content wrap" id="_content" data-uid="GameFramework.EventSystem.Events.PlayerControllerActivatedEvent">
 
 
 
-  <h1 id="GameFramework_Components_Controllers_Enum_CharacterRotationSettings" data-uid="GameFramework.Components.Controllers.Enum.CharacterRotationSettings" class="text-break">Class CharacterRotationSettings</h1>
-  <div class="markdown level0 summary"><p>Configuration settings for character rotation behavior.
-Provides detailed control over rotation parameters for each mode.</p>
+  <h1 id="GameFramework_EventSystem_Events_PlayerControllerActivatedEvent" data-uid="GameFramework.EventSystem.Events.PlayerControllerActivatedEvent" class="text-break">Class PlayerControllerActivatedEvent</h1>
+  <div class="markdown level0 summary"><p>Event published when a player controller is activated to inform services of its cursor requirements</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><span class="xref">CharacterRotationSettings</span></div>
+    <div class="level1"><span class="xref">PlayerControllerActivatedEvent</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -117,45 +116,55 @@ Provides detailed control over rotation parameters for each mode.</p>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
     </div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.Components.html">Components</a>.<a class="xref" href="GameFramework.Components.Controllers.html">Controllers</a>.<a class="xref" href="GameFramework.Components.Controllers.Enum.html">Enum</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.EventSystem.html">EventSystem</a>.<a class="xref" href="GameFramework.EventSystem.Events.html">Events</a></h6>
   <h6><strong>Assembly</strong>: .dll</h6>
-  <h5 id="GameFramework_Components_Controllers_Enum_CharacterRotationSettings_syntax">Syntax</h5>
+  <h5 id="GameFramework_EventSystem_Events_PlayerControllerActivatedEvent_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Serializable]
-public class CharacterRotationSettings</code></pre>
+    <pre><code class="lang-csharp hljs">public class PlayerControllerActivatedEvent</code></pre>
   </div>
-  <h3 id="fields">Fields
+  <h3 id="constructors">Constructors
 </h3>
-  <h4 id="GameFramework_Components_Controllers_Enum_CharacterRotationSettings_mouseRotationSensitivity" data-uid="GameFramework.Components.Controllers.Enum.CharacterRotationSettings.mouseRotationSensitivity">mouseRotationSensitivity</h4>
+  <a id="GameFramework_EventSystem_Events_PlayerControllerActivatedEvent__ctor_" data-uid="GameFramework.EventSystem.Events.PlayerControllerActivatedEvent.#ctor*"></a>
+  <h4 id="GameFramework_EventSystem_Events_PlayerControllerActivatedEvent__ctor_GameFramework_Components_Controllers_Enum_CursorLockRequirement_GameFramework_Components_Controllers_Enum_PlayerPrefabType_" data-uid="GameFramework.EventSystem.Events.PlayerControllerActivatedEvent.#ctor(GameFramework.Components.Controllers.Enum.CursorLockRequirement,GameFramework.Components.Controllers.Enum.PlayerPrefabType)">PlayerControllerActivatedEvent(CursorLockRequirement, PlayerPrefabType)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public float mouseRotationSensitivity</code></pre>
+    <pre><code class="lang-csharp hljs">public PlayerControllerActivatedEvent(CursorLockRequirement cursorRequirement, PlayerPrefabType controllerType)</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
+  <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
+        <th>Name</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td><a class="xref" href="GameFramework.Components.Controllers.Enum.CursorLockRequirement.html">CursorLockRequirement</a></td>
+        <td><span class="parametername">cursorRequirement</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="GameFramework.Components.Controllers.Enum.PlayerPrefabType.html">PlayerPrefabType</a></td>
+        <td><span class="parametername">controllerType</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <h4 id="GameFramework_Components_Controllers_Enum_CharacterRotationSettings_movementRotationSpeed" data-uid="GameFramework.Components.Controllers.Enum.CharacterRotationSettings.movementRotationSpeed">movementRotationSpeed</h4>
+  <h3 id="properties">Properties
+</h3>
+  <a id="GameFramework_EventSystem_Events_PlayerControllerActivatedEvent_ControllerType_" data-uid="GameFramework.EventSystem.Events.PlayerControllerActivatedEvent.ControllerType*"></a>
+  <h4 id="GameFramework_EventSystem_Events_PlayerControllerActivatedEvent_ControllerType" data-uid="GameFramework.EventSystem.Events.PlayerControllerActivatedEvent.ControllerType">ControllerType</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public float movementRotationSpeed</code></pre>
+    <pre><code class="lang-csharp hljs">public PlayerPrefabType ControllerType { get; }</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
+  <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
@@ -165,19 +174,20 @@ public class CharacterRotationSettings</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td><a class="xref" href="GameFramework.Components.Controllers.Enum.PlayerPrefabType.html">PlayerPrefabType</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <h4 id="GameFramework_Components_Controllers_Enum_CharacterRotationSettings_rotationMode" data-uid="GameFramework.Components.Controllers.Enum.CharacterRotationSettings.rotationMode">rotationMode</h4>
+  <a id="GameFramework_EventSystem_Events_PlayerControllerActivatedEvent_CursorRequirement_" data-uid="GameFramework.EventSystem.Events.PlayerControllerActivatedEvent.CursorRequirement*"></a>
+  <h4 id="GameFramework_EventSystem_Events_PlayerControllerActivatedEvent_CursorRequirement" data-uid="GameFramework.EventSystem.Events.PlayerControllerActivatedEvent.CursorRequirement">CursorRequirement</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public CharacterRotationMode rotationMode</code></pre>
+    <pre><code class="lang-csharp hljs">public CursorLockRequirement CursorRequirement { get; }</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
+  <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
@@ -187,7 +197,7 @@ public class CharacterRotationSettings</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="GameFramework.Components.Controllers.Enum.CharacterRotationMode.html">CharacterRotationMode</a></td>
+        <td><a class="xref" href="GameFramework.Components.Controllers.Enum.CursorLockRequirement.html">CursorLockRequirement</a></td>
         <td></td>
       </tr>
     </tbody>

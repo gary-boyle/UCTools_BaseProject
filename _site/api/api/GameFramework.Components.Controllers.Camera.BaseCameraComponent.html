@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class BaseCameraComponent | UCTools Base Project </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class BaseCameraComponent | UCTools Base Project ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  <meta property="docfx:newtab" content="true">
+
+  
+  </head>
+
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="UCTools">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent">
+
+
+
+  <h1 id="GameFramework_Components_Controllers_Camera_BaseCameraComponent" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent" class="text-break">Class BaseCameraComponent</h1>
+  <div class="markdown level0 summary"><p>Base class for all camera components providing common functionality.
+Handles service dependencies, input state management, and pause handling.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+    <div class="level1"><span class="xref">BaseCameraComponent</span></div>
+      <div class="level2"><a class="xref" href="GameFramework.Components.Controllers.Camera.FirstPersonCameraControl.html">FirstPersonCameraControl</a></div>
+      <div class="level2"><a class="xref" href="GameFramework.Components.Controllers.Camera.IsometricCameraControl.html">IsometricCameraControl</a></div>
+      <div class="level2"><a class="xref" href="GameFramework.Components.Controllers.Camera.RTSCameraControl.html">RTSCameraControl</a></div>
+      <div class="level2"><a class="xref" href="GameFramework.Components.Controllers.Camera.ThirdPersonCameraControl.html">ThirdPersonCameraControl</a></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="GameFramework.Components.Controllers.Interfaces.ICameraControl.html">ICameraControl</a></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.Components.html">Components</a>.<a class="xref" href="GameFramework.Components.Controllers.html">Controllers</a>.<a class="xref" href="GameFramework.Components.Controllers.Camera.html">Camera</a></h6>
+  <h6><strong>Assembly</strong>: .dll</h6>
+  <h5 id="GameFramework_Components_Controllers_Camera_BaseCameraComponent_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class BaseCameraComponent : MonoBehaviour, ICameraControl</code></pre>
+  </div>
+  <h3 id="fields">Fields
+</h3>
+  <h4 id="GameFramework_Components_Controllers_Camera_BaseCameraComponent__currentZoom" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent._currentZoom">_currentZoom</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected float _currentZoom</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_Camera_BaseCameraComponent__eventSystem" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent._eventSystem">_eventSystem</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected IEventSystem _eventSystem</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.EventSystem.Interfaces.IEventSystem.html">IEventSystem</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_Camera_BaseCameraComponent__inputEnabled" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent._inputEnabled">_inputEnabled</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool _inputEnabled</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_Camera_BaseCameraComponent__isInitialized" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent._isInitialized">_isInitialized</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool _isInitialized</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_Camera_BaseCameraComponent__lookInput" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent._lookInput">_lookInput</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Vector2 _lookInput</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector2</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_Camera_BaseCameraComponent__mainCamera" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent._mainCamera">_mainCamera</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected UnityEngine.Camera _mainCamera</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Camera</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_Camera_BaseCameraComponent__maxZoom" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent._maxZoom">_maxZoom</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected float _maxZoom</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_Camera_BaseCameraComponent__minZoom" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent._minZoom">_minZoom</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected float _minZoom</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_Camera_BaseCameraComponent__pauseService" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent._pauseService">_pauseService</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected IPauseService _pauseService</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Services.Interfaces.IPauseService.html">IPauseService</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_Camera_BaseCameraComponent__showDebugInfo" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent._showDebugInfo">_showDebugInfo</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool _showDebugInfo</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_Camera_BaseCameraComponent__targetZoom" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent._targetZoom">_targetZoom</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected float _targetZoom</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_Camera_BaseCameraComponent__zoomSmoothTime" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent._zoomSmoothTime">_zoomSmoothTime</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected float _zoomSmoothTime</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_Camera_BaseCameraComponent__zoomSmoothness" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent._zoomSmoothness">_zoomSmoothness</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected float _zoomSmoothness</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_Camera_BaseCameraComponent__zoomSpeed" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent._zoomSpeed">_zoomSpeed</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected float _zoomSpeed</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_Camera_BaseCameraComponent__zoomVelocity" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent._zoomVelocity">_zoomVelocity</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected float _zoomVelocity</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+</h3>
+  <a id="GameFramework_Components_Controllers_Camera_BaseCameraComponent_IsPaused_" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent.IsPaused*"></a>
+  <h4 id="GameFramework_Components_Controllers_Camera_BaseCameraComponent_IsPaused" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent.IsPaused">IsPaused</h4>
+  <div class="markdown level1 summary"><p>Whether the camera component is currently paused</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool IsPaused { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+  <a id="GameFramework_Components_Controllers_Camera_BaseCameraComponent_Awake_" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent.Awake*"></a>
+  <h4 id="GameFramework_Components_Controllers_Camera_BaseCameraComponent_Awake" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent.Awake">Awake()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Awake()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Controllers_Camera_BaseCameraComponent_Cleanup_" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent.Cleanup*"></a>
+  <h4 id="GameFramework_Components_Controllers_Camera_BaseCameraComponent_Cleanup" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent.Cleanup">Cleanup()</h4>
+  <div class="markdown level1 summary"><p>Clean up the camera component</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void Cleanup()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Controllers_Camera_BaseCameraComponent_CleanupCameraSpecific_" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent.CleanupCameraSpecific*"></a>
+  <h4 id="GameFramework_Components_Controllers_Camera_BaseCameraComponent_CleanupCameraSpecific" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent.CleanupCameraSpecific">CleanupCameraSpecific()</h4>
+  <div class="markdown level1 summary"><p>Cleanup camera-specific functionality</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract void CleanupCameraSpecific()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Controllers_Camera_BaseCameraComponent_HandleLookInput_" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent.HandleLookInput*"></a>
+  <h4 id="GameFramework_Components_Controllers_Camera_BaseCameraComponent_HandleLookInput_GameFramework_EventSystem_Events_PlayerLookInputEvent_" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent.HandleLookInput(GameFramework.EventSystem.Events.PlayerLookInputEvent)">HandleLookInput(PlayerLookInputEvent)</h4>
+  <div class="markdown level1 summary"><p>Handle look input from the input system</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void HandleLookInput(PlayerLookInputEvent inputEvent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.EventSystem.Events.PlayerLookInputEvent.html">PlayerLookInputEvent</a></td>
+        <td><span class="parametername">inputEvent</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Components_Controllers_Camera_BaseCameraComponent_Initialize_" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent.Initialize*"></a>
+  <h4 id="GameFramework_Components_Controllers_Camera_BaseCameraComponent_Initialize" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent.Initialize">Initialize()</h4>
+  <div class="markdown level1 summary"><p>Initialize the camera component</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void Initialize()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Controllers_Camera_BaseCameraComponent_InitializeCameraSpecific_" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent.InitializeCameraSpecific*"></a>
+  <h4 id="GameFramework_Components_Controllers_Camera_BaseCameraComponent_InitializeCameraSpecific" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent.InitializeCameraSpecific">InitializeCameraSpecific()</h4>
+  <div class="markdown level1 summary"><p>Initialize camera-specific functionality</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract void InitializeCameraSpecific()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Controllers_Camera_BaseCameraComponent_OnDrawGizmos_" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent.OnDrawGizmos*"></a>
+  <h4 id="GameFramework_Components_Controllers_Camera_BaseCameraComponent_OnDrawGizmos" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent.OnDrawGizmos">OnDrawGizmos()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnDrawGizmos()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Controllers_Camera_BaseCameraComponent_ProcessLookInput_" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent.ProcessLookInput*"></a>
+  <h4 id="GameFramework_Components_Controllers_Camera_BaseCameraComponent_ProcessLookInput" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent.ProcessLookInput">ProcessLookInput()</h4>
+  <div class="markdown level1 summary"><p>Process look input - implemented by specific camera types</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract void ProcessLookInput()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Controllers_Camera_BaseCameraComponent_SetInputEnabled_" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent.SetInputEnabled*"></a>
+  <h4 id="GameFramework_Components_Controllers_Camera_BaseCameraComponent_SetInputEnabled_System_Boolean_" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent.SetInputEnabled(System.Boolean)">SetInputEnabled(bool)</h4>
+  <div class="markdown level1 summary"><p>Enable or disable camera input processing</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void SetInputEnabled(bool enabled)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">enabled</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Components_Controllers_Camera_BaseCameraComponent_UpdateCamera_" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent.UpdateCamera*"></a>
+  <h4 id="GameFramework_Components_Controllers_Camera_BaseCameraComponent_UpdateCamera" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent.UpdateCamera">UpdateCamera()</h4>
+  <div class="markdown level1 summary"><p>Update camera logic (called from Update)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void UpdateCamera()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Controllers_Camera_BaseCameraComponent_UpdateCameraSpecific_" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent.UpdateCameraSpecific*"></a>
+  <h4 id="GameFramework_Components_Controllers_Camera_BaseCameraComponent_UpdateCameraSpecific" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent.UpdateCameraSpecific">UpdateCameraSpecific()</h4>
+  <div class="markdown level1 summary"><p>Update camera logic specific to this camera type</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract void UpdateCameraSpecific()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Controllers_Camera_BaseCameraComponent_UpdateZoom_" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent.UpdateZoom*"></a>
+  <h4 id="GameFramework_Components_Controllers_Camera_BaseCameraComponent_UpdateZoom" data-uid="GameFramework.Components.Controllers.Camera.BaseCameraComponent.UpdateZoom">UpdateZoom()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract void UpdateZoom()</code></pre>
+  </div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="GameFramework.Components.Controllers.Interfaces.ICameraControl.html">ICameraControl</a>
+  </div>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In this article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        © 2025 UCTools Base Project Documentation
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Enum CharacterRotationMode | UCTools Base Project </title>
+    <title>Class ScrollWheelInputEvent | UCTools Base Project </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Enum CharacterRotationMode | UCTools Base Project ">
+    <meta name="title" content="Class ScrollWheelInputEvent | UCTools Base Project ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -79,54 +79,101 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="GameFramework.Components.Controllers.Enum.CharacterRotationMode">
+            <article class="content wrap" id="_content" data-uid="GameFramework.EventSystem.Events.ScrollWheelInputEvent">
 
 
 
-
-  <h1 id="GameFramework_Components_Controllers_Enum_CharacterRotationMode" data-uid="GameFramework.Components.Controllers.Enum.CharacterRotationMode" class="text-break">Enum CharacterRotationMode</h1>
-  <div class="markdown level0 summary"><p>Defines how a character's rotation is controlled in third-person movement.</p>
-</div>
+  <h1 id="GameFramework_EventSystem_Events_ScrollWheelInputEvent" data-uid="GameFramework.EventSystem.Events.ScrollWheelInputEvent" class="text-break">Class ScrollWheelInputEvent</h1>
+  <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.Components.html">Components</a>.<a class="xref" href="GameFramework.Components.Controllers.html">Controllers</a>.<a class="xref" href="GameFramework.Components.Controllers.Enum.html">Enum</a></h6>
-  <h6><strong>Assembly</strong>: .dll</h6>
-  <h5 id="GameFramework_Components_Controllers_Enum_CharacterRotationMode_syntax">Syntax</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public enum CharacterRotationMode</code></pre>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+    <div class="level1"><span class="xref">ScrollWheelInputEvent</span></div>
   </div>
-  <h3 id="fields">Fields
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.EventSystem.html">EventSystem</a>.<a class="xref" href="GameFramework.EventSystem.Events.html">Events</a></h6>
+  <h6><strong>Assembly</strong>: .dll</h6>
+  <h5 id="GameFramework_EventSystem_Events_ScrollWheelInputEvent_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ScrollWheelInputEvent</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
 </h3>
+  <a id="GameFramework_EventSystem_Events_ScrollWheelInputEvent__ctor_" data-uid="GameFramework.EventSystem.Events.ScrollWheelInputEvent.#ctor*"></a>
+  <h4 id="GameFramework_EventSystem_Events_ScrollWheelInputEvent__ctor_Vector2_" data-uid="GameFramework.EventSystem.Events.ScrollWheelInputEvent.#ctor(Vector2)">ScrollWheelInputEvent(Vector2)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ScrollWheelInputEvent(Vector2 scrollDelta)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
+        <th>Type</th>
         <th>Name</th>
         <th>Description</th>
       </tr>
-    <thead>
-    </thead></thead><tbody>
+    </thead>
+    <tbody>
       <tr>
-        <td id="GameFramework_Components_Controllers_Enum_CharacterRotationMode_MouseControl">MouseControl</td>
-        <td><p>Character rotation is directly controlled by mouse horizontal input.
-Provides immediate, precise rotation control independent of movement.
-Best for games requiring precise aiming or camera-relative movement.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="GameFramework_Components_Controllers_Enum_CharacterRotationMode_None">None</td>
-        <td><p>No automatic rotation. Character maintains current facing direction.
-Useful for stationary characters or when rotation is handled externally.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="GameFramework_Components_Controllers_Enum_CharacterRotationMode_TankControls">TankControls</td>
-        <td><p>Character rotation controlled by A/D keys (tank-like controls).
-A/D keys provide direct rotation control when pressed alone.
-Movement is always relative to character's facing direction.
-Best for classic tank-like controls or traditional third-person movement.</p>
-</td>
+        <td><span class="xref">Vector2</span></td>
+        <td><span class="parametername">scrollDelta</span></td>
+        <td></td>
       </tr>
     </tbody>
   </table>
+  <h3 id="properties">Properties
+</h3>
+  <a id="GameFramework_EventSystem_Events_ScrollWheelInputEvent_ScrollDelta_" data-uid="GameFramework.EventSystem.Events.ScrollWheelInputEvent.ScrollDelta*"></a>
+  <h4 id="GameFramework_EventSystem_Events_ScrollWheelInputEvent_ScrollDelta" data-uid="GameFramework.EventSystem.Events.ScrollWheelInputEvent.ScrollDelta">ScrollDelta</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector2 ScrollDelta { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector2</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
 </article>
           </div>
 

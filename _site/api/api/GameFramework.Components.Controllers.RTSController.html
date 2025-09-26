@@ -113,6 +113,9 @@ Handles unit selection with mouse clicks and selection boxes.</p>
       <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController__cursorLockRequirement">BasePlayerController._cursorLockRequirement</a>
     </div>
     <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController__animatorController">BasePlayerController._animatorController</a>
+    </div>
+    <div>
       <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController__eventSystem">BasePlayerController._eventSystem</a>
     </div>
     <div>
@@ -146,6 +149,9 @@ Handles unit selection with mouse clicks and selection boxes.</p>
       <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_InteractionDetector">BasePlayerController.InteractionDetector</a>
     </div>
     <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_AnimatorController">BasePlayerController.AnimatorController</a>
+    </div>
+    <div>
       <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_IsInitialized">BasePlayerController.IsInitialized</a>
     </div>
     <div>
@@ -161,6 +167,9 @@ Handles unit selection with mouse clicks and selection boxes.</p>
       <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_Start">BasePlayerController.Start()</a>
     </div>
     <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_Update">BasePlayerController.Update()</a>
+    </div>
+    <div>
       <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_FixedUpdate">BasePlayerController.FixedUpdate()</a>
     </div>
     <div>
@@ -168,6 +177,9 @@ Handles unit selection with mouse clicks and selection boxes.</p>
     </div>
     <div>
       <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_OnDisable">BasePlayerController.OnDisable()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_OnDestroy">BasePlayerController.OnDestroy()</a>
     </div>
     <div>
       <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_Initialize">BasePlayerController.Initialize()</a>
@@ -180,6 +192,15 @@ Handles unit selection with mouse clicks and selection boxes.</p>
     </div>
     <div>
       <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_ResumeAllMovement">BasePlayerController.ResumeAllMovement()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_FindComponents">BasePlayerController.FindComponents()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_InitializeAnimation">BasePlayerController.InitializeAnimation()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_TriggerAttack">BasePlayerController.TriggerAttack()</a>
     </div>
     <div>
       <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_SubscribeToEvents">BasePlayerController.SubscribeToEvents()</a>
@@ -232,7 +253,7 @@ Handles unit selection with mouse clicks and selection boxes.</p>
   <div><a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_Awake">BasePlayerController.Awake()</a></div>
   <a id="GameFramework_Components_Controllers_RTSController_CreateComponents_" data-uid="GameFramework.Components.Controllers.RTSController.CreateComponents*"></a>
   <h4 id="GameFramework_Components_Controllers_RTSController_CreateComponents" data-uid="GameFramework.Components.Controllers.RTSController.CreateComponents">CreateComponents()</h4>
-  <div class="markdown level1 summary"><p>Create the movement and camera components for this controller type</p>
+  <div class="markdown level1 summary"><p>Create and assign components - override in derived classes</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -267,16 +288,6 @@ Handles unit selection with mouse clicks and selection boxes.</p>
   </table>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_GetControllerType">BasePlayerController.GetControllerType()</a></div>
-  <a id="GameFramework_Components_Controllers_RTSController_OnDestroy_" data-uid="GameFramework.Components.Controllers.RTSController.OnDestroy*"></a>
-  <h4 id="GameFramework_Components_Controllers_RTSController_OnDestroy" data-uid="GameFramework.Components.Controllers.RTSController.OnDestroy">OnDestroy()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void OnDestroy()</code></pre>
-  </div>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_OnDestroy">BasePlayerController.OnDestroy()</a></div>
   <a id="GameFramework_Components_Controllers_RTSController_OnDrawGizmos_" data-uid="GameFramework.Components.Controllers.RTSController.OnDrawGizmos*"></a>
   <h4 id="GameFramework_Components_Controllers_RTSController_OnDrawGizmos" data-uid="GameFramework.Components.Controllers.RTSController.OnDrawGizmos">OnDrawGizmos()</h4>
   <div class="markdown level1 summary"></div>
@@ -342,16 +353,6 @@ Handles unit selection with mouse clicks and selection boxes.</p>
   </table>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_OnPlayerMoveInput_GameFramework_EventSystem_Events_PlayerMoveInputEvent_">BasePlayerController.OnPlayerMoveInput(PlayerMoveInputEvent)</a></div>
-  <a id="GameFramework_Components_Controllers_RTSController_Update_" data-uid="GameFramework.Components.Controllers.RTSController.Update*"></a>
-  <h4 id="GameFramework_Components_Controllers_RTSController_Update" data-uid="GameFramework.Components.Controllers.RTSController.Update">Update()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void Update()</code></pre>
-  </div>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_Update">BasePlayerController.Update()</a></div>
 
 </article>
           </div>

@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class BaseMovementComponent | UCTools Base Project </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class BaseMovementComponent | UCTools Base Project ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  <meta property="docfx:newtab" content="true">
+
+  
+  </head>
+
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="UCTools">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent">
+
+
+
+  <h1 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent" class="text-break">Class BaseMovementComponent</h1>
+  <div class="markdown level0 summary"><p>Base class for all movement components providing common functionality.
+Handles physics setup, ground detection, jumping, crouching, and basic state management.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+    <div class="level1"><span class="xref">BaseMovementComponent</span></div>
+      <div class="level2"><a class="xref" href="GameFramework.Components.Controllers.Movement.FirstPersonMovement.html">FirstPersonMovement</a></div>
+      <div class="level2"><a class="xref" href="GameFramework.Components.Controllers.Movement.IsometricMovement.html">IsometricMovement</a></div>
+      <div class="level2"><a class="xref" href="GameFramework.Components.Controllers.Movement.ThirdPersonMovement.html">ThirdPersonMovement</a></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="GameFramework.Components.Controllers.Interfaces.IPlayerMovement.html">IPlayerMovement</a></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.Components.html">Components</a>.<a class="xref" href="GameFramework.Components.Controllers.html">Controllers</a>.<a class="xref" href="GameFramework.Components.Controllers.Movement.html">Movement</a></h6>
+  <h6><strong>Assembly</strong>: .dll</h6>
+  <h5 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class BaseMovementComponent : MonoBehaviour, IPlayerMovement</code></pre>
+  </div>
+  <h3 id="fields">Fields
+</h3>
+  <h4 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent__collider" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent._collider">_collider</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected CapsuleCollider _collider</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">CapsuleCollider</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent__crouchMultiplier" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent._crouchMultiplier">_crouchMultiplier</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected float _crouchMultiplier</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent__groundCheckDistance" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent._groundCheckDistance">_groundCheckDistance</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected float _groundCheckDistance</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent__groundCheckPoint" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent._groundCheckPoint">_groundCheckPoint</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Transform _groundCheckPoint</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Transform</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent__groundLayerMask" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent._groundLayerMask">_groundLayerMask</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected LayerMask _groundLayerMask</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">LayerMask</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent__isCrouching" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent._isCrouching">_isCrouching</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool _isCrouching</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent__isGrounded" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent._isGrounded">_isGrounded</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool _isGrounded</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent__isInitialized" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent._isInitialized">_isInitialized</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool _isInitialized</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent__isJumpRequested" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent._isJumpRequested">_isJumpRequested</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool _isJumpRequested</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent__isSprinting" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent._isSprinting">_isSprinting</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool _isSprinting</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent__jumpForce" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent._jumpForce">_jumpForce</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected float _jumpForce</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent__moveInput" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent._moveInput">_moveInput</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Vector2 _moveInput</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector2</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent__moveSpeed" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent._moveSpeed">_moveSpeed</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected float _moveSpeed</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent__pauseService" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent._pauseService">_pauseService</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected IPauseService _pauseService</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.Services.Interfaces.IPauseService.html">IPauseService</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent__rigidbody" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent._rigidbody">_rigidbody</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Rigidbody _rigidbody</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Rigidbody</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent__showDebugInfo" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent._showDebugInfo">_showDebugInfo</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool _showDebugInfo</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent__sprintMultiplier" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent._sprintMultiplier">_sprintMultiplier</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected float _sprintMultiplier</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+</h3>
+  <a id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_CurrentVelocity_" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.CurrentVelocity*"></a>
+  <h4 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_CurrentVelocity" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.CurrentVelocity">CurrentVelocity</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Vector3 CurrentVelocity { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector3</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_IsCrouching_" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.IsCrouching*"></a>
+  <h4 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_IsCrouching" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.IsCrouching">IsCrouching</h4>
+  <div class="markdown level1 summary"><p>Is the player currently crouching</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool IsCrouching { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_IsGrounded_" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.IsGrounded*"></a>
+  <h4 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_IsGrounded" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.IsGrounded">IsGrounded</h4>
+  <div class="markdown level1 summary"><p>Is the player currently grounded (if applicable)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool IsGrounded { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_IsJumping_" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.IsJumping*"></a>
+  <h4 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_IsJumping" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.IsJumping">IsJumping</h4>
+  <div class="markdown level1 summary"><p>Is the player currently jumping (airborne from jump input)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool IsJumping { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_IsPaused_" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.IsPaused*"></a>
+  <h4 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_IsPaused" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.IsPaused">IsPaused</h4>
+  <div class="markdown level1 summary"><p>Whether the movement component is currently paused</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool IsPaused { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_MoveSpeed_" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.MoveSpeed*"></a>
+  <h4 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_MoveSpeed" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.MoveSpeed">MoveSpeed</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual float MoveSpeed { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+  <a id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_Awake_" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.Awake*"></a>
+  <h4 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_Awake" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.Awake">Awake()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Awake()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_Cleanup_" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.Cleanup*"></a>
+  <h4 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_Cleanup" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.Cleanup">Cleanup()</h4>
+  <div class="markdown level1 summary"><p>Clean up the movement component</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void Cleanup()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_FixedUpdateMovement_" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.FixedUpdateMovement*"></a>
+  <h4 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_FixedUpdateMovement" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.FixedUpdateMovement">FixedUpdateMovement()</h4>
+  <div class="markdown level1 summary"><p>Fixed update for physics-based movement</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void FixedUpdateMovement()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_FixedUpdateMovementSpecific_" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.FixedUpdateMovementSpecific*"></a>
+  <h4 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_FixedUpdateMovementSpecific" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.FixedUpdateMovementSpecific">FixedUpdateMovementSpecific()</h4>
+  <div class="markdown level1 summary"><p>Fixed update movement logic specific to this movement type</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract void FixedUpdateMovementSpecific()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_GetEffectiveSpeed_" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.GetEffectiveSpeed*"></a>
+  <h4 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_GetEffectiveSpeed" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.GetEffectiveSpeed">GetEffectiveSpeed()</h4>
+  <div class="markdown level1 summary"><p>Gets current effective movement speed based on modifiers</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual float GetEffectiveSpeed()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_HandleCrouchInput_" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.HandleCrouchInput*"></a>
+  <h4 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_HandleCrouchInput_GameFramework_EventSystem_Events_PlayerCrouchInputEvent_" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.HandleCrouchInput(GameFramework.EventSystem.Events.PlayerCrouchInputEvent)">HandleCrouchInput(PlayerCrouchInputEvent)</h4>
+  <div class="markdown level1 summary"><p>Handle crouch input from the input system</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void HandleCrouchInput(PlayerCrouchInputEvent inputEvent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.EventSystem.Events.PlayerCrouchInputEvent.html">PlayerCrouchInputEvent</a></td>
+        <td><span class="parametername">inputEvent</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_HandleJump_" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.HandleJump*"></a>
+  <h4 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_HandleJump" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.HandleJump">HandleJump()</h4>
+  <div class="markdown level1 summary"><p>Handles jump physics</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void HandleJump()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_HandleJumpInput_" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.HandleJumpInput*"></a>
+  <h4 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_HandleJumpInput_GameFramework_EventSystem_Events_PlayerJumpInputEvent_" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.HandleJumpInput(GameFramework.EventSystem.Events.PlayerJumpInputEvent)">HandleJumpInput(PlayerJumpInputEvent)</h4>
+  <div class="markdown level1 summary"><p>Handle jump input from the input system</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void HandleJumpInput(PlayerJumpInputEvent inputEvent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.EventSystem.Events.PlayerJumpInputEvent.html">PlayerJumpInputEvent</a></td>
+        <td><span class="parametername">inputEvent</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_HandleMoveInput_" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.HandleMoveInput*"></a>
+  <h4 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_HandleMoveInput_GameFramework_EventSystem_Events_PlayerMoveInputEvent_" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.HandleMoveInput(GameFramework.EventSystem.Events.PlayerMoveInputEvent)">HandleMoveInput(PlayerMoveInputEvent)</h4>
+  <div class="markdown level1 summary"><p>Handle movement input - implemented by specific movement types</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract void HandleMoveInput(PlayerMoveInputEvent inputEvent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.EventSystem.Events.PlayerMoveInputEvent.html">PlayerMoveInputEvent</a></td>
+        <td><span class="parametername">inputEvent</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_HandleSprintInput_" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.HandleSprintInput*"></a>
+  <h4 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_HandleSprintInput_GameFramework_EventSystem_Events_PlayerSprintInputEvent_" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.HandleSprintInput(GameFramework.EventSystem.Events.PlayerSprintInputEvent)">HandleSprintInput(PlayerSprintInputEvent)</h4>
+  <div class="markdown level1 summary"><p>Handle sprint input from the input system</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void HandleSprintInput(PlayerSprintInputEvent inputEvent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GameFramework.EventSystem.Events.PlayerSprintInputEvent.html">PlayerSprintInputEvent</a></td>
+        <td><span class="parametername">inputEvent</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_Initialize_" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.Initialize*"></a>
+  <h4 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_Initialize" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.Initialize">Initialize()</h4>
+  <div class="markdown level1 summary"><p>Initialize the movement component</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void Initialize()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_OnDrawGizmos_" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.OnDrawGizmos*"></a>
+  <h4 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_OnDrawGizmos" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.OnDrawGizmos">OnDrawGizmos()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnDrawGizmos()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_StopMovement_" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.StopMovement*"></a>
+  <h4 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_StopMovement" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.StopMovement">StopMovement()</h4>
+  <div class="markdown level1 summary"><p>Stop all movement (useful for pause/cutscenes)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void StopMovement()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_UpdateGroundedState_" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.UpdateGroundedState*"></a>
+  <h4 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_UpdateGroundedState" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.UpdateGroundedState">UpdateGroundedState()</h4>
+  <div class="markdown level1 summary"><p>Updates grounded state using raycast</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void UpdateGroundedState()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_UpdateMovement_" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.UpdateMovement*"></a>
+  <h4 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_UpdateMovement" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.UpdateMovement">UpdateMovement()</h4>
+  <div class="markdown level1 summary"><p>Update movement logic (called from Update)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void UpdateMovement()</code></pre>
+  </div>
+  <a id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_UpdateMovementSpecific_" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.UpdateMovementSpecific*"></a>
+  <h4 id="GameFramework_Components_Controllers_Movement_BaseMovementComponent_UpdateMovementSpecific" data-uid="GameFramework.Components.Controllers.Movement.BaseMovementComponent.UpdateMovementSpecific">UpdateMovementSpecific()</h4>
+  <div class="markdown level1 summary"><p>Update movement logic specific to this movement type</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract void UpdateMovementSpecific()</code></pre>
+  </div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="GameFramework.Components.Controllers.Interfaces.IPlayerMovement.html">IPlayerMovement</a>
+  </div>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In this article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        © 2025 UCTools Base Project Documentation
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

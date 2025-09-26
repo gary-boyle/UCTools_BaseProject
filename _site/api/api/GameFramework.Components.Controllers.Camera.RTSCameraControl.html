@@ -92,109 +92,115 @@ All camera functionality is consolidated in this single component.</p>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><span class="xref">RTSCameraControl</span></div>
+    <div class="level1"><a class="xref" href="GameFramework.Components.Controllers.Camera.BaseCameraComponent.html">BaseCameraComponent</a></div>
+    <div class="level2"><span class="xref">RTSCameraControl</span></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
     <div><a class="xref" href="GameFramework.Components.Controllers.Interfaces.ICameraControl.html">ICameraControl</a></div>
   </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.Camera.BaseCameraComponent.html#GameFramework_Components_Controllers_Camera_BaseCameraComponent__showDebugInfo">BaseCameraComponent._showDebugInfo</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.Camera.BaseCameraComponent.html#GameFramework_Components_Controllers_Camera_BaseCameraComponent__zoomSpeed">BaseCameraComponent._zoomSpeed</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.Camera.BaseCameraComponent.html#GameFramework_Components_Controllers_Camera_BaseCameraComponent__minZoom">BaseCameraComponent._minZoom</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.Camera.BaseCameraComponent.html#GameFramework_Components_Controllers_Camera_BaseCameraComponent__maxZoom">BaseCameraComponent._maxZoom</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.Camera.BaseCameraComponent.html#GameFramework_Components_Controllers_Camera_BaseCameraComponent__zoomSmoothTime">BaseCameraComponent._zoomSmoothTime</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.Camera.BaseCameraComponent.html#GameFramework_Components_Controllers_Camera_BaseCameraComponent__zoomSmoothness">BaseCameraComponent._zoomSmoothness</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.Camera.BaseCameraComponent.html#GameFramework_Components_Controllers_Camera_BaseCameraComponent__pauseService">BaseCameraComponent._pauseService</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.Camera.BaseCameraComponent.html#GameFramework_Components_Controllers_Camera_BaseCameraComponent__eventSystem">BaseCameraComponent._eventSystem</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.Camera.BaseCameraComponent.html#GameFramework_Components_Controllers_Camera_BaseCameraComponent__inputEnabled">BaseCameraComponent._inputEnabled</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.Camera.BaseCameraComponent.html#GameFramework_Components_Controllers_Camera_BaseCameraComponent__isInitialized">BaseCameraComponent._isInitialized</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.Camera.BaseCameraComponent.html#GameFramework_Components_Controllers_Camera_BaseCameraComponent__lookInput">BaseCameraComponent._lookInput</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.Camera.BaseCameraComponent.html#GameFramework_Components_Controllers_Camera_BaseCameraComponent_IsPaused">BaseCameraComponent.IsPaused</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.Camera.BaseCameraComponent.html#GameFramework_Components_Controllers_Camera_BaseCameraComponent__currentZoom">BaseCameraComponent._currentZoom</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.Camera.BaseCameraComponent.html#GameFramework_Components_Controllers_Camera_BaseCameraComponent__targetZoom">BaseCameraComponent._targetZoom</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.Camera.BaseCameraComponent.html#GameFramework_Components_Controllers_Camera_BaseCameraComponent__zoomVelocity">BaseCameraComponent._zoomVelocity</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.Camera.BaseCameraComponent.html#GameFramework_Components_Controllers_Camera_BaseCameraComponent__mainCamera">BaseCameraComponent._mainCamera</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.Camera.BaseCameraComponent.html#GameFramework_Components_Controllers_Camera_BaseCameraComponent_Initialize">BaseCameraComponent.Initialize()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.Camera.BaseCameraComponent.html#GameFramework_Components_Controllers_Camera_BaseCameraComponent_Cleanup">BaseCameraComponent.Cleanup()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.Camera.BaseCameraComponent.html#GameFramework_Components_Controllers_Camera_BaseCameraComponent_SetInputEnabled_System_Boolean_">BaseCameraComponent.SetInputEnabled(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.Camera.BaseCameraComponent.html#GameFramework_Components_Controllers_Camera_BaseCameraComponent_HandleLookInput_GameFramework_EventSystem_Events_PlayerLookInputEvent_">BaseCameraComponent.HandleLookInput(PlayerLookInputEvent)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.Camera.BaseCameraComponent.html#GameFramework_Components_Controllers_Camera_BaseCameraComponent_UpdateCamera">BaseCameraComponent.UpdateCamera()</a>
+    </div>
+  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="GameFramework.html">GameFramework</a>.<a class="xref" href="GameFramework.Components.html">Components</a>.<a class="xref" href="GameFramework.Components.Controllers.html">Controllers</a>.<a class="xref" href="GameFramework.Components.Controllers.Camera.html">Camera</a></h6>
   <h6><strong>Assembly</strong>: .dll</h6>
   <h5 id="GameFramework_Components_Controllers_Camera_RTSCameraControl_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class RTSCameraControl : MonoBehaviour, ICameraControl</code></pre>
+    <pre><code class="lang-csharp hljs">public class RTSCameraControl : BaseCameraComponent, ICameraControl</code></pre>
   </div>
-  <h3 id="properties">Properties
-</h3>
-  <a id="GameFramework_Components_Controllers_Camera_RTSCameraControl_EffectiveMouseSensitivity_" data-uid="GameFramework.Components.Controllers.Camera.RTSCameraControl.EffectiveMouseSensitivity*"></a>
-  <h4 id="GameFramework_Components_Controllers_Camera_RTSCameraControl_EffectiveMouseSensitivity" data-uid="GameFramework.Components.Controllers.Camera.RTSCameraControl.EffectiveMouseSensitivity">EffectiveMouseSensitivity</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public float EffectiveMouseSensitivity { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_Components_Controllers_Camera_RTSCameraControl_IsPaused_" data-uid="GameFramework.Components.Controllers.Camera.RTSCameraControl.IsPaused*"></a>
-  <h4 id="GameFramework_Components_Controllers_Camera_RTSCameraControl_IsPaused" data-uid="GameFramework.Components.Controllers.Camera.RTSCameraControl.IsPaused">IsPaused</h4>
-  <div class="markdown level1 summary"><p>Whether the camera component is currently paused</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsPaused { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_Components_Controllers_Camera_RTSCameraControl_MouseSensitivityMultiplier_" data-uid="GameFramework.Components.Controllers.Camera.RTSCameraControl.MouseSensitivityMultiplier*"></a>
-  <h4 id="GameFramework_Components_Controllers_Camera_RTSCameraControl_MouseSensitivityMultiplier" data-uid="GameFramework.Components.Controllers.Camera.RTSCameraControl.MouseSensitivityMultiplier">MouseSensitivityMultiplier</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public float MouseSensitivityMultiplier { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <h3 id="methods">Methods
 </h3>
-  <a id="GameFramework_Components_Controllers_Camera_RTSCameraControl_Cleanup_" data-uid="GameFramework.Components.Controllers.Camera.RTSCameraControl.Cleanup*"></a>
-  <h4 id="GameFramework_Components_Controllers_Camera_RTSCameraControl_Cleanup" data-uid="GameFramework.Components.Controllers.Camera.RTSCameraControl.Cleanup">Cleanup()</h4>
-  <div class="markdown level1 summary"><p>Clean up the camera component</p>
+  <a id="GameFramework_Components_Controllers_Camera_RTSCameraControl_Awake_" data-uid="GameFramework.Components.Controllers.Camera.RTSCameraControl.Awake*"></a>
+  <h4 id="GameFramework_Components_Controllers_Camera_RTSCameraControl_Awake" data-uid="GameFramework.Components.Controllers.Camera.RTSCameraControl.Awake">Awake()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void Awake()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.Components.Controllers.Camera.BaseCameraComponent.html#GameFramework_Components_Controllers_Camera_BaseCameraComponent_Awake">BaseCameraComponent.Awake()</a></div>
+  <a id="GameFramework_Components_Controllers_Camera_RTSCameraControl_CleanupCameraSpecific_" data-uid="GameFramework.Components.Controllers.Camera.RTSCameraControl.CleanupCameraSpecific*"></a>
+  <h4 id="GameFramework_Components_Controllers_Camera_RTSCameraControl_CleanupCameraSpecific" data-uid="GameFramework.Components.Controllers.Camera.RTSCameraControl.CleanupCameraSpecific">CleanupCameraSpecific()</h4>
+  <div class="markdown level1 summary"><p>Cleanup camera-specific functionality</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Cleanup()</code></pre>
+    <pre><code class="lang-csharp hljs">protected override void CleanupCameraSpecific()</code></pre>
   </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.Components.Controllers.Camera.BaseCameraComponent.html#GameFramework_Components_Controllers_Camera_BaseCameraComponent_CleanupCameraSpecific">BaseCameraComponent.CleanupCameraSpecific()</a></div>
   <a id="GameFramework_Components_Controllers_Camera_RTSCameraControl_FocusOnPosition_" data-uid="GameFramework.Components.Controllers.Camera.RTSCameraControl.FocusOnPosition*"></a>
   <h4 id="GameFramework_Components_Controllers_Camera_RTSCameraControl_FocusOnPosition_Vector3_" data-uid="GameFramework.Components.Controllers.Camera.RTSCameraControl.FocusOnPosition(Vector3)">FocusOnPosition(Vector3)</h4>
-  <div class="markdown level1 summary"><p>Focus the camera on a specific world position</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void FocusOnPosition(Vector3 worldPosition)</code></pre>
+    <pre><code class="lang-csharp hljs">public void FocusOnPosition(Vector3 position)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -208,7 +214,7 @@ All camera functionality is consolidated in this single component.</p>
     <tbody>
       <tr>
         <td><span class="xref">Vector3</span></td>
-        <td><span class="parametername">worldPosition</span></td>
+        <td><span class="parametername">position</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -236,36 +242,9 @@ All camera functionality is consolidated in this single component.</p>
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_Components_Controllers_Camera_RTSCameraControl_HandleLookInput_" data-uid="GameFramework.Components.Controllers.Camera.RTSCameraControl.HandleLookInput*"></a>
-  <h4 id="GameFramework_Components_Controllers_Camera_RTSCameraControl_HandleLookInput_GameFramework_EventSystem_Events_PlayerLookInputEvent_" data-uid="GameFramework.Components.Controllers.Camera.RTSCameraControl.HandleLookInput(GameFramework.EventSystem.Events.PlayerLookInputEvent)">HandleLookInput(PlayerLookInputEvent)</h4>
-  <div class="markdown level1 summary"><p>Handle look input from the input system</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void HandleLookInput(PlayerLookInputEvent inputEvent)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="GameFramework.EventSystem.Events.PlayerLookInputEvent.html">PlayerLookInputEvent</a></td>
-        <td><span class="parametername">inputEvent</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <a id="GameFramework_Components_Controllers_Camera_RTSCameraControl_HandleMoveInput_" data-uid="GameFramework.Components.Controllers.Camera.RTSCameraControl.HandleMoveInput*"></a>
   <h4 id="GameFramework_Components_Controllers_Camera_RTSCameraControl_HandleMoveInput_GameFramework_EventSystem_Events_PlayerMoveInputEvent_" data-uid="GameFramework.Components.Controllers.Camera.RTSCameraControl.HandleMoveInput(GameFramework.EventSystem.Events.PlayerMoveInputEvent)">HandleMoveInput(PlayerMoveInputEvent)</h4>
-  <div class="markdown level1 summary"><p>Handle WASD movement input for camera panning</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -288,75 +267,59 @@ All camera functionality is consolidated in this single component.</p>
       </tr>
     </tbody>
   </table>
-  <a id="GameFramework_Components_Controllers_Camera_RTSCameraControl_Initialize_" data-uid="GameFramework.Components.Controllers.Camera.RTSCameraControl.Initialize*"></a>
-  <h4 id="GameFramework_Components_Controllers_Camera_RTSCameraControl_Initialize" data-uid="GameFramework.Components.Controllers.Camera.RTSCameraControl.Initialize">Initialize()</h4>
-  <div class="markdown level1 summary"><p>Initialize the camera component</p>
+  <a id="GameFramework_Components_Controllers_Camera_RTSCameraControl_InitializeCameraSpecific_" data-uid="GameFramework.Components.Controllers.Camera.RTSCameraControl.InitializeCameraSpecific*"></a>
+  <h4 id="GameFramework_Components_Controllers_Camera_RTSCameraControl_InitializeCameraSpecific" data-uid="GameFramework.Components.Controllers.Camera.RTSCameraControl.InitializeCameraSpecific">InitializeCameraSpecific()</h4>
+  <div class="markdown level1 summary"><p>Initialize camera-specific functionality</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Initialize()</code></pre>
+    <pre><code class="lang-csharp hljs">protected override void InitializeCameraSpecific()</code></pre>
   </div>
-  <a id="GameFramework_Components_Controllers_Camera_RTSCameraControl_SetInputEnabled_" data-uid="GameFramework.Components.Controllers.Camera.RTSCameraControl.SetInputEnabled*"></a>
-  <h4 id="GameFramework_Components_Controllers_Camera_RTSCameraControl_SetInputEnabled_System_Boolean_" data-uid="GameFramework.Components.Controllers.Camera.RTSCameraControl.SetInputEnabled(System.Boolean)">SetInputEnabled(bool)</h4>
-  <div class="markdown level1 summary"><p>Enable or disable camera input processing</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void SetInputEnabled(bool enabled)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><span class="parametername">enabled</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_Components_Controllers_Camera_RTSCameraControl_SetTarget_" data-uid="GameFramework.Components.Controllers.Camera.RTSCameraControl.SetTarget*"></a>
-  <h4 id="GameFramework_Components_Controllers_Camera_RTSCameraControl_SetTarget_Transform_" data-uid="GameFramework.Components.Controllers.Camera.RTSCameraControl.SetTarget(Transform)">SetTarget(Transform)</h4>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.Components.Controllers.Camera.BaseCameraComponent.html#GameFramework_Components_Controllers_Camera_BaseCameraComponent_InitializeCameraSpecific">BaseCameraComponent.InitializeCameraSpecific()</a></div>
+  <a id="GameFramework_Components_Controllers_Camera_RTSCameraControl_OnDrawGizmos_" data-uid="GameFramework.Components.Controllers.Camera.RTSCameraControl.OnDrawGizmos*"></a>
+  <h4 id="GameFramework_Components_Controllers_Camera_RTSCameraControl_OnDrawGizmos" data-uid="GameFramework.Components.Controllers.Camera.RTSCameraControl.OnDrawGizmos">OnDrawGizmos()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void SetTarget(Transform target)</code></pre>
+    <pre><code class="lang-csharp hljs">protected override void OnDrawGizmos()</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Transform</span></td>
-        <td><span class="parametername">target</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="GameFramework_Components_Controllers_Camera_RTSCameraControl_UpdateCamera_" data-uid="GameFramework.Components.Controllers.Camera.RTSCameraControl.UpdateCamera*"></a>
-  <h4 id="GameFramework_Components_Controllers_Camera_RTSCameraControl_UpdateCamera" data-uid="GameFramework.Components.Controllers.Camera.RTSCameraControl.UpdateCamera">UpdateCamera()</h4>
-  <div class="markdown level1 summary"><p>Update camera logic (called from Update)</p>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.Components.Controllers.Camera.BaseCameraComponent.html#GameFramework_Components_Controllers_Camera_BaseCameraComponent_OnDrawGizmos">BaseCameraComponent.OnDrawGizmos()</a></div>
+  <a id="GameFramework_Components_Controllers_Camera_RTSCameraControl_ProcessLookInput_" data-uid="GameFramework.Components.Controllers.Camera.RTSCameraControl.ProcessLookInput*"></a>
+  <h4 id="GameFramework_Components_Controllers_Camera_RTSCameraControl_ProcessLookInput" data-uid="GameFramework.Components.Controllers.Camera.RTSCameraControl.ProcessLookInput">ProcessLookInput()</h4>
+  <div class="markdown level1 summary"><p>Process look input - implemented by specific camera types</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void UpdateCamera()</code></pre>
+    <pre><code class="lang-csharp hljs">protected override void ProcessLookInput()</code></pre>
   </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.Components.Controllers.Camera.BaseCameraComponent.html#GameFramework_Components_Controllers_Camera_BaseCameraComponent_ProcessLookInput">BaseCameraComponent.ProcessLookInput()</a></div>
+  <a id="GameFramework_Components_Controllers_Camera_RTSCameraControl_UpdateCameraSpecific_" data-uid="GameFramework.Components.Controllers.Camera.RTSCameraControl.UpdateCameraSpecific*"></a>
+  <h4 id="GameFramework_Components_Controllers_Camera_RTSCameraControl_UpdateCameraSpecific" data-uid="GameFramework.Components.Controllers.Camera.RTSCameraControl.UpdateCameraSpecific">UpdateCameraSpecific()</h4>
+  <div class="markdown level1 summary"><p>Update camera logic specific to this camera type</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void UpdateCameraSpecific()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.Components.Controllers.Camera.BaseCameraComponent.html#GameFramework_Components_Controllers_Camera_BaseCameraComponent_UpdateCameraSpecific">BaseCameraComponent.UpdateCameraSpecific()</a></div>
+  <a id="GameFramework_Components_Controllers_Camera_RTSCameraControl_UpdateZoom_" data-uid="GameFramework.Components.Controllers.Camera.RTSCameraControl.UpdateZoom*"></a>
+  <h4 id="GameFramework_Components_Controllers_Camera_RTSCameraControl_UpdateZoom" data-uid="GameFramework.Components.Controllers.Camera.RTSCameraControl.UpdateZoom">UpdateZoom()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void UpdateZoom()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.Components.Controllers.Camera.BaseCameraComponent.html#GameFramework_Components_Controllers_Camera_BaseCameraComponent_UpdateZoom">BaseCameraComponent.UpdateZoom()</a></div>
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="GameFramework.Components.Controllers.Interfaces.ICameraControl.html">ICameraControl</a>

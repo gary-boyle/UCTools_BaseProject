@@ -112,6 +112,9 @@ Uses Cinemachine 3.1+ for enhanced camera management with collision detection an
       <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController__cursorLockRequirement">BasePlayerController._cursorLockRequirement</a>
     </div>
     <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController__animatorController">BasePlayerController._animatorController</a>
+    </div>
+    <div>
       <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController__eventSystem">BasePlayerController._eventSystem</a>
     </div>
     <div>
@@ -145,6 +148,9 @@ Uses Cinemachine 3.1+ for enhanced camera management with collision detection an
       <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_InteractionDetector">BasePlayerController.InteractionDetector</a>
     </div>
     <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_AnimatorController">BasePlayerController.AnimatorController</a>
+    </div>
+    <div>
       <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_IsInitialized">BasePlayerController.IsInitialized</a>
     </div>
     <div>
@@ -158,6 +164,9 @@ Uses Cinemachine 3.1+ for enhanced camera management with collision detection an
     </div>
     <div>
       <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_Start">BasePlayerController.Start()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_Update">BasePlayerController.Update()</a>
     </div>
     <div>
       <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_FixedUpdate">BasePlayerController.FixedUpdate()</a>
@@ -182,6 +191,12 @@ Uses Cinemachine 3.1+ for enhanced camera management with collision detection an
     </div>
     <div>
       <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_ResumeAllMovement">BasePlayerController.ResumeAllMovement()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_InitializeAnimation">BasePlayerController.InitializeAnimation()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_TriggerAttack">BasePlayerController.TriggerAttack()</a>
     </div>
     <div>
       <a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_SubscribeToEvents">BasePlayerController.SubscribeToEvents()</a>
@@ -223,32 +238,6 @@ Uses Cinemachine 3.1+ for enhanced camera management with collision detection an
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class ThirdPersonController : BasePlayerController</code></pre>
   </div>
-  <h3 id="properties">Properties
-</h3>
-  <a id="GameFramework_Components_Controllers_ThirdPersonController_AnimatorController_" data-uid="GameFramework.Components.Controllers.ThirdPersonController.AnimatorController*"></a>
-  <h4 id="GameFramework_Components_Controllers_ThirdPersonController_AnimatorController" data-uid="GameFramework.Components.Controllers.ThirdPersonController.AnimatorController">AnimatorController</h4>
-  <div class="markdown level1 summary"><p>Get access to the animator controller for advanced animation control</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public PlayerAnimatorController AnimatorController { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="GameFramework.Components.Controllers.Animation.PlayerAnimatorController.html">PlayerAnimatorController</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <h3 id="methods">Methods
 </h3>
   <a id="GameFramework_Components_Controllers_ThirdPersonController_Awake_" data-uid="GameFramework.Components.Controllers.ThirdPersonController.Awake*"></a>
@@ -263,7 +252,7 @@ Uses Cinemachine 3.1+ for enhanced camera management with collision detection an
   <div><a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_Awake">BasePlayerController.Awake()</a></div>
   <a id="GameFramework_Components_Controllers_ThirdPersonController_CreateComponents_" data-uid="GameFramework.Components.Controllers.ThirdPersonController.CreateComponents*"></a>
   <h4 id="GameFramework_Components_Controllers_ThirdPersonController_CreateComponents" data-uid="GameFramework.Components.Controllers.ThirdPersonController.CreateComponents">CreateComponents()</h4>
-  <div class="markdown level1 summary"><p>Create the movement and camera components for this controller type</p>
+  <div class="markdown level1 summary"><p>Create and assign components - override in derived classes</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -272,6 +261,17 @@ Uses Cinemachine 3.1+ for enhanced camera management with collision detection an
   </div>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_CreateComponents">BasePlayerController.CreateComponents()</a></div>
+  <a id="GameFramework_Components_Controllers_ThirdPersonController_FindComponents_" data-uid="GameFramework.Components.Controllers.ThirdPersonController.FindComponents*"></a>
+  <h4 id="GameFramework_Components_Controllers_ThirdPersonController_FindComponents" data-uid="GameFramework.Components.Controllers.ThirdPersonController.FindComponents">FindComponents()</h4>
+  <div class="markdown level1 summary"><p>Find components automatically - can be overridden for controller-specific finding</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void FindComponents()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_FindComponents">BasePlayerController.FindComponents()</a></div>
   <a id="GameFramework_Components_Controllers_ThirdPersonController_GetControllerType_" data-uid="GameFramework.Components.Controllers.ThirdPersonController.GetControllerType*"></a>
   <h4 id="GameFramework_Components_Controllers_ThirdPersonController_GetControllerType" data-uid="GameFramework.Components.Controllers.ThirdPersonController.GetControllerType">GetControllerType()</h4>
   <div class="markdown level1 summary"><p>Get the controller type for interaction system</p>
@@ -336,25 +336,6 @@ Uses Cinemachine 3.1+ for enhanced camera management with collision detection an
   </table>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_OnPlayerLookInput_GameFramework_EventSystem_Events_PlayerLookInputEvent_">BasePlayerController.OnPlayerLookInput(PlayerLookInputEvent)</a></div>
-  <a id="GameFramework_Components_Controllers_ThirdPersonController_TriggerAttack_" data-uid="GameFramework.Components.Controllers.ThirdPersonController.TriggerAttack*"></a>
-  <h4 id="GameFramework_Components_Controllers_ThirdPersonController_TriggerAttack" data-uid="GameFramework.Components.Controllers.ThirdPersonController.TriggerAttack">TriggerAttack()</h4>
-  <div class="markdown level1 summary"><p>Trigger attack animation</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void TriggerAttack()</code></pre>
-  </div>
-  <a id="GameFramework_Components_Controllers_ThirdPersonController_Update_" data-uid="GameFramework.Components.Controllers.ThirdPersonController.Update*"></a>
-  <h4 id="GameFramework_Components_Controllers_ThirdPersonController_Update" data-uid="GameFramework.Components.Controllers.ThirdPersonController.Update">Update()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void Update()</code></pre>
-  </div>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="GameFramework.Components.Controllers.BasePlayerController.html#GameFramework_Components_Controllers_BasePlayerController_Update">BasePlayerController.Update()</a></div>
 
 </article>
           </div>

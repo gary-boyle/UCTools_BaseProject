@@ -222,6 +222,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Components.Controllers.Camera.BaseCameraComponent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Components.Controllers.Camera.BaseCameraComponent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Components.Controllers.Camera.BaseCameraComponent",
+      "Summary": "<p sourcefile=\"api/GameFramework.Components.Controllers.Camera.BaseCameraComponent.yml\" sourcestartlinenumber=\"1\">Base class for all camera components providing common functionality.\nHandles service dependencies, input state management, and pause handling.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFramework.Components.Controllers.Camera.FirstPersonCameraControl.yml",
       "output": {
         ".html": {
@@ -443,6 +457,20 @@
       "IsMRef": true,
       "Title": "GameFramework.Components.Controllers.IsometricController",
       "Summary": "<p sourcefile=\"api/GameFramework.Components.Controllers.IsometricController.yml\" sourcestartlinenumber=\"1\">Isometric controller that combines top-down character movement with fixed-angle isometric camera.\nSuitable for isometric RPGs, puzzle games, and top-down action games.\nUses Cinemachine 3.1+ for enhanced camera management.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.Components.Controllers.Movement.BaseMovementComponent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.Components.Controllers.Movement.BaseMovementComponent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.Components.Controllers.Movement.BaseMovementComponent",
+      "Summary": "<p sourcefile=\"api/GameFramework.Components.Controllers.Movement.BaseMovementComponent.yml\" sourcestartlinenumber=\"1\">Base class for all movement components providing common functionality.\nHandles physics setup, ground detection, jumping, crouching, and basic state management.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2476,6 +2504,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.EventSystem.Events.PlayerControllerActivatedEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.EventSystem.Events.PlayerControllerActivatedEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.EventSystem.Events.PlayerControllerActivatedEvent",
+      "Summary": "<p sourcefile=\"api/GameFramework.EventSystem.Events.PlayerControllerActivatedEvent.yml\" sourcestartlinenumber=\"1\">Event published when a player controller is activated to inform services of its cursor requirements</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFramework.EventSystem.Events.PlayerCrouchInputEvent.yml",
       "output": {
         ".html": {
@@ -2710,6 +2752,20 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFramework.EventSystem.Events.SceneLoadedEvent",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFramework.EventSystem.Events.ScrollWheelInputEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/api/GameFramework.EventSystem.Events.ScrollWheelInputEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFramework.EventSystem.Events.ScrollWheelInputEvent",
       "Summary": null
     },
     {
