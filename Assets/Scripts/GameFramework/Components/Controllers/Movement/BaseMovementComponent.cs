@@ -99,6 +99,7 @@ namespace GameFramework.Components.Controllers.Movement
         public virtual void HandleCrouchInput(PlayerCrouchInputEvent inputEvent)
         {
             if (!_isInitialized || IsPaused) return;
+            // Default implementation - override in specific movement components if crouch is needed
         }
 
         public virtual void StopMovement()

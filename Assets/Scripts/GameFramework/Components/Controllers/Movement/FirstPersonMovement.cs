@@ -29,6 +29,18 @@ namespace GameFramework.Components.Controllers.Movement
         #endregion
 
         #region BaseMovementComponent Implementation
+        public override void Initialize()
+        {
+            base.Initialize();
+            
+            // Set initial collider height to standing height
+            if (_collider != null)
+            {
+                _collider.height = _standingHeight;
+                _collider.center = new Vector3(_collider.center.x, _standingHeight / 2f, _collider.center.z);
+            }
+        }
+        
         public override void HandleMoveInput(PlayerMoveInputEvent inputEvent)
         {
             if (!_isInitialized || IsPaused) return;
@@ -110,14 +122,14 @@ namespace GameFramework.Components.Controllers.Movement
                 
                 // Smooth interpolation
                 _collider.height = Mathf.Lerp(startHeight, targetHeight, t);
-                _collider.center = new Vector3(_collider.center.x, Mathf.Lerp(startCenterY, targetCenterY, t), _collider.center.z);
+                //_collider.center = new Vector3(_collider.center.x, Mathf.Lerp(startCenterY, targetCenterY, t), _collider.center.z);
                 
                 yield return null;
             }
             
             // Ensure final values are exact
             _collider.height = targetHeight;
-            _collider.center = new Vector3(_collider.center.x, targetCenterY, _collider.center.z);
+            //_collider.center = new Vector3(_collider.center.x, targetCenterY, _collider.center.z);
         }
 
         #endregion

@@ -189,9 +189,7 @@ namespace GameFramework.Input
             // Create delegate references
             _onMoveInput = ctx => _eventSystem.Publish(new PlayerMoveInputEvent(ctx.ReadValue<Vector2>(), ctx.phase));
             _onLookInput = ctx => {
-                // Apply input settings to look input
                 Vector2 rawInput = ctx.ReadValue<Vector2>();
-                //Vector2 processedInput = ProcessLookInput(rawInput);
                 _eventSystem.Publish(new PlayerLookInputEvent(rawInput, ctx.phase));
             };
             _onAttackInput = ctx => _eventSystem.Publish(new PlayerAttackInputEvent(ctx.phase));
