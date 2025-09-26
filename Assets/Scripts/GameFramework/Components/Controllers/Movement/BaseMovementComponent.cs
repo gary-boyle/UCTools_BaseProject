@@ -26,11 +26,6 @@ namespace GameFramework.Components.Controllers.Movement
         [SerializeField] protected float _groundCheckDistance = 0.1f;
         [SerializeField] protected Transform _groundCheckPoint;
 
-        [Header("Crouching")]
-        [SerializeField] protected float _crouchHeight = 1.0f;
-        [SerializeField] protected float _standingHeight = 2.0f;
-        [SerializeField] protected float _crouchTransitionSpeed = 5.0f;
-        
         [Header("Debug")]
         [SerializeField] protected bool _showDebugInfo = false;
         #endregion
@@ -104,12 +99,6 @@ namespace GameFramework.Components.Controllers.Movement
         public virtual void HandleCrouchInput(PlayerCrouchInputEvent inputEvent)
         {
             if (!_isInitialized || IsPaused) return;
-            
-            if (inputEvent.Phase == UnityEngine.InputSystem.InputActionPhase.Performed)
-            {
-                _isCrouching = !_isCrouching;
-                //StartCoroutine(TransitionCrouchHeight());
-            }
         }
 
         public virtual void StopMovement()
@@ -178,24 +167,6 @@ namespace GameFramework.Components.Controllers.Movement
             }
         }
 
-        /// <summary>
-        /// Smoothly transitions between crouch and standing height
-        /// </summary>
-        protected virtual IEnumerator TransitionCrouchHeight()
-        {
-            float targetHeight = _isCrouching ? _crouchHeight : _standingHeight;
-            float startHeight = _collider.height;
-            float elapsedTime = 0f;
-            
-            while (elapsedTime < 1f)
-            {
-                elapsedTime += Time.deltaTime * _crouchTransitionSpeed;
-                _collider.height = Mathf.Lerp(startHeight, targetHeight, elapsedTime);
-                yield return null;
-            }
-            
-            _collider.height = targetHeight;
-        }
 
         /// <summary>
         /// Gets current effective movement speed based on modifiers
@@ -203,7 +174,7 @@ namespace GameFramework.Components.Controllers.Movement
         protected virtual float GetEffectiveSpeed()
         {
             float currentSpeed = _moveSpeed;
-            if (_isSprinting && !_isCrouching) currentSpeed *= _sprintMultiplier;
+            if (_isSprinting) currentSpeed *= _sprintMultiplier;
             if (_isCrouching) currentSpeed *= _crouchMultiplier;
             return currentSpeed;
         }
@@ -232,8 +203,6 @@ namespace GameFramework.Components.Controllers.Movement
         /// </summary>
         private void SetupInitialState()
         {
-            _collider.height = _standingHeight;
-            
             // Configure rigidbody for character movement
             _rigidbody.freezeRotation = true;
             _rigidbody.interpolation = RigidbodyInterpolation.Interpolate;

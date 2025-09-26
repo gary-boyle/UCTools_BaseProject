@@ -99,39 +99,6 @@ namespace GameFramework.Components.Controllers.Camera
         }
 
         
-        // protected override void ProcessLookInput()
-        // {
-        //     if (_lookInput.magnitude < 0.1f) return;
-        //     
-        //     // Apply sensitivity
-        //     float horizontalInput = _lookInput.x * EffectiveMouseSensitivity;
-        //     float verticalInput = _lookInput.y * EffectiveMouseSensitivity;
-        //     
-        //     // Apply Y-axis inversion
-        //     if (_globalInvertYAxis || _invertYAxis)
-        //     {
-        //         verticalInput *= -1f;
-        //     }
-        //     
-        //     // Update rotation
-        //     _currentYaw += horizontalInput;
-        //     _currentPitch -= verticalInput;
-        //     
-        //     // Clamp pitch
-        //     _currentPitch = Mathf.Clamp(_currentPitch, _minVerticalAngle, _maxVerticalAngle);
-        //     
-        //     // Apply rotation to player and camera
-        //     if (_playerTransform != null)
-        //     {
-        //         _playerTransform.rotation = Quaternion.Euler(0f, _currentYaw, 0f);
-        //     }
-        //     
-        //     //_cinemachinePanTilt.TiltAxis.Value = _currentPitch;
-        //     // if (_followTarget != null)
-        //     // {
-        //     //     _followTarget.localRotation = Quaternion.Euler(_currentPitch, 0f, 0f);
-        //     // }
-        // }
         protected override void ProcessLookInput()
         {
             float mouseXRotation = _lookInput.x * EffectiveMouseSensitivity;
@@ -141,28 +108,16 @@ namespace GameFramework.Components.Controllers.Camera
             _currentPitch = Mathf.Clamp(_currentPitch, _minVerticalAngle, _maxVerticalAngle);
             _cinemachinePanTilt.TiltAxis.Value = _currentPitch;
         }
-        // protected override void ProcessLookInput()
-        // {
-        //     if (_lookInput.magnitude < 0.01f) return;
-        //
-        //     // Apply sensitivity - this was commented out causing jittery movement!
-        //     Vector2 processedInput = _lookInput * EffectiveMouseSensitivity;
-        //
-        //     // Apply Y-axis inversion
-        //     if (_globalInvertYAxis || _invertYAxis)
-        //     {
-        //         processedInput.y *= -1f;
-        //     }
-        //
-        //     // Update rotation values
-        //     _currentYaw += processedInput.x;
-        //     _currentPitch -= processedInput.y;
-        //     
-        //     // Clamp vertical rotation
-        //     _currentPitch = Mathf.Clamp(_currentPitch, _minVerticalAngle, _maxVerticalAngle);
-        //
-        //     ApplyRotation();
-        // }
+
+        protected override void UpdateCameraSpecific()
+        {
+            // noop
+        }
+
+        protected override void UpdateZoom()
+        {
+            // noop
+        }
 
         private void ApplyRotation()
         {
@@ -176,14 +131,6 @@ namespace GameFramework.Components.Controllers.Camera
             _cinemachinePanTilt.TiltAxis.Value = _currentPitch;
         }
         
-        protected override void UpdateCameraSpecific()
-        {
-            // Input processing is now handled immediately in HandleLookInput
-        }
-
-        protected override void UpdateZoom()
-        {
-        }
 
         #endregion
         

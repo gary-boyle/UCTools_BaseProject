@@ -89,6 +89,7 @@ namespace GameFramework.Components.Controllers.Camera
             // Initialize distance
             _currentDistance = _followDistance;
             _targetDistance = _followDistance;
+            _cinemachineThirdPersonFollow.VerticalArmLength = _currentZoom;
         }
 
         protected override void CleanupCameraSpecific()
@@ -99,11 +100,14 @@ namespace GameFramework.Components.Controllers.Camera
 
         protected override void ProcessLookInput()
         {
+            // noop
         }
 
         protected override void UpdateCameraSpecific()
         {
+            // noop
         }
+
         #endregion
         
         #region Private Methods

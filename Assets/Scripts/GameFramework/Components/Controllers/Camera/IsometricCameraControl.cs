@@ -42,11 +42,14 @@ namespace GameFramework.Components.Controllers.Camera
 
         protected override void CleanupCameraSpecific()
         {
+            // noop
         }
 
         protected override void ProcessLookInput()
         {
+            // noop
         }
+
 
         protected override void UpdateCameraSpecific()
         {

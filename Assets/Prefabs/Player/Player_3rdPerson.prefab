@@ -873,9 +873,6 @@ MonoBehaviour:
     m_Bits: 9
   _groundCheckDistance: 0.1
   _groundCheckPoint: {fileID: 955883634854685664}
-  _crouchHeight: 1
-  _standingHeight: 2
-  _crouchTransitionSpeed: 5
   _showDebugInfo: 0
   _airControl: 0.3
   _rotationSettings:
@@ -896,8 +893,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameFramework.Components.Controllers.Camera.ThirdPersonCameraControl
   _showDebugInfo: 0
   _zoomSpeed: 2
-  _minZoom: 5
-  _maxZoom: 20
+  _minZoom: 1
+  _maxZoom: 15
   _zoomSmoothTime: 0.2
   _zoomSmoothness: 8
   _cinemachineCamera: {fileID: 9083194349371853835}
@@ -918,7 +915,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameFramework.Components.Controllers.Animation.PlayerAnimatorController
   _animator: {fileID: 43160466296213697}
-  _enableDebugLogs: 1
   _useSpeedParameter: 1
   _useGroundedParameter: 1
   _useJumpingParameter: 1

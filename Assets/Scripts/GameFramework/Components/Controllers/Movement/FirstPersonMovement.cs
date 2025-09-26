@@ -4,6 +4,7 @@ using GameFramework.EventSystem.Events;
 using GameFramework.Services.Interfaces;
 using GameFramework.Core;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 namespace GameFramework.Components.Controllers.Movement
 {
@@ -13,10 +14,15 @@ namespace GameFramework.Components.Controllers.Movement
     /// </summary>
     public class FirstPersonMovement : BaseMovementComponent
     {
-        #region First Person Specific Fields
-        [Header("First Person Movement")]
-        [SerializeField] private float _airControl = 0.5f;
-        #endregion
+    #region First Person Specific Fields
+    [Header("First Person Movement")]
+    [SerializeField] private float _airControl = 0.5f;
+    
+    [Header("Crouching")]
+    [SerializeField] private float _crouchHeight = 1.0f;
+    [SerializeField] private float _standingHeight = 2.0f;
+    [SerializeField] private float _crouchTransitionSpeed = 5.0f;
+    #endregion
 
         #region First Person Specific Private Fields
         private Vector3 _moveDirection = Vector3.zero;
@@ -70,6 +76,9 @@ namespace GameFramework.Components.Controllers.Movement
             }
         }
         
+        /// <summary>
+        /// Handle crouch input with smooth height transition for first-person
+        /// </summary>
         public override void HandleCrouchInput(PlayerCrouchInputEvent inputEvent)
         {
             if (!_isInitialized || IsPaused) return;
@@ -79,6 +88,36 @@ namespace GameFramework.Components.Controllers.Movement
                 _isCrouching = !_isCrouching;
                 StartCoroutine(TransitionCrouchHeight());
             }
+        }
+        
+        /// <summary>
+        /// Smoothly transitions between crouch and standing height for first-person
+        /// </summary>
+        private IEnumerator TransitionCrouchHeight()
+        {
+            float targetHeight = _isCrouching ? _crouchHeight : _standingHeight;
+            float startHeight = _collider.height;
+            float startCenterY = _collider.center.y;
+            float targetCenterY = targetHeight / 2f;
+            
+            float elapsedTime = 0f;
+            float transitionDuration = 1f / _crouchTransitionSpeed;
+            
+            while (elapsedTime < transitionDuration)
+            {
+                elapsedTime += Time.deltaTime;
+                float t = elapsedTime / transitionDuration;
+                
+                // Smooth interpolation
+                _collider.height = Mathf.Lerp(startHeight, targetHeight, t);
+                _collider.center = new Vector3(_collider.center.x, Mathf.Lerp(startCenterY, targetCenterY, t), _collider.center.z);
+                
+                yield return null;
+            }
+            
+            // Ensure final values are exact
+            _collider.height = targetHeight;
+            _collider.center = new Vector3(_collider.center.x, targetCenterY, _collider.center.z);
         }
 
         #endregion

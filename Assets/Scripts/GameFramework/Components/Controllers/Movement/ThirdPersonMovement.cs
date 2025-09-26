@@ -58,11 +58,12 @@ namespace GameFramework.Components.Controllers.Movement
             
             _moveInput = inputEvent.MovementVector;
         }
-        
+
         protected override void UpdateMovementSpecific()
         {
-
+            // noop
         }
+
 
         protected override void FixedUpdateMovementSpecific()
         {
