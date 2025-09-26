@@ -31,6 +31,7 @@ namespace GameFramework.Input
         private Action<InputAction.CallbackContext> _onSprintInput;
         private Action<InputAction.CallbackContext> _onPreviousInput;
         private Action<InputAction.CallbackContext> _onNextInput;
+        private Action<InputAction.CallbackContext> _onScrollWheelInput;
 
         private Action<InputAction.CallbackContext> _onUINavigateInput;
         private Action<InputAction.CallbackContext> _onUISubmitInput;
@@ -190,8 +191,8 @@ namespace GameFramework.Input
             _onLookInput = ctx => {
                 // Apply input settings to look input
                 Vector2 rawInput = ctx.ReadValue<Vector2>();
-                Vector2 processedInput = ProcessLookInput(rawInput);
-                _eventSystem.Publish(new PlayerLookInputEvent(processedInput, ctx.phase));
+                //Vector2 processedInput = ProcessLookInput(rawInput);
+                _eventSystem.Publish(new PlayerLookInputEvent(rawInput, ctx.phase));
             };
             _onAttackInput = ctx => _eventSystem.Publish(new PlayerAttackInputEvent(ctx.phase));
             _onJumpInput = ctx => _eventSystem.Publish(new PlayerJumpInputEvent(ctx.phase));
@@ -201,7 +202,8 @@ namespace GameFramework.Input
             _onSprintInput = ctx => _eventSystem.Publish(new PlayerSprintInputEvent(ctx.phase));
             _onPreviousInput = ctx => _eventSystem.Publish(new PlayerPreviousInputEvent());
             _onNextInput = ctx => _eventSystem.Publish(new PlayerNextInputEvent());
-            
+            _onScrollWheelInput = ctx => _eventSystem.Publish(new ScrollWheelInputEvent(ctx.ReadValue<Vector2>()));
+
             _onUINavigateInput = ctx => _eventSystem.Publish(new UINavigateInputEvent(ctx.ReadValue<Vector2>()));
             _onUISubmitInput = ctx => _eventSystem.Publish(new UISubmitInputEvent());
             _onUICancelInput = ctx => _eventSystem.Publish(new UICancelInputEvent());
@@ -222,7 +224,7 @@ namespace GameFramework.Input
             // Subscribe using the delegate references
             // Player Actions
             _inputActions.Player.Move.performed += _onMoveInput;
-            _inputActions.Player.Move.canceled += _onMoveInput;  // Add canceled phase for movement
+            _inputActions.Player.Move.canceled += _onMoveInput;  
             _inputActions.Player.Look.performed += _onLookInput;
             _inputActions.Player.Attack.performed += _onAttackInput;
             _inputActions.Player.Jump.performed += _onJumpInput;
@@ -235,7 +237,8 @@ namespace GameFramework.Input
             _inputActions.Player.Previous.performed += _onPreviousInput;
             _inputActions.Player.Next.performed += _onNextInput;
             _inputActions.Player.Interact.performed += ctx => Debug.Log("Interact Input Received");
-
+            _inputActions.Player.ScrollWheel.performed += _onScrollWheelInput;
+            
             // UI Actions
             _inputActions.UI.Navigate.performed += _onUINavigateInput;
             _inputActions.UI.Submit.performed += _onUISubmitInput;
@@ -288,6 +291,8 @@ namespace GameFramework.Input
                 _inputActions.Player.Previous.performed -= _onPreviousInput;
             if (_onNextInput != null)
                 _inputActions.Player.Next.performed -= _onNextInput;
+            if (_onScrollWheelInput != null)
+                _inputActions.Player.ScrollWheel.performed -= _onScrollWheelInput;
             
             // Unsubscribe UI Actions
             if (_onUINavigateInput != null)
@@ -330,6 +335,7 @@ namespace GameFramework.Input
             _onSprintInput = null;
             _onPreviousInput = null;
             _onNextInput = null;
+            _onScrollWheelInput = null;
             
             _onUINavigateInput = null;
             _onUISubmitInput = null;

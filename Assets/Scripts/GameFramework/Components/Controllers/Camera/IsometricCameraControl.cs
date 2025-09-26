@@ -1,10 +1,5 @@
 using UnityEngine;
 using Unity.Cinemachine;
-using GameFramework.Components.Controllers.Interfaces;
-using GameFramework.EventSystem.Events;
-using GameFramework.Services.Interfaces;
-using GameFramework.Core;
-using GameFramework.EventSystem.Interfaces;
 
 namespace GameFramework.Components.Controllers.Camera
 {
@@ -17,19 +12,6 @@ namespace GameFramework.Components.Controllers.Camera
         #region Serialized Fields
         [Header("Camera Settings")]
         [SerializeField] private CinemachineCamera _cinemachineCamera;
-        
-        [Header("Zoom Settings")]
-        [SerializeField] private float _zoomSpeed = 2.0f;
-        [SerializeField] private float _minZoom = 5.0f;
-        [SerializeField] private float _maxZoom = 20.0f;
-        [SerializeField] private float _zoomSmoothTime = 0.2f;
-        #endregion
-
-        #region Isometric Camera Specific Fields
-        // Zoom state
-        private float _currentZoom = 10.0f;
-        private float _targetZoom = 10.0f;
-        private float _zoomVelocity = 0f;
         #endregion
 
         #region BaseCameraComponent Implementation
@@ -42,10 +24,9 @@ namespace GameFramework.Components.Controllers.Camera
             }
             
             // Set up orthographic camera
-            var camera = GameManager.GetService<IGameDataService>().GetMainCamera();
-            if (camera != null)
+            if (_mainCamera != null)
             {
-                camera.orthographic = true;
+                _mainCamera.orthographic = true;
             }
             
             // Initialize zoom
@@ -53,76 +34,42 @@ namespace GameFramework.Components.Controllers.Camera
             _targetZoom = _currentZoom;
             
             // Apply initial zoom
-            if (camera != null)
+            if (_mainCamera != null)
             {
-                camera.orthographicSize = _currentZoom;
-            }
-            
-            // Subscribe to scroll wheel events for zoom
-            if (_eventSystem != null)
-            {
-                _eventSystem.Subscribe<UIScrollWheelInputEvent>(OnScrollWheel);
+                _mainCamera.orthographicSize = _currentZoom;
             }
         }
 
         protected override void CleanupCameraSpecific()
         {
-            // Unsubscribe from events
-            if (_eventSystem != null)
-            {
-                _eventSystem.Unsubscribe<UIScrollWheelInputEvent>(OnScrollWheel);
-            }
         }
 
         protected override void ProcessLookInput()
         {
-            // Isometric cameras typically don't process look input for rotation
-            // Look input is ignored for isometric view
         }
 
         protected override void UpdateCameraSpecific()
         {
             UpdateZoom();
         }
+        
         #endregion
         
-        #region Additional Isometric Camera Methods
-        public Transform GetCameraTransform()
-        {
-            return _cinemachineCamera?.transform;
-        }
-        #endregion
-
         #region Private Methods
-        private void UpdateZoom()
+        protected override void UpdateZoom()
         {
-            if (Mathf.Abs(_currentZoom - _targetZoom) > 0.01f)
-            {
-                _currentZoom = Mathf.SmoothDamp(_currentZoom, _targetZoom, ref _zoomVelocity, _zoomSmoothTime);
+            if (!(Mathf.Abs(_currentZoom - _targetZoom) > 0.01f)) return;
+            
+            _currentZoom = Mathf.SmoothDamp(_currentZoom, _targetZoom, ref _zoomVelocity, _zoomSmoothTime);
                 
-                // Apply zoom to camera (assuming orthographic camera)
-                if (_cinemachineCamera != null)
-                {
-                    var camera = _cinemachineCamera.GetComponent<UnityEngine.Camera>();
-                    if (camera != null && camera.orthographic)
-                    {
-                        camera.orthographicSize = _currentZoom;
-                    }
-                }
+            // Apply zoom to camera (assuming orthographic camera)
+            if (_cinemachineCamera == null) return;
+            if (_mainCamera.orthographic)
+            {
+                _cinemachineCamera.Lens.OrthographicSize = _currentZoom;
             }
         }
 
-        private void OnScrollWheel(UIScrollWheelInputEvent scrollEvent)
-        {
-            if (!_isInitialized || !_inputEnabled || IsPaused) return;
-            
-            float scrollInput = scrollEvent.ScrollDelta.y;
-            if (Mathf.Abs(scrollInput) > 0.01f)
-            {
-                _targetZoom -= scrollInput * _zoomSpeed;
-                _targetZoom = Mathf.Clamp(_targetZoom, _minZoom, _maxZoom);
-            }
-        }
         #endregion
     }
 }

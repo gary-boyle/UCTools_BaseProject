@@ -16,8 +16,16 @@ namespace GameFramework.Components.Controllers.Camera
         #region Common Serialized Fields
         [Header("Base Camera Settings")]
         [SerializeField] protected bool _showDebugInfo = false;
-        #endregion
         
+        [Header("Zoom Settings")]
+        [SerializeField] protected float _zoomSpeed = 2.0f;
+        [SerializeField] protected float _minZoom = 5.0f;
+        [SerializeField] protected float _maxZoom = 20.0f;
+        [SerializeField] protected float _zoomSmoothTime = 0.2f;
+        [SerializeField] protected float _zoomSmoothness = 8.0f;
+
+        #endregion
+
         #region Common Protected Fields
         protected IPauseService _pauseService;
         protected IEventSystem _eventSystem;
@@ -32,6 +40,14 @@ namespace GameFramework.Components.Controllers.Camera
         public virtual bool IsPaused => _pauseService?.IsPaused ?? false;
         #endregion
 
+        #region Zoom
+        protected float _currentZoom = 10.0f;
+        protected float _targetZoom = 10.0f;
+        protected float _zoomVelocity = 0f;
+        #endregion
+
+        protected UnityEngine.Camera _mainCamera;
+        
         #region Common Unity Lifecycle
         protected virtual void Awake()
         {
@@ -47,14 +63,35 @@ namespace GameFramework.Components.Controllers.Camera
         {
             if (_isInitialized) return;
             
+            _mainCamera = GameManager.GetService<IGameDataService>().GetMainCamera();
+            
+            SubscribeToEvents();
             InitializeCameraSpecific();
             _isInitialized = true;
         }
 
+
         public virtual void Cleanup()
         {
+            UnsubscribeFromEvents();
             CleanupCameraSpecific();
             _isInitialized = false;
+        }
+
+        private void SubscribeToEvents()
+        {
+            if (_eventSystem != null)
+            {
+                _eventSystem.Subscribe<ScrollWheelInputEvent>(OnScrollWheel);
+            }
+        }
+
+        private void UnsubscribeFromEvents()
+        {
+            if (_eventSystem != null)
+            {
+                _eventSystem.Unsubscribe<ScrollWheelInputEvent>(OnScrollWheel);
+            }
         }
 
         public virtual void SetInputEnabled(bool enabled)
@@ -71,18 +108,40 @@ namespace GameFramework.Components.Controllers.Camera
         public virtual void HandleLookInput(PlayerLookInputEvent inputEvent)
         {
             if (!_isInitialized || IsPaused || !_inputEnabled) return;
-            
-            _lookInput = inputEvent.LookDelta;
+
+            switch (inputEvent.Phase)
+            {
+                case UnityEngine.InputSystem.InputActionPhase.Performed:
+                    _lookInput = inputEvent.LookDelta ;
+                    break;
+                // case UnityEngine.InputSystem.InputActionPhase.Canceled:
+                //     _lookInput = Vector2.zero;
+                //     break;
+            }
         }
 
+        private void OnScrollWheel(ScrollWheelInputEvent scrollEvent)
+        {
+            if (!_isInitialized || !_inputEnabled || IsPaused) return;
+            
+            float scrollInput = scrollEvent.ScrollDelta.y;
+            if (Mathf.Abs(scrollInput) > 0.01f)
+            {
+                _targetZoom -= scrollInput * _zoomSpeed;
+                _targetZoom = Mathf.Clamp(_targetZoom, _minZoom, _maxZoom);
+            }
+            Debug.Log("_targetZoom: " + _targetZoom);
+            
+        }
         public virtual void UpdateCamera()
         {
             if (!_isInitialized || IsPaused) return;
-            
-            UpdateCameraSpecific();
+            UpdateZoom();
             ProcessLookInput();
-            _lookInput = Vector2.zero; // Clear input after processing
+            _lookInput = Vector2.zero;
+            UpdateCameraSpecific();
         }
+
         #endregion
 
         #region Abstract Methods
@@ -105,6 +164,8 @@ namespace GameFramework.Components.Controllers.Camera
         /// Update camera logic specific to this camera type
         /// </summary>
         protected abstract void UpdateCameraSpecific();
+
+        protected abstract void UpdateZoom();
         #endregion
 
         #region Common Protected Methods

@@ -27,14 +27,7 @@ namespace GameFramework.Components.Controllers.Enum
         /// Best for games requiring precise aiming or camera-relative movement.
         /// </summary>
         MouseControl = 2,
-        
-        /// <summary>
-        /// Hybrid mode: Mouse controls rotation, but character smoothly turns toward 
-        /// movement when no mouse input is detected for a specified duration.
-        /// Combines precision of mouse control with convenience of auto-facing.
-        /// Best for games that want both precise control and intuitive movement.
-        /// </summary>
-        MouseWithMovementFallback = 3
+
     }
     
     /// <summary>
@@ -57,10 +50,5 @@ namespace GameFramework.Components.Controllers.Enum
         [UnityEngine.Tooltip("Sensitivity multiplier for mouse rotation")]
         [UnityEngine.Range(0.01f, 5f)]
         public float mouseRotationSensitivity = 1.0f;
-        
-        [Header("Hybrid Mode Settings")]
-        [UnityEngine.Tooltip("Time in seconds without mouse input before falling back to movement direction")]
-        [UnityEngine.Range(0.1f, 3f)]
-        public float mouseInactivityThreshold = 0.5f;
     }
 }

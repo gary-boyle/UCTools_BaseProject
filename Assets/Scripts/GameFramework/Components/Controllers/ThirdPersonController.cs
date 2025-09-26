@@ -79,6 +79,8 @@ namespace GameFramework.Components.Controllers
         /// </summary>
         protected override void OnPlayerLookInput(PlayerLookInputEvent inputEvent)
         {
+            if (inputEvent.Phase != UnityEngine.InputSystem.InputActionPhase.Performed) return;
+
             if (!_isInitialized || !_isEnabled) return;
             
             // Route horizontal input to movement component for character rotation
@@ -89,7 +91,7 @@ namespace GameFramework.Components.Controllers
             
             // Route full input to camera for vertical orbit and zoom handling
             // Camera will only use the vertical component for orbit
-            _cameraComponent?.HandleLookInput(inputEvent);
+            //_cameraComponent?.HandleLookInput(inputEvent);
         }
         #endregion
 

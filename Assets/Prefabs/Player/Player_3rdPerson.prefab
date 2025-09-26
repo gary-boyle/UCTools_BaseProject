@@ -881,8 +881,7 @@ MonoBehaviour:
   _rotationSettings:
     rotationMode: 2
     movementRotationSpeed: 1
-    mouseRotationSensitivity: 0.01
-    mouseInactivityThreshold: 0.1
+    mouseRotationSensitivity: 1
 --- !u!114 &2364472277237615958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -896,19 +895,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameFramework.Components.Controllers.Camera.ThirdPersonCameraControl
   _showDebugInfo: 0
+  _zoomSpeed: 2
+  _minZoom: 5
+  _maxZoom: 20
+  _zoomSmoothTime: 0.2
+  _zoomSmoothness: 8
   _cinemachineCamera: {fileID: 9083194349371853835}
   _followTarget: {fileID: 1215660048992525934}
   _lookAtTarget: {fileID: 1215660048992525934}
-  _mouseSensitivityMultiplier: 0.1
-  _orbitSpeed: 2
-  _minVerticalAngle: -30
-  _maxVerticalAngle: 60
-  _invertYAxis: 0
+  _mouseSensitivityMultiplier: 1
   _followDistance: 5
-  _minDistance: 2
-  _maxDistance: 10
-  _zoomSpeed: 2
-  _zoomSmoothTime: 0.2
 --- !u!114 &598407191801688701
 MonoBehaviour:
   m_ObjectHideFlags: 0

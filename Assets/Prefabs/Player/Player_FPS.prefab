@@ -362,10 +362,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameFramework.Components.Controllers.Camera.FirstPersonCameraControl
   _showDebugInfo: 0
+  _zoomSpeed: 2
+  _minZoom: 5
+  _maxZoom: 20
+  _zoomSmoothTime: 0.2
+  _zoomSmoothness: 8
   _cinemachineCamera: {fileID: 9083194349371853835}
   _followTarget: {fileID: 3211111535652922911}
   _playerTransform: {fileID: 1215660048992525934}
-  _mouseSensitivityMultiplier: 0.005
+  _mouseSensitivityMultiplier: 1
   _minVerticalAngle: -80
   _maxVerticalAngle: 80
   _invertYAxis: 0

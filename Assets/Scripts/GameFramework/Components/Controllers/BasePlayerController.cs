@@ -95,7 +95,6 @@ namespace GameFramework.Components.Controllers
             
             // Update components
             _movementComponent?.UpdateMovement();
-            _cameraComponent?.UpdateCamera();
             
             // Update animation
             _animatorController?.UpdateAnimations();
@@ -109,6 +108,7 @@ namespace GameFramework.Components.Controllers
             if (!_isInitialized || !_isEnabled || IsPaused) return;
             
             // Fixed update for movement (physics)
+            _cameraComponent?.UpdateCamera();
             _movementComponent?.FixedUpdateMovement();
         }
 
@@ -340,6 +340,7 @@ namespace GameFramework.Components.Controllers
         protected virtual void OnPlayerLookInput(PlayerLookInputEvent inputEvent)
         {
             if (!_isInitialized || !_isEnabled) return;
+            
             _cameraComponent?.HandleLookInput(inputEvent);
         }
 

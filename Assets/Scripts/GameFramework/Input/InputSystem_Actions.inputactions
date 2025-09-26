@@ -18,8 +18,8 @@
                     "name": "Look",
                     "type": "Value",
                     "id": "6b444451-8a00-4d00-a97e-f47457f736a8",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
+                    "expectedControlType": "Delta",
+                    "processors": "ScaleVector2(x=0.05,y=0.05)",
                     "interactions": "",
                     "initialStateCheck": true
                 },
@@ -100,6 +100,15 @@
                     "type": "Button",
                     "id": "48b870f3-4094-4168-9f21-7bac647ec470",
                     "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ScrollWheel",
+                    "type": "PassThrough",
+                    "id": "48ebaab0-b6a5-4f7e-8067-25e96477dcd6",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -521,6 +530,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "ToggleConsole",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "67f3c327-d45d-46f6-a4a3-e80e7b4ad70b",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "ScrollWheel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

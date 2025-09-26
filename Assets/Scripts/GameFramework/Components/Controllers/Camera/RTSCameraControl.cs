@@ -35,12 +35,6 @@ namespace GameFramework.Components.Controllers.Camera
         [SerializeField] private float _edgeScrollBorder = 20f;
         [SerializeField] private float _edgeScrollSpeed = 6.0f;
         
-        [Header("Mouse Zoom")]
-        [SerializeField] private float _zoomSpeed = 3.0f;
-        [SerializeField] private float _minZoom = 5.0f;
-        [SerializeField] private float _maxZoom = 25.0f;
-        [SerializeField] private float _zoomSmoothness = 8.0f;
-        
         [Header("Optional Rotation")]
         [SerializeField] private bool _enableRotation = false;
         [SerializeField] private float _rotationSpeed = 60.0f;
@@ -56,10 +50,6 @@ namespace GameFramework.Components.Controllers.Camera
         private Vector2 _moveInput = Vector2.zero;
         private Vector3 _currentVelocity = Vector3.zero;
         private Vector3 _targetVelocity = Vector3.zero;
-        
-        // Zoom state
-        private float _currentZoom = 10.0f;
-        private float _targetZoom = 10.0f;
         
         // Rotation state
         private float _currentRotation = 0f;
@@ -101,30 +91,18 @@ namespace GameFramework.Components.Controllers.Camera
             _targetZoom = _currentZoom;
             
             // Set up camera projection
-            var camera = _cinemachineCamera.GetComponent<UnityEngine.Camera>();
-            if (camera != null)
+            var mainCamera = GameManager.GetService<IGameDataService>().GetMainCamera();
+
+            if (mainCamera == null) return;
+            mainCamera.orthographic = _orthographicProjection;
+            if (_orthographicProjection)
             {
-                camera.orthographic = _orthographicProjection;
-                if (_orthographicProjection)
-                {
-                    camera.orthographicSize = _currentZoom;
-                }
-            }
-            
-            // Subscribe to scroll wheel events for zoom
-            if (_eventSystem != null)
-            {
-                _eventSystem.Subscribe<UIScrollWheelInputEvent>(OnScrollWheel);
+                mainCamera.orthographicSize = _currentZoom;
             }
         }
 
         protected override void CleanupCameraSpecific()
         {
-            // Unsubscribe from events
-            if (_eventSystem != null)
-            {
-                _eventSystem.Unsubscribe<UIScrollWheelInputEvent>(OnScrollWheel);
-            }
         }
 
         protected override void ProcessLookInput()
@@ -137,7 +115,6 @@ namespace GameFramework.Components.Controllers.Camera
         {
             UpdateMovement();
             UpdateEdgeScrolling();
-            UpdateZoom();
             UpdateRotation();
         }
         #endregion
@@ -235,7 +212,7 @@ namespace GameFramework.Components.Controllers.Camera
             // Apply edge scrolling
             if (edgeInput.magnitude > 0.01f)
             {
-                Vector3 edgeMovement = new Vector3(edgeInput.x, 0f, edgeInput.y) * _edgeScrollSpeed * Time.deltaTime;
+                Vector3 edgeMovement = new Vector3(edgeInput.x, 0f, edgeInput.y) * (_edgeScrollSpeed * Time.deltaTime);
                 Vector3 newPosition = _cameraRig.position + edgeMovement;
                 
                 // Apply boundaries if enabled
@@ -247,22 +224,7 @@ namespace GameFramework.Components.Controllers.Camera
                 _cameraRig.position = newPosition;
             }
         }
-        
-        private void UpdateZoom()
-        {
-            if (Mathf.Abs(_currentZoom - _targetZoom) > 0.01f)
-            {
-                _currentZoom = Mathf.Lerp(_currentZoom, _targetZoom, _zoomSmoothness * Time.deltaTime);
-                
-                // Apply zoom to camera
-                var camera = _cinemachineCamera.GetComponent<UnityEngine.Camera>();
-                if (camera != null && camera.orthographic)
-                {
-                    camera.orthographicSize = _currentZoom;
-                }
-            }
-        }
-        
+
         private void UpdateRotation()
         {
             if (!_enableRotation) return;
@@ -288,17 +250,25 @@ namespace GameFramework.Components.Controllers.Camera
             return position;
         }
         
-        private void OnScrollWheel(UIScrollWheelInputEvent scrollEvent)
+        protected override void UpdateZoom()
         {
-            if (!_isInitialized || !_inputEnabled || IsPaused) return;
+            _currentZoom = Mathf.Lerp(_currentZoom, _targetZoom, _zoomSmoothness * Time.deltaTime);
             
-            float scrollInput = scrollEvent.ScrollDelta.y;
-            if (Mathf.Abs(scrollInput) > 0.01f)
+            if (!(Mathf.Abs(_currentZoom - _targetZoom) > 0.01f)) return;
+            
+            if (_orthographicProjection)
             {
-                _targetZoom -= scrollInput * _zoomSpeed;
-                _targetZoom = Mathf.Clamp(_targetZoom, _minZoom, _maxZoom);
+                _cinemachineCamera.Lens.OrthographicSize = _currentZoom;
+            }
+            else
+            {
+                // Apply zoom to camera rig
+                var position = _cameraRig.transform.position;
+                position = new Vector3(position.x, _currentZoom, position.z);
+                _cameraRig.position = position;
             }
         }
+        
         #endregion
 
         #region Debug

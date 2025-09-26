@@ -26,6 +26,7 @@ namespace GameFramework.Components.Controllers.Camera
         [SerializeField] private float _minVerticalAngle = -80f;
         [SerializeField] private float _maxVerticalAngle = 80f;
         [SerializeField] private bool _invertYAxis = false;
+        
         #endregion
 
         #region First Person Camera Specific Fields
@@ -35,6 +36,7 @@ namespace GameFramework.Components.Controllers.Camera
         // Look state
         private float _currentPitch = 0f;
         private float _currentYaw = 0f;
+        private Vector2 smoothedMouseDelta;
         
         // Input processing
         private float _globalMouseSensitivity = 1.0f;
@@ -130,29 +132,37 @@ namespace GameFramework.Components.Controllers.Camera
         //     //     _followTarget.localRotation = Quaternion.Euler(_currentPitch, 0f, 0f);
         //     // }
         // }
-
         protected override void ProcessLookInput()
         {
-            if (_lookInput.magnitude < 0.01f) return;
+            float mouseXRotation = _lookInput.x * EffectiveMouseSensitivity;
+            transform.Rotate(0, mouseXRotation, 0);
             
-            // Apply sensitivity
-            Vector2 processedInput = _lookInput * EffectiveMouseSensitivity;
-            
-            // Apply Y-axis inversion
-            if (_globalInvertYAxis || _invertYAxis)
-            {
-                processedInput.y *= -1f;
-            }
-            
-            // Update rotation values
-            _currentYaw += processedInput.x;
-            _currentPitch -= processedInput.y;
-            
-            // Clamp vertical rotation
+            _currentPitch -= _lookInput.y * EffectiveMouseSensitivity;
             _currentPitch = Mathf.Clamp(_currentPitch, _minVerticalAngle, _maxVerticalAngle);
-
-            ApplyRotation();
+            _cinemachinePanTilt.TiltAxis.Value = _currentPitch;
         }
+        // protected override void ProcessLookInput()
+        // {
+        //     if (_lookInput.magnitude < 0.01f) return;
+        //
+        //     // Apply sensitivity - this was commented out causing jittery movement!
+        //     Vector2 processedInput = _lookInput * EffectiveMouseSensitivity;
+        //
+        //     // Apply Y-axis inversion
+        //     if (_globalInvertYAxis || _invertYAxis)
+        //     {
+        //         processedInput.y *= -1f;
+        //     }
+        //
+        //     // Update rotation values
+        //     _currentYaw += processedInput.x;
+        //     _currentPitch -= processedInput.y;
+        //     
+        //     // Clamp vertical rotation
+        //     _currentPitch = Mathf.Clamp(_currentPitch, _minVerticalAngle, _maxVerticalAngle);
+        //
+        //     ApplyRotation();
+        // }
 
         private void ApplyRotation()
         {
@@ -170,31 +180,13 @@ namespace GameFramework.Components.Controllers.Camera
         {
             // Input processing is now handled immediately in HandleLookInput
         }
-        #endregion
-        
-        #region Additional First Person Camera Methods
-        public Transform GetCameraTransform()
-        {
-            return _cinemachineCamera?.transform;
-        }
-        
-        public void SetTarget(Transform playerTransform, Transform followTarget)
-        {
-            _playerTransform = playerTransform;
-            _followTarget = followTarget;
-            
-            if (_cinemachineCamera != null && followTarget != null)
-            {
-                _cinemachineCamera.Follow = followTarget;
-            }
-            
-            if (playerTransform != null)
-            {
-                _currentYaw = playerTransform.eulerAngles.y;
-            }
-        }
-        #endregion
 
+        protected override void UpdateZoom()
+        {
+        }
+
+        #endregion
+        
         #region Private Methods
         private void ApplyInputSettings()
         {

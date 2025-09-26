@@ -301,9 +301,9 @@ MonoBehaviour:
   _interactionLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  _requiredInputContext: 2
+  _requiredInputContext: 3
   _cursorLockRequirement: 0
-  _cameraControl: {fileID: 173339487120783886}
+  _animatorController: {fileID: 0}
   _enableCameraFocus: 1
   _focusSpeed: 5
 --- !u!114 &173339487120783886
@@ -318,9 +318,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0021d282ab50dae40b8f05f003932076, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameFramework.Components.Controllers.Camera.RTSCameraControl
+  _showDebugInfo: 0
+  _zoomSpeed: 2
+  _minZoom: 5
+  _maxZoom: 30
+  _zoomSmoothTime: 0.2
   _cinemachineCamera: {fileID: 9083194349371853835}
   _cameraRig: {fileID: 3271327515218082169}
-  _orthographicProjection: 1
+  _orthographicProjection: 0
   _moveSpeed: 30
   _moveAcceleration: 200
   _moveDeceleration: 200
@@ -329,16 +334,11 @@ MonoBehaviour:
   _enableEdgeScrolling: 1
   _edgeScrollBorder: 50
   _edgeScrollSpeed: 25
-  _zoomSpeed: 2
-  _minZoom: 5
-  _maxZoom: 30
-  _zoomSmoothness: 8
   _enableRotation: 1
   _rotationSpeed: 2
   _rotationSmoothness: 5
+  _zoomSmoothness: 8
   _useBoundaries: 0
-  _minBounds: {x: -50, y: -50}
-  _maxBounds: {x: 50, y: 50}
-  _cameraHeight: 15
-  _cameraAngle: 45
-  _showDebugInfo: 0
+  _moveBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 50, y: 50, z: 50}

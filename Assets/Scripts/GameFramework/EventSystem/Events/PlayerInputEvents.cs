@@ -109,4 +109,14 @@ namespace GameFramework.EventSystem.Events
             ControllerType = controllerType;
         }
     }
+    
+    public class ScrollWheelInputEvent
+    {
+        public Vector2 ScrollDelta { get; }
+        
+        public ScrollWheelInputEvent(Vector2 scrollDelta)
+        {
+            ScrollDelta = scrollDelta;
+        }
+    }
 }
