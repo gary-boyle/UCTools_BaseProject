@@ -16,16 +16,6 @@ namespace GameFramework.Components.Controllers
     public class RTSController : BasePlayerController
     {
         #region Serialized Fields
-        [Header("Camera Focus")]
-        [SerializeField] private bool _enableCameraFocus = true;
-        [SerializeField] private float _focusSpeed = 5.0f;
-        #endregion
-
-        #region Private Fields
-        // Camera focus
-        private bool _isFocusing = false;
-        private Vector3 _focusTarget;
-        private float _focusStartTime;
         #endregion
 
         #region Unity Lifecycle
@@ -37,15 +27,6 @@ namespace GameFramework.Components.Controllers
             _requiredInputContext = InputContext.Mixed; // RTS needs both camera and UI input
         }
 
-        protected override void Update()
-        {
-            base.Update();
-            
-            if (_isInitialized)
-            {
-                HandleCameraFocus();
-            }
-        }
         #endregion
 
         #region Component Management
@@ -69,31 +50,6 @@ namespace GameFramework.Components.Controllers
         }
         #endregion
 
-        #region Input Handling
-        private void HandleCameraFocus()
-        {
-            if (!_enableCameraFocus || !_isFocusing || _cameraComponent == null) return;
-            
-            var rtsCameraControl = _cameraComponent as RTSCameraControl;
-            if (rtsCameraControl == null) return;
-            
-            float elapsedTime = Time.time - _focusStartTime;
-            float t = elapsedTime * _focusSpeed;
-            
-            if (t >= 1.0f)
-            {
-                rtsCameraControl.FocusOnPosition(_focusTarget);
-                _isFocusing = false;
-            }
-            else
-            {
-                // Smoothly interpolate camera position using the camera control component
-                Vector3 currentPos = rtsCameraControl.GetCameraTransform().position;
-                Vector3 targetPos = Vector3.Lerp(currentPos, _focusTarget, t);
-                rtsCameraControl.FocusOnPosition(targetPos);
-            }
-        }
-        #endregion
         
         #region Input Event Handlers - Override for RTS-specific behavior
         protected override void OnPlayerMoveInput(PlayerMoveInputEvent inputEvent)
@@ -127,12 +83,6 @@ namespace GameFramework.Components.Controllers
             
             if (!_showDebugInfo) return;
             
-            // Draw focus target
-            if (_isFocusing)
-            {
-                Gizmos.color = Color.yellow;
-                Gizmos.DrawWireSphere(_focusTarget, 1f);
-            }
         }
         #endregion
     }

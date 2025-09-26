@@ -29,13 +29,6 @@ namespace GameFramework.Components.Controllers
         [SerializeField] private float _gridMoveSpeed = 5.0f;
         #endregion
 
-        #region Private Fields
-        // Grid movement
-        private Vector3 _gridTargetPosition;
-        private bool _isMovingToGrid = false;
-        private float _gridMoveStartTime;
-        #endregion
-
         #region Unity Lifecycle
         protected override void Awake()
         {
@@ -44,28 +37,15 @@ namespace GameFramework.Components.Controllers
             
             base.Awake();
             
-            // Initialize grid position
-            if (_useGridMovement)
-            {
-                _gridTargetPosition = SnapToGrid(transform.position);
-                transform.position = _gridTargetPosition;
-            }
         }
 
-        protected override void Update()
-        {
-            base.Update();
-            
-            if (_isInitialized)
-            {
-                UpdateGridMovement();
-            }
-        }
         #endregion
 
         #region Component Management
         protected override void CreateComponents()
         {
+
+
             // Find and assign movement component
             var movementComponent = GetComponent<IsometricMovement>();
             if (movementComponent == null)
@@ -89,7 +69,7 @@ namespace GameFramework.Components.Controllers
             // Configure for grid movement if enabled
             if (_useGridMovement && movementComponent != null)
             {
-                movementComponent.SetMoveSpeed(_gridMoveSpeed);
+                movementComponent.ConfigureGridMovement(_useGridMovement, _gridSize, _gridMoveSpeed, _interactionLayerMask);
             }
         }
         
@@ -99,94 +79,6 @@ namespace GameFramework.Components.Controllers
         }
         #endregion
 
-        #region Movement Handling
-        protected override void OnPlayerMoveInput(PlayerMoveInputEvent inputEvent)
-        {
-            if (_useGridMovement)
-            {
-                HandleGridMovement(inputEvent);
-            }
-            else
-            {
-                base.OnPlayerMoveInput(inputEvent);
-            }
-        }
-
-        private void HandleGridMovement(PlayerMoveInputEvent inputEvent)
-        {
-            if (_isMovingToGrid) return; // Ignore input while moving
-            
-            Vector2 input = inputEvent.MovementVector;
-            if (input.magnitude < 0.5f) return; // Ignore small inputs
-            
-            // Convert input to grid direction
-            Vector3 direction = Vector3.zero;
-            
-            if (Mathf.Abs(input.x) > Mathf.Abs(input.y))
-            {
-                // Horizontal movement
-                direction = input.x > 0 ? Vector3.right : Vector3.left;
-            }
-            else
-            {
-                // Vertical movement  
-                direction = input.y > 0 ? Vector3.forward : Vector3.back;
-            }
-            
-            // Apply 45-degree offset if the movement component uses it
-            if (_movementComponent is IsometricMovement isometricMovement && isometricMovement.Use45DegreeOffset)
-            {
-                direction = Quaternion.Euler(0f, 45f, 0f) * direction;
-            }
-            
-            // Calculate target position
-            Vector3 targetPos = transform.position + direction * _gridSize;
-            targetPos = SnapToGrid(targetPos);
-            
-            // Check if target position is valid
-            if (IsValidGridPosition(targetPos))
-            {
-                _gridTargetPosition = targetPos;
-                _isMovingToGrid = true;
-                _gridMoveStartTime = Time.time;
-            }
-        }
-
-        private void UpdateGridMovement()
-        {
-            if (!_useGridMovement || !_isMovingToGrid) return;
-            
-            float elapsedTime = Time.time - _gridMoveStartTime;
-            float moveDistance = _gridMoveSpeed * elapsedTime;
-            float totalDistance = Vector3.Distance(transform.position, _gridTargetPosition);
-            
-            if (moveDistance >= totalDistance)
-            {
-                // Movement complete
-                transform.position = _gridTargetPosition;
-                _isMovingToGrid = false;
-            }
-            else
-            {
-                // Continue moving
-                Vector3 direction = (_gridTargetPosition - transform.position).normalized;
-                transform.position += direction * _gridMoveSpeed * Time.deltaTime;
-            }
-        }
-
-        private Vector3 SnapToGrid(Vector3 worldPos)
-        {
-            float snappedX = Mathf.Round(worldPos.x / _gridSize) * _gridSize;
-            float snappedZ = Mathf.Round(worldPos.z / _gridSize) * _gridSize;
-            return new Vector3(snappedX, worldPos.y, snappedZ);
-        }
-
-        private bool IsValidGridPosition(Vector3 gridPos)
-        {
-            // Check for obstacles using a small sphere cast
-            return !Physics.CheckSphere(gridPos, 0.4f, ~_interactionLayerMask);
-        }
-        #endregion
 
         #region Debug
         protected override void OnDrawGizmos()
@@ -195,28 +87,9 @@ namespace GameFramework.Components.Controllers
             
             if (!_showDebugInfo) return;
             
-            // Draw grid
-            if (_useGridMovement)
+            if (_movementComponent is IsometricMovement isometricMovement)
             {
-                Gizmos.color = Color.white;
-                Vector3 pos = transform.position;
-                float gridRange = 10f;
-                
-                for (float x = -gridRange; x <= gridRange; x += _gridSize)
-                {
-                    for (float z = -gridRange; z <= gridRange; z += _gridSize)
-                    {
-                        Vector3 gridPos = new Vector3(pos.x + x, pos.y, pos.z + z);
-                        Gizmos.DrawWireCube(gridPos, Vector3.one * 0.1f);
-                    }
-                }
-                
-                // Draw target position
-                if (_isMovingToGrid)
-                {
-                    Gizmos.color = Color.red;
-                    Gizmos.DrawWireCube(_gridTargetPosition, Vector3.one * 0.3f);
-                }
+                isometricMovement.DrawGridDebugGizmos(_showDebugInfo);
             }
         }
         #endregion

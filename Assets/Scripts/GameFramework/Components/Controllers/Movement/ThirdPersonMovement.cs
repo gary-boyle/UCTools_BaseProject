@@ -21,7 +21,6 @@ namespace GameFramework.Components.Controllers.Movement
         #endregion
 
         #region Third Person Specific Private Fields
-        private UnityEngine.Camera _mainCamera;
         private Vector3 _moveDirection = Vector3.zero;
         
         // Input state
@@ -41,24 +40,13 @@ namespace GameFramework.Components.Controllers.Movement
         #endregion
 
         #region Unity Lifecycle
-        protected override void Awake()
-        {
-            base.Awake(); // Get common components and services
-
-            _mainCamera = GameManager.GetService<IGameDataService>().GetMainCamera();
-        }
-
+        
         #endregion
 
         #region BaseMovementComponent Implementation
         public override void Initialize()
         {
             base.Initialize(); // Call base initialization
-            
-            if (_mainCamera == null)
-            {
-                Debug.LogWarning($"[ThirdPersonMovement] No main camera found. Movement will be relative to world space.");
-            }
             
             // Initialize current yaw from transform
             _currentYaw = transform.eulerAngles.y;
