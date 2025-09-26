@@ -56,8 +56,6 @@ namespace GameFramework.Components.Controllers.Camera
         private float _targetRotation = 0f;
         private bool _isRotating = false;
         
-        // Main camera reference
-        private UnityEngine.Camera _mainCamera;
         #endregion
 
         #region Unity Lifecycle
@@ -65,14 +63,10 @@ namespace GameFramework.Components.Controllers.Camera
         {
             base.Awake();
             
-            _mainCamera = UnityEngine.Camera.main;
-            
             // Create camera rig if not provided
             if (_cameraRig == null)
             {
-                GameObject rigGO = new GameObject("RTS_CameraRig");
-                rigGO.transform.SetParent(transform);
-                _cameraRig = rigGO.transform;
+                Debug.LogError("No CameraRig supplied");
             }
         }
         #endregion

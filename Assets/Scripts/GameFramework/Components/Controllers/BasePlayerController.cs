@@ -117,14 +117,12 @@ namespace GameFramework.Components.Controllers
             if (_isInitialized)
             {
                 SubscribeToEvents();
-                //SetInputContext();
             }
         }
 
         protected virtual void OnDisable()
         {
             UnsubscribeFromEvents();
-            //ResetInputContext();
         }
 
         protected virtual void OnDestroy()
@@ -174,7 +172,6 @@ namespace GameFramework.Components.Controllers
             if (!_isInitialized) return;
             
             UnsubscribeFromEvents();
-            //ResetInputContext();
             
             // Cleanup components
             _movementComponent?.Cleanup();

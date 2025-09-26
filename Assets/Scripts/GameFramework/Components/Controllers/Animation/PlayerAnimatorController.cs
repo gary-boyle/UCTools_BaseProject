@@ -16,9 +16,6 @@ namespace GameFramework.Components.Controllers.Animation
         [Header("Animation Components")]
         [SerializeField] private Animator _animator;
         
-        [Header("Animation Settings")]
-        [SerializeField] private bool _enableDebugLogs = false;
-        
         [Header("Animation Parameters")]
         [SerializeField] private bool _useSpeedParameter = true;
         [SerializeField] private bool _useGroundedParameter = true;
@@ -118,11 +115,6 @@ namespace GameFramework.Components.Controllers.Animation
             {
                 var remappedSpeed = math.remap(0f, _movementComponent.MoveSpeed, 0f, 1f, speed);
                 _animator.SetFloat(SpeedParam, remappedSpeed);
-                
-                if (_enableDebugLogs)
-                {
-                    Debug.Log($"[PlayerAnimatorController] Speed: {speed:F2}, Remapped: {remappedSpeed:F2}");
-                }
             }
             
             if (_useMovingParameter)

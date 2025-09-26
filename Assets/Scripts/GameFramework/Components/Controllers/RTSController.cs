@@ -22,8 +22,6 @@ namespace GameFramework.Components.Controllers
         #endregion
 
         #region Private Fields
-        private UnityEngine.Camera _mainCamera;
-        
         // Camera focus
         private bool _isFocusing = false;
         private Vector3 _focusTarget;
@@ -35,8 +33,6 @@ namespace GameFramework.Components.Controllers
         {
             base.Awake();
             
-            _mainCamera = GameManager.GetService<IGameDataService>().GetMainCamera();
-
             // Override input context for RTS
             _requiredInputContext = InputContext.Mixed; // RTS needs both camera and UI input
         }

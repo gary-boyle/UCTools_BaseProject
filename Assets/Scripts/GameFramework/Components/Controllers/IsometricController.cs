@@ -19,7 +19,6 @@ namespace GameFramework.Components.Controllers
         #region Serialized Fields
         [Header("Isometric Settings")]
         [SerializeField] private CinemachineCamera _cinemachineCamera;
-        [SerializeField] private Transform _cameraLookAtTarget;
         
         [Header("Character Model")]
         [SerializeField] private GameObject _characterModel;

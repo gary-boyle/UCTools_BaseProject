@@ -114,9 +114,6 @@ namespace GameFramework.Components.Controllers.Camera
                 case UnityEngine.InputSystem.InputActionPhase.Performed:
                     _lookInput = inputEvent.LookDelta ;
                     break;
-                // case UnityEngine.InputSystem.InputActionPhase.Canceled:
-                //     _lookInput = Vector2.zero;
-                //     break;
             }
         }
 
@@ -130,7 +127,6 @@ namespace GameFramework.Components.Controllers.Camera
                 _targetZoom -= scrollInput * _zoomSpeed;
                 _targetZoom = Mathf.Clamp(_targetZoom, _minZoom, _maxZoom);
             }
-            Debug.Log("_targetZoom: " + _targetZoom);
             
         }
         public virtual void UpdateCamera()

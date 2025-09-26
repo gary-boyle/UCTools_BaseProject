@@ -94,11 +94,7 @@ namespace GameFramework.Components.Controllers
         /// </summary>
         private void LogLoadingResults()
         {
-            Debug.Log("[PlayerPrefabSelector] Player prefabs loaded:");
-            Debug.Log($"  FPS: {(_fpsPrefab != null ? _fpsPrefab.name : "NOT FOUND")}");
-            Debug.Log($"  ThirdPerson: {(_thirdPersonPrefab != null ? _thirdPersonPrefab.name : "NOT FOUND")}");
-            Debug.Log($"  RTS: {(_rtsPrefab != null ? _rtsPrefab.name : "NOT FOUND")}");
-            Debug.Log($"  Isometric: {(_isometricPrefab != null ? _isometricPrefab.name : "NOT FOUND")}");
+            // Prefabs loaded successfully
         }
         #endregion
     }

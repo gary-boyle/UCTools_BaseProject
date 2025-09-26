@@ -91,7 +91,6 @@ namespace GameFramework.Components.Controllers
             
             // Route full input to camera for vertical orbit and zoom handling
             // Camera will only use the vertical component for orbit
-            //_cameraComponent?.HandleLookInput(inputEvent);
         }
         #endregion
 
